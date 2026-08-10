@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "name": "示例·房规巨剑",
+      "ENG_name": "Example Greatsword",
+      "source": "EX",
+      "type": "M",
+      "rarity": "rare",
+      "reqAttune": true,
+      "value": 7500,
+      "weight": 6,
+      "dmg1": "2d6",
+      "property": ["H", "2H"],
+      "entries": [
+        "（房规示例，5etools 格式）这把巨剑握在手中时散发着微光。用其攻击命中时，额外造成1d6火焰伤害。"
+      ],
+      "tags": {
+        "dmg_dealt": ["火焰"],
+        "weapon_property": ["重型", "双手"]
+      }
+    },
+    {
+      "kind": "物品",
+      "name": "示例·幸运铜板",
+      "source": "EX",
+      "rarity": "uncommon",
+      "body": "（简化格式示例）一枚刻着神秘符文的铜板。每天一次，你可以抛掷它：正面朝上时，你下一次攻击检定获得优势。",
+      "tags": {
+        "item_type": ["杂项"]
+      }
+    }
+  ]
+}

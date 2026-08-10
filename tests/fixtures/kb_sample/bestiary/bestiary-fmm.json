@@ -1,0 +1,104 @@
+{
+  "monster": [
+    {
+      "ENG_name": "Bronze Dragon Wyrmling",
+      "name": "少年青铜龙",
+      "source": "FMM",
+      "page": 25,
+      "size": ["L"],
+      "type": "dragon",
+      "ac": [17],
+      "hp": {"average": 68, "formula": "8d10 + 24"},
+      "cr": "3",
+      "speed": { "walk": 30, "fly": 60, "swim": 30 },
+      "str": 17,
+      "dex": 10,
+      "con": 15,
+      "int": 12,
+      "wis": 11,
+      "cha": 15,
+      "save": { "dex": "+5", "con": "+4" },
+      "skill": { "perception": "+5", "stealth": "+2" },
+      "immune": ["闪电", { "immune": ["钝击", "穿刺"], "note": "来自非魔法攻击" }],
+      "resist": ["寒冷"],
+      "conditionImmune": ["恐慌"],
+      "languages": ["通用语、龙语"],
+      "senses": ["黑暗视觉 60 尺"],
+      "passive": 13,
+      "gear": ["短剑|xphb", "法球|xphb"],
+      "environment": ["沿海", "山地"],
+      "spellcasting": [
+        {
+          "ENG_name": "Spellcasting",
+          "name": "施法",
+          "type": "spellcasting",
+          "ability": "int",
+          "headerEntries": ["少年青铜龙作为 1 级施法者，其施法属性为智力（法术豁免{@dc 11}）。它准备了以下法术："],
+          "spells": {
+            "0": { "spells": ["{@spell 光亮术}"] },
+            "1": { "slots": 2, "spells": ["{@spell 侦测魔法}", "{@spell 雷电术}"] }
+          }
+        }
+      ],
+      "trait": [
+        {
+          "name": "两栖",
+          "entries": ["该生物可以在空气和水中呼吸。"]
+        }
+      ],
+      "action": [
+        {
+          "name": "啃咬",
+          "entries": ["近战武器攻击：{@hit +6}，触及 10 尺，单一目标。命中时造成{@damage 1d10 + 3}点穿刺伤害。"]
+        },
+        {
+          "name": "吐息",
+          "entries": ["该生物吐出闪电，形成一道长 40 尺、宽 5 尺的线状区域。区域内每个生物必须进行一次{@dc 13}的敏捷豁免，豁免失败受到{@damage 4d10}点闪电伤害，成功则减半。{@recharge 5}"]
+        }
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Adult Red Dragon",
+      "name": "成年红龙",
+      "source": "MM",
+      "page": 98,
+      "size": ["H"],
+      "type": "dragon",
+      "ac": 19,
+      "hp": 256,
+      "cr": "17",
+      "action": [
+        {
+          "name": "火焰吐息",
+          "entries": ["该生物呼出火焰，形成半径 60 尺的锥形区域。区域内每个生物必须进行一次{@dc 21}的敏捷豁免，豁免失败受到{@damage 18d6}点火焰伤害，成功则减半。"]
+        }
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Dire Wolf",
+      "name": "恐狼",
+      "source": "MM",
+      "page": 321,
+      "size": ["L"],
+      "type": "beast",
+      "ac": 14,
+      "hp": 37,
+      "cr": "1/4",
+      "trait": [
+        {
+          "name": "包抄",
+          "entries": ["如果该生物至少有一个盟友位于目标周围 5 尺内且未失去行动能力，则其针对该目标进行的攻击检定具有优势。"]
+        }
+      ],
+      "action": [
+        {
+          "name": "啃咬",
+          "entries": ["近战武器攻击：{@hit +5}，触及 5 尺，单一目标。命中时造成{@damage 2d4 + 2}点穿刺伤害。目标必须成功通过一次力量检定，否则陷入{@condition 受擒}状态。"]
+        }
+      ],
+      "translator": "机翻"
+    }
+  ]
+}

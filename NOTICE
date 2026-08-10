@@ -1,0 +1,26 @@
+NOTICE — 数据来源与许可声明
+============================
+
+本插件内置的知识库数据库（kb_data/dnd_kb.db）由以下来源派生：
+
+- 数据来源：5etools 中文站（5etools 的简体中文本地化镜像）
+  - 仓库：https://github.com/tjliqy/5etools-mirror-2.github.io （cn2.0 分支）
+  - 站点：https://5e.kiwee.top/
+- 原始数据：5etools（https://5e.tools/ ，TheGiddyLimit and contributors，MIT 许可的源代码与英文数据）
+- 中文译文：由民间汉化组与独立译者贡献，经「DND 共库」整理排版；人工校对译文主要来自「5e 不全书（DND5eChm/DND5e_chm）」项目及其译者。
+
+许可条款
+--------
+
+中文本地化数据适用 **CC BY-NC-SA 4.0**（署名-非商业-相同方式共享）：
+
+- 署名（BY）：译文版权归原译者（不全书等）与「DND 共库」整理者所有；
+- 非商业（NC）：本插件及其知识库数据仅限非商业用途；
+- 相同方式共享（SA）：由本数据派生的数据库/内容必须以相同许可发布。
+
+许可全文：https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh
+
+插件代码本体（不含知识库数据）沿用上游 MIT 许可（见 LICENSE）。
+
+数据构建：scripts/build_kb.py 在发版时离线清洗上游 JSON 编译为只读 SQLite；
+运行 /kb version 可查看当前内置数据的版本与来源 commit。

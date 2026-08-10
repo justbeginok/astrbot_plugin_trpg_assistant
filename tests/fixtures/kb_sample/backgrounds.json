@@ -1,0 +1,25 @@
+{
+  "background": [
+    {
+      "ENG_name": "Acolyte",
+      "name": "侍僧",
+      "source": "PHB",
+      "page": 127,
+      "edition": "2014",
+      "entries": ["你在一座神庙里度过了你的青春，在那里你学会了为神祇服务。你精通祈祷、仪式与神学，并且在敬奉你神祇的社群中广受尊敬。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Acolyte",
+      "name": "侍僧",
+      "source": "XPHB",
+      "edition": "2024",
+      "ability": [
+        { "choose": { "weighted": { "from": ["int", "wis", "cha"], "weights": [2, 1] } } },
+        { "choose": { "weighted": { "from": ["int", "wis", "cha"], "weights": [1, 1, 1] } } }
+      ],
+      "entries": ["你是神祇的侍僧（2024 版）。"],
+      "translator": "不全书"
+    }
+  ]
+}

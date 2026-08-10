@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "sources": [{ "json": "Wizard", "abbreviation": "PHB" }]
+  },
+  "class": [
+    {
+      "ENG_name": "Wizard",
+      "name": "法师",
+      "source": "PHB",
+      "edition": "2014",
+      "hd": { "number": 1, "faces": 6 },
+      "subclassTitle": "奥术传统",
+      "proficiency": ["int", "wis"],
+      "casterProgression": "full",
+      "spellcastingAbility": "int",
+      "startingEquipment": {
+        "defaultData": [
+          { "a": [{ "item": "匕首" }, { "item": "法器" }] }
+        ]
+      }
+    }
+  ],
+  "subclass": [],
+  "classFeature": [
+    {
+      "ENG_name": "Spellcasting",
+      "name": "施法",
+      "className": "法师",
+      "classSource": "PHB",
+      "source": "PHB",
+      "level": 1,
+      "entries": ["你已学会施展法术。你的法术攻击加值等于你的熟练加值与智力修正之和。"],
+      "translator": "不全书"
+    }
+  ],
+  "subclassFeature": []
+}

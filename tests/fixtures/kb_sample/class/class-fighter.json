@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "sources": [{ "json": "Fighter", "abbreviation": "PHB" }]
+  },
+  "class": [
+    {
+      "ENG_name": "Fighter",
+      "name": "战士",
+      "source": "PHB",
+      "edition": "2014",
+      "hd": { "number": 1, "faces": 10 },
+      "subclassTitle": "武术传统",
+      "proficiency": ["str", "con"],
+      "startingEquipment": {
+        "goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金币}",
+        "defaultData": [
+          { "a": [{ "item": "长剑" }, { "item": "盾牌" }] }
+        ]
+      }
+    }
+  ],
+  "subclass": [
+    {
+      "ENG_name": "Champion",
+      "name": "冠军武士",
+      "source": "PHB",
+      "shortName": "冠军",
+      "className": "战士",
+      "classSource": "PHB"
+    },
+    {
+      "ENG_name": "Eldritch Knight",
+      "name": "奥法骑士",
+      "source": "PHB",
+      "shortName": "奥法骑士",
+      "className": "战士",
+      "classSource": "PHB",
+      "casterProgression": "1/3",
+      "spellcastingAbility": "int"
+    },
+    {
+      "ENG_name": "Eldritch Knight (dup)",
+      "name": "奥法骑士",
+      "source": "PHB",
+      "shortName": "奥法骑士",
+      "className": "战士",
+      "classSource": "PHB",
+      "casterProgression": null
+    }
+  ],
+  "classFeature": [
+    {
+      "ENG_name": "Fighting Style",
+      "name": "战斗风格",
+      "className": "战士",
+      "classSource": "PHB",
+      "source": "PHB",
+      "level": 1,
+      "entries": ["你采取一种特别的作战风格作为专长。选择下列选项之一：你可以获得一项{@filter 战斗风格专长|feats|category=战斗风格|source=PHB}中的专长，但你必须满足其前置条件。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Action Surge",
+      "name": "动作如潮",
+      "className": "战士",
+      "classSource": "PHB",
+      "source": "PHB",
+      "level": 2,
+      "entries": ["在你的回合中，你可以额外进行一次动作，除施放法术外。使用该特性后，你必须完成一次短休或长休才能再次使用。"],
+      "translator": "不全书"
+    }
+  ],
+  "subclassFeature": [
+    {
+      "ENG_name": "Improved Critical",
+      "name": "精通重击",
+      "className": "战士",
+      "classSource": "PHB",
+      "subclassShortName": "冠军",
+      "subclassSource": "PHB",
+      "source": "PHB",
+      "level": 3,
+      "entries": ["你的攻击检定骰掷出 19 或 20 时即视为重击。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Remarkable Athlete",
+      "name": "非凡运动家",
+      "className": "战士",
+      "classSource": "PHB",
+      "subclassShortName": "冠军",
+      "subclassSource": "PHB",
+      "source": "PHB",
+      "level": 7,
+      "entries": [
+        "当你进行力量、敏捷或体质属性检定时，你可以将你的熟练加值的一半（至少 +1）加入掷骰结果。",
+        {
+          "type": "list",
+          "items": ["增益一：跳跃距离翻倍", "增益二：攀爬速度等同步行速度"]
+        },
+        {
+          "ENG_name": "Extra Benefit",
+          "name": "额外增益",
+          "type": "entries",
+          "entries": ["当你处于优势时，额外获得 +2 加值。"]
+        }
+      ],
+      "translator": "不全书"
+    }
+  ]
+}

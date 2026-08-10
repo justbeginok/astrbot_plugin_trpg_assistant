@@ -1,0 +1,21 @@
+{
+  "data_version": "884d65a-20260809",
+  "source_commit": "884d65a",
+  "build_time": "2026-08-09T05:08:50Z",
+  "schema_version": "10",
+  "counts": {
+    "spell": 554,
+    "monster": 3741,
+    "item": 1871,
+    "feat": 276,
+    "background": 148,
+    "condition": 35,
+    "race": 160,
+    "spellClass": 1190,
+    "class": 30,
+    "subclass": 322,
+    "classFeature": 677,
+    "subclassFeature": 1441
+  },
+  "skipped": 2046
+}

@@ -1,0 +1,35 @@
+{
+  "monsters": [
+    {
+      "name": "示例·软泥怪·翡翠",
+      "ENG_name": "Example Emerald Slime",
+      "source": "EX",
+      "size": "M",
+      "type": "ooze",
+      "ac": 9,
+      "hp": { "average": 68, "formula": "8d10+24" },
+      "speed": { "walk": 20, "climb": 20 },
+      "str": 14, "dex": 6, "con": 16, "int": 2, "wis": 8, "cha": 4,
+      "cr": "3",
+      "conditionImmune": ["目盲", "耳聋", "力竭"],
+      "languages": "—",
+      "senses": ["盲视60尺（盲区外目盲）"],
+      "trait": [
+        {
+          "name": "翡翠酸液",
+          "entries": ["（房规示例，5etools 格式）软泥的酸液呈翡翠色。接触时造成额外2d6强酸伤害。"]
+        }
+      ],
+      "action": [
+        {
+          "name": "伪足打击",
+          "entries": ["近战武器攻击：命中时造成 1d6+2 钝击伤害外加 3d6 强酸伤害。"]
+        }
+      ],
+      "tags": {
+        "dmg_dealt": ["强酸", "钝击"],
+        "creature_type": ["泥怪"]
+      }
+    }
+  ]
+}

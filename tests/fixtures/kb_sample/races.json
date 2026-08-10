@@ -1,0 +1,164 @@
+{
+  "race": [
+    {
+      "ENG_name": "Aasimar",
+      "name": "阿斯莫",
+      "source": "DMG",
+      "page": 286,
+      "size": [
+        "M"
+      ],
+      "speed": 30,
+      "darkvision": 60,
+      "entries": [
+        "你拥有光明驱动的种族施法能力，可施展 {@spell 火球术|PHB}。",
+        "你对火焰伤害和心灵伤害具有抗性。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Aasimar",
+      "name": "阿斯莫",
+      "source": "MPMM",
+      "page": 6,
+      "size": [
+        "M"
+      ],
+      "speed": {
+        "walk": 30,
+        "fly": true
+      },
+      "darkvision": 60,
+      "creatureTypes": [
+        "类人生物"
+      ],
+      "resist": [
+        {
+          "choose": {
+            "from": [
+              "火焰",
+              "暗蚀"
+            ]
+          }
+        }
+      ],
+      "additionalSpells": [
+        {
+          "name": "光明驱动",
+          "innate": {
+            "3": {
+              "daily": {
+                "1": [
+                  "致盲术|xphb"
+                ]
+              }
+            }
+          },
+          "known": {
+            "1": [
+              "舞光术|xphb#c"
+            ]
+          }
+        }
+      ],
+      "entries": [],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Skeleton",
+      "name": "骷髅",
+      "source": "DMG",
+      "page": 310,
+      "size": [
+        "M"
+      ],
+      "speed": 30,
+      "creatureTypes": [
+        "亡灵"
+      ],
+      "entries": [
+        "你是不死生物的骷髅，对毒素伤害免疫。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Plasmoid",
+      "name": "流浆体",
+      "source": "AAG",
+      "page": 24,
+      "size": [
+        "M"
+      ],
+      "speed": {
+        "walk": 30,
+        "swim": 30
+      },
+      "creatureTypes": [
+        "泥怪"
+      ],
+      "entries": [
+        "你是泥怪形态的流浆体，可在水下自如行动。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Half-Elf",
+      "name": "半精灵",
+      "source": "PHB",
+      "page": 38,
+      "size": [
+        "S",
+        "M"
+      ],
+      "speed": 30,
+      "darkvision": 60,
+      "ability": [
+        {
+          "cha": 2,
+          "choose": {
+            "from": [
+              "str",
+              "dex",
+              "con",
+              "int",
+              "wis"
+            ],
+            "count": 2
+          }
+        }
+      ],
+      "entries": [
+        "半精灵拥有精灵血统与人类血统。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Dwarf",
+      "name": "矮人",
+      "source": "PHB",
+      "page": 26,
+      "size": [
+        "M"
+      ],
+      "speed": {
+        "walk": 30,
+        "climb": true
+      },
+      "ability": [
+        {
+          "con": 2
+        }
+      ],
+      "entries": [
+        "矮人体魄强健，拥有毒素伤害的伤害抗性。",
+        {
+          "name": "矮人抗性",
+          "entries": [
+            "你拥有毒素伤害抗性。"
+          ]
+        }
+      ],
+      "translator": "不全书"
+    }
+  ]
+}

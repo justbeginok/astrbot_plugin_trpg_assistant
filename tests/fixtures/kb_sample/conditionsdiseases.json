@@ -1,0 +1,47 @@
+{
+  "condition": [
+    {
+      "ENG_name": "Blinded",
+      "name": "目盲",
+      "source": "PHB",
+      "page": 290,
+      "entries": [
+        "目盲的生物无法看见东西，其所有依赖视觉的检定时自动失败，且攻击检定有劣势。"
+      ],
+      "translator": "不全书",
+      "reprintedAs": ["目盲|XPHB"]
+    },
+    {
+      "ENG_name": "Blinded",
+      "name": "目盲",
+      "source": "XPHB",
+      "page": 361,
+      "entries": [
+        "目盲的生物无法看见东西。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Exhaustion",
+      "name": "力竭",
+      "source": "PHB",
+      "page": 291,
+      "entries": [
+        "力竭会累积，每级力竭都会削弱生物的能力。"
+      ],
+      "translator": "不全书"
+    }
+  ],
+  "status": [
+    {
+      "ENG_name": "Concentration",
+      "name": "专注",
+      "source": "PHB",
+      "page": 203,
+      "entries": [
+        "专注是维持某些法术效果所需的施法状态。"
+      ],
+      "translator": "不全书"
+    }
+  ]
+}

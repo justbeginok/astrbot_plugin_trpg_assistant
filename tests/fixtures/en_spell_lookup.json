@@ -1,0 +1,42 @@
+{
+  "phb": {
+    "fireball": {
+      "class": {
+        "PHB": {"Sorcerer": true, "Wizard": true}
+      },
+      "subclass": {}
+    },
+    "ray of frost": {
+      "class": {
+        "PHB": {"Sorcerer": true, "Wizard": true}
+      },
+      "subclass": {}
+    },
+    "burning hands": {
+      "class": {
+        "PHB": {"Sorcerer": true, "Wizard": true}
+      },
+      "subclass": {}
+    },
+    "blight": {
+      "class": {
+        "PHB": {"Warlock": true, "Wizard": true}
+      },
+      "subclass": {}
+    },
+    "hold person": {
+      "class": {
+        "PHB": {"Wizard": true}
+      },
+      "subclass": {}
+    }
+  },
+  "xphb": {
+    "fireball": {
+      "class": {
+        "XPHB": {"Wizard": true}
+      },
+      "subclass": {}
+    }
+  }
+}

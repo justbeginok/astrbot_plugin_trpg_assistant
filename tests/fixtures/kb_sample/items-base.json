@@ -1,0 +1,127 @@
+{
+  "baseitem": [
+    {
+      "ENG_name": "Longsword",
+      "name": "长剑",
+      "source": "PHB",
+      "page": 149,
+      "rarity": "none",
+      "weight": 3,
+      "weaponCategory": "martial",
+      "dmg1": "1d8",
+      "dmg2": "1d10",
+      "dmgType": "S",
+      "property": [
+        "F|PHB",
+        "L|PHB",
+        "V|PHB"
+      ],
+      "range": null,
+      "reprintedAs": [
+        "长剑|XPHB"
+      ],
+      "entries": [
+        "这把剑有刃。"
+      ],
+      "translator": "不全书",
+      "type": "M",
+      "value": 100
+    },
+    {
+      "ENG_name": "Longsword",
+      "name": "长剑",
+      "source": "XPHB",
+      "page": 214,
+      "rarity": "none",
+      "weight": 3,
+      "weaponCategory": "martial",
+      "dmg1": "1d8",
+      "dmg2": "1d10",
+      "dmgType": "S",
+      "property": [
+        "F|XPHB",
+        "L|XPHB",
+        "V|XPHB"
+      ],
+      "entries": [
+        "这把剑有刃（2024 版）。"
+      ],
+      "translator": "不全书",
+      "type": "M",
+      "value": 1500
+    },
+    {
+      "ENG_name": "Hand Crossbow",
+      "name": "手弩",
+      "source": "PHB",
+      "page": 149,
+      "rarity": "none",
+      "weight": 3,
+      "weaponCategory": "martial",
+      "dmg1": "1d6",
+      "dmgType": "P",
+      "property": [
+        "A|PHB",
+        "LD|PHB",
+        "L|PHB"
+      ],
+      "range": "30/120",
+      "entries": [
+        "一把轻型弩。"
+      ],
+      "translator": "不全书",
+      "type": "R",
+      "value": 2500
+    },
+    {
+      "ENG_name": "Alchemist's Fire (flask)",
+      "name": "炽火胶 (扁瓶)",
+      "source": "PHB",
+      "page": 148,
+      "rarity": "none",
+      "weight": 1,
+      "dmg1": "1d4",
+      "dmgType": "F",
+      "property": [
+        "T|PHB"
+      ],
+      "range": "20",
+      "entries": [
+        "这种粘稠的液体暴露于空气时会燃烧。"
+      ],
+      "translator": "不全书",
+      "type": "G",
+      "value": 5000
+    },
+    {
+      "ENG_name": "Leather Armor",
+      "name": "皮甲",
+      "source": "PHB",
+      "page": 145,
+      "rarity": "none",
+      "weight": 10,
+      "ac": 11,
+      "entries": [
+        "以柔韧皮革缝制的护甲。"
+      ],
+      "translator": "不全书",
+      "type": "LA",
+      "value": 1000
+    },
+    {
+      "ENG_name": "Shield",
+      "name": "盾牌",
+      "source": "PHB",
+      "page": 145,
+      "rarity": "none",
+      "weight": 6,
+      "ac": 2,
+      "entries": [
+        "一面木制或金属制的盾牌。"
+      ],
+      "translator": "不全书",
+      "type": "S",
+      "value": 1000
+    }
+  ]
+}

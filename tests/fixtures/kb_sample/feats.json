@@ -1,0 +1,84 @@
+{
+  "feat": [
+    {
+      "ENG_name": "Tough",
+      "name": "坚韧",
+      "source": "PHB",
+      "page": 170,
+      "entries": ["你的生命值上限增加 2，且你每提升一个等级，生命值上限额外增加 2。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Lucky",
+      "name": "幸运",
+      "source": "PHB",
+      "entries": ["你拥有三点幸运骰，用于影响自己的攻击检定、属性检定或豁免检定。你可以选择在掷骰后花费一点幸运骰，重掷该检定。"],
+      "reprintedAs": ["幸运|XPHB"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Lucky",
+      "name": "幸运",
+      "source": "XPHB",
+      "category": "G",
+      "ability": [{"choose": {"from": ["str", "dex", "con", "int", "wis", "cha"]}}],
+      "entries": ["你拥有英雄激励，可用于重掷任何攻击检定、属性检定或豁免检定。"],
+      "translator": "机翻"
+    },
+    {
+      "ENG_name": "Medium Armor Master",
+      "name": "中甲大师",
+      "source": "PHB",
+      "prerequisite": [{"proficiency": [{"armor": "medium"}]}],
+      "entries": ["穿着中甲期间，若你的敏捷在 16 或更高，你可以在AC中加入 3 点敏捷调整值，而非原本的 2 点。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Ritual Caster",
+      "name": "仪式施法者",
+      "source": "XPHB",
+      "category": "G",
+      "ability": [{"choose": {"from": ["int", "wis", "cha"]}}],
+      "prerequisite": [
+        {"level": 4, "ability": [{"int": 13}]},
+        {"level": 4, "ability": [{"wis": 13}]},
+        {"level": 4, "ability": [{"cha": 13}]}
+      ],
+      "entries": ["你选择数道具有仪式标签的法术，其具体数量等于你的熟练加值。"],
+      "translator": "机翻"
+    },
+    {
+      "ENG_name": "Guile of the Cloud Giant",
+      "name": "云巨人之诡诈",
+      "source": "BGG",
+      "prerequisite": [{"level": 4, "feat": ["Giant Strike|BGG|巨人打击（云雾打击）"]}],
+      "entries": ["你展现出象征着云巨人的轻浮言语以及魔法。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Elven Accuracy",
+      "name": "精灵之准",
+      "source": "XGE",
+      "prerequisite": [{"race": [{"ENG_name": "elf", "name": "精灵"}]}],
+      "entries": ["你的精准无与伦比，在攻击检定具有优势时可再次重掷。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Elemental Adept",
+      "name": "元素掌控",
+      "source": "PHB",
+      "prerequisite": [{"spellcasting": true}],
+      "entries": ["当你施放造成特定伤害类型的法术时，可忽略目标对该伤害类型的抗性。"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Archery",
+      "name": "箭术",
+      "source": "XPHB",
+      "category": "FS",
+      "prerequisite": [{"feature": ["战斗风格"]}],
+      "entries": ["你获得 +2 攻击检定加值，但仅限以远程武器进行攻击时。"],
+      "translator": "机翻"
+    }
+  ]
+}

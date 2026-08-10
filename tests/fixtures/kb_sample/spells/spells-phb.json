@@ -1,0 +1,90 @@
+{
+  "spell": [
+    {
+      "ENG_name": "Fireball",
+      "name": "火球术",
+      "source": "PHB",
+      "page": 241,
+      "level": 3,
+      "school": "V",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "point", "distance": { "type": "feet", "amount": 150 } },
+      "components": { "v": true, "s": true, "m": "一小撮硫磺和蝙蝠粪" },
+      "duration": [{ "type": "instant" }],
+      "entries": [
+        "明亮的闪光从你的指间飞向施法距离内你指定的一点，随着一声低吼迸成一片烈焰。目标点周围半径 20 尺内的每个生物必须进行一次{@dc 15}的敏捷豁免。豁免失败者受到{@damage 8d6}点火焰伤害，豁免成功则伤害减半。",
+        "区域内所有未被着装或携带的可燃物件会被点燃。"
+      ],
+      "entriesHigherLevel": [
+        {
+          "ENG_name": "At Higher Levels",
+          "name": "升环施法效应",
+          "type": "entries",
+          "entries": ["使用三环或更高的法术位施展时，每高一环伤害增加{@scaledamage 8d6|3-9|1d6}。"]
+        }
+      ],
+      "damageInflict": ["fire"],
+      "savingThrow": ["dexterity"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Ray of Frost",
+      "name": "冰霜射线",
+      "source": "PHB",
+      "page": 271,
+      "level": 0,
+      "school": "V",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "point", "distance": { "type": "feet", "amount": 60 } },
+      "components": { "v": true, "s": true },
+      "duration": [{ "type": "instant" }],
+      "entries": ["一道冰冷的射线从你指向施法距离内的一个生物。对该目标进行一次远程法术攻击检定，命中则受到{@damage 1d8}点寒冷伤害，且其速度降低 10 尺直到你的下回合开始。"],
+      "damageInflict": ["cold"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Burning Hands",
+      "name": "燃烧之手",
+      "source": "PHB",
+      "page": 220,
+      "level": 1,
+      "school": "V",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "cone", "distance": { "type": "self" } },
+      "components": { "v": true, "s": true },
+      "duration": [{ "type": "instant" }],
+      "entries": ["你向前伸出双手，拇指相触、十指张开，一道火焰从指间迸出。你身前 15 尺锥形区域内的每个生物必须进行一次{@dc 13}的敏捷豁免，豁免失败受到{@damage 3d6}点火焰伤害，成功则伤害减半。"],
+      "damageInflict": ["fire"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Blight",
+      "name": "枯萎术",
+      "source": "PHB",
+      "page": 219,
+      "level": 4,
+      "school": "N",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "point", "distance": { "type": "feet", "amount": 30 } },
+      "components": { "v": true, "s": true },
+      "duration": [{ "type": "timed", "duration": { "type": "minute", "amount": 1 }, "concentration": true }],
+      "entries": ["你汲取目标体内的生命与水分。选择一个你能看见的植物或生物，目标必须进行一次{@dc 15}的体质豁免，豁免失败受到{@damage 8d8}点暗蚀伤害且陷入{@condition 麻痹}状态 1 分钟，豁免成功则伤害减半。"],
+      "damageInflict": ["necrotic"],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Hold Person",
+      "name": "人类定身术",
+      "source": "PHB",
+      "page": 251,
+      "level": 2,
+      "school": "E",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "point", "distance": { "type": "feet", "amount": 60 } },
+      "components": { "v": true, "s": true, "m": "一小段直铁条" },
+      "duration": [{ "type": "timed", "duration": { "type": "minute", "amount": 1 }, "concentration": true }],
+      "entries": ["选择一个你能看见的类人生物。目标必须成功通过一次{@dc 15}的感知豁免，否则在法术持续时间内陷入{@condition 麻痹}状态。在其每个回合结束时，目标可以再次进行感知豁免，豁免成功则法术结束。"],
+      "translator": "不全书"
+    }
+  ]
+}

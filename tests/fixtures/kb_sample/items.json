@@ -1,0 +1,180 @@
+{
+  "item": [
+    {
+      "ENG_name": "Wand of Fireballs",
+      "name": "火球法杖",
+      "source": "DMG",
+      "page": 210,
+      "rarity": "rare",
+      "reqAttune": true,
+      "type": "RD",
+      "entries": [
+        "这根魔杖有 7 发充能。你可以消耗 1 发充能并花费一个动作，使用其施放{@spell 火球术|PHB}（豁免 {@dc 15}）。魔杖每天黎明时恢复 1d6 + 1 发已消耗的充能。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Potion of Healing",
+      "name": "治疗药水",
+      "source": "DMG",
+      "page": 187,
+      "rarity": "common",
+      "reqAttune": false,
+      "type": "P",
+      "entries": [
+        "你饮用这瓶药水后恢复{@dice 2d4 + 2}点生命值。"
+      ],
+      "translator": "机翻"
+    },
+    {
+      "ENG_name": "Flame Tongue",
+      "name": "火焰舌剑",
+      "source": "DMG",
+      "page": 170,
+      "rarity": "rare",
+      "reqAttune": true,
+      "type": "M",
+      "weaponCategory": "martial",
+      "baseItem": "长剑|PHB",
+      "dmg1": "1d8",
+      "dmgType": "S",
+      "property": [
+        "F|PHB"
+      ],
+      "entries": [
+        "你可以用一个附赠动作说出一句命令词，使这柄剑的刀刃被火焰吞噬。被激活时，命中目标额外造成{@damage 2d6}点火焰伤害。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Blade of Necrosis",
+      "name": "暗蚀之刃",
+      "source": "DMG",
+      "page": 178,
+      "rarity": "very rare",
+      "reqAttune": true,
+      "type": "M",
+      "weaponCategory": "martial",
+      "baseItem": "长剑|PHB",
+      "dmg1": "1d8",
+      "dmgType": "S",
+      "property": [
+        "F|PHB",
+        "L|PHB"
+      ],
+      "entries": [
+        "这把剑吸取生命力。命中时额外造成{@damage 2d6}点暗蚀伤害。目标必须进行一次{@dc 15}的体质豁免，豁免失败陷入{@condition 魅惑}状态。"
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Alchemist's Doom",
+      "name": "炼金术士之毁灭",
+      "source": "SCC",
+      "page": 179,
+      "_copy": {
+        "ENG_name": "Alchemist's Fire (flask)",
+        "name": "炽火胶 (扁瓶)",
+        "source": "PHB"
+      },
+      "rarity": "unknown",
+      "value": null,
+      "entries": [
+        "这种黏着的流体暴露在空气中时会点燃。以一个动作，你可以将此扁瓶投掷至 20 尺，在撞击时破碎，对目标造成{@damage 1d4}点火焰伤害。"
+      ],
+      "translator": "机翻",
+      "type": "G"
+    },
+    {
+      "ENG_name": "Machine Blade",
+      "name": "机翻魔剑",
+      "source": "DMG",
+      "page": 170,
+      "rarity": "rare",
+      "reqAttune": true,
+      "type": "M",
+      "baseItem": "长剑|PHB",
+      "dmg1": "1d8",
+      "dmgType": "S",
+      "entries": [
+        "这柄剑在命中时额外造成{@damage 1d6}点火焰伤害。"
+      ],
+      "translator": "机翻"
+    },
+    {
+      "ENG_name": "Relic Blade (Dormant)",
+      "name": "遗物之刃（休眠）",
+      "source": "EGW",
+      "page": 275,
+      "type": "M",
+      "rarity": "artifact",
+      "reqAttune": true,
+      "dmg1": "1d8",
+      "dmgType": "S",
+      "entries": [
+        "这把古老的刀刃处于休眠状态。",
+        {
+          "type": "entries",
+          "name": "休眠",
+          "entries": [
+            "持握时攻击与伤害掷骰获得 +1 加值。"
+          ]
+        }
+      ],
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Relic Blade (Awakened)",
+      "name": "遗物之刃（觉醒）",
+      "source": "EGW",
+      "page": 276,
+      "rarity": "artifact",
+      "reqAttune": true,
+      "_copy": {
+        "ENG_name": "Relic Blade (Dormant)",
+        "name": "遗物之刃（休眠）",
+        "source": "EGW",
+        "_mod": {
+          "entries": {
+            "mode": "insertArr",
+            "index": -1,
+            "items": {
+              "type": "entries",
+              "name": "觉醒",
+              "entries": [
+                "攻击与伤害掷骰加值增至 +2。"
+              ]
+            }
+          }
+        }
+      },
+      "translator": "不全书"
+    },
+    {
+      "ENG_name": "Relic Blade (Exalted)",
+      "name": "遗物之刃（升华）",
+      "source": "EGW",
+      "page": 277,
+      "rarity": "artifact",
+      "reqAttune": true,
+      "_copy": {
+        "ENG_name": "Relic Blade (Awakened)",
+        "name": "遗物之刃（觉醒）",
+        "source": "EGW",
+        "_mod": {
+          "entries": {
+            "mode": "appendArr",
+            "items": {
+              "type": "entries",
+              "name": "升华",
+              "entries": [
+                "攻击与伤害掷骰加值增至 +3。"
+              ]
+            }
+          }
+        }
+      },
+      "translator": "不全书"
+    }
+  ]
+}

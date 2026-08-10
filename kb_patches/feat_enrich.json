@@ -1,0 +1,3208 @@
+[
+ {
+  "name": "中甲大师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "中甲穿戴时敏捷调整AC上限提升。",
+  "keywords": [
+   "防御",
+   "护甲"
+  ]
+ },
+ {
+  "name": "中甲大师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "中甲穿戴时提升AC且隐匿无劣势。",
+  "keywords": [
+   "防御",
+   "护甲",
+   "隐匿"
+  ]
+ },
+ {
+  "name": "中甲运用",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得中甲熟练项。",
+  "keywords": [
+   "护甲",
+   "熟练"
+  ]
+ },
+ {
+  "name": "中甲运用",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得中甲和盾牌熟练项。",
+  "keywords": [
+   "护甲",
+   "持盾",
+   "熟练"
+  ]
+ },
+ {
+  "name": "云巨人之诡诈",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "云巨人风格的巧言与魔法增益。",
+  "keywords": [
+   "施法",
+   "社交"
+  ]
+ },
+ {
+  "name": "仪式施法者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "精通仪式法术，可快速无消耗施放。",
+  "keywords": [
+   "施法",
+   "仪式",
+   "法术位"
+  ]
+ },
+ {
+  "name": "仪式施法者",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得仪式书并习得仪式施法。",
+  "keywords": [
+   "施法",
+   "仪式"
+  ]
+ },
+ {
+  "name": "位面漫游者",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "多元宇宙能量强化，极端环境生存与穿梭。",
+  "keywords": [
+   "环境适应",
+   "位移"
+  ]
+ },
+ {
+  "name": "低身机敏",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "提升速度并强化逃脱擒抱。",
+  "keywords": [
+   "速度",
+   "运动",
+   "体操",
+   "逃脱"
+  ]
+ },
+ {
+  "name": "侦测龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "调查洞悉加值，精通侦测类法术。",
+  "keywords": [
+   "调查",
+   "洞悉",
+   "施法",
+   "戏法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "健壮",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "生命值上限大幅提升。",
+  "keywords": [
+   "生命",
+   "防御"
+  ]
+ },
+ {
+  "name": "健壮",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "生命值上限大幅提升。",
+  "keywords": [
+   "生命",
+   "防御"
+  ]
+ },
+ {
+  "name": "元素掌控",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "法术无视选定元素抗性，伤害骰提高。",
+  "keywords": [
+   "施法",
+   "伤害",
+   "法术抗性"
+  ]
+ },
+ {
+  "name": "元素掌控",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "法术无视选定元素抗性，伤害骰提高。",
+  "keywords": [
+   "施法",
+   "伤害",
+   "法术抗性"
+  ]
+ },
+ {
+  "name": "光照使者",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "获得光亮术与日光系增益与自疗。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "治疗",
+   "光耀"
+  ]
+ },
+ {
+  "name": "八面玲珑之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：社交检定强化、全语言理解、心灵感应。",
+  "keywords": [
+   "社交",
+   "说服",
+   "语言",
+   "灵能"
+  ]
+ },
+ {
+  "name": "公义传承者",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "引导善良位面之力获得增益。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "共生存在",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "体内共生体：技能与豁免强化，但可能被其控制。",
+  "keywords": [
+   "技能",
+   "豁免",
+   "语言",
+   "生命"
+  ]
+ },
+ {
+  "name": "兽人狂怒",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "攻击命中额外伤害，强化半兽人怒火。",
+  "keywords": [
+   "伤害",
+   "命中",
+   "狂暴",
+   "近战"
+  ]
+ },
+ {
+  "name": "军用武器训练",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得军用武器熟练项。",
+  "keywords": [
+   "熟练"
+  ]
+ },
+ {
+  "name": "冲锋手",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "疾走加速并强化冲锋攻击。",
+  "keywords": [
+   "速度",
+   "机动",
+   "近战",
+   "伤害",
+   "位移敌人"
+  ]
+ },
+ {
+  "name": "冲锋手",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "疾走后的冲锋攻击或推撞。",
+  "keywords": [
+   "速度",
+   "机动",
+   "近战",
+   "伤害",
+   "位移敌人",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "凶蛮打手",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "武器伤害骰掷两次取高。",
+  "keywords": [
+   "伤害",
+   "输出"
+  ]
+ },
+ {
+  "name": "凶蛮打手",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "近战武器伤害骰可重掷取高。",
+  "keywords": [
+   "伤害",
+   "近战",
+   "输出"
+  ]
+ },
+ {
+  "name": "创造龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "奥秘加值与创造系法术强化。",
+  "keywords": [
+   "奥秘",
+   "工具",
+   "施法",
+   "戏法",
+   "锻造",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "制造自动机",
+  "source": "PSK",
+  "edition": "2014",
+  "summary": "制造自动机魔宠，心灵感应协作。",
+  "keywords": [
+   "同伴",
+   "召唤",
+   "仪式",
+   "锻造",
+   "灵能"
+  ]
+ },
+ {
+  "name": "劈砍者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "挥砍攻击减速敌人，重击致其攻击劣势。",
+  "keywords": [
+   "伤害",
+   "减速",
+   "近战",
+   "重击"
+  ]
+ },
+ {
+  "name": "劈砍者",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "挥砍攻击减速敌人，重击致其攻击劣势。",
+  "keywords": [
+   "伤害",
+   "减速",
+   "近战",
+   "重击"
+  ]
+ },
+ {
+  "name": "医疗师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "用医疗包与生命骰治疗他人。",
+  "keywords": [
+   "治疗",
+   "同伴"
+  ]
+ },
+ {
+  "name": "医疗师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "稳定伤者并快速治疗。",
+  "keywords": [
+   "治疗"
+  ]
+ },
+ {
+  "name": "医疗龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "治疗加值并精通治疗系法术。",
+  "keywords": [
+   "医药",
+   "治疗",
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "匿影无踪",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "受伤后反应化为隐形。",
+  "keywords": [
+   "隐匿",
+   "反应",
+   "逃脱"
+  ]
+ },
+ {
+  "name": "博学多才之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：所有技能熟练并一项专精。",
+  "keywords": [
+   "技能",
+   "熟练",
+   "专精"
+  ]
+ },
+ {
+  "name": "卡牌占卜师",
+  "source": "BMT",
+  "edition": "2014",
+  "summary": "以牌组为法器引导魔法。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "厄影迫现之恩惠",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "传奇恩惠：近战触及延长并可用附赠回避。",
+  "keywords": [
+   "近战",
+   "触及",
+   "附赠动作",
+   "防御"
+  ]
+ },
+ {
+  "name": "双持客",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "强化双持战斗的额外攻击。",
+  "keywords": [
+   "双持",
+   "近战",
+   "附赠动作",
+   "伤害",
+   "轻型"
+  ]
+ },
+ {
+  "name": "双持客",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "双持作战强化并提升AC。",
+  "keywords": [
+   "双持",
+   "近战",
+   "防御",
+   "轻型"
+  ]
+ },
+ {
+  "name": "双武器战斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "双持额外攻击附加属性调整值。",
+  "keywords": [
+   "双持",
+   "近战",
+   "伤害"
+  ]
+ },
+ {
+  "name": "受祝福的勇士",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得两道牧师戏法（圣武士法术）。",
+  "keywords": [
+   "施法",
+   "戏法"
+  ]
+ },
+ {
+  "name": "变幻无常之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：可变身为生物并获得临时生命。",
+  "keywords": [
+   "变形",
+   "临时生命",
+   "生命"
+  ]
+ },
+ {
+  "name": "吸血欢悦",
+  "source": "PSX",
+  "edition": "2014",
+  "summary": "化雾漂浮获得飞行能力。",
+  "keywords": [
+   "机动",
+   "飞行"
+  ]
+ },
+ {
+  "name": "吸血鬼触碰",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "获得惑控幻术法术与蛛行术。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "攀爬",
+   "控场"
+  ]
+ },
+ {
+  "name": "吻痕",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "近战伤害后可魅惑目标。",
+  "keywords": [
+   "近战",
+   "徒手",
+   "控场",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "命运眷顾之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：豁免失败可重掷。",
+  "keywords": [
+   "豁免",
+   "幸运"
+  ]
+ },
+ {
+  "name": "咎罪责难",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "光耀伤害可击倒敌人。",
+  "keywords": [
+   "伤害",
+   "光耀",
+   "击倒"
+  ]
+ },
+ {
+  "name": "咒火专家",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "法术光耀伤害强化并无视抗性。",
+  "keywords": [
+   "施法",
+   "伤害",
+   "光耀",
+   "法术抗性"
+  ]
+ },
+ {
+  "name": "咒火火花",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "减魔伤并获得圣火术戏法。",
+  "keywords": [
+   "减伤",
+   "施法",
+   "戏法",
+   "法术抗性",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "哨兵",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "强化借机攻击并阻滞敌人。",
+  "keywords": [
+   "近战",
+   "借机攻击",
+   "减速",
+   "控场"
+  ]
+ },
+ {
+  "name": "哨兵",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "强化借机攻击并阻滞敌人。",
+  "keywords": [
+   "近战",
+   "借机攻击",
+   "减速",
+   "控场"
+  ]
+ },
+ {
+  "name": "嗜血",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "生命骰恢复强化，命中浴血敌人可自疗。",
+  "keywords": [
+   "治疗",
+   "生命",
+   "命中",
+   "近战"
+  ]
+ },
+ {
+  "name": "圣剑骑士",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "加入圣剑骑士团，获得骑士团背景。",
+  "keywords": [
+   "社交"
+  ]
+ },
+ {
+  "name": "地城探索者",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "强化陷阱侦察与抵抗。",
+  "keywords": [
+   "探索",
+   "察觉",
+   "调查",
+   "豁免",
+   "抗性",
+   "侦查"
+  ]
+ },
+ {
+  "name": "外域使节",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "位面能量浸润带来增益。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "外层位面后裔",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "选择位面获得伤害抗性与戏法。",
+  "keywords": [
+   "抗性",
+   "施法",
+   "戏法"
+  ]
+ },
+ {
+  "name": "夜宴狂欢之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：精通奥图迷舞控制敌人。",
+  "keywords": [
+   "控场",
+   "施法",
+   "法术位",
+   "专注"
+  ]
+ },
+ {
+  "name": "大厨",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "烹饪增益：短休治疗强化与临时生命。",
+  "keywords": [
+   "工具",
+   "治疗",
+   "临时生命"
+  ]
+ },
+ {
+  "name": "大厨",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "烹饪增益：短休治疗强化与临时生命。",
+  "keywords": [
+   "工具",
+   "治疗",
+   "临时生命"
+  ]
+ },
+ {
+  "name": "天赋异禀",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "获得技能工具语言熟练与一项专精。",
+  "keywords": [
+   "技能",
+   "熟练",
+   "专精",
+   "工具",
+   "语言"
+  ]
+ },
+ {
+  "name": "太阳之子",
+  "source": "LFL",
+  "edition": "2024",
+  "summary": "目盲防护优势与妖火法术。",
+  "keywords": [
+   "豁免",
+   "施法",
+   "法术位",
+   "光耀"
+  ]
+ },
+ {
+  "name": "奇械学徒",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得奇械师法术与工具熟练。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位",
+   "工具"
+  ]
+ },
+ {
+  "name": "妖精传送",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "获得木族语与迷踪步位移。",
+  "keywords": [
+   "位移",
+   "施法",
+   "法术位",
+   "语言"
+  ]
+ },
+ {
+  "name": "妖精触碰",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得惑控预言法术与迷踪步。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "位移",
+   "控场"
+  ]
+ },
+ {
+  "name": "妖精诡术",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "撤离自由并令敌人恐慌。",
+  "keywords": [
+   "机动",
+   "逃脱",
+   "控场"
+  ]
+ },
+ {
+  "name": "守护",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "持盾守护队友，令攻击劣势。",
+  "keywords": [
+   "持盾",
+   "防御",
+   "反应",
+   "同伴"
+  ]
+ },
+ {
+  "name": "守护龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "洞悉察觉加值，守护队友并用法术护盾。",
+  "keywords": [
+   "洞悉",
+   "察觉",
+   "防御",
+   "护甲",
+   "反应",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "守望",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "感知强化与野兽交流，搜索加速。",
+  "keywords": [
+   "侦查",
+   "施法",
+   "法术位",
+   "驯兽",
+   "探索"
+  ]
+ },
+ {
+  "name": "宝石龙赋礼",
+  "source": "FTD",
+  "edition": "2014",
+  "summary": "掌握宝石龙的力量。",
+  "keywords": [
+   "灵能"
+  ]
+ },
+ {
+  "name": "寒地施法者",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "获得冷冻射线并削弱寒冷命中目标。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "伤害",
+   "寒冷",
+   "法术豁免"
+  ]
+ },
+ {
+  "name": "对决",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "单手近战武器伤害提升。",
+  "keywords": [
+   "近战",
+   "伤害",
+   "单手"
+  ]
+ },
+ {
+  "name": "属性值提升",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "提升属性值（+2或双+1）。",
+  "keywords": [
+   "属性"
+  ]
+ },
+ {
+  "name": "山丘巨人之健强",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "山丘巨人风格的强健体魄。",
+  "keywords": [
+   "生命",
+   "防御"
+  ]
+ },
+ {
+  "name": "工匠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "工具熟练与快速制作，购物折扣。",
+  "keywords": [
+   "工具",
+   "熟练",
+   "锻造"
+  ]
+ },
+ {
+  "name": "巨人打击",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "近战与投掷攻击附加元素效果。",
+  "keywords": [
+   "近战",
+   "投掷",
+   "伤害",
+   "击倒",
+   "减速",
+   "位移敌人",
+   "控场"
+  ]
+ },
+ {
+  "name": "巨武器大师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "给使用重型武器提供更多伤害。",
+  "keywords": [
+   "重型",
+   "近战",
+   "伤害",
+   "重击",
+   "击杀",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "巨武器大师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "重型近战武器伤害大幅强化。",
+  "keywords": [
+   "重型",
+   "近战",
+   "伤害",
+   "重击",
+   "击杀",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "巨武器战斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "双手武器伤害骰下限提高。",
+  "keywords": [
+   "双手",
+   "重型",
+   "近战",
+   "伤害"
+  ]
+ },
+ {
+  "name": "巨灵魔法",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "获得可升级的术士法术施放。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "法术攻击"
+  ]
+ },
+ {
+  "name": "巫师杀手",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "打断专注并强化心智豁免。",
+  "keywords": [
+   "控场",
+   "豁免",
+   "专注",
+   "法术抗性"
+  ]
+ },
+ {
+  "name": "巫师杀手",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "近战反制施法并强化法术豁免。",
+  "keywords": [
+   "近战",
+   "反应",
+   "专注",
+   "豁免",
+   "法术抗性"
+  ]
+ },
+ {
+  "name": "幸运",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "幸运点赋予检定优势或攻击劣势。",
+  "keywords": [
+   "幸运"
+  ]
+ },
+ {
+  "name": "幸运",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "幸运点重掷攻击属性与豁免检定。",
+  "keywords": [
+   "幸运"
+  ]
+ },
+ {
+  "name": "异变内构",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "超常体质：屏息与盲视感知。",
+  "keywords": [
+   "察觉",
+   "专精",
+   "探索",
+   "侦查"
+  ]
+ },
+ {
+  "name": "异种龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "龙纹施法与体质强化，附带副作用。",
+  "keywords": [
+   "豁免",
+   "施法",
+   "戏法",
+   "法术位",
+   "临时生命",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "异种龙纹",
+  "source": "ERLW",
+  "edition": "2014",
+  "summary": "龙纹施法与体质强化，附带副作用。",
+  "keywords": [
+   "豁免",
+   "施法",
+   "戏法",
+   "法术位",
+   "临时生命",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "弗莱格索斯之焰",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "火焰法术伤害强化并环绕火焰反击。",
+  "keywords": [
+   "施法",
+   "伤害",
+   "火焰",
+   "防御"
+  ]
+ },
+ {
+  "name": "强健身心",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得一项属性的豁免熟练。",
+  "keywords": [
+   "豁免",
+   "熟练"
+  ]
+ },
+ {
+  "name": "强健身心",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得一项属性的豁免熟练。",
+  "keywords": [
+   "豁免",
+   "熟练"
+  ]
+ },
+ {
+  "name": "强力恢复之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：濒死复活并获治疗池。",
+  "keywords": [
+   "生命",
+   "治疗",
+   "防御"
+  ]
+ },
+ {
+  "name": "强弩专家",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "弩类武器精通：无视装填与近距劣势。",
+  "keywords": [
+   "远程",
+   "命中",
+   "轻型",
+   "弹药",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "强弩专家",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "弩类武器精通：无视装填与近距劣势。",
+  "keywords": [
+   "远程",
+   "命中",
+   "附赠动作",
+   "弹药"
+  ]
+ },
+ {
+  "name": "强效龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "龙纹法术扩展：额外法术位施放。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "影沼咒术师",
+  "source": "LFL",
+  "edition": "2024",
+  "summary": "获得脆弱诅咒并反伤攻击者。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "控场",
+   "伤害",
+   "心灵"
+  ]
+ },
+ {
+  "name": "影界之触",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得隐形术与幻术死灵法术。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "隐匿",
+   "控场"
+  ]
+ },
+ {
+  "name": "影界触碰",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得隐形术与幻术死灵法术。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "隐匿",
+   "控场"
+  ]
+ },
+ {
+  "name": "往生咒",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "死亡法术强化但死亡豁免劣势。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术抗性",
+   "暗蚀"
+  ]
+ },
+ {
+  "name": "徒手战斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "徒手打击伤害提升并强化擒抱。",
+  "keywords": [
+   "徒手",
+   "伤害",
+   "束缚",
+   "近战"
+  ]
+ },
+ {
+  "name": "德鲁伊教战士",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得两道德鲁伊戏法（游侠法术）。",
+  "keywords": [
+   "施法",
+   "戏法"
+  ]
+ },
+ {
+  "name": "心灵感应",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "心灵感应交流并侦测思想。",
+  "keywords": [
+   "灵能",
+   "施法",
+   "法术位",
+   "侦查"
+  ]
+ },
+ {
+  "name": "心灵感应",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "心灵感应交流并侦测思想。",
+  "keywords": [
+   "灵能",
+   "施法",
+   "法术位",
+   "侦查"
+  ]
+ },
+ {
+  "name": "念动力",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "法师之手强化并以念力推撞敌人。",
+  "keywords": [
+   "灵能",
+   "施法",
+   "戏法",
+   "位移敌人"
+  ]
+ },
+ {
+  "name": "念动力",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "法师之手强化并以念力推撞敌人。",
+  "keywords": [
+   "灵能",
+   "施法",
+   "戏法",
+   "位移敌人"
+  ]
+ },
+ {
+  "name": "恶意后继者",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "引导邪恶位面之力获得增益。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "惊魂落魄之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：恐慌免疫并驱使敌人逃离。",
+  "keywords": [
+   "控场",
+   "威吓",
+   "专精"
+  ]
+ },
+ {
+  "name": "慷慨吉运",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "用反应挽救盟友的失败检定。",
+  "keywords": [
+   "幸运",
+   "反应",
+   "同伴",
+   "豁免"
+  ]
+ },
+ {
+  "name": "战地施法者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "专注稳固并可在借机时施法。",
+  "keywords": [
+   "施法",
+   "专注",
+   "豁免",
+   "反应",
+   "借机攻击"
+  ]
+ },
+ {
+  "name": "战地施法者",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "专注稳固并可在借机时施法。",
+  "keywords": [
+   "施法",
+   "专注",
+   "豁免",
+   "反应",
+   "借机攻击"
+  ]
+ },
+ {
+  "name": "战技专家",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "习得两个战技并获得卓越骰。",
+  "keywords": [
+   "近战",
+   "控场",
+   "击倒",
+   "缴械",
+   "位移敌人"
+  ]
+ },
+ {
+  "name": "战斗学徒",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得一项战士战斗风格。",
+  "keywords": [
+   "熟练"
+  ]
+ },
+ {
+  "name": "扭曲命运之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：干预 D20 检定结果。",
+  "keywords": [
+   "幸运",
+   "命中",
+   "豁免"
+  ]
+ },
+ {
+  "name": "技艺专家",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得一项技能熟练与专精。",
+  "keywords": [
+   "技能",
+   "熟练",
+   "专精"
+  ]
+ },
+ {
+  "name": "技艺专家",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得一项技能熟练与专精。",
+  "keywords": [
+   "技能",
+   "熟练",
+   "专精"
+  ]
+ },
+ {
+  "name": "抄录龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "历史加值并精通传讯通晓法术。",
+  "keywords": [
+   "历史",
+   "工具",
+   "施法",
+   "戏法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "投掷武器战斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "投掷武器攻击伤害提升。",
+  "keywords": [
+   "投掷",
+   "远程",
+   "伤害",
+   "命中"
+  ]
+ },
+ {
+  "name": "招待龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "款待加值并精通仆役净化法术。",
+  "keywords": [
+   "说服",
+   "工具",
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "拦截",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "反应减少队友受到的伤害。",
+  "keywords": [
+   "防御",
+   "减伤",
+   "反应",
+   "同伴",
+   "持盾"
+  ]
+ },
+ {
+  "name": "探索龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "侦查加值并精通追踪定位法术。",
+  "keywords": [
+   "察觉",
+   "求生",
+   "侦查",
+   "追踪",
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "擒抱者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "擒抱强化：攻击优势与拖行。",
+  "keywords": [
+   "徒手",
+   "束缚",
+   "近战",
+   "命中",
+   "控场"
+  ]
+ },
+ {
+  "name": "擒抱者",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "擒抱与压制强化。",
+  "keywords": [
+   "徒手",
+   "束缚",
+   "近战",
+   "命中",
+   "控场"
+  ]
+ },
+ {
+  "name": "敏锐心灵",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "知识技能强化并可快速研究。",
+  "keywords": [
+   "奥秘",
+   "历史",
+   "调查",
+   "自然",
+   "宗教",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "敏锐心灵",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "精确感知方向时间与过目不忘。",
+  "keywords": [
+   "探索",
+   "侦查"
+  ]
+ },
+ {
+  "name": "教团韧性",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "快速起身并强化力量豁免。",
+  "keywords": [
+   "机动",
+   "豁免",
+   "防御"
+  ]
+ },
+ {
+  "name": "散塔林会战术",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "近战反击与每日技能专精。",
+  "keywords": [
+   "近战",
+   "借机攻击",
+   "反应",
+   "技能",
+   "专精"
+  ]
+ },
+ {
+  "name": "散塔林会暴徒",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "借机攻击强化与先攻增益。",
+  "keywords": [
+   "借机攻击",
+   "伤害",
+   "先攻",
+   "同伴"
+  ]
+ },
+ {
+  "name": "斯涅布力魔法",
+  "source": "MTF",
+  "edition": "2014",
+  "summary": "天生施法：回避侦测与隐匿法术。",
+  "keywords": [
+   "施法",
+   "隐匿",
+   "法术位",
+   "控场"
+  ]
+ },
+ {
+  "name": "斯翠海文学徒",
+  "source": "SCC",
+  "edition": "2014",
+  "summary": "获得学院戏法法术与一环法术。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位"
+  ]
+ },
+ {
+  "name": "斯翠海文苑像",
+  "source": "SCC",
+  "edition": "2014",
+  "summary": "召唤苑像魔宠并与之传送换位。",
+  "keywords": [
+   "同伴",
+   "召唤",
+   "仪式",
+   "位移",
+   "施法"
+  ]
+ },
+ {
+  "name": "新晋龙巫教徒",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "精通龙语并以龙威恐吓敌人。",
+  "keywords": [
+   "语言",
+   "控场",
+   "威吓"
+  ]
+ },
+ {
+  "name": "新锻臂铠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "稳固站位并守护盟友不被推动。",
+  "keywords": [
+   "防御",
+   "反应",
+   "同伴"
+  ]
+ },
+ {
+  "name": "无休狂宴",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "分享盟友的英雄激励。",
+  "keywords": [
+   "同伴",
+   "幸运"
+  ]
+ },
+ {
+  "name": "无敌攻势之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：物理伤害无视抗性并强化重击。",
+  "keywords": [
+   "伤害",
+   "命中",
+   "近战",
+   "重击",
+   "远程"
+  ]
+ },
+ {
+  "name": "旭日骄阳之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：阳光光环并给予队友临时生命。",
+  "keywords": [
+   "光耀",
+   "临时生命",
+   "防御",
+   "同伴",
+   "治疗"
+  ]
+ },
+ {
+  "name": "暗夜精魂之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：暗处隐形与伤害抗性。",
+  "keywords": [
+   "隐匿",
+   "抗性",
+   "防御"
+  ]
+ },
+ {
+  "name": "暴风骤岚之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：风暴抗性与法术豁免压制。",
+  "keywords": [
+   "抗性",
+   "施法",
+   "法术豁免",
+   "防御"
+  ]
+ },
+ {
+  "name": "暴风龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "特技加值与风暴法术抗性。",
+  "keywords": [
+   "体操",
+   "工具",
+   "抗性",
+   "施法",
+   "戏法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "木精灵魔法",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "获得木精灵戏法与隐匿疾行法术。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "隐匿",
+   "速度",
+   "法术位"
+  ]
+ },
+ {
+  "name": "枪手",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "枪械精通：熟练并无视装填。",
+  "keywords": [
+   "远程",
+   "命中",
+   "熟练",
+   "弹药"
+  ]
+ },
+ {
+  "name": "次元旅行之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：行动后可瞬移。",
+  "keywords": [
+   "位移",
+   "机动"
+  ]
+ },
+ {
+  "name": "武器大师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得武器精通词条能力。",
+  "keywords": [
+   "熟练",
+   "命中",
+   "伤害"
+  ]
+ },
+ {
+  "name": "武器大师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得四种武器的熟练项。",
+  "keywords": [
+   "熟练",
+   "近战",
+   "远程"
+  ]
+ },
+ {
+  "name": "残尸败蜕",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "暗蚀伤害令目标中毒。",
+  "keywords": [
+   "伤害",
+   "暗蚀",
+   "控场"
+  ]
+ },
+ {
+  "name": "毒师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "毒素强化并可为武器涂毒。",
+  "keywords": [
+   "伤害",
+   "毒素",
+   "工具",
+   "附赠动作",
+   "控场"
+  ]
+ },
+ {
+  "name": "毒师",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "毒素强化并可为武器涂毒。",
+  "keywords": [
+   "伤害",
+   "毒素",
+   "工具",
+   "附赠动作",
+   "控场"
+  ]
+ },
+ {
+  "name": "毒手殁心之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：毒素免疫并强化毒素伤害。",
+  "keywords": [
+   "毒素",
+   "伤害",
+   "豁免"
+  ]
+ },
+ {
+  "name": "汇灵低语",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "精魂低语：传讯卜筮与防御尖嚎。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位",
+   "防御",
+   "灵能"
+  ]
+ },
+ {
+  "name": "沉溺痛苦",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "受物理伤害后可短暂抗性。",
+  "keywords": [
+   "抗性",
+   "防御",
+   "反应"
+  ]
+ },
+ {
+  "name": "法术射手",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "法术攻击强化：无视掩体与近距劣势。",
+  "keywords": [
+   "施法",
+   "法术攻击",
+   "法术命中",
+   "远程"
+  ]
+ },
+ {
+  "name": "法术射手",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "法术射程加倍并无视掩体。",
+  "keywords": [
+   "施法",
+   "法术攻击",
+   "法术命中",
+   "远程",
+   "戏法"
+  ]
+ },
+ {
+  "name": "法术溯回之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：施法有几率不耗法术位。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "幸运"
+  ]
+ },
+ {
+  "name": "活体幽影",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "活化幽影：触及延长与辅助之手。",
+  "keywords": [
+   "触及",
+   "近战",
+   "施法",
+   "戏法"
+  ]
+ },
+ {
+  "name": "混乱与共者",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "引导混乱位面之力获得增益。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "演员",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "伪装与拟声强化社交欺骗。",
+  "keywords": [
+   "欺瞒",
+   "表演",
+   "社交",
+   "洞悉"
+  ]
+ },
+ {
+  "name": "演员",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "伪装与拟声强化社交欺骗。",
+  "keywords": [
+   "欺瞒",
+   "表演",
+   "社交",
+   "洞悉"
+  ]
+ },
+ {
+  "name": "火巨人之余烬",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "火巨人风格的炽烈战斗增益。",
+  "keywords": [
+   "火焰"
+  ]
+ },
+ {
+  "name": "灵活移动",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "提升速度并强化机动走位。",
+  "keywords": [
+   "速度",
+   "机动",
+   "逃脱"
+  ]
+ },
+ {
+  "name": "灵魂回荡",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "灵魂记忆：技能熟练专精与语言。",
+  "keywords": [
+   "技能",
+   "熟练",
+   "专精",
+   "语言"
+  ]
+ },
+ {
+  "name": "炼狱体质",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "获得寒冷与毒素抗性并抗中毒。",
+  "keywords": [
+   "抗性",
+   "豁免",
+   "防御"
+  ]
+ },
+ {
+  "name": "炽耀黎明之恩惠",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "传奇恩惠：光耀免疫与日光打击。",
+  "keywords": [
+   "光耀",
+   "伤害",
+   "抗性",
+   "命中"
+  ]
+ },
+ {
+  "name": "熟习",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得三项技能或工具熟练。",
+  "keywords": [
+   "技能",
+   "工具",
+   "熟练"
+  ]
+ },
+ {
+  "name": "熟习",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得三项技能或工具熟练。",
+  "keywords": [
+   "技能",
+   "工具",
+   "熟练"
+  ]
+ },
+ {
+  "name": "熠熠生辉之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：光耀伤害强化并净化亡灵。",
+  "keywords": [
+   "光耀",
+   "伤害",
+   "击杀"
+  ]
+ },
+ {
+  "name": "爆破手",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "投掷物命中强化与远距投掷。",
+  "keywords": [
+   "投掷",
+   "远程",
+   "命中"
+  ]
+ },
+ {
+  "name": "生机勃发之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：临时生命与治疗强化。",
+  "keywords": [
+   "临时生命",
+   "治疗",
+   "生命"
+  ]
+ },
+ {
+  "name": "生还者",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "先攻与心智豁免强化。",
+  "keywords": [
+   "先攻",
+   "豁免",
+   "防御"
+  ]
+ },
+ {
+  "name": "畜牧龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "自然驯兽加值并精通动物法术。",
+  "keywords": [
+   "自然",
+   "驯兽",
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "白袍入道",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "获白袍法师会认可的魔法强化。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "皇冠骑士",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "加入皇冠骑士团，善团体作战。",
+  "keywords": [
+   "同伴"
+  ]
+ },
+ {
+  "name": "盲斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得 10 尺盲视。",
+  "keywords": [
+   "侦查",
+   "防御"
+  ]
+ },
+ {
+  "name": "盾牌大师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "盾击控场与敏捷豁免强化。",
+  "keywords": [
+   "持盾",
+   "防御",
+   "击倒",
+   "位移敌人",
+   "豁免",
+   "控场"
+  ]
+ },
+ {
+  "name": "盾牌大师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "盾牌攻防一体：推撞与豁免强化。",
+  "keywords": [
+   "持盾",
+   "防御",
+   "位移敌人",
+   "豁免",
+   "附赠动作",
+   "控场"
+  ]
+ },
+ {
+  "name": "真实视觉之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：获得真实视觉。",
+  "keywords": [
+   "侦查",
+   "探索"
+  ]
+ },
+ {
+  "name": "矮人坚毅",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "回避时消耗生命骰自愈。",
+  "keywords": [
+   "治疗",
+   "生命",
+   "防御"
+  ]
+ },
+ {
+  "name": "石巨人之敏锐",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "石巨人风格的肉体天赋增益。",
+  "keywords": [
+   "防御"
+  ]
+ },
+ {
+  "name": "神圣恩赐",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "获得牧师戏法与阵营法术。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位"
+  ]
+ },
+ {
+  "name": "神射手",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "远程武器射击强化，无视掩体与劣势。",
+  "keywords": [
+   "远程",
+   "命中"
+  ]
+ },
+ {
+  "name": "神射手",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "远程武器命中与伤害大幅强化。",
+  "keywords": [
+   "远程",
+   "命中",
+   "伤害"
+  ]
+ },
+ {
+  "name": "神行无拘之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：速度大增并自由脱困。",
+  "keywords": [
+   "速度",
+   "机动",
+   "逃脱",
+   "附赠动作"
+  ]
+ },
+ {
+  "name": "祸国叛心",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "魅惑类人并强化对魅惑目标攻击。",
+  "keywords": [
+   "控场",
+   "施法",
+   "法术位",
+   "命中"
+  ]
+ },
+ {
+  "name": "秩序代行者",
+  "source": "SatO",
+  "edition": "2014",
+  "summary": "引导守序位面之力获得增益。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "穿刺者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "穿刺攻击伤害重掷并强化重击。",
+  "keywords": [
+   "伤害",
+   "重击",
+   "近战",
+   "远程"
+  ]
+ },
+ {
+  "name": "穿刺者",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "穿刺攻击伤害重掷并强化重击。",
+  "keywords": [
+   "伤害",
+   "重击",
+   "近战",
+   "远程"
+  ]
+ },
+ {
+  "name": "竖琴手协同",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "协助队友并化解恐慌麻痹。",
+  "keywords": [
+   "同伴",
+   "豁免",
+   "控场"
+  ]
+ },
+ {
+  "name": "竖琴手特工",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "盗贼黑话与乐器熟练，协助强化。",
+  "keywords": [
+   "语言",
+   "工具",
+   "同伴",
+   "社交"
+  ]
+ },
+ {
+  "name": "符文塑形者",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "掌握巨人符文魔法。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "第二形态",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "自由变身并有强制变形副作用。",
+  "keywords": [
+   "变形",
+   "施法",
+   "法术位",
+   "专注"
+  ]
+ },
+ {
+  "name": "箭术",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "远程武器攻击检定提升。",
+  "keywords": [
+   "远程",
+   "命中"
+  ]
+ },
+ {
+  "name": "粉碎者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "钝击推离敌人并弱化其防御。",
+  "keywords": [
+   "伤害",
+   "位移敌人",
+   "重击",
+   "近战",
+   "控场"
+  ]
+ },
+ {
+  "name": "粉碎者",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "钝击推离敌人并弱化其防御。",
+  "keywords": [
+   "伤害",
+   "位移敌人",
+   "重击",
+   "近战",
+   "控场"
+  ]
+ },
+ {
+  "name": "精灵之准",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "优势攻击检定可再重掷一枚骰。",
+  "keywords": [
+   "命中",
+   "幸运"
+  ]
+ },
+ {
+  "name": "精类之触",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得迷踪步与预言惑控法术。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "位移",
+   "控场"
+  ]
+ },
+ {
+  "name": "索拉尼亚侍从",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "成为索兰尼亚骑士团一员。",
+  "keywords": [
+   "社交",
+   "同伴"
+  ]
+ },
+ {
+  "name": "紫龙指挥官",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "鼓舞盟友并获得浴血优势。",
+  "keywords": [
+   "同伴",
+   "临时生命",
+   "附赠动作",
+   "命中",
+   "防御"
+  ]
+ },
+ {
+  "name": "紫龙新兵",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "社交技能熟练并鼓舞队友。",
+  "keywords": [
+   "洞悉",
+   "表演",
+   "说服",
+   "先攻",
+   "同伴",
+   "熟练"
+  ]
+ },
+ {
+  "name": "红袍入道",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "获红袍法师会认可的魔法强化。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "绝境逢生之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：浴血时获得全伤害抗性。",
+  "keywords": [
+   "抗性",
+   "防御",
+   "生命"
+  ]
+ },
+ {
+  "name": "翠绿闲庭新羽",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "动物交谈仪式化并与盟友换位。",
+  "keywords": [
+   "驯兽",
+   "施法",
+   "法术位",
+   "位移",
+   "同伴"
+  ]
+ },
+ {
+  "name": "翠色魔法",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "驯兽强化与野兽感官法术。",
+  "keywords": [
+   "驯兽",
+   "施法",
+   "法术位",
+   "专注",
+   "同伴"
+  ]
+ },
+ {
+  "name": "耐性",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "死亡豁免稳固并可快速自疗。",
+  "keywords": [
+   "豁免",
+   "生命",
+   "治疗",
+   "附赠动作",
+   "防御"
+  ]
+ },
+ {
+  "name": "耐性",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "生命骰恢复量下限提高。",
+  "keywords": [
+   "生命",
+   "治疗"
+  ]
+ },
+ {
+  "name": "能量抗性之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：可切换的能量抗性与传导。",
+  "keywords": [
+   "抗性",
+   "防御",
+   "反应"
+  ]
+ },
+ {
+  "name": "色彩龙赋礼",
+  "source": "FTD",
+  "edition": "2014",
+  "summary": "掌握色彩龙的力量。",
+  "keywords": [
+   "抗性"
+  ]
+ },
+ {
+  "name": "花开二度",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "被命中时迫敌重掷攻击。",
+  "keywords": [
+   "幸运",
+   "反应",
+   "防御",
+   "命中"
+  ]
+ },
+ {
+  "name": "英勇战斗之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：失手攻击可改为命中。",
+  "keywords": [
+   "命中",
+   "幸运"
+  ]
+ },
+ {
+  "name": "英魂之刃",
+  "source": "ERLW",
+  "edition": "2014",
+  "summary": "双刃弯刀精通：AC提升与灵巧。",
+  "keywords": [
+   "近战",
+   "防御",
+   "灵巧",
+   "双手"
+  ]
+ },
+ {
+  "name": "蔷薇骑士",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "加入蔷薇骑士团，决心强化。",
+  "keywords": [
+   "同伴"
+  ]
+ },
+ {
+  "name": "血族猎人",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "挣脱擒抱并削减暗蚀伤害。",
+  "keywords": [
+   "逃脱",
+   "反应",
+   "减伤",
+   "防御"
+  ]
+ },
+ {
+  "name": "血族玩物",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "制药补给并快速机动脱身。",
+  "keywords": [
+   "治疗",
+   "锻造",
+   "速度",
+   "机动",
+   "附赠动作",
+   "灵能"
+  ]
+ },
+ {
+  "name": "血海漂橹之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：击杀后优势与浴血增伤。",
+  "keywords": [
+   "击杀",
+   "命中",
+   "伤害",
+   "近战",
+   "远程"
+  ]
+ },
+ {
+  "name": "街头正义",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "擒拿压制并强化威吓。",
+  "keywords": [
+   "束缚",
+   "控场",
+   "同伴",
+   "威吓",
+   "命中"
+  ]
+ },
+ {
+  "name": "西伯瑞斯之恩惠",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "传奇恩惠：随时准备高阶法术。",
+  "keywords": [
+   "施法",
+   "法术位"
+  ]
+ },
+ {
+  "name": "观察力",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "感知技能强化并可快速搜索。",
+  "keywords": [
+   "洞悉",
+   "调查",
+   "察觉",
+   "专精",
+   "附赠动作",
+   "侦查"
+  ]
+ },
+ {
+  "name": "观察力",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "读唇并大幅提升被动感知。",
+  "keywords": [
+   "察觉",
+   "调查",
+   "侦查"
+  ]
+ },
+ {
+  "name": "警戒龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "调查加值并精通防护警戒法术。",
+  "keywords": [
+   "调查",
+   "工具",
+   "防御",
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "警觉",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "先攻强化并可交换先攻。",
+  "keywords": [
+   "先攻",
+   "同伴"
+  ]
+ },
+ {
+  "name": "警觉",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "先攻大幅提升并免疫突袭。",
+  "keywords": [
+   "先攻",
+   "防御"
+  ]
+ },
+ {
+  "name": "语言学家",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "精通多语言并自创密码。",
+  "keywords": [
+   "语言",
+   "社交",
+   "调查"
+  ]
+ },
+ {
+  "name": "贵族信念",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "鼓舞盟友起身并免疫惑控。",
+  "keywords": [
+   "同伴",
+   "附赠动作",
+   "防御",
+   "豁免",
+   "控场"
+  ]
+ },
+ {
+  "name": "超凡强韧之恩惠",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "传奇恩惠：生命值上限大幅提升。",
+  "keywords": [
+   "生命",
+   "防御",
+   "治疗"
+  ]
+ },
+ {
+  "name": "超魔导师",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得两项超魔法与术法点。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "法术攻击",
+   "法术命中",
+   "法术豁免"
+  ]
+ },
+ {
+  "name": "轻甲运用",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得轻甲和盾牌熟练。",
+  "keywords": [
+   "护甲",
+   "持盾",
+   "熟练"
+  ]
+ },
+ {
+  "name": "轻甲运用",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得轻甲熟练项。",
+  "keywords": [
+   "护甲",
+   "熟练"
+  ]
+ },
+ {
+  "name": "迅匠之技",
+  "source": "PSK",
+  "edition": "2014",
+  "summary": "迅匠技艺：即兴魔法效应与小装置。",
+  "keywords": [
+   "仪式",
+   "施法",
+   "工具",
+   "锻造",
+   "探索"
+  ]
+ },
+ {
+  "name": "运动员",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "攀爬跳跃强化与快速起身。",
+  "keywords": [
+   "攀爬",
+   "跳跃",
+   "机动",
+   "速度"
+  ]
+ },
+ {
+  "name": "运动员",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "攀爬跳跃强化与快速起身。",
+  "keywords": [
+   "攀爬",
+   "跳跃",
+   "机动",
+   "速度"
+  ]
+ },
+ {
+  "name": "迷锁触碰",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "受法术攻击后触发随机魔法效应。",
+  "keywords": [
+   "施法",
+   "法术抗性",
+   "幸运",
+   "防御"
+  ]
+ },
+ {
+  "name": "迷雾行者",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "迷雾穿行：受击传送但长休受损。",
+  "keywords": [
+   "位移",
+   "机动",
+   "逃脱",
+   "探索"
+  ]
+ },
+ {
+  "name": "通行龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "速度与运动加值并精通迷踪步。",
+  "keywords": [
+   "速度",
+   "运动",
+   "体操",
+   "位移",
+   "施法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "酒馆斗殴者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "徒手与临时武器强化并可推离。",
+  "keywords": [
+   "徒手",
+   "伤害",
+   "近战",
+   "位移敌人",
+   "熟练",
+   "控场"
+  ]
+ },
+ {
+  "name": "酒馆斗殴者",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "徒手与临时武器强化并可擒抱。",
+  "keywords": [
+   "徒手",
+   "伤害",
+   "近战",
+   "束缚",
+   "附赠动作",
+   "熟练"
+  ]
+ },
+ {
+  "name": "重甲大师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "重甲减免物理伤害。",
+  "keywords": [
+   "护甲",
+   "减伤",
+   "防御"
+  ]
+ },
+ {
+  "name": "重甲大师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "重甲减免物理伤害。",
+  "keywords": [
+   "护甲",
+   "减伤",
+   "防御"
+  ]
+ },
+ {
+  "name": "重甲运用",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得重甲熟练项。",
+  "keywords": [
+   "护甲",
+   "熟练"
+  ]
+ },
+ {
+  "name": "重甲运用",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得重甲熟练项。",
+  "keywords": [
+   "护甲",
+   "熟练"
+  ]
+ },
+ {
+  "name": "金属龙赋礼",
+  "source": "FTD",
+  "edition": "2014",
+  "summary": "掌握金属龙的力量。",
+  "keywords": [
+   "治疗"
+  ]
+ },
+ {
+  "name": "锐眼",
+  "source": "RHW",
+  "edition": "2024",
+  "summary": "搜索研究检定获得优势。",
+  "keywords": [
+   "侦查",
+   "调查",
+   "探索"
+  ]
+ },
+ {
+  "name": "长柄武器大师",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "长柄武器精通：反击与反应打击。",
+  "keywords": [
+   "触及",
+   "近战",
+   "附赠动作",
+   "反应",
+   "借机攻击",
+   "伤害"
+  ]
+ },
+ {
+  "name": "长柄武器大师",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "长柄武器精通：反击与借机。",
+  "keywords": [
+   "触及",
+   "近战",
+   "附赠动作",
+   "借机攻击",
+   "伤害"
+  ]
+ },
+ {
+  "name": "防御",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "着装护甲时AC提升。",
+  "keywords": [
+   "防御",
+   "护甲"
+  ]
+ },
+ {
+  "name": "防御式决斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "灵巧武器格挡提升AC。",
+  "keywords": [
+   "灵巧",
+   "防御",
+   "反应",
+   "近战"
+  ]
+ },
+ {
+  "name": "防御式决斗",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "灵巧武器格挡提升AC。",
+  "keywords": [
+   "灵巧",
+   "防御",
+   "反应",
+   "近战"
+  ]
+ },
+ {
+  "name": "阴影龙纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "隐匿表演加值并精通幻术隐形。",
+  "keywords": [
+   "隐匿",
+   "表演",
+   "施法",
+   "戏法",
+   "法术位",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "隐伏者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "潜行狙击：盲视与躲藏强化。",
+  "keywords": [
+   "隐匿",
+   "远程",
+   "命中",
+   "侦查"
+  ]
+ },
+ {
+  "name": "隐伏者",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "阴影潜行专家。",
+  "keywords": [
+   "隐匿",
+   "远程",
+   "命中",
+   "察觉"
+  ]
+ },
+ {
+  "name": "雾影遁形之恩惠",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "传奇恩惠：濒死化为气形体逃生。",
+  "keywords": [
+   "生命",
+   "治疗",
+   "机动",
+   "位移"
+  ]
+ },
+ {
+  "name": "霜巨人之狂怒",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "霜巨人风格的冰冷力量。",
+  "keywords": [
+   "寒冷"
+  ]
+ },
+ {
+  "name": "音乐家",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "乐器熟练并鼓舞队友。",
+  "keywords": [
+   "工具",
+   "同伴",
+   "社交",
+   "表演"
+  ]
+ },
+ {
+  "name": "领主联盟特工",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "重击鼓舞盟友并护队友。",
+  "keywords": [
+   "重击",
+   "同伴",
+   "命中",
+   "防御"
+  ]
+ },
+ {
+  "name": "领袖之证",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "表演鼓舞给予队友临时生命。",
+  "keywords": [
+   "同伴",
+   "临时生命",
+   "社交",
+   "表演",
+   "防御"
+  ]
+ },
+ {
+  "name": "领袖之证",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "演讲鼓舞给予队友临时生命。",
+  "keywords": [
+   "同伴",
+   "临时生命",
+   "社交",
+   "表演",
+   "防御"
+  ]
+ },
+ {
+  "name": "风暴巨人之灵魂",
+  "source": "BGG",
+  "edition": "2014",
+  "summary": "风暴巨人的预言与风暴魔法。",
+  "keywords": [
+   "施法",
+   "闪电"
+  ]
+ },
+ {
+  "name": "飙速跑者",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "速度大增并灵动走位。",
+  "keywords": [
+   "速度",
+   "机动",
+   "逃脱"
+  ]
+ },
+ {
+  "name": "饮魂汲魄之恩惠",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "传奇恩惠：抗性与击杀吸血。",
+  "keywords": [
+   "抗性",
+   "生命",
+   "治疗",
+   "击杀"
+  ]
+ },
+ {
+  "name": "骑乘战斗",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "骑乘战斗强化并守护坐骑。",
+  "keywords": [
+   "坐骑",
+   "命中",
+   "防御",
+   "同伴"
+  ]
+ },
+ {
+  "name": "骑乘战斗",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "骑乘战斗强化并守护坐骑。",
+  "keywords": [
+   "坐骑",
+   "命中",
+   "防御",
+   "同伴"
+  ]
+ },
+ {
+  "name": "高等侦测之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化侦测龙纹：加值提升与共享。",
+  "keywords": [
+   "调查",
+   "洞悉",
+   "施法",
+   "侦查",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等创造之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化创造龙纹：加值提升与强化施法。",
+  "keywords": [
+   "奥秘",
+   "锻造",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等医疗之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化医疗龙纹：加值提升与疗伤强化。",
+  "keywords": [
+   "医药",
+   "治疗",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等卓尔魔法",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "卓尔魔法：侦测浮空与解除魔法。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "控场",
+   "位移"
+  ]
+ },
+ {
+  "name": "高等守护之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化守护龙纹：加值提升与护卫反击。",
+  "keywords": [
+   "防御",
+   "反应",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等异种纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化异种龙纹：加值提升与生命骰浪涌。",
+  "keywords": [
+   "豁免",
+   "施法",
+   "临时生命",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等抄录之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化抄录龙纹：加值提升与语言共享。",
+  "keywords": [
+   "历史",
+   "语言",
+   "施法",
+   "灵能",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等招待之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化招待龙纹：加值提升与恢复强化。",
+  "keywords": [
+   "说服",
+   "治疗",
+   "临时生命",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等探索之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化探索龙纹：加值提升与追踪强化。",
+  "keywords": [
+   "侦查",
+   "追踪",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等术法学徒",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "高等术法训练：戏法与月系法术。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位"
+  ]
+ },
+ {
+  "name": "高等畜牧之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化畜牧龙纹：骑乘协同与驯兽。",
+  "keywords": [
+   "驯兽",
+   "坐骑",
+   "控场",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等警戒之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化警戒龙纹：加值提升与防御反应。",
+  "keywords": [
+   "调查",
+   "防御",
+   "反应",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等通行之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化通行龙纹：加值提升与团队传送。",
+  "keywords": [
+   "速度",
+   "位移",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等阴影之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化阴影龙纹：加值提升与强力隐形。",
+  "keywords": [
+   "隐匿",
+   "施法",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "高等风暴之纹",
+  "source": "EFA",
+  "edition": "2024",
+  "summary": "强化暴风龙纹：加值提升与飞行。",
+  "keywords": [
+   "体操",
+   "抗性",
+   "施法",
+   "飞行",
+   "龙纹"
+  ]
+ },
+ {
+  "name": "魔法学徒",
+  "source": "XPHB",
+  "edition": "2024",
+  "summary": "获得戏法与一环法术。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位"
+  ]
+ },
+ {
+  "name": "魔法学徒",
+  "source": "PHB",
+  "edition": "2014",
+  "summary": "获得戏法与一环法术。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术位"
+  ]
+ },
+ {
+  "name": "魔能导师",
+  "source": "TCE",
+  "edition": "2014",
+  "summary": "获得一项魔契师魔能祈唤。",
+  "keywords": [
+   "施法",
+   "戏法",
+   "法术攻击"
+  ]
+ },
+ {
+  "name": "黏滞迷雾",
+  "source": "ABH",
+  "edition": "2024",
+  "summary": "云雾术强化并困滞敌人。",
+  "keywords": [
+   "施法",
+   "法术位",
+   "减速",
+   "控场"
+  ]
+ },
+ {
+  "name": "黑袍入道",
+  "source": "DSotDQ",
+  "edition": "2014",
+  "summary": "获黑袍法师会认可的魔法强化。",
+  "keywords": [
+   "施法"
+  ]
+ },
+ {
+  "name": "龙之威怖",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "龙威咆哮令敌人恐慌。",
+  "keywords": [
+   "控场",
+   "威吓"
+  ]
+ },
+ {
+  "name": "龙之瘢",
+  "source": "FRHoF",
+  "edition": "2024",
+  "summary": "龙巫强化：元素抗性与龙威连携。",
+  "keywords": [
+   "抗性",
+   "防御",
+   "附赠动作",
+   "控场"
+  ]
+ },
+ {
+  "name": "龙之鳞爪",
+  "source": "XGE",
+  "edition": "2014",
+  "summary": "龙裔鳞爪：天生护甲与利爪。",
+  "keywords": [
+   "防御",
+   "护甲",
+   "徒手",
+   "伤害"
+  ]
+ }
+]

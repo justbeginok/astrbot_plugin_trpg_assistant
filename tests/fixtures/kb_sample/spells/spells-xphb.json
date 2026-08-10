@@ -1,0 +1,28 @@
+{
+  "spell": [
+    {
+      "ENG_name": "Fireball",
+      "name": "火球术",
+      "source": "XPHB",
+      "page": 274,
+      "level": 3,
+      "school": "V",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "point", "distance": { "type": "feet", "amount": 150 } },
+      "components": { "v": true, "s": true, "m": "一颗蝙蝠粪和硫磺搓成的小球" },
+      "duration": [{ "type": "instant" }],
+      "entries": ["明亮的闪光从你的指间飞驰向施法距离内你指定的一点，并随着一声低吼迸成一片烈焰。目标点周围半径 20 尺区域内的每个生物必须进行一次敏捷豁免。豁免失败者将受到{@damage 8d6}点火焰伤害，豁免成功则伤害减半。"],
+      "entriesHigherLevel": [
+        {
+          "ENG_name": "Using a Higher-Level Spell Slot",
+          "name": "升环施法",
+          "type": "entries",
+          "entries": ["使用的法术位每比三环高一环，此伤害就增加{@scaledamage 8d6|3-9|1d6}。"]
+        }
+      ],
+      "damageInflict": ["fire"],
+      "savingThrow": ["dexterity"],
+      "translator": "机翻"
+    }
+  ]
+}

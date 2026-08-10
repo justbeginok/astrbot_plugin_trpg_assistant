@@ -1,0 +1,31 @@
+{
+  "法术": [
+    {
+      "name": "示例·火球术改",
+      "ENG_name": "Example Fireball",
+      "source": "EX",
+      "level": 3,
+      "school": "E",
+      "time": [{ "number": 1, "unit": "action" }],
+      "range": { "type": "point", "distance": { "type": "feet", "amount": 150 } },
+      "components": { "v": true, "s": true, "m": "一小撮硫磺和蝙蝠粪" },
+      "duration": [{ "type": "instant" }],
+      "entries": [
+        "（房规示例，5etools 格式）你指定150尺内一点，迸发的火焰对20尺半径内的每个生物造成8d6火焰伤害。豁免成功则伤害减半。本示例把伤害改成10d6。"
+      ],
+      "tags": {
+        "spell_keyword": ["伤害", "控场"],
+        "dmg_dealt": ["火焰"]
+      }
+    },
+    {
+      "kind": "法术",
+      "name": "示例·飘浮的羽毛",
+      "source": "EX",
+      "body": "（简化格式示例）你让一根羽毛漂浮在指定生物头顶，持续1小时，不产生任何其他效果。",
+      "tags": {
+        "spell_keyword": ["增益"]
+      }
+    }
+  ]
+}

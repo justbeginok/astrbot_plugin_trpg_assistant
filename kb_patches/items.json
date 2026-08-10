@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "警戒武器",
+      "ENG_name": "Weapon of Warning",
+      "source": "DMG",
+      "page": 213,
+      "type": "M|DMG",
+      "rarity": "uncommon",
+      "reqAttune": true,
+      "entries": [
+        "这把魔法武器能在危险时给你警告。持有此武器期间，你进行先攻检定时具有优势。除非因非魔法睡眠以外的原因陷入失能，否则你和你周围30尺内的同伴不会被突袭。如果战斗开始时你或范围内你的同伴处于自然睡眠状态，则该武器的魔法也会将你们唤醒。"
+      ]
+    },
+    {
+      "name": "警戒武器",
+      "ENG_name": "Weapon of Warning",
+      "source": "XDMG",
+      "page": 324,
+      "type": "M|XDMG",
+      "rarity": "uncommon",
+      "reqAttune": true,
+      "entries": [
+        "在同调该武器后，只要这把武器在你的触及范围内，你和你30尺内的盟友便获得以下增益： 警报Alarm 。这把武器能魔法性地在战斗开始时唤醒处于自然睡眠中的受益者。该增益无法唤醒因魔法而导致的睡眠。 超然备战Supernatural Readiness 。每名受益者在投掷先攻时都具有优势。"
+      ]
+    }
+  ]
+}

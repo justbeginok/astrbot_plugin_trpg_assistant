@@ -195,10 +195,93 @@ class TestCharCommand:
         assert "长剑:4+6" in out[0]
 
     def test_set_unknown_field(self) -> None:
+        # v0.41.0：力量/敏捷等六维属性已是合法字段（见 test_set_ability_score），
+        # 用真正的未知字段验证报错路径。
         p = make_plugin()
         seed_card(p)
-        out = card_cmd(p, ev("/卡 设 力量 99"))
+        out = card_cmd(p, ev("/卡 设 身高体重 165"))
         assert "未知字段" in out[0]
+
+    def test_set_ability_score(self) -> None:
+        # v0.41.0：六维属性可单独设置，直接覆盖属性值；越界 clamp 1-30；
+        # 设置后触发规则引擎重算（体质变化联动 HP base）。
+        p = _plugin_with_engine_kb()
+        seed_card(p)  # 法师 1 级，体质 13（修正 +1）→ HP base = 6+1 = 7
+        out = card_cmd(p, ev("/卡 设 力量 18"))
+        assert "已更新 str" in out[0]
+        assert "力量 18（+4）" in out[0]
+        # 越界 clamp
+        out = card_cmd(p, ev("/卡 设 敏捷 99"))
+        assert "敏捷 30（+10）" in out[0]
+        # 非数字值安全忽略（保持原值）
+        out = card_cmd(p, ev("/卡 设 体质 abc"))
+        assert "体质 13" in out[0]
+        # 体质 16（修正 +3）→ HP base 重算为 9，且重新落库
+        out = card_cmd(p, ev("/卡 设 体质 16"))
+        assert "已更新 con" in out[0]
+        assert "自动重算" in out[0]
+        assert "HP 9" in out[0]
+        card = run(p.character_manager.get_card(ev("")))
+        assert card.ability_scores.strength == 18
+        assert card.ability_scores.dexterity == 30
+        assert card.ability_scores.constitution == 16
+        assert card.hp_max.base == 9
+
+    def test_set_ability_english_alias(self) -> None:
+        # v0.41.0：英文缩写/全称别名同样可设
+        p = make_plugin()
+        seed_card(p)
+        out = card_cmd(p, ev("/卡 设 strength 17"))
+        assert "力量 17（+3）" in out[0]
+        out = card_cmd(p, ev("/卡 设 dexterity 15"))
+        assert "敏捷 15（+2）" in out[0]
+
+    def test_set_race(self) -> None:
+        # v0.41.0：种族可单独设置（短文本）
+        p = make_plugin()
+        seed_card(p)
+        out = card_cmd(p, ev("/卡 设 种族 半精灵"))
+        assert "已更新 race" in out[0]
+        assert "种族 半精灵" in out[0]
+
+    def test_set_classes(self) -> None:
+        # v0.41.0：职业整体替换（含子职与等级），并触发重算
+        p = _plugin_with_engine_kb()
+        seed_card(p)  # 原为 法师 1 级
+        out = card_cmd(p, ev("/卡 设 职业 战士 3 + 法师（塑能） 2"))
+        assert "已更新 classes" in out[0]
+        assert "自动重算" in out[0]
+        assert "战士 3 + 法师（塑能） 2" in out[0]
+        card = run(p.character_manager.get_card(ev("")))
+        assert [(c.class_name, c.subclass, c.level) for c in card.classes] == [
+            ("战士", "", 3),
+            ("法师", "塑能", 2),
+        ]
+        assert card.level == 5
+
+    def test_set_classes_clear(self) -> None:
+        # v0.41.0：「-」清空职业
+        p = make_plugin()
+        seed_card(p)
+        out = card_cmd(p, ev("/卡 设 职业 -"))
+        assert "已更新 classes" in out[0]
+        card = run(p.character_manager.get_card(ev("")))
+        assert card.classes == []
+
+    def test_set_edition(self) -> None:
+        # v0.41.0：规则版本单独设置（兼容 5e/5.5e 写法）
+        p = make_plugin()
+        seed_card(p)
+        out = card_cmd(p, ev("/卡 设 版本 5.5e"))
+        assert "已更新 edition" in out[0]
+        assert "（2024）" in out[0]
+        card = run(p.character_manager.get_card(ev("")))
+        assert card.edition == "2024"
+        # 非法版本不应用
+        out = card_cmd(p, ev("/卡 设 版本 3.5e"))
+        assert "已更新 edition" not in out[0]
+        card = run(p.character_manager.get_card(ev("")))
+        assert card.edition == "2024"
 
     def test_set_backstory_alias(self) -> None:
         # v0.22.2 曾把「背景/背景故事」都当作「生平」别名；
@@ -441,6 +524,22 @@ class TestManageCharacterTool:
         out = run(p.manage_character_tool(ev(""), action="set", field="hp", value="30"))
         assert "已更新 hp" in out
         assert "HP 30" in out
+
+    def test_set_ability_via_tool(self) -> None:
+        # v0.41.0：LLM 工具同样支持六维属性/种族/职业设置
+        p = _plugin_with_engine_kb()
+        seed_card(p)
+        out = run(p.manage_character_tool(ev(""), action="set", field="力量", value="18"))
+        assert "已更新 str" in out
+        assert "力量 18（+4）" in out
+        out = run(p.manage_character_tool(ev(""), action="set", field="race", value="半精灵"))
+        assert "已更新 race" in out
+        assert "种族 半精灵" in out
+        out = run(p.manage_character_tool(ev(""), action="set", field="classes", value="战士 3"))
+        assert "已更新 classes" in out
+        card = run(p.character_manager.get_card(ev("")))
+        assert card.ability_scores.strength == 18
+        assert card.classes[0].class_name == "战士"
 
     def test_prof(self) -> None:
         p = make_plugin()

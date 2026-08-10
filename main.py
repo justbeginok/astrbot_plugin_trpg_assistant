@@ -21,7 +21,8 @@ main.py — AstrBot 跑团助手插件入口。
     clear：清空自己的背包；party clear：清空队伍背包（白名单权限）。
   /卡 [子命令]   角色卡管理（多卡 + 活跃切换）。
     无参数：查看活跃卡；列表/用/删/改名：卡管理；
-    设 <字段> <值>：设置 hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/生平/背景故事/阵营/语言；
+    设 <字段> <值>：设置 hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/种族/职业/版本/六维属性
+    （力量/敏捷/体质/智力/感知/魅力）/生平/背景故事/阵营/语言；
     升级/降级 [职业名]：±1 级并自动重算；熟练 技能|豁免 +名 -名：增减熟练；骰 <名称> <表达式>：命名掷骰。
   /车卡 [子命令] 车卡引导（LLM 经工具逐步提问为主）。
     空：开始或查看进度；状态：查看当前问题；答 <答案>：提交答案；取消。
@@ -1324,7 +1325,7 @@ _HELP_SECTIONS = {
             "/卡 用 <卡名>          切换活跃卡",
             "/卡 删 <卡名>          删除角色卡",
             "/卡 改名 <旧名> <新名>  重命名",
-            "/卡 设 <字段> <值>     设置 hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术（房规调整）",
+            "/卡 设 <字段> <值>     设置 hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/种族/职业/版本/六维属性（力量/敏捷/体质/智力/感知/魅力）/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术（hp/ac/速度/先攻为房规加值，其余直接覆盖）",
             "/卡 详情 [字段]       查看完整字段：生平/人物信息/专长/特性（种族+职业）/攻击/熟练/语言/装备/法术（卡面折叠的全文）",
             "/卡 升级 [职业名]     指定职业 +1 级（默认主职业），战斗字段自动重算",
             "/卡 降级 [职业名]     指定职业 -1 级（默认主职业，最低 1 级），战斗字段自动重算",
@@ -3378,7 +3379,25 @@ class TrpgAssistantPlugin(Star):
         "激励": "inspiration", "inspiration": "inspiration",
         "先攻": "initiative", "initiative": "initiative",
         "法术": "spells", "spells": "spells", "已知法术": "spells",
+        # v0.41.0：六维属性 / 种族 / 职业 / 规则版本（均可单独设置）
+        "力量": "str", "str": "str", "strength": "str", "力": "str",
+        "敏捷": "dex", "dex": "dex", "dexterity": "dex", "敏": "dex",
+        "体质": "con", "con": "con", "constitution": "con", "体": "con",
+        "智力": "int", "int": "int", "intelligence": "int", "智": "int",
+        "感知": "wis", "wis": "wis", "wisdom": "wis", "感": "wis",
+        "魅力": "cha", "cha": "cha", "charisma": "cha", "魅": "cha",
+        "种族": "race", "race": "race",
+        "职业": "classes", "classes": "classes", "class": "classes",
+        "版本": "edition", "edition": "edition", "规则版本": "edition",
     }
+
+    # v0.41.0：/卡 设 之后需要触发规则引擎重算的字段。
+    # 六维属性变化联动先攻（敏捷修正）/HP（体质修正）/AC（轻甲敏捷）/攻击加值 base；
+    # 职业/版本变化直接影响全部战斗字段；装备槽变化影响 AC/攻击加值。
+    _CARD_RECALC_FIELDS = frozenset(
+        {"main_hand", "off_hand", "armor", "classes", "edition"}
+        | set(ABILITY_NAMES)
+    )
 
     @filter.command("卡", alias={"char", "角色卡"})
     async def char_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
@@ -3391,7 +3410,7 @@ class TrpgAssistantPlugin(Star):
           /卡 用 <卡名>          切换活跃卡
           /卡 删 <卡名>          删除角色卡
           /卡 改名 <旧名> <新名>  重命名
-          /卡 设 <字段> <值>     设置字段（hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术）
+          /卡 设 <字段> <值>     设置字段（hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/种族/职业/版本/六维属性（力量/敏捷/体质/智力/感知/魅力）/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术）
           /卡 详情 [字段]       查看完整字段：生平/人物信息/专长/特性（种族+职业）/攻击/熟练/语言/装备/法术（卡面折叠的全文）
           /卡 升级 [职业名]      指定职业 +1 级（默认主职业），战斗字段自动重算
           /卡 降级 [职业名]      指定职业 -1 级（默认主职业，最低 1 级），战斗字段自动重算
@@ -3485,13 +3504,13 @@ class TrpgAssistantPlugin(Star):
             if len(rest) < 2:
                 yield event.plain_result(
                     f"用法：{display_prefix}卡 设 <字段> <值>"
-                    "（字段：hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术）"
+                    "（字段：hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/种族/职业/版本/六维属性（力量/敏捷/体质/智力/感知/魅力）/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术）"
                 )
                 return
             key = self._CARD_SET_FIELD.get(rest[0].strip().lower())
             if key is None:
                 yield event.plain_result(
-                    f"未知字段「{rest[0]}」。可用：hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术。"
+                    f"未知字段「{rest[0]}」。可用：hp/ac/速度/法术位N/攻击/主手/副手/护甲/背景/种族/职业/版本/六维属性（力量/敏捷/体质/智力/感知/魅力）/生平/背景故事/阵营/语言/信仰/年龄/性别/身高/体重/生命骰已用/激励/先攻/法术。"
                 )
                 return
             value = " ".join(rest[1:])
@@ -3500,7 +3519,7 @@ class TrpgAssistantPlugin(Star):
                 yield event.plain_result("还没有角色卡，请先 /车卡 创建。")
                 return
             extra = ""
-            if set(applied) & {"main_hand", "off_hand", "armor"}:
+            if set(applied) & self._CARD_RECALC_FIELDS:
                 report = self._recalc_card(card)
                 if report is not None:
                     # update_fields 已落库，重算后 base 变化需再保存一次
@@ -5639,11 +5658,13 @@ class TrpgAssistantPlugin(Star):
     ) -> str:
         """
         管理 TRPG/DnD 玩家的角色卡（Character Sheet）。当玩家查看自己的角色卡、
-        列出/切换/删除/重命名卡片、手动调整战斗字段（HP/AC/法术位/攻击加值）、
+        列出/切换/删除/重命名卡片、修正六维属性（力量/敏捷/体质/智力/感知/魅力）、
+        调整种族/职业/规则版本、手动调整战斗字段（HP/AC/法术位/攻击加值）、
         增减熟练技能与豁免、登记命名掷骰、角色升级时调用此工具。角色卡按
         「玩家+会话」多卡存储，name 为空时作用于活跃卡。引导创建请用 guide_chargen
-        工具。注意：战斗字段的 base 值由规则引擎按职业/装备自动计算，set 只应
-        用于房规 bonus 调整；设置装备槽（主手/副手/护甲）后插件会自动重算。
+        工具。注意：六维属性/种族/职业/版本设置会直接覆盖并自动触发战斗字段重算；
+        HP/AC/速度/法术位/攻击/先攻的 base 值由规则引擎按职业/装备自动计算，
+        set 只应用于房规 bonus 调整；设置装备槽（主手/副手/护甲）后插件会自动重算。
 
         Args:
             action(string): 要执行的操作。取值：show=查看角色卡（默认动作，
@@ -5664,8 +5685,12 @@ class TrpgAssistantPlugin(Star):
                 level_up=指定职业 +1 级（value=职业名，留空=主职业，整卡自动重算）。
             name(string): 目标卡名。show/set/prof/expertise/feat/named_roll/level_up
                 留空=活跃卡。
-            field(string): set 时的字段名：hp/ac/slot1..slot9/attack（值形如
-                「长剑=5」）/main_hand/off_hand/armor/background/backstory/alignment/
+            field(string): set 时的字段名：六维属性 str/dex/con/int/wis/cha（力量/
+                敏捷/体质/智力/感知/魅力，直接覆盖属性值 1-30，自动联动先攻/HP/AC/
+                攻击加值重算）/race（种族）/classes（职业整体替换，值形如
+                「战士 3 + 法师（塑能） 2」）/edition（版本 2014/2024，兼容 5e/5.5e）/
+                hp/ac/slot1..slot9/attack（值形如「长剑=5」）/main_hand/off_hand/
+                armor/background/backstory/alignment/
                 languages（值形如「通用语,精灵语」，逗号/空格分隔多门语言）/
                 deity/age/gender/height/weight（信仰/年龄/性别/身高/体重）/
                 hit_dice_used（短休已用生命骰数）/inspiration（激励 0 或 1）/
@@ -5727,7 +5752,7 @@ class TrpgAssistantPlugin(Star):
             if card is None:
                 return "还没有角色卡，请先引导玩家车卡。"
             extra = ""
-            if set(applied) & {"main_hand", "off_hand", "armor"}:
+            if set(applied) & self._CARD_RECALC_FIELDS:
                 report = self._recalc_card(card)
                 if report is not None:
                     # update_fields 已落库，重算后 base 变化需再保存一次

@@ -26,6 +26,8 @@ from .character import (
     CharacterSheet,
     ClassLevel,
     EquipmentSlots,
+    normalize_edition,
+    parse_classes_text,
     parse_spells_text,
 )
 
@@ -53,11 +55,9 @@ _ABILITY_LINE_RE = re.compile(r"^属性值\s*[:：]?\s*(.*)$", re.IGNORECASE)
 
 # 职业段：战士（勇士） 3 / 法师 2 / 战士 / 战士 3
 # v0.30.0：(?!特性) 排除「职业特性：…」（由知识库自动带出，不落卡）
+# v0.41.0：段解析复用 character.parse_classes_text（单一事实来源）
 _CLASS_LINE_RE = re.compile(
     r"^(?:职业|class|classes)(?!特性)\s*[:：]?\s*(.+)$", re.IGNORECASE
-)
-_CLASS_SEG_RE = re.compile(
-    r"^\s*(?P<cls>[^（(]+?)\s*(?:[（(](?P<sub>[^）)]*)[）)])?\s*(?P<lvl>\d+)?\s*$"
 )
 
 # 熟练行：熟练：豁免 力量、体质　技能 运动、体操 / 豁免熟练：力量 / 技能：运动
@@ -170,28 +170,19 @@ _SEG_SPLIT_RE = re.compile(r"[　、,，;；]+")
 _WS_SPLIT_RE = re.compile(r"\s+")
 
 
-def _norm_edition(raw: str) -> str:
-    """把版本字符串归一为 2014 / 2024，无法识别返回空串。"""
-    s = (raw or "").strip().lower()
-    if not s:
-        return ""
-    if "2024" in s or s in ("5.5e", "5.5", "5r"):
-        return "2024"
-    if "2014" in s or s in ("5e", "5.0"):
-        return "2014"
-    return ""
-
-
 def _detect_edition(text: str, header_edition: str | None) -> str:
-    """版本识别优先级：名字行括号 → 版本键行 → 全文关键词 → 默认 2014。"""
+    """版本识别优先级：名字行括号 → 版本键行 → 全文关键词 → 默认 2014。
+
+    归一规则复用 character.normalize_edition（v0.41.0）。
+    """
     if header_edition:
-        e = _norm_edition(header_edition)
+        e = normalize_edition(header_edition)
         if e:
             return e
     for line in text.splitlines():
         m = _VERSION_KEY_RE.match(line.strip())
         if m:
-            e = _norm_edition(m.group(1))
+            e = normalize_edition(m.group(1))
             if e:
                 return e
     if re.search(r"5\.5e|5\.5|5r", text, re.IGNORECASE) or re.search(
@@ -305,19 +296,7 @@ def parse_card_text(text: str) -> ImportResult:
         # 3) 职业行
         m = _CLASS_LINE_RE.match(line)
         if m:
-            for part in re.split(r"\s*[+＋]\s*", m.group(1).strip()):
-                sm = _CLASS_SEG_RE.match(part)
-                if not sm or not sm.group("cls"):
-                    continue
-                lvl_raw = sm.group("lvl")
-                level = int(lvl_raw) if lvl_raw else 1
-                classes.append(
-                    ClassLevel(
-                        class_name=sm.group("cls").strip(),
-                        subclass=(sm.group("sub") or "").strip(),
-                        level=level,
-                    )
-                )
+            classes.extend(parse_classes_text(m.group(1)))
             seen.add("class")
             continue
 

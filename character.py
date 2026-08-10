@@ -203,6 +203,50 @@ def parse_spells_text(text: str) -> dict[str, list[str]]:
 # 万事通（Jack of All Trades）职业名匹配集：class_name 小写归一后比对。
 _BARD_NAMES: frozenset[str] = frozenset({"吟游诗人", "bard"})
 
+# 职业段正则（v0.41.0，与 card_import 文本导入共用）：
+# 「战士（勇士） 3」「法师 2」「战士」「战士 3」；子职可缺、等级可缺（默认 1）。
+_CLASS_SEG_RE = re.compile(
+    r"^\s*(?P<cls>[^（(]+?)\s*(?:[（(](?P<sub>[^）)]*)[）)])?\s*(?P<lvl>\d+)?\s*$"
+)
+
+
+def normalize_edition(raw: str) -> str:
+    """把版本输入归一为 2014 / 2024；无法识别返回空串（v0.41.0）。
+
+    与 card_import 文本导入的版本识别共用同一规则。
+    """
+    s = (raw or "").strip().lower()
+    if not s:
+        return ""
+    if "2024" in s or s in ("5.5e", "5.5", "5r"):
+        return "2024"
+    if "2014" in s or s in ("5e", "5.0"):
+        return "2014"
+    return ""
+
+
+def parse_classes_text(text: str) -> list[ClassLevel]:
+    """把「战士 3 + 法师（塑能） 2」/「法师 1」解析为兼职列表（v0.41.0）。
+
+    分段分隔支持半角/全角加号（+＋）；每段形如「职业名（子职） 等级」，
+    等级可省略（默认 1）。无法识别的分段直接丢弃；全空返回空列表。
+    card_import 文本导入的职业行复用此函数（单一事实来源）。
+    """
+    out: list[ClassLevel] = []
+    for part in re.split(r"\s*[+＋]\s*", (text or "").strip()):
+        m = _CLASS_SEG_RE.match(part)
+        if not m or not m.group("cls"):
+            continue
+        lvl_raw = m.group("lvl")
+        out.append(
+            ClassLevel(
+                class_name=m.group("cls").strip(),
+                subclass=(m.group("sub") or "").strip(),
+                level=int(lvl_raw) if lvl_raw else 1,
+            )
+        )
+    return out
+
 
 def _sanitize_card_name(text: str) -> str:
     """剔除控制字符并截断至 _CARD_NAME_MAX 字符，防止伪造多行输出。"""
@@ -1125,12 +1169,18 @@ class CharacterManager:
         """按字段白名单更新角色卡。返回 (更新后的卡, 已应用字段名列表)。
 
         支持字段（name 为空时作用于活跃卡）：
+          str/dex/con/int/wis/cha（力量/敏捷/体质/智力/感知/魅力）
+                          → 六维属性值直接设置（clamp 1-30，v0.41.0；
+                             派生修正/先攻/HP/AC 等由命令层触发引擎重算）
           hp / ac / speed   → LayeredStat.bonus（整数值，v0.17 base 恒 0）
           slot1..slot9       → spell_slots[k].bonus
           attack             → 值形如「名称=加值」，写入 attack_bonuses；
                               「名称=-」删除该攻击条目（v0.31.0）
           main_hand/off_hand/armor → 装备槽文本（"-" 清除）
-          background                → 背景（短文本，≤40 字）
+          background/race    → 背景/种族（短文本，≤40 字；v0.41.0 起支持 race）
+          classes            → 职业整体替换，值形如「战士 3 + 法师（塑能） 2」
+                              （"-" 清空职业，v0.41.0）
+          edition            → 规则版本 2014/2024（5e/5.5e 归一，v0.41.0）
           backstory/alignment       → 自由文本
           skills / saves     → 值形如「察觉,隐匿」（逗号/空格分隔），整体覆盖熟练集
           expertise          → 同 skills，整体覆盖技能专精集（双倍熟练）
@@ -1160,7 +1210,14 @@ class CharacterManager:
             applied: list[str] = []
             for key, raw in fields.items():
                 k = (key or "").strip().lower()
-                if k in ("hp", "ac", "speed"):
+                if k in ABILITY_NAMES:
+                    # v0.41.0：六维属性单独设置（力量/敏捷/体质/智力/感知/魅力），
+                    # 直接覆盖属性值并 clamp 1-30；派生修正随显示即时更新，
+                    # 战斗字段 base（先攻/HP/AC/攻击加值）由命令层随后触发重算。
+                    current = card.ability_scores.get(k)
+                    card.ability_scores.set(k, _to_int(raw, current, 1, 30))
+                    applied.append(k)
+                elif k in ("hp", "ac", "speed"):
                     stat = {
                         "hp": card.hp_max,
                         "ac": card.ac,
@@ -1200,12 +1257,31 @@ class CharacterManager:
                         value = _sanitize_text(_to_str(raw), 40)
                     setattr(card.equipment, k, value)
                     applied.append(k)
-                elif k in ("background", "backstory", "alignment"):
-                    if k == "background":
+                elif k in ("background", "backstory", "alignment", "race"):
+                    # v0.41.0：race 与 background 同为短文本（≤40 字）
+                    if k in ("background", "race"):
                         setattr(card, k, _sanitize_text(_to_str(raw), 40))
                     else:
                         setattr(card, k, _sanitize_text(_to_str(raw)))
                     applied.append(k)
+                elif k == "classes":
+                    # v0.41.0：职业整体替换，值形如「战士 3 + 法师（塑能） 2」；
+                    # 「- / 无 / 删」清空职业（卡回退无职业态，等级 1）。
+                    text = _to_str(raw).strip()
+                    if text in ("-", "－", "无", "删", "删除"):
+                        card.classes = []
+                        applied.append(k)
+                    else:
+                        parsed = parse_classes_text(text)
+                        if parsed:
+                            card.classes = parsed
+                            applied.append(k)
+                elif k == "edition":
+                    # v0.41.0：规则版本归一（2014/2024，兼容 5e/5.5e）；无法识别不应用
+                    norm = normalize_edition(_to_str(raw))
+                    if norm:
+                        card.edition = norm
+                        applied.append(k)
                 elif k == "skills":
                     newset: set[str] = set()
                     for tok in re.split(r"[,\s，、]+", _to_str(raw)):

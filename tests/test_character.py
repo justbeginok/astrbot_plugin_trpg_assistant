@@ -1074,3 +1074,93 @@ class TestV31EntryDelete:
         card2, applied2 = run(cm.update_fields(ev, None, {"named_roll": "不存在的=-"}))
         assert card2 is not None
         assert "named_roll" not in applied2
+
+
+class TestV41IndividualFields:
+    """v0.41.0：update_fields 支持六维属性/种族/职业/版本单独设置。"""
+
+    def test_parse_classes_text(self) -> None:
+        from astrbot_plugin_trpg_assistant.character import parse_classes_text
+
+        # 完整形态：职业（子职） 等级，+ 分隔兼职
+        classes = parse_classes_text("战士 3 + 法师（塑能） 2")
+        assert [(c.class_name, c.subclass, c.level) for c in classes] == [
+            ("战士", "", 3),
+            ("法师", "塑能", 2),
+        ]
+        # 等级可省略（默认 1）；全角加号
+        classes = parse_classes_text("游荡者＋术士")
+        assert [(c.class_name, c.level) for c in classes] == [
+            ("游荡者", 1),
+            ("术士", 1),
+        ]
+        # 空/纯分隔符 → 空列表（职业名是自由文本，「???」会被当作一个职业名）
+        assert parse_classes_text("") == []
+        assert parse_classes_text("+") == []
+        assert [(c.class_name, c.level) for c in parse_classes_text("???")] == [("???", 1)]
+
+    def test_normalize_edition(self) -> None:
+        from astrbot_plugin_trpg_assistant.character import normalize_edition
+
+        assert normalize_edition("2024") == "2024"
+        assert normalize_edition("5.5e") == "2024"
+        assert normalize_edition("5.5") == "2024"
+        assert normalize_edition("5r") == "2024"
+        assert normalize_edition("2014") == "2014"
+        assert normalize_edition("5e") == "2014"
+        assert normalize_edition("5.0") == "2014"
+        assert normalize_edition("3.5") == ""
+        assert normalize_edition("") == ""
+
+    def test_update_ability_scores(self) -> None:
+        cm = CharacterManager(star=_KVStar())
+        ev = _Event()
+        run(cm.save_card(ev, make_sheet()))
+        # 单独设置力量
+        card, applied = run(cm.update_fields(ev, None, {"str": "18"}))
+        assert "str" in applied
+        assert card.ability_scores.strength == 18
+        # 中文键同样生效（update_fields 层不做中文映射，命令层映射；此处验证缩写直达）
+        # 越界 clamp
+        card, applied = run(cm.update_fields(ev, None, {"dex": "99"}))
+        assert card.ability_scores.dexterity == 30
+        # 非法值保持原值
+        before = card.ability_scores.wisdom
+        card, applied = run(cm.update_fields(ev, None, {"wis": "abc"}))
+        assert card.ability_scores.wisdom == before
+        # 其余属性不受影响
+        assert card.ability_scores.intelligence == 16
+
+    def test_update_race_classes_edition(self) -> None:
+        cm = CharacterManager(star=_KVStar())
+        ev = _Event()
+        run(cm.save_card(ev, make_sheet()))
+        # 种族
+        card, applied = run(cm.update_fields(ev, None, {"race": "半精灵"}))
+        assert "race" in applied
+        assert card.race == "半精灵"
+        # 职业整体替换
+        card, applied = run(cm.update_fields(ev, None, {"classes": "战士 2"}))
+        assert "classes" in applied
+        assert [(c.class_name, c.level) for c in card.classes] == [("战士", 2)]
+        # 「-」清空职业
+        card, applied = run(cm.update_fields(ev, None, {"classes": "-"}))
+        assert "classes" in applied
+        assert card.classes == []
+        # 纯分隔符（无可解析职业）→ 不应用
+        before = list(card.classes)
+        card, applied = run(cm.update_fields(ev, None, {"classes": "+"}))
+        assert "classes" not in applied
+        assert card.classes == before
+        # 自由文本职业名直接采纳（如私设职业「???」）
+        card, applied = run(cm.update_fields(ev, None, {"classes": "??? 1"}))
+        assert "classes" in applied
+        assert card.classes[0].class_name == "???"
+        # 版本（5.5e → 2024）
+        card, applied = run(cm.update_fields(ev, None, {"edition": "5.5e"}))
+        assert "edition" in applied
+        assert card.edition == "2024"
+        # 非法版本不应用
+        card, applied = run(cm.update_fields(ev, None, {"edition": "4e"}))
+        assert "edition" not in applied
+        assert card.edition == "2024"

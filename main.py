@@ -484,6 +484,132 @@ def _parse_name_qty(tokens: list[str], default_qty: int = 1) -> tuple[str, int] 
     return tokens[0], qty
 
 
+def _parse_batch_name_qty(tokens: list[str]) -> list[tuple[str, int]] | str:
+    """解析批量「名称 [数量] 名称 [数量] …」（/商店 买/卖 共用）。
+
+    非纯数字 token = 下一个物品名（数量默认 1）；纯数字 token = 前一个
+    物品的数量（数量可省略）。向后兼容单件写法：`买 长剑` = x1、
+    `买 长剑 2` = x2。数字出现在名称位（如 `买 2 长剑`）报错。
+    返回 [(名称, 数量), ...] 或错误文案字符串。
+    """
+    if not tokens:
+        return "请提供物品名称。"
+    pairs: list[tuple[str, int]] = []
+    name = ""
+    for tok in tokens:
+        if tok.isdigit() or (tok.startswith("-") and tok[1:].isdigit()):
+            if not name:
+                return f"数量「{tok}」前缺少物品名称。"
+            qty = int(tok)
+            if not 1 <= qty <= 99999:
+                return f"无效的数量：'{tok}'，应为 1~99999 的整数。"
+            pairs.append((name, qty))
+            name = ""
+        else:
+            if name:
+                pairs.append((name, 1))
+            name = tok
+    if name:
+        pairs.append((name, 1))
+    return pairs
+
+
+def _format_buy_result(result) -> str:
+    """批量购买的单行结果（成功/失败），供批量汇总输出。"""
+    if result.ok:
+        stock_note = (
+            f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
+        )
+        return (
+            f"✅ 已购买 **{result.item_name}** ×{result.qty}，"
+            f"花费 {format_cp(result.total_cp)}"
+            f"（{format_cp(result.price_cp)}/件）{stock_note}。"
+        )
+    if result.reason == "not_found":
+        return f"❌ 商店里没有「{result.item_name}」。"
+    if result.reason == "sold_out":
+        return f"❌ 「{result.item_name}」库存不足（现有 {result.stock_left} 个）。"
+    if result.reason == "no_price":
+        return f"❌ 「{result.item_name}」没有定价（知识库无库价），需 DM 设价。"
+    return (
+        f"❌ 钱不够：购买 **{result.item_name}** ×{result.qty} 需"
+        f" {format_cp(result.total_cp)}，还差 {format_cp(result.shortfall_cp)}。"
+    )
+
+
+def _format_sell_result(result) -> str:
+    """批量卖回的单行结果（成功/失败），供批量汇总输出。"""
+    if result.ok:
+        stock_note = (
+            f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
+        )
+        return (
+            f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
+            f"获得 {format_cp(result.pay_cp)}"
+            f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
+        )
+    if result.reason == "not_found":
+        return f"❌ 商店不收「{result.item_name}」（只回收在架商品）。"
+    if result.reason == "no_price":
+        return f"❌ 「{result.item_name}」没有定价，暂无法回收。"
+    return f"❌ 背包里没有足够的「{result.item_name}」可以出售。"
+
+
+def _normalize_tool_items(items) -> list[dict] | str:
+    """把 LLM 工具传的 items 归一化为 [{item, qty, price?, stock?}, ...]。
+
+    容错：None 返回 []（调用方回退单件 item+qty）；str 先 json.loads（部分
+    模型会把数组序列化成字符串）；list 逐元素校验——元素须为 dict 且含 item
+    （兼容 name 键），qty 缺省 1（数字/数字字符串均可），add 可含 price
+    （"2金" 或铜币整数）与 stock（数字或 "无限"）。
+    返回列表或错误文案字符串。
+    """
+    if items is None:
+        return []
+    if isinstance(items, str):
+        try:
+            items = json.loads(items)
+        except (ValueError, TypeError):
+            return f"items 参数无法解析：{items!r}（应为物品对象数组）。"
+    if not isinstance(items, list) or not items:
+        return 'items 参数应为非空数组，元素为 {"item": 名称, "qty": 数量}。'
+    out: list[dict] = []
+    for i, raw in enumerate(items):
+        if not isinstance(raw, dict):
+            return f"items[{i}] 应为对象 {{item, qty, ...}}。"
+        name = (raw.get("item") or raw.get("name") or "").strip()
+        if not name:
+            return f"items[{i}] 缺少物品名称（item 字段）。"
+        try:
+            qty = int(float(raw.get("qty", 1)))
+        except (TypeError, ValueError):
+            return f"items[{i}] 的数量「{raw.get('qty')}」不是有效整数。"
+        if not 1 <= qty <= 99999:
+            return f"items[{i}] 的数量「{qty}」应在 1~99999 之间。"
+        spec: dict = {"item": name, "qty": qty}
+        if "price" in raw and raw["price"] is not None:
+            price = raw["price"]
+            if isinstance(price, (int, float)):
+                spec["price"] = int(price)
+            else:
+                m = parse_money(str(price))
+                if m is None:
+                    return f"items[{i}] 的价格「{price}」无法解析（支持 2金 / 150）。"
+                spec["price"] = m
+        if "stock" in raw and raw["stock"] is not None:
+            s = str(raw["stock"]).strip()
+            if s in ("无限", "inf", "∞"):
+                spec["stock"] = None
+            elif s.isdigit():
+                spec["stock"] = int(s)
+            else:
+                return (
+                    f"items[{i}] 的库存「{raw['stock']}」无法解析（支持数字或 无限）。"
+                )
+        out.append(spec)
+    return out
+
+
 def _parse_edit_tokens(tokens: list[str]) -> dict | str:
     """
     解析 /bag edit 的参数：<名称> + 至少一个 w=/v=/note= 键值对。
@@ -1178,14 +1304,15 @@ _HELP_SECTIONS = {
         "lines": [
             "/商店                  查看商品列表（库价/覆盖价，库存余量，每页 30 条）",
             "/商店 2                 翻页（或 /商店 页 2）",
-            "/商店 买 <名称> <数量>   购买（自动从背包扣除金银铜并找零）",
-            "/商店 卖 <名称> <数量>   卖回商店（只收在架商品，按售价×回购系数付款）",
+            "/商店 买 <名称> [数量] [<名称> [数量] …]   购买（自动从背包扣除金银铜并找零；可批量）",
+            "/商店 卖 <名称> [数量] [<名称> [数量] …]   卖回商店（只收在架商品，按售价×回购系数付款；可批量）",
             "/商店 初始化            用 PHB/XPHB 非魔法物品重建商店（管理员，覆盖现有列表）",
-            "/商店 上架 <名称> [价=] [库存=]  添加商品（不写价则用库价；管理员）",
-            "/商店 下架 <名称>        移除商品（管理员）",
+            "/商店 上架 <名称> [价=] [库存=] [<名称> …]  添加商品，可批量（不写价则用库价；管理员）",
+            "/商店 下架 <名称> [<名称> …]  移除商品，可批量（管理员）",
             "/商店 设价 <名称> <价格|自动>  覆盖价格（如 2金5银；「自动」恢复库价；管理员）",
             "/商店 设库存 <名称> <数量|无限>  设置库存（0=售罄；管理员）",
             "/商店 回购率 <系数>      设置回购系数，如 0.5=半价（管理员）",
+            "/商店 清空              清空整店全部商品（管理员；回购系数保留）",
             "价格单位：1金币=10银币=100铜币；背包价值字段统一为铜币口径。",
         ],
     },
@@ -1313,14 +1440,17 @@ _SHOP_HELP = (
     "商店指令用法：\n"
     "  {p}商店                       查看商品列表（第 1 页）\n"
     "  {p}商店 <页码>                 翻页，如 {p}商店 2（或 {p}商店 页 2）\n"
-    "  {p}商店 买 <名称> <数量>       购买（自动扣背包货币并找零）\n"
-    "  {p}商店 卖 <名称> <数量>       卖回商店（只收在架商品）\n"
+    "  {p}商店 买 <名称> [数量] [<名称> [数量] …]   购买（自动扣背包货币并找零；可批量）\n"
+    "  {p}商店 卖 <名称> [数量] [<名称> [数量] …]   卖回商店（只收在架商品；可批量）\n"
     "  {p}商店 初始化                用 PHB/XPHB 非魔法物品重建商店（管理员）\n"
-    "  {p}商店 上架 <名称> [价=金额] [库存=数量]\n"
-    "  {p}商店 下架 <名称>\n"
+    "  {p}商店 上架 <名称> [价=金额] [库存=数量] [<名称> …]  可批量上架（管理员）\n"
+    "  {p}商店 下架 <名称> [<名称> …]    可批量下架（管理员）\n"
     "  {p}商店 设价 <名称> <金额|自动>   （自动 = 恢复库价）\n"
     "  {p}商店 设库存 <名称> <数量|无限>\n"
     "  {p}商店 回购率 <系数>          如 0.5 = 半价回收\n"
+    "  {p}商店 清空                   清空整店全部商品（管理员；回购系数保留）\n"
+    "批量示例：{p}商店 买 长剑 匕首 2 = 长剑×1 + 匕首×2；"
+    "数量省略 = 1。\n"
     "金额写法：2金5银、150（数字=铜币）；1金币=10银币=100铜币。"
 )
 
@@ -2716,14 +2846,15 @@ class TrpgAssistantPlugin(Star):
 
         用法:
           /商店                           查看商品列表
-          /商店 买 <名称> <数量>           购买（自动扣背包货币并找零）
-          /商店 卖 <名称> <数量>           卖回商店（只收在架商品）
+          /商店 买 <名称> [数量] [<名称> [数量] …]   购买，可批量（自动扣背包货币并找零）
+          /商店 卖 <名称> [数量] [<名称> [数量] …]   卖回商店，可批量（只收在架商品）
           /商店 初始化                     用 PHB/XPHB 非魔法物品重建商店（管理员）
-          /商店 上架 <名称> [价=金额] [库存=数量]   添加商品（管理员）
-          /商店 下架 <名称>                移除商品（管理员）
+          /商店 上架 <名称> [价=金额] [库存=数量] [<名称> …]   可批量上架（管理员）
+          /商店 下架 <名称> [<名称> …]     可批量下架（管理员）
           /商店 设价 <名称> <金额|自动>    覆盖价格（自动=恢复库价；管理员）
           /商店 设库存 <名称> <数量|无限>  设置库存（管理员）
           /商店 回购率 <系数>              设置回购系数（管理员）
+          /商店 清空                       清空整店全部商品（管理员；回购系数保留）
         """
         raw_msg: str = event.message_str.strip()
         parts = raw_msg.split(None, 1)
@@ -2788,90 +2919,125 @@ class TrpgAssistantPlugin(Star):
 
         # --- 购买 ---
         if sub in ("buy", "买", "购买"):
-            parsed = _parse_name_qty(rest)
+            parsed = _parse_batch_name_qty(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
-                    f"{parsed}\n用法：{display_prefix}商店 买 <名称> <数量>"
+                    f"{parsed}\n用法：{display_prefix}商店 买 <名称> [数量]"
+                    " [<名称> [数量] …]"
                 )
                 return
-            name, qty = parsed
-            result = await manager.buy(event, origin, name, qty)
-            if not result.ok:
-                if result.reason == "not_found":
-                    yield event.plain_result(
-                        f"商店里没有「{name}」。用 {display_prefix}商店 上架 添加，"
-                        f"或 {display_prefix}商店 查看 在售商品。"
-                    )
-                elif result.reason == "sold_out":
-                    yield event.plain_result(
-                        f"「{name}」库存不足（现有 {result.stock_left} 个），"
-                        "无法购买。"
-                    )
-                elif result.reason == "no_price":
-                    yield event.plain_result(
-                        f"「{name}」没有定价（知识库无库价）。"
-                        f"请管理员用 {display_prefix}商店 设价 <名称> <金额> 覆盖。"
-                    )
-                else:  # insufficient_money
-                    yield event.plain_result(
-                        f"钱不够：购买需 {format_cp(result.total_cp)}"
-                        f"（{format_cp(result.price_cp)}/件 ×{result.qty}），"
-                        f"还差 {format_cp(result.shortfall_cp)}。"
-                        "背包里用 /bag add 金币 等条目存钱（1金币=100铜币）。"
-                    )
+            if len(parsed) == 1:
+                # 单件购买：保留详细文案（历史行为）
+                name, qty = parsed[0]
+                result = await manager.buy(event, origin, name, qty)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        yield event.plain_result(
+                            f"商店里没有「{name}」。用 {display_prefix}商店 上架 添加，"
+                            f"或 {display_prefix}商店 查看 在售商品。"
+                        )
+                    elif result.reason == "sold_out":
+                        yield event.plain_result(
+                            f"「{name}」库存不足（现有 {result.stock_left} 个），"
+                            "无法购买。"
+                        )
+                    elif result.reason == "no_price":
+                        yield event.plain_result(
+                            f"「{name}」没有定价（知识库无库价）。"
+                            f"请管理员用 {display_prefix}商店 设价 <名称> <金额> 覆盖。"
+                        )
+                    else:  # insufficient_money
+                        yield event.plain_result(
+                            f"钱不够：购买需 {format_cp(result.total_cp)}"
+                            f"（{format_cp(result.price_cp)}/件 ×{result.qty}），"
+                            f"还差 {format_cp(result.shortfall_cp)}。"
+                            "背包里用 /bag add 金币 等条目存钱（1金币=100铜币）。"
+                        )
+                    return
+                stock_note = (
+                    f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
+                )
+                yield event.plain_result(
+                    f"🛒 已购买 **{result.item_name}** ×{result.qty}，"
+                    f"花费 {format_cp(result.total_cp)}"
+                    f"（{format_cp(result.price_cp)}/件）{stock_note}。"
+                    "已自动入包并附带库重/价值。"
+                )
                 return
-            stock_note = (
-                f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
-            )
-            yield event.plain_result(
-                f"🛒 已购买 **{result.item_name}** ×{result.qty}，"
-                f"花费 {format_cp(result.total_cp)}"
-                f"（{format_cp(result.price_cp)}/件）{stock_note}。"
-                "已自动入包并附带库重/价值。"
-            )
+            # 批量购买（逐件原子，失败件列明原因、其余继续）
+            lines: list[str] = []
+            ok_count = 0
+            for name, qty in parsed:
+                result = await manager.buy(event, origin, name, qty)
+                if result.ok:
+                    ok_count += 1
+                lines.append(_format_buy_result(result))
+            fail_count = len(parsed) - ok_count
+            summary = f"🛒 批量购买：成功 {ok_count} 件"
+            if fail_count:
+                summary += f"，失败 {fail_count} 件"
+            yield event.plain_result(summary + "。\n" + "\n".join(lines))
             return
 
         # --- 卖回商店 ---
         if sub in ("sell", "卖", "出售"):
-            parsed = _parse_name_qty(rest)
+            parsed = _parse_batch_name_qty(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
-                    f"{parsed}\n用法：{display_prefix}商店 卖 <名称> <数量>"
+                    f"{parsed}\n用法：{display_prefix}商店 卖 <名称> [数量]"
+                    " [<名称> [数量] …]"
                 )
                 return
-            name, qty = parsed
-            result = await manager.sell(event, origin, name, qty)
-            if not result.ok:
-                if result.reason == "not_found":
-                    yield event.plain_result(
-                        f"商店不收「{name}」（只回收在架商品，"
-                        f"且按售价×回购系数计价）。"
-                    )
-                elif result.reason == "no_price":
-                    yield event.plain_result(
-                        f"「{name}」没有定价（知识库无库价），暂无法回收。"
-                    )
-                else:  # insufficient / 背包无货
-                    yield event.plain_result(
-                        f"背包里没有足够的「{name}」可以出售。"
-                    )
+            if len(parsed) == 1:
+                # 单件卖回：保留详细文案（历史行为）
+                name, qty = parsed[0]
+                result = await manager.sell(event, origin, name, qty)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        yield event.plain_result(
+                            f"商店不收「{name}」（只回收在架商品，"
+                            f"且按售价×回购系数计价）。"
+                        )
+                    elif result.reason == "no_price":
+                        yield event.plain_result(
+                            f"「{name}」没有定价（知识库无库价），暂无法回收。"
+                        )
+                    else:  # insufficient / 背包无货
+                        yield event.plain_result(
+                            f"背包里没有足够的「{name}」可以出售。"
+                        )
+                    return
+                stock_note = (
+                    f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
+                )
+                yield event.plain_result(
+                    f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
+                    f"获得 {format_cp(result.pay_cp)}"
+                    f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
+                )
                 return
-            stock_note = (
-                f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
-            )
-            yield event.plain_result(
-                f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
-                f"获得 {format_cp(result.pay_cp)}"
-                f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
-            )
+            # 批量卖回（逐件原子，失败件列明原因、其余继续）
+            lines: list[str] = []
+            ok_count = 0
+            for name, qty in parsed:
+                result = await manager.sell(event, origin, name, qty)
+                if result.ok:
+                    ok_count += 1
+                lines.append(_format_sell_result(result))
+            fail_count = len(parsed) - ok_count
+            summary = f"💰 批量卖出：成功 {ok_count} 件"
+            if fail_count:
+                summary += f"，失败 {fail_count} 件"
+            yield event.plain_result(summary + "。\n" + "\n".join(lines))
             return
 
         # --- 管理类子命令：全部需要破坏性权限 ---
         if sub in ("init", "初始化", "add", "上架", "remove", "rm", "下架",
-                   "price", "设价", "stock", "设库存", "rate", "回购率"):
+                   "price", "设价", "stock", "设库存", "rate", "回购率",
+                   "clear", "clr", "清空", "清除"):
             if not await self._check_destructive_permission(event):
                 yield event.plain_result(
-                    "你没有权限配置商店（上架/下架/设价/设库存/初始化/回购率）。"
+                    "你没有权限配置商店（上架/下架/设价/设库存/初始化/回购率/清空）。"
                     + (
                         "（白名单模式已启用，请联系管理员）"
                         if self.enable_whitelist
@@ -2879,6 +3045,15 @@ class TrpgAssistantPlugin(Star):
                     )
                 )
                 return
+
+        # --- 清空商店（管理员） ---
+        if sub in ("clear", "clr", "清空", "清除"):
+            count = await manager.clear(origin)
+            yield event.plain_result(
+                f"🏪 已清空商店，共移除 {count} 种商品。"
+                if count else "商店本来就是空的。"
+            )
+            return
 
         # --- 初始化商店 ---
         if sub in ("init", "初始化"):
@@ -2908,52 +3083,101 @@ class TrpgAssistantPlugin(Star):
 
         # --- 上架 ---
         if sub in ("add", "上架"):
-            parsed = self._parse_shop_add(rest)
+            parsed = self._parse_batch_shop_add(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
                     f"{parsed}\n用法：{display_prefix}商店 上架 <名称> "
-                    "[价=金额] [库存=数量|无限]"
+                    "[价=金额] [库存=数量|无限] [<名称> [价=…] [库存=…] …]"
                 )
                 return
-            weight_lb: float | None = None
-            if self.kb_manager.available:
-                try:
-                    stats = self.kb_manager.item_price(parsed["name"])
-                    if stats is not None:
-                        weight_lb = stats[1]
-                except Exception as e:  # noqa: BLE001 — 库异常不阻断上架
-                    logger.warning(f"[trpg_assistant] 上架查库重失败: {e}")
-            ok, reason = await manager.add_entry(
-                origin,
-                parsed["name"],
-                price_cp=parsed["price"],
-                stock=parsed["stock"],
-                weight_lb=weight_lb,
-            )
-            if not ok:
-                yield event.plain_result(reason)
+            if len(parsed) == 1:
+                # 单件上架：保留原逻辑
+                spec = parsed[0]
+                weight_lb = self._shop_add_weight(spec["name"])
+                ok, reason = await manager.add_entry(
+                    origin,
+                    spec["name"],
+                    price_cp=spec["price"],
+                    stock=spec["stock"],
+                    weight_lb=weight_lb,
+                )
+                if not ok:
+                    yield event.plain_result(reason)
+                    return
+                price_note = (
+                    format_cp(spec["price"]) if spec["price"] is not None else "库价"
+                )
+                stock_note = (
+                    "无限" if spec["stock"] is None else f"库存 {spec['stock']}"
+                )
+                yield event.plain_result(
+                    f"➕ 已上架 **{spec['name']}**（{price_note}，{stock_note}）。"
+                )
                 return
-            price_note = (
-                format_cp(parsed["price"]) if parsed["price"] is not None else "库价"
-            )
-            stock_note = "无限" if parsed["stock"] is None else f"库存 {parsed['stock']}"
-            yield event.plain_result(
-                f"➕ 已上架 **{parsed['name']}**（{price_note}，{stock_note}）。"
-            )
+            # 批量上架（逐件原子，失败件列明原因、其余继续）
+            lines: list[str] = []
+            ok_count = 0
+            for spec in parsed:
+                weight_lb = self._shop_add_weight(spec["name"])
+                ok, reason = await manager.add_entry(
+                    origin,
+                    spec["name"],
+                    price_cp=spec["price"],
+                    stock=spec["stock"],
+                    weight_lb=weight_lb,
+                )
+                if not ok:
+                    lines.append(f"❌ {reason}")
+                    continue
+                ok_count += 1
+                price_note = (
+                    format_cp(spec["price"]) if spec["price"] is not None else "库价"
+                )
+                stock_note = (
+                    "无限" if spec["stock"] is None else f"库存 {spec['stock']}"
+                )
+                lines.append(
+                    f"➕ 已上架 **{spec['name']}**（{price_note}，{stock_note}）。"
+                )
+            fail_count = len(parsed) - ok_count
+            summary = f"➕ 批量上架：成功 {ok_count} 件"
+            if fail_count:
+                summary += f"，失败 {fail_count} 件"
+            yield event.plain_result(summary + "。\n" + "\n".join(lines))
             return
 
         # --- 下架 ---
         if sub in ("remove", "rm", "下架"):
             if not rest:
                 yield event.plain_result(
-                    f"用法：{display_prefix}商店 下架 <名称>"
+                    f"用法：{display_prefix}商店 下架 <名称> [<名称> …]"
                 )
                 return
-            name = rest[0]
-            if not await manager.remove_entry(origin, name):
-                yield event.plain_result(f"商店里没有「{name}」。")
+            removed: list[str] = []
+            missing: list[str] = []
+            for name in rest:
+                if await manager.remove_entry(origin, name):
+                    removed.append(name)
+                else:
+                    missing.append(name)
+            if len(rest) == 1:
+                # 单件下架：保留原文案
+                if missing:
+                    yield event.plain_result(f"商店里没有「{missing[0]}」。")
+                else:
+                    yield event.plain_result(f"➖ 已下架 **{removed[0]}**。")
                 return
-            yield event.plain_result(f"➖ 已下架 **{name}**。")
+            # 批量下架
+            text_parts: list[str] = []
+            if removed:
+                text_parts.append(
+                    f"➖ 已下架：{'、'.join(removed)}（共 {len(removed)} 件）。"
+                )
+            for n in missing:
+                text_parts.append(f"❌ 商店里没有「{n}」。")
+            yield event.plain_result(
+                "\n".join(text_parts) if text_parts else "没有下架任何商品。"
+            )
             return
 
         # --- 设价 ---
@@ -3039,6 +3263,18 @@ class TrpgAssistantPlugin(Star):
         # --- help / 未知子命令 ---
         yield event.plain_result(_SHOP_HELP.format(p=display_prefix))
 
+    def _shop_add_weight(self, name: str) -> float | None:
+        """上架时从知识库带出单件重量（库不可用/异常时降级 None）。"""
+        if not self.kb_manager.available:
+            return None
+        try:
+            stats = self.kb_manager.item_price(name)
+            if stats is not None:
+                return stats[1]
+        except Exception as e:  # noqa: BLE001 — 库异常不阻断上架
+            logger.warning(f"[trpg_assistant] 上架查库重失败: {e}")
+        return None
+
     @staticmethod
     def _parse_shop_add(tokens: list[str]) -> dict | str:
         """解析上架参数：名称 + 可选 [价=金额] [库存=数量|无限]。
@@ -3068,6 +3304,39 @@ class TrpgAssistantPlugin(Star):
             else:
                 return f"无法识别的参数「{t}」（支持 价=金额 库存=数量|无限）。"
         return {"name": name, "price": price, "stock": stock}
+
+    @staticmethod
+    def _parse_batch_shop_add(tokens: list[str]) -> list[dict] | str:
+        """解析批量上架参数：「名称 [价=X] [库存=Y] 名称 [价=X] …」。
+
+        非「价=/库存=」前缀 token = 下一个物品名；属性 token 归当前物品
+        （逐项属性归属）。返回 [{"name","price","stock"}, ...] 或错误文案。
+        """
+        if not tokens:
+            return "缺少商品名称"
+        items: list[dict] = []
+        for t in tokens:
+            low = t.lower()
+            if low.startswith("价="):
+                if not items:
+                    return f"属性「{t}」前缺少商品名称。"
+                m = parse_money(t[2:])
+                if m is None:
+                    return f"无法解析价格「{t[2:]}」（支持 2金5银 / 150）。"
+                items[-1]["price"] = m
+            elif low.startswith("库存="):
+                if not items:
+                    return f"属性「{t}」前缺少商品名称。"
+                s = t[3:]
+                if s in ("无限", "inf", "∞"):
+                    items[-1]["stock"] = None
+                elif s.isdigit():
+                    items[-1]["stock"] = int(s)
+                else:
+                    return f"无法解析库存「{s}」（支持数字或 无限）。"
+            else:
+                items.append({"name": t, "price": None, "stock": None})
+        return items
 
     # ------------------------------------------------------------------
     # /卡 指令：角色卡管理
@@ -5128,16 +5397,20 @@ class TrpgAssistantPlugin(Star):
         item: str = "",
         qty: float | None = None,
         page: float | None = None,
+        items: list | None = None,
     ) -> str:
         """
-        管理 TRPG/DnD 会话商店（Shop）的购买与卖出结算。当玩家在商店购买物品
-        （自动从背包扣除金币/银币/铜币并找零）、把背包物品卖回商店（只收在架
-        商品，按售价×回购系数付款），或想查看本会话商店的商品列表时调用此工具。
+        管理 TRPG/DnD 会话商店（Shop）的购买/卖出/上架/下架/清空。当玩家在
+        商店购买物品（自动从背包扣除金币/银币/铜币并找零）、把背包物品卖回
+        商店（只收在架商品，按售价×回购系数付款）、DM 配置商店商品（上架/
+        下架/清空），或想查看本会话商店的商品列表时调用此工具。
 
         注意：
-        - 商品列表/价格/库存/回购系数由 DM（管理员）通过「/商店」命令配置，
-          本工具不开放上架/下架/设价/设库存/初始化/回购率等管理操作，玩家
-          提出此类需求时引导其找 DM 配置。
+        - 上架/下架/清空是管理操作，调用者需为 DM（白名单/管理员），否则
+          会被拒绝并引导找 DM 操作；设价/设库存/初始化/回购率仍由 DM 通过
+          「/商店」命令配置，本工具不开放。
+        - 支持批量：一次可处理多件商品（items 数组）。批量逐件结算：某项
+          失败（不在架/库存不足/钱不够）不影响其他项，结果逐行列出。
         - 货币结算遵循「货币即物品」：背包需有 金币/银币/铜币 条目
           （1金币=10银币=100铜币），购买时自动折铜扣款并找零。
         - list 每页最多 30 条：商品较多时列表末尾会给出总页数，如需查看
@@ -5146,11 +5419,20 @@ class TrpgAssistantPlugin(Star):
         Args:
             action(string): 要执行的操作。取值：list=查看本会话商店的商品列表
                 （默认动作）；buy=购买物品（按商店售价从背包扣款并自动入包）；
-                sell=把背包物品卖回商店（只收在架商品，按售价×回购系数付款）。
-            item(string): 物品名称。buy/sell 必须提供，需与商店列表中的名称一致。
-            qty(number): 数量，省略时默认为 1。
+                sell=把背包物品卖回商店（只收在架商品，按售价×回购系数付款）；
+                add=上架商品（管理操作，需白名单/管理员）；remove=下架商品
+                （管理操作）；clear=清空整店、移除全部商品（管理操作，保留
+                回购系数）。
+            item(string): 物品名称（单件模式，未提供 items 时使用）。buy/sell
+                需与商店列表中的名称一致；add/remove 为待上下架的商品名。
+            qty(number): 数量（单件模式），省略时默认为 1。
             page(number): 列表页码（仅 action=list 使用），从 1 开始，省略时为
                 第 1 页；越界自动夹取到首/末页。
+            items(array): 批量物品列表（v0.39.0），元素为对象，必含 item 字段
+                （物品名称），可选 qty（数量，默认 1）。action=add 时元素还可
+                含 price（售价，如 "2金" 或铜币整数，省略=用库价）与 stock
+                （库存，数字或 "无限"，省略=无限）。提供 items 时忽略 item/qty
+                单件参数。
         """
         event = _resolve_event(event)
         if event is None:
@@ -5175,61 +5457,174 @@ class TrpgAssistantPlugin(Star):
             return text
 
         if action in ("buy", "买", "购买"):
-            target = (item or "").strip()
-            if not target:
-                return "请提供物品名称（item 参数，与商店列表中的名称一致）。"
-            n = _safe_int(qty, 1, min_val=1, max_val=99999)
-            result = await manager.buy(event, origin, target, n)
-            if not result.ok:
-                if result.reason == "not_found":
-                    return f"商店里没有「{target}」，可先 list 查看在售商品。"
-                if result.reason == "sold_out":
-                    return f"「{target}」库存不足（现有 {result.stock_left} 个）。"
-                if result.reason == "no_price":
+            specs = _normalize_tool_items(items)
+            if isinstance(specs, str):
+                return specs
+            if not specs:
+                # 单件回退（旧参数兼容）
+                target = (item or "").strip()
+                if not target:
+                    return "请提供物品名称（item 参数，或 items 数组）。"
+                n = _safe_int(qty, 1, min_val=1, max_val=99999)
+                result = await manager.buy(event, origin, target, n)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        return f"商店里没有「{target}」，可先 list 查看在售商品。"
+                    if result.reason == "sold_out":
+                        return f"「{target}」库存不足（现有 {result.stock_left} 个）。"
+                    if result.reason == "no_price":
+                        return (
+                            f"「{target}」没有定价，需 DM 用「/商店 设价」覆盖价格。"
+                        )
                     return (
-                        f"「{target}」没有定价，需 DM 用「/商店 设价」覆盖价格。"
+                        f"钱不够：购买需 {format_cp(result.total_cp)}"
+                        f"（{format_cp(result.price_cp)}/件 ×{result.qty}），"
+                        f"还差 {format_cp(result.shortfall_cp)}。"
                     )
-                return (
-                    f"钱不够：购买需 {format_cp(result.total_cp)}"
-                    f"（{format_cp(result.price_cp)}/件 ×{result.qty}），"
-                    f"还差 {format_cp(result.shortfall_cp)}。"
+                stock_note = (
+                    f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
                 )
-            stock_note = (
-                f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
-            )
-            return (
-                f"🛒 已购买 **{result.item_name}** ×{result.qty}，"
-                f"花费 {format_cp(result.total_cp)}"
-                f"（{format_cp(result.price_cp)}/件）{stock_note}。"
-            )
+                return (
+                    f"🛒 已购买 **{result.item_name}** ×{result.qty}，"
+                    f"花费 {format_cp(result.total_cp)}"
+                    f"（{format_cp(result.price_cp)}/件）{stock_note}。"
+                )
+            # 批量购买（逐件原子）
+            lines: list[str] = []
+            ok_count = 0
+            for spec in specs:
+                result = await manager.buy(event, origin, spec["item"], spec["qty"])
+                if result.ok:
+                    ok_count += 1
+                lines.append(_format_buy_result(result))
+            fail_count = len(specs) - ok_count
+            summary = f"🛒 批量购买：成功 {ok_count} 件"
+            if fail_count:
+                summary += f"，失败 {fail_count} 件"
+            return summary + "。\n" + "\n".join(lines)
 
         if action in ("sell", "卖", "出售"):
-            target = (item or "").strip()
-            if not target:
-                return "请提供物品名称（item 参数，需为在架商品）。"
-            n = _safe_int(qty, 1, min_val=1, max_val=99999)
-            result = await manager.sell(event, origin, target, n)
-            if not result.ok:
-                if result.reason == "not_found":
-                    return (
-                        f"商店不收「{target}」（只回收在架商品）。"
-                        "可先 list 查看商店收哪些物品。"
-                    )
-                if result.reason == "no_price":
-                    return f"「{target}」没有定价，暂无法回收。"
-                return f"背包里没有足够的「{target}」可以出售。"
-            stock_note = (
-                f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
-            )
+            specs = _normalize_tool_items(items)
+            if isinstance(specs, str):
+                return specs
+            if not specs:
+                # 单件回退（旧参数兼容）
+                target = (item or "").strip()
+                if not target:
+                    return "请提供物品名称（item 参数，需为在架商品）。"
+                n = _safe_int(qty, 1, min_val=1, max_val=99999)
+                result = await manager.sell(event, origin, target, n)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        return (
+                            f"商店不收「{target}」（只回收在架商品）。"
+                            "可先 list 查看商店收哪些物品。"
+                        )
+                    if result.reason == "no_price":
+                        return f"「{target}」没有定价，暂无法回收。"
+                    return f"背包里没有足够的「{target}」可以出售。"
+                stock_note = (
+                    f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
+                )
+                return (
+                    f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
+                    f"获得 {format_cp(result.pay_cp)}"
+                    f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
+                )
+            # 批量卖回（逐件原子）
+            lines: list[str] = []
+            ok_count = 0
+            for spec in specs:
+                result = await manager.sell(event, origin, spec["item"], spec["qty"])
+                if result.ok:
+                    ok_count += 1
+                lines.append(_format_sell_result(result))
+            fail_count = len(specs) - ok_count
+            summary = f"💰 批量卖出：成功 {ok_count} 件"
+            if fail_count:
+                summary += f"，失败 {fail_count} 件"
+            return summary + "。\n" + "\n".join(lines)
+
+        if action in ("add", "上架", "上新"):
+            if not await self._check_destructive_permission(event):
+                return "你没有权限上架商品（需要白名单/管理员），请找 DM 操作。"
+            specs = _normalize_tool_items(items)
+            if isinstance(specs, str):
+                return specs
+            if not specs:
+                target = (item or "").strip()
+                if not target:
+                    return "请提供物品名称（item 参数，或 items 数组）。"
+                specs = [{"item": target, "qty": 1}]
+            lines: list[str] = []
+            ok_count = 0
+            for spec in specs:
+                weight_lb = self._shop_add_weight(spec["item"])
+                ok, reason = await manager.add_entry(
+                    origin,
+                    spec["item"],
+                    price_cp=spec.get("price"),
+                    stock=spec.get("stock"),
+                    weight_lb=weight_lb,
+                )
+                if not ok:
+                    lines.append(f"❌ {reason}")
+                    continue
+                ok_count += 1
+                price_note = (
+                    format_cp(spec["price"]) if spec.get("price") is not None else "库价"
+                )
+                stock_note = (
+                    "无限" if spec.get("stock") is None else f"库存 {spec['stock']}"
+                )
+                lines.append(
+                    f"➕ 已上架 **{spec['item']}**（{price_note}，{stock_note}）。"
+                )
+            fail_count = len(specs) - ok_count
+            summary = f"➕ 批量上架：成功 {ok_count} 件"
+            if fail_count:
+                summary += f"，失败 {fail_count} 件"
+            return summary + "。\n" + "\n".join(lines)
+
+        if action in ("remove", "下架", "rm"):
+            if not await self._check_destructive_permission(event):
+                return "你没有权限下架商品（需要白名单/管理员），请找 DM 操作。"
+            specs = _normalize_tool_items(items)
+            if isinstance(specs, str):
+                return specs
+            if specs:
+                names = [s["item"] for s in specs]
+            else:
+                target = (item or "").strip()
+                names = [target] if target else []
+            if not names:
+                return "请提供物品名称（item 参数，或 items 数组）。"
+            removed: list[str] = []
+            missing: list[str] = []
+            for name in names:
+                if await manager.remove_entry(origin, name):
+                    removed.append(name)
+                else:
+                    missing.append(name)
+            parts: list[str] = []
+            if removed:
+                parts.append(f"➖ 已下架：{'、'.join(removed)}（共 {len(removed)} 件）。")
+            for n in missing:
+                parts.append(f"❌ 商店里没有「{n}」。")
+            return "\n".join(parts) if parts else "没有下架任何商品。"
+
+        if action in ("clear", "清空"):
+            if not await self._check_destructive_permission(event):
+                return "你没有权限清空商店（需要白名单/管理员），请找 DM 操作。"
+            count = await manager.clear(origin)
             return (
-                f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
-                f"获得 {format_cp(result.pay_cp)}"
-                f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
+                f"🏪 已清空商店，共移除 {count} 种商品。"
+                if count else "商店本来就是空的。"
             )
 
         return (
-            "未知的 action。可用值：list / buy / sell。"
-            "（商店配置管理请引导用户找 DM 使用 /商店 命令）"
+            "未知的 action。可用值：list / buy / sell / add / remove / clear。"
+            "（设价/设库存/初始化/回购率请引导用户找 DM 使用 /商店 命令）"
         )
 
     @filter.llm_tool(name="manage_character")

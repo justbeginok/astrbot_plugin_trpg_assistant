@@ -459,3 +459,222 @@ def test_tool_unknown_action(tmp_path: Path) -> None:
     p = make_plugin(tmp_path)
     out = run(p.manage_shop_tool(ev(""), action="init"))
     assert "未知的 action" in out
+
+
+# ---------------------------------------------------------------------------
+# 清空商店（/商店 清空）
+# ---------------------------------------------------------------------------
+
+
+def test_shop_clear_removes_all_keeps_rate(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    shop(p, ev("/商店 回购率 0.5", admin=True))
+    out = shop(p, ev("/商店 清空", admin=True))
+    assert "已清空商店，共移除 5 种商品" in out[0]
+    # 列表空 + 回购系数保留
+    out = shop(p, ev("/商店"))
+    assert "还没有商品" in out[0]
+    from astrbot_plugin_trpg_assistant.shop import ShopManager
+
+    s = run(p.shop_manager.get("group:1"))
+    assert s.buyback_rate == 0.5
+    # 清空后买不到任何东西
+    add_coins(p, "金币", 10)
+    out = shop(p, ev("/商店 买 长剑 1"))
+    assert "商店里没有" in out[0]
+
+
+def test_shop_clear_empty_shop(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    out = shop(p, ev("/商店 清空", admin=True))
+    assert "商店本来就是空的" in out[0]
+
+
+def test_shop_clear_requires_admin(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    out = shop(p, ev("/商店 清空"))  # 群聊非管理员
+    assert "你没有权限配置商店" in out[0]
+    # 商品仍在
+    assert "共 5 种商品" in shop(p, ev("/商店"))[0]
+    # 私聊放行
+    out = shop(p, ev("/商店 清空", private=True))
+    assert "已清空商店" in out[0]
+
+
+# ---------------------------------------------------------------------------
+# 批量购买/卖回（数量可省略的贪心解析）
+# ---------------------------------------------------------------------------
+
+
+def test_shop_batch_buy_success(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    add_coins(p, "金币", 40)
+    out = shop(p, ev("/商店 买 长剑 皮甲 2"))
+    assert "批量购买：成功 2 件" in out[0]
+    assert "✅ 已购买 **长剑** ×1，花费 15金" in out[0]
+    assert "✅ 已购买 **皮甲** ×2，花费 20金" in out[0]
+
+
+def test_shop_batch_buy_partial_failure(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    add_coins(p, "金币", 20)  # 长剑 15金 + 皮甲×2 20金 不够
+    out = shop(p, ev("/商店 买 长剑 皮甲 2"))
+    assert "批量购买：成功 1 件，失败 1 件" in out[0]
+    assert "✅ 已购买 **长剑** ×1" in out[0]
+    assert "❌ 钱不够" in out[0]
+    assert "还差 15金" in out[0]
+
+
+def test_shop_batch_buy_qty_omittable_backward_compat(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    add_coins(p, "金币", 50)
+    # 单件不带数量 → ×1
+    out = shop(p, ev("/商店 买 长剑"))
+    assert "已购买 **长剑** ×1" in out[0]
+    # 单件带数量 → ×2（历史行为保持）
+    out = shop(p, ev("/商店 买 皮甲 2"))
+    assert "已购买 **皮甲** ×2" in out[0]
+    # 数字出现在名称位 → 报错
+    out = shop(p, ev("/商店 买 2 长剑"))
+    assert "数量「2」前缺少物品名称" in out[0]
+
+
+def test_shop_batch_sell_success_and_partial(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    bag(p, ev("/bag add 皮甲 2"))
+    bag(p, ev("/bag add 盾牌 1"))
+    out = shop(p, ev("/商店 卖 皮甲 盾牌"))
+    assert "批量卖出：成功 2 件" in out[0]
+    assert "💰 已卖出 **皮甲** ×1" in out[0]
+    assert "💰 已卖出 **盾牌** ×1" in out[0]
+    # 背包不足 / 商店不收 → 部分失败
+    out = shop(p, ev("/商店 卖 皮甲 魔法扫帚"))
+    assert "批量卖出：成功 1 件，失败 1 件" in out[0]
+    assert "❌ 商店不收「魔法扫帚」" in out[0]
+
+
+# ---------------------------------------------------------------------------
+# 批量上架/下架
+# ---------------------------------------------------------------------------
+
+
+def test_shop_batch_add_per_item_attrs(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    out = shop(
+        p, ev("/商店 上架 神秘符咒 价=3金 库存=2 火球法杖 库存=3", admin=True)
+    )
+    assert "批量上架：成功 2 件" in out[0]
+    assert "已上架 **神秘符咒**（3金，库存 2）" in out[0]
+    assert "已上架 **火球法杖**（库价，库存 3）" in out[0]
+    out = shop(p, ev("/商店"))
+    assert "**神秘符咒** — 3金（余 2）" in out[0]
+    assert "**火球法杖** — 未定价（余 3）" in out[0]
+
+
+def test_shop_batch_add_attr_before_name(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    out = shop(p, ev("/商店 上架 价=3金 长剑", admin=True))
+    assert "属性「价=3金」前缺少商品名称" in out[0]
+
+
+def test_shop_batch_add_duplicate_partial(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    out = shop(p, ev("/商店 上架 神秘符咒 神秘符咒", admin=True))
+    assert "批量上架：成功 1 件，失败 1 件" in out[0]
+    assert "❌ 「神秘符咒」已在架" in out[0]
+
+
+def test_shop_batch_remove(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    out = shop(p, ev("/商店 下架 长剑 皮甲 不存在物", admin=True))
+    assert "已下架：长剑、皮甲（共 2 件）。" in out[0]
+    assert "❌ 商店里没有「不存在物」" in out[0]
+    out = shop(p, ev("/商店"))
+    assert "长剑" not in out[0] and "皮甲" not in out[0]
+
+
+# ---------------------------------------------------------------------------
+# manage_shop llm_tool：批量 items 与管理动作
+# ---------------------------------------------------------------------------
+
+
+def test_tool_batch_buy_items_array(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    add_coins(p, "金币", 40)
+    out = run(
+        p.manage_shop_tool(
+            ev(""),
+            action="buy",
+            items=[{"item": "长剑", "qty": 1}, {"item": "皮甲", "qty": 2}],
+        )
+    )
+    assert "批量购买：成功 2 件" in out
+    assert "已购买 **长剑** ×1" in out
+    assert "已购买 **皮甲** ×2" in out
+
+
+def test_tool_batch_items_as_json_string(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    add_coins(p, "金币", 40)
+    out = run(
+        p.manage_shop_tool(
+            ev(""), action="buy", items='[{"item": "长剑", "qty": 1}]'
+        )
+    )
+    assert "批量购买：成功 1 件" in out
+    assert "已购买 **长剑** ×1" in out
+
+
+def test_tool_items_overrides_single_params(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    add_coins(p, "金币", 40)
+    # items 与 item/qty 并存时 items 优先
+    out = run(
+        p.manage_shop_tool(
+            ev(""), action="buy", item="长剑", qty=1, items=[{"item": "皮甲", "qty": 1}]
+        )
+    )
+    assert "已购买 **皮甲** ×1" in out
+    assert "长剑" not in out
+
+
+def test_tool_admin_actions_permission(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    # 非管理员被拒
+    out = run(p.manage_shop_tool(ev(""), action="add", item="神秘符咒"))
+    assert "你没有权限上架商品" in out
+    out = run(p.manage_shop_tool(ev(""), action="remove", item="长剑"))
+    assert "你没有权限下架商品" in out
+    out = run(p.manage_shop_tool(ev(""), action="clear"))
+    assert "你没有权限清空商店" in out
+    # 商品未动
+    assert "共 5 种商品" in shop(p, ev("/商店"))[0]
+
+
+def test_tool_admin_actions_allowed(tmp_path: Path) -> None:
+    p = make_plugin(tmp_path)
+    init_shop(p)
+    # 管理员批量上架（items 带 price/stock）
+    out = run(
+        p.manage_shop_tool(
+            ev("", admin=True),
+            action="add",
+            items=[{"item": "神秘符咒", "price": "3金", "stock": 2}],
+        )
+    )
+    assert "批量上架：成功 1 件" in out
+    assert "已上架 **神秘符咒**（3金，库存 2）" in out
+    # 管理员清空
+    out = run(p.manage_shop_tool(ev("", admin=True), action="clear"))
+    assert "已清空商店，共移除 6 种商品" in out

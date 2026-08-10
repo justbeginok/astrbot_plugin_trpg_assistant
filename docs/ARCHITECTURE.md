@@ -242,6 +242,11 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 - `Shop`：`entries` / `buyback_rate`(回购系数，clamp 0–2)。
 - `BuyResult`：`ok`/`reason`(`not_found|sold_out|no_price|insufficient_money`)/`price_cp`/
   `total_cp`/`shortfall_cp`/`stock_left`。`SellResult` 对称（`reason` 含 `insufficient`)。
+- v0.39.0 批量与清空：`_parse_batch_name_qty`（买/卖共用，数量可省略贪心解析）、
+  `_parse_batch_shop_add`（上架逐项属性归属）；`ShopManager.clear(origin)` 清空全部
+  商品条目但保留回购系数；批量逐件原子（每件独立锁往返，失败项列明、其余继续，
+  ADR-0015）。LLM 工具 `manage_shop` 增 `items(array)` 批量参数并开放 add/remove/
+  clear（工具内 `_check_destructive_permission` 鉴权）。
 - money.py 纯函数：`COIN_VALUE{金币:100,银币:10,铜币:1}` / `to_copper` / `to_money` /
   `make_change`(greedy 大币优先) / `parse_money`(纯数字=铜币) / `format_cp`→「X金Y银Z铜」/
   `settle_payment`(整币优先，最多破一枚大币)。
@@ -327,7 +332,7 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 | `rh`（rhistory）| 历史 | |
 | `ri` / `init`（initiative）| 先攻 | v0.30.0：`/ri` 无参数且有活跃角色卡时自动用卡上先攻（d20+先攻并标注角色）；显式调整值优先 |
 | `bag`（inventory, 背包）| 背包 | |
-| `shop`（商店, 店铺）| 商店 | |
+| `shop`（商店, 店铺）| 商店 | v0.39.0：批量买/卖（数量可省略）、批量上架（逐项属性）、批量下架、`清空`（整店清空，管理员） |
 | `卡`（char, 角色卡）| 角色卡 | v0.31.0：攻击条目删除（`/卡 设 攻击 名=-`）与已知法术单条增删（`/卡 法术 加|删 <环阶> <法术名>`）；v0.32.0：命名掷骰全套 CRUD（`/卡 骰 <名> <表达式>` / `<名> -` 删除 / `/卡 详情 掷骰`） |
 | `车卡`（chargen）| 车卡引导 | |
 | `车卡规则`（车规, chargenrule）| 群开卡规则 | |
@@ -335,7 +340,9 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 | `帮助`（menu,菜单,commands,cmds）| 帮助 | |
 
 **LLM 工具（9 个）**：`roll_dice` / `manage_initiative` / `manage_inventory` /
-`manage_shop` / `manage_character` / `guide_chargen` / `query_dnd_knowledge` /
+`manage_shop`（v0.39.0：新增 `items(array)` 批量参数；动作扩为
+list/buy/sell/add/remove/clear，管理动作在工具内 `_check_destructive_permission`
+鉴权，非管理员拒绝） / `manage_character` / `guide_chargen` / `query_dnd_knowledge` /
 `advise_build`（v0.35.0 构筑咨询：new_build=从零构筑（含背景推荐）、
 level_up=升级建议，插件直读活跃卡；防幻觉输入侧约束——候选档案全部由
 build_advisor 从知识库确定性组装，docstring/守则明文禁止凭记忆补条目名） /

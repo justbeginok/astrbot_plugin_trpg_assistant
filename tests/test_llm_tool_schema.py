@@ -67,6 +67,19 @@ def test_every_llm_tool_param_has_valid_type_and_description() -> None:
             )
 
 
+def test_manage_shop_schema_params() -> None:
+    """manage_shop 的 5 个参数进入 schema（v0.39.0 新增 items 批量参数）。"""
+    fn = getattr(TrpgAssistantPlugin, "manage_shop_tool")
+    parsed = docstring_parser.parse(inspect.getdoc(fn) or "")
+    names = [p.arg_name for p in parsed.params]
+    assert names == ["action", "item", "qty", "page", "items"]
+    items_param = parsed.params[-1]
+    assert items_param.type_name == "array"
+    assert "item" in (items_param.description or "") and "qty" in (
+        items_param.description or ""
+    )
+
+
 def test_query_dnd_knowledge_schema_has_expected_params() -> None:
     """query_dnd_knowledge 的 40 个参数必须全部进入 schema（本次 bug 的直接回归）。"""
     fn = getattr(TrpgAssistantPlugin, "query_dnd_knowledge_tool")

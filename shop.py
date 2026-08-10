@@ -366,6 +366,20 @@ class ShopManager:
             await self._save(origin, shop)
         return clamped
 
+    async def clear(self, origin: str) -> int:
+        """清空商店全部商品条目（回购系数保留，与 init_from_kb 语义一致）。
+
+        空店不写 KV；返回移除的商品条目数。
+        """
+        async with self._lock:
+            shop = await self._load(origin)
+            count = len(shop.entries)
+            if not count:
+                return 0
+            shop.entries = []
+            await self._save(origin, shop)
+            return count
+
     # ------------------------------------------------------------------
     # 买卖事务（跨商店+背包两把锁，固定顺序：Shop → Inventory）
     # ------------------------------------------------------------------

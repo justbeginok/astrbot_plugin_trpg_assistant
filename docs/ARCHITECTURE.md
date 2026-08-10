@@ -103,6 +103,13 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 **数据获取（v0.40.0 起）**：`scripts/fetch_cn_data.py` 直连下载 5etools-cn 数据
 （GitHub git trees API + raw，约 20MB，commit 默认取内置库 `meta.source_commit`
 保证零漂移）+ `scripts/fetch_en_spells.py`（英文法术源查找表，职业法术表用）。
+**魔法变体（v0.41.0）**：5e.tools 新数据模型把「焰舌/霜铭/+N 武器」等可附着于多种武器的
+魔法效果从 items.json 移入 `data/magicvariants.json`（214 条）。构建时只把变体**本体**作为
+一条 item 入库（type=GV，不按武器展开成大量「焰舌长剑/巨剑」条目避免刷屏），全部可能
+展开名注册为别名指向本体（搜「焰舌长剑」「Flame Tongue」均命中「焰舌」）；匹配逻辑对齐
+5e.tools 官方 render.js `_createSpecificVariants`（edition/requires/excludes，经官方搜索
+索引 2777 个展开名双向零差异验证）。`{#itemEntry X}` 引用从 items-base.json 的 itemEntry
+模板展开（填充 `{{item.resist}}` 等变量）。
 
 ```sql
 entries(id PK, kind, name, eng_name, source, edition, body, is_machine, UNIQUE(kind,name,source))

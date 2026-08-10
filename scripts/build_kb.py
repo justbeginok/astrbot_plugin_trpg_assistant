@@ -805,9 +805,261 @@ def _load_en_spell_classes(en_lookup: Path | None) -> dict[tuple[str, str], list
 
 
 def _load_items(data_dir: Path) -> list[dict]:
-    """物品 = 魔法物品（items.json, key=item）+ 基础物品（items-base.json, key=baseitem）。"""
+    """物品 = 魔法物品（items.json, key=item）+ 基础物品（items-base.json, key=baseitem）
+    + 魔法变体本体（magicvariants.json, key=magicvariant）。
+
+    魔法变体（焰舌/霜铭/+N 武器等）不按基础武器展开成大量具体条目（避免搜索刷屏），
+    只把变体本身作为一条 item 入库，并将所有可能展开名（如「焰舌长剑」「焰舌巨剑」）
+    注册为别名指向本体——搜索「焰舌长剑」也能命中「焰舌」。
+    """
     out = _load_kind_files(data_dir, "items.json", "item")
-    out += _load_kind_files(data_dir, "items-base.json", "baseitem")
+    baseitems = _load_kind_files(data_dir, "items-base.json", "baseitem")
+    for b in baseitems:
+        b["_is_base_item"] = True
+    out += baseitems
+    variants = _load_kind_files(data_dir, "magicvariants.json", "magicvariant")
+    if variants:
+        out += _expand_magic_variants(variants, out)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# 魔法变体（magicvariants.json）展开：本体入库 + 展开名做别名
+# ---------------------------------------------------------------------------
+
+
+def _expand_magic_variants(variants: list[dict], all_items: list[dict]) -> list[dict]:
+    """魔法变体 → 变体本体条目（带 _expand_aliases 展开名列表）。
+
+    变体本体字段：name=变体名、source=inherits.source、type 保留 GV|XX 码、
+    rarity/reqAttune 取自 inherits、entries=inherits.entries（变体效果正文）。
+    展开名通过 requires/excludes/edition 匹配 baseitem 计算（对齐 5e.tools
+    render.js _createSpecificVariants），只作别名不生成独立条目。
+    """
+    baseitems = [it for it in all_items if it.get("_is_base_item")]
+    out: list[dict] = []
+    for v in variants:
+        name = str(v.get("name") or "").strip()
+        inh = v.get("inherits") or {}
+        if not name or not isinstance(inh, dict):
+            continue
+        entry: dict = {
+            "name": name,
+            "ENG_name": str(v.get("ENG_name") or ""),
+            "source": str(inh.get("source") or v.get("source") or "UNKNOWN"),
+            "type": v.get("type"),  # GV|DMG / GV|XDMG
+            "rarity": inh.get("rarity"),
+            "reqAttune": inh.get("reqAttune"),
+            "entries": inh.get("entries") or v.get("entries") or [],
+            "_expand_aliases": [],
+        }
+        if v.get("translator"):
+            entry["translator"] = v["translator"]
+        # itemEntry 模板变量填充需条目字段（{{item.resist}}/{{item.detail1}}…）：
+        # 复制 inherits 中可能被模板引用的字段（抗性/免疫/易伤/细节位等）。
+        for _k in ("resist", "immune", "vuln", "conditionImmune",
+                   "detail1", "detail2", "detail3", "bonusWeapon", "bonusAc"):
+            if _k in inh:
+                entry[_k] = inh[_k]
+        # 再版跳转：2014 变体（如焰舌|DMG）reprintedAs 到 2024 版时，按既有
+        # 物品跳转约定跳过旧版、旧名成为新版别名（避免 2014/2024 双行重复）。
+        ra = inh.get("reprintedAs")
+        if isinstance(ra, list) and ra:
+            entry["reprintedAs"] = [str(r) for r in ra]
+        # 展开名（只作别名）：
+        for b in baseitems:
+            if not _variant_matches_base(v, b):
+                continue
+            en = _variant_expanded_name(b, v)
+            if en and en.lower() != name.lower():
+                entry["_expand_aliases"].append(en)
+        out.append(entry)
+    if out:
+        print(f"  [variant] magicvariants.json: 变体本体 {len(out)} 条入库")
+    return out
+
+
+def _variant_matches_base(variant: dict, base: dict) -> bool:
+    """基础物品是否匹配变体的 edition/requires/excludes（对齐 5e.tools）。
+
+    - edition：2014 基础物品只配 classic 变体，2024 只配 one/null，无 edition 配全部。
+    - requires：数组任一满足（some）；单个 req 内所有键都要匹配（every）。
+    - excludes：任一键匹配即排除（some）。
+    """
+    if not _variant_edition_match(base.get("edition"), variant.get("edition")):
+        return False
+    reqs = variant.get("requires")
+    if isinstance(reqs, list):
+        if not any(
+            isinstance(r, dict) and _variant_key_match(base, r, "every")
+            for r in reqs
+        ):
+            return False
+    elif isinstance(reqs, dict):
+        if not _variant_key_match(base, reqs, "every"):
+            return False
+    ex = variant.get("excludes")
+    if isinstance(ex, dict) and _variant_key_match(base, ex, "some"):
+        return False
+    return True
+
+
+def _variant_edition_match(base_edition: object, variant_edition: object) -> bool:
+    if base_edition == variant_edition:
+        return True
+    if base_edition == "classic":
+        return False
+    if base_edition is None:
+        return True
+    if base_edition == "one":
+        return variant_edition != "classic"
+    return False
+
+
+def _variant_key_match(candidate: dict, requirements: dict, method: str) -> bool:
+    """递归键值匹配。method=every 全键满足 / some 任一满足。"""
+    if not isinstance(candidate, dict) or not isinstance(requirements, dict):
+        return False
+    checks = []
+    for key, val in requirements.items():
+        if key == "ENG_name":  # 5etools-cn 中文版附带英文名，非匹配条件
+            continue
+        checks.append(_variant_val_match(candidate.get(key), val))
+    return all(checks) if method == "every" else any(checks)
+
+
+def _variant_val_match(cand_val: object, req_val: object) -> bool:
+    if isinstance(req_val, list):
+        if isinstance(cand_val, list):
+            return any(cv in req_val for cv in cand_val)
+        return cand_val in req_val
+    if isinstance(req_val, dict):
+        return _variant_key_match(
+            cand_val if isinstance(cand_val, dict) else {}, req_val, "every"
+        )
+    if isinstance(cand_val, list):
+        return req_val in cand_val
+    return cand_val == req_val
+
+
+def _variant_expanded_name(base: dict, variant: dict) -> str:
+    """展开条目名 = 基础物品名应用 inherits.nameRemove/namePrefix/nameSuffix。"""
+    inh = variant.get("inherits") or {}
+    name = str(base.get("name") or "")
+    rm = inh.get("nameRemove")
+    if isinstance(rm, str) and rm:
+        name = name.replace(rm, "")
+    if inh.get("namePrefix"):
+        name = str(inh["namePrefix"]) + name
+    if inh.get("nameSuffix"):
+        name = name + str(inh["nameSuffix"])
+    return name.strip()
+
+
+# ---------------------------------------------------------------------------
+# itemEntry 引用解析（{#itemEntry 抗性护甲|XDMG} → 模板文本）
+# ---------------------------------------------------------------------------
+
+RE_ITEM_ENTRY_REF = re.compile(r"\{#itemEntry\s+([^}|]+)(?:\|([^}]+))?\}")
+
+# 模板变量：{{item.xxx}} / {{getFullImmRes item.resist}} 等（5e.tools applyTemplate）。
+RE_TPL_VAR = re.compile(r"\{\{\s*(item|getFullImmRes|getFullImm)\s*\.?([a-zA-Z0-9_]+)\s*\}\}")
+
+
+def _load_item_entry_templates(data_dir: Path) -> dict[tuple[str, str], list]:
+    """加载 items-base.json 的 itemEntry 模板 → {(名称小写, source): entriesTemplate}。
+
+    source 可能缺失（引用不带 |来源 时回退），额外登记 (名称小写, "") 指向
+    首个同名校验模板（防御多版本只取第一版）。
+    """
+    payload: dict[tuple[str, str], list] = {}
+    f = data_dir / "items-base.json"
+    if not f.is_file():
+        return payload
+    try:
+        data = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return payload
+    first_by_name: dict[str, list] = {}
+    for ent in data.get("itemEntry") or []:
+        if not isinstance(ent, dict):
+            continue
+        nm = str(ent.get("name") or "").strip().lower()
+        src = str(ent.get("source") or "").strip()
+        tpl = ent.get("entriesTemplate")
+        if nm and isinstance(tpl, list):
+            payload[(nm, src)] = tpl
+            first_by_name.setdefault(nm, tpl)
+    for nm, tpl in first_by_name.items():
+        payload.setdefault((nm, ""), tpl)
+    return payload
+
+
+def _fill_item_template(text: str, entry: dict) -> str:
+    """填充模板变量：{{item.resist}} → 条目字段；{{getFullImmRes item.resist}}
+    → 抗性/免疫列表中文（「火焰、寒冷」）。"""
+
+    def repl(m: re.Match) -> str:
+        kind, name = m.group(1), m.group(2)
+        if kind == "item":
+            val = entry.get(name)
+            if isinstance(val, list):
+                return "、".join(str(v) for v in val if v)
+            return str(val) if val is not None else ""
+        # getFullImmRes / getFullImm：免疫+抗性合并描述（简化：取条目的 resist/immune/vuln）
+        if name in ("resist", "immune", "vuln", "conditionImmune"):
+            val = entry.get(name)
+            if isinstance(val, list):
+                return "、".join(str(v) for v in val if v)
+            return str(val) if val is not None else ""
+        val = entry.get(name)
+        if isinstance(val, list):
+            return "、".join(str(v) for v in val if v)
+        return str(val) if val is not None else ""
+
+    return RE_TPL_VAR.sub(repl, text)
+
+
+def _resolve_item_entries(
+    entries: object, templates: dict[tuple[str, str], list], entry: dict
+) -> list:
+    """递归把 entries 中的 {#itemEntry 名称|来源} 替换为模板文本。
+
+    模板 entriesTemplate 可能是纯文本数组或嵌套 dict（item/list 等），展开后
+    递归填充模板变量；匹配失败保留原引用（防御脏数据）。
+    """
+    if isinstance(entries, str):
+        m = RE_ITEM_ENTRY_REF.match(entries.strip())
+        if not m:
+            return [entries]
+        tname, tsrc = m.group(1).strip().lower(), (m.group(2) or "").strip()
+        tpl = templates.get((tname, tsrc)) or templates.get((tname, ""))
+        if tpl is None:
+            return [entries]
+        return _resolve_item_entries(tpl, templates, entry)
+    if not isinstance(entries, list) or not entries:
+        return entries if isinstance(entries, list) else []
+    out: list = []
+    for ent in entries:
+        if isinstance(ent, str):
+            m = RE_ITEM_ENTRY_REF.match(ent.strip())
+            if m:
+                tname, tsrc = m.group(1).strip().lower(), (m.group(2) or "").strip()
+                tpl = templates.get((tname, tsrc)) or templates.get((tname, ""))
+                if tpl is not None:
+                    resolved = _resolve_item_entries(tpl, templates, entry)
+                    out.extend(resolved)
+                    continue
+            out.append(_fill_item_template(ent, entry))
+        elif isinstance(ent, dict):
+            d2 = dict(ent)
+            if isinstance(ent.get("entries"), list):
+                d2["entries"] = _resolve_item_entries(ent["entries"], templates, entry)
+            if isinstance(ent.get("items"), list):
+                d2["items"] = _resolve_item_entries(ent["items"], templates, entry)
+            out.append(d2)
+        else:
+            out.append(ent)
     return out
 
 
@@ -1543,6 +1795,8 @@ def build(
     )
     # v0.35.0：英文源职业法术表（(法术名小写, source) → 主职业英文名列表）。
     en_spell_classes = _load_en_spell_classes(en_lookup)
+    # v0.41.0：itemEntry 模板（{#itemEntry X} 引用展开用，来自 items-base.json）。
+    item_templates = _load_item_entry_templates(data_dir)
     # 法术→职业待落库行（entry_id, 职业英文名）；职业中文名在职业段落库后解析。
     pending_spell_classes: list[tuple[int, str]] = []
     # 未命中英文源的法术（en_dir 提供时统计）。
@@ -1618,6 +1872,10 @@ def build(
                 continue
             # 各类型正文来源不同（法术在 entries、怪物在 trait/action 等），
             # 统一以「渲染后正文是否为空」作为脏数据判定。
+            if kind == "item" and item_templates:
+                e["entries"] = _resolve_item_entries(
+                    e.get("entries") or [], item_templates, e
+                )
             body = _kind_body(kind, e)
             if not body:
                 skipped += 1
@@ -1636,6 +1894,14 @@ def build(
                     conn.execute(
                         "INSERT OR IGNORE INTO aliases (alias, entry_id) VALUES (?,?)",
                         (alias, entry_id),
+                    )
+            # 魔法变体本体：展开名（如「焰舌长剑」「焰舌巨剑」）作为别名指向本体，
+            # 使精确搜索展开名也能命中「焰舌」本体（不生成独立变体条目）。
+            for alias in e.get("_expand_aliases") or []:
+                if isinstance(alias, str) and alias.strip():
+                    conn.execute(
+                        "INSERT OR IGNORE INTO aliases (alias, entry_id) VALUES (?,?)",
+                        (alias.strip().lower(), entry_id),
                     )
             # 侧表过滤字段 + 特性标签
             if kind == "spell":

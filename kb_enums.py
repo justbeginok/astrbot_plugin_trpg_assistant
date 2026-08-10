@@ -425,6 +425,9 @@ ITEM_TYPE_CODE: dict[str, str] = {
     "$A": "艺术品",
     "$C": "货币",
     "AI": "神器",
+    # 魔法变体（magicvariants.json）：焰舌/霜铭/+N 武器等通用魔法效果，
+    # 不按基础武器展开为具体条目，仅本体入库（展开名注册为别名）。
+    "GV": "魔法变体",
 }
 # 查询别名 → canonical（「远程武器」这类变宽映射宁缺毋滥，不收录）。
 ITEM_TYPE_CN: dict[str, str] = {

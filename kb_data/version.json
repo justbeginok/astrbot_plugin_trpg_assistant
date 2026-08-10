@@ -1,12 +1,12 @@
 {
   "data_version": "884d65a-20260810",
   "source_commit": "884d65a",
-  "build_time": "2026-08-10T16:56:55Z",
+  "build_time": "2026-08-10T17:51:33Z",
   "schema_version": "10",
   "counts": {
     "spell": 554,
     "monster": 3741,
-    "item": 1871,
+    "item": 2035,
     "feat": 276,
     "background": 148,
     "condition": 35,
@@ -17,5 +17,5 @@
     "classFeature": 677,
     "subclassFeature": 1441
   },
-  "skipped": 2046
+  "skipped": 2096
 }

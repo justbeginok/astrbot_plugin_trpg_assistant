@@ -1,0 +1,43 @@
+{
+  "magicvariant": [
+    {
+      "ENG_name": "Flame Tongue",
+      "name": "焰舌",
+      "type": "GV|DMG",
+      "edition": "classic",
+      "requires": [{"sword": true}],
+      "inherits": {
+        "namePrefix": "焰舌",
+        "source": "DMG",
+        "page": 170,
+        "srd": true,
+        "reprintedAs": ["焰舌|XDMG"],
+        "tier": "major",
+        "rarity": "rare",
+        "reqAttune": true,
+        "entries": [
+          "你可以使用一个附赠动作来说出这把魔法剑的口令，使火焰从剑刃上爆发出来。这些火焰在40尺半径内散发出明亮的光芒，并在额外的40尺内散发出微光。当剑上燃烧时，它对任何被击中的敌人额外造成{@damage 2d6}火焰伤害。"
+        ]
+      }
+    },
+    {
+      "ENG_name": "Armor of Resistance",
+      "name": "火焰抗性护甲",
+      "type": "GV|DMG",
+      "edition": "classic",
+      "requires": [{"armor": true}],
+      "inherits": {
+        "namePrefix": "火焰抗性",
+        "source": "DMG",
+        "page": 152,
+        "srd": true,
+        "reprintedAs": ["火焰抗性护甲|XDMG"],
+        "resist": ["火焰"],
+        "tier": "major",
+        "rarity": "rare",
+        "reqAttune": true,
+        "entries": ["{#itemEntry 抗性护甲}"]
+      }
+    }
+  ]
+}

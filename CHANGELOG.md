@@ -5,6 +5,23 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.41.1] - 2026-08-11
+
+### 修复
+
+- **焰舌等魔法武器完全查不到**：5e.tools 新数据模型把可附着于多种武器的魔法效果
+  （焰舌/霜铭/+N 武器等，214 条）从 items.json 移入 `data/magicvariants.json`，
+  而下载脚本清单漏了该文件、构建脚本也无展开逻辑。本次：
+  - `fetch_cn_data.py` 下载清单补上 `data/magicvariants.json`；
+  - `build_kb.py` 将变体**本体**作为一条 item 入库（`/查物品 焰舌` 命中
+    「焰舌」，XDMG·2024 珍稀需同调，正文完整），所有可能展开名（焰舌长剑、
+    Flame Tongue…）注册为别名指向本体，不生成大量「焰舌长剑/巨剑」条目；
+  - 匹配逻辑对齐 5e.tools 官方 render.js（edition/requires/excludes，
+    经官方搜索索引 2777 个展开名双向零差异验证）；
+  - 顺带解析 `{#itemEntry 抗性护甲}` 裸引用（items-base.json itemEntry 模板
+    展开 + `{{item.resist}}` 等变量填充），消除 100+ 条物品正文残留标签。
+  - 新增「魔法变体」物品类型码（GV）。
+
 ## [0.41.0] - 2026-08-11
 
 ### 新增

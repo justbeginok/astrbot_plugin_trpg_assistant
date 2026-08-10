@@ -38,6 +38,7 @@ _DIR_PREFIXES = (
 _TOP_FILES = {
     "data/items.json",
     "data/items-base.json",
+    "data/magicvariants.json",  # 魔法变体（焰舌/霜铭/+N 武器等，build_kb 展开用）
     "data/feats.json",
     "data/backgrounds.json",
     "data/conditionsdiseases.json",

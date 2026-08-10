@@ -40,13 +40,13 @@ def test_schema_and_counts(built_db: Path) -> None:
         "class_combat", "subclass_caster", "class_starting_equipment",
         "background_ability", "race_ability", "item_combat",
     } <= tables
-    # 6 法术 + 3 怪物 + 14 物品（11 fixture + 3 遗物链）+ 9 专长 + 2 背景
-    # + 4 状态 + 6 种族 + 2 职业 + 2 子职（奥法骑士重复行合并）= 48
-    assert conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0] == 48
+    # 6 法术 + 3 怪物 + 16 物品（11 fixture + 3 遗物链 + 2 魔法变体本体）
+    # + 9 专长 + 2 背景 + 4 状态 + 6 种族 + 2 职业 + 2 子职（奥法骑士重复行合并）= 50
+    assert conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0] == 50
     assert conn.execute("SELECT COUNT(*) FROM aliases").fetchone()[0] >= 9 * 2
     assert conn.execute("SELECT COUNT(*) FROM spells").fetchone()[0] == 6
     assert conn.execute("SELECT COUNT(*) FROM monsters").fetchone()[0] == 3
-    assert conn.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 14
+    assert conn.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 16
     assert conn.execute(
         "SELECT COUNT(*) FROM entries WHERE kind='feat'"
     ).fetchone()[0] == 9
@@ -830,3 +830,51 @@ def test_mod_insert_and_replace_txt() -> None:
     assert merged["entries"] == ["A", "b"]
     # 父条目未被污染（深拷贝）
     assert index["base"][0][1]["entries"] == ["a", "b"]
+
+
+def test_magic_variants_expansion(built_db: Path) -> None:
+    """魔法变体（magicvariants.json）：本体入库 + 展开名做别名（v0.41.0）。"""
+    conn = _conn(built_db)
+    # 变体本体「焰舌」入库（GV 变体不展开成大量武器条目）
+    rows = conn.execute(
+        "SELECT name, source, edition, rarity, attunement FROM items i"
+        " JOIN entries e ON e.id = i.entry_id WHERE e.name = '焰舌'"
+    ).fetchall()
+    assert len(rows) == 1
+    name, src, edition, rarity, attunement = rows[0]
+    assert (name, src, edition) == ("焰舌", "DMG", "2014")
+    assert rarity == "rare"
+    assert attunement == 1
+    # 正文渲染变体效果
+    body = conn.execute(
+        "SELECT body FROM entries WHERE name = '焰舌' AND source = 'DMG'"
+    ).fetchone()[0]
+    assert "焰舌" in body or "火焰" in body
+    assert "2d6" in body
+    # 展开名作为别名指向本体（搜「焰舌长剑」命中「焰舌」本体）
+    alias_hits = conn.execute(
+        "SELECT e.name FROM aliases a JOIN entries e ON e.id = a.entry_id"
+        " WHERE a.alias = '焰舌长剑'"
+    ).fetchall()
+    assert alias_hits and alias_hits[0][0] == "焰舌"
+    # 不生成独立展开条目（库内无「焰舌长剑」条目）
+    assert conn.execute(
+        "SELECT COUNT(*) FROM entries WHERE name = '焰舌长剑'"
+    ).fetchone()[0] == 0
+
+
+def test_magic_variant_item_entry_resolution(built_db: Path) -> None:
+    """变体本体含 {#itemEntry 引用} 时展开为模板文本（抗性护甲类）。"""
+    conn = _conn(built_db)
+    body = conn.execute(
+        "SELECT body FROM entries WHERE name = '火焰抗性护甲' AND source = 'DMG'"
+    ).fetchone()[0]
+    assert "{#itemEntry" not in body
+    assert "火焰" in body  # 模板变量 {{item.resist}} 被填充
+    assert "抗性" in body
+    # 本体入库且带稀有度/同调
+    row = conn.execute(
+        "SELECT i.rarity, i.attunement FROM items i JOIN entries e ON e.id = i.entry_id"
+        " WHERE e.name = '火焰抗性护甲' AND e.source = 'DMG'"
+    ).fetchone()
+    assert row == ("rare", 1)

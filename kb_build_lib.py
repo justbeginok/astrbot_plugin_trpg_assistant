@@ -400,6 +400,24 @@ def _lvl_sort_key(lvl: str) -> tuple:
     return (99, lvl)
 
 
+def _spell_name_list(value: object) -> list[str]:
+    """spellcasting 的法术列表值（list 或 {"spells": [...]}）→ 清洗后的中文名。"""
+    if isinstance(value, dict):
+        value = value.get("spells") or []
+    if not isinstance(value, list):
+        return []
+    return [
+        clean_5etools_tags(str(s))
+        for s in value if s and str(s).strip()
+    ]
+
+
+def _daily_sort_key(count: str) -> tuple:
+    """每日次数键（"3"/"1"/"2e"/"1e"，e=each）→ 数值排序键。"""
+    c = str(count).rstrip("e")
+    return (int(c) if c.isdigit() else 99, str(count))
+
+
 def _fmt_spellcasting(sc: dict) -> str:
     """结构化施法（怪物拥有哪些法术）→ 中文段落。"""
     lines = []
@@ -420,8 +438,37 @@ def _fmt_spellcasting(sc: dict) -> str:
     will = sc.get("will")
     if isinstance(will, list) and will:
         lines.append("随意施展：" + "、".join(
-            clean_5etools_tags(str(s)) for s in will
+            clean_5etools_tags(str(s)) for s in will if str(s).strip()
         ))
+    # v0.40.1：顶层 daily/rest/restLong（每日次数/休息后施法）。此前只在
+    # spells 环阶里找 daily（该结构在 5etools-cn 源数据中不存在），导致
+    # 874 只怪物（如奥喀斯）的「每项3/日」「每项1/日」漏渲染。
+    daily = sc.get("daily")
+    if isinstance(daily, dict):
+        # 次数降序（3/日 先于 1/日），贴合 statblock 阅读顺序；键可能带 e 尾缀
+        for count in sorted(daily.keys(), key=_daily_sort_key, reverse=True):
+            names = _spell_name_list(daily.get(count))
+            if names:
+                lines.append(
+                    f"每项{str(count).rstrip('e')}/日：" + "、".join(names)
+                )
+    for key, label in (
+        ("rest", "每次短休或长休："),
+        ("restLong", "每次长休："),
+    ):
+        grp = sc.get(key)
+        if not isinstance(grp, dict):
+            continue
+        for dg in grp.values():
+            names = _spell_name_list(dg)
+            if names:
+                lines.append(label + "、".join(names))
+    charges = sc.get("charges")
+    if isinstance(charges, dict):
+        for cost, dg in charges.items():
+            names = _spell_name_list(dg)
+            if names:
+                lines.append(f"{str(cost).rstrip('e')}充能：" + "、".join(names))
     spells = sc.get("spells")
     if isinstance(spells, dict):
         for lvl in sorted(spells.keys(), key=_lvl_sort_key):
@@ -430,18 +477,16 @@ def _fmt_spellcasting(sc: dict) -> str:
                 continue
             daily = group.get("daily")
             if isinstance(daily, dict):
-                for count, dg in daily.items():
-                    names = [
-                        clean_5etools_tags(str(s))
-                        for s in (dg.get("spells") or []) if s
-                    ]
+                # 防御：5etools 标准格式中环阶内 daily 值是法术名数组
+                # （cn 源数据无此形态，保留兼容私设条目）。
+                for count in sorted(daily.keys(), key=_daily_sort_key, reverse=True):
+                    names = _spell_name_list(daily.get(count))
                     if names:
-                        lines.append(f"每天{count}次：" + "、".join(names))
+                        lines.append(
+                            f"每项{str(count).rstrip('e')}/日：" + "、".join(names)
+                        )
                 continue
-            names = [
-                clean_5etools_tags(str(s))
-                for s in (group.get("spells") or []) if s
-            ]
+            names = _spell_name_list(group.get("spells"))
             if not names:
                 continue
             if lvl == "0":

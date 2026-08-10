@@ -624,6 +624,54 @@ def test_load_en_spell_classes_merges_class_variant(tmp_path: Path) -> None:
     assert ("fireball", "phb") in out  # class 原路径不受影响
 
 
+def test_fmt_spellcasting_top_level_daily() -> None:
+    """v0.40.1：spellcasting 顶层 daily/charges/rest 必须渲染（奥喀斯回归）。
+
+    5etools-cn 的「每项N/日」施法挂在 spellcasting 顶层 daily（874 只怪物），
+    此前只在 spells 环阶里查找（源数据无此形态），导致漏渲染。
+    """
+    from astrbot_plugin_trpg_assistant.kb_build_lib import _fmt_spellcasting
+
+    out = _fmt_spellcasting({
+        "name": "施法", "ability": "cha",
+        "headerEntries": ["奥喀斯施展以下一道法术："],
+        "will": ["{@spell 侦测魔法}"],
+        "daily": {"1": ["{@spell 时间停止}"], "3": ["{@spell 解除魔法}"]},
+    })
+    assert "随意施展：侦测魔法" in out
+    # 次数降序：3/日 先于 1/日
+    assert out.index("每项3/日：解除魔法") < out.index("每项1/日：时间停止")
+
+    # 键带 e 尾缀（5e.tools 的 N/day each 记法，如 XMM 巫妖）→ 显示去 e
+    out = _fmt_spellcasting({
+        "name": "施法", "ability": "int",
+        "will": ["{@spell 侦测魔法}"],
+        "daily": {"1e": ["{@spell 连锁闪电}"], "2e": ["{@spell 活化死尸}"]},
+    })
+    assert "每项2/日：活化死尸" in out
+    assert "每项1/日：连锁闪电" in out
+    assert "2e/日" not in out
+
+    out = _fmt_spellcasting({
+        "name": "魔杖施法",
+        "will": ["{@spell 枯萎术}"],
+        "charges": {
+            "1e": ["{@spell 死亡法阵}", "{@spell 死亡一指}"],
+            "2e": ["{@spell 律令死亡}"],
+        },
+    })
+    assert "1充能：死亡法阵、死亡一指" in out
+    assert "2充能：律令死亡" in out
+
+    out = _fmt_spellcasting({
+        "name": "施法",
+        "rest": {"1": ["{@spell 黑暗术}"]},
+        "restLong": {"1": ["{@spell 预言术}"]},
+    })
+    assert "每次短休或长休：黑暗术" in out
+    assert "每次长休：预言术" in out
+
+
 def test_condition_dual_version_and_status(built_db: Path) -> None:
     """状态：condition + status 合并入库；reprintedAs 豁免保留双版本。"""
     conn = _conn(built_db)

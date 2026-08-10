@@ -247,7 +247,7 @@ def test_monster_command_and_typo(tmp_path: Path) -> None:
     p = make_plugin(tmp_path)
     msgs = collect(p.kb_monster_cmd(ev("/查怪 少年青铜")))
     assert "少年青铜龙" in msgs[0]
-    assert "挑战等级CR3" in msgs[0]
+    assert "挑战等级CR3（XP700；PB+2）" in msgs[0]
 
 
 def test_miss(tmp_path: Path) -> None:

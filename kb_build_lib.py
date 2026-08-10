@@ -19,8 +19,10 @@ from .kb_enums import (
     CONDITION_CN,
     DAMAGE_TYPE_CN,
     ITEM_TYPE_CODE,
+    MONSTER_TYPE_CN_REV,
     SCHOOL_CN_REV,
     SIZE_CN_REV,
+    format_alignment,
     format_rarity,
 )
 from .kb_tags import clean_5etools_tags
@@ -454,30 +456,114 @@ def _fmt_spellcasting(sc: dict) -> str:
     return "\n".join(lines)
 
 
+# CR → 经验值（2014 挑战等级经验表，构建期渲染用）。
+_CR_XP: dict[float, int] = {
+    0: 10, 0.125: 25, 0.25: 50, 0.5: 100, 1: 200, 2: 450, 3: 700, 4: 1100,
+    5: 1800, 6: 2300, 7: 2900, 8: 3900, 9: 5000, 10: 5900, 11: 7200,
+    12: 8400, 13: 10000, 14: 11500, 15: 13000, 16: 15000, 17: 18000,
+    18: 20000, 19: 22000, 20: 25000, 21: 33000, 22: 41000, 23: 50000,
+    24: 62000, 25: 75000, 26: 90000, 27: 105000, 28: 120000, 29: 135000,
+    30: 155000,
+}
+
+
+def _proficiency_bonus(cr: float) -> int:
+    """按挑战等级查熟练加值（PB = 2 + floor(cr/4)，封顶 9）。"""
+    if cr < 5:
+        return 2
+    if cr < 9:
+        return 3
+    if cr < 13:
+        return 4
+    if cr < 17:
+        return 5
+    if cr < 21:
+        return 6
+    if cr < 25:
+        return 7
+    if cr < 29:
+        return 8
+    return 9
+
+
+def _cr_text(cr: object) -> str:
+    """cr 字段 → 「挑战等级CR{值}（XP…；PB…）」，含巢穴 XP/CR 时附加。"""
+    raw = cr.get("cr") if isinstance(cr, dict) else cr
+    if raw is None:
+        return ""
+    base = f"挑战等级CR{raw}"
+    crf = _parse_cr(cr)
+    if crf is None:
+        return base
+    parts = []
+    xp = _CR_XP.get(crf)
+    if xp is not None:
+        parts.append(f"XP{xp:,}")
+    if isinstance(cr, dict):
+        lair = cr.get("lair")
+        if lair is not None:
+            lair_xp = _CR_XP.get(_parse_cr(lair))
+            if lair_xp is not None:
+                parts.append(f"或巢穴内{lair_xp:,}")
+        elif cr.get("xpLair") is not None:
+            parts.append(f"或巢穴内{cr['xpLair']:,}")
+    parts.append(f"PB+{_proficiency_bonus(crf)}")
+    # XP/巢穴段用「，」连接，PB 段前用「；」分隔（贴合玩家惯用 statblock 样式）
+    return base + "（" + "，".join(parts[:-1]) + "；" + parts[-1] + "）"
+
+
+def _monster_type_line(m: dict) -> str:
+    """「中型不死生物（法师），中立邪恶」式类型行；无类型数据时回退体型/阵营。"""
+    size = m.get("size")
+    if isinstance(size, list) and size:
+        size_cn = "或".join(SIZE_CN_REV.get(str(s), str(s)) for s in size)
+    elif size:
+        size_cn = SIZE_CN_REV.get(str(size), str(size))
+    else:
+        size_cn = ""
+    t = m.get("type")
+    if isinstance(t, dict):
+        tcode = str(t.get("type") or "")
+        ttags = t.get("tags") or []
+    else:
+        tcode = str(t or "")
+        ttags = []
+    type_cn = MONSTER_TYPE_CN_REV.get(tcode, tcode) if tcode else ""
+    tag_text = ""
+    if isinstance(ttags, list) and ttags:
+        cleaned = [clean_5etools_tags(str(x)) for x in ttags if str(x).strip()]
+        if cleaned:
+            tag_text = "（" + "、".join(cleaned) + "）"
+    align_cn = format_alignment(m.get("alignment")) or "不固定阵营"
+    if type_cn:
+        line = f"{size_cn}{type_cn}{tag_text}" if size_cn else f"{type_cn}{tag_text}"
+    elif size_cn:
+        line = f"体型{size_cn}"
+    else:
+        line = ""
+    if line:
+        return f"{line}，{align_cn}"
+    return f"阵营{align_cn}"
+
+
 def _monster_body(m: dict) -> str:
     parts = []
     meta = []
-    size = m.get("size")
-    if isinstance(size, list) and size:
-        meta.append(f"体型{size[0]}")
-    elif size:
-        meta.append(f"体型{size}")
+    meta.append(_monster_type_line(m))
     for key, label in (("ac", "AC"), ("hp", "HP")):
         val = m.get(key)
         if val is None:
             continue
         text = _fmt_ac(val) if key == "ac" else _fmt_hp(val)
         if text:
-            meta.append(f"{label}{text}")
+            meta.append(f"{label} {text}")
     speed = m.get("speed")
     speed_text = _fmt_speed(speed)
     if speed_text:
         meta.append(f"速度{speed_text}")
-    cr = m.get("cr")
-    if isinstance(cr, dict):
-        cr = cr.get("cr")
-    if cr is not None:
-        meta.append(f"挑战等级CR{cr}")
+    cr_text = _cr_text(m.get("cr"))
+    if cr_text:
+        meta.append(cr_text)
     if meta:
         parts.append("【数据】" + "｜".join(str(x) for x in meta))
 

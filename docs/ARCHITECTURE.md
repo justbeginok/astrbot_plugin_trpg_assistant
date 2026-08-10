@@ -7,7 +7,7 @@
 > **建议阅读路径**：① 本文件（先看，建立全局）→ ② 术语不清楚 → `CONTEXT.md`
 > → ③ 设计取舍 → `docs/adr/` → ④ 具体实现 → 模块代码 + `tests/`。
 >
-> 版本：随 v0.36.0（2026-08-09）核对；数据结构以本文件为准，新增/变更字段时同步更新本文件。
+> 版本：随 v0.40.0（2026-08-11）核对；数据结构以本文件为准，新增/变更字段时同步更新本文件。
 
 ---
 
@@ -61,8 +61,8 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 | `card_import.py` | 文本角色卡宽松解析落库（纯函数） | — | `/卡 导入` `/车卡 导入` |
 | `kb.py` | 知识库 Manager + 查询/筛选/格式化；v0.36.0 起合并运行期私设 overlay | `KbEntry` / `SearchHit` / `FilterResult` 等 | `/查X` `/筛X` `/查询` `kb` `query_dnd_knowledge` |
 | `kb_tags.py` | 构建期标签提取（facet/value 归一化） | — | 仅构建期 |
-| `kb_enums.py` | 中文↔英文枚举映射（学派/伤害/稀有度/类型…） | `RARITY_CN` 等 | 查询期 |
-| `kb_build_lib.py` | 条目渲染/侧表提取共享纯函数（v0.36.0 从 build_kb.py 抽取）：`_kind_body` 正文渲染链、`is_machine_entry` 机翻判定、`_parse_cr`/`_fmt_ac`/`_fmt_hp` 数值解析、`_ability_payload`/`_item_combat_cols`/`_item_value_weight` 侧表工具 | — | 构建期（build_kb.py）+ 运行期（homebrew.py）共用 |
+| `kb_enums.py` | 中文↔英文枚举映射（学派/伤害/稀有度/类型…）；v0.40.0 加怪物阵营映射 `ALIGN_ABV_CN` + `format_alignment`（渲染规则与 5etools-cn 站点一致）与类型反查 `MONSTER_TYPE_CN_REV` | `RARITY_CN` 等 | 查询期 |
+| `kb_build_lib.py` | 条目渲染/侧表提取共享纯函数（v0.36.0 从 build_kb.py 抽取）：`_kind_body` 正文渲染链、`is_machine_entry` 机翻判定、`_parse_cr`/`_fmt_ac`/`_fmt_hp` 数值解析、`_ability_payload`/`_item_combat_cols`/`_item_value_weight` 侧表工具；v0.40.0 怪物头部渲染升级——体型中文化 + 类型/阵营段（`_monster_type_line`，缺失阵营显示「不固定阵营」）+ 挑战等级附 XP/巢穴/PB（`_cr_text`，CR→XP 表 `_CR_XP` + `_proficiency_bonus`） | — | 构建期（build_kb.py）+ 运行期（homebrew.py）共用 |
 | `homebrew.py` | 运行期私设 overlay（v0.36.0）：扫描 `{data_dir}/trpg_homebrew/*.json` 双格式解析 → 内存条目池；reload 原子替换；overlay 侧三级搜索/结构化过滤 | `HomebrewEntry` / `HomebrewLoadResult` / `HomebrewManager` | `/kb reload` `/kb 私设` |
 | `homebrew_writer.py` | 私设文本校验/文件名安全化/条目级 merge/原子写（v0.37.0，纯函数，不 import astrbot）；权威解析复用 `HomebrewManager` 临时目录试加载（零漂移） | `RawEntry` / `HomebrewValidation` / `WriteOutcome` | `manage_homebrew` |
 | `main.py` | 插件主类：命令注册、路由、鉴权、LLM 工具 | — | 全部命令 |
@@ -100,6 +100,9 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 
 只读；schema 版本 `KB_SCHEMA_VERSION = "9"`（`scripts/build_kb.py`），结构变更 +1 并重建；
 运行期 `resolve_db_path` 发现库版本过低自动回退内置库。`meta` 表存版本/构建信息。
+**数据获取（v0.40.0 起）**：`scripts/fetch_cn_data.py` 直连下载 5etools-cn 数据
+（GitHub git trees API + raw，约 20MB，commit 默认取内置库 `meta.source_commit`
+保证零漂移）+ `scripts/fetch_en_spells.py`（英文法术源查找表，职业法术表用）。
 
 ```sql
 entries(id PK, kind, name, eng_name, source, edition, body, is_machine, UNIQUE(kind,name,source))

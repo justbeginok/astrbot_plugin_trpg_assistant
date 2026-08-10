@@ -133,6 +133,104 @@ SIZE_CN: dict[str, str] = {
 # 反向映射：单字母 → 中文（种族/怪物筛选列表展示用）。
 SIZE_CN_REV: dict[str, str] = {v: k for k, v in SIZE_CN.items()}
 
+# --- 怪物类型（monster.type，5e 英文码 → canonical 中文，显示用） ---
+# 与 MONSTER_TYPE_CN 相反方向；取 canonical 名称而非别名（不死生物≠亡灵）。
+MONSTER_TYPE_CN_REV: dict[str, str] = {
+    "aberration": "异怪",
+    "beast": "野兽",
+    "celestial": "天界生物",
+    "construct": "构造体",
+    "dragon": "龙类",
+    "elemental": "元素",
+    "fey": "精类",
+    "fiend": "邪魔",
+    "giant": "巨人",
+    "humanoid": "类人生物",
+    "monstrosity": "怪物",
+    "ooze": "泥怪",
+    "plant": "植物",
+    "undead": "不死生物",
+    "swarm": "虫群",
+}
+
+# --- 怪物阵营（monster.alignment，5e 字母码；渲染规则与 5etools-cn 站点一致） ---
+ALIGN_ABV_CN: dict[str, str] = {
+    "L": "守序",
+    "N": "中立",
+    "NX": "中立(守序/混乱轴)",
+    "NY": "中立(善良/邪恶轴)",
+    "C": "混乱",
+    "G": "善良",
+    "E": "邪恶",
+    "U": "无阵营",
+    "A": "任意阵营",
+}
+
+
+def format_alignment(align: object) -> str:
+    """5etools 怪物阵营 → 中文；缺失/空返回空串（调用方决定兜底文案）。
+
+    支持形态（与 5etools-cn js/parser.js alignmentListToFull 规则一致）：
+    - 单码：U→无阵营、A→任意阵营、N→绝对中立（True Neutral）；
+    - 双码：L/G→守序善良、N/E→中立邪恶等（轴组合并）；
+    - NX/NY 特殊码：任意非善良/任意邪恶/任意中立阵营等（4/5 码组合）；
+    - 概率/注释形态 {alignment:[...], chance:50, note} 与多方案 OR 列表。
+    """
+    if not align:
+        return ""
+    # 概率/注释形态：{alignment:[...], chance, note} 或 {special}
+    if isinstance(align, dict):
+        special = align.get("special")
+        if special is not None:
+            return str(special)
+        base = format_alignment(align.get("alignment")) if isinstance(
+            align.get("alignment"), list) else ""
+        suffix = ""
+        if align.get("chance") is not None:
+            suffix += f"（{align['chance']}%）"
+        if align.get("note"):
+            suffix += f"（{align['note']}）"
+        return base + suffix
+    if isinstance(align, str):
+        align = [align]
+    if not isinstance(align, list):
+        return ""
+    # 多方案 OR 列表（元素为 dict，如 MTF 概率形态）
+    if any(not isinstance(x, str) for x in align):
+        parts = [
+            s for s in (format_alignment(x) for x in align) if s
+        ]
+        return "或".join(parts)
+    codes = [str(c).upper() for c in align]
+    if len(codes) == 1:
+        code = codes[0]
+        if code == "N":
+            return "绝对中立"
+        return ALIGN_ABV_CN.get(code, code)
+    if len(codes) == 2:
+        return "".join(ALIGN_ABV_CN.get(c, c) for c in codes)
+    if len(codes) == 3 and {"NX", "NY", "N"} <= set(codes):
+        return "任意中立阵营"
+    if len(codes) == 5:
+        if "G" not in codes:
+            return "任意非善良阵营"
+        if "E" not in codes:
+            return "任意非邪恶阵营"
+        if "L" not in codes:
+            return "任意非守序阵营"
+        if "C" not in codes:
+            return "任意非混乱阵营"
+    if len(codes) == 4:
+        if "L" not in codes and "NX" not in codes:
+            return "任意混乱阵营"
+        if "G" not in codes and "NY" not in codes:
+            return "任意邪恶阵营"
+        if "C" not in codes and "NX" not in codes:
+            return "任意守序阵营"
+        if "E" not in codes and "NY" not in codes:
+            return "任意善良阵营"
+    return "".join(ALIGN_ABV_CN.get(c, c) for c in codes)
+
 # --- 种族移动速度类型（race.speed dict 键） ---
 SPEED_TYPE_CN: dict[str, str] = {
     "步行": "walk",

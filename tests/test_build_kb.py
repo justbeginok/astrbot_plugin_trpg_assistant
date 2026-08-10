@@ -157,10 +157,11 @@ def test_monster_body_contains_hp_ac(built_db: Path) -> None:
         "SELECT body FROM entries WHERE kind='monster' AND name='少年青铜龙'"
     ).fetchone()[0]
     assert "【数据】" in body
-    assert "AC17" in body
-    assert "HP68（8d10 + 24）" in body
+    assert "大型龙类，守序善良" in body  # 体型中文化 + 类型 + 阵营（v0.40.0）
+    assert "AC 17" in body
+    assert "HP 68（8d10 + 24）" in body
     assert "速度步行30尺、飞行60尺、游泳30尺" in body
-    assert "挑战等级CR3" in body
+    assert "挑战等级CR3（XP700；PB+2）" in body
     assert "【属性】力量17(+3)、敏捷10(+0)、体质15(+2)" in body
     assert "【豁免】敏捷+5、体质+4" in body
     assert "【技能】察觉+5、隐匿+2" in body
@@ -176,6 +177,63 @@ def test_monster_body_contains_hp_ac(built_db: Path) -> None:
     assert "戏法：光亮术" in body
     assert "1环（2个法术位）：侦测魔法、雷电术" in body
     conn.close()
+
+
+def test_format_alignment() -> None:
+    """阵营字母码 → 中文（与 5etools-cn js/parser.js 规则一致，v0.40.0）。"""
+    from astrbot_plugin_trpg_assistant.kb_enums import format_alignment
+
+    assert format_alignment(["L", "G"]) == "守序善良"
+    assert format_alignment(["N", "G"]) == "中立善良"
+    assert format_alignment(["C", "N"]) == "混乱中立"
+    assert format_alignment(["L", "N"]) == "守序中立"
+    assert format_alignment(["N", "E"]) == "中立邪恶"
+    assert format_alignment(["C", "E"]) == "混乱邪恶"
+    assert format_alignment(["N"]) == "绝对中立"  # True Neutral
+    assert format_alignment(["U"]) == "无阵营"
+    assert format_alignment(["A"]) == "任意阵营"
+    # NX/NY 特殊组合（2014 MM 巫妖等）
+    assert format_alignment(["L", "NX", "C", "E"]) == "任意邪恶阵营"
+    assert format_alignment(["NX", "C", "G", "NY", "E"]) == "任意非守序阵营"
+    # 缺失/概率/字符串形态
+    assert format_alignment(None) == ""
+    assert format_alignment([]) == ""
+    assert format_alignment("U") == "无阵营"
+    assert format_alignment({"alignment": ["N", "G"], "chance": 50}) == (
+        "中立善良（50%）"
+    )
+
+
+def test_monster_body_header_new_format(built_db: Path) -> None:
+    """怪物【数据】头部：体型中文化 + 类型 + 阵营（v0.40.0）。"""
+    conn = _conn(built_db)
+    body = conn.execute(
+        "SELECT body FROM entries WHERE kind='monster' AND name='成年红龙'"
+    ).fetchone()[0]
+    assert "巨型龙类，混乱邪恶" in body
+    body = conn.execute(
+        "SELECT body FROM entries WHERE kind='monster' AND name='恐狼'"
+    ).fetchone()[0]
+    assert "大型野兽，无阵营" in body
+    conn.close()
+
+
+def test_monster_body_type_dict_tags() -> None:
+    """2024 型 dict type（带 tags）与缺失阵营兜底（v0.40.0）。"""
+    from astrbot_plugin_trpg_assistant.kb_build_lib import _monster_body
+
+    body = _monster_body({
+        "name": "测试巫妖", "size": ["M"],
+        "type": {"type": "undead", "tags": ["法师"]},
+        "alignment": ["N", "E"],
+        "cr": {"cr": "21", "xpLair": 41000},
+    })
+    assert "中型不死生物（法师），中立邪恶" in body
+    assert "挑战等级CR21（XP33,000，或巢穴内41,000；PB+7）" in body
+    # 缺失阵营 → 不固定阵营
+    body = _monster_body({"name": "测试", "size": ["M"], "type": "beast", "cr": "1"})
+    assert "中型野兽，不固定阵营" in body
+    assert "挑战等级CR1（XP200；PB+2）" in body
 
 
 def test_class_features_rows(built_db: Path) -> None:

@@ -5,6 +5,40 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.40.0] - 2026-08-11
+
+### 修复
+
+- **怪物体型中文化**：`/查怪` 等输出的「体型M/体型G」改为「中型/巨型」等
+  中文（`SIZE_CN_REV` 映射；多体型列表用「或」连接），与种族显示一致。
+
+### 新增
+
+- **怪物类型行 + 阵营显示**：`【数据】` 头部新增「体型+类型+阵营」段，
+  贴合玩家惯用的 statblock 样式：
+  - 类型：`中型不死生物（法师）`——5etools 英文类型码 → 中文
+    （`MONSTER_TYPE_CN_REV`），2024 型 `{"type","tags"}` 结构自动带上
+    「（法师）」式标签；
+  - 阵营：5e 字母码 → 中文（守序善良/中立邪恶/任意邪恶阵营等，规则与
+    5etools-cn 站点 js/parser.js 一致，含 NX/NY 特殊码与概率形态）；
+    **数据缺失时显示「不固定阵营」**。
+- **挑战等级行附 XP/巢穴/PB**：`挑战等级CR21（XP33,000，或巢穴内41,000；PB+7）`
+  ——XP 按 CR 查 2014 经验表，巢穴段支持 2014 `cr.lair`（按巢穴 CR 查 XP）
+  与 2024 `cr.xpLair`，PB 按 CR 查熟练加值表。
+- **AC/HP 标签与数值加空格**：`AC 20（天生护甲）｜HP 315（42d8 + 126）`，
+  与速度/挑战等级段排版一致。
+- **`scripts/fetch_cn_data.py`（开发脚本）**：直连下载 5etools-cn 数据到
+  本地目录（GitHub git trees API + raw 文件，约 20MB，只拉 build_kb 需要的
+  文件），commit 默认取内置库 `meta.source_commit`（零数据漂移），替代
+  易被全局 git 代理掐断的 clone + sparse-checkout 流程；配合既有
+  `scripts/fetch_en_spells.py`（英文法术源查找表）即可复现完整构建。
+
+### 数据
+
+- 知识库随包库重建：数据源仍为 5etools-cn `884d65a`（data_version 后缀
+  更新为 20260810），各 kind 计数与 v0.39.0 完全一致（怪物 3741、法术 554、
+  职业法术表 spell_classes 1190 等），**仅怪物 body 渲染变化**（上三项）。
+
 ## [0.39.0] - 2026-08-10
 
 ### 新增

@@ -1,7 +1,7 @@
 {
-  "data_version": "884d65a-20260809",
+  "data_version": "884d65a-20260810",
   "source_commit": "884d65a",
-  "build_time": "2026-08-09T05:08:50Z",
+  "build_time": "2026-08-10T16:33:45Z",
   "schema_version": "10",
   "counts": {
     "spell": 554,

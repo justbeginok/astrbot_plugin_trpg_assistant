@@ -116,6 +116,8 @@ spells(entry_id PK, level, school, ritual, concentration, components, range_feet
 --   gendata-spell-source-lookup.json 按 ENG_name+source 匹配；构建脚本
 --   scripts/fetch_en_spells.py 下载 + build_kb --en-spell-lookup 参数；
 --   class_name 为库内中文职业名，子职/领域附赠不做）
+-- v0.40.1：合并 class + classVariant（扩展书对职业列表的增补法术，如 XGE/TCE；
+--   EGW/GGR 子职限定法术仍不进主职业表，属预期）
 spell_classes(entry_id, class_name, PK(entry_id,class_name)) + idx_spell_classes_cn(class_name)
 monsters(entry_id PK, cr REAL, mtype, size)
 items(entry_id PK, rarity, attunement, value_cp, weight_lb)   -- v5 加 value_cp(铜币)/weight_lb(磅)

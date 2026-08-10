@@ -763,8 +763,10 @@ def _load_en_spell_classes(en_lookup: Path | None) -> dict[tuple[str, str], list
     自 2024 数据模型起，5e.tools 不再在 spell 条目内嵌 classes 字段，而是发布
     站点生成的 gendata-spell-source-lookup.json（https://5e.tools/data/generated/）。
     结构：{source小写: {法术名小写: {"class": {职业源: {职业英文名: true}}, ...}}}。
-    本函数只取 "class"（主职业法术表，fromClassList）；classVariant/subclass/race
-    等（变体职业列表/子职/领域附赠/种族赠予）不在本期范围。
+    v0.40.1 起同时合并 `class` 与 `classVariant`：5e.tools 语义中，扩展书
+    （XGE/TCE/FTD/BMT/EGW 等）对既有职业列表的增补法术（如 XGE「吸收元素」）
+    只挂在 `classVariant` 下，不合并会漏掉约 99 条扩展书法术的主职业归属。
+    subclass/feat/race 等（子职/领域附赠/种族赠予/专长授予）仍不在主职业表范围。
     返回：(法术名小写, source) → 职业英文名列表；en_lookup 为 None 或不存在时返回空。
     """
     if en_lookup is None or not Path(en_lookup).is_file():
@@ -782,18 +784,21 @@ def _load_en_spell_classes(en_lookup: Path | None) -> dict[tuple[str, str], list
         for name_low, info in by_name.items():
             if not isinstance(info, dict):
                 continue
-            cls_map = info.get("class")
-            if not isinstance(cls_map, dict):
-                continue
-            cls_names = sorted({
-                str(cname).strip()
-                for by_src in cls_map.values()
-                if isinstance(by_src, dict)
-                for cname in by_src
-                if str(cname).strip()
-            })
+            cls_names: set[str] = set()
+            for key in ("class", "classVariant"):
+                cls_map = info.get(key)
+                if not isinstance(cls_map, dict):
+                    continue
+                for by_src in cls_map.values():
+                    if not isinstance(by_src, dict):
+                        continue
+                    cls_names.update(
+                        str(cname).strip() for cname in by_src if str(cname).strip()
+                    )
             if cls_names:
-                out[(str(name_low).strip().lower(), str(src_low).strip().lower())] = cls_names
+                out[(str(name_low).strip().lower(), str(src_low).strip().lower())] = (
+                    sorted(cls_names)
+                )
                 n += 1
     print(f"  [en] 英文法术源查找表: {n} 条法术命中主职业表")
     return out

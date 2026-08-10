@@ -5,6 +5,19 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.40.1] - 2026-08-11
+
+### 修复
+
+- **职业法术表补全扩展书法术（spell_classes 1190 → 1463）**：`_load_en_spell_classes`
+  从只取 `class` 改为合并 `class` + `classVariant`。5e.tools 语义中，扩展书
+  （XGE/TCE/FTD/BMT 等）对既有职业列表的增补法术只挂在 `classVariant` 下
+  （如 XGE「吸收元素」→ 德鲁伊/游侠/术士/法师 + TCE 奇械师），此前漏挂
+  约 99 条扩展书法术的主职业归属，`/筛法术 职业 <职业>` 反查不到。
+- 剩余 16 条未匹配为 EGW/GGR **子职限定法术**（如「暗黑星辰」只属于时间/
+  重力法师子职、GGR 公会法术），按规则不进主职业表，属预期；`subclass`
+  /`feat`/`race` 维度仍不在本期范围。
+
 ## [0.40.0] - 2026-08-11
 
 ### 修复

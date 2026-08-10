@@ -598,6 +598,32 @@ def test_spell_classes_from_en_lookup(tmp_path: Path) -> None:
     conn2.close()
 
 
+def test_load_en_spell_classes_merges_class_variant(tmp_path: Path) -> None:
+    """v0.40.1：classVariant（扩展书对职业列表的增补，如 XGE/TCE 法术）
+    必须并入主职业表，否则扩展书法术漏挂职业。"""
+    from scripts.build_kb import _load_en_spell_classes
+
+    lk = tmp_path / "lk.json"
+    lk.write_text(json.dumps({
+        "xge": {
+            "absorb elements": {
+                "classVariant": {
+                    "PHB": {
+                        "Druid": True, "Ranger": True,
+                        "Sorcerer": True, "Wizard": True,
+                    }
+                }
+            }
+        },
+        "phb": {
+            "fireball": {"class": {"PHB": {"Wizard": True}}}
+        }
+    }), encoding="utf-8")
+    out = _load_en_spell_classes(lk)
+    assert out[("absorb elements", "xge")] == ["Druid", "Ranger", "Sorcerer", "Wizard"]
+    assert ("fireball", "phb") in out  # class 原路径不受影响
+
+
 def test_condition_dual_version_and_status(built_db: Path) -> None:
     """状态：condition + status 合并入库；reprintedAs 豁免保留双版本。"""
     conn = _conn(built_db)

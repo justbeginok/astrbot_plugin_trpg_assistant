@@ -27,6 +27,8 @@ main.py — AstrBot 跑团助手插件入口。
     空：开始或查看进度；状态：查看当前问题；答 <答案>：提交答案；取消。
   /车卡规则 [设置] 群级开卡规则（版本/属性生成方式/子职时机/起始等级，
     写入需管理权限）。内置属性方式别名：27buy/32buy/dnd5/标准数组。
+  /dnd [组数]   按 DND 5e 规则随机生成角色属性（每组 4d6kh3×6，
+    默认 1 组，上限 20，结果可直接分配填入六维）。
   /查法术|查怪|查物品|查专长|查背景 <名称>
                  查询 DND 知识库，返回同名全部版本（如 2014/2024 双版法术）。
   /查职业 <职业名> [子职名|特性 [特性名]]
@@ -44,6 +46,7 @@ main.py — AstrBot 跑团助手插件入口。
   2d20kl1                掷 2d20，保留最低 1 个（劣势）。
   d20adv                 优势骰（2d20kh1 的简写）。
   d20dis                 劣势骰（2d20kl1 的简写）。
+  d20优势 / d20劣势      中文优势/劣势（紧贴后缀，等价 adv/dis）。
   8d6d3 / 8d6dl3         掷 8d6，丢弃最低 3 个。
   8d6dh3                 掷 8d6，丢弃最高 3 个。
   d6!                    标准爆炸骰（掷出最大值追加一骰）。
@@ -327,8 +330,36 @@ _SYNTAX_HELP = (
     "  /r 2d6+1d4+3 伤害\n"
     "  /r 1d20+5#攻击检定\n"
     "  /r d20 感知 15\n"
-    "  /r d20adv 察觉 13"
+    "  /r d20adv 察觉 13\n"
+    "  /r d20优势              中文优势（等价 d20adv）\n"
+    "  /r d20劣势              中文劣势（等价 d20dis）"
 )
+
+
+# ---------------------------------------------------------------------------
+# 中文「优势/劣势」→ 引擎 adv/dis 语法糖（命令层映射，dice_parser 上游只读）
+# ---------------------------------------------------------------------------
+
+# 仅当「优势/劣势」紧贴 ASCII 骰式字符（数字/字母）后缀时才映射；
+# 标签内（如「d20 战斗优势」）或前置用法不误伤，孤立词由 _do_roll 拒绝。
+_ZH_ADV_SUB = re.compile(r"([0-9A-Za-z])优势")
+_ZH_DIS_SUB = re.compile(r"([0-9A-Za-z])劣势")
+# 孤立「优势/劣势」词：前为行首或空白、后为空白/行首/加减号或紧贴骰式字符
+# —— 覆盖带空格（d20 优势）、前置（优势d20）、单独使用（优势）等非紧贴后缀写法
+_ZH_ORPHAN_ADV_DIS = re.compile(r"(?:^|\s)(优势|劣势)(?=\s|$|[+\-−]|[0-9A-Za-z])")
+
+
+def _map_zh_adv_dis(expression_str: str) -> str:
+    """把紧贴骰式的「优势/劣势」映射为引擎 adv/dis 语法糖；其余出现位置原样保留。"""
+    s = _ZH_ADV_SUB.sub(r"\1adv", expression_str)
+    s = _ZH_DIS_SUB.sub(r"\1dis", s)
+    return s
+
+
+# /dnd 属性生成：组数上限 / 每组属性个数 / 掷骰式（DND 5e 标准 4d6 取最大 3）
+_DND_MAX_GROUPS = 20
+_DND_SCORE_COUNT = 6
+_DND_ROLL_EXPR = "4d6kh3"
 
 
 # ---------------------------------------------------------------------------
@@ -1185,11 +1216,13 @@ _HELP_SECTIONS = {
         ],
     },
     "骰子": {
-        "cmds": "/r /roll /dset /rprefix",
+        "cmds": "/r /roll /dnd /dset /rprefix",
         "lines": [
             "/r [表达式]             掷骰（d20、4d6kh3、2d20kl1、5d6!!、3d6>3…）",
             "/r d20 感知 15          技能检定（标签 + DC，输出成功/失败）",
             "/r 攻击 长剑 15         角色卡攻击检定（默认主手武器，可指定武器 + DC）",
+            "/r d20优势 /r d20劣势   中文优势/劣势（紧贴后缀，等价 d20adv / d20dis）",
+            "/dnd [组数]             按 5e 规则掷属性（4d6kh3×6 为一组，默认 1 组，上限 20）",
             "/dset [面数]            查询/设置本会话默认骰面数",
             "/rprefix [符号]         查询/设置自定义触发前缀（如 .r）",
         ],
@@ -1639,6 +1672,14 @@ class TrpgAssistantPlugin(Star):
             expression_str: 骰池表达式字符串。
             default_sides: 空表达式时使用的默认骰面数。
         """
+        # 中文优势/劣势 → adv/dis 语法糖（必须在 parse 之前，_strip_label 会截断 CJK）。
+        expression_str = _map_zh_adv_dis(expression_str)
+        if _ZH_ORPHAN_ADV_DIS.search(expression_str):
+            return (
+                "解析错误: 优势/劣势必须紧贴骰子（如 d20优势 / d20劣势），"
+                "带空格、前置或单独使用均不支持\n" + _SYNTAX_HELP
+            )
+
         try:
             expr = parse(
                 expression_str,
@@ -1937,6 +1978,56 @@ class TrpgAssistantPlugin(Star):
         output = self._do_roll(expression_str, default_sides=effective_sides)
         if not output.startswith(ROLL_ERROR_PREFIXES):
             await self._history.add(event, expression_str, output)
+        yield event.plain_result(output)
+
+    @filter.command("dnd")
+    async def dnd_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """
+        按 DND 5e 规则随机生成角色属性（掷骰开卡）。
+
+        每组掷 6 次 4d6kh3（4d6 取最大 3 之和），得到 6 个属性值；
+        组数 N 默认 1，上限 20。结果可原样分配填入六维属性。
+
+        用法: /dnd [组数]
+        示例: /dnd, /dnd 5
+        """
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)  # 按第一个空白字符分割
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        n = 1
+        if arg:
+            try:
+                n = int(arg)  # int() 顺带兼容全角数字
+            except ValueError:
+                yield event.plain_result(
+                    f"用法：/dnd [组数]（正整数，1~{_DND_MAX_GROUPS}，默认 1 组）"
+                )
+                return
+        if n < 1:
+            yield event.plain_result("组数至少为 1。用法：/dnd [组数]")
+            return
+        if n > _DND_MAX_GROUPS:
+            yield event.plain_result(
+                f"组数不能超过 {_DND_MAX_GROUPS}（防止刷屏）。用法：/dnd [组数]"
+            )
+            return
+
+        lines: list[str] = []
+        for k in range(1, n + 1):
+            scores: list[int] = []
+            for j in range(1, _DND_SCORE_COUNT + 1):
+                total, detail = self._roll_chargen(_DND_ROLL_EXPR)
+                if total is None:
+                    yield event.plain_result(
+                        f"第 {k} 组第 {j} 次掷骰失败：{detail}，已中止。"
+                    )
+                    return
+                scores.append(total)
+            lines.append(f"第{k}组: " + " ".join(str(v) for v in scores))
+        output = "\n".join(lines)
+        if n > 1:
+            output += f"\n（{_DND_ROLL_EXPR} 标准属性掷法，每组 6 项按序对应六维）"
+        await self._history.add(event, f"dnd {n}", output)
         yield event.plain_result(output)
 
     # ------------------------------------------------------------------

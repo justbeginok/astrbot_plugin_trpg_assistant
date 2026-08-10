@@ -214,6 +214,11 @@ overlay 池（`/kb reload` 重载，reload 原子替换）。查询层 search/de
 ### 5.1 骰池（dice_roller.py，上游）
 `DieRoll`（单骰）、`DiceGroupResult`（骰组）、`RollResult`（整式结果：label/dice/total/
 细节文本）。解析产物 `dice_parser` 产生，格式化 `formatter.py` 负责，不落库。
+⚠️ parser 为**上游只读扩展**：中文「优势/劣势」（`d20优势` 系列，v0.38.0）不在
+parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_adv_dis` 把紧贴骰式
+后缀的「优势/劣势」替换为引擎 adv/dis 语法糖（孤立词如 `d20 优势`/`优势d20` 报错），
+三个掷骰入口（/r、自定义前缀、roll_dice 工具）自动全部生效。详见
+`docs/adr/0014-zh-adv-dis-command-layer.md`。
 
 ### 5.2 历史（history.py）
 `HistoryEntry`：`expr`(表达式) / `result`(结果首行，截断) / `sender_id` / `sender_name` / `ts`(`MM-DD HH:MM:SS`)。
@@ -317,6 +322,7 @@ overlay 池（`/kb reload` 重载，reload 原子替换）。查询层 search/de
 | 命令（主名，别名） | 功能域 | 备注 |
 |---|---|---|
 | `r`（roll）| 骰池 | 首 token 整词命中时联动活跃卡（属性/技能/豁免/攻击检定；v0.32.0 加命名掷骰，优先于内建别名）；也响应 `dset`/`rprefix` 前缀族 |
+| `dnd` | 属性生成 | v0.38.0：按 5e 规则掷 `4d6kh3`×6 为一组（组数默认 1、上限 20，模块级常量 `_DND_MAX_GROUPS` 不新增配置），复用 `_roll_chargen`，成功写历史 `dnd N`；独立生成指令，不与车卡联动（走 `/车卡` 的掷骰开卡才落草稿） |
 | `dset`（dice_set）/ `rprefix` | 会话骰面/触发前缀 | 白名单管控 |
 | `rh`（rhistory）| 历史 | |
 | `ri` / `init`（initiative）| 先攻 | v0.30.0：`/ri` 无参数且有活跃角色卡时自动用卡上先攻（d20+先攻并标注角色）；显式调整值优先 |

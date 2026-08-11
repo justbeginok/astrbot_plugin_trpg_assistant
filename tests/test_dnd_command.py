@@ -91,6 +91,28 @@ def dnd_cmd(plugin: _MemoryPlugin, event: FakeEvent) -> list[str]:
     return run(_collect(plugin.dnd_cmd(event)))
 
 
+def test_custom_prefix_dnd_route(make_rng) -> None:
+    """自定义前缀下 .dnd 经 custom_prefix_route 命中（v0.41.2）。"""
+    p = make_plugin()
+    run(p.put_kv_data("custom_prefix:group:1", "."))
+    make_rng([6, 6, 6, 1] * 6)
+    e = ev(".dnd 1")
+    msgs = run(_collect(p.custom_prefix_route(e)))
+    assert msgs and "第1组:" in msgs[0]
+    assert e.stopped
+
+
+def test_custom_prefix_dnd_error_hint_uses_prefix(make_rng) -> None:
+    """自定义前缀下 /dnd 错误提示应显示自定义前缀（display_prefix 传递）。"""
+    p = make_plugin()
+    run(p.put_kv_data("custom_prefix:group:1", "."))
+    make_rng([6, 6, 6, 1] * 6)
+    e = ev(".dnd abc")
+    msgs = run(_collect(p.custom_prefix_route(e)))
+    assert msgs and ".dnd" in msgs[0] and "/dnd" not in msgs[0]
+    assert e.stopped
+
+
 class TestDndCommand:
     def test_default_one_group(self, make_rng) -> None:
         p = make_plugin()

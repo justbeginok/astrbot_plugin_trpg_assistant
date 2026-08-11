@@ -141,6 +141,17 @@ def test_help_command_via_custom_prefix() -> None:
     assert e.stopped
 
 
+def test_help_command_via_custom_prefix_aliases() -> None:
+    """.commands / .cmds 别名同样经自定义前缀路由命中（v0.41.2）。"""
+    p = make_plugin()
+    run(p.put_kv_data("custom_prefix:group:9", "."))
+    for cmd in (".commands", ".cmds"):
+        e = FakeEvent(cmd, origin="group:9")
+        msgs = collect(p.custom_prefix_route(e))
+        assert msgs and "跑团助手指令大全" in msgs[0], cmd
+        assert e.stopped, cmd
+
+
 def test_help_does_not_interfere_with_kb_commands() -> None:
     """帮助命令不应吞掉 /查法术 等其它指令（custom_prefix 分支顺序正确）。"""
     p = make_plugin()

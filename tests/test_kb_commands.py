@@ -759,6 +759,42 @@ def test_custom_prefix_unrelated_message_passthrough(tmp_path: Path) -> None:
     assert not e.stopped
 
 
+def test_custom_prefix_kb_zh_aliases(tmp_path: Path) -> None:
+    """查/筛系列中文别名与英文别名均进自定义前缀路由（v0.41.2）。"""
+    cases = [
+        (".怪物 少年青铜", "少年青铜龙"),  # 查怪 中文别名
+        (".物品 火球", "火球法杖"),  # 查物品 中文别名
+        (".专长 幸运", "类型：通用"),  # 查专长 中文别名
+        (".背景 侍僧", "侍僧"),  # 查背景 中文别名
+        (".状态 目盲", "目盲"),  # 查状态 中文别名
+        (".种族 矮人", "矮人"),  # 查种族 中文别名
+        (".q 火球", "火球术"),  # 查询 英文别名
+        (".筛怪物 火焰", "成年红龙"),  # 筛怪 中文别名
+        (".筛魔法 锥形", "燃烧之手"),  # 筛法术 中文别名
+        (".筛道具 灵巧", "火焰舌剑"),  # 筛物品 中文别名
+        (".筛血统 飞行", "阿斯莫"),  # 筛种族 中文别名
+    ]
+    p = make_plugin(tmp_path)  # 只 build 一次，循环复用
+    run(p.put_kv_data("custom_prefix:group:9", "."))
+    for cmd, expect in cases:
+        e = ev(cmd, origin="group:9")
+        msgs = collect(p.custom_prefix_route(e))
+        assert msgs, f"{cmd} 应被自定义前缀路由命中"
+        assert expect in msgs[0], f"{cmd} 输出应含 {expect}"
+        assert e.stopped, f"{cmd} 应 stop_event"
+
+
+def test_custom_prefix_kb_filter_background_aliases(tmp_path: Path) -> None:
+    """筛背景 主命令与两个别名进自定义前缀路由（特征反查依赖富化标签）。"""
+    p = make_enriched_plugin(tmp_path)
+    run(p.put_kv_data("custom_prefix:group:9", "."))
+    for cmd in (".筛背景 教士", ".bfilter 教士", ".背景筛 教士"):
+        e = ev(cmd, origin="group:9")
+        msgs = collect(p.custom_prefix_route(e))
+        assert msgs, f"{cmd} 应被自定义前缀路由命中"
+        assert "侍僧" in msgs[0], f"{cmd} 输出应含 侍僧"
+        assert e.stopped, f"{cmd} 应 stop_event"
+
 # ---------------------------------------------------------------------------
 # query_dnd_knowledge llm_tool
 # ---------------------------------------------------------------------------

@@ -342,6 +342,8 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 **三入口复用同一核心**：`@filter.command`（`/xxx`）+ 自定义前缀路由（`custom_prefix_route`，
 长 token 命令先于短 token）+ `@filter.llm_tool`（单工具 + action 枚举，参数全带默认值）。
 命令 handler 统一形态 `_handle_xxx(event, arg, display_prefix)`。
+自定义前缀路由（v0.41.2 起）覆盖下表中**全部命令与别名**（`rprefix` 有意除外——设置前缀的命令
+本身始终经系统 `/` 前缀可用），`dnd` 亦在其中。
 
 | 命令（主名，别名） | 功能域 | 备注 |
 |---|---|---|

@@ -1286,7 +1286,7 @@ _HELP_SECTIONS = {
         ],
     },
     "背包": {
-        "cmds": "/bag",
+        "cmds": "/bag /背包",
         "lines": [
             "/bag                    查看自己的背包",
             "/bag list @某人         查看他人背包（只读）",
@@ -1420,7 +1420,9 @@ def _format_help_topic(topic: str, display_prefix: str = "/") -> str:
 
 # /bag 用法帮助模板，{p} 为显示前缀（'/' 或自定义前缀）。
 _BAG_HELP = (
-    "背包指令用法：\n"    "  {p}bag                        查看自己的背包\n"
+    "背包指令用法：\n"
+    "  别名：{p}背包、{p}inventory 等同 {p}bag，任选其一。\n"
+    "  {p}bag                        查看自己的背包\n"
     "  {p}bag list @某人             查看他人背包（只读）\n"
     "  {p}bag add <名称> <数量> [w=单件重量] [v=单件价值] [note=备注]\n"
     "  {p}bag rm <名称> [数量]       取出物品（数量缺省 1，归零自动删除）\n"
@@ -2125,21 +2127,38 @@ class TrpgAssistantPlugin(Star):
         raw_msg: str = event.message_str.strip()
         parts = raw_msg.split(None, 1)  # 按第一个空白字符分割
         arg = parts[1].strip() if len(parts) > 1 else ""
+        async for msg in self._handle_dnd(event, arg, display_prefix="/"):
+            yield msg
+
+    async def _handle_dnd(
+        self, event: AstrMessageEvent, arg: str, display_prefix: str = "/"
+    ) -> AsyncGenerator:
+        """按 DND 5e 规则随机生成角色属性（掷骰开卡）。
+
+        /dnd 命令核心逻辑，由 dnd_cmd 和 custom_prefix_route 统一调用。
+        每组掷 6 次 4d6kh3（4d6 取最大 3 之和），得到 6 个属性值；
+        组数 N 默认 1，上限 20。结果可原样分配填入六维属性。
+
+        用法: {display_prefix}dnd [组数]
+        示例: {display_prefix}dnd, {display_prefix}dnd 5
+        """
         n = 1
         if arg:
             try:
                 n = int(arg)  # int() 顺带兼容全角数字
             except ValueError:
                 yield event.plain_result(
-                    f"用法：/dnd [组数]（正整数，1~{_DND_MAX_GROUPS}，默认 1 组）"
+                    f"用法：{display_prefix}dnd [组数]（正整数，1~{_DND_MAX_GROUPS}，默认 1 组）"
                 )
                 return
         if n < 1:
-            yield event.plain_result("组数至少为 1。用法：/dnd [组数]")
+            yield event.plain_result(
+                f"组数至少为 1。用法：{display_prefix}dnd [组数]"
+            )
             return
         if n > _DND_MAX_GROUPS:
             yield event.plain_result(
-                f"组数不能超过 {_DND_MAX_GROUPS}（防止刷屏）。用法：/dnd [组数]"
+                f"组数不能超过 {_DND_MAX_GROUPS}（防止刷屏）。用法：{display_prefix}dnd [组数]"
             )
             return
 
@@ -4846,6 +4865,19 @@ class TrpgAssistantPlugin(Star):
                 event.stop_event()
                 return
 
+        # --- 属性生成指令匹配 ---
+        for cmd_key in (f"{p}dnd",):
+            if (
+                text_lower == cmd_key
+                or text_lower.startswith(cmd_key + " ")
+                or text_lower.startswith(cmd_key + "\n")
+            ):
+                arg = text[len(cmd_key) :].strip()
+                async for msg in self._handle_dnd(event, arg, display_prefix=prefix):
+                    yield msg
+                event.stop_event()
+                return
+
         # --- 骰面设置指令匹配 ---
         for cmd_key in (f"{p}dice_set", f"{p}dset"):
             if (
@@ -4924,7 +4956,8 @@ class TrpgAssistantPlugin(Star):
                 event.stop_event()
                 return
         # --- 背包指令匹配 ---
-        for cmd_key in (f"{p}inventory", f"{p}bag"):
+        # 长 token 优先：inventory > 背包 > bag（互不为前缀，顺序仅为规范）。
+        for cmd_key in (f"{p}inventory", f"{p}背包", f"{p}bag"):
             if (
                 text_lower == cmd_key
                 or text_lower.startswith(cmd_key + " ")
@@ -4995,16 +5028,22 @@ class TrpgAssistantPlugin(Star):
             f"{p}spell": "spell",
             f"{p}查怪": "monster",
             f"{p}monster": "monster",
+            f"{p}怪物": "monster",
             f"{p}查物品": "item",
             f"{p}item": "item",
+            f"{p}物品": "item",
             f"{p}查专长": "feat",
             f"{p}feat": "feat",
+            f"{p}专长": "feat",
             f"{p}查背景": "background",
             f"{p}background": "background",
+            f"{p}背景": "background",
             f"{p}查状态": "condition",
             f"{p}condition": "condition",
+            f"{p}状态": "condition",
             f"{p}查种族": "race",
             f"{p}race": "race",
+            f"{p}种族": "race",
         }
         for cmd_key, kkind in kb_lookup_cmds.items():
             if (
@@ -5024,14 +5063,19 @@ class TrpgAssistantPlugin(Star):
             f"{p}查询": "search",
             f"{p}search": "search",
             f"{p}搜": "search",
+            f"{p}q": "search",
             f"{p}筛怪": "monster",
             f"{p}mfilter": "monster",
+            f"{p}筛怪物": "monster",
             f"{p}筛法术": "spell",
             f"{p}sfilter": "spell",
+            f"{p}筛魔法": "spell",
             f"{p}筛物品": "item",
             f"{p}ifilter": "item",
+            f"{p}筛道具": "item",
             f"{p}筛种族": "race",
             f"{p}rfilter": "race",
+            f"{p}筛血统": "race",
             f"{p}筛专长": "feat",
             f"{p}ffilter": "feat",
             f"{p}专长筛": "feat",
@@ -5041,6 +5085,9 @@ class TrpgAssistantPlugin(Star):
             f"{p}筛子职": "subclass",
             f"{p}sublass_filter": "subclass",
             f"{p}子职筛": "subclass",
+            f"{p}筛背景": "background",
+            f"{p}bfilter": "background",
+            f"{p}背景筛": "background",
         }
         for cmd_key, kkind in kb_extra_cmds.items():
             if (
@@ -5086,7 +5133,7 @@ class TrpgAssistantPlugin(Star):
                 event.stop_event()
                 return
         # --- 帮助指令匹配 ---
-        for cmd_key in (f"{p}帮助", f"{p}menu", f"{p}菜单"):
+        for cmd_key in (f"{p}帮助", f"{p}menu", f"{p}菜单", f"{p}commands", f"{p}cmds"):
             if (
                 text_lower == cmd_key
                 or text_lower.startswith(cmd_key + " ")

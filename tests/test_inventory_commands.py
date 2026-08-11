@@ -406,6 +406,15 @@ class TestCustomPrefixRoute:
         assert "➕ 已放入 **治疗药水** ×3" in outputs[0]
         assert event.stopped is True
 
+    def test_dot_prefix_bag_zh_alias(self) -> None:
+        """中文别名 .背包 经自定义前缀路由命中，与 .bag 等价。"""
+        p = make_plugin(config={"default_cmd_prefix": "."})
+        event = ev(".背包 add 治疗药水 3")
+        outputs = run(_collect(p.custom_prefix_route(event)))
+        assert len(outputs) == 1
+        assert "➕ 已放入 **治疗药水** ×3" in outputs[0]
+        assert event.stopped is True
+
     def test_dot_prefix_bag_view_uses_dot_in_hint(self) -> None:
         p = make_plugin(config={"default_cmd_prefix": "."})
         event = ev(".bag")

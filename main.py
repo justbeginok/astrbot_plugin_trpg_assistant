@@ -6811,8 +6811,10 @@ class TrpgAssistantPlugin(Star):
 
         Args:
             action(string): 要执行的操作。取值：detail=按 name 精确查询并返回同名
-                全部版本（默认动作）；search=按 name 模糊搜索返回候选列表（名称
-                记不全时用）；filter=结构化筛选（需配合 kind 与筛选条件使用）；
+                全部版本（默认动作；同名不同版本的法术/条目会全部返回，标注
+                [来源·版本]，2024 版优先展示，回答时须区分版本，勿混用两版数值）；
+                search=按 name 模糊搜索返回候选列表（名称记不全时用）；
+                filter=结构化筛选（需配合 kind 与筛选条件使用）；
                 class_features=查询职业能力（kind=职业，name=职业名，subclass 可选）；
                 version=查看知识库版本信息。
             kind(string): 条目类型，中文取值：法术/怪物/物品/专长/背景/职业/状态/种族。

@@ -96,13 +96,25 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 
 ---
 
-## 4. 知识库 SQLite schema（v10，`kb_data/dnd_kb.db`）
+## 4. 知识库 SQLite schema（v11，`kb_data/dnd_kb.db`）
 
 只读；schema 版本 `KB_SCHEMA_VERSION = "9"`（`scripts/build_kb.py`），结构变更 +1 并重建；
 运行期 `resolve_db_path` 发现库版本过低自动回退内置库。`meta` 表存版本/构建信息。
 **数据获取（v0.40.0 起）**：`scripts/fetch_cn_data.py` 直连下载 5etools-cn 数据
 （GitHub git trees API + raw，约 20MB，commit 默认取内置库 `meta.source_commit`
 保证零漂移）+ `scripts/fetch_en_spells.py`（英文法术源查找表，职业法术表用）。
+**法术数据源（v0.43.0，ADR-0018）**：法术条目改以本地 5e_chm Markdown 为主源
+（人工校对中文，`C:\Users\75957\WorkBuddy\可爱骰娘\5e_chm\md`，htm_to_md.py
+转换产物）：`scripts/chm_parser.py` 解析速查表（5E万法大全 936 官方 + 合作方
+万法大全 284 第三方）× 详述页（16 个来源文件）join → `scripts/_md_cache/spells_chm.json`
+（1220 条，无详述 0；同英文名中文名归一 2024 优先）；`scripts/audit_chm.py` 对账
+（join 覆盖率/未映射来源/富化缺口）；`build_kb.py --spell-md` 消费（正文预构建
+`_prebuilt_body`、edition/is_machine override、自动标签改从 md 文本提取）。
+5etools-cn JSON 不再贡献法术条目；`spell_classes` 仍由 `--en-spell-lookup`
+英文查找表提供（v0.43.0 修复此前空表缺陷：构建须带该参数）。富化补覆盖：
+`scripts/gen_enrich.py` 规则生成缺口 summary+keywords（+学派兜底词），
+`kb_patches/spell_enrich.json` 554→1255 条，spells.summary 与
+entry_tags.spell_keyword 覆盖率 100%。
 **魔法变体（v0.41.0）**：5e.tools 新数据模型把「焰舌/霜铭/+N 武器」等可附着于多种武器的
 魔法效果从 items.json 移入 `data/magicvariants.json`（214 条）。构建时只把变体**本体**作为
 一条 item 入库（type=GV，不按武器展开成大量「焰舌长剑/巨剑」条目避免刷屏），全部可能
@@ -177,8 +189,10 @@ item_combat(entry_id PK, ac, armor_type, strength, stealth, dmg1, properties, ra
 --   （summary，源 kb_patches/feat_enrich.json；276 条全覆盖，双版本分别生成）
 feats(entry_id PK, summary TEXT DEFAULT '')
 
--- v0.27.0「法术标签反查」：spells.summary（AI 一句话概要，源
---   kb_patches/spell_enrich.json；554 条全覆盖）+ entry_tags.spell_keyword（语义大类）
+-- v0.27.0「法术标签反查」：spells.summary（一句话概要，源
+--   kb_patches/spell_enrich.json；v0.43.0 起 1255 条全覆盖——既有 554 条 AI
+--   生成 + 缺口 701 条由 scripts/gen_enrich.py 规则生成含学派兜底词）
+--   + entry_tags.spell_keyword（语义大类）
 
 -- v0.33.0「职业/子职富化」：classes 侧表存 AI 生成的一句话概要（summary）与职业定位
 --   （role，武者/奥法/神职/专家，仅职业有），源 kb_patches/class_enrich.json

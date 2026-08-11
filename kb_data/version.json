@@ -1,21 +1,21 @@
 {
   "data_version": "unknown-20260811",
   "source_commit": "unknown",
-  "build_time": "2026-08-11T10:41:56Z",
-  "schema_version": "10",
+  "build_time": "2026-08-11T16:05:37Z",
+  "schema_version": "11",
   "counts": {
-    "spell": 554,
+    "spell": 1220,
     "monster": 3741,
     "item": 2035,
     "feat": 276,
     "background": 148,
     "condition": 35,
     "race": 160,
-    "spellClass": 0,
+    "spellClass": 2491,
     "class": 30,
     "subclass": 322,
     "classFeature": 677,
     "subclassFeature": 1441
   },
-  "skipped": 2096
+  "skipped": 1714
 }

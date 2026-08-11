@@ -1,0 +1,11135 @@
+[
+ {
+  "name": "艾拉斯卓的月辉之篷",
+  "eng_name": "Alustriel's Mooncloak",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "嫌恶术",
+  "eng_name": "Antipathy/Sympathy",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 8,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\8环.md"
+ },
+ {
+  "name": "反冲术",
+  "eng_name": "Backlash",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "灾厄之刃",
+  "eng_name": "Blade of Disaster",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 9,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "目盲术",
+  "eng_name": "Blindness/Deafness",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\2环.md"
+ },
+ {
+  "name": "印记斩",
+  "eng_name": "Branding Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "噪鸣护盾",
+  "eng_name": "Cacophonic Shield",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "咒唤机群",
+  "eng_name": "Conjure Constructs",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "唤起亡灵",
+  "eng_name": "Create Undead",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\6环.md"
+ },
+ {
+  "name": "造水术",
+  "eng_name": "Create or Destroy Water",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\1环.md"
+ },
+ {
+  "name": "死佑护甲",
+  "eng_name": "Death Armor",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "德莱雅的人工生命小帮手",
+  "eng_name": "Deryan's Helpful Homunculi",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "悲恸挽歌",
+  "eng_name": "Dirge",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 6,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "厄难黑潮",
+  "eng_name": "Doomtide",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "伊尔明斯特的绚丽光球",
+  "eng_name": "Elminster's Effulgent Spheres",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "伊尔明斯特的法术闪避",
+  "eng_name": "Elminster's Elusion",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "举目皆敌",
+  "eng_name": "Enemies Abound",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 3,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\3环.md"
+ },
+ {
+  "name": "变巨术",
+  "eng_name": "Enlarge/Reduce",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\2环.md"
+ },
+ {
+  "name": "捕获打击",
+  "eng_name": "Ensnaring Strike",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\1环.md"
+ },
+ {
+  "name": "弱智术",
+  "eng_name": "Feeblemind",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "冷冻一指",
+  "eng_name": "Frost Finger",
+  "source": "冰风谷",
+  "source_5e": "IDRotF",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "模组\\冰风谷\\新法术.md"
+ },
+ {
+  "name": "守卫刻纹",
+  "eng_name": "Glyph of Warding",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\3环.md"
+ },
+ {
+  "name": "荆棘之雨",
+  "eng_name": "Hail of Thorns",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\1环.md"
+ },
+ {
+  "name": "密斯特拉圣星",
+  "eng_name": "Holy Star of Mystra",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 8,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "人工生命仆从",
+  "eng_name": "Homunculus Servant",
+  "source": "EFA",
+  "source_5e": "EFA",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "艾伯伦：奇械锻炉\\第一章\\法术.md"
+ },
+ {
+  "name": "莱拉的银辉长枪",
+  "eng_name": "Laeral's Silver Lance",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "高级幻影",
+  "eng_name": "Major Image",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 3,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\3环.md"
+ },
+ {
+  "name": "预置幻象",
+  "eng_name": "Programmed Illusion",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 6,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\6环.md"
+ },
+ {
+  "name": "欣布的法愈秘术",
+  "eng_name": "Simbul's Synostodweomer",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "桑缟的元灵显圣",
+  "eng_name": "Songal's Elemental Suffusion",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "咒火闪焰",
+  "eng_name": "Spellfire Flare",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "咒火风暴",
+  "eng_name": "Spellfire Storm",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "龙类灵魄召唤术",
+  "eng_name": "Summon Draconic Spirit",
+  "source": "FTD",
+  "source_5e": "FTD",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "费资本的巨龙宝库\\玩家选项\\巨龙法术详述.md"
+ },
+ {
+  "name": "低阶恶魔召唤术",
+  "eng_name": "Summon Lesser Demon",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\3环.md"
+ },
+ {
+  "name": "希伦的剧毒灵蛇",
+  "eng_name": "Sylune's Viper",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "汲血之触",
+  "eng_name": "Vampiric Touch",
+  "source": "PHB24",
+  "source_5e": "XPHB",
+  "edition": "2024",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册2024\\法术详述\\3环.md"
+ },
+ {
+  "name": "制敌术",
+  "eng_name": "Wardaway",
+  "source": "FR",
+  "source_5e": "FRHoF",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "被遗忘的国度\\费伦英雄\\第五章\\新法术.md"
+ },
+ {
+  "name": "酸液飞溅",
+  "eng_name": "Acid Splash",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "援助术",
+  "eng_name": "Aid",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "奇械师",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "警报术",
+  "eng_name": "Alarm",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "游侠",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "变身术",
+  "eng_name": "Alter Self",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "化兽为友",
+  "eng_name": "Animal Friendship",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "吟游诗人"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "动物信使",
+  "eng_name": "Animal Messenger",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "动物形态",
+  "eng_name": "Animal Shapes",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "活化死尸",
+  "eng_name": "Animate Dead",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "活化物件",
+  "eng_name": "Animate Objects",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "防活物护罩",
+  "eng_name": "Antilife Shell",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "反魔法场",
+  "eng_name": "Antimagic Field",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "嫌恶术",
+  "eng_name": "Antipathy/Sympathy",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "惑控",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "秘法眼",
+  "eng_name": "Arcane Eye",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "预言",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "秘法门",
+  "eng_name": "Arcane Gate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "秘法锁",
+  "eng_name": "Arcane Lock",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "黯冰狱铠",
+  "eng_name": "Armor of Agathys",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "哈达之臂",
+  "eng_name": "Arms of Hadar",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "星界投影",
+  "eng_name": "Astral Projection",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "卜筮术",
+  "eng_name": "Augury",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "生命灵光",
+  "eng_name": "Aura of Life",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "净化灵光",
+  "eng_name": "Aura of Purity",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "活力灵光",
+  "eng_name": "Aura of Vitality",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "圣武士",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "启蒙术",
+  "eng_name": "Awaken",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "灾祸术",
+  "eng_name": "Bane",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "放逐斩",
+  "eng_name": "Banishing Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "放逐术",
+  "eng_name": "Banishment",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "树肤术",
+  "eng_name": "Barkskin",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "希望信标",
+  "eng_name": "Beacon of Hope",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "野兽知觉",
+  "eng_name": "Beast Sense",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "降咒",
+  "eng_name": "Bestow Curse",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "毕格比之手",
+  "eng_name": "Bigby's Hand",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "剑刃护壁",
+  "eng_name": "Blade Barrier",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "剑刃防护",
+  "eng_name": "Blade Ward",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "灾厄之刃",
+  "eng_name": "Blade of Disaster",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 9,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\9环.md"
+ },
+ {
+  "name": "灾厄之刃",
+  "eng_name": "Blade of Disaster",
+  "source": "冰风谷",
+  "source_5e": "IDRotF",
+  "edition": "2014",
+  "level": 9,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "模组\\冰风谷\\新法术.md"
+ },
+ {
+  "name": "祝福术",
+  "eng_name": "Bless",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "枯萎术",
+  "eng_name": "Blight",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "致盲斩",
+  "eng_name": "Blinding Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "目盲术",
+  "eng_name": "Blindness/Deafness",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "闪现术",
+  "eng_name": "Blink",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "朦胧术",
+  "eng_name": "Blur",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "燃烧之手",
+  "eng_name": "Burning Hands",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "召雷术",
+  "eng_name": "Call Lightning",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "安定心神",
+  "eng_name": "Calm Emotions",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "连锁闪电",
+  "eng_name": "Chain Lightning",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "魅惑怪物",
+  "eng_name": "Charm Monster",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\4环.md"
+ },
+ {
+  "name": "魅惑类人",
+  "eng_name": "Charm Person",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "颤栗之触",
+  "eng_name": "Chill Touch",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "繁彩球",
+  "eng_name": "Chromatic Orb",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "死亡法阵",
+  "eng_name": "Circle of Death",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "原力法阵",
+  "eng_name": "Circle of Power",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "鹰眼术",
+  "eng_name": "Clairvoyance",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "克隆术",
+  "eng_name": "Clone",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "死灵",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "匕首之云",
+  "eng_name": "Cloud of Daggers",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "死云术",
+  "eng_name": "Cloudkill",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "七彩喷射",
+  "eng_name": "Color Spray",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "幻术",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "命令术",
+  "eng_name": "Command",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "通神术",
+  "eng_name": "Commune",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "问道自然",
+  "eng_name": "Commune with Nature",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "强令对决",
+  "eng_name": "Compelled Duel",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "通晓语言",
+  "eng_name": "Comprehend Languages",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "强迫术",
+  "eng_name": "Compulsion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "寒冰锥",
+  "eng_name": "Cone of Cold",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "困惑术",
+  "eng_name": "Confusion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "动物咒唤术",
+  "eng_name": "Conjure Animals",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "箭如雨下",
+  "eng_name": "Conjure Barrage",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "天界咒唤术",
+  "eng_name": "Conjure Celestial",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "咒法",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "元素咒唤术",
+  "eng_name": "Conjure Elemental",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "妖精咒唤术",
+  "eng_name": "Conjure Fey",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "次级元素咒唤术",
+  "eng_name": "Conjure Minor Elementals",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "万箭齐发",
+  "eng_name": "Conjure Volley",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "林地之精咒唤术",
+  "eng_name": "Conjure Woodland Beings",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "异界探知",
+  "eng_name": "Contact Other Plane",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "疫病术",
+  "eng_name": "Contagion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "触发术",
+  "eng_name": "Contingency",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "不灭明焰",
+  "eng_name": "Continual Flame",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "操控水体",
+  "eng_name": "Control Water",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "操控天气",
+  "eng_name": "Control Weather",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "警戒箭阵",
+  "eng_name": "Cordon of Arrows",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "法术反制",
+  "eng_name": "Counterspell",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "造粮术",
+  "eng_name": "Create Food and Water",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "唤起亡灵",
+  "eng_name": "Create Undead",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "造水",
+  "eng_name": "Create or Destroy Water",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "造物术",
+  "eng_name": "Creation",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "幻术",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "疯狂冠冕",
+  "eng_name": "Crown of Madness",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "十字军披风",
+  "eng_name": "Crusader's Mantle",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "疗伤术",
+  "eng_name": "Cure Wounds",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "舞光术",
+  "eng_name": "Dancing Lights",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "黑暗术",
+  "eng_name": "Darkness",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "黑暗视觉",
+  "eng_name": "Darkvision",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "昼明术",
+  "eng_name": "Daylight",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "防死结界",
+  "eng_name": "Death Ward",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "延迟爆裂火球",
+  "eng_name": "Delayed Blast Fireball",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "半位面",
+  "eng_name": "Demiplane",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "咒法",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "湮灭波",
+  "eng_name": "Destructive Wave",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "侦测善恶",
+  "eng_name": "Detect Evil and Good",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "侦测魔法",
+  "eng_name": "Detect Magic",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "侦测毒性和疾病",
+  "eng_name": "Detect Poison and Disease",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "侦测思想",
+  "eng_name": "Detect Thoughts",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "任意门",
+  "eng_name": "Dimension Door",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "易容术",
+  "eng_name": "Disguise Self",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "解离术",
+  "eng_name": "Disintegrate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "驱逐善恶",
+  "eng_name": "Dispel Evil and Good",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "解除魔法",
+  "eng_name": "Dispel Magic",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "术士",
+   "魔契师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "不谐低语",
+  "eng_name": "Dissonant Whispers",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "预言术",
+  "eng_name": "Divination",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "神恩",
+  "eng_name": "Divine Favor",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "圣言术",
+  "eng_name": "Divine Word",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "支配野兽",
+  "eng_name": "Dominate Beast",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "德鲁伊",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "支配怪物",
+  "eng_name": "Dominate Monster",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "支配类人",
+  "eng_name": "Dominate Person",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "龙息术",
+  "eng_name": "Dragon's Breath",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\2环.md"
+ },
+ {
+  "name": "卓姆吉瞬间召唤",
+  "eng_name": "Drawmij's Instant Summons",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "托梦术",
+  "eng_name": "Dream",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "德鲁伊伎俩",
+  "eng_name": "Druidcraft",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "地震术",
+  "eng_name": "Earthquake",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "魔能爆",
+  "eng_name": "Eldritch Blast",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "元素武器",
+  "eng_name": "Elemental Weapon",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "圣武士",
+   "奇械师",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "强化属性",
+  "eng_name": "Enhance Ability",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "奇械师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "变巨术",
+  "eng_name": "Enlarge / Reduce",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "捕获打击",
+  "eng_name": "Ensnaring Strike",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "纠缠术",
+  "eng_name": "Entangle",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "注目术",
+  "eng_name": "Enthrall",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "以太化",
+  "eng_name": "Etherealness",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "艾伐黑触手",
+  "eng_name": "Evard's Black Tentacles",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "脚底抹油",
+  "eng_name": "Expeditious Retreat",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "摄心目光",
+  "eng_name": "Eyebite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "鬼斧神工",
+  "eng_name": "Fabricate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "妖火",
+  "eng_name": "Faerie Fire",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "虚假生命",
+  "eng_name": "False Life",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "恐惧术",
+  "eng_name": "Fear",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "羽落术",
+  "eng_name": "Feather Fall",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "假死术",
+  "eng_name": "Feign Death",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "寻获魔宠",
+  "eng_name": "Find Familiar",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "寻获坐骑",
+  "eng_name": "Find Steed",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "寻找陷阱",
+  "eng_name": "Find Traps",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "寻路术",
+  "eng_name": "Find the Path",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "死亡一指",
+  "eng_name": "Finger of Death",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "火焰箭",
+  "eng_name": "Fire Bolt",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "火焰护盾",
+  "eng_name": "Fire Shield",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "法师",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "火焰风暴",
+  "eng_name": "Fire Storm",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "火球术",
+  "eng_name": "Fireball",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "火焰刀",
+  "eng_name": "Flame Blade",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "焰击术",
+  "eng_name": "Flame Strike",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "炽焰法球",
+  "eng_name": "Flaming Sphere",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "石化术",
+  "eng_name": "Flesh to Stone",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "变化",
+  "classes": [
+   "魔契师",
+   "法师",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "飞行术",
+  "eng_name": "Fly",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "云雾术",
+  "eng_name": "Fog Cloud",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "禁制术",
+  "eng_name": "Forbiddance",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "防护",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "力场监牢",
+  "eng_name": "Forcecage",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "预见术",
+  "eng_name": "Foresight",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "行动自如",
+  "eng_name": "Freedom of Movement",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "游侠",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "交友术",
+  "eng_name": "Friends",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "气化形体",
+  "eng_name": "Gaseous Form",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "异界之门",
+  "eng_name": "Gate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "指使术",
+  "eng_name": "Geas",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "遗体防腐",
+  "eng_name": "Gentle Repose",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "巨虫术",
+  "eng_name": "Giant Insect",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "花言巧语",
+  "eng_name": "Glibness",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "法术无效结界",
+  "eng_name": "Globe of Invulnerability",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "守卫刻纹",
+  "eng_name": "Glyph of Warding",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "神莓术",
+  "eng_name": "Goodberry",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "擒抱藤",
+  "eng_name": "Grasping Vine",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "油腻术",
+  "eng_name": "Grease",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "高等隐形术",
+  "eng_name": "Greater Invisibility",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "高等复原术",
+  "eng_name": "Greater Restoration",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "信仰守卫",
+  "eng_name": "Guardian of Faith",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "铜墙铁壁",
+  "eng_name": "Guards and Wards",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "神导术",
+  "eng_name": "Guidance",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "光导箭",
+  "eng_name": "Guiding Bolt",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "造风术",
+  "eng_name": "Gust of Wind",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "棘雹术",
+  "eng_name": "Hail of Thorns",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "圣居",
+  "eng_name": "Hallow",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "幻景",
+  "eng_name": "Hallucinatory Terrain",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "重伤术",
+  "eng_name": "Harm",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "加速术",
+  "eng_name": "Haste",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "医疗术",
+  "eng_name": "Heal",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "治愈真言",
+  "eng_name": "Healing Word",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "灼热金属",
+  "eng_name": "Heat Metal",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "炼狱叱喝",
+  "eng_name": "Hellish Rebuke",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "英雄宴",
+  "eng_name": "Heroes' Feast",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "英雄气概",
+  "eng_name": "Heroism",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "脆弱诅咒",
+  "eng_name": "Hex",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "定身怪物",
+  "eng_name": "Hold Monster",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "定身类人",
+  "eng_name": "Hold Person",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "圣洁灵光",
+  "eng_name": "Holy Aura",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "防护",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "哈达之欲",
+  "eng_name": "Hunger of Hadar",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "猎人印记",
+  "eng_name": "Hunter's Mark",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "催眠图纹",
+  "eng_name": "Hypnotic Pattern",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "冰刃",
+  "eng_name": "Ice Knife",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\1环.md"
+ },
+ {
+  "name": "冰风暴",
+  "eng_name": "Ice Storm",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "鉴定术",
+  "eng_name": "Identify",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "迷幻手稿",
+  "eng_name": "Illusory Script",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "禁锢术",
+  "eng_name": "Imprisonment",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "防护",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "焚云术",
+  "eng_name": "Incendiary Cloud",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "致伤术",
+  "eng_name": "Inflict Wounds",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "疫病虫群",
+  "eng_name": "Insect Plague",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "隐形术",
+  "eng_name": "Invisibility",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "跳跃术",
+  "eng_name": "Jump",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "敲击术",
+  "eng_name": "Knock",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "通晓传奇",
+  "eng_name": "Legend Lore",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "李欧蒙秘藏箱",
+  "eng_name": "Leomund's Secret Chest",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "李欧蒙小屋",
+  "eng_name": "Leomund's Tiny Hut",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "次等复原术",
+  "eng_name": "Lesser Restoration",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "浮空术",
+  "eng_name": "Levitate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "光亮术",
+  "eng_name": "Light",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "闪电箭矢",
+  "eng_name": "Lightning Arrow",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "闪电束",
+  "eng_name": "Lightning Bolt",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "动植物定位术",
+  "eng_name": "Locate Animals or Plants",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "生物定位术",
+  "eng_name": "Locate Creature",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "物件定位术",
+  "eng_name": "Locate Object",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "大步奔行",
+  "eng_name": "Longstrider",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "法师护甲",
+  "eng_name": "Mage Armor",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "法师之手",
+  "eng_name": "Mage Hand",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "防护法阵",
+  "eng_name": "Magic Circle",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "魔魂壶",
+  "eng_name": "Magic Jar",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "魔法飞弹",
+  "eng_name": "Magic Missile",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "魔嘴术",
+  "eng_name": "Magic Mouth",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "魔化武器",
+  "eng_name": "Magic Weapon",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "圣武士",
+   "法师",
+   "奇械师",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "高级幻影",
+  "eng_name": "Major Image",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "群体疗伤术",
+  "eng_name": "Mass Cure Wounds",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "群体医疗术",
+  "eng_name": "Mass Heal",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "群体治愈真言",
+  "eng_name": "Mass Healing Word",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "群体暗示术",
+  "eng_name": "Mass Suggestion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "迷宫术",
+  "eng_name": "Maze",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "融身入石",
+  "eng_name": "Meld Into Stone",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "马友夫强酸箭",
+  "eng_name": "Melf's Acid Arrow",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "修复术",
+  "eng_name": "Mending",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "传讯术",
+  "eng_name": "Message",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "流星爆",
+  "eng_name": "Meteor Swarm",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "心灵屏障",
+  "eng_name": "Mind Blank",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "心灵之楔",
+  "eng_name": "Mind Sliver",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 0,
+  "school": "惑控",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\戏法.md"
+ },
+ {
+  "name": "心灵尖刺",
+  "eng_name": "Mind Spike",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\2环.md"
+ },
+ {
+  "name": "次级幻象",
+  "eng_name": "Minor Illusion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "海市蜃楼",
+  "eng_name": "Mirage Arcane",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "镜影术",
+  "eng_name": "Mirror Image",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "假象术",
+  "eng_name": "Mislead",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "迷踪步",
+  "eng_name": "Misty Step",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "篡改记忆",
+  "eng_name": "Modify Memory",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "月华之光",
+  "eng_name": "Moonbeam",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "魔邓肯忠犬",
+  "eng_name": "Mordenkainen's Faithful Hound",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "魔邓肯豪宅术",
+  "eng_name": "Mordenkainen's Magnificent Mansion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "魔邓肯私人密室",
+  "eng_name": "Mordenkainen's Private Sanctum",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "魔邓肯之剑",
+  "eng_name": "Mordenkainen's Sword",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "地动术",
+  "eng_name": "Move Earth",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "回避侦测",
+  "eng_name": "Nondetection",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "涅斯图魔法灵光",
+  "eng_name": "Nystul's Magic Aura",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "欧提路克冰封法球",
+  "eng_name": "Otiluke's Freezing Sphere",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "欧提路克弹力法球",
+  "eng_name": "Otiluke's Resilient Sphere",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "奥图迷舞",
+  "eng_name": "Otto's Irresistible Dance",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "行动无踪",
+  "eng_name": "Pass without Trace",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "穿墙术",
+  "eng_name": "Passwall",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "魅影之力",
+  "eng_name": "Phantasmal Force",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "魅影杀手",
+  "eng_name": "Phantasmal Killer",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "幻术",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "魅影驹",
+  "eng_name": "Phantom Steed",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "幻术",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "异界誓盟",
+  "eng_name": "Planar Ally",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "异界誓缚",
+  "eng_name": "Planar Binding",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "位面转移",
+  "eng_name": "Plane Shift",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "植物滋长",
+  "eng_name": "Plant Growth",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "毒气喷涌",
+  "eng_name": "Poison Spray",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "变形术",
+  "eng_name": "Polymorph",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "律令医疗",
+  "eng_name": "Power Word Heal",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "律令死亡",
+  "eng_name": "Power Word Kill",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "律令震慑",
+  "eng_name": "Power Word Stun",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "治疗祷言",
+  "eng_name": "Prayer of Healing",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "魔法伎俩",
+  "eng_name": "Prestidigitation",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "虹光喷射",
+  "eng_name": "Prismatic Spray",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "虹光法墙",
+  "eng_name": "Prismatic Wall",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "防护",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "燃火术",
+  "eng_name": "Produce Flame",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "预置幻象",
+  "eng_name": "Programmed Illusion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "投影术",
+  "eng_name": "Project Image",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "防护能量",
+  "eng_name": "Protection from Energy",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "防护善恶",
+  "eng_name": "Protection from Evil and Good",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "防护毒素",
+  "eng_name": "Protection from Poison",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "净化饮食",
+  "eng_name": "Purify Food and Drink",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "死者复活",
+  "eng_name": "Raise Dead",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "拉瑞心灵联结",
+  "eng_name": "Rary's Telepathic Bond",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "衰弱射线",
+  "eng_name": "Ray of Enfeeblement",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "冷冻射线",
+  "eng_name": "Ray of Frost",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "致病射线",
+  "eng_name": "Ray of Sickness",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "再生术",
+  "eng_name": "Regenerate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "转生术",
+  "eng_name": "Reincarnate",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "移除诅咒",
+  "eng_name": "Remove Curse",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "抵抗术",
+  "eng_name": "Resistance",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "复生术",
+  "eng_name": "Resurrection",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "反转重力",
+  "eng_name": "Reverse Gravity",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "回生术",
+  "eng_name": "Revivify",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "奇械师",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "魔绳术",
+  "eng_name": "Rope Trick",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "圣火术",
+  "eng_name": "Sacred Flame",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "庇护术",
+  "eng_name": "Sanctuary",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "灼热射线",
+  "eng_name": "Scorching Ray",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "探知术",
+  "eng_name": "Scrying",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "炽焰斩",
+  "eng_name": "Searing Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "识破隐形",
+  "eng_name": "See Invisibility",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "伪装术",
+  "eng_name": "Seeming",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "短讯术",
+  "eng_name": "Sending",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "隔离术",
+  "eng_name": "Sequester",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "形体变化",
+  "eng_name": "Shapechange",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "粉碎音波",
+  "eng_name": "Shatter",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "护盾术",
+  "eng_name": "Shield",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "虔诚护盾",
+  "eng_name": "Shield of Faith",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "橡棍术",
+  "eng_name": "Shillelagh",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "电爪",
+  "eng_name": "Shocking Grasp",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "沉默术",
+  "eng_name": "Silence",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "无声幻影",
+  "eng_name": "Silent Image",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "拟像术",
+  "eng_name": "Simulacrum",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "幻术",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "睡眠术",
+  "eng_name": "Sleep",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "雪雨暴",
+  "eng_name": "Sleet Storm",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "缓慢术",
+  "eng_name": "Slow",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "维生术",
+  "eng_name": "Spare the Dying",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "动物交谈",
+  "eng_name": "Speak with Animals",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "死者交谈",
+  "eng_name": "Speak with Dead",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "植物交谈",
+  "eng_name": "Speak with Plants",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "蛛行术",
+  "eng_name": "Spider Climb",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "荆棘丛生",
+  "eng_name": "Spike Growth",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "灵体卫士",
+  "eng_name": "Spirit Guardians",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "灵体武器",
+  "eng_name": "Spiritual Weapon",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "惊惧斩",
+  "eng_name": "Staggering Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "钢风斩",
+  "eng_name": "Steel Wind Strike",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\5环.md"
+ },
+ {
+  "name": "臭云术",
+  "eng_name": "Stinking Cloud",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "塑石术",
+  "eng_name": "Stone Shape",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "石肤术",
+  "eng_name": "Stoneskin",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "复仇风暴",
+  "eng_name": "Storm of Vengeance",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "暗示术",
+  "eng_name": "Suggestion",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "异怪召唤术",
+  "eng_name": "Summon Aberration",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\4环.md"
+ },
+ {
+  "name": "野兽召唤术",
+  "eng_name": "Summon Beast",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\2环.md"
+ },
+ {
+  "name": "天界召唤术",
+  "eng_name": "Summon Celestial",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\5环.md"
+ },
+ {
+  "name": "构装召唤术",
+  "eng_name": "Summon Construct",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "奇械师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\4环.md"
+ },
+ {
+  "name": "元素召唤术",
+  "eng_name": "Summon Elemental",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\4环.md"
+ },
+ {
+  "name": "妖精召唤术",
+  "eng_name": "Summon Fey",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\3环.md"
+ },
+ {
+  "name": "邪魔召唤术",
+  "eng_name": "Summon Fiend",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\6环.md"
+ },
+ {
+  "name": "亡灵召唤术",
+  "eng_name": "Summon Undead",
+  "source": "TCE",
+  "source_5e": "TCE",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "塔莎的万事坩埚\\法术\\法术详述\\3环.md"
+ },
+ {
+  "name": "阳炎射线",
+  "eng_name": "Sunbeam",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "阳炎爆",
+  "eng_name": "Sunburst",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "迅捷箭袋",
+  "eng_name": "Swift Quiver",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "徽记术",
+  "eng_name": "Symbol",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "突触静止",
+  "eng_name": "Synaptic Static",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\5环.md"
+ },
+ {
+  "name": "塔莎狂笑术",
+  "eng_name": "Tasha's Hideous Laughter",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "心灵遥控",
+  "eng_name": "Telekinesis",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "心灵感应",
+  "eng_name": "Telepathy",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "传送术",
+  "eng_name": "Teleport",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 7,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\7环.md"
+ },
+ {
+  "name": "传送法阵",
+  "eng_name": "Teleportation Circle",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "谭森浮碟术",
+  "eng_name": "Tenser's Floating Disk",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "奇术",
+  "eng_name": "Thaumaturgy",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "荆棘之鞭",
+  "eng_name": "Thorn Whip",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "鸣雷破",
+  "eng_name": "Thunderclap",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\戏法.md"
+ },
+ {
+  "name": "雷鸣斩",
+  "eng_name": "Thunderous Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "雷鸣波",
+  "eng_name": "Thunderwave",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "时间停止",
+  "eng_name": "Time Stop",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "亡者丧钟",
+  "eng_name": "Toll the Dead",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 0,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\戏法.md"
+ },
+ {
+  "name": "巧言术",
+  "eng_name": "Tongues",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "木遁术",
+  "eng_name": "Transport via Plants",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "树跃术",
+  "eng_name": "Tree Stride",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "完全变形术",
+  "eng_name": "True Polymorph",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "完全复生术",
+  "eng_name": "True Resurrection",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "真知术",
+  "eng_name": "True Seeing",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "克敌先击",
+  "eng_name": "True Strike",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "海啸术",
+  "eng_name": "Tsunami",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 8,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\8环.md"
+ },
+ {
+  "name": "隐形仆役",
+  "eng_name": "Unseen Servant",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "汲血之触",
+  "eng_name": "Vampiric Touch",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "恶言相加",
+  "eng_name": "Vicious Mockery",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 0,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\戏法.md"
+ },
+ {
+  "name": "浓酸球",
+  "eng_name": "Vitriolic Sphere",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\4环.md"
+ },
+ {
+  "name": "火墙术",
+  "eng_name": "Wall of Fire",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\4环.md"
+ },
+ {
+  "name": "力场墙",
+  "eng_name": "Wall of Force",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "冰墙术",
+  "eng_name": "Wall of Ice",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "石墙术",
+  "eng_name": "Wall of Stone",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\5环.md"
+ },
+ {
+  "name": "棘墙术",
+  "eng_name": "Wall of Thorns",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "守护之链",
+  "eng_name": "Warding Bond",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "水下呼吸",
+  "eng_name": "Water Breathing",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "水上行走",
+  "eng_name": "Water Walk",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "蛛网术",
+  "eng_name": "Web",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "怪影杀手",
+  "eng_name": "Weird",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "幻术",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "御风而行",
+  "eng_name": "Wind Walk",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "风墙术",
+  "eng_name": "Wind Wall",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\3环.md"
+ },
+ {
+  "name": "祈愿术",
+  "eng_name": "Wish",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 9,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\9环.md"
+ },
+ {
+  "name": "巫术箭",
+  "eng_name": "Witch Bolt",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "光耀祷词",
+  "eng_name": "Word of Radiance",
+  "source": "XGE",
+  "source_5e": "XGE",
+  "edition": "2014",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "珊娜萨的万事指南\\法术\\法术详述\\戏法.md"
+ },
+ {
+  "name": "回返真言",
+  "eng_name": "Word of Recall",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\6环.md"
+ },
+ {
+  "name": "激愤斩",
+  "eng_name": "Wrathful Smite",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\1环.md"
+ },
+ {
+  "name": "诚实之域",
+  "eng_name": "Zone of Truth",
+  "source": "PHB14",
+  "source_5e": "PHB",
+  "edition": "2014",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "玩家手册\\魔法\\法术详述\\2环.md"
+ },
+ {
+  "name": "增能术",
+  "eng_name": "Accelerate/Decelerate",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "伏击猎物",
+  "eng_name": "Ambush Prey",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "先祖授慧",
+  "eng_name": "Ancestral Communion",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "反弹道场",
+  "eng_name": "Antiballistic Field",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 6,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "化树诅咒",
+  "eng_name": "Arboreal Curse",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "疾电剑",
+  "eng_name": "Arc Blade",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "臂骨加农",
+  "eng_name": "Arm Cannon",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "武装术",
+  "eng_name": "Armament",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "步履相随",
+  "eng_name": "At Your Side",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "安黛尔的沉默密室",
+  "eng_name": "Aundair's Silent Sanctum",
+  "source": "探秘艾伯伦",
+  "source_5e": "EXE",
+  "edition": "第三方",
+  "level": 0,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\探秘艾伯伦\\第六章\\法术.md"
+ },
+ {
+  "name": "亵渎灵光",
+  "eng_name": "Aura of Desecration",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "斩击弹",
+  "eng_name": "Ballistic Smite",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "兽形化人",
+  "eng_name": "Beast Transmutation",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "刺骨寒风",
+  "eng_name": "Bitter Wind",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "血骨之刃",
+  "eng_name": "Blade of Blood and Bone",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "圣武士",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "盲口奇袭",
+  "eng_name": "Blind Ambush",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "血蚀箭",
+  "eng_name": "Blood Bolt",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 0,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "血祭",
+  "eng_name": "Blood Sacrifice",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "放血术",
+  "eng_name": "Bloodletter",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "弄巧成拙",
+  "eng_name": "Blunder",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "戈尔戈罗斯形体扭曲术",
+  "eng_name": "Body Warping of Gorgoroth",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "深渊之息",
+  "eng_name": "Breath of the Deep",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "灵光闪耀",
+  "eng_name": "Bright Sparks",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "脆骨投掷",
+  "eng_name": "Brittle Bone Throw",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "升腾泡泡",
+  "eng_name": "Bubble Lift",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "活埋术",
+  "eng_name": "Buried Alive",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "烈焰剑",
+  "eng_name": "Burning Blade",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "蝶云风暴",
+  "eng_name": "Butterfly Storm",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "钙化记忆",
+  "eng_name": "Calcified Memories",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "请神术",
+  "eng_name": "Call Deity",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 8,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "野性呼唤",
+  "eng_name": "Call of the Wild",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "糖果爆裂",
+  "eng_name": "Candy Blast",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "迷惑亡灵",
+  "eng_name": "Captivate Undead",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "猫之跃动",
+  "eng_name": "Cat's Spring",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "判罪锁链",
+  "eng_name": "Chain of Conviction",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "圣武士",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "透特之颂",
+  "eng_name": "Chant of Thoth",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 0,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "停灵飨",
+  "eng_name": "Charnel Banquet",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 7,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "出千",
+  "eng_name": "Cheat",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 0,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "晦明之子",
+  "eng_name": "Child of Light and Darkness",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 8,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "失落者合颂",
+  "eng_name": "Chorus of the Lost",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "显迹术",
+  "eng_name": "Clue",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "黑暗攫握",
+  "eng_name": "Clutch of Darkness",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "隐蔽射击",
+  "eng_name": "Concealed Shot",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 0,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "震荡冲击",
+  "eng_name": "Concussive Burst",
+  "source": "探秘艾伯伦",
+  "source_5e": "EXE",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\探秘艾伯伦\\第六章\\法术.md"
+ },
+ {
+  "name": "惑影术",
+  "eng_name": "Confounding Shadows",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "加农炮击",
+  "eng_name": "Conjure Cannonball",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "咒唤掩体",
+  "eng_name": "Conjure Cover",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "圣武士",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "咒唤摆渡人",
+  "eng_name": "Conjure Ferryman",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "咒唤巨人",
+  "eng_name": "Conjure Giant",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 6,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "咒唤海洋",
+  "eng_name": "Conjure Ocean",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "浓厚污霭咒唤术",
+  "eng_name": "Conjure the Deep Haze",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "吞食意识",
+  "eng_name": "Consume Mind",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "薪火焚身",
+  "eng_name": "Consuming Pyre",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "圣武士",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "神话通神术",
+  "eng_name": "Contact Deity",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 5,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "污染之力",
+  "eng_name": "Contaminated Power",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 8,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "污染免疫",
+  "eng_name": "Contamination Immunity",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 7,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "驭兽术",
+  "eng_name": "Control Animal",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "寰宇怖景",
+  "eng_name": "Cosmic Horror",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "反侦术",
+  "eng_name": "Counterspy",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "拉莱耶造雾术",
+  "eng_name": "Create Mist of R'lyeh",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "灵之列车站",
+  "eng_name": "Create Spirit Train Stop",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "蠕行腐朽",
+  "eng_name": "Creeping Rot",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "匍匐之触",
+  "eng_name": "Creeping Touch",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "猩红丰获",
+  "eng_name": "Crimson Harvest",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "歪曲结界",
+  "eng_name": "Crooked Ward",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "光耀冠冕",
+  "eng_name": "Crownof Radiance",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "甲壳形态",
+  "eng_name": "Crustacean Form",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 6,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "剔肉镰刀",
+  "eng_name": "Culling Sickle",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "腐烂外皮之诅咒",
+  "eng_name": "Curse of the Putrid Husk",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "幻术",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "受诅杂音",
+  "eng_name": "Cursed Cacophony",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "达良之块",
+  "eng_name": "Dara Blocks",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "深根入月",
+  "eng_name": "Deep Roots of the Moon",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "掷出窗外",
+  "eng_name": "Defenestration",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "延迟术",
+  "eng_name": "Delay",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "妄能爆破",
+  "eng_name": "Delerium Blast",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "妄彩球",
+  "eng_name": "Delerium Orb",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "魔鬼报偿",
+  "eng_name": "Devil's Due",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "凶兆预警",
+  "eng_name": "Dire Warning",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 4,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "送神术",
+  "eng_name": "Dismiss Deity",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "易位肋口",
+  "eng_name": "Displacing Maw",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "瓦解术",
+  "eng_name": "Dissolution",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "神圣箭矢",
+  "eng_name": "Divine Arrow",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "末日",
+  "eng_name": "Doom",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "友尽之灾",
+  "eng_name": "Doom of False Friends",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 8,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "叠石之灾",
+  "eng_name": "Doom of Stacked Stones",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 6,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "夏年厄运",
+  "eng_name": "Doom of Summer Years",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 7,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "厄运将至",
+  "eng_name": "Doom of poor fortune",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "圣武士",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "德雷弗恩的钝刃术",
+  "eng_name": "Drayfn's Blunted Blade",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "德雷弗恩的无能诅咒",
+  "eng_name": "Drayfn's Curse of Incompetence",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "德雷弗恩的卓越之灾",
+  "eng_name": "Drayfn's bane of excellence",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 0,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "阿撒托斯的恐怖诅咒",
+  "eng_name": "Dread Curse of Azathoth",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "悚骨人形",
+  "eng_name": "Dread Scarecrow",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 4,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "毛毛细雨",
+  "eng_name": "Drizzle",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "复制术",
+  "eng_name": "Duplicate",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "苏莱曼之尘",
+  "eng_name": "Dust of Suleiman",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "黯潮",
+  "eng_name": "Ebon Tide",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "提升视力",
+  "eng_name": "Elevated Sight",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 1,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "妖箭术",
+  "eng_name": "Elf Shot",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "余烬腹火",
+  "eng_name": "Ember Belly",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "翡翠高脚杯",
+  "eng_name": "Emerald Goblet",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "邪眼术",
+  "eng_name": "Evil Eye",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 0,
+  "school": "惑控",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "灼眼术",
+  "eng_name": "Eye Burn",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "妖精祝酒",
+  "eng_name": "Faerie Toast",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "血肉盛宴",
+  "eng_name": "Feast of Flesh",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "羽化",
+  "eng_name": "Feathered Reach",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "猫猫大混乱",
+  "eng_name": "Feline Chaos",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "猫之优雅",
+  "eng_name": "Feline Grace",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "庆典之王",
+  "eng_name": "Festival King",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "收割场",
+  "eng_name": "Field of Reaping",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 5,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "手指枪",
+  "eng_name": "Finger Guns",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "火舞术",
+  "eng_name": "Fire Dance",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "莹虫术",
+  "eng_name": "Fireflies",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "犹格·索托斯之拳",
+  "eng_name": "Fist of Yog-Sothoth",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "时光回溯",
+  "eng_name": "Flashback",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 3,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "残缺缝合",
+  "eng_name": "Flawed Reconstruction",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "剥皮术",
+  "eng_name": "Flense",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 8,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "开花",
+  "eng_name": "Flowering",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "力能爆",
+  "eng_name": "Force Blast",
+  "source": "探秘艾伯伦",
+  "source_5e": "EXE",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\探秘艾伯伦\\第六章\\法术.md"
+ },
+ {
+  "name": "强制进化",
+  "eng_name": "Forced Evolution",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "林地守卫",
+  "eng_name": "Forest Guard",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "惧骨之森",
+  "eng_name": "Forest of Dread",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "裂生骨甲",
+  "eng_name": "Fractured Shell",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "浪之自由",
+  "eng_name": "Freedom of the Wave",
+  "source": "塔尔多雷",
+  "source_5e": "TAL",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\塔尔多雷\\玩家选项\\新法术详述.md"
+ },
+ {
+  "name": "风之自由",
+  "eng_name": "Freedom of the Wind",
+  "source": "塔尔多雷",
+  "source_5e": "TAL",
+  "edition": "第三方",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\塔尔多雷\\玩家选项\\新法术详述.md"
+ },
+ {
+  "name": "狂乱不羁",
+  "eng_name": "Frenzy",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 6,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "凛霜剑",
+  "eng_name": "Frigid Blade",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "命运游戏",
+  "eng_name": "Game of Fate",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 6,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "惊怖冲锋",
+  "eng_name": "Ghastly Charge",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "赠生术",
+  "eng_name": "Gift",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "暮色迷蒙",
+  "eng_name": "Gloaming",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "暮光法球",
+  "eng_name": "Globe of Twilight",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "重力尖钉",
+  "eng_name": "Gravity Spike",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "残酷收割",
+  "eng_name": "Grim Harvest",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "严峻之影",
+  "eng_name": "Grim Shadows",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "尘风屏障",
+  "eng_name": "Gust Barrier",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "宿醉感",
+  "eng_name": "Hangover",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "黯然销魂曲",
+  "eng_name": "Harrowing Ballad",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "丰收月辉",
+  "eng_name": "Harvest Moonglow",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "钻心血刺",
+  "eng_name": "Heartseeker",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "狱之笞",
+  "eng_name": "Hell's Lash",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "地狱火",
+  "eng_name": "Hellfire",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "虚构英雄",
+  "eng_name": "Hero of Fable",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "冬眠术",
+  "eng_name": "Hibernation",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "圣言术",
+  "eng_name": "Holy Word",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "饕餮魔刃",
+  "eng_name": "Hungering Blade",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 1,
+  "school": "死灵",
+  "classes": [
+   "圣武士",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "猎人视界",
+  "eng_name": "Hunter Sense",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 0,
+  "school": "预言",
+  "classes": [
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "戕狱对决",
+  "eng_name": "Infernal Challenge",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "绝望侵袭",
+  "eng_name": "Intrusive Despair",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "祈求永荣者",
+  "eng_name": "Invoke the Amaranthine",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 3,
+  "school": "预言",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "孤立术",
+  "eng_name": "Isolation",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "惑控",
+  "classes": [
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "卡你武器",
+  "eng_name": "Jam Weapon",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "叶忒罗的自动换弹",
+  "eng_name": "Jethro's Instant Reload",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "电击术",
+  "eng_name": "Jolt",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "命运之刃",
+  "eng_name": "Knife of Fate",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "克拉尔之蛆",
+  "eng_name": "Krail's Maggot",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "克拉尔之腐",
+  "eng_name": "Krail's Rot",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 5,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "克拉尔之裂",
+  "eng_name": "Krail's Rupture",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "雷洛赫的踉跄舞步",
+  "eng_name": "Leiloch's Arduous Shuffle",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 7,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "雷洛赫的长篇大论",
+  "eng_name": "Leiloch's Interminable Yarn",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "雷洛赫的恼人卡祖笛",
+  "eng_name": "Leiloch's Irritating Kazoo",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "生命链接",
+  "eng_name": "Life Tether",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "光耀缚束",
+  "eng_name": "Light Snare",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "迷失",
+  "eng_name": "Lost",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "迷失漫游",
+  "eng_name": "Lost and Wandering",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 5,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "月之转移",
+  "eng_name": "Lunar Transfer",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "魔艺术",
+  "eng_name": "Magecraft",
+  "source": "探秘艾伯伦",
+  "source_5e": "EXE",
+  "edition": "第三方",
+  "level": 0,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "法师",
+   "奇械师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\探秘艾伯伦\\第六章\\法术.md"
+ },
+ {
+  "name": "魔镜反射",
+  "eng_name": "Magic Mirror",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "骨处女",
+  "eng_name": "Maiden of Bones",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "邪秽武器",
+  "eng_name": "Maligned Weapon",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "曼蒂的野性随从",
+  "eng_name": "Mandy's Feral Follower",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "曼蒂的华美礼裙",
+  "eng_name": "Mandy's Marvelous Dress",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "易骨换髓",
+  "eng_name": "Marrow Transplant",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "殉难者",
+  "eng_name": "Martyr",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "群体浮空术",
+  "eng_name": "Mass Levitate",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "记忆术",
+  "eng_name": "Memorize",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "植物修复",
+  "eng_name": "Mend Plants",
+  "source": "谦卑林故事",
+  "source_5e": "HMT",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林故事集\\新法术.md"
+ },
+ {
+  "name": "镜像痛苦",
+  "eng_name": "Mirrored Agony",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "悼亡迷雾",
+  "eng_name": "Mist of Mourning",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "惑控",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "思忖一瞬",
+  "eng_name": "Moment to Think",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "猿之攫",
+  "eng_name": "Monkey's Grasp",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "月光遣魔",
+  "eng_name": "Moonlight Sending",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "炼狱之尘",
+  "eng_name": "Mote of Hell",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "凶杀鸦群",
+  "eng_name": "Murder of Crows",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "魔菇术",
+  "eng_name": "Mushroom Ballista",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "莫测仪容",
+  "eng_name": "Mysterious Presence",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 0,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "中和场域",
+  "eng_name": "Neutralizing Field",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "混淆物件",
+  "eng_name": "Obfuscate Object",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 0,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "隐匿物件",
+  "eng_name": "Obscure Object",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "第八虹光喷射",
+  "eng_name": "Octarine Spray",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 7,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "不详妖风",
+  "eng_name": "Ominous winds",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "纸鹤群袭",
+  "eng_name": "Origami Bird Swarm",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "奥罗斯的命运印记",
+  "eng_name": "Orros Mark of Fate",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "骨刺贯刑",
+  "eng_name": "Osseous Impalement",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "镇静怪物",
+  "eng_name": "Pacify Monster",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "镇静类人",
+  "eng_name": "Pacify Person",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "悖论",
+  "eng_name": "Paradox",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 9,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "贯星一条",
+  "eng_name": "Perforating Shot",
+  "source": "铳士",
+  "source_5e": "GNR",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\铳士\\法术.md"
+ },
+ {
+  "name": "指骨钉枪",
+  "eng_name": "Phalangeal Shot",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "幻影之豹",
+  "eng_name": "Phantom Panther",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "凤焰",
+  "eng_name": "Phoenix Flames",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 9,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "冲击之柱",
+  "eng_name": "Pillar of Force",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "坠落术",
+  "eng_name": "Plummet",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "波格莫奇锅",
+  "eng_name": "Pogmo's Pot",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "多腕术",
+  "eng_name": "Polybrachia",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "缤纷泡泡",
+  "eng_name": "Polychromatic Bubble",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "波尔朵之门",
+  "eng_name": "Portho's Portal",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "糗态百出",
+  "eng_name": "Pratfall",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "门扉守卫",
+  "eng_name": "Protect Threshold",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "傀儡掌控",
+  "eng_name": "Puppet Master",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "祛除污染",
+  "eng_name": "Purge Contamination",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "光耀信标",
+  "eng_name": "Radiant Beacon",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 5,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "怒雷云冕",
+  "eng_name": "Rageful Nimbus",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "污染射线",
+  "eng_name": "Ray of Contamination",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 6,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "回溯",
+  "eng_name": "Recall",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "赤印",
+  "eng_name": "Red Sign",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 6,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "友谊羁绊",
+  "eng_name": "Resilient Friendship",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 0,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "召物术",
+  "eng_name": "Retrieve",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "御电而行",
+  "eng_name": "Ride the Lightning",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "驱隙电闪",
+  "eng_name": "Ride the Rifts",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "石从天降",
+  "eng_name": "Rocks Fall",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 8,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "根须缚束",
+  "eng_name": "Root Grab",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 0,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "流言",
+  "eng_name": "Rumor",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 1,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ },
+ {
+  "name": "锈蚀之握",
+  "eng_name": "Rusting Grasp",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 3,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "天火圣礼",
+  "eng_name": "Sacrament of the Falling Fire",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 9,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "祭献虹吸",
+  "eng_name": "Sacrificial Siphon",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "幸运符",
+  "eng_name": "Sanctum of the Flock",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 5,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "牧人圣所",
+  "eng_name": "Sanctum of the Shepherd",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 4,
+  "school": "防护",
+  "classes": [
+   "牧师",
+   "圣武士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "构沙术",
+  "eng_name": "Sand Structure",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "血色隐秘",
+  "eng_name": "Sanguine Secrets",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "猩红黎明",
+  "eng_name": "Scarlet Dawn",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "暗影适应术",
+  "eng_name": "Shadow Adaptation",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "汲影术",
+  "eng_name": "Shadow Drain",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "暗影传送门",
+  "eng_name": "Shadow Portal",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "幽暗迸发",
+  "eng_name": "Shadowy Eruption",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "植物塑形",
+  "eng_name": "Shape Plants",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 4,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "共享视界",
+  "eng_name": "Shared Vision",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "污染转嫁",
+  "eng_name": "Siphon Contamination",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 6,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "骸骨之尾",
+  "eng_name": "Skeletal Tail",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 2,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "灵魂替身",
+  "eng_name": "Soul Effigy",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "幽灵狂怒",
+  "eng_name": "Spectral Fury",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "幽灵切",
+  "eng_name": "Spectral Slash",
+  "source": "斯坦哈德",
+  "source_5e": "SGH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\斯坦哈德的诡怖猎杀指南\\法术.md"
+ },
+ {
+  "name": "法术识记",
+  "eng_name": "Spell Signature",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "预言",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "蜘蛛之歌",
+  "eng_name": "Spider Song",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "尖刺护盾",
+  "eng_name": "Spiny Shield",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "魂灵群",
+  "eng_name": "Spirit Swarm",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 5,
+  "school": "死灵",
+  "classes": [
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "灵植伪装",
+  "eng_name": "Sprout Foliage",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "恒星之躯",
+  "eng_name": "Stellar Bodies",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "岩骨术",
+  "eng_name": "Stone Bones",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "风暴之门",
+  "eng_name": "Storm Door",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 4,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "风暴战驹",
+  "eng_name": "Storm Stallion",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "圣武士",
+   "游侠",
+   "术士",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "潜渡术",
+  "eng_name": "Submerge",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "窒息术",
+  "eng_name": "Suffocate",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "夏日清风",
+  "eng_name": "Summer Winds",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "牧师",
+   "德鲁伊",
+   "圣武士",
+   "游侠"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "召唤南瓜灯",
+  "eng_name": "Summon Jack-O'-Lantern",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "暗影召唤术",
+  "eng_name": "Summon Shadow",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "召唤载具",
+  "eng_name": "Summon Vehicle",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "超神斩",
+  "eng_name": "Supernal Smite",
+  "source": "鬼谷14",
+  "source_5e": "GHV",
+  "edition": "第三方",
+  "level": 4,
+  "school": "塑能",
+  "classes": [
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\玩家包\\法术.md"
+ },
+ {
+  "name": "魔力吞噬",
+  "eng_name": "Swallow Magic",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "迅捷飞行",
+  "eng_name": "Swift Flight",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 2,
+  "school": "变化",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "易形换貌",
+  "eng_name": "Switched Form",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "审判之剑",
+  "eng_name": "Sword of Judgment",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 5,
+  "school": "咒法",
+  "classes": [
+   "牧师",
+   "圣武士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "通灵仪式",
+  "eng_name": "Séance",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 3,
+  "school": "死灵",
+  "classes": [
+   "吟游诗人",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "谭冈的盛宴之火",
+  "eng_name": "Tamh Gon's Fiery Festival Feast",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 5,
+  "school": "防护",
+  "classes": [
+   "吟游诗人",
+   "牧师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "便利术",
+  "eng_name": "Task",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 0,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "黑潮",
+  "eng_name": "Tide of Darkness",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "转瞬壁垒",
+  "eng_name": "Transient Bulwark",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "匿形术",
+  "eng_name": "Transparency",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "丑小鸭",
+  "eng_name": "Ugly Duckling",
+  "source": "黯潮",
+  "source_5e": "ACT",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\黯潮之书\\法术\\法术详述.md"
+ },
+ {
+  "name": "暗影触须",
+  "eng_name": "Umbral Tendril",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "溃心低语",
+  "eng_name": "Unraveling Whisper",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "惑控",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "菜刀术",
+  "eng_name": "Vegetable Blade",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 3,
+  "school": "咒法",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "圣武士",
+   "术士"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "黄昏之纱",
+  "eng_name": "Veil of Dusk",
+  "source": "谦卑林战役",
+  "source_5e": "HML",
+  "edition": "第三方",
+  "level": 1,
+  "school": "防护",
+  "classes": [
+   "德鲁伊",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\谦卑林\\新法术详述.md"
+ },
+ {
+  "name": "死神面纱",
+  "eng_name": "Veil of the Reaper",
+  "source": "歪月",
+  "source_5e": "WYM",
+  "edition": "第三方",
+  "level": 2,
+  "school": "幻术",
+  "classes": [
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\歪曲之月\\第七章\\法术详述.md"
+ },
+ {
+  "name": "仇杀剑",
+  "eng_name": "Vengeful Blade",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "维瑞之印",
+  "eng_name": "Voorish Sign",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 3,
+  "school": "防护",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "死灭墙",
+  "eng_name": "Wall of Death",
+  "source": "邪狱使",
+  "source_5e": "DHB",
+  "edition": "第三方",
+  "level": 4,
+  "school": "死灵",
+  "classes": [
+   "德鲁伊",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\邪狱使\\邪狱使法术.md"
+ },
+ {
+  "name": "扭曲矢",
+  "eng_name": "Warp Bolt",
+  "source": "德城",
+  "source_5e": "DEC",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "法师",
+   "魔契师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\德拉肯海姆\\法术详述.md"
+ },
+ {
+  "name": "水弹术",
+  "eng_name": "Water Bullet",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "塑能",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "忘却之波",
+  "eng_name": "Wave of Oblivion",
+  "source": "克苏鲁",
+  "source_5e": "CTH",
+  "edition": "第三方",
+  "level": 9,
+  "school": "塑能",
+  "classes": [
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\火炬光下的克苏鲁\\第四章\\法术详述.md"
+ },
+ {
+  "name": "覆潮武器",
+  "eng_name": "Whelm Weapon",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 1,
+  "school": "变化",
+  "classes": [
+   "吟游诗人",
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "疾风跃袭",
+  "eng_name": "Wind Sprint",
+  "source": "胧忆岛",
+  "source_5e": "LOO",
+  "edition": "第三方",
+  "level": 2,
+  "school": "塑能",
+  "classes": [
+   "圣武士",
+   "游侠",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\胧忆岛\\法术.md"
+ },
+ {
+  "name": "痉挛术",
+  "eng_name": "Wrack",
+  "source": "艾巢",
+  "source_5e": "AIC",
+  "edition": "第三方",
+  "level": 2,
+  "school": "死灵",
+  "classes": [
+   "牧师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\鬼魅幽谷\\艾弗瑞斯之巢\\附录A\\法术.md"
+ },
+ {
+  "name": "西风之羽",
+  "eng_name": "Zephyr's Feather",
+  "source": "尖塔2",
+  "source_5e": "VAT2",
+  "edition": "第三方",
+  "level": 1,
+  "school": "咒法",
+  "classes": [
+   "德鲁伊",
+   "游侠",
+   "术士",
+   "魔契师",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包2\\法术.md"
+ },
+ {
+  "name": "手指枪",
+  "eng_name": "Finger Guns",
+  "source": "尖塔1",
+  "source_5e": "VAT1",
+  "edition": "第三方",
+  "level": 0,
+  "school": "塑能",
+  "classes": [
+   "吟游诗人",
+   "术士",
+   "法师"
+  ],
+  "has_detail": true,
+  "detail_source": "第三方\\瓦尔达的秘密尖塔\\玩家包1\\法术.md"
+ }
+]

@@ -44,6 +44,7 @@ from astrbot_plugin_trpg_assistant.kb_enums import (  # noqa: E402
     FEAT_KEYWORD_TAGS,
     ITEM_TYPE_CODE,
     RACE_KEYWORD_TAGS,
+    SCHOOL_CN,
     SCHOOL_CN_REV,
     SIZE_CN_REV,
     SPELL_KEYWORD_TAGS,
@@ -301,7 +302,74 @@ CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY, value TEXT);
 """
 
 # 数据库 schema 版本：结构变更（新表/新列）时 +1。
-SCHEMA_VERSION = "10"
+SCHEMA_VERSION = "11"
+
+
+# ---------------------------------------------------------------------------
+# v0.43.0 5e_chm md 法术数据源（scripts/chm_parser.py 产物 → 5etools 风格 entry）
+# ---------------------------------------------------------------------------
+
+
+def _parse_md_range(text: str) -> tuple[int | None, str | None]:
+    """解析 md 详述距离文本 → (amount_feet, type)。
+
+    150 尺/60尺 → (150, feet)；触碰 → (None, touch)；自身 → (None, self)；
+    视线 → (None, sight)；特殊文本 → (None, 原文)。
+    """
+    if not text:
+        return None, None
+    m = re.match(r"^\s*(\d+)\s*尺\s*$", text)
+    if m:
+        return int(m.group(1)), "feet"
+    t = text.strip()
+    if t == "触碰":
+        return None, "touch"
+    if t == "自身":
+        return None, "self"
+    if "视线" in t:
+        return None, "sight"
+    return None, t
+
+
+def _chm_spells_to_entries(spells_md: list[dict]) -> list[dict]:
+    """5e_chm 法术记录（chm_parser 产物）→ 5etools 风格 entry dict。
+
+    - body 用 chm_parser 预构建的 rec['body']（_prebuilt_body，绕过 _kind_body，
+      格式与 _spell_body 同构：`【法术信息】环级|学派|施法时间|距离|成分|持续时间|仪式`）；
+    - entries 为纯文本（供 _spell_tags 提取 dmg_dealt/condition_inflict 等）；
+    - 结构化字段来自 md 记录（school 中文→单字符码，range 文本解析）；
+    - edition/is_machine 走 override（md 为人工校对源，is_machine 恒 0）。
+    """
+    out: list[dict] = []
+    for r in spells_md:
+        range_feet, range_type = _parse_md_range(r.get("detail_range") or "")
+        entries: list[str] = []
+        if r.get("detail"):
+            entries.append(r["detail"])
+        if r.get("detail_higher"):
+            entries.append(r["detail_higher"])
+        out.append({
+            "name": r["name"],
+            "ENG_name": r.get("eng_name") or "",
+            "source": r.get("source_5e") or "UNKNOWN",
+            "level": r.get("level"),
+            "school": SCHOOL_CN.get(r.get("school") or "") or "",
+            "time": [{"number": 1, "unit": "action"}],  # 占位（body 用 _prebuilt_body）
+            "range": (
+                {"distance": {"type": range_type, "amount": range_feet}}
+                if range_type else {}
+            ),
+            "components": r.get("components") or {},
+            "duration": [{"concentration": bool(r.get("concentration"))}],
+            "meta": {"ritual": bool(r.get("ritual"))},
+            "entries": entries,
+            "entriesHigherLevel": [r["detail_higher"]] if r.get("detail_higher") else [],
+            "_prebuilt_body": r.get("body") or "",
+            "_edition_override": r.get("edition") or "other",
+            "_is_machine_override": 0,
+            "_expand_aliases": r.get("aliases") or [],
+        })
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -1810,6 +1878,7 @@ def build(
     commit: str | None = None,
     patch_root: Path | None = None,
     en_lookup: Path | None = None,
+    spell_md: Path | None = None,
 ) -> dict:
     """全量构建知识库。
 
@@ -1817,6 +1886,9 @@ def build(
     en_lookup：英文 5e.tools 生成的法术源查找表 gendata-spell-source-lookup.json
         （可选）；提供后构建 v0.35.0 职业法术表 spell_classes（按英文名+source
         匹配，未命中写入报告不阻塞）。
+    spell_md：5e_chm md 法术源（scripts/chm_parser.py 产物 spells_chm.json）；
+        提供后法术条目改以 md 为主数据源（人工校对中文），5etools-cn JSON 不再
+        贡献法术条目，仅 spell_classes 仍由 en_lookup 提供。
     """
     if not data_dir.is_dir():
         raise SystemExit(f"错误：数据目录不存在: {data_dir}")
@@ -1836,6 +1908,15 @@ def build(
     _subclass_kw_outside.clear()
     _race_kw_outside.clear()
     _background_kw_outside.clear()
+    # v0.43.0：5e_chm md 法术源（可选）。提供后 spell 条目以 md 为准。
+    spell_md_entries: list[dict] | None = None
+    if spell_md is not None:
+        with open(spell_md, encoding="utf-8") as f:
+            spell_md_entries = _chm_spells_to_entries(json.load(f))
+        print(
+            f"[build_kb] 法术改用 5e_chm md 数据源: "
+            f"{len(spell_md_entries)} 条 ← {spell_md}"
+        )
     feat_enrich = _load_feat_enrich(
         patch_root if patch_root is not None else _PKG_DIR
     )
@@ -1868,7 +1949,9 @@ def build(
     # --- 各类型普通条目 ---
     for kind, (pattern, key) in KIND_SOURCES.items():
         entries = (
-            _load_items(data_dir) if kind == "item"
+            spell_md_entries
+            if (kind == "spell" and spell_md_entries is not None)
+            else _load_items(data_dir) if kind == "item"
             else _load_conditions(data_dir) if kind == "condition"
             else _load_kind_files(data_dir, pattern, key)
         )
@@ -1934,17 +2017,20 @@ def build(
                 e["entries"] = _resolve_item_entries(
                     e.get("entries") or [], item_templates, e
                 )
-            body = _kind_body(kind, e)
+            # v0.43.0：5e_chm md 源的法术正文由 chm_parser 预构建（_prebuilt_body），
+            # 绕过 _kind_body（格式同构：`【法术信息】…` + 详述正文 + 升环段）。
+            body = e.get("_prebuilt_body") or _kind_body(kind, e)
             if not body:
                 skipped += 1
                 continue
             eng = str(e.get("ENG_name") or "")
-            edition = edition_of_source(source)
+            edition = e.get("_edition_override") or edition_of_source(source)
+            is_machine = e.get("_is_machine_override", is_machine_entry(e))
             cur = conn.execute(
                 "INSERT OR REPLACE INTO entries"
                 " (kind, name, eng_name, source, edition, body, is_machine)"
                 " VALUES (?,?,?,?,?,?,?)",
-                (kind, name, eng, source, edition, body, is_machine_entry(e)),
+                (kind, name, eng, source, edition, body, is_machine),
             )
             entry_id = cur.lastrowid
             for alias in {name.lower(), eng.lower()}:
@@ -2546,12 +2632,19 @@ def main() -> None:
         help="英文 5e.tools 生成的法术源查找表 gendata-spell-source-lookup.json"
         "（可选；提供后构建职业法术表 spell_classes）",
     )
+    parser.add_argument(
+        "--spell-md",
+        default=None,
+        help="5e_chm md 法术源 spells_chm.json（scripts/chm_parser.py 产物；"
+        "提供后法术条目以 md 人工校对中文为主数据源）",
+    )
     args = parser.parse_args()
     build(
         Path(args.data_dir),
         Path(args.out),
         commit=args.commit,
         en_lookup=args.en_spell_lookup,
+        spell_md=args.spell_md,
     )
 
 

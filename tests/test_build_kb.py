@@ -54,7 +54,7 @@ def test_schema_and_counts(built_db: Path) -> None:
     # schema v4：meta 版本 + entry_tags 有数据 + races 侧表 + 规则引擎侧表
     assert conn.execute(
         "SELECT value FROM meta WHERE key='schema_version'"
-    ).fetchone()[0] == "10"
+    ).fetchone()[0] == "11"
     # schema v10（v0.35.0 构筑咨询）：spell_classes 侧表存在（职业法术表）
     assert "spell_classes" in tables
     sc_cols = {r[1] for r in conn.execute("PRAGMA table_info(spell_classes)")}
@@ -559,7 +559,7 @@ def test_meta_and_version_json(built_db: Path, tmp_path: Path) -> None:
     vp = built_db.with_name("version.json")
     version = json.loads(vp.read_text(encoding="utf-8"))
     assert version["source_commit"] == "fixture-abc123"
-    assert version["schema_version"] == "10"
+    assert version["schema_version"] == "11"
 
 
 def test_spell_classes_from_en_lookup(tmp_path: Path) -> None:

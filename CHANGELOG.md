@@ -5,6 +5,38 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.43.0] - 2026-08-11
+
+### 新增
+
+- **法术知识库改用 5e_chm Markdown 主数据源（ADR-0018）**：法术条目中文详述/
+  元数据从本地人工校对中文资料（`5e_chm/md`，htm→md 转换产物）重建，取代
+  5etools-cn JSON 作为法术唯一来源。新增 `scripts/chm_parser.py`（速查表
+  ×详述页 join 解析）、`scripts/audit_chm.py`（对账）、`scripts/gen_enrich.py`
+  （富化补覆盖）；`build_kb.py` 新增 `--spell-md` 开关。
+- **法术全量双版本收录**：2014 PHB + 2024 PHB + 全部扩展书 936 条官方 +
+  第三方 284 条（合作方万法大全，黯潮/胧忆岛/歪月/克苏鲁等 16 家），共
+  **1220 条**，同名多版本并存（2024 优先展示，`format_detail` 既有分支生效）。
+- **职业法术表修复（spell_classes）**：构建补 `--en-spell-lookup`，2491 行/
+  10 职业，`/筛法术 职业：xx` 与车卡法术推荐（spells_by_class）恢复可用。
+- **富化字段全覆盖**：spells.summary + entry_tags.spell_keyword 官方/第三方
+  全部 1220 条覆盖（既有 554 条 AI 生成保留 + 缺口 701 条规则生成含学派
+  兜底词），反查零缺口。
+- **同英文名双版本中文名归一**：2014/2024 译名不一致（如 造水/造水术）时
+  统一为 2024 名、旧名入别名，任一中文名搜索均命中两版。
+
+### 修复
+
+- **法术 is_machine 统一为 0**：md 为人工校对源，不再有 ⚠️机翻标注。
+- **自动标签改从 md 正文提取**：dmg_dealt/condition_inflict/spell_shape/
+  spell_target 在 md 主源下照常生成（依赖 5etools entries 的旧逻辑已适配）。
+
+### 变更
+
+- 数据库 SCHEMA_VERSION 10 → 11（重建触发）。
+- 法术详述/元数据字段：施法时间/距离/成分/持续时间原样入库（2014 空格
+  数字与 2024 无空格并存）。
+
 ## [0.42.1] - 2026-08-11
 
 ### 修复

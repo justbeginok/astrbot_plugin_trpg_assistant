@@ -135,6 +135,16 @@ token = 下一物品名（数量默认 1），纯数字 token = 前一物品的�
 
 **知识库（Knowledge Base）**:
 插件内置的 DND 5e 中文资料库（只读 SQLite，随包打包）。数据源自 5etools 中文站的结构化 JSON，覆盖法术、怪物、物品、专长、背景、职业/子职六类。查询经 `KnowledgeBaseManager`，不走 KV。
+_注（v0.43.0）_: 法术条目的中文详述/元数据改以 5e_chm Markdown（人工校对）为主源，5etools JSON 仅承担其余类别与 spell_classes 职业法术表（ADR-0018）。
+
+**5e_chm Markdown（chm 数据源）**:
+本地人工校对中文资料 `5e_chm/md/`（htm→md 转换产物，7040 个 .md）。法术数据源的两类文件：**速查表**（`速查/法术速查/5E万法大全.md` 官方 936 条 + 合作方万法大全.md 第三方 284 条，HTML 表格 23 列结构化元数据）与**详述页**（按环阶打包或散落单文件，`#### 中文名｜English` + 元数据块 + 人工校对正文）。解析器 `scripts/chm_parser.py`，对账 `scripts/audit_chm.py`。
+
+**来源码（Source Code）**:
+条目的出版来源标识。官方用 5etools 码（XPHB=2024 PHB、PHB=2014 PHB、XGE/TCE/FTD…扩展书）；chm 表格来源码（PHB24/PHB14/夸力许/冰风谷…）构建期映射为 5etools 码；第三方（合作方万法大全 284 条）用自定义码（黯潮→ACT、胧忆岛→LOO、歪月→WYM…）。同英文名双版本法术中文名归一（2024 优先，旧名入别名）。
+
+**富化字段（Enrichment）**:
+spells.summary（一句话概要）与 entry_tags.spell_keyword（语义大类标签）合称富化。官方/第三方全 1220 条覆盖：既有 554 条 AI 生成 + 缺口 701 条由 `scripts/gen_enrich.py` 规则生成（含学派兜底词），覆盖率 100%。
 
 **条目（Entry）**:
 知识库中的一条数据 = 名称 + 英文名 + 来源 + 版本 + 清洗后正文 + 机翻标记。同名不同版各为一行（`UNIQUE(kind, name, source)`）。

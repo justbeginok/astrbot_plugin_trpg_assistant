@@ -420,7 +420,7 @@ class InitiativeManager:
         if result.previous is not None:
             parts.append(f"✅ {_sanitize_name(result.previous.name)} 的回合结束。")
         parts.append(
-            f"现在轮到 **{_sanitize_name(result.current.name)}**（先攻 {result.current.value}）行动。"
+            f"现在轮到 {_sanitize_name(result.current.name)}（先攻 {result.current.value}）行动。"
         )
         return "\n".join(parts)
 
@@ -428,10 +428,10 @@ class InitiativeManager:
     def format_entry_confirmation(entry: InitiativeEntry) -> str:
         """将单个条目渲染为入列确认文本（掷骰入列时展示明细）。"""
         if entry.is_fixed:
-            return f"已录入先攻：**{_sanitize_name(entry.name)}** → 先攻 {entry.value}"
+            return f"已录入先攻：{_sanitize_name(entry.name)} → 先攻 {entry.value}"
         if entry.modifier:
             return (
                 f"🎲 {_sanitize_name(entry.name)} 的先攻掷骰："
-                f"d20{entry.modifier:+d} → **{entry.value}**"
+                f"d20{entry.modifier:+d} → {entry.value}"
             )
-        return f"🎲 {_sanitize_name(entry.name)} 的先攻掷骰：d20 → **{entry.value}**"
+        return f"🎲 {_sanitize_name(entry.name)} 的先攻掷骰：d20 → {entry.value}"

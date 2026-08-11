@@ -144,7 +144,7 @@ class TestRiCommand:
         p = make_plugin()
         outputs = asyncio_run(run_cmd(p, ev("/ri")))
         assert len(outputs) == 1
-        assert "d20 → **12**" in outputs[0]  # 固定骰 12，无调整值
+        assert "d20 → 12" in outputs[0]  # 固定骰 12，无调整值
         state = asyncio_run(p._initiative.get_state(ev("/ri")))
         assert len(state.entries) == 1
         assert state.entries[0].name == "Alice"
@@ -154,13 +154,13 @@ class TestRiCommand:
     def test_roll_with_modifier(self) -> None:
         p = make_plugin()
         outputs = asyncio_run(run_cmd(p, ev("/ri +3")))
-        assert "d20+3 → **15**" in outputs[0]
+        assert "d20+3 → 15" in outputs[0]
 
     def test_roll_with_modifier_and_name(self) -> None:
         p = make_plugin()
         outputs = asyncio_run(run_cmd(p, ev("/ri +2 食人魔")))
         assert "食人魔" in outputs[0]
-        assert "d20+2 → **14**" in outputs[0]
+        assert "d20+2 → 14" in outputs[0]
         state = asyncio_run(p._initiative.get_state(ev("/ri")))
         assert state.entries[0].name == "食人魔"
         assert state.entries[0].modifier == 2
@@ -324,7 +324,7 @@ class TestLlmTool:
         p = make_plugin()
         text = self._tool(p, action="roll", name="食人魔", modifier=2)
         assert "食人魔" in text
-        assert "d20+2 → **14**" in text
+        assert "d20+2 → 14" in text
 
         text = self._tool(p, action="list")
         assert "食人魔" in text

@@ -439,11 +439,11 @@ class TestFormat:
         )
         text = InventoryManager.format_inventory(inv, "🎒 Alice 的背包")
         assert "🎒 Alice 的背包（2 种物品）：" in text
-        assert "**治疗药水** ×3" in text
+        assert "治疗药水 ×3" in text
         assert "⚖️0.5/件" in text
         assert "💰5银/件" in text  # v0.20.0 价值单位=铜币：50 铜 = 5 银
         assert "备注：群体治疗" in text
-        assert "**金币** ×120" in text
+        assert "金币 ×120" in text
         assert "💰1金/件" in text  # 货币条目按面值显示
         # 金币按面值（100 铜/枚）计入总价值；无未设置项 → 不带「+」
         assert "总重量 ⚖️ 1.5" in text
@@ -457,4 +457,4 @@ class TestFormat:
 
     def test_format_item_line_minimal(self) -> None:
         line = InventoryManager.format_item_line(ItemEntry(name="绳索", qty=2))
-        assert line == "**绳索** ×2"
+        assert line == "绳索 ×2"

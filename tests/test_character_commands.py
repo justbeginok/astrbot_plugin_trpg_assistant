@@ -167,7 +167,7 @@ class TestCharCommand:
         p = make_plugin()
         seed_card(p)
         out = card_cmd(p, ev("/卡"))
-        assert "📜 **阿尔文**（2014）" in out[0]
+        assert "📜 阿尔文（2014）" in out[0]
         assert "法师" in out[0]
         assert "力量 15（+2）" in out[0]
         assert "HP 0" in out[0]
@@ -1195,7 +1195,7 @@ class TestV30CharCommand:
         p._roll_d20 = lambda: 10
         out = run(_collect(p.ri_cmd(ev("/ri"))))
         joined = "\n".join(out)
-        assert "d20+2 → **12**" in joined
+        assert "d20+2 → 12" in joined
         assert "角色卡：阿尔文 先攻 +2" in joined
 
     def test_ri_explicit_modifier_wins_over_card(self) -> None:
@@ -1204,13 +1204,13 @@ class TestV30CharCommand:
         card_cmd(p, ev("/卡 升级"))
         p._roll_d20 = lambda: 10
         out = run(_collect(p.ri_cmd(ev("/ri +5"))))
-        assert "d20+5 → **15**" in "\n".join(out)
+        assert "d20+5 → 15" in "\n".join(out)
 
     def test_ri_without_card_plain_d20(self) -> None:
         p = _plugin_with_engine_kb()
         p._roll_d20 = lambda: 10
         out = run(_collect(p.ri_cmd(ev("/ri"))))
-        assert "d20 → **10**" in "\n".join(out)
+        assert "d20 → 10" in "\n".join(out)
         assert "角色卡" not in "\n".join(out)
 
 

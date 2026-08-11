@@ -531,7 +531,7 @@ class ShopManager:
             stock_note = "无限" if e.stock is None else (
                 "售罄" if e.stock <= 0 else f"余 {e.stock}"
             )
-            lines.append(f"{idx}. **{e.name}** — {price_note}（{stock_note}）")
+            lines.append(f"{idx}. {e.name} — {price_note}（{stock_note}）")
         if total > _LIST_LIMIT:
             lines.append(
                 f"输入 /商店 <页码> 翻页（每页 {_LIST_LIMIT} 条，共 {total_pages} 页）。"

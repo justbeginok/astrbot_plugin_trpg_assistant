@@ -212,11 +212,11 @@ class TestBagBasicCommands:
     def test_add_then_list(self) -> None:
         p = make_plugin()
         out = bag(p, ev("/bag add 治疗药水 3 w=0.5 v=50 note=群体治疗"))
-        assert "➕ 已放入 **治疗药水** ×3（现有 3 个）。" in out[0]
+        assert "➕ 已放入 治疗药水 ×3（现有 3 个）。" in out[0]
 
         out = bag(p, ev("/bag"))
         assert "🎒 Alice 的背包（1 种物品）：" in out[0]
-        assert "**治疗药水** ×3" in out[0]
+        assert "治疗药水 ×3" in out[0]
         assert "总重量 ⚖️ 1.5" in out[0]
         assert "总价值 💰 1金5银" in out[0]  # v0.20.0 价值单位=铜币：150 铜
 
@@ -229,7 +229,7 @@ class TestBagBasicCommands:
     def test_add_quoted_name_with_space(self) -> None:
         p = make_plugin()
         out = bag(p, ev('/bag add "精灵 斗篷" 1'))
-        assert "**精灵 斗篷** ×1" in out[0]
+        assert "精灵 斗篷 ×1" in out[0]
 
     def test_add_missing_qty_shows_usage(self) -> None:
         p = make_plugin()
@@ -240,7 +240,7 @@ class TestBagBasicCommands:
         p = make_plugin()
         bag(p, ev("/bag add 治疗药水 3"))
         out = bag(p, ev("/bag rm 治疗药水 2"))
-        assert "➖ 已取出 **治疗药水** ×2（剩余 1 个）。" in out[0]
+        assert "➖ 已取出 治疗药水 ×2（剩余 1 个）。" in out[0]
         out = bag(p, ev("/bag rm 治疗药水"))
         assert "背包中已无此物品" in out[0]
 
@@ -268,7 +268,7 @@ class TestBagBasicCommands:
         bag(p, ev("/bag add 治疗药水 3", sender_id="u1"))
         out = bag(p, ev("/bag list @Bob", sender_id="u2", at_target="u1"))
         assert "玩家 u1 的背包" in out[0]
-        assert "**治疗药水** ×3" in out[0]
+        assert "治疗药水 ×3" in out[0]
 
     def test_list_at_unresolved(self) -> None:
         p = make_plugin()
@@ -291,14 +291,14 @@ class TestPartyBag:
         p = make_plugin()
         bag(p, ev("/bag add 金币 100"))
         out = bag(p, ev("/bag put 金币 50"))
-        assert "📦 已将 **金币** ×50 存入队伍背包。" in out[0]
+        assert "📦 已将 金币 ×50 存入队伍背包。" in out[0]
 
         out = bag(p, ev("/bag party"))
         assert "📦 队伍背包（1 种物品）：" in out[0]
-        assert "**金币** ×50" in out[0]
+        assert "金币 ×50" in out[0]
 
         out = bag(p, ev("/bag take 金币 20"))
-        assert "📦 已从队伍背包取出 **金币** ×20。" in out[0]
+        assert "📦 已从队伍背包取出 金币 ×20。" in out[0]
 
         out = bag(p, ev("/bag take 金币 100"))
         assert "队伍背包里只有 30 个" in out[0]
@@ -308,7 +308,7 @@ class TestPartyBag:
         bag(p, ev("/bag add 金币 10", sender_id="u1"))
         bag(p, ev("/bag put 金币 10", sender_id="u1"))
         out = bag(p, ev("/bag take 金币 5", sender_id="u2", sender_name="Bob"))
-        assert "已从队伍背包取出 **金币** ×5" in out[0]
+        assert "已从队伍背包取出 金币 ×5" in out[0]
 
     def test_private_chat_rejects_party(self) -> None:
         p = make_plugin()
@@ -334,7 +334,7 @@ class TestPartyBag:
         assert "你没有权限清空队伍背包" in out[0]
         # 未被清空
         out = bag(p, ev("/bag party"))
-        assert "**金币** ×10" in out[0]
+        assert "金币 ×10" in out[0]
 
     def test_party_clear_allowed_for_admin(self) -> None:
         p = make_plugin()
@@ -360,12 +360,12 @@ class TestBagGive:
         bag(p, ev("/bag add 治疗药水 3", sender_id="u1"))
         # 真实平台中 @ 是独立消息组件，message_str 不含 @文本
         out = bag(p, ev("/bag give 治疗药水 1", sender_id="u1", at_target="u2"))
-        assert "🎁 已将 **治疗药水** ×1 交给 u2。" in out[0]
+        assert "🎁 已将 治疗药水 ×1 交给 u2。" in out[0]
         # 双方数量正确
         out = bag(p, ev("/bag", sender_id="u1"))
-        assert "**治疗药水** ×2" in out[0]
+        assert "治疗药水 ×2" in out[0]
         out = bag(p, ev("/bag", sender_id="u2", sender_name="Bob"))
-        assert "**治疗药水** ×1" in out[0]
+        assert "治疗药水 ×1" in out[0]
 
     def test_give_without_at_shows_usage(self) -> None:
         p = make_plugin()
@@ -383,7 +383,7 @@ class TestBagGive:
         p = make_plugin()
         bag(p, ev("/bag add 治疗药水 3", sender_id="u1"))
         out = bag(p, ev("/bag give @Bob 治疗药水 1", sender_id="u1", at_target="u2"))
-        assert "🎁 已将 **治疗药水** ×1 交给 u2。" in out[0]
+        assert "🎁 已将 治疗药水 ×1 交给 u2。" in out[0]
 
     def test_give_insufficient(self) -> None:
         p = make_plugin()
@@ -403,7 +403,7 @@ class TestCustomPrefixRoute:
         event = ev(".bag add 治疗药水 3")
         outputs = run(_collect(p.custom_prefix_route(event)))
         assert len(outputs) == 1
-        assert "➕ 已放入 **治疗药水** ×3" in outputs[0]
+        assert "➕ 已放入 治疗药水 ×3" in outputs[0]
         assert event.stopped is True
 
     def test_dot_prefix_bag_zh_alias(self) -> None:
@@ -412,7 +412,7 @@ class TestCustomPrefixRoute:
         event = ev(".背包 add 治疗药水 3")
         outputs = run(_collect(p.custom_prefix_route(event)))
         assert len(outputs) == 1
-        assert "➕ 已放入 **治疗药水** ×3" in outputs[0]
+        assert "➕ 已放入 治疗药水 ×3" in outputs[0]
         assert event.stopped is True
 
     def test_dot_prefix_bag_view_uses_dot_in_hint(self) -> None:
@@ -443,9 +443,9 @@ class TestManageInventoryTool:
                 ev(""), action="add", item="治疗药水", qty=3, weight=0.5, value=50
             )
         )
-        assert "➕ 已放入 **治疗药水** ×3" in out
+        assert "➕ 已放入 治疗药水 ×3" in out
         out = run(p.manage_inventory_tool(ev(""), action="list"))
-        assert "**治疗药水** ×3" in out
+        assert "治疗药水 ×3" in out
 
     def test_add_default_qty(self) -> None:
         p = make_plugin()
@@ -543,13 +543,13 @@ class TestBagEdit:
         p = make_plugin()
         bag(p, ev("/bag add 治疗药水 3 w=0.5 v=50 note=旧备注"))
         out = bag(p, ev("/bag edit 治疗药水 w=0.8 note=已开封"))
-        assert "✏️ 已更新 **治疗药水** ×3" in out[0]
+        assert "✏️ 已更新 治疗药水 ×3" in out[0]
         assert "⚖️0.8/件" in out[0]
         assert "备注：已开封" in out[0]
         assert "💰5银/件" in out[0]  # 未修改的价值保持（v0.20.0 单位=铜币：50 铜）
         # 数量不受影响
         out = bag(p, ev("/bag"))
-        assert "**治疗药水** ×3" in out[0]
+        assert "治疗药水 ×3" in out[0]
 
     def test_edit_clear_weight(self) -> None:
         p = make_plugin()
@@ -577,7 +577,7 @@ class TestBagEdit:
         bag(p, ev("/bag add 金币 50"))
         bag(p, ev("/bag put 金币 50"))
         out = bag(p, ev("/bag party edit 金币 v=2"))
-        assert "✏️ 已更新 **金币** ×50" in out[0]
+        assert "✏️ 已更新 金币 ×50" in out[0]
         # v0.20.0：货币条目价值按面值显示（金币 = 1金），不随 v= 参数变
         assert "💰1金/件" in out[0]
         out = bag(p, ev("/bag party"))
@@ -604,7 +604,7 @@ class TestManageInventoryEdit:
         p = make_plugin()
         run(p.manage_inventory_tool(ev(""), action="add", item="治疗药水", qty=3, weight=0.5))
         out = run(p.manage_inventory_tool(ev(""), action="edit", item="治疗药水", weight=0.8))
-        assert "✏️ 已更新 **治疗药水** ×3" in out
+        assert "✏️ 已更新 治疗药水 ×3" in out
         assert "⚖️0.8/件" in out
 
     def test_edit_clear_with_negative_one(self) -> None:
@@ -625,7 +625,7 @@ class TestManageInventoryEdit:
         p = make_plugin()
         run(p.manage_inventory_tool(ev(""), action="add", item="金币", qty=10, to_party=True, value=1))
         out = run(p.manage_inventory_tool(ev(""), action="edit", item="金币", value=2, to_party=True))
-        assert "✏️ 已更新 **金币** ×10" in out
+        assert "✏️ 已更新 金币 ×10" in out
         # v0.20.0：货币条目价值按面值显示（金币 = 1金）
         assert "💰1金/件" in out
 

@@ -680,7 +680,7 @@ class InventoryManager:
         价值字段 v0.20.0 起为铜币口径：货币条目按面值显示（金币→1金），
         其余按铜币换算成「X金Y银Z铜」。
         """
-        parts = [f"**{entry.name}** ×{entry.qty}"]
+        parts = [f"{entry.name} ×{entry.qty}"]
         attrs: list[str] = []
         if entry.weight is not None:
             attrs.append(f"⚖️{_fmt_num(entry.weight)}/件")

@@ -515,6 +515,61 @@ def _parse_batch_name_qty(tokens: list[str]) -> list[tuple[str, int]] | str:
     return pairs
 
 
+def _parse_batch_bag_add(tokens: list[str]) -> list[dict] | str:
+    """解析批量放入背包参数：「名称 [数量] [重=X|价=X|备注=X] 名称 …」。
+
+    /发放 与 /bag add 批量共用（/收回 不涉及属性，复用 _parse_batch_name_qty）。
+    非属性、非纯数字 token = 下一个物品名（数量默认 1）；纯数字 token =
+    前一个物品的数量；属性 token（重=/w=、价=/v=、备注=/note=）归属当前
+    物品。向后兼容单件写法：`发放 长剑` = x1、`发放 长剑 2` = x2、
+    `发放 长剑 价=5银` = x1 且价值 50 铜。数字出现在名称位（如 `发放 2 长剑`）
+    报错。返回 [{"name","qty","weight","value","note"}, ...] 或错误文案字符串。
+    """
+    if not tokens:
+        return "请提供物品名称。"
+    items: list[dict] = []
+    prev_number = False
+    for tok in tokens:
+        if tok.isdigit() or (tok.startswith("-") and tok[1:].isdigit()):
+            if not items:
+                return f"数量「{tok}」前缺少物品名称。"
+            if prev_number:
+                return f"数量「{tok}」重复，同一物品只能指定一次数量。"
+            qty = int(tok)
+            if not 1 <= qty <= 99999:
+                return f"无效的数量：'{tok}'，应为 1~99999 的整数。"
+            items[-1]["qty"] = qty
+            prev_number = True
+            continue
+        key, sep, raw = tok.partition("=")
+        if sep and key.lower() in ("重", "w", "价", "v", "备注", "note"):
+            if not items:
+                return f"属性「{tok}」前缺少物品名称。"
+            k = key.lower()
+            if k in ("重", "w"):
+                try:
+                    num = float(raw)
+                except ValueError:
+                    return f"无效的重量「{raw}」（应为非负数字）。"
+                if num != num or num < 0:  # NaN 或负数
+                    return f"无效的重量「{raw}」（应为非负数字）。"
+                items[-1]["weight"] = num
+            elif k in ("价", "v"):
+                m = parse_money(raw)
+                if m is None:
+                    return f"无法解析价值「{raw}」（支持 2金5银 / 150）。"
+                items[-1]["value"] = float(m)
+            else:
+                items[-1]["note"] = raw
+            prev_number = False
+            continue
+        items.append(
+            {"name": tok, "qty": 1, "weight": None, "value": None, "note": None}
+        )
+        prev_number = False
+    return items
+
+
 def _format_buy_result(result) -> str:
     """批量购买的单行结果（成功/失败），供批量汇总输出。"""
     if result.ok:
@@ -522,7 +577,7 @@ def _format_buy_result(result) -> str:
             f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
         )
         return (
-            f"✅ 已购买 **{result.item_name}** ×{result.qty}，"
+            f"✅ 已购买 {result.item_name} ×{result.qty}，"
             f"花费 {format_cp(result.total_cp)}"
             f"（{format_cp(result.price_cp)}/件）{stock_note}。"
         )
@@ -533,7 +588,7 @@ def _format_buy_result(result) -> str:
     if result.reason == "no_price":
         return f"❌ 「{result.item_name}」没有定价（知识库无库价），需 DM 设价。"
     return (
-        f"❌ 钱不够：购买 **{result.item_name}** ×{result.qty} 需"
+        f"❌ 钱不够：购买 {result.item_name} ×{result.qty} 需"
         f" {format_cp(result.total_cp)}，还差 {format_cp(result.shortfall_cp)}。"
     )
 
@@ -545,7 +600,7 @@ def _format_sell_result(result) -> str:
             f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
         )
         return (
-            f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
+            f"💰 已卖出 {result.item_name} ×{result.qty}，"
             f"获得 {format_cp(result.pay_cp)}"
             f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
         )
@@ -556,14 +611,13 @@ def _format_sell_result(result) -> str:
     return f"❌ 背包里没有足够的「{result.item_name}」可以出售。"
 
 
-def _normalize_tool_items(items) -> list[dict] | str:
-    """把 LLM 工具传的 items 归一化为 [{item, qty, price?, stock?}, ...]。
+def _normalize_tool_items_base(items) -> list[dict] | str:
+    """LLM items 参数的公共基础归一化（shop/inventory 共用）。
 
-    容错：None 返回 []（调用方回退单件 item+qty）；str 先 json.loads（部分
-    模型会把数组序列化成字符串）；list 逐元素校验——元素须为 dict 且含 item
-    （兼容 name 键），qty 缺省 1（数字/数字字符串均可），add 可含 price
-    （"2金" 或铜币整数）与 stock（数字或 "无限"）。
-    返回列表或错误文案字符串。
+    None 返回 []（调用方回退单件 item+qty）；str 先 json.loads（部分模型
+    会把数组序列化成字符串）；list 逐元素校验——元素须为 dict 且含 item
+    （兼容 name 键），qty 缺省 1（数字/数字字符串均可）。
+    返回 [{"item", "qty"}, ...] 或错误文案字符串；扩展字段由调用方二次校验。
     """
     if items is None:
         return []
@@ -587,28 +641,90 @@ def _normalize_tool_items(items) -> list[dict] | str:
             return f"items[{i}] 的数量「{raw.get('qty')}」不是有效整数。"
         if not 1 <= qty <= 99999:
             return f"items[{i}] 的数量「{qty}」应在 1~99999 之间。"
-        spec: dict = {"item": name, "qty": qty}
+        out.append({"item": name, "qty": qty})
+    return out
+
+
+def _normalize_tool_items(items) -> list[dict] | str:
+    """把 LLM 工具传的 items 归一化为 [{item, qty, price?, stock?}, ...]。
+
+    容错：None 返回 []（调用方回退单件 item+qty）；str 先 json.loads（部分
+    模型会把数组序列化成字符串）；list 逐元素校验——元素须为 dict 且含 item
+    （兼容 name 键），qty 缺省 1（数字/数字字符串均可），add 可含 price
+    （"2金" 或铜币整数）与 stock（数字或 "无限"）。
+    返回列表或错误文案字符串。
+    """
+    base = _normalize_tool_items_base(items)
+    if isinstance(base, str):
+        return base
+    if not base:
+        return []
+    # base 已保证 items 可遍历（str 已解析）；重新取原始 list 读扩展字段。
+    raw_list = json.loads(items) if isinstance(items, str) else items
+    for i, raw in enumerate(raw_list):
+        if not isinstance(raw, dict):  # base 已校验，此处防御
+            return f"items[{i}] 应为对象 {{item, qty, ...}}。"
         if "price" in raw and raw["price"] is not None:
             price = raw["price"]
             if isinstance(price, (int, float)):
-                spec["price"] = int(price)
+                base[i]["price"] = int(price)
             else:
                 m = parse_money(str(price))
                 if m is None:
                     return f"items[{i}] 的价格「{price}」无法解析（支持 2金 / 150）。"
-                spec["price"] = m
+                base[i]["price"] = m
         if "stock" in raw and raw["stock"] is not None:
             s = str(raw["stock"]).strip()
             if s in ("无限", "inf", "∞"):
-                spec["stock"] = None
+                base[i]["stock"] = None
             elif s.isdigit():
-                spec["stock"] = int(s)
+                base[i]["stock"] = int(s)
             else:
                 return (
                     f"items[{i}] 的库存「{raw['stock']}」无法解析（支持数字或 无限）。"
                 )
-        out.append(spec)
-    return out
+    return base
+
+
+def _normalize_tool_inventory_items(items) -> list[dict] | str:
+    """把 LLM 工具传的背包 items 归一化为 [{item, qty, weight?, value?, note?}, ...]。
+
+    在 _normalize_tool_items_base 之上追加背包扩展字段：add 场景可含 weight
+    （单件重量，非负数字）、value（单件价值，"2金5银" 或铜币整数）、note
+    （备注，字符串）。返回列表或错误文案字符串。
+    """
+    base = _normalize_tool_items_base(items)
+    if isinstance(base, str):
+        return base
+    if not base:
+        return []
+    raw_list = json.loads(items) if isinstance(items, str) else items
+    for i, raw in enumerate(raw_list):
+        if not isinstance(raw, dict):  # base 已校验，此处防御
+            return f"items[{i}] 应为对象 {{item, qty, ...}}。"
+        if "weight" in raw and raw["weight"] is not None:
+            try:
+                w = float(raw["weight"])
+            except (TypeError, ValueError):
+                return f"items[{i}] 的重量「{raw['weight']}」不是有效数字。"
+            if w != w or w < 0:  # NaN 或负数
+                return f"items[{i}] 的重量「{w}」应为非负数字。"
+            base[i]["weight"] = w
+        if "value" in raw and raw["value"] is not None:
+            v = raw["value"]
+            if isinstance(v, (int, float)):
+                vv = float(v)
+            else:
+                m = parse_money(str(v))
+                if m is None:
+                    return f"items[{i}] 的价值「{v}」无法解析（支持 2金5银 / 150）。"
+                vv = float(m)
+            if vv != vv or vv < 0:  # NaN 或负数
+                return f"items[{i}] 的价值「{v}」应为非负数字。"
+            base[i]["value"] = vv
+        if "note" in raw and raw["note"] is not None:
+            base[i]["note"] = str(raw["note"])
+    return base
 
 
 def _parse_edit_tokens(tokens: list[str]) -> dict | str:
@@ -1434,6 +1550,8 @@ _BAG_HELP = (
     "  {p}bag take <名称> [数量]     从队伍背包取出\n"
     "  {p}bag clear                  清空自己的背包\n"
     "  {p}bag party clear            清空队伍背包（管理员）\n"
+    "  {p}发放 <名称> [数量] [重=X] [价=X] [备注=X] [<名称> …]  发放战利品到队伍背包（可批量）\n"
+    "  {p}收回 <名称> [数量] [<名称> [数量] …]   从队伍背包收回物品（管理员；可批量）\n"
     "物品名含空格时请用英文双引号包裹。"
 )
 
@@ -2501,7 +2619,7 @@ class TrpgAssistantPlugin(Star):
             lines = [f"☠️ 已移除 {result.removed.name}（先攻 {result.removed.value}）。"]
             if result.next_current is not None:
                 lines.append(
-                    f"现在轮到 **{result.next_current.name}**"
+                    f"现在轮到 {result.next_current.name}"
                     f"（先攻 {result.next_current.value}）行动。"
                 )
             lines.append(f"剩余 {len(result.state.entries)} 个单位。")
@@ -2611,55 +2729,118 @@ class TrpgAssistantPlugin(Star):
             )
             return
 
-        # --- 放入物品 ---
+        # --- 放入物品（单件或批量） ---
         if sub in ("add", "放入", "添加"):
-            parsed = _parse_add_tokens(rest)
+            parsed = _parse_batch_bag_add(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
                     f"{parsed}\n用法：{display_prefix}bag add <名称> <数量> "
                     f"[w=单件重量] [v=单件价值] [note=备注]"
                 )
                 return
-            entry, _ = await self._inventory.add_item(
-                event,
-                parsed["name"],
-                parsed["qty"],
-                weight=parsed["weight"],
-                value=parsed["value"],
-                note=parsed["note"],
+            if len(parsed) == 1:
+                # 单件：回落原 _parse_add_tokens 路径（保留数量必填语义，零回归）。
+                single = _parse_add_tokens(rest)
+                if isinstance(single, str):
+                    yield event.plain_result(
+                        f"{single}\n用法：{display_prefix}bag add <名称> <数量> "
+                        f"[w=单件重量] [v=单件价值] [note=备注]"
+                    )
+                    return
+                entry, _ = await self._inventory.add_item(
+                    event,
+                    single["name"],
+                    single["qty"],
+                    weight=single["weight"],
+                    value=single["value"],
+                    note=single["note"],
+                )
+                yield event.plain_result(
+                    f"➕ 已放入 {entry.name} ×{single['qty']}（现有 {entry.qty} 个）。"
+                )
+                return
+            # 批量：逐件原子，失败列明、其余继续（同 /商店 批量模式）。
+            ok_count = 0
+            lines: list[str] = []
+            for spec in parsed:
+                try:
+                    entry, _ = await self._inventory.add_item(
+                        event,
+                        spec["name"],
+                        spec["qty"],
+                        weight=spec["weight"],
+                        value=spec["value"],
+                        note=spec["note"],
+                    )
+                except ValueError as e:
+                    lines.append(f"❌ {spec['name']}：{e}")
+                    continue
+                ok_count += 1
+                lines.append(f"✅ {entry.name} ×{spec['qty']}（现有 {entry.qty} 个）")
+            fail_count = len(parsed) - ok_count
+            head = f"➕ 批量放入：成功 {ok_count} 件" + (
+                f"，失败 {fail_count} 件。" if fail_count else "。"
             )
-            yield event.plain_result(
-                f"➕ 已放入 **{entry.name}** ×{parsed['qty']}（现有 {entry.qty} 个）。"
-            )
+            yield event.plain_result(head + "\n" + "\n".join(lines))
             return
 
-        # --- 取出物品 ---
+        # --- 取出物品（单件或批量） ---
         if sub in ("rm", "remove", "drop", "取出", "丢弃"):
-            parsed = _parse_name_qty(rest)
+            parsed = _parse_batch_name_qty(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
                     f"{parsed}\n用法：{display_prefix}bag rm <名称> [数量]"
                 )
                 return
-            name, qty = parsed
-            result = await self._inventory.remove_item(event, name, qty)
-            if not result.found:
-                yield event.plain_result(f"背包里没有「{name}」。")
+            if len(parsed) == 1:
+                name, qty = parsed[0]
+                result = await self._inventory.remove_item(event, name, qty)
+                if not result.found:
+                    yield event.plain_result(f"背包里没有「{name}」。")
+                    return
+                if result.removed_qty == 0:
+                    yield event.plain_result(
+                        f"背包里只有 {result.remaining} 个「{name}」，无法取出 {qty} 个。"
+                    )
+                    return
+                if result.deleted:
+                    yield event.plain_result(
+                        f"➖ 已取出 {name} ×{result.removed_qty}，背包中已无此物品。"
+                    )
+                else:
+                    yield event.plain_result(
+                        f"➖ 已取出 {name} ×{result.removed_qty}"
+                        f"（剩余 {result.remaining} 个）。"
+                    )
                 return
-            if result.removed_qty == 0:
-                yield event.plain_result(
-                    f"背包里只有 {result.remaining} 个「{name}」，无法取出 {qty} 个。"
-                )
-                return
-            if result.deleted:
-                yield event.plain_result(
-                    f"➖ 已取出 **{name}** ×{result.removed_qty}，背包中已无此物品。"
-                )
-            else:
-                yield event.plain_result(
-                    f"➖ 已取出 **{name}** ×{result.removed_qty}"
-                    f"（剩余 {result.remaining} 个）。"
-                )
+            ok_count = 0
+            lines: list[str] = []
+            for name, qty in parsed:
+                result = await self._inventory.remove_item(event, name, qty)
+                if not result.found:
+                    lines.append(f"❌ 背包里没有「{name}」。")
+                    continue
+                if result.removed_qty == 0:
+                    lines.append(
+                        f"❌ 背包里只有 {result.remaining} 个「{name}」，"
+                        f"无法取出 {qty} 个。"
+                    )
+                    continue
+                ok_count += 1
+                if result.deleted:
+                    lines.append(
+                        f"✅ 已取出 {name} ×{result.removed_qty}，背包中已无此物品"
+                    )
+                else:
+                    lines.append(
+                        f"✅ 已取出 {name} ×{result.removed_qty}"
+                        f"（剩余 {result.remaining} 个）"
+                    )
+            fail_count = len(parsed) - ok_count
+            head = f"➖ 批量取出：成功 {ok_count} 件" + (
+                f"，失败 {fail_count} 件。" if fail_count else "。"
+            )
+            yield event.plain_result(head + "\n" + "\n".join(lines))
             return
 
         # --- 编辑物品属性（个人背包） ---
@@ -2747,61 +2928,104 @@ class TrpgAssistantPlugin(Star):
             )
             return
 
-        # --- 存入队伍背包 ---
+        # --- 存入队伍背包（单件或批量） ---
         if sub in ("put", "存入"):
             if is_private:
                 yield event.plain_result(
                     "私聊没有队伍背包，这里只有你自己的物品。"
                 )
                 return
-            parsed = _parse_name_qty(rest)
+            parsed = _parse_batch_name_qty(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
                     f"{parsed}\n用法：{display_prefix}bag put <名称> [数量]"
                 )
                 return
-            name, qty = parsed
-            result = await self._inventory.put_to_party(event, name, qty)
-            if not result.ok:
-                if result.reason == "not_found":
-                    yield event.plain_result(f"背包里没有「{name}」。")
-                else:
-                    yield event.plain_result(
-                        f"背包里只有 {result.available} 个「{name}」，"
-                        f"无法存入 {qty} 个。"
-                    )
+            if len(parsed) == 1:
+                name, qty = parsed[0]
+                result = await self._inventory.put_to_party(event, name, qty)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        yield event.plain_result(f"背包里没有「{name}」。")
+                    else:
+                        yield event.plain_result(
+                            f"背包里只有 {result.available} 个「{name}」，"
+                            f"无法存入 {qty} 个。"
+                        )
+                    return
+                yield event.plain_result(
+                    f"📦 已将 {result.item_name} ×{result.qty} 存入队伍背包。"
+                )
                 return
-            yield event.plain_result(
-                f"📦 已将 **{result.item_name}** ×{result.qty} 存入队伍背包。"
+            ok_count = 0
+            lines: list[str] = []
+            for name, qty in parsed:
+                result = await self._inventory.put_to_party(event, name, qty)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        lines.append(f"❌ 背包里没有「{name}」。")
+                    else:
+                        lines.append(
+                            f"❌ 背包里只有 {result.available} 个「{name}」，"
+                            f"无法存入 {qty} 个。"
+                        )
+                    continue
+                ok_count += 1
+                lines.append(f"✅ {result.item_name} ×{result.qty} 已存入队伍背包")
+            fail_count = len(parsed) - ok_count
+            head = f"📦 批量存入：成功 {ok_count} 件" + (
+                f"，失败 {fail_count} 件。" if fail_count else "。"
             )
+            yield event.plain_result(head + "\n" + "\n".join(lines))
             return
 
-        # --- 从队伍背包取出 ---
+        # --- 从队伍背包取出（单件或批量） ---
         if sub in ("take", "取出公共", "拿取"):
             if is_private:
                 yield event.plain_result(
                     "私聊没有队伍背包，这里只有你自己的物品。"
                 )
                 return
-            parsed = _parse_name_qty(rest)
+            parsed = _parse_batch_name_qty(rest)
             if isinstance(parsed, str):
                 yield event.plain_result(
                     f"{parsed}\n用法：{display_prefix}bag take <名称> [数量]"
                 )
                 return
-            name, qty = parsed
-            result = await self._inventory.take_from_party(event, name, qty)
-            if not result.ok:
-                if result.reason == "not_found":
-                    yield event.plain_result(f"队伍背包里没有「{name}」。")
-                else:
-                    yield event.plain_result(
-                        f"队伍背包里只有 {result.available} 个「{name}」。"
-                    )
+            if len(parsed) == 1:
+                name, qty = parsed[0]
+                result = await self._inventory.take_from_party(event, name, qty)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        yield event.plain_result(f"队伍背包里没有「{name}」。")
+                    else:
+                        yield event.plain_result(
+                            f"队伍背包里只有 {result.available} 个「{name}」。"
+                        )
+                    return
+                yield event.plain_result(
+                    f"📦 已从队伍背包取出 {result.item_name} ×{result.qty}。"
+                )
                 return
-            yield event.plain_result(
-                f"📦 已从队伍背包取出 **{result.item_name}** ×{result.qty}。"
+            ok_count = 0
+            lines: list[str] = []
+            for name, qty in parsed:
+                result = await self._inventory.take_from_party(event, name, qty)
+                if not result.ok:
+                    if result.reason == "not_found":
+                        lines.append(f"❌ 队伍背包里没有「{name}」。")
+                    else:
+                        lines.append(
+                            f"❌ 队伍背包里只有 {result.available} 个「{name}」。"
+                        )
+                    continue
+                ok_count += 1
+                lines.append(f"✅ 已从队伍背包取出 {result.item_name} ×{result.qty}")
+            fail_count = len(parsed) - ok_count
+            head = f"📦 批量取出：成功 {ok_count} 件" + (
+                f"，失败 {fail_count} 件。" if fail_count else "。"
             )
+            yield event.plain_result(head + "\n" + "\n".join(lines))
             return
 
         # --- 赠送物品 ---
@@ -2838,7 +3062,7 @@ class TrpgAssistantPlugin(Star):
                     )
                 return
             yield event.plain_result(
-                f"🎁 已将 **{result.item_name}** ×{result.qty} 交给 {target_id}。"
+                f"🎁 已将 {result.item_name} ×{result.qty} 交给 {target_id}。"
             )
             return
 
@@ -2854,6 +3078,192 @@ class TrpgAssistantPlugin(Star):
 
         # --- help / 未知子命令 ---
         yield event.plain_result(_BAG_HELP.format(p=display_prefix))
+
+    # ------------------------------------------------------------------
+    # /发放 /收回 指令：DM 批量发放/撤回团队战利品（v0.42.0）
+    # ------------------------------------------------------------------
+
+    @filter.command("grant", alias={"发放"})
+    async def grant_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """
+        向团队背包批量发放战利品（DM 便捷指令，全员可用）。
+
+        用法:
+          /发放 <名称> [数量] [重=单件重量] [价=单件价值] [备注=备注] [<名称> …]
+          示例：/发放 治疗药水 3 价=5银 火球术卷轴 1
+        """
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        async for msg in self._handle_party_items(
+            event, arg, display_prefix="/", action="grant"
+        ):
+            yield msg
+
+    @filter.command("revoke", alias={"收回"})
+    async def revoke_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """
+        从团队背包批量收回物品（管理员/白名单权限）。
+
+        用法:
+          /收回 <名称> [数量] [<名称> [数量] …]
+          示例：/收回 火球术卷轴 1
+        """
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        async for msg in self._handle_party_items(
+            event, arg, display_prefix="/", action="revoke"
+        ):
+            yield msg
+
+    async def _handle_party_items(
+        self,
+        event: AstrMessageEvent,
+        arg: str,
+        display_prefix: str = "/",
+        action: str = "grant",
+    ) -> AsyncGenerator:
+        """/发放 /收回 命令核心逻辑，由 grant_cmd/revoke_cmd 与 custom_prefix_route 统一调用。
+
+        直接操作团队背包（inventory:party:{origin}）。整个 arg 就是物品列表
+        （无子命令）。grant=发放（全员放行）；revoke=收回（走
+        _check_destructive_permission，同 /bag party clear 口径）。
+        私聊无队伍背包，一律拒绝。
+        """
+        tokens = _tokenize(arg)
+        if tokens is None:
+            yield event.plain_result(
+                "引号未配对，物品名含空格时请用英文双引号包裹。"
+            )
+            return
+        if event.is_private_chat():
+            yield event.plain_result(
+                "私聊没有队伍背包，这里只有你自己的物品。"
+            )
+            return
+        if action == "revoke" and not await self._check_destructive_permission(event):
+            yield event.plain_result(
+                "你没有权限收回队伍背包物品。"
+                + (
+                    "（白名单模式已启用，请联系管理员）"
+                    if self.enable_whitelist
+                    else ""
+                )
+            )
+            return
+
+        if action == "grant":
+            parsed = _parse_batch_bag_add(tokens)
+            if isinstance(parsed, str):
+                yield event.plain_result(
+                    f"{parsed}\n用法：{display_prefix}发放 <名称> [数量] "
+                    f"[重=单件重量] [价=单件价值] [备注=备注]"
+                )
+                return
+            if len(parsed) == 1:
+                spec = parsed[0]
+                entry, _ = await self._inventory.add_item(
+                    event,
+                    spec["name"],
+                    spec["qty"],
+                    weight=spec["weight"],
+                    value=spec["value"],
+                    note=spec["note"],
+                    to_party=True,
+                )
+                yield event.plain_result(
+                    f"➕ 已发放到队伍背包：{entry.name} ×{spec['qty']}"
+                    f"（现有 {entry.qty} 个）。"
+                )
+                return
+            ok_count = 0
+            lines: list[str] = []
+            for spec in parsed:
+                try:
+                    entry, _ = await self._inventory.add_item(
+                        event,
+                        spec["name"],
+                        spec["qty"],
+                        weight=spec["weight"],
+                        value=spec["value"],
+                        note=spec["note"],
+                        to_party=True,
+                    )
+                except ValueError as e:
+                    lines.append(f"❌ {spec['name']}：{e}")
+                    continue
+                ok_count += 1
+                lines.append(f"✅ {entry.name} ×{spec['qty']}（现有 {entry.qty} 个）")
+            fail_count = len(parsed) - ok_count
+            head = f"➕ 批量发放：成功 {ok_count} 件" + (
+                f"，失败 {fail_count} 件。" if fail_count else "。"
+            )
+            yield event.plain_result(head + "\n" + "\n".join(lines))
+            return
+
+        # --- revoke ---
+        parsed = _parse_batch_name_qty(tokens)
+        if isinstance(parsed, str):
+            yield event.plain_result(
+                f"{parsed}\n用法：{display_prefix}收回 <名称> [数量]"
+            )
+            return
+        if len(parsed) == 1:
+            name, qty = parsed[0]
+            result = await self._inventory.remove_item(
+                event, name, qty, from_party=True
+            )
+            if not result.found:
+                yield event.plain_result(f"队伍背包里没有「{name}」。")
+                return
+            if result.removed_qty == 0:
+                yield event.plain_result(
+                    f"队伍背包里只有 {result.remaining} 个「{name}」，"
+                    f"无法收回 {qty} 个。"
+                )
+                return
+            if result.deleted:
+                yield event.plain_result(
+                    f"➖ 已从队伍背包收回 {name} ×{result.removed_qty}，"
+                    f"队伍背包中已无此物品。"
+                )
+            else:
+                yield event.plain_result(
+                    f"➖ 已从队伍背包收回 {name} ×{result.removed_qty}"
+                    f"（剩余 {result.remaining} 个）。"
+                )
+            return
+        ok_count = 0
+        lines: list[str] = []
+        for name, qty in parsed:
+            result = await self._inventory.remove_item(
+                event, name, qty, from_party=True
+            )
+            if not result.found:
+                lines.append(f"❌ 队伍背包里没有「{name}」。")
+                continue
+            if result.removed_qty == 0:
+                lines.append(
+                    f"❌ 队伍背包里只有 {result.remaining} 个「{name}」，"
+                    f"无法收回 {qty} 个。"
+                )
+                continue
+            ok_count += 1
+            if result.deleted:
+                lines.append(
+                    f"✅ 已收回 {name} ×{result.removed_qty}，队伍背包中已无此物品"
+                )
+            else:
+                lines.append(
+                    f"✅ 已收回 {name} ×{result.removed_qty}"
+                    f"（剩余 {result.remaining} 个）"
+                )
+        fail_count = len(parsed) - ok_count
+        head = f"➖ 批量收回：成功 {ok_count} 件" + (
+            f"，失败 {fail_count} 件。" if fail_count else "。"
+        )
+        yield event.plain_result(head + "\n" + "\n".join(lines))
 
     # ------------------------------------------------------------------
     # /商店 指令：商店管理（v0.20.0）
@@ -2978,7 +3388,7 @@ class TrpgAssistantPlugin(Star):
                     f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
                 )
                 yield event.plain_result(
-                    f"🛒 已购买 **{result.item_name}** ×{result.qty}，"
+                    f"🛒 已购买 {result.item_name} ×{result.qty}，"
                     f"花费 {format_cp(result.total_cp)}"
                     f"（{format_cp(result.price_cp)}/件）{stock_note}。"
                     "已自动入包并附带库重/价值。"
@@ -3031,7 +3441,7 @@ class TrpgAssistantPlugin(Star):
                     f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
                 )
                 yield event.plain_result(
-                    f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
+                    f"💰 已卖出 {result.item_name} ×{result.qty}，"
                     f"获得 {format_cp(result.pay_cp)}"
                     f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
                 )
@@ -3131,7 +3541,7 @@ class TrpgAssistantPlugin(Star):
                     "无限" if spec["stock"] is None else f"库存 {spec['stock']}"
                 )
                 yield event.plain_result(
-                    f"➕ 已上架 **{spec['name']}**（{price_note}，{stock_note}）。"
+                    f"➕ 已上架 {spec['name']}（{price_note}，{stock_note}）。"
                 )
                 return
             # 批量上架（逐件原子，失败件列明原因、其余继续）
@@ -3157,7 +3567,7 @@ class TrpgAssistantPlugin(Star):
                     "无限" if spec["stock"] is None else f"库存 {spec['stock']}"
                 )
                 lines.append(
-                    f"➕ 已上架 **{spec['name']}**（{price_note}，{stock_note}）。"
+                    f"➕ 已上架 {spec['name']}（{price_note}，{stock_note}）。"
                 )
             fail_count = len(parsed) - ok_count
             summary = f"➕ 批量上架：成功 {ok_count} 件"
@@ -3185,7 +3595,7 @@ class TrpgAssistantPlugin(Star):
                 if missing:
                     yield event.plain_result(f"商店里没有「{missing[0]}」。")
                 else:
-                    yield event.plain_result(f"➖ 已下架 **{removed[0]}**。")
+                    yield event.plain_result(f"➖ 已下架 {removed[0]}。")
                 return
             # 批量下架
             text_parts: list[str] = []
@@ -3228,7 +3638,7 @@ class TrpgAssistantPlugin(Star):
             if not await manager.set_price(origin, name, price_cp):
                 yield event.plain_result(f"商店里没有「{name}」。")
                 return
-            yield event.plain_result(f"✏️ 已设置 **{name}** 价格为 {price_note}。")
+            yield event.plain_result(f"✏️ 已设置 {name} 价格为 {price_note}。")
             return
 
         # --- 设库存 ---
@@ -3255,7 +3665,7 @@ class TrpgAssistantPlugin(Star):
                 yield event.plain_result(f"商店里没有「{name}」。")
                 return
             yield event.plain_result(
-                f"✏️ 已设置 **{name}** 库存为 {stock_note}。"
+                f"✏️ 已设置 {name} 库存为 {stock_note}。"
             )
             return
 
@@ -4968,6 +5378,21 @@ class TrpgAssistantPlugin(Star):
                     yield msg
                 event.stop_event()
                 return
+        # --- 发放 / 收回指令匹配（长 token 优先，直接操作队伍背包） ---
+        for cmd_key, act in ((f"{p}发放", "grant"), (f"{p}grant", "grant"),
+                             (f"{p}收回", "revoke"), (f"{p}revoke", "revoke")):
+            if (
+                text_lower == cmd_key
+                or text_lower.startswith(cmd_key + " ")
+                or text_lower.startswith(cmd_key + "\n")
+            ):
+                arg = text[len(cmd_key) :].strip()
+                async for msg in self._handle_party_items(
+                    event, arg, display_prefix=prefix, action=act
+                ):
+                    yield msg
+                event.stop_event()
+                return
         # --- 商店指令匹配 ---
         for cmd_key in (f"{p}商店", f"{p}shop", f"{p}店铺"):
             if (
@@ -5242,7 +5667,7 @@ class TrpgAssistantPlugin(Star):
             lines = [f"☠️ 已移除 {result.removed.name}（先攻 {result.removed.value}）。"]
             if result.next_current is not None:
                 lines.append(
-                    f"现在轮到 **{result.next_current.name}**"
+                    f"现在轮到 {result.next_current.name}"
                     f"（先攻 {result.next_current.value}）行动。"
                 )
             lines.append(f"剩余 {len(result.state.entries)} 个单位。")
@@ -5296,10 +5721,12 @@ class TrpgAssistantPlugin(Star):
         value: float | None = None,
         note: str = "",
         to_party: bool = False,
+        items: list | None = None,
     ) -> str:
         """
         管理 TRPG/DnD 玩家的背包（Inventory）。当玩家获得战利品、使用/消耗物品、
         查看自己或队伍的物资、在个人背包与队伍背包之间转移物品时调用此工具。
+        支持一次操作多种物品（items 数组批量发放/撤回/流转）。
 
         注意：本工具不支持玩家间赠送（give），用户要求赠送时请引导其使用
         「/bag give @某人 <名称> [数量]」命令。
@@ -5308,25 +5735,37 @@ class TrpgAssistantPlugin(Star):
             action(string): 要执行的操作。取值：list=查看背包（默认动作，
                 to_party=true 查看队伍背包）；add=放入物品（默认入本人背包，
                 to_party=true 入队伍背包）；remove=取出/消耗物品，数量归零自动删除
-                （默认从本人背包取出，to_party=true 从队伍背包取出）；put=将物品
-                从本人背包存入队伍背包；take=将物品从队伍背包取到本人背包；
-                edit=修改物品的属性（重量/价值/备注），不改变数量与名称；
-                clear=清空本人背包（仅个人；队伍背包不支持经此工具清空）。
-            item(string): 物品名称。add/remove/put/take/edit 必须提供。
-            qty(number): 数量，省略时默认为 1。
+                （默认从本人背包取出，to_party=true 从队伍背包取出——撤回
+                战利品需要管理员/白名单权限）；put=将物品从本人背包存入队伍
+                背包；take=将物品从队伍背包取到本人背包；edit=修改物品的属性
+                （重量/价值/备注），不改变数量与名称；clear=清空本人背包
+                （仅个人；队伍背包不支持经此工具清空）。
+            item(string): 物品名称。单件操作（add/remove/put/take/edit）时提供；
+                使用 items 批量时忽略。
+            qty(number): 数量，省略时默认为 1。使用 items 批量时忽略。
             weight(number): 单件重量。add 时直接设置；edit 时不传=不修改，
-                传 -1=清除该属性，传 >=0=覆盖。
+                传 -1=清除该属性，传 >=0=覆盖。使用 items 批量时在元素内设置。
             value(number): 单件价值。add 时直接设置；edit 时不传=不修改，
-                传 -1=清除该属性，传 >=0=覆盖。
+                传 -1=清除该属性，传 >=0=覆盖。使用 items 批量时在元素内设置。
             note(string): 备注。add 时直接设置；edit 时不传或空串=不修改，
-                传 "-"=清除备注，其他=覆盖。
+                传 "-"=清除备注，其他=覆盖。使用 items 批量时在元素内设置。
             to_party(boolean): 目标/来源是否为队伍背包（见各 action 说明）。
+            items(array): 批量物品列表（可选）。元素为对象：item 必填（物品
+                名称），qty 可选（数量，默认 1）；action=add 时元素还可含
+                weight（单件重量）、value（单件价值，铜币，支持"2金5银"）、
+                note（备注）；action=put/take 时元素仅用 item 与 qty（流转
+                携带源条目属性）。提供 items 时忽略 item/qty 单件参数。
         """
         event = _resolve_event(event)
         if event is None:
             return "工具上下文解析失败：当前 AstrBot 版本注入的事件对象不兼容，请升级插件。"
         action = (action or "list").strip().lower()
         is_private = event.is_private_chat()
+
+        # items 批量解析：None/空 → []（走单件）；非法 → 错误文案。
+        batch = _normalize_tool_inventory_items(items)
+        if isinstance(batch, str):
+            return batch
 
         if action in ("list", "查看", "列表", ""):
             if to_party:
@@ -5343,11 +5782,35 @@ class TrpgAssistantPlugin(Star):
             return InventoryManager.format_inventory(inv, f"🎒 {owner} 的背包")
 
         if action in ("add", "放入", "添加"):
+            if to_party and is_private:
+                return "私聊没有队伍背包，无法放入公共物资。"
+            if batch:
+                ok_count = 0
+                lines: list[str] = []
+                for spec in batch:
+                    try:
+                        entry, _ = await self._inventory.add_item(
+                            event,
+                            spec["item"],
+                            spec["qty"],
+                            weight=spec.get("weight"),
+                            value=spec.get("value"),
+                            note=spec.get("note"),
+                            to_party=to_party,
+                        )
+                    except ValueError as e:
+                        lines.append(f"❌ {spec['item']}：{e}")
+                        continue
+                    ok_count += 1
+                    lines.append(f"✅ {entry.name} ×{spec['qty']}（现有 {entry.qty} 个）")
+                fail_count = len(batch) - ok_count
+                head = f"➕ 批量放入：成功 {ok_count} 件" + (
+                    f"，失败 {fail_count} 件。" if fail_count else "。"
+                )
+                return head + "\n" + "\n".join(lines)
             target = (item or "").strip()
             if not target:
                 return "请提供物品名称（item 参数）。"
-            if to_party and is_private:
-                return "私聊没有队伍背包，无法放入公共物资。"
             n = _safe_int(qty, 1, min_val=1, max_val=99999)
             try:
                 entry, _ = await self._inventory.add_item(
@@ -5362,14 +5825,53 @@ class TrpgAssistantPlugin(Star):
             except ValueError as e:
                 return f"放入失败：{e}"
             where = "队伍背包" if to_party else "背包"
-            return f"➕ 已放入 **{entry.name}** ×{n}（{where}现有 {entry.qty} 个）。"
+            return f"➕ 已放入 {entry.name} ×{n}（{where}现有 {entry.qty} 个）。"
 
         if action in ("remove", "rm", "取出", "消耗", "丢弃"):
+            if to_party and is_private:
+                return "私聊没有队伍背包。"
+            # 从队伍背包撤回战利品 = 破坏性操作，与命令侧 /收回 同口径鉴权。
+            if to_party and not await self._check_destructive_permission(event):
+                return (
+                    "你没有权限从队伍背包取出物品（撤回战利品需管理员/白名单权限）。"
+                    + ("（白名单模式已启用，请联系管理员）" if self.enable_whitelist else "")
+                )
+            if batch:
+                ok_count = 0
+                lines: list[str] = []
+                for spec in batch:
+                    result = await self._inventory.remove_item(
+                        event, spec["item"], spec["qty"], from_party=to_party
+                    )
+                    where = "队伍背包" if to_party else "背包"
+                    if not result.found:
+                        lines.append(f"❌ {where}里没有「{spec['item']}」。")
+                        continue
+                    if result.removed_qty == 0:
+                        lines.append(
+                            f"❌ {where}里只有 {result.remaining} 个「{spec['item']}」，"
+                            f"无法取出 {spec['qty']} 个。"
+                        )
+                        continue
+                    ok_count += 1
+                    if result.deleted:
+                        lines.append(
+                            f"✅ 已取出 {spec['item']} ×{result.removed_qty}，"
+                            f"{where}中已无此物品"
+                        )
+                    else:
+                        lines.append(
+                            f"✅ 已取出 {spec['item']} ×{result.removed_qty}"
+                            f"（{where}剩余 {result.remaining} 个）"
+                        )
+                fail_count = len(batch) - ok_count
+                head = f"➖ 批量取出：成功 {ok_count} 件" + (
+                    f"，失败 {fail_count} 件。" if fail_count else "。"
+                )
+                return head + "\n" + "\n".join(lines)
             target = (item or "").strip()
             if not target:
                 return "请提供物品名称（item 参数）。"
-            if to_party and is_private:
-                return "私聊没有队伍背包。"
             n = _safe_int(qty, 1, min_val=1, max_val=99999)
             result = await self._inventory.remove_item(
                 event, target, n, from_party=to_party
@@ -5383,15 +5885,40 @@ class TrpgAssistantPlugin(Star):
                     f"无法取出 {n} 个。"
                 )
             if result.deleted:
-                return f"➖ 已取出 **{target}** ×{result.removed_qty}，{where}中已无此物品。"
+                return f"➖ 已取出 {target} ×{result.removed_qty}，{where}中已无此物品。"
             return (
-                f"➖ 已取出 **{target}** ×{result.removed_qty}"
+                f"➖ 已取出 {target} ×{result.removed_qty}"
                 f"（{where}剩余 {result.remaining} 个）。"
             )
 
         if action in ("put", "存入"):
             if is_private:
                 return "私聊没有队伍背包，无法存入公共物资。"
+            if batch:
+                ok_count = 0
+                lines: list[str] = []
+                for spec in batch:
+                    result = await self._inventory.put_to_party(
+                        event, spec["item"], spec["qty"]
+                    )
+                    if not result.ok:
+                        if result.reason == "not_found":
+                            lines.append(f"❌ 背包里没有「{spec['item']}」。")
+                        else:
+                            lines.append(
+                                f"❌ 背包里只有 {result.available} 个"
+                                f"「{spec['item']}」，无法存入 {spec['qty']} 个。"
+                            )
+                        continue
+                    ok_count += 1
+                    lines.append(
+                        f"✅ {result.item_name} ×{result.qty} 已存入队伍背包"
+                    )
+                fail_count = len(batch) - ok_count
+                head = f"📦 批量存入：成功 {ok_count} 件" + (
+                    f"，失败 {fail_count} 件。" if fail_count else "。"
+                )
+                return head + "\n" + "\n".join(lines)
             target = (item or "").strip()
             if not target:
                 return "请提供物品名称（item 参数）。"
@@ -5403,11 +5930,36 @@ class TrpgAssistantPlugin(Star):
                 return (
                     f"背包里只有 {result.available} 个「{target}」，无法存入 {n} 个。"
                 )
-            return f"📦 已将 **{result.item_name}** ×{result.qty} 存入队伍背包。"
+            return f"📦 已将 {result.item_name} ×{result.qty} 存入队伍背包。"
 
         if action in ("take", "拿取"):
             if is_private:
                 return "私聊没有队伍背包。"
+            if batch:
+                ok_count = 0
+                lines: list[str] = []
+                for spec in batch:
+                    result = await self._inventory.take_from_party(
+                        event, spec["item"], spec["qty"]
+                    )
+                    if not result.ok:
+                        if result.reason == "not_found":
+                            lines.append(f"❌ 队伍背包里没有「{spec['item']}」。")
+                        else:
+                            lines.append(
+                                f"❌ 队伍背包里只有 {result.available} 个"
+                                f"「{spec['item']}」。"
+                            )
+                        continue
+                    ok_count += 1
+                    lines.append(
+                        f"✅ 已从队伍背包取出 {result.item_name} ×{result.qty}"
+                    )
+                fail_count = len(batch) - ok_count
+                head = f"📦 批量取出：成功 {ok_count} 件" + (
+                    f"，失败 {fail_count} 件。" if fail_count else "。"
+                )
+                return head + "\n" + "\n".join(lines)
             target = (item or "").strip()
             if not target:
                 return "请提供物品名称（item 参数）。"
@@ -5417,7 +5969,7 @@ class TrpgAssistantPlugin(Star):
                 if result.reason == "not_found":
                     return f"队伍背包里没有「{target}」。"
                 return f"队伍背包里只有 {result.available} 个「{target}」。"
-            return f"📦 已从队伍背包取出 **{result.item_name}** ×{result.qty}。"
+            return f"📦 已从队伍背包取出 {result.item_name} ×{result.qty}。"
 
         if action in ("edit", "修改", "编辑"):
             target = (item or "").strip()
@@ -5551,7 +6103,7 @@ class TrpgAssistantPlugin(Star):
                     f"，余 {result.stock_left} 件" if result.stock_left is not None else ""
                 )
                 return (
-                    f"🛒 已购买 **{result.item_name}** ×{result.qty}，"
+                    f"🛒 已购买 {result.item_name} ×{result.qty}，"
                     f"花费 {format_cp(result.total_cp)}"
                     f"（{format_cp(result.price_cp)}/件）{stock_note}。"
                 )
@@ -5593,7 +6145,7 @@ class TrpgAssistantPlugin(Star):
                     f"，商店余 {result.stock_left} 件" if result.stock_left is not None else ""
                 )
                 return (
-                    f"💰 已卖出 **{result.item_name}** ×{result.qty}，"
+                    f"💰 已卖出 {result.item_name} ×{result.qty}，"
                     f"获得 {format_cp(result.pay_cp)}"
                     f"（{format_cp(result.price_cp)}/件×回购系数）{stock_note}。"
                 )
@@ -5644,7 +6196,7 @@ class TrpgAssistantPlugin(Star):
                     "无限" if spec.get("stock") is None else f"库存 {spec['stock']}"
                 )
                 lines.append(
-                    f"➕ 已上架 **{spec['item']}**（{price_note}，{stock_note}）。"
+                    f"➕ 已上架 {spec['item']}（{price_note}，{stock_note}）。"
                 )
             fail_count = len(specs) - ok_count
             summary = f"➕ 批量上架：成功 {ok_count} 件"

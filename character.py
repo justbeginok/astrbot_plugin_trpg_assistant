@@ -1508,7 +1508,7 @@ class CharacterManager:
         kb 可选：传入知识库管理器时追加「职业特性」「种族特性」段（只列
         名字）；kb 查询异常静默跳过，不影响主流程。
         """
-        lines: list[str] = [f"📜 **{sheet.name}**（{sheet.edition}）"]
+        lines: list[str] = [f"📜 {sheet.name}（{sheet.edition}）"]
         # 战斗核心（v0.23.0 惯例：名字下先 HP/AC/速度/被动察觉，v0.30.0 加先攻）
         fight_core: list[str] = [f"HP {CharacterManager._fmt_stat(sheet.hp_max)}"]
         fight_core.append(f"AC {CharacterManager._fmt_stat(sheet.ac)}")

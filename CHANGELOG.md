@@ -5,6 +5,44 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.42.0] - 2026-08-11
+
+### 新增
+
+- **DM 战利品发放/收回指令**：`/发放`（grant）直接向团队背包批量发放
+  战利品，`/收回`（revoke）批量撤回（管理员/白名单权限）：
+  - `/发放 治疗药水 3 价=5银 火球术卷轴 1` 一条命令完成多件发放，支持
+    `重=X`（重量）、`价=X`（价值，支持 2金5银 写法）、`备注=X` 逐项
+    属性归属（兼容 `w=/v=/note=` 短键）；
+  - `/收回 火球术卷轴 1` 撤回发错的物品；收回走破坏性鉴权（群管理员/
+    白名单），发放全员可用；私聊一律拒绝（队伍背包按群隔离）；
+  - 新增 custom_prefix_route 前缀 `{p}发放`/`{p}grant`/`{p}收回`/
+    `{p}revoke`。
+- **/bag 全量批量**：`/bag add/rm/put/take` 支持一条指令多件物品
+  （`/bag add 治疗药水 2 绳索 1`），单件保留原行为（数量必填等零回归），
+  批量逐件原子、失败列明、成功 N 件/失败 M 件汇总。
+- **manage_inventory LLM 工具 items 批量参数**：`action=add/remove/put/take`
+  支持 `items(array)` 批量（元素 `{"item": 名称, "qty": 数量}`，add 可含
+  weight/value/note；防御 JSON 字符串），与命令侧全量对齐；docstring
+  schema 同步（8 参数）。
+
+### 修复
+
+- **全插件去 Markdown 输出（ADR-0017）**：QQ/onebot 不解析 Markdown，
+  此前背包/商店/角色卡/先攻/车卡等输出中的 `**加粗**` 会原样显示。
+  本次以纯文本为标准清理全部约 30 处输出（成对 `**`/`*`/`~~`、行首
+  `>`/`#`），保留 `- ` 列表、`1. ` 编号、emoji、`×`/`→` 等纯文本排版
+  与骰式表达式（`3d6>3`、`d20+5#标签` 的符号属语法不误删）；新增
+  `test_no_markdown_output.py` 守卫防回潮。
+- **角色卡文本导入兼容纯文本头**：卡名头正则原本只认 `📜 **名字**（版本）`，
+  去 markdown 后 format_sheet 输出的 `📜 名字（版本）` 无法 round-trip
+  再导入——现兼容「带 `**`（旧格式）或带 `📜` 前缀」两种写法，宽松键行
+  不受影响。
+- **安全对称（ADR-0016）**：manage_inventory 工具侧 `remove` +
+  `to_party=true` 从队伍背包撤回物品时引入与 `/收回` 同口径的
+  `_check_destructive_permission` 鉴权（此前工具无鉴权可绕过命令侧收回
+  权限）；put/take/add(to_party) 保持开放。
+
 ## [0.41.2] - 2026-08-11
 
 ### 新增

@@ -123,7 +123,7 @@ def seed_card(plugin: _MemoryPlugin, name: str = "阿尔文", sender_id: str = "
 
 
 MULTI_LINE = (
-    "📜 **阿尔文**（2014）\n"
+    "📜 阿尔文（2014）\n"
     "职业：战士（勇士） 3\n"
     "种族 半精灵　背景 士兵　阵营 守序善良\n"
     "属性值：力量 15　敏捷 14　体质 13　智力 12　感知 10　魅力 8\n"
@@ -138,7 +138,7 @@ class TestCardImportCommand:
         out = card_cmd(p, ev(f"/卡 导入\n{MULTI_LINE}"))
         joined = "\n".join(out)
         assert "已导入角色卡「阿尔文」" in joined
-        assert "📜 **阿尔文**（2014）" in joined
+        assert "📜 阿尔文（2014）" in joined
         assert "力量 15（+2）" in joined
         card = run(p.character_manager.get_card(ev("")))
         assert card is not None and card.name == "阿尔文"

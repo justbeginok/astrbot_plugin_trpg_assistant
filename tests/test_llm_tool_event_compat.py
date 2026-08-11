@@ -112,7 +112,7 @@ class TestToolsUnderContextWrapper:
         run(p.shop_manager.add_entry("group:1", "长剑", price_cp=1500))
         ev = FakeEvent()
         out = run(p.manage_shop_tool(_context_wrapper(ev), action="list"))
-        assert "**长剑**" in out  # 不再 AttributeError
+        assert "长剑" in out  # 不再 AttributeError
 
     def test_manage_shop_buy_under_wrapper(self, tmp_path: Path) -> None:
         p = make_plugin(tmp_path)

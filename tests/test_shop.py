@@ -137,12 +137,12 @@ def test_init_from_kb_dedup_and_xphb_price(tmp_path: Path) -> None:
     out = shop(p, ev("/商店"))
     text = out[0]
     assert "共 5 种商品" in text
-    assert "**长剑**" in text and "**手弩**" in text
-    assert "**盾牌**" in text
+    assert "长剑" in text and "手弩" in text
+    assert "盾牌" in text
     # 库价直接显示具体金额（15金=1500 铜、25金=2500 铜），不再显示「库价」占位
-    assert "**长剑** — 15金" in text
-    assert "**手弩** — 25金" in text
-    assert "**皮甲** — 10金" in text
+    assert "长剑 — 15金" in text
+    assert "手弩 — 25金" in text
+    assert "皮甲 — 10金" in text
 
 
 def test_init_requires_admin(tmp_path: Path) -> None:
@@ -175,13 +175,13 @@ def test_buy_success_fills_weight_value(tmp_path: Path) -> None:
     init_shop(p)
     add_coins(p, "金币", 20)  # 2000 铜
     out = shop(p, ev("/商店 买 长剑 1"))
-    assert "🛒 已购买 **长剑** ×1" in out[0]
+    assert "🛒 已购买 长剑 ×1" in out[0]
     assert "花费 15金" in out[0]
 
     out = bag(p, ev("/bag"))
-    assert "**金币** ×5" in out[0]  # 2000 - 1500 = 500 铜 = 5 金
+    assert "金币 ×5" in out[0]  # 2000 - 1500 = 500 铜 = 5 金
     # 入包带库重/库价（价值字段=成交单价 1500 铜 → 15金/件）
-    assert "**长剑** ×1" in out[0]
+    assert "长剑 ×1" in out[0]
     assert "💰15金/件" in out[0]
     assert "⚖️3/件" in out[0]
 
@@ -195,7 +195,7 @@ def test_buy_money_shortfall_atomic(tmp_path: Path) -> None:
     assert "还差 5金" in out[0]
     # 原子回滚：背包无长剑、金币未动
     text = bag(p, ev("/bag"))[0]
-    assert "**金币** ×10" in text
+    assert "金币 ×10" in text
     assert "长剑" not in text
 
 
@@ -220,9 +220,9 @@ def test_buy_auto_change_making(tmp_path: Path) -> None:
     out = shop(p, ev("/商店 买 皮甲 1"))
     assert "花费 5银" in out[0]
     text = bag(p, ev("/bag"))[0]
-    assert "**银币** ×5" in text  # 1 金被破开，找回 5 银
+    assert "银币 ×5" in text  # 1 金被破开，找回 5 银
     assert "金币" not in text  # 金币条目已耗尽删除
-    assert "**皮甲** ×1" in text
+    assert "皮甲 ×1" in text
     assert "💰5银/件" in text
 
 
@@ -235,7 +235,7 @@ def test_buy_price_override(tmp_path: Path) -> None:
     assert "花费 2金" in out[0]
     # 设价显示为具体币制
     out = shop(p, ev("/商店"))
-    assert "**长剑** — 2金" in out[0]
+    assert "长剑 — 2金" in out[0]
 
 
 def test_buy_no_price_item(tmp_path: Path) -> None:
@@ -248,7 +248,7 @@ def test_buy_no_price_item(tmp_path: Path) -> None:
     assert "没有定价" in out[0]
     # 列表中该商品标「未定价」
     out = shop(p, ev("/商店"))
-    assert "**火球法杖** — 未定价" in out[0]
+    assert "火球法杖 — 未定价" in out[0]
 
 
 def test_buy_not_found(tmp_path: Path) -> None:
@@ -269,11 +269,11 @@ def test_sell_buyback_rate(tmp_path: Path) -> None:
     shop(p, ev("/商店 回购率 0.5", admin=True))
     bag(p, ev("/bag add 皮甲 2 w=10 v=1000"))
     out = shop(p, ev("/商店 卖 皮甲 1"))
-    assert "已卖出 **皮甲** ×1" in out[0]
+    assert "已卖出 皮甲 ×1" in out[0]
     assert "获得 5金" in out[0]  # 1000 × 0.5 = 500 铜
     text = bag(p, ev("/bag"))[0]
-    assert "**皮甲** ×1" in text  # 还剩 1 件
-    assert "**金币** ×5" in text
+    assert "皮甲 ×1" in text  # 还剩 1 件
+    assert "金币 ×5" in text
 
 
 def test_sell_only_on_shelf(tmp_path: Path) -> None:
@@ -283,7 +283,7 @@ def test_sell_only_on_shelf(tmp_path: Path) -> None:
     out = shop(p, ev("/商店 卖 魔法扫帚 1"))
     assert "商店不收" in out[0]
     # 物品未扣
-    assert "**魔法扫帚** ×1" in bag(p, ev("/bag"))[0]
+    assert "魔法扫帚 ×1" in bag(p, ev("/bag"))[0]
 
 
 def test_sell_insufficient_items(tmp_path: Path) -> None:
@@ -313,11 +313,11 @@ def test_sell_restocks_counted_stock(tmp_path: Path) -> None:
 def test_add_remove_entry(tmp_path: Path) -> None:
     p = make_plugin(tmp_path)
     out = shop(p, ev("/商店 上架 神秘符咒 价=3金 库存=2", admin=True))
-    assert "已上架 **神秘符咒**" in out[0]
+    assert "已上架 神秘符咒" in out[0]
     out = shop(p, ev("/商店"))
-    assert "**神秘符咒** — 3金（余 2）" in out[0]
+    assert "神秘符咒 — 3金（余 2）" in out[0]
     out = shop(p, ev("/商店 下架 神秘符咒", admin=True))
-    assert "已下架 **神秘符咒**" in out[0]
+    assert "已下架 神秘符咒" in out[0]
     assert "神秘符咒" not in shop(p, ev("/商店"))[0]
 
 
@@ -358,15 +358,15 @@ def test_shop_pagination_commands(tmp_path: Path) -> None:
     # 第 1 页：前 30 条 + 翻页提示
     out = shop(p, ev("/商店"))
     assert "共 35 种商品，第 1/2 页" in out[0]
-    assert "1. **商品000**" in out[0]
-    assert "30. **商品029**" in out[0]
+    assert "1. 商品000" in out[0]
+    assert "30. 商品029" in out[0]
     assert "商品030" not in out[0]  # 第 31 条在下一页
     assert "/商店 <页码> 翻页" in out[0]
     # 纯数字翻页
     out = shop(p, ev("/商店 2"))
     assert "第 2/2 页" in out[0]
-    assert "31. **商品030**" in out[0]
-    assert "35. **商品034**" in out[0]
+    assert "31. 商品030" in out[0]
+    assert "35. 商品034" in out[0]
     # 页 子命令
     out = shop(p, ev("/商店 页 2"))
     assert "第 2/2 页" in out[0]
@@ -386,9 +386,9 @@ def test_shop_pagination_format_unit() -> None:
     big = Shop(entries=[ShopEntry(name=f"物品{i:03d}", price_cp=i) for i in range(35)])
     page1 = ShopManager.format_shop(big, page=1)
     assert "第 1/2 页" in page1
-    assert "1. **物品000**" in page1
+    assert "1. 物品000" in page1
     page2 = ShopManager.format_shop(big, page=2)
-    assert "31. **物品030**" in page2
+    assert "31. 物品030" in page2
     assert "物品029" not in page2
     # 越界夹取
     assert "第 2/2 页" in ShopManager.format_shop(big, page=999)
@@ -411,12 +411,12 @@ def test_shop_list_price_resolution() -> None:
     )
     resolver = {"库价品": 1500, "无价品": None}.get
     text = ShopManager.format_shop(s, price_resolver=resolver)
-    assert "**覆盖品** — 5银" in text
-    assert "**库价品** — 15金" in text
-    assert "**无价品** — 未定价" in text
+    assert "覆盖品 — 5银" in text
+    assert "库价品 — 15金" in text
+    assert "无价品 — 未定价" in text
     # 无 resolver（纯格式化场景）→ 保留「库价」占位
     text2 = ShopManager.format_shop(s)
-    assert "**库价品** — 库价" in text2
+    assert "库价品 — 库价" in text2
 
 
 # ---------------------------------------------------------------------------
@@ -431,10 +431,10 @@ def test_tool_list_buy_sell(tmp_path: Path) -> None:
     assert "共 5 种商品" in out
     add_coins(p, "金币", 20)
     out = run(p.manage_shop_tool(ev(""), action="buy", item="长剑", qty=1))
-    assert "已购买 **长剑** ×1" in out
+    assert "已购买 长剑 ×1" in out
     assert "花费 15金" in out
     out = run(p.manage_shop_tool(ev(""), action="sell", item="长剑", qty=1))
-    assert "已卖出 **长剑** ×1" in out
+    assert "已卖出 长剑 ×1" in out
     assert "获得 15金" in out
 
 
@@ -444,12 +444,12 @@ def test_tool_list_pagination(tmp_path: Path) -> None:
     # 默认第 1 页 + 多页时附 LLM 导向的翻页提示
     out = run(p.manage_shop_tool(ev(""), action="list"))
     assert "第 1/2 页" in out
-    assert "1. **商品000**" in out
+    assert "1. 商品000" in out
     assert "page 参数" in out
     # page 参数翻页
     out = run(p.manage_shop_tool(ev(""), action="list", page=2))
     assert "第 2/2 页" in out
-    assert "31. **商品030**" in out
+    assert "31. 商品030" in out
     # 越界夹取
     out = run(p.manage_shop_tool(ev(""), action="list", page=99))
     assert "第 2/2 页" in out
@@ -514,8 +514,8 @@ def test_shop_batch_buy_success(tmp_path: Path) -> None:
     add_coins(p, "金币", 40)
     out = shop(p, ev("/商店 买 长剑 皮甲 2"))
     assert "批量购买：成功 2 件" in out[0]
-    assert "✅ 已购买 **长剑** ×1，花费 15金" in out[0]
-    assert "✅ 已购买 **皮甲** ×2，花费 20金" in out[0]
+    assert "✅ 已购买 长剑 ×1，花费 15金" in out[0]
+    assert "✅ 已购买 皮甲 ×2，花费 20金" in out[0]
 
 
 def test_shop_batch_buy_partial_failure(tmp_path: Path) -> None:
@@ -524,7 +524,7 @@ def test_shop_batch_buy_partial_failure(tmp_path: Path) -> None:
     add_coins(p, "金币", 20)  # 长剑 15金 + 皮甲×2 20金 不够
     out = shop(p, ev("/商店 买 长剑 皮甲 2"))
     assert "批量购买：成功 1 件，失败 1 件" in out[0]
-    assert "✅ 已购买 **长剑** ×1" in out[0]
+    assert "✅ 已购买 长剑 ×1" in out[0]
     assert "❌ 钱不够" in out[0]
     assert "还差 15金" in out[0]
 
@@ -535,10 +535,10 @@ def test_shop_batch_buy_qty_omittable_backward_compat(tmp_path: Path) -> None:
     add_coins(p, "金币", 50)
     # 单件不带数量 → ×1
     out = shop(p, ev("/商店 买 长剑"))
-    assert "已购买 **长剑** ×1" in out[0]
+    assert "已购买 长剑 ×1" in out[0]
     # 单件带数量 → ×2（历史行为保持）
     out = shop(p, ev("/商店 买 皮甲 2"))
-    assert "已购买 **皮甲** ×2" in out[0]
+    assert "已购买 皮甲 ×2" in out[0]
     # 数字出现在名称位 → 报错
     out = shop(p, ev("/商店 买 2 长剑"))
     assert "数量「2」前缺少物品名称" in out[0]
@@ -551,8 +551,8 @@ def test_shop_batch_sell_success_and_partial(tmp_path: Path) -> None:
     bag(p, ev("/bag add 盾牌 1"))
     out = shop(p, ev("/商店 卖 皮甲 盾牌"))
     assert "批量卖出：成功 2 件" in out[0]
-    assert "💰 已卖出 **皮甲** ×1" in out[0]
-    assert "💰 已卖出 **盾牌** ×1" in out[0]
+    assert "💰 已卖出 皮甲 ×1" in out[0]
+    assert "💰 已卖出 盾牌 ×1" in out[0]
     # 背包不足 / 商店不收 → 部分失败
     out = shop(p, ev("/商店 卖 皮甲 魔法扫帚"))
     assert "批量卖出：成功 1 件，失败 1 件" in out[0]
@@ -570,11 +570,11 @@ def test_shop_batch_add_per_item_attrs(tmp_path: Path) -> None:
         p, ev("/商店 上架 神秘符咒 价=3金 库存=2 火球法杖 库存=3", admin=True)
     )
     assert "批量上架：成功 2 件" in out[0]
-    assert "已上架 **神秘符咒**（3金，库存 2）" in out[0]
-    assert "已上架 **火球法杖**（库价，库存 3）" in out[0]
+    assert "已上架 神秘符咒（3金，库存 2）" in out[0]
+    assert "已上架 火球法杖（库价，库存 3）" in out[0]
     out = shop(p, ev("/商店"))
-    assert "**神秘符咒** — 3金（余 2）" in out[0]
-    assert "**火球法杖** — 未定价（余 3）" in out[0]
+    assert "神秘符咒 — 3金（余 2）" in out[0]
+    assert "火球法杖 — 未定价（余 3）" in out[0]
 
 
 def test_shop_batch_add_attr_before_name(tmp_path: Path) -> None:
@@ -617,8 +617,8 @@ def test_tool_batch_buy_items_array(tmp_path: Path) -> None:
         )
     )
     assert "批量购买：成功 2 件" in out
-    assert "已购买 **长剑** ×1" in out
-    assert "已购买 **皮甲** ×2" in out
+    assert "已购买 长剑 ×1" in out
+    assert "已购买 皮甲 ×2" in out
 
 
 def test_tool_batch_items_as_json_string(tmp_path: Path) -> None:
@@ -631,7 +631,7 @@ def test_tool_batch_items_as_json_string(tmp_path: Path) -> None:
         )
     )
     assert "批量购买：成功 1 件" in out
-    assert "已购买 **长剑** ×1" in out
+    assert "已购买 长剑 ×1" in out
 
 
 def test_tool_items_overrides_single_params(tmp_path: Path) -> None:
@@ -644,7 +644,7 @@ def test_tool_items_overrides_single_params(tmp_path: Path) -> None:
             ev(""), action="buy", item="长剑", qty=1, items=[{"item": "皮甲", "qty": 1}]
         )
     )
-    assert "已购买 **皮甲** ×1" in out
+    assert "已购买 皮甲 ×1" in out
     assert "长剑" not in out
 
 
@@ -674,7 +674,7 @@ def test_tool_admin_actions_allowed(tmp_path: Path) -> None:
         )
     )
     assert "批量上架：成功 1 件" in out
-    assert "已上架 **神秘符咒**（3金，库存 2）" in out
+    assert "已上架 神秘符咒（3金，库存 2）" in out
     # 管理员清空
     out = run(p.manage_shop_tool(ev("", admin=True), action="clear"))
     assert "已清空商店，共移除 6 种商品" in out

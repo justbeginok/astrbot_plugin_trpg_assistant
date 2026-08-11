@@ -31,9 +31,11 @@ from .character import (
     parse_spells_text,
 )
 
-# 名字行：📜 **阿尔文**（2014） / **阿尔文** / 宽松键 名字/姓名/名称/角色名
+# 名字行：📜 **阿尔文**（2014） / 📜 阿尔文（2014） / **阿尔文** / 宽松键 名字/姓名/名称/角色名
+# v0.42.0：兼容无 ** 的纯文本头（format_sheet 已去 markdown，round-trip 可解析）。
 _HEADER_RE = re.compile(
-    r"^\s*📜?\s*\*\*([^*]+)\*\*\s*(?:[（(]([^）)]*)[）)])?\s*$"
+    r"^\s*(?:(?:📜?\s*\*\*([^*]+)\*\*)|(?:📜\s*([^*：（）()]+?)))"
+    r"\s*(?:[（(]([^）)]*)[）)])?\s*$"
 )
 _NAME_KEY_RE = re.compile(
     r"^(?:人物姓名|名字|姓名|名称|角色名|角色卡名|name|character)\s*[:：]?\s*(.+)$",
@@ -248,8 +250,8 @@ def parse_card_text(text: str) -> ImportResult:
     for line in lines:
         m = _HEADER_RE.match(line.strip())
         if m:
-            name = m.group(1).strip()
-            header_edition = m.group(2).strip() or None
+            name = (m.group(1) or m.group(2) or "").strip()
+            header_edition = m.group(3).strip() if m.group(3) else None
             break
     edition = _detect_edition(text, header_edition)
 
@@ -565,7 +567,7 @@ def parse_card_text(text: str) -> ImportResult:
         raise ValueError(
             "未识别到足够的角色卡内容（至少需要卡名+职业、卡名+属性等两个字段）。"
             "支持格式示例：\n"
-            "📜 **阿尔文**（2014）\n"
+            "📜 阿尔文（2014）\n"
             "职业：战士（勇士） 3\n"
             "种族 半精灵　背景 士兵\n"
             "属性值：力量 15　敏捷 14　体质 13　智力 12　感知 10　魅力 8\n"

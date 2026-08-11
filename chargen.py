@@ -1190,7 +1190,7 @@ class ChargenManager:
                 if total is None:
                     return _reject(progress, f"代骰第 {i+1} 组失败：{detail}")
                 pool.append(total)
-                lines.append(f"第{i+1}组 {detail} → **{total}**")
+                lines.append(f"第{i+1}组 {detail} → {total}")
             draft.ability_pool = pool
             draft.ability_detail = "\n".join(lines)
             draft.state = S_ABILITY_ASSIGN
@@ -1374,7 +1374,7 @@ class ChargenManager:
         # 1) DM 固定金额：不代骰
         if gold_rule.isdigit():
             return await _write_gold(
-                int(gold_rule), f"DM 规则固定 **{int(gold_rule)} 金币**"
+                int(gold_rule), f"DM 规则固定 {int(gold_rule)} 金币"
             )
 
         # 2) DM 自定义骰式
@@ -1391,7 +1391,7 @@ class ChargenManager:
                 return None, ""
             qty = int(total) * mult
             return await _write_gold(
-                qty, f"DM 规则代骰：{dice} ×{mult} = **{qty} 金币**（明细 {detail}）"
+                qty, f"DM 规则代骰：{dice} ×{mult} = {qty} 金币（明细 {detail}）"
             )
 
         # 3) auto：按职业 goldAlternative
@@ -1415,7 +1415,7 @@ class ChargenManager:
             return None, ""
         qty = int(total) * mult
         return await _write_gold(
-            qty, f"起始金币已代骰发放：{dice} ×{mult} = **{qty} 金币**（明细 {detail}）"
+            qty, f"起始金币已代骰发放：{dice} ×{mult} = {qty} 金币（明细 {detail}）"
         )
 
     async def _finalize(

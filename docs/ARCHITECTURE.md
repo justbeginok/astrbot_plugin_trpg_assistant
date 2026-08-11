@@ -247,6 +247,15 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 - `Inventory`：`items`(有序列表)；`total_weight/total_value` 返回 `(合计, 是否有未设项)`
   （未设项按 0 计并标 `+`「至少」）。货币条目按面值计，不看 `value` 字段。
 - `TransferResult` / `RemoveResult`：流转/移除结果。
+- v0.42.0 批量发放/收回（ADR-0016）：`/发放`（grant）/`/收回`（revoke）短命令
+  直接操作队伍背包（整个 arg 即物品列表）；`/bag add/rm/put/take` 全量批量；
+  解析器 `_parse_batch_bag_add`（名称[数量]+`重=`/`价=`(parse_money 铜币)/`备注=`
+  逐项属性归属，兼容 `w=/v=/note=`，连续数字报「重复」）；批量逐件原子、
+  失败列明 + 成功 N 件/失败 M 件汇总（同 ADR-0015 模式）。LLM 工具
+  `manage_inventory` 增 `items(array)` 批量参数（`_normalize_tool_items_base`
+  公共校验 + `_normalize_tool_inventory_items` 追加 weight/value/note）；
+  **工具侧 `remove`+`to_party=true` 引入 `_check_destructive_permission`**
+  （与命令侧 revoke 同口径，防止绕过收回鉴权）。
 
 ### 5.5 商店与货币（shop.py / money.py）
 - `ShopEntry`：`name` / `price_cp`(售价覆盖，None=库价) / `stock`(None=无限，0=售罄) /
@@ -329,7 +338,7 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 | 单 Manager 单锁 | 读-改-写在一个 `asyncio.Lock` 内，防并发互相覆盖（先攻/历史/背包/商店/角色卡/车卡） |
 | 跨域锁序 | 商店买卖固定 Shop→Inventory（ADR-0010）；背包侧 `settle_purchase/settle_sale` 单调用原子 |
 | 流转原子性 | put/take/give 源扣除与目标写入同锁完成，源不足时两侧均不变 |
-| 破坏性操作鉴权 | 群聊中清空历史/清先攻/清背包/商店管理/车卡规则写入走 `_check_destructive_permission`（白名单/管理员）；私聊放行 |
+| 破坏性操作鉴权 | 群聊中清空历史/清先攻/清背包/商店管理/车卡规则写入/收回队伍物品（`/收回` 与工具侧 remove(to_party)）走 `_check_destructive_permission`（白名单/管理员）；私聊放行 |
 | 私设写入鉴权 | `manage_homebrew` write（v0.37.0）走独立 `_check_homebrew_write_permission`：白名单/管理员，**私聊不放行**（私设是插件级全局数据，ADR-0013） |
 | 私设写盘 | 临时文件 + `os.replace` 原子写；插件级 `asyncio.Lock` 串行化「检查冲突→写盘→reload」临界区；写后 `reload_homebrew` 同步替换 overlay（v0.37.0） |
 | 容错读取 | 所有 `from_dict` 容忍脏数据：类型错回落默认、坏条目丢弃（防手改 KV） |
@@ -352,7 +361,7 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 | `dset`（dice_set）/ `rprefix` | 会话骰面/触发前缀 | 白名单管控 |
 | `rh`（rhistory）| 历史 | |
 | `ri` / `init`（initiative）| 先攻 | v0.30.0：`/ri` 无参数且有活跃角色卡时自动用卡上先攻（d20+先攻并标注角色）；显式调整值优先 |
-| `bag`（inventory, 背包）| 背包 | |
+| `bag`（inventory, 背包）| 背包 | v0.42.0：`add/rm/put/take` 全量批量（单件回落原解析器零回归）；`grant`（发放）/`revoke`（收回）短命令直接操作队伍背包（发放全员放行、收回走破坏性鉴权、私聊拒绝），发放支持 `重=/价=/备注=` 逐项属性 |
 | `shop`（商店, 店铺）| 商店 | v0.39.0：批量买/卖（数量可省略）、批量上架（逐项属性）、批量下架、`清空`（整店清空，管理员） |
 | `卡`（char, 角色卡）| 角色卡 | v0.31.0：攻击条目删除（`/卡 设 攻击 名=-`）与已知法术单条增删（`/卡 法术 加|删 <环阶> <法术名>`）；v0.32.0：命名掷骰全套 CRUD（`/卡 骰 <名> <表达式>` / `<名> -` 删除 / `/卡 详情 掷骰`）；v0.41.0：`/卡 设` 补全六维属性（力量/敏捷/体质/智力/感知/魅力，clamp 1-30）、种族、职业（整体替换含子职等级）、版本，设置后自动触发战斗字段重算 |
 | `车卡`（chargen）| 车卡引导 | |
@@ -360,8 +369,10 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 | `查法术`(spell) `查怪`(monster,怪物) `查物品`(item,物品) `查专长`(feat,专长) `查背景`(background,背景) `查状态`(condition,状态) `查种族`(race,种族) `查职业`(class,职业) `kb` `查询`(search,搜,q) `筛怪`(mfilter,筛怪物) `筛法术`(sfilter,筛魔法) `筛物品`(ifilter,筛道具) `筛种族`(rfilter,筛血统) `筛专长`(ffilter,专长筛) `筛职业`(cfilter,职业筛) `筛子职`(sublass_filter,子职筛) `筛背景`(bfilter,背景筛) | 知识库 | 筛专长 v0.26.0 起支持能力标签反查；筛法术 v0.27.0 起支持语义大类标签反查（裸词自动消歧，如「控场/治疗/伤害/召唤」；前缀词「标签」显式指定；别名归一），v0.35.0 起支持职业法术表反查（前缀词「职业 法师」，中英文职业名均可）。筛职业/筛子职 v0.33.0 起支持定位+能力标签反查（职业：`/筛职业 武者` 定位、`/筛职业 近战 爆发` 标签、`/筛职业 奥术施法 智力`；子职：`/筛子职 治疗 神圣`、`/筛子职 塑能`；前缀词「定位/标签」；裸词自动消歧）。筛种族 v0.34.0 起支持能力标签反查（裸词自动消歧，如「变形/水陆两栖/魅力」→ race_keyword，伤害词「火焰/光耀」仍优先走天生抗性 dmg_resist；前缀词「标签」）。筛背景 v0.34.0 新建（裸词技能/身份/工具/起始专长反查，如 `/筛背景 隐匿 盗贼工具`、`/筛背景 贵族`；前缀词「标签」）。查职业 v0.29.0 起第二参数支持「特性」关键词细化本职特性：`/查职业 <职业> 特性`（全部本职特性全文）、`/查职业 <职业> 特性 <特性名>`（单个特性跨版本全文）；v0.33.0 起 /查职业 头部展示职业定位与 AI 概要；v0.34.0 起 /查种族 /查背景 头部展示 AI 概要；`/kb reload`（v0.36.0 重载私设目录）/`kb 私设`（查看私设概况） |
 | `帮助`（menu,菜单,commands,cmds）| 帮助 | |
 
-**LLM 工具（9 个）**：`roll_dice` / `manage_initiative` / `manage_inventory` /
-`manage_shop`（v0.39.0：新增 `items(array)` 批量参数；动作扩为
+**LLM 工具（9 个）**：`roll_dice` / `manage_initiative` / `manage_inventory`
+（v0.42.0：新增 `items(array)` 批量参数，action=add/remove/put/take 全量支持
+批量；`remove`+`to_party=true` 工具内 `_check_destructive_permission` 鉴权，
+与命令侧 revoke 同口径） / `manage_shop`（v0.39.0：新增 `items(array)` 批量参数；动作扩为
 list/buy/sell/add/remove/clear，管理动作在工具内 `_check_destructive_permission`
 鉴权，非管理员拒绝） / `manage_character` / `guide_chargen` / `query_dnd_knowledge` /
 `advise_build`（v0.35.0 构筑咨询：new_build=从零构筑（含背景推荐）、

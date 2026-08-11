@@ -162,3 +162,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+
+# 5e_chm 解析中间产物（不入库）
+scripts/_md_cache/
+# 知识库构建备份
+kb_data/*.bak*

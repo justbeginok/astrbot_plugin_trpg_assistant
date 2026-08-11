@@ -133,7 +133,8 @@
       "name": "抗性护甲",
       "source": "DMG",
       "entriesTemplate": [
-        "着装这套护甲期间，你获得对{{item.resist}}伤害类型的抗性。"
+        "着装这套护甲期间，你获得对{{item.resist}}伤害类型的抗性。",
+        "同时你对{{getFullImmRes item.resist}}伤害拥有抗性。"
       ]
     }
   ]

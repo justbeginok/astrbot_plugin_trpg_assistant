@@ -40,13 +40,13 @@ def test_schema_and_counts(built_db: Path) -> None:
         "class_combat", "subclass_caster", "class_starting_equipment",
         "background_ability", "race_ability", "item_combat",
     } <= tables
-    # 6 法术 + 3 怪物 + 16 物品（11 fixture + 3 遗物链 + 2 魔法变体本体）
-    # + 9 专长 + 2 背景 + 4 状态 + 6 种族 + 2 职业 + 2 子职（奥法骑士重复行合并）= 50
-    assert conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0] == 50
+    # 6 法术 + 3 怪物 + 18 物品（11 fixture + 3 遗物链 + 4 魔法变体本体）
+    # + 9 专长 + 2 背景 + 4 状态 + 6 种族 + 2 职业 + 2 子职（奥法骑士重复行合并）= 52
+    assert conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0] == 52
     assert conn.execute("SELECT COUNT(*) FROM aliases").fetchone()[0] >= 9 * 2
     assert conn.execute("SELECT COUNT(*) FROM spells").fetchone()[0] == 6
     assert conn.execute("SELECT COUNT(*) FROM monsters").fetchone()[0] == 3
-    assert conn.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 16
+    assert conn.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 18
     assert conn.execute(
         "SELECT COUNT(*) FROM entries WHERE kind='feat'"
     ).fetchone()[0] == 9
@@ -878,3 +878,45 @@ def test_magic_variant_item_entry_resolution(built_db: Path) -> None:
         " WHERE e.name = '火焰抗性护甲' AND e.source = 'DMG'"
     ).fetchone()
     assert row == ("rare", 1)
+
+
+def test_magic_variant_var_fill(built_db: Path) -> None:
+    """变体正文 {=字段} 变量替换（v0.42.1）：{=bonusWeapon} → +1。"""
+    conn = _conn(built_db)
+    body = conn.execute(
+        "SELECT body FROM entries WHERE name = '+1 武器' AND source = 'XDMG'"
+    ).fetchone()[0]
+    assert "{=" not in body
+    assert "获得+1的额外加成" in body
+
+
+def test_magic_variant_top_entries_priority(built_db: Path) -> None:
+    """顶层 entries 优先于 inherits.entries（v0.42.1）：恶毒武器的顶层
+    平实描述（无 {=dmgType}）应被采用，inherits 模板被忽略。"""
+    conn = _conn(built_db)
+    body = conn.execute(
+        "SELECT body FROM entries WHERE name = '恶毒武器' AND source = 'DMG'"
+    ).fetchone()[0]
+    assert "{=" not in body
+    assert "该武器类型的损害" in body
+    assert "dmgType" not in body
+
+
+def test_item_entry_func_template_fill(built_db: Path) -> None:
+    """itemEntry 模板函数 {{getFullImmRes item.resist}} 展开（v0.42.1）。"""
+    conn = _conn(built_db)
+    body = conn.execute(
+        "SELECT body FROM entries WHERE name = '火焰抗性护甲' AND source = 'DMG'"
+    ).fetchone()[0]
+    assert "{{" not in body
+    assert "getFullImmRes" not in body
+    assert "对火焰伤害拥有抗性" in body
+
+
+def test_built_db_no_placeholder_residue(built_db: Path) -> None:
+    """全库断言：无 {=字段} 变量 / {{模板}} 残留（v0.42.1 渲染完整性）。"""
+    conn = _conn(built_db)
+    n = conn.execute(
+        "SELECT COUNT(*) FROM entries WHERE body LIKE '%{=%' OR body LIKE '%{{%'"
+    ).fetchone()[0]
+    assert n == 0

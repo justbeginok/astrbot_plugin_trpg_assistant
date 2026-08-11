@@ -109,7 +109,12 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 展开名注册为别名指向本体（搜「焰舌长剑」「Flame Tongue」均命中「焰舌」）；匹配逻辑对齐
 5e.tools 官方 render.js `_createSpecificVariants`（edition/requires/excludes，经官方搜索
 索引 2777 个展开名双向零差异验证）。`{#itemEntry X}` 引用从 items-base.json 的 itemEntry
-模板展开（填充 `{{item.resist}}` 等变量）。
+模板展开（填充 `{{item.resist}}` 等变量）。**正文渲染（v0.42.1）**：变体 entries 采用
+**顶层 entries 优先于 inherits.entries**（顶层是变体本身的平实翻译，inherits 是展开给
+具体武器的模板，含 `{=字段}` 变量）；对最终正文做 5e.tools 变量语法 `{=字段}` 构建期
+替换（取值三级：条目顶层 → 变体顶层 → inherits，如 `{=bonusWeapon}` → `+1`，字段缺失
+保留原文并告警）；itemEntry 模板函数 `{{getFullImmRes item.resist}}` 展开为条目抗性
+字段中文全名（如「强酸」）。
 
 ```sql
 entries(id PK, kind, name, eng_name, source, edition, body, is_machine, UNIQUE(kind,name,source))

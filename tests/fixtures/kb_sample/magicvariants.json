@@ -38,6 +38,42 @@
         "reqAttune": true,
         "entries": ["{#itemEntry 抗性护甲}"]
       }
+    },
+    {
+      "ENG_name": "+1 Weapon",
+      "name": "+1 武器",
+      "type": "GV|XDMG",
+      "requires": [{"weapon": true}],
+      "inherits": {
+        "namePrefix": "+1 ",
+        "source": "XDMG",
+        "page": 324,
+        "rarity": "uncommon",
+        "bonusWeapon": "+1",
+        "entries": [
+          "使用这把魔法武器进行攻击和伤害判定时，你会获得{=bonusWeapon}的额外加成。"
+        ]
+      }
+    },
+    {
+      "ENG_name": "Vicious Weapon",
+      "name": "恶毒武器",
+      "type": "GV|DMG",
+      "requires": [{"weapon": true}],
+      "entries": [
+        "当你使用这把魔法武器掷出20时，目标会额外受到7点该武器类型的损害。"
+      ],
+      "inherits": {
+        "namePrefix": "恶毒",
+        "source": "DMG",
+        "page": 209,
+        "rarity": "rare",
+        "bonusWeapon": "+1",
+        "entries": [
+          "使用这把武器进行攻击和伤害判定时，你有{=bonusWeapon}的加值。",
+          "当你使用这把魔法武器掷出20时，目标会额外受到7点{=dmgType}伤害。"
+        ]
+      }
     }
   ]
 }

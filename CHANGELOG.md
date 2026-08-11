@@ -5,6 +5,26 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.42.1] - 2026-08-11
+
+### 修复
+
+- **魔法变体正文 `{=字段}` 变量占位符未解析**（`/查物品 武器+1` 显示
+  「你会获得{=bonusWeapon}的额外加成」等 50 条）：`build_kb.py` 新增
+  5e.tools 变量语法 `{=字段}` 的构建期替换（如 `{=bonusWeapon}` → `+1`，
+  取值三级：条目顶层 → 变体顶层 → inherits；字段缺失保留原文并告警）。
+- **变体正文优先级颠倒**：顶层 entries（变体本身的平实翻译）现优先于
+  inherits.entries（展开给具体武器的模板），救回「恶毒武器」等依赖
+  `{=dmgType}`（需展开上下文、静态无法解析）的条目。
+- **itemEntry 模板函数 `{{getFullImmRes item.resist}}` 未展开**（龙鳞甲等
+  40 条显示 `{{getFullImmRes...}}`）：正则拆分修复，getFullImmRes 参数
+  `item.字段` 现正确匹配并取条目抗性字段中文全名（如「强酸」）。
+
+### 其他
+
+- 重建内置知识库（`kb_data/dnd_kb.db`，schema_version=10 不变，全库无
+  `{=`/`{{` 残留）。
+
 ## [0.42.0] - 2026-08-11
 
 ### 新增

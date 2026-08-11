@@ -1,7 +1,7 @@
 {
-  "data_version": "884d65a-20260810",
-  "source_commit": "884d65a",
-  "build_time": "2026-08-10T17:51:33Z",
+  "data_version": "unknown-20260811",
+  "source_commit": "unknown",
+  "build_time": "2026-08-11T10:41:56Z",
   "schema_version": "10",
   "counts": {
     "spell": 554,
@@ -11,7 +11,7 @@
     "background": 148,
     "condition": 35,
     "race": 160,
-    "spellClass": 1463,
+    "spellClass": 0,
     "class": 30,
     "subclass": 322,
     "classFeature": 677,

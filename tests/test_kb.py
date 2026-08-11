@@ -131,9 +131,10 @@ def test_filter_spell_level_school(manager: KnowledgeBaseManager) -> None:
 
 def test_filter_item_rarity(manager: KnowledgeBaseManager) -> None:
     result = manager.filter("item", rarity="rare")
-    # v0.41.0：魔法变体本体（焰舌/火焰抗性护甲，均 rare）并入筛选
+    # v0.41.0：魔法变体本体（焰舌/火焰抗性护甲，均 rare）并入筛选；
+    # v0.42.1：恶毒武器（fixture rare 变体）并入。
     assert {r.name for r in result.entries} == {
-        "火球法杖", "火焰舌剑", "机翻魔剑", "焰舌", "火焰抗性护甲",
+        "火球法杖", "火焰舌剑", "机翻魔剑", "焰舌", "火焰抗性护甲", "恶毒武器",
     }
 
 
@@ -145,9 +146,9 @@ def test_filter_item_rarity_none_and_magic(manager: KnowledgeBaseManager) -> Non
     }
     assert all(r.rarity == "none" for r in result.entries)
     # 魔法物品整体反查：排除非魔法基础物品
-    # （遗物之刃 3 形态 + 变体本体 2 = 11）
+    # （遗物之刃 3 形态 + 变体本体 4 = 13）
     result = manager.filter("item", rarity="magic")
-    assert len(result.entries) == 11
+    assert len(result.entries) == 13
     assert "长剑" not in {r.name for r in result.entries}
     assert all(r.rarity != "none" for r in result.entries)
 

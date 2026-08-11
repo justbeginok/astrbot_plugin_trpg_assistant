@@ -827,12 +827,57 @@ def _load_items(data_dir: Path) -> list[dict]:
 # 魔法变体（magicvariants.json）展开：本体入库 + 展开名做别名
 # ---------------------------------------------------------------------------
 
+# {=字段} 变量引用（5e.tools render.js 变量语法，如 {=bonusWeapon} → "+1"）。
+RE_VAR_REF = re.compile(r"\{=([a-zA-Z][a-zA-Z0-9_]*)\}")
+
+
+def _fill_variant_vars(
+    entries, entry: dict, variant: dict, inh: dict
+) -> tuple[list, list[str]]:
+    """递归替换变体正文中的 {=字段} 变量引用（v0.42.1）。
+
+    取值三级：entry 顶层（已复制 inherits 字段）→ variant 顶层 → inherits；
+    字段缺失保留原文并记入 missing（防御脏数据，不静默删除）。
+    """
+
+    def repl(m: re.Match) -> str:
+        name = m.group(1)
+        for src in (entry, variant, inh):
+            if name in src and src[name] is not None:
+                return str(src[name])
+        missing.append(name)
+        return m.group(0)
+
+    def walk(e):
+        if isinstance(e, str):
+            return RE_VAR_REF.sub(repl, e)
+        if isinstance(e, dict):
+            d2 = dict(e)
+            for _k in ("entries", "items", "rows"):
+                if isinstance(e.get(_k), list):
+                    d2[_k] = [walk(x) for x in e[_k]]
+            return d2
+        if isinstance(e, list):
+            return [walk(x) for x in e]
+        return e
+
+    missing: list[str] = []
+    out = walk(entries)
+    if missing:
+        _uniq = sorted(set(missing))
+        print(
+            f"  [variant] ⚠️ {entry.get('name')}: {len(missing)} 处 {{=字段}} 缺失"
+            f"（保留原文）: {_uniq}"
+        )
+    return out, sorted(set(missing))
+
 
 def _expand_magic_variants(variants: list[dict], all_items: list[dict]) -> list[dict]:
     """魔法变体 → 变体本体条目（带 _expand_aliases 展开名列表）。
 
     变体本体字段：name=变体名、source=inherits.source、type 保留 GV|XX 码、
-    rarity/reqAttune 取自 inherits、entries=inherits.entries（变体效果正文）。
+    rarity/reqAttune 取自 inherits、entries=顶层 entries 优先于
+    inherits.entries（v0.42.1，变体效果正文）。
     展开名通过 requires/excludes/edition 匹配 baseitem 计算（对齐 5e.tools
     render.js _createSpecificVariants），只作别名不生成独立条目。
     """
@@ -850,17 +895,26 @@ def _expand_magic_variants(variants: list[dict], all_items: list[dict]) -> list[
             "type": v.get("type"),  # GV|DMG / GV|XDMG
             "rarity": inh.get("rarity"),
             "reqAttune": inh.get("reqAttune"),
-            "entries": inh.get("entries") or v.get("entries") or [],
+            # v0.42.1：顶层 entries（变体本身的翻译正文，无 {=} 占位符）优先于
+            # inherits.entries（展开给具体武器的模板，含 {=bonusWeapon} 等变量），
+            # 对齐 5e.tools：如「恶毒武器」顶层为平实描述，inherits 模板的
+            # {=dmgType} 依赖展开后的基础武器类型、静态无法解析。
+            "entries": v.get("entries") or inh.get("entries") or [],
             "_expand_aliases": [],
         }
         if v.get("translator"):
             entry["translator"] = v["translator"]
         # itemEntry 模板变量填充需条目字段（{{item.resist}}/{{item.detail1}}…）：
-        # 复制 inherits 中可能被模板引用的字段（抗性/免疫/易伤/细节位等）。
+        # 复制 inherits 中可能被模板引用的字段（抗性/免疫/易伤/细节位/加成位等）。
         for _k in ("resist", "immune", "vuln", "conditionImmune",
-                   "detail1", "detail2", "detail3", "bonusWeapon", "bonusAc"):
+                   "detail1", "detail2", "detail3", "bonusWeapon", "bonusAc",
+                   "bonusWeaponAttack", "bonusWeaponDamage", "bonusSavingThrow"):
             if _k in inh:
                 entry[_k] = inh[_k]
+        # v0.42.1：{=字段} 变量替换（5e.tools 变量语法，如 {=bonusWeapon} → +1）。
+        entry["entries"], _missing_vars = _fill_variant_vars(
+            entry["entries"], entry, v, inh
+        )
         # 再版跳转：2014 变体（如焰舌|DMG）reprintedAs 到 2024 版时，按既有
         # 物品跳转约定跳过旧版、旧名成为新版别名（避免 2014/2024 双行重复）。
         ra = inh.get("reprintedAs")
@@ -962,8 +1016,13 @@ def _variant_expanded_name(base: dict, variant: dict) -> str:
 
 RE_ITEM_ENTRY_REF = re.compile(r"\{#itemEntry\s+([^}|]+)(?:\|([^}]+))?\}")
 
-# 模板变量：{{item.xxx}} / {{getFullImmRes item.resist}} 等（5e.tools applyTemplate）。
-RE_TPL_VAR = re.compile(r"\{\{\s*(item|getFullImmRes|getFullImm)\s*\.?([a-zA-Z0-9_]+)\s*\}\}")
+# 模板变量：{{item.xxx}}（5e.tools applyTemplate 属性引用）。
+RE_TPL_VAR = re.compile(r"\{\{\s*item\s*\.\s*([a-zA-Z0-9_]+)\s*\}\}")
+# 模板函数：{{getFullImmRes item.resist}}（参数 = item.字段；v0.42.1 拆开匹配，
+# 旧正则 `\.?([a-zA-Z0-9_]+)` 对空格分隔参数只能吃到 `item`、匹配失败，漏 40 条龙鳞甲）。
+RE_TPL_FUNC = re.compile(
+    r"\{\{\s*(getFullImmRes|getFullImm)\s+(?:item\s*\.\s*)?([a-zA-Z0-9_]+)\s*\}\}"
+)
 
 
 def _load_item_entry_templates(data_dir: Path) -> dict[tuple[str, str], list]:
@@ -999,25 +1058,24 @@ def _fill_item_template(text: str, entry: dict) -> str:
     """填充模板变量：{{item.resist}} → 条目字段；{{getFullImmRes item.resist}}
     → 抗性/免疫列表中文（「火焰、寒冷」）。"""
 
-    def repl(m: re.Match) -> str:
-        kind, name = m.group(1), m.group(2)
-        if kind == "item":
-            val = entry.get(name)
-            if isinstance(val, list):
-                return "、".join(str(v) for v in val if v)
-            return str(val) if val is not None else ""
-        # getFullImmRes / getFullImm：免疫+抗性合并描述（简化：取条目的 resist/immune/vuln）
-        if name in ("resist", "immune", "vuln", "conditionImmune"):
-            val = entry.get(name)
-            if isinstance(val, list):
-                return "、".join(str(v) for v in val if v)
-            return str(val) if val is not None else ""
+    def _val(name: str) -> str:
         val = entry.get(name)
         if isinstance(val, list):
             return "、".join(str(v) for v in val if v)
         return str(val) if val is not None else ""
 
-    return RE_TPL_VAR.sub(repl, text)
+    def repl_func(m: re.Match) -> str:
+        # getFullImmRes / getFullImm：抗性/免疫/易伤中文列表（源数据字段已是中文全名）。
+        name = m.group(2)
+        if name not in ("resist", "immune", "vuln", "conditionImmune"):
+            return m.group(0)  # 非已知抗性字段：保留原文（防御）
+        return _val(name)
+
+    def repl_item(m: re.Match) -> str:
+        return _val(m.group(1))
+
+    text = RE_TPL_FUNC.sub(repl_func, text)
+    return RE_TPL_VAR.sub(repl_item, text)
 
 
 def _resolve_item_entries(

@@ -62,7 +62,7 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 | `kb.py` | 知识库 Manager + 查询/筛选/格式化；v0.36.0 起合并运行期私设 overlay | `KbEntry` / `SearchHit` / `FilterResult` 等 | `/查X` `/筛X` `/查询` `kb` `query_dnd_knowledge` |
 | `kb_tags.py` | 构建期标签提取（facet/value 归一化） | — | 仅构建期 |
 | `kb_enums.py` | 中文↔英文枚举映射（学派/伤害/稀有度/类型…）；v0.40.0 加怪物阵营映射 `ALIGN_ABV_CN` + `format_alignment`（渲染规则与 5etools-cn 站点一致）与类型反查 `MONSTER_TYPE_CN_REV` | `RARITY_CN` 等 | 查询期 |
-| `kb_build_lib.py` | 条目渲染/侧表提取共享纯函数（v0.36.0 从 build_kb.py 抽取）：`_kind_body` 正文渲染链、`is_machine_entry` 机翻判定、`_parse_cr`/`_fmt_ac`/`_fmt_hp` 数值解析、`_ability_payload`/`_item_combat_cols`/`_item_value_weight` 侧表工具；v0.40.0 怪物头部渲染升级——体型中文化 + 类型/阵营段（`_monster_type_line`，缺失阵营显示「不固定阵营」）+ 挑战等级附 XP/巢穴/PB（`_cr_text`，CR→XP 表 `_CR_XP` + `_proficiency_bonus`）；v0.40.2 `_fmt_spellcasting` 渲染 spellcasting 顶层 `daily`（每项N/日，874 只怪物）+ `charges`/`rest`/`restLong`（此前只查 spells 环阶内 daily，死代码） | — | 构建期（build_kb.py）+ 运行期（homebrew.py）共用 |
+| `kb_build_lib.py` | 条目渲染/侧表提取共享纯函数（v0.36.0 从 build_kb.py 抽取）：`_kind_body` 正文渲染链、`is_machine_entry` 机翻判定、`_parse_cr`/`_fmt_ac`/`_fmt_hp` 数值解析、`_ability_payload`/`_item_combat_cols`/`_item_value_weight` 侧表工具；v0.40.0 怪物头部渲染升级——体型中文化 + 类型/阵营段（`_monster_type_line`，缺失阵营显示「不固定阵营」）+ 挑战等级附 XP/巢穴/PB（`_cr_text`，CR→XP 表 `_CR_XP` + `_proficiency_bonus`）；v0.40.2 `_fmt_spellcasting` 渲染 spellcasting 顶层 `daily`（每项N/日，874 只怪物）+ `charges`/`rest`/`restLong`（此前只查 spells 环阶内 daily，死代码）；v0.44.0 法术 `_spell_body` 改 PHB 卡片式（环位行从 level/school/classes/ritual 重建，可选 `classes` 参数供构建期注入，与 chm_parser._build_body 同构） | — | 构建期（build_kb.py）+ 运行期（homebrew.py）共用 |
 | `homebrew.py` | 运行期私设 overlay（v0.36.0）：扫描 `{data_dir}/trpg_homebrew/*.json` 双格式解析 → 内存条目池；reload 原子替换；overlay 侧三级搜索/结构化过滤 | `HomebrewEntry` / `HomebrewLoadResult` / `HomebrewManager` | `/kb reload` `/kb 私设` |
 | `homebrew_writer.py` | 私设文本校验/文件名安全化/条目级 merge/原子写（v0.37.0，纯函数，不 import astrbot）；权威解析复用 `HomebrewManager` 临时目录试加载（零漂移） | `RawEntry` / `HomebrewValidation` / `WriteOutcome` | `manage_homebrew` |
 | `main.py` | 插件主类：命令注册、路由、鉴权、LLM 工具 | — | 全部命令 |
@@ -98,7 +98,8 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 
 ## 4. 知识库 SQLite schema（v11，`kb_data/dnd_kb.db`）
 
-只读；schema 版本 `KB_SCHEMA_VERSION = "9"`（`scripts/build_kb.py`），结构变更 +1 并重建；
+只读；schema 版本 `SCHEMA_VERSION = "11"`（构建，`scripts/build_kb.py`），运行期回退阈值
+`KB_SCHEMA_VERSION = 7`（`kb.py`），结构变更 +1 并重建；
 运行期 `resolve_db_path` 发现库版本过低自动回退内置库。`meta` 表存版本/构建信息。
 **数据获取（v0.40.0 起）**：`scripts/fetch_cn_data.py` 直连下载 5etools-cn 数据
 （GitHub git trees API + raw，约 20MB，commit 默认取内置库 `meta.source_commit`
@@ -115,6 +116,11 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 `scripts/gen_enrich.py` 规则生成缺口 summary+keywords（+学派兜底词），
 `kb_patches/spell_enrich.json` 554→1255 条，spells.summary 与
 entry_tags.spell_keyword 覆盖率 100%。
+**法术显示（v0.44.0，ADR-0019）**：详情改 PHB 卡片式——`entries.body`（构建期
+预渲染，`chm_parser._build_body` 与 `kb_build_lib._spell_body` 同构）= 环位行
++ 4 属性行 + 正文 + 升环段；标题/概要/标签/版本行由 `kb.format_entry` 法术分支
+运行时拼装（标题纯净 `名｜Eng`，概要在标题下，标签取 entry_tags spell_keyword，
+版本行放底部承载 ⚠️机翻/🏠房规 标记）。`format_filter_result` 列表不受影响。
 **魔法变体（v0.41.0）**：5e.tools 新数据模型把「焰舌/霜铭/+N 武器」等可附着于多种武器的
 魔法效果从 items.json 移入 `data/magicvariants.json`（214 条）。构建时只把变体**本体**作为
 一条 item 入库（type=GV，不按武器展开成大量「焰舌长剑/巨剑」条目避免刷屏），全部可能

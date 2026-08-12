@@ -217,45 +217,133 @@ _TIME_UNIT_CN = {
     "special": "特殊",
 }
 
+# 施法距离类型 → 中文（v0.44.0 法术卡片式显示）
+_RANGE_TYPE_CN = {
+    "self": "自身",
+    "touch": "触碰",
+    "sight": "视线",
+    "special": "特殊",
+    "unlimited": "无限",
+}
 
-def _spell_body(s: dict) -> str:
-    parts = []
-    meta = []
-    meta.append(f"{s.get('level', '?')}环")
-    school = s.get("school")
-    if school:
-        meta.append(f"学派{SCHOOL_CN_REV.get(school, school)}")
+# 环位中文数字（v0.44.0 法术卡片式显示）
+_LEVEL_CN_NUM = {1: "一", 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "七", 8: "八", 9: "九"}
+
+
+def _spell_range_line(rng: object) -> str:
+    """施法距离行：「150 尺」「自身」「触碰」。区域形状不入行（PHB 惯例，见正文）。"""
+    if not isinstance(rng, dict):
+        return ""
+    dist = rng.get("distance")
+    if isinstance(dist, dict):
+        dtype = str(dist.get("type") or "")
+        if dtype == "feet":
+            return f"{dist.get('amount', '?')} 尺"
+        if dtype == "miles":
+            return f"{dist.get('amount', '?')} 里"
+        if dtype in _RANGE_TYPE_CN:
+            return _RANGE_TYPE_CN[dtype]
+        if dtype:
+            return dtype
+    rtype = str(rng.get("type") or "")
+    if rtype in _RANGE_TYPE_CN:
+        return _RANGE_TYPE_CN[rtype]
+    return ""
+
+
+def _spell_duration_line(dur: object) -> str:
+    """持续时间行：「立即」「专注，至多 1 分钟」「永久」「特殊（可提前消散）」。"""
+    if not isinstance(dur, list) or not dur:
+        return ""
+    d0 = dur[0]
+    if not isinstance(d0, dict):
+        return ""
+    dtype = str(d0.get("type") or "")
+    if dtype == "instant":
+        return "立即"
+    if dtype == "permanent":
+        return "永久"
+    if dtype == "special":
+        return "特殊"
+    if dtype == "timed":
+        dd = d0.get("duration") or {}
+        if isinstance(dd, dict) and dd.get("amount") is not None:
+            unit = _TIME_UNIT_CN.get(str(dd.get("type") or ""), str(dd.get("type") or ""))
+            text = ("专注，" if d0.get("concentration") else "") + f"至多 {dd.get('amount')} {unit}"
+            if d0.get("dismissible"):
+                text += "（可提前消散）"
+            return text
+    return str(dtype)
+
+
+def _spell_body(s: dict, classes: list[str] | None = None) -> str:
+    """5etools/私设法术正文（v0.44.0 起 PHB 卡片式，与 chm_parser._build_body 同构）。
+
+    卡片体 = 环位行 + 4 属性行 + 空行 + 描述正文 + 空行 + 升环段。
+    标题/概要/标签/版本行由 kb.format_entry 法术分支运行时拼装。
+    """
+    if classes is None:
+        raw_classes = s.get("classes")
+        classes = [
+            c for c in raw_classes if isinstance(c, str) and c.strip()
+        ] if isinstance(raw_classes, list) else []
+    lines = []
+    # 环位行：三环 塑能（法师、术士）/ 塑能戏法 / （仪式；…）/（仪式）
+    level = s.get("level")
+    school = SCHOOL_CN_REV.get(str(s.get("school") or ""), str(s.get("school") or ""))
+    ritual = bool((s.get("meta") or {}).get("ritual"))
+    if isinstance(level, int) and level >= 0 and school:
+        line = f"{school}戏法" if level == 0 else (
+            f"{_LEVEL_CN_NUM.get(level, str(level))}环 {school}"
+        )
+        if classes or ritual:
+            if classes and ritual:
+                inner = "仪式；" + "、".join(classes)
+            elif ritual:
+                inner = "仪式"
+            else:
+                inner = "、".join(classes)
+            line += f"（{inner}）"
+        lines.append(line)
+    # 施法时间
     time_info = s.get("time") or []
     if time_info:
         t = time_info[0]
-        unit = _TIME_UNIT_CN.get(str(t.get("unit", "")), str(t.get("unit", "")))
-        meta.append(f"施法时间{t.get('number', '')}{unit}".strip())
-    rng = s.get("range") or {}
-    if rng.get("distance"):
-        d = rng["distance"]
-        if d.get("type") == "feet":
-            meta.append(f"距离{d.get('amount', '?')}尺")
-        else:
-            meta.append(f"距离{d.get('type', '?')}")
+        if isinstance(t, dict) and t.get("number") is not None:
+            unit = _TIME_UNIT_CN.get(str(t.get("unit") or ""), str(t.get("unit") or ""))
+            lines.append(f"施法时间：{t.get('number')} {unit}".strip())
+    # 施法距离
+    rng = _spell_range_line(s.get("range"))
+    if rng:
+        lines.append(f"施法距离：{rng}")
+    # 法术成分（V/S/M 字母，M 带材料文本）
     comps = s.get("components") or {}
-    cstr = "成分" + "".join(
-        p for p, flag in (("言语", comps.get("v")), ("姿势", comps.get("s")), ("材料", comps.get("m"))) if flag
-    )
-    meta.append(cstr)
-    dur = s.get("duration") or []
-    if dur:
-        d0 = dur[0]
-        if d0.get("type") == "instant":
-            meta.append("持续时间：立即")
-        elif d0.get("type") == "timed" and d0.get("duration"):
-            dd = d0["duration"]
-            unit = _TIME_UNIT_CN.get(str(dd.get("type", "")), str(dd.get("type", "")))
-            meta.append(f"持续时间：{dd.get('amount', '?')}{unit}")
+    cparts = []
+    if comps.get("v"):
+        cparts.append("V")
+    if comps.get("s"):
+        cparts.append("S")
+    if comps.get("m"):
+        m = comps["m"]
+        if isinstance(m, str):
+            cparts.append(f"M（{m}）")
+        elif isinstance(m, dict):
+            text = m.get("text")
+            if text:
+                cparts.append(f"M（{text}）")
+            else:
+                cparts.append("M")
         else:
-            meta.append(f"持续时间：{d0.get('type', '?')}")
-    if (s.get("meta") or {}).get("ritual"):
-        meta.append("仪式")
-    parts.append("【法术信息】" + "｜".join(meta))
+            cparts.append("M")
+    if cparts:
+        lines.append("法术成分：" + "、".join(cparts))
+    # 持续时间
+    dur = _spell_duration_line(s.get("duration"))
+    if dur:
+        lines.append(f"持续时间：{dur}")
+    parts = []
+    if lines:
+        parts.append("\n".join(lines))
     body = _flatten_entries(s.get("entries"))
     if body:
         parts.append(body)
@@ -999,7 +1087,7 @@ def _race_body(r: dict) -> str:
     return "\n\n".join(parts)
 
 
-def _kind_body(kind: str, entry: dict) -> str:
+def _kind_body(kind: str, entry: dict, classes: list[str] | None = None) -> str:
     renderer = {
         "spell": _spell_body,
         "monster": _monster_body,
@@ -1009,6 +1097,8 @@ def _kind_body(kind: str, entry: dict) -> str:
         "condition": _condition_body,
         "race": _race_body,
     }[kind]
+    if kind == "spell":
+        return _spell_body(entry, classes)
     return renderer(entry)
 
 

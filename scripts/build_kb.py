@@ -335,7 +335,8 @@ def _chm_spells_to_entries(spells_md: list[dict]) -> list[dict]:
     """5e_chm 法术记录（chm_parser 产物）→ 5etools 风格 entry dict。
 
     - body 用 chm_parser 预构建的 rec['body']（_prebuilt_body，绕过 _kind_body，
-      格式与 _spell_body 同构：`【法术信息】环级|学派|施法时间|距离|成分|持续时间|仪式`）；
+      格式与 _spell_body 同构：v0.44.0 起 PHB 卡片式——环位行 + 施法时间/距离/
+      成分/持续时间 + 详述正文 + 升环段）；
     - entries 为纯文本（供 _spell_tags 提取 dmg_dealt/condition_inflict 等）；
     - 结构化字段来自 md 记录（school 中文→单字符码，range 文本解析）；
     - edition/is_machine 走 override（md 为人工校对源，is_machine 恒 0）。
@@ -2018,7 +2019,7 @@ def build(
                     e.get("entries") or [], item_templates, e
                 )
             # v0.43.0：5e_chm md 源的法术正文由 chm_parser 预构建（_prebuilt_body），
-            # 绕过 _kind_body（格式同构：`【法术信息】…` + 详述正文 + 升环段）。
+            # 绕过 _kind_body（v0.44.0 起 PHB 卡片式：环位行+属性行+详述正文+升环段）。
             body = e.get("_prebuilt_body") or _kind_body(kind, e)
             if not body:
                 skipped += 1

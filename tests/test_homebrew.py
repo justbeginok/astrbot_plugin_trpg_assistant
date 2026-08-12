@@ -65,7 +65,11 @@ def test_parse_5etools_format(tmp_path: Path) -> None:
     e = mgr.entries()[0]
     assert e.kind == "spell" and e.source == "DM"
     assert e.side["level"] == 3 and e.side["range_feet"] == 150
-    assert e.body.startswith("【法术信息】")
+    # v0.44.0：私设法术正文走 PHB 卡片式（环位行 + 属性行；fixture 无 time 字段）
+    assert e.body.startswith("三环 惑控")
+    assert "施法距离：150 尺" in e.body
+    assert "法术成分：V、S" in e.body
+    assert "持续时间：立即" in e.body
 
 
 def test_parse_simple_format_and_kind_resolve(tmp_path: Path) -> None:

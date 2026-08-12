@@ -215,7 +215,8 @@ def test_spell_command_dual_version(tmp_path: Path) -> None:
     msgs = collect(p.kb_spell_cmd(ev("/查法术 火球术")))
     text = msgs[0]
     assert "找到 2 个版本" in text
-    assert "[PHB·2014]" in text and "[XPHB·2024]" in text
+    # v0.44.0：版本标注移到卡片底部
+    assert "版本：PHB·2014" in text and "版本：XPHB·2024" in text
     assert "⚠️机翻" in text  # XPHB fixture 为机翻
 
 

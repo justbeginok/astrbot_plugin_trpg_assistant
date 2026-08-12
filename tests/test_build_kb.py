@@ -124,8 +124,8 @@ def test_dual_version_spell(built_db: Path) -> None:
     # 标签已清洗：正文不含 {@ 残留
     for r in rows:
         assert "{@" not in r[4]
-    # 学派显示为中文（「学派塑能」而非「学派V」）
-    assert "学派塑能" in by_src["PHB"][4]
+    # 学派显示为中文（「三环 塑能」而非「三环 V」，v0.44.0 PHB 卡片式）
+    assert "三环 塑能" in by_src["PHB"][4]
     # 2024 版正文含升环施法段
     assert "升环施法" in by_src["XPHB"][4]
     conn.close()

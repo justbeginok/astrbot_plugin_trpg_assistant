@@ -13,6 +13,8 @@
     classes(中文职业名列表)/time(施法时间)/components{}/ritual/concentration/
     aliases(双拼名别名)/detail(详述正文)/detail_meta/detail_time/detail_range/
     detail_components/detail_duration/detail_higher/detail_source/has_detail/body
+    body 为 v0.44.0 起 PHB 卡片式预构建（环位行+属性行+详述正文+升环段，
+    _build_body 产出；标题/概要/标签/版本行由 kb.format_entry 运行时拼装）。
 """
 from __future__ import annotations
 
@@ -416,34 +418,71 @@ def find_third_party_detail_files(md_root: Path) -> list[tuple[Path, str]]:
     return found
 
 
-def _build_body(rec: dict) -> str:
-    """拼装法术正文（与 kb_build_lib._spell_body 同构的「【法术信息】…」格式）。
+# 环位中文数字（v0.44.0 法术卡片式显示）
+_LEVEL_CN_NUM = {1: "一", 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "七", 8: "八", 9: "九"}
 
-    md 主源：元数据全部来自速查表+详述页，正文为详述文本+升环段。
+
+def _spell_level_line(rec: dict) -> str:
+    """环位行：「三环 塑能（术士、法师）」「塑能戏法（…）」「一环 预言（仪式；…）」。
+
+    从结构化字段（level/school/classes/ritual）重建，不直接用 detail_meta——
+    第三方源存在脏数据（如魔袋术 detail_meta 括号内是「时间、重力」垃圾文本）。
     """
-    parts = []
-    meta = []
-    lvl_cn = "戏法" if rec.get("level") == 0 else f"{rec.get('level')}环"
-    meta.append(lvl_cn)
-    if rec.get("school"):
-        meta.append(f"学派{rec['school']}")
+    level = rec.get("level")
+    school = rec.get("school") or ""
+    if isinstance(level, int) and level >= 0 and school:
+        classes = [
+            c for c in (rec.get("classes") or [])
+            if isinstance(c, str) and c.strip()
+        ]
+        ritual = bool(rec.get("ritual"))
+        line = f"{school}戏法" if level == 0 else (
+            f"{_LEVEL_CN_NUM.get(level, str(level))}环 {school}"
+        )
+        if classes or ritual:
+            if classes and ritual:
+                inner = "仪式；" + "、".join(classes)
+            elif ritual:
+                inner = "仪式"
+            else:
+                inner = "、".join(classes)
+            line += f"（{inner}）"
+        return line
+    # 兜底：detail_meta（补充环位与学派间的空格）
+    line = rec.get("detail_meta") or ""
+    return re.sub(r"(\d+环)(\S)", r"\1 \2", line)
+
+
+def _spell_components_line(rec: dict) -> str:
+    """法术成分行：优先人工校对 detail_components（「V、S、M（一小块海绵）」），
+    否则由 components 字典兜底拼 V/S/M 字母。"""
+    comps = rec.get("detail_components")
+    if not comps:
+        c = rec.get("components") or {}
+        comps = "、".join(
+            p for p, flag in (("V", c.get("v")), ("S", c.get("s")), ("M", c.get("m"))) if flag
+        )
+    return comps
+
+
+def _build_body(rec: dict) -> str:
+    """拼装法术正文（v0.44.0 起 PHB 卡片式，与 kb_build_lib._spell_body 同构）。
+
+    卡片体 = 环位行 + 4 属性行（一段） + 空行 + 详述正文 + 空行 + 升环段。
+    标题/概要/标签/版本行由 kb.format_entry 法术分支运行时拼装，不在此处。
+    """
+    lines = [_spell_level_line(rec)]
     t = rec.get("detail_time") or rec.get("time") or ""
     if t:
-        meta.append(f"施法时间{t}")
+        lines.append(f"施法时间：{t}")
     if rec.get("detail_range"):
-        meta.append(f"距离{rec['detail_range']}")
-    c = rec.get("components") or {}
-    cstr = "成分" + "".join(
-        p for p, flag in (("言语", c.get("v")), ("姿势", c.get("s")), ("材料", c.get("m"))) if flag
-    )
-    meta.append(cstr)
+        lines.append(f"施法距离：{rec['detail_range']}")
+    comps = _spell_components_line(rec)
+    if comps:
+        lines.append(f"法术成分：{comps}")
     if rec.get("detail_duration"):
-        meta.append(f"持续时间：{rec['detail_duration']}")
-    if rec.get("ritual"):
-        meta.append("仪式")
-    if rec.get("concentration"):
-        meta.append("专注")
-    parts.append("【法术信息】" + "｜".join(meta))
+        lines.append(f"持续时间：{rec['detail_duration']}")
+    parts = ["\n".join(lines)]
     if rec.get("detail"):
         parts.append(rec["detail"])
     if rec.get("detail_higher"):

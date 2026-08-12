@@ -9,6 +9,7 @@ import pytest
 
 from astrbot_plugin_trpg_assistant.kb import (
     KnowledgeBaseManager,
+    KbEntry,
     resolve_db_path,
 )
 from astrbot_plugin_trpg_assistant.kb_enums import (
@@ -441,9 +442,57 @@ def test_format_detail_dual_version(manager: KnowledgeBaseManager) -> None:
     entries = manager.detail("火球术")
     text = KnowledgeBaseManager.format_detail(entries)
     assert "找到 2 个版本" in text
-    assert "【火球术 Fireball】[XPHB·2024] ⚠️机翻" in text
-    assert "【火球术 Fireball】[PHB·2014]" in text
+    # v0.44.0：法术 PHB 卡片式——标题纯净、版本行放底部承载机翻标记
+    assert "火球术｜Fireball" in text
+    assert "三环 塑能" in text
+    assert "版本：XPHB·2024 ⚠️机翻" in text
+    assert "版本：PHB·2014" in text
     assert "以上内容来自知识库原文" not in text  # 命令直查不加 LLM 约束句
+
+
+def test_format_spell_entry() -> None:
+    """v0.44.0 法术卡片式：标题纯净/概要/标签/版本行，缺省即跳过。"""
+    e = KbEntry(
+        kind="spell", name="命令术", eng_name="Command",
+        source="PHB", edition="2014",
+        body=("一环 惑控（牧师、圣武士）\n施法时间：1 动作\n施法距离：60 尺\n"
+              "法术成分：V\n持续时间：1 轮\n\n描述正文。\n\n升环施法段。"),
+        spell_summary="你吐出一个单字命令迫使目标服从",
+        spell_keywords="控制、惑控",
+    )
+    text = KnowledgeBaseManager.format_entry(e)
+    assert text.startswith("命令术｜Command")
+    assert "概要：你吐出一个单字命令迫使目标服从" in text
+    assert "标签：控制、惑控" in text
+    assert "一环 惑控（牧师、圣武士）" in text
+    assert "升环施法段。" in text
+    assert text.rstrip().endswith("版本：PHB·2014")
+    # 无 eng → 标题退化；机翻标记进版本行
+    e2 = KbEntry(kind="spell", name="无名术", eng_name="", source="DM",
+                 edition="2014", body="一环 惑控\n\n正文", is_machine=1)
+    text2 = KnowledgeBaseManager.format_entry(e2)
+    assert text2.startswith("无名术")
+    assert "概要：" not in text2 and "标签：" not in text2
+    assert text2.rstrip().endswith("版本：DM·2014 ⚠️机翻")
+    # 房规标记也进版本行
+    e3 = KbEntry(kind="spell", name="私设术", eng_name="HB", source="DM",
+                 edition="2014", body="一环 惑控\n\n正文", is_homebrew=True)
+    text3 = KnowledgeBaseManager.format_entry(e3)
+    assert text3.rstrip().endswith("版本：DM·2014 🏠房规")
+
+
+def test_format_spell_entry_truncate() -> None:
+    """法术卡片体超长时截断 body，标题/概要/版本行不截。"""
+    e = KbEntry(
+        kind="spell", name="长法术", eng_name="Long",
+        source="PHB", edition="2014",
+        body="三环 塑能\n\n" + "很长的正文内容。" * 100,
+        spell_summary="概要",
+    )
+    text = KnowledgeBaseManager.format_entry(e, max_len=200)
+    assert "三环 塑能" in text
+    assert "内容过长已截断" in text
+    assert text.rstrip().endswith("版本：PHB·2014")
 
 
 def test_format_hits(manager: KnowledgeBaseManager) -> None:

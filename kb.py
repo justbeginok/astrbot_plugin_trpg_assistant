@@ -112,6 +112,8 @@ class KbEntry:
     feat_ability: str | None = None
     # 法术一句话概要（v0.27.0，spells 侧表；非过滤查询时为 None）
     spell_summary: str | None = None
+    # 法术语义标签（v0.44.0，entry_tags spell_keyword 汇总「、」分隔；detail 带出）
+    spell_keywords: str | None = None
     # 职业/子职一句话概要 + 职业定位（v0.33.0，classes 侧表；非过滤查询时为 None）
     class_summary: str | None = None
     class_role: str | None = None
@@ -452,6 +454,9 @@ class KnowledgeBaseManager:
             kb.school = side.get("school")
             if side.get("summary"):
                 kb.spell_summary = side["summary"]
+            kw = [v for f, v in e.tags if f == "spell_keyword"]
+            if kw:
+                kb.spell_keywords = "、".join(sorted(kw))
         elif e.kind == "monster":
             kb.cr = side.get("cr")
             kb.mtype = side.get("mtype")
@@ -557,6 +562,9 @@ class KnowledgeBaseManager:
             # v0.27.0：法术一句话概要（spells 侧表）
             if "spell_summary" in r.keys() and r["spell_summary"]:
                 e.spell_summary = r["spell_summary"]
+            # v0.44.0：法术语义标签（entry_tags spell_keyword 汇总）
+            if "spell_keywords" in r.keys() and r["spell_keywords"]:
+                e.spell_keywords = r["spell_keywords"]
             # v0.33.0：职业/子职一句话概要 + 职业定位（classes 侧表）
             if "class_summary" in r.keys() and r["class_summary"]:
                 e.class_summary = r["class_summary"]
@@ -572,13 +580,26 @@ class KnowledgeBaseManager:
 
     @staticmethod
     def _summary_of(body: str, limit: int = 60) -> str:
-        """取正文中第一个非「【…】」标题行的开头作为摘要。"""
+        """取正文中第一个非「【…】」标题行/法术元信息行的开头作为摘要。"""
         for line in body.splitlines():
             stripped = line.strip()
-            if stripped and not stripped.startswith("【"):
-                text = stripped[:limit]
-                return text + ("…" if len(stripped) > limit else "")
+            if not stripped or stripped.startswith("【"):
+                continue
+            # v0.44.0：法术卡片体首行为环位行（三环 塑能…），跳过元信息行
+            if KnowledgeBaseManager._is_spell_meta_line(stripped):
+                continue
+            text = stripped[:limit]
+            return text + ("…" if len(stripped) > limit else "")
         return body[:limit]
+
+    @staticmethod
+    def _is_spell_meta_line(line: str) -> bool:
+        """法术卡片元信息行判定（环位行/施法时间/施法距离/法术成分/持续时间/版本行）。"""
+        return (
+            line.startswith(("施法时间：", "施法距离：", "法术成分：", "持续时间：", "版本："))
+            or re.match(r"^[一二三四五六七八九]?环\s|^[\u4e00-\u9fa5]{1,2}戏法（", line) is not None
+            or re.match(r"^[\u4e00-\u9fa5]{1,2}戏法$", line) is not None
+        )
 
     def search(
         self,
@@ -716,7 +737,11 @@ class KnowledgeBaseManager:
                 " (SELECT group_concat(t.value, '、') FROM"
                 "  (SELECT value FROM entry_tags"
                 "   WHERE entry_id = e.id AND facet = 'feat_type') t)"
-                " AS feat_type_label"
+                " AS feat_type_label,"
+                " (SELECT group_concat(t.value, '、') FROM"
+                "  (SELECT value FROM entry_tags"
+                "   WHERE entry_id = e.id AND facet = 'spell_keyword'"
+                "   ORDER BY value) t) AS spell_keywords"
                 " FROM entries e LEFT JOIN feats f ON f.entry_id = e.id"
                 " LEFT JOIN spells sp ON sp.entry_id = e.id"
                 " LEFT JOIN classes cl ON cl.entry_id = e.id"
@@ -739,7 +764,11 @@ class KnowledgeBaseManager:
                 " (SELECT group_concat(t.value, '、') FROM"
                 "  (SELECT value FROM entry_tags"
                 "   WHERE entry_id = e.id AND facet = 'feat_type') t)"
-                " AS feat_type_label"
+                " AS feat_type_label,"
+                " (SELECT group_concat(t.value, '、') FROM"
+                "  (SELECT value FROM entry_tags"
+                "   WHERE entry_id = e.id AND facet = 'spell_keyword'"
+                "   ORDER BY value) t) AS spell_keywords"
                 " FROM entries e LEFT JOIN feats f ON f.entry_id = e.id"
                 " LEFT JOIN spells sp ON sp.entry_id = e.id"
                 " LEFT JOIN classes cl ON cl.entry_id = e.id"
@@ -1757,6 +1786,9 @@ class KnowledgeBaseManager:
 
     @staticmethod
     def format_entry(entry: KbEntry, max_len: int = MAX_ENTRY_LEN) -> str:
+        # v0.44.0：法术走 PHB 卡片式（标题纯净/概要/标签/版本行），其他种类不变
+        if entry.kind == "spell":
+            return KnowledgeBaseManager._format_spell_entry(entry, max_len)
         head = f"【{entry.name} {entry.eng_name}】[{entry.edition_label}]"
         if entry.homebrew_label:
             head += f" {entry.homebrew_label}"
@@ -1790,6 +1822,29 @@ class KnowledgeBaseManager:
                 meta_parts.append(f"属性提升：{entry.feat_ability}")
             head += "\n" + "；".join(meta_parts)
         return f"{head}\n{body}"
+
+    @staticmethod
+    def _format_spell_entry(entry: KbEntry, max_len: int = MAX_ENTRY_LEN) -> str:
+        """法术卡片式详情（v0.44.0，ADR-0019）。
+
+        标题行纯净（无【】无版本），概要/标签在标题下、环位行前；
+        卡片体（环位行/属性行/正文/升环段）为构建期预渲染（chm_parser._build_body
+        或 kb_build_lib._spell_body）；版本行放底部并承载机翻/房规标记。
+        """
+        title = f"{entry.name}｜{entry.eng_name}" if entry.eng_name else entry.name
+        head_lines = [title]
+        if entry.spell_summary:
+            head_lines.append(f"概要：{entry.spell_summary}")
+        if entry.spell_keywords:
+            head_lines.append(f"标签：{entry.spell_keywords}")
+        body = entry.body
+        if len(body) > max_len:
+            body = body[:max_len] + "\n…（内容过长已截断，可用更精确的条件查询）"
+        flags = " ".join(
+            f for f in (entry.machine_label, entry.homebrew_label) if f
+        )
+        footer = f"版本：{entry.edition_label}" + (f" {flags}" if flags else "")
+        return "\n\n".join(["\n".join(head_lines), body, footer])
 
     @staticmethod
     def format_detail(entries: list[KbEntry]) -> str:

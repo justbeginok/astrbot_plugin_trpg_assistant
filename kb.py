@@ -1194,6 +1194,31 @@ class KnowledgeBaseManager:
         ).fetchone()
         return "background_keyword" if row else None
 
+    def resolve_monster_free_term(self, term: str) -> str | None:
+        """怪物裸词自由文本 → 命中的 facet（monster_trait → sense_type →
+        alignment → speed_type）。
+
+        用于 /筛怪 裸词消歧（v0.45.0）。顺序原则：
+        - 特质名（monster_trait，开放集合——trait 标题中文名）优先：
+          玩家裸词「再生/魔法抗性/传奇抗性」的意图几乎总是特性名；
+        - 其余封闭维度（sense_type/alignment/speed_type）按值集回退。
+        不属于任何维度返回 None（进 unknown）。
+        """
+        t = (term or "").strip()
+        if not t:
+            return None
+        conn = self._connect()
+        row = conn.execute(
+            "SELECT facet FROM entry_tags"
+            " WHERE value = ? AND facet IN"
+            " ('monster_trait','sense_type','alignment','speed_type')"
+            " ORDER BY CASE facet WHEN 'monster_trait' THEN 0"
+            " WHEN 'sense_type' THEN 1 WHEN 'alignment' THEN 2 ELSE 3 END"
+            " LIMIT 1",
+            (t,),
+        ).fetchone()
+        return row["facet"] if row else None
+
     def class_features(
         self, class_name: str, subclass: str | None = None,
         feature: str | None = None,
@@ -1947,10 +1972,18 @@ class KnowledgeBaseManager:
             )
         if unknown:
             lines.append("未识别条件：" + "、".join(unknown))
-        lines.append(
-            "可追加条件收窄（伤害类型/状态/环境/CR/环级/稀有度等），"
-            "如：/筛怪 火焰 CR5以下、/筛法术 专注 3环。"
-        )
+        if kind_label == "怪物":
+            # v0.45.0：怪物细分维度提示（伤害四类/状态免疫/速度/感官/阵营/特性）
+            lines.append(
+                "可追加条件收窄（伤害类型/状态/速度/感官/阵营/特性/CR等），"
+                "如：/筛怪 火焰免疫、/筛怪 震慑免疫、/筛怪 真实视觉、"
+                "/筛怪 守序善良。"
+            )
+        else:
+            lines.append(
+                "可追加条件收窄（伤害类型/状态/环境/CR/环级/稀有度等），"
+                "如：/筛怪 火焰 CR5以下、/筛法术 专注 3环。"
+            )
         return "\n".join(lines)
 
     @staticmethod

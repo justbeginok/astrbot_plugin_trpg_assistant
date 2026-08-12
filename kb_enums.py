@@ -250,6 +250,11 @@ SPEED_TYPE_CN.update(
         "挖掘": "burrow",
     }
 )
+# v0.45.0：speed 键 → canonical 中文（entry_tags.speed_type 的值用中文）。
+SPEED_TYPE_CN_REV: dict[str, str] = {
+    "walk": "步行", "climb": "攀爬", "swim": "游泳",
+    "fly": "飞行", "burrow": "掘穴",
+}
 
 # --- 条目类型（kind）中文取值 ---
 KIND_CN: dict[str, str] = {
@@ -632,6 +637,55 @@ def resolve_size(cn: str) -> str | None:
 def resolve_speed_type(cn: str) -> str | None:
     """中文速度类型 → race.speed 键（walk/climb/swim/fly/burrow）。"""
     return SPEED_TYPE_CN.get((cn or "").strip())
+
+
+# v0.45.0 怪物感官类型：senses 文本前缀词（→ canonical，筛怪 sense_type facet）。
+# 2014 译名「颤动感知」与 2024「震颤感知」同源（tremorsense），归一后者。
+SENSE_TYPE_CN: dict[str, str] = {
+    "黑暗视觉": "黑暗视觉",
+    "盲视": "盲视",
+    "真实视觉": "真实视觉",
+    "震颤感知": "震颤感知",
+    "颤动感知": "震颤感知",
+}
+
+
+def resolve_sense_type(cn: str) -> str | None:
+    """中文感官类型 → canonical 中文（entry_tags.sense_type 匹配用）。"""
+    return SENSE_TYPE_CN.get((cn or "").strip())
+
+
+# v0.45.0 怪物阵营：中文阵营词（canonical 与别名）→ canonical。
+# canonical 与 format_alignment 输出一致（构建期 alignment tag 值即该输出）。
+ALIGNMENT_CN: dict[str, str] = {
+    "守序善良": "守序善良",
+    "中立善良": "中立善良",
+    "混乱善良": "混乱善良",
+    "守序中立": "守序中立",
+    "绝对中立": "绝对中立",
+    "完全中立": "绝对中立",
+    "中立": "绝对中立",
+    "混乱中立": "混乱中立",
+    "守序邪恶": "守序邪恶",
+    "中立邪恶": "中立邪恶",
+    "混乱邪恶": "混乱邪恶",
+    "任意阵营": "任意阵营",
+    "无阵营": "无阵营",
+    "任意非善良阵营": "任意非善良阵营",
+    "任意非邪恶阵营": "任意非邪恶阵营",
+    "任意非守序阵营": "任意非守序阵营",
+    "任意非混乱阵营": "任意非混乱阵营",
+    "任意混乱阵营": "任意混乱阵营",
+    "任意邪恶阵营": "任意邪恶阵营",
+    "任意守序阵营": "任意守序阵营",
+    "任意善良阵营": "任意善良阵营",
+    "任意中立阵营": "任意中立阵营",
+}
+
+
+def resolve_alignment(cn: str) -> str | None:
+    """中文阵营词（含别名）→ canonical 中文（entry_tags.alignment 匹配用）。"""
+    return ALIGNMENT_CN.get((cn or "").strip())
 
 
 def resolve_creature_type(cn: str) -> str | None:

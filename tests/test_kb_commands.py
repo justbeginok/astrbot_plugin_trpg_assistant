@@ -1283,3 +1283,65 @@ def test_tool_filter_background_keywords(tmp_path: Path) -> None:
         ev(""), action="filter", kind="背景", background_keywords="隐匿"
     ))
     assert "未找到" in text
+
+
+# ---------------------------------------------------------------------------
+# v0.45.0：怪物筛怪新维度（伤害细分/状态免疫/速度/感官/阵营/特性）
+# ---------------------------------------------------------------------------
+
+
+def test_parse_monster_suffix_words() -> None:
+    """后缀词解析：伤害四类/免疫双通道（伤害优先）/速度类型。"""
+    from astrbot_plugin_trpg_assistant.main import _parse_monster_suffix
+
+    assert _parse_monster_suffix("火焰伤害") == ("dmg_dealt", "火焰")
+    assert _parse_monster_suffix("火焰抗性") == ("dmg_resist", "火焰")
+    assert _parse_monster_suffix("火焰免疫") == ("dmg_immune", "火焰")
+    assert _parse_monster_suffix("火焰易伤") == ("dmg_vuln", "火焰")
+    # 「X免疫」伤害词表优先（毒素=伤害），否则落状态（震慑/中毒=状态）
+    assert _parse_monster_suffix("毒素免疫") == ("dmg_immune", "毒素")
+    assert _parse_monster_suffix("震慑免疫") == ("condition_immune", "震慑")
+    assert _parse_monster_suffix("中毒免疫") == ("condition_immune", "中毒")
+    # 速度后缀归一为中文 tag 值（构建期 speed_type facet 存中文）
+    assert _parse_monster_suffix("掘穴速度") == ("speed_type", "掘穴")
+    assert _parse_monster_suffix("飞行速度") == ("speed_type", "飞行")
+    # 裸词不落后缀
+    assert _parse_monster_suffix("火焰") is None
+    assert _parse_monster_suffix("再生") is None
+    assert _parse_monster_suffix("守序善良") is None
+
+
+def test_filter_monster_new_dimensions(tmp_path: Path) -> None:
+    """v0.45.0：/筛怪 伤害免疫/抗性/状态免疫/速度/感官/阵营/特性维度。"""
+    p = make_plugin(tmp_path)
+    # 伤害免疫/抗性细分（少年青铜龙：闪电免疫、寒冷抗性）
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 闪电免疫")))[0]
+    assert "少年青铜龙" in text
+    assert "成年红龙" not in text
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 寒冷抗性")))[0]
+    assert "少年青铜龙" in text
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 火焰免疫")))[0]
+    assert "没有符合条件的怪物" in text
+    # 状态免疫（少年青铜龙：恐慌免疫）
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 恐慌免疫")))[0]
+    assert "少年青铜龙" in text
+    # 速度类型（少年青铜龙：飞行速度）
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 飞行速度")))[0]
+    assert "少年青铜龙" in text
+    # 感官裸词（少年青铜龙：黑暗视觉）
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 黑暗视觉")))[0]
+    assert "少年青铜龙" in text
+    # 特性名裸词（少年青铜龙：两栖）
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 两栖")))[0]
+    assert "少年青铜龙" in text
+    # 阵营裸词（少年青铜龙守序善良 / 成年红龙混乱邪恶 / 恐狼无阵营）
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 守序善良")))[0]
+    assert "少年青铜龙" in text
+    assert "成年红龙" not in text
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 混乱邪恶")))[0]
+    assert "成年红龙" in text
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 无阵营")))[0]
+    assert "恐狼" in text
+    # 结果提示行含新维度引导
+    text = collect(p.kb_filter_monster_cmd(ev("/筛怪 闪电免疫")))[0]
+    assert "火焰免疫" in text and "真实视觉" in text

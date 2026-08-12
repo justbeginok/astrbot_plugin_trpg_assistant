@@ -145,7 +145,9 @@ from .build_advisor import (
 from .money import format_cp, parse_money
 from .shop import ShopManager
 from .kb_enums import (
+    SPEED_TYPE_CN_REV,
     resolve_ability,
+    resolve_alignment,
     resolve_background_keyword,
     resolve_class_keyword,
     resolve_class_role,
@@ -163,6 +165,7 @@ from .kb_enums import (
     resolve_race_keyword,
     resolve_rarity,
     resolve_school,
+    resolve_sense_type,
     resolve_shape,
     resolve_size,
     resolve_speed_type,
@@ -852,6 +855,45 @@ def _parse_cr_token(s: str) -> float | None:
         return None
 
 
+def _parse_monster_suffix(t: str) -> tuple[str, str] | None:
+    """怪物筛怪后缀词 → (facet, canonical 值)。
+
+    v0.45.0：火焰伤害/火焰抗性/火焰免疫/火焰易伤/震慑免疫/掘穴速度。
+    「X免疫」伤害词表优先（毒素免疫→伤害免疫），未命中落状态词表
+    （震慑免疫/中毒免疫→状态免疫）；词表天然不冲突（毒素=伤害、
+    中毒=状态）。「X速度」经 SPEED_TYPE_CN_REV 归一为中文 tag 值。
+    """
+    if not t:
+        return None
+    for suffix in ("伤害", "抗性", "易伤", "免疫", "速度"):
+        if not t.endswith(suffix):
+            continue
+        base = t[: -len(suffix)]
+        if suffix == "免疫":
+            dmg = resolve_damage_type(base)
+            if dmg:
+                return ("dmg_immune", dmg)
+            cond_cn = resolve_condition(base)
+            if cond_cn:
+                return ("condition_immune", cond_cn)
+            return None
+        if suffix == "速度":
+            key = resolve_speed_type(base)
+            if key:
+                return ("speed_type", SPEED_TYPE_CN_REV.get(key, key))
+            return None
+        canonical = resolve_damage_type(base)
+        if canonical:
+            facet = {
+                "伤害": "dmg_dealt",
+                "抗性": "dmg_resist",
+                "易伤": "dmg_vuln",
+            }[suffix]
+            return (facet, canonical)
+        return None
+    return None
+
+
 def _parse_filter_tokens(
     tokens: list[str], kind: str,
     feat_free_lookup: Callable[[str], str | None] | None = None,
@@ -860,6 +902,7 @@ def _parse_filter_tokens(
     subclass_free_lookup: Callable[[str], str | None] | None = None,
     race_free_lookup: Callable[[str], str | None] | None = None,
     background_free_lookup: Callable[[str], str | None] | None = None,
+    monster_free_lookup: Callable[[str], str | None] | None = None,
 ) -> tuple[dict, list[str]]:
     """解析筛指令条件 token。
 
@@ -873,6 +916,8 @@ def _parse_filter_tokens(
     （v0.33.0，同对应前缀词「定位/标签」）。
     race_free_lookup / background_free_lookup：种族/背景裸词标签值集判定
     （v0.34.0，同对应前缀词「标签」）。
+    monster_free_lookup：怪物裸词标签值集判定（v0.45.0，特质名/感官/
+    阵营/速度类型自由词兜底）。
     """
     cond: dict = {
         "level": None, "school": None,
@@ -893,6 +938,14 @@ def _parse_filter_tokens(
             ("condition_inflict", resolve_condition),
             ("environment", resolve_environment),
             ("mtype", resolve_monster_type),
+            # v0.45.0：伤害/状态防御维度 + 速度/感官/阵营（筛怪 6 维）
+            ("dmg_resist", resolve_damage_type),
+            ("dmg_immune", resolve_damage_type),
+            ("dmg_vuln", resolve_damage_type),
+            ("condition_immune", resolve_condition),
+            ("speed_type", resolve_speed_type),
+            ("sense_type", resolve_sense_type),
+            ("alignment", resolve_alignment),
         ]
     elif kind == "spell":
         enum_parsers = [
@@ -1021,6 +1074,12 @@ def _parse_filter_tokens(
                         cond["cr_min"] = cr
                     else:
                         cond["cr_min"] = cond["cr_max"] = cr
+                continue
+            # v0.45.0：后缀词（火焰伤害/火焰抗性/火焰免疫/火焰易伤/
+            # 震慑免疫/掘穴速度），先于枚举解析（避免「震慑免疫」误走状态施加）
+            suffix_hit = _parse_monster_suffix(t)
+            if suffix_hit:
+                cond["tags"].append(suffix_hit)
                 continue
         if kind == "spell":
             m = _RE_LEVEL.match(t)
@@ -1186,12 +1245,22 @@ def _parse_filter_tokens(
         for key, resolver in enum_parsers:
             canonical = resolver(t)
             if canonical:
-                if key in ("mtype", "school", "rarity", "range_type", "speed_type"):
+                if key == "speed_type":
+                    # 种族：数值筛选走 cond（英文键查侧表列）；
+                    # 怪物：类型筛选走 tags，值归一为中文（构建期 tag 值为中文）。
+                    if kind == "race":
+                        cond[key] = canonical
+                    else:
+                        cond["tags"].append(
+                            (key, SPEED_TYPE_CN_REV.get(canonical, canonical))
+                        )
+                elif key in ("mtype", "school", "rarity", "range_type"):
                     cond[key] = canonical
                 elif key in ("spell_shape", "spell_target", "spell_component"):
                     cond["tags"].append((key, canonical))
                 else:  # dmg_dealt / condition_inflict / environment / weapon_property /
-                    #      size / creature_type / dmg_resist
+                    #      size / creature_type / dmg_resist / dmg_immune / dmg_vuln /
+                    #      condition_immune / sense_type / alignment
                     cond["tags"].append((key, canonical))
                 matched = True
                 break
@@ -1242,6 +1311,13 @@ def _parse_filter_tokens(
             if dim:
                 cond["tags"].append((dim, probe))
                 continue
+        # 怪物裸词：标签值集判定（v0.45.0；enum 未命中时的兜底，覆盖
+        # 特质名/感官/阵营/速度类型自由词，如「再生」「真实视觉」「守序善良」）
+        if kind == "monster" and monster_free_lookup is not None:
+            dim = monster_free_lookup(t)
+            if dim:
+                cond["tags"].append((dim, t))
+                continue
         cond["unknown"].append(t)
     return cond, cond["unknown"]
 
@@ -1262,10 +1338,13 @@ _FILTER_KIND_LABEL = {
 _FILTER_HELP = {
     "monster": (
         "筛怪用法：{p}筛怪 <条件...>，条件用空格分隔、可组合\n"
-        "  伤害类型：火焰/寒冷/暗蚀/穿刺/闪电/毒素…\n"
-        "  状态：魅惑/恐慌/中毒/麻痹/震慑…   环境：森林/沼泽/幽暗地域…\n"
+        "  伤害：火焰/寒冷/暗蚀…    伤害细分：火焰伤害/火焰抗性/火焰免疫/火焰易伤\n"
+        "  状态免疫：震慑免疫/中毒免疫…    状态：魅惑/恐慌/中毒/麻痹/震慑…\n"
+        "  速度类型：掘穴速度/飞行速度/游泳速度…    感官：真实视觉/黑暗视觉/盲视…\n"
+        "  阵营：守序善良/混乱邪恶/任意阵营…    特性名：再生/魔法抗性…\n"
         "  怪类：龙类/不死生物/野兽…          CR：CR5、CR5以下、CR5以上\n"
-        "示例：{p}筛怪 火焰 CR5以下、{p}筛怪 闪电 龙类"
+        "示例：{p}筛怪 火焰 CR5以下、{p}筛怪 火焰免疫、{p}筛怪 真实视觉、"
+        "{p}筛怪 守序善良"
     ),
     "spell": (
         "筛法术用法：{p}筛法术 <条件...>，条件用空格分隔、可组合\n"
@@ -1375,7 +1454,7 @@ _HELP_SECTIONS = {
             "/查状态 <名称>          查询状态（目盲/魅惑…，2014/2024 双版本）",
             "/查种族 <名称>          查询种族（体型/速度/黑暗视觉/抗性/天生施法）",
             "/查询 <关键词> [-全文]  跨法术/怪物/物品等全部类别广搜，-全文 额外搜正文",
-            "/筛怪 <条件...>         按特性反查怪物，如：/筛怪 火焰 CR5以下",
+            "/筛怪 <条件...>         按特性反查怪物，如：/筛怪 火焰 CR5以下、/筛怪 火焰免疫、/筛怪 震慑免疫、/筛怪 掘穴速度、/筛怪 再生、/筛怪 真实视觉、/筛怪 守序善良",
             "/筛法术 <条件...>       按特性/能力标签反查法术，如：/筛法术 专注 3环、/筛法术 控场 3环、/筛法术 标签 治疗",
             "/筛物品 <条件...>       按特性反查物品，如：/筛物品 暗蚀 灵巧",
             "/筛种族 <条件...>       按特性/能力标签反查种族，如：/筛种族 飞行 60尺、/筛种族 迷踪步、/筛种族 变形、/筛种族 标签 水陆两栖",
@@ -4977,6 +5056,10 @@ class TrpgAssistantPlugin(Star):
                 self.kb_manager.resolve_background_free_term
                 if kind == "background" else None
             ),
+            monster_free_lookup=(
+                self.kb_manager.resolve_monster_free_term
+                if kind == "monster" else None
+            ),
         )
         # 物品兜底：未识别 token 若精确命中物品条目名，当作「基础物品」条件
         # （/筛物品 长剑 → 列出以长剑为基础的魔法武器）。
@@ -5132,7 +5215,7 @@ class TrpgAssistantPlugin(Star):
 
     @filter.command("筛怪", alias={"mfilter", "筛怪物"})
     async def kb_filter_monster_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
-        """特性反查怪物：/筛怪 火焰 CR5以下（伤害/状态/环境/怪类/CR）。"""
+        """特性反查怪物：/筛怪 火焰 CR5以下（伤害/状态/速度/感官/阵营/特性/CR）。"""
         raw_msg: str = event.message_str.strip()
         parts = raw_msg.split(None, 1)
         arg = parts[1].strip() if len(parts) > 1 else ""

@@ -44,6 +44,7 @@ from astrbot_plugin_trpg_assistant.kb_enums import (  # noqa: E402
     FEAT_KEYWORD_TAGS,
     ITEM_TYPE_CODE,
     RACE_KEYWORD_TAGS,
+    SENSE_TYPE_CN,
     SCHOOL_CN,
     SCHOOL_CN_REV,
     SIZE_CN_REV,
@@ -51,6 +52,7 @@ from astrbot_plugin_trpg_assistant.kb_enums import (  # noqa: E402
     SUBCLASS_KEYWORD_TAGS,
     WEAPON_PROPERTY_CODE,
     edition_of_source,
+    format_alignment,
     format_rarity,
     normalize_environment,
 )
@@ -418,7 +420,8 @@ def _chm_spells_to_entries(spells_md: list[dict]) -> list[dict]:
 
 
 def _monster_tags(m: dict) -> list[tuple[str, str]]:
-    """怪物的特性标签：造成伤害/施加状态（动作区）+ 防御 + 环境。"""
+    """怪物的特性标签：造成伤害/施加状态（动作区）+ 防御 + 环境 +
+    速度类型/感官/阵营/特质名（v0.45.0，筛怪 6 维）。"""
     tags: list[tuple[str, str]] = []
     texts: list[str] = []
     for key in ("trait", "action", "bonus", "reaction", "legendary", "mythic"):
@@ -444,7 +447,68 @@ def _monster_tags(m: dict) -> list[tuple[str, str]]:
         canonical = normalize_environment(e)
         if canonical:
             tags.append(("environment", canonical))
+    # v0.45.0：速度类型 / 感官 / 阵营 / 特质名（筛怪新维度）
+    tags += _monster_speed_tags(m)
+    tags += _monster_sense_tags(m)
+    align = format_alignment(m.get("alignment"))
+    if align:
+        tags.append(("alignment", align))
+    for t in m.get("trait") or []:
+        name = t.get("name") if isinstance(t, dict) else (t if isinstance(t, str) else "")
+        cn = _trait_cn_name(name)
+        if cn:
+            tags.append(("monster_trait", cn))
     return tags
+
+
+# 感官类型词表（kb_enums.SENSE_TYPE_CN）：senses 文本前缀 → canonical。
+# 2014 译名「颤动感知」与 2024「震颤感知」同源（tremorsense），归一后者。
+
+# 特质标题 → 中文名：取开头连续中文段（含中文标点），去尾部瑕疵标点。
+# 「再生Regeneration」→「再生」；「水陆两栖Amphibious.。」→「水陆两栖」；
+# 英文开头（脏数据）不匹配 → 跳过该特质。
+_RE_TRAIT_CN = re.compile(r"^([\u4e00-\u9fff（）()·、，。]+)")
+
+
+def _trait_cn_name(name: str) -> str | None:
+    if not name:
+        return None
+    name = (name or "").strip()
+    m = _RE_TRAIT_CN.match(name)
+    if not m:
+        return None
+    cn = m.group(1).rstrip("。.，,；; （(")
+    return cn or None
+
+
+def _monster_speed_tags(m: dict) -> list[tuple[str, str]]:
+    """怪物速度类型：speed int（仅步行）/ dict 有该键即标（值 int 或 True）。"""
+    spd = m.get("speed")
+    if isinstance(spd, (int, bool)):
+        return [("speed_type", "步行")]
+    if not isinstance(spd, dict):
+        return []
+    out: list[tuple[str, str]] = []
+    for key, cn in (
+        ("walk", "步行"), ("climb", "攀爬"), ("swim", "游泳"),
+        ("fly", "飞行"), ("burrow", "掘穴"),
+    ):
+        if spd.get(key) is not None:
+            out.append(("speed_type", cn))
+    return out
+
+
+def _monster_sense_tags(m: dict) -> list[tuple[str, str]]:
+    """感官类型：senses 文本按前缀匹配（「真实视觉 120 尺」「黑暗视觉60尺」）。"""
+    out: list[tuple[str, str]] = []
+    for s in _defense_list(m.get("senses")):
+        if not isinstance(s, str):
+            continue
+        for prefix, cn in SENSE_TYPE_CN.items():
+            if s.startswith(prefix):
+                out.append(("sense_type", cn))
+                break
+    return out
 
 
 _RANGE_SHAPE_CN = {
@@ -2025,7 +2089,13 @@ def build(
                 skipped += 1
                 continue
             eng = str(e.get("ENG_name") or "")
-            edition = e.get("_edition_override") or edition_of_source(source)
+            # v0.45.0：条目自带 edition 字段（第三方 LLM 产物）优先于 source 推断；
+            # 5etools 源条目无 edition 字段，走 edition_of_source 无副作用。
+            edition = (
+                e.get("_edition_override")
+                or e.get("edition")
+                or edition_of_source(source)
+            )
             is_machine = e.get("_is_machine_override", is_machine_entry(e))
             cur = conn.execute(
                 "INSERT OR REPLACE INTO entries"

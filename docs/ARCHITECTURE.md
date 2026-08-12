@@ -158,6 +158,16 @@ entry_tags(entry_id, facet, value, PK(entry_id,facet,value))  + idx_tags_fv(face
 -- facet 全集：dmg_dealt/dmg_resist/dmg_immune/dmg_vuln/condition_inflict/condition_immune/
 --   environment/weapon_property/spell_component/spell_shape/spell_target/base_item/item_type/
 --   size/creature_type/speed_type/innate_spell
+-- v0.45.0 怪物筛怪六维（ADR-0020）：怪物新增 4 facet——
+--   speed_type（速度类型：步行/攀爬/游泳/飞行/掘穴，speed dict 有该键即标）、
+--   sense_type（感官：真实视觉/黑暗视觉/盲视/震颤感知，senses 文本前缀匹配；
+--     2014 译名「颤动感知」归一「震颤感知」）、
+--   alignment（阵营：format_alignment 输出中文，轴码数组展开；筛怪
+--     「守序善良/混乱邪恶/无阵营」等）、
+--   monster_trait（特性名：trait 标题中文名，开放集合，裸词精确匹配；
+--     LLM 产物标题「再生Regeneration」构建期去英文）。
+--   速度数值筛选（如「飞行≥60尺」）未入本版：需 monsters 侧表加数值列
+--   （届时 bump SCHEMA_VERSION），当前类型筛选走 tags 即可。
 -- v0.25.0 专长反查：feat_type（类型：通用/起源/战斗风格/传奇恩惠/黑暗赠礼/龙纹）、
 --   ability_increase（属性提升：choose 展开去重）、prereq_race/prereq_ability/
 --   prereq_feat/prereq_feature（先决条件：种族名/「敏捷 13」/前置专长含去括号基础名/特性名）
@@ -391,7 +401,7 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 | `卡`（char, 角色卡）| 角色卡 | v0.31.0：攻击条目删除（`/卡 设 攻击 名=-`）与已知法术单条增删（`/卡 法术 加|删 <环阶> <法术名>`）；v0.32.0：命名掷骰全套 CRUD（`/卡 骰 <名> <表达式>` / `<名> -` 删除 / `/卡 详情 掷骰`）；v0.41.0：`/卡 设` 补全六维属性（力量/敏捷/体质/智力/感知/魅力，clamp 1-30）、种族、职业（整体替换含子职等级）、版本，设置后自动触发战斗字段重算 |
 | `车卡`（chargen）| 车卡引导 | |
 | `车卡规则`（车规, chargenrule）| 群开卡规则 | |
-| `查法术`(spell) `查怪`(monster,怪物) `查物品`(item,物品) `查专长`(feat,专长) `查背景`(background,背景) `查状态`(condition,状态) `查种族`(race,种族) `查职业`(class,职业) `kb` `查询`(search,搜,q) `筛怪`(mfilter,筛怪物) `筛法术`(sfilter,筛魔法) `筛物品`(ifilter,筛道具) `筛种族`(rfilter,筛血统) `筛专长`(ffilter,专长筛) `筛职业`(cfilter,职业筛) `筛子职`(sublass_filter,子职筛) `筛背景`(bfilter,背景筛) | 知识库 | 筛专长 v0.26.0 起支持能力标签反查；筛法术 v0.27.0 起支持语义大类标签反查（裸词自动消歧，如「控场/治疗/伤害/召唤」；前缀词「标签」显式指定；别名归一），v0.35.0 起支持职业法术表反查（前缀词「职业 法师」，中英文职业名均可）。筛职业/筛子职 v0.33.0 起支持定位+能力标签反查（职业：`/筛职业 武者` 定位、`/筛职业 近战 爆发` 标签、`/筛职业 奥术施法 智力`；子职：`/筛子职 治疗 神圣`、`/筛子职 塑能`；前缀词「定位/标签」；裸词自动消歧）。筛种族 v0.34.0 起支持能力标签反查（裸词自动消歧，如「变形/水陆两栖/魅力」→ race_keyword，伤害词「火焰/光耀」仍优先走天生抗性 dmg_resist；前缀词「标签」）。筛背景 v0.34.0 新建（裸词技能/身份/工具/起始专长反查，如 `/筛背景 隐匿 盗贼工具`、`/筛背景 贵族`；前缀词「标签」）。查职业 v0.29.0 起第二参数支持「特性」关键词细化本职特性：`/查职业 <职业> 特性`（全部本职特性全文）、`/查职业 <职业> 特性 <特性名>`（单个特性跨版本全文）；v0.33.0 起 /查职业 头部展示职业定位与 AI 概要；v0.34.0 起 /查种族 /查背景 头部展示 AI 概要；`/kb reload`（v0.36.0 重载私设目录）/`kb 私设`（查看私设概况） |
+| `查法术`(spell) `查怪`(monster,怪物) `查物品`(item,物品) `查专长`(feat,专长) `查背景`(background,背景) `查状态`(condition,状态) `查种族`(race,种族) `查职业`(class,职业) `kb` `查询`(search,搜,q) `筛怪`(mfilter,筛怪物) `筛法术`(sfilter,筛魔法) `筛物品`(ifilter,筛道具) `筛种族`(rfilter,筛血统) `筛专长`(ffilter,专长筛) `筛职业`(cfilter,职业筛) `筛子职`(sublass_filter,子职筛) `筛背景`(bfilter,背景筛) | 知识库 | 筛专长 v0.26.0 起支持能力标签反查；筛法术 v0.27.0 起支持语义大类标签反查（裸词自动消歧，如「控场/治疗/伤害/召唤」；前缀词「标签」显式指定；别名归一），v0.35.0 起支持职业法术表反查（前缀词「职业 法师」，中英文职业名均可）。筛职业/筛子职 v0.33.0 起支持定位+能力标签反查（职业：`/筛职业 武者` 定位、`/筛职业 近战 爆发` 标签、`/筛职业 奥术施法 智力`；子职：`/筛子职 治疗 神圣`、`/筛子职 塑能`；前缀词「定位/标签」；裸词自动消歧）。筛种族 v0.34.0 起支持能力标签反查（裸词自动消歧，如「变形/水陆两栖/魅力」→ race_keyword，伤害词「火焰/光耀」仍优先走天生抗性 dmg_resist；前缀词「标签」）。筛背景 v0.34.0 新建（裸词技能/身份/工具/起始专长反查，如 `/筛背景 隐匿 盗贼工具`、`/筛背景 贵族`；前缀词「标签」）。筛怪 v0.45.0 起支持六维（ADR-0020）：伤害细分后缀词（火焰伤害/抗性/免疫/易伤→dmg_dealt/dmg_resist/dmg_immune/dmg_vuln；「X免疫」伤害词表优先、未命中落状态）、状态免疫（震慑免疫→condition_immune）、速度类型（掘穴速度→speed_type，值归一中文）、感官（真实视觉→sense_type，颤动感知归一震颤感知）、阵营（守序善良→alignment）、特性名（再生→monster_trait，裸词自动消歧 resolve_monster_free_term 兜底）；裸词「火焰」保持=火焰伤害向后兼容，结果底部提示细分词。查职业 v0.29.0 起第二参数支持「特性」关键词细化本职特性：`/查职业 <职业> 特性`（全部本职特性全文）、`/查职业 <职业> 特性 <特性名>`（单个特性跨版本全文）；v0.33.0 起 /查职业 头部展示职业定位与 AI 概要；v0.34.0 起 /查种族 /查背景 头部展示 AI 概要；`/kb reload`（v0.36.0 重载私设目录）/`kb 私设`（查看私设概况） |
 | `帮助`（menu,菜单,commands,cmds）| 帮助 | |
 
 **LLM 工具（9 个）**：`roll_dice` / `manage_initiative` / `manage_inventory`

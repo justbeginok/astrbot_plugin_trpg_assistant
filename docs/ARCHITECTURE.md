@@ -267,6 +267,17 @@ parser 层加语法，而在 main.py `_do_roll` 命令层映射——`_map_zh_ad
 三个掷骰入口（/r、自定义前缀、roll_dice 工具）自动全部生效。详见
 `docs/adr/0014-zh-adv-dis-command-layer.md`。
 
+v0.47.0（ADR-0022）新增：
+- `ParsedExpression` 增 `repeat`（多重投掷次数 `N#`，默认 1）与 `ast`（复杂公式
+  表达式树；None = 扁平 +/- 和路径，回退保兼容）。
+- AST 节点（dice_parser.py）：`ConstNode` / `DiceNode` / `BinOpNode`(`+ - * /`) /
+  `NegNode` / `GroupNode`；`DiceGroup` 增 `count_src`/`sides_src`/`count_expr`/
+  `sides_expr`（骰数/骰面位置的括号算式）。
+- `RollResult` 增 `sub_results`（repeat>1 的逐次独立结果）与 `ast_value`（AST 求值
+  最终值）；`group_results` 语义保持「左到右扁平骰组列表」。
+- 计数组（`>N`/`<N`/`fN`）限根：只能作整条表达式，不得进四则或括号。
+- `max_repeat_count` 配置项（默认 20）限制重复次数；全局骰数预算复用 `max_dice`。
+
 ### 5.2 历史（history.py）
 `HistoryEntry`：`expr`(表达式) / `result`(结果首行，截断) / `sender_id` / `sender_name` / `ts`(`MM-DD HH:MM:SS`)。
 

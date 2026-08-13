@@ -9,9 +9,18 @@ dice_roller.py — DnD 骰子执行引擎。
 from __future__ import annotations
 
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
-from .dice_parser import DiceGroup, ParsedExpression, RerollCondition
+from .dice_parser import (
+    BinOpNode,
+    ConstNode,
+    DiceGroup,
+    DiceNode,
+    GroupNode,
+    NegNode,
+    ParsedExpression,
+    RerollCondition,
+)
 
 # ---------------------------------------------------------------------------
 # 结果数据类
@@ -76,14 +85,24 @@ class RollResult:
 
     expression: ParsedExpression  # 原始解析表达式
     group_results: list[DiceGroupResult] = field(default_factory=list)
+    # 多重投掷（repeat>1）时的逐次结果；单次投掷时为空列表。
+    sub_results: list[RollResult] = field(default_factory=list)
+    # 复杂公式 AST 求值的最终值（ast 路径使用）；扁平路径为 None。
+    ast_value: int | None = None
 
     @property
     def is_success_mode(self) -> bool:
-        """任意组处于成功计数模式即视为整体成功计数模式。"""
+        """任意组处于成功计数模式即视为整体成功计数模式（多重投掷取任意子结果）。"""
+        if self.sub_results:
+            return any(r.is_success_mode for r in self.sub_results)
         return any(r.is_success_mode for r in self.group_results)
 
     @property
     def total(self) -> int:
+        if self.sub_results:
+            return sum(r.total for r in self.sub_results)
+        if self.ast_value is not None:
+            return self.ast_value
         return (
             sum(r.subtotal for r in self.group_results) + self.expression.flat_modifier
         )
@@ -101,6 +120,8 @@ class RollResult:
           - 优势/劣势（2d20kh1 / 2d20kl1）
         用于 is_natural_20 / is_natural_1 的共享判断逻辑。
         """
+        if self.sub_results:  # 多重投掷不判定大成功/大失败
+            return False
         if len(self.group_results) != 1:
             return False
         r = self.group_results[0]
@@ -657,30 +678,159 @@ def _roll_group(
 # ---------------------------------------------------------------------------
 
 
-def roll(
-    expr: ParsedExpression,
-    max_dice: int = 100,
-    max_sides: int = 1000,
-    exploding_depth: int = 20,
-    reroll_max_depth: int = 20,
-    max_total_rolled: int = 500,
-) -> RollResult:
-    """
-    执行 ParsedExpression 并返回 RollResult。
+# ---------------------------------------------------------------------------
+# AST 求值器（v0.47.0：四则运算 + 括号）
+# ---------------------------------------------------------------------------
 
-    任何骰子组违反配置限制时抛出 DiceRollError。
 
-    Args:
-        max_total_rolled: 单组骰子（含爆炸追加骰）的总数量上限。
-            独立于 max_dice，防止 max_dice * exploding_depth 量级的组合
-            产生过大列表和格式化开销。默认 500。
+def _eval_node(
+    node: object,
+    max_dice: int,
+    max_sides: int,
+    exploding_depth: int,
+    reroll_max_depth: int,
+    max_total_rolled: int,
+    budget: list[int],
+) -> tuple[int, list[DiceGroupResult]]:
     """
-    # 全局预算检查：单组限制无法防止多组合计超出 max_dice。
-    total_base_dice = sum(g.count for g in expr.groups)
-    if total_base_dice > max_dice:
-        raise DiceRollError(
-            f"骰子数量 {total_base_dice} 超过单次掷骰限制 {max_dice}（跨所有骰子组合计）"
+    递归求值表达式树节点，返回 (值, 左到右的骰组结果列表)。
+
+    budget 为跨组跨 repeat 累计的已掷基础骰计数器（list 单元素，可原地累加），
+    防止「骰数含骰子/算式」的表达式绕开 max_dice 预算。
+    """
+    if isinstance(node, ConstNode):
+        return node.value, []
+    if isinstance(node, NegNode):
+        v, gs = _eval_node(
+            node.operand,
+            max_dice,
+            max_sides,
+            exploding_depth,
+            reroll_max_depth,
+            max_total_rolled,
+            budget,
         )
+        return -v, gs
+    if isinstance(node, GroupNode):
+        return _eval_node(
+            node.child,
+            max_dice,
+            max_sides,
+            exploding_depth,
+            reroll_max_depth,
+            max_total_rolled,
+            budget,
+        )
+    if isinstance(node, DiceNode):
+        g = node.group
+        count = g.count
+        sides = g.sides
+        extra_groups: list[DiceGroupResult] = []
+        # 骰数/骰面位置的括号算式：先递归求值（可能本身含骰子）。
+        if g.count_expr is not None:
+            cval, cgs = _eval_node(
+                g.count_expr,
+                max_dice,
+                max_sides,
+                exploding_depth,
+                reroll_max_depth,
+                max_total_rolled,
+                budget,
+            )
+            count = cval
+            extra_groups.extend(cgs)
+        if g.sides_expr is not None:
+            sval, sgs = _eval_node(
+                g.sides_expr,
+                max_dice,
+                max_sides,
+                exploding_depth,
+                reroll_max_depth,
+                max_total_rolled,
+                budget,
+            )
+            sides = sval
+            extra_groups.extend(sgs)
+        if count <= 0:
+            raise DiceRollError(f"骰数位置的算式结果为 {count}，必须为正整数")
+        if sides <= 0:
+            raise DiceRollError(f"骰面位置的算式结果为 {sides}，必须为正整数")
+        # 累计预算（骰数含骰子的表达式无法在 roll() 预检时统计）。
+        budget[0] += count
+        if budget[0] > max_dice:
+            raise DiceRollError(
+                f"骰子总数 {budget[0]} 超过单次掷骰限制 {max_dice}"
+            )
+        final_group = replace(
+            g, count=count, sides=sides, count_expr=None, sides_expr=None
+        )
+        gr = _roll_group(
+            final_group,
+            max_dice,
+            max_sides,
+            exploding_depth,
+            reroll_max_depth,
+            max_total_rolled,
+        )
+        return gr.subtotal, extra_groups + [gr]
+    if isinstance(node, BinOpNode):
+        lv, lgs = _eval_node(
+            node.left,
+            max_dice,
+            max_sides,
+            exploding_depth,
+            reroll_max_depth,
+            max_total_rolled,
+            budget,
+        )
+        rv, rgs = _eval_node(
+            node.right,
+            max_dice,
+            max_sides,
+            exploding_depth,
+            reroll_max_depth,
+            max_total_rolled,
+            budget,
+        )
+        groups = lgs + rgs  # 中序（左到右）
+        if node.op == "+":
+            return lv + rv, groups
+        if node.op == "-":
+            return lv - rv, groups
+        if node.op == "*":
+            return lv * rv, groups
+        if node.op == "/":
+            if rv == 0:
+                raise DiceRollError("除法运算的分母为 0")
+            return lv // rv, groups  # 向下取整（Python // 语义）
+    raise DiceRollError(f"未知的表达式节点: {type(node).__name__}")
+
+
+def _roll_once(
+    expr: ParsedExpression,
+    max_dice: int,
+    max_sides: int,
+    exploding_depth: int,
+    reroll_max_depth: int,
+    max_total_rolled: int,
+) -> RollResult:
+    """单次执行 ParsedExpression（不含多重投掷外层循环），返回独立 RollResult。"""
+    if expr.ast is not None:
+        budget = [0]
+        value, groups = _eval_node(
+            expr.ast,
+            max_dice,
+            max_sides,
+            exploding_depth,
+            reroll_max_depth,
+            max_total_rolled,
+            budget,
+        )
+        result = RollResult(expression=expr)
+        result.group_results = groups
+        result.ast_value = value
+        return result
+
     result = RollResult(expression=expr)
     for group in expr.groups:
         gr = _roll_group(
@@ -692,4 +842,60 @@ def roll(
             max_total_rolled,
         )
         result.group_results.append(gr)
+    return result
+
+
+def roll(
+    expr: ParsedExpression,
+    max_dice: int = 100,
+    max_sides: int = 1000,
+    exploding_depth: int = 20,
+    reroll_max_depth: int = 20,
+    max_total_rolled: int = 500,
+    max_repeat: int = 20,
+) -> RollResult:
+    """
+    执行 ParsedExpression 并返回 RollResult。
+
+    任何骰子组违反配置限制时抛出 DiceRollError。
+
+    Args:
+        max_total_rolled: 单组骰子（含爆炸追加骰）的总数量上限。
+            独立于 max_dice，防止 max_dice * exploding_depth 量级的组合
+            产生过大列表和格式化开销。默认 500。
+        max_repeat: 多重投掷（N#）次数上限，防止一次输出过多行刷屏。
+            默认 20；超限抛出 DiceRollError。
+    """
+    if expr.repeat < 1:
+        raise DiceRollError(f"重复投掷次数必须至少为 1，得到 {expr.repeat}")
+    if expr.repeat > max_repeat:
+        raise DiceRollError(f"重复投掷次数 {expr.repeat} 超过上限 {max_repeat}")
+
+    # 全局预算检查：单组限制无法防止多组合计超出 max_dice。
+    base_dice = sum(g.count for g in expr.groups)
+    if base_dice > max_dice:
+        raise DiceRollError(
+            f"骰子数量 {base_dice} 超过单次掷骰限制 {max_dice}（跨所有骰子组合计）"
+        )
+    # 多重投掷按 repeat 倍率放大总骰数，一并拦截（ast 路径骰数动态求值时
+    # 该预检自然跳过，改由求值期增量计数兜底）。
+    if base_dice and base_dice * expr.repeat > max_dice:
+        raise DiceRollError(
+            f"重复投掷 {expr.repeat} 次共需 {base_dice * expr.repeat} 颗骰子，"
+            f"超过单次掷骰限制 {max_dice}"
+        )
+
+    if expr.repeat == 1:
+        return _roll_once(
+            expr, max_dice, max_sides, exploding_depth, reroll_max_depth, max_total_rolled
+        )
+    # 多重投掷：外层循环 N 次独立 _roll_once，逐次结果互不影响，
+    # 供格式化器逐行输出（每次独立掷骰、独立计数）。
+    result = RollResult(expression=expr)
+    for _ in range(expr.repeat):
+        result.sub_results.append(
+            _roll_once(
+                expr, max_dice, max_sides, exploding_depth, reroll_max_depth, max_total_rolled
+            )
+        )
     return result

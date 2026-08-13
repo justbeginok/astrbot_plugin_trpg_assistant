@@ -75,6 +75,11 @@ class DiceGroup:
     sort_order: str | None = None  # "asc" / "desc"
     # --- 符号哨兵（内部使用）---
     modifier: int = 0  # -1 = 哨兵：该组取反
+    # --- 骰数/骰面位置的括号算式（v0.47.0）---
+    count_src: str | None = None  # 骰数位置原始算式文本，如 "(2+3)"；None = 字面整数
+    sides_src: str | None = None  # 骰面位置原始算式文本，如 "(2*4)"
+    count_expr: object | None = None  # 骰数位置括号子表达式 AST（求值期使用）
+    sides_expr: object | None = None  # 骰面位置括号子表达式 AST
 
 
 @dataclass
@@ -85,6 +90,53 @@ class ParsedExpression:
     flat_modifier: int = 0  # 所有 token 累计的平坦整数修正值
     label: str = ""  # 可选标签/说明
     dc: int | None = None  # 难度等级（Difficulty Class），如 /r d20 感知 15 中的 15
+    repeat: int = 1  # 多重投掷次数（N#expr，>=1）；1 = 单次投掷
+    ast: object | None = None  # 复杂公式 AST（v0.47.0）；None = 扁平 +/- 和路径
+
+
+# ---------------------------------------------------------------------------
+# 表达式树节点（v0.47.0：四则运算 + 括号）
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class ConstNode:
+    """常数叶子，如 '3'。"""
+
+    value: int
+
+
+@dataclass
+class DiceNode:
+    """骰组叶子，包装一个 DiceGroup（骰数/骰面可能含括号算式）。"""
+
+    group: DiceGroup
+
+
+@dataclass
+class BinOpNode:
+    """二元运算节点：op ∈ {'+', '-', '*', '/'}。"""
+
+    op: str
+    left: object  # ExprNode
+    right: object  # ExprNode
+
+
+@dataclass
+class NegNode:
+    """一元负号节点。"""
+
+    operand: object  # ExprNode
+
+
+@dataclass
+class GroupNode:
+    """括号分组节点（保留显式括号结构，用于计数组限根检测与回显）。"""
+
+    child: object  # ExprNode
+
+
+ExprNode = ConstNode | DiceNode | BinOpNode | NegNode | GroupNode
 
 
 # ---------------------------------------------------------------------------
@@ -94,10 +146,11 @@ class ParsedExpression:
 # 平坦整数 token（用于位置感知匹配）
 _INT_TOKEN_RE = re.compile(r"\d+")
 
-# 全角 → ASCII 转换表：防止全角符号（如 ＋）被误判为非 ASCII 标签分隔符
+# 全角 → ASCII 转换表：防止全角符号（如 ＋）被误判为非 ASCII 标签分隔符。
+# 含全角井号 ＃（U+FF03）→ '#'，使「3＃d20」等多重投掷写法也可识别。
 _FULLWIDTH_TABLE = str.maketrans(
-    "＋－＊／（）０１２３４５６７８９",
-    "+-*/()" + "0123456789",
+    "＋－＊／（）＃０１２３４５６７８９",
+    "+-*/()#" + "0123456789",
 )
 
 # 单次解析允许的最大输入长度（字符数）。
@@ -331,8 +384,21 @@ def _parse_dice_token(expr: str, pos: int) -> tuple[DiceGroup | None, int]:
     start = pos
     n = len(expr)
 
-    # 1. 可选骰子数量
-    count_val, pos = _read_int(expr, pos)
+    # 1. 可选骰子数量：整数 或 '(' 子表达式 ')'
+    count_val = None
+    count_expr = None
+    count_src = None
+    m = _INT_TOKEN_RE.match(expr, pos)
+    if m:
+        count_val = int(m.group(0))
+        pos = m.end()
+    elif pos < n and expr[pos] == "(":
+        sub, end = _parse_expr(expr, pos + 1)
+        if end >= n or expr[end] != ")":
+            raise DiceParseError(f"骰数位置的括号未闭合: {expr[pos:]!r}")
+        count_expr = sub
+        count_src = expr[pos : end + 1]
+        pos = end + 1
 
     # 2. 'D' 或 'd'
     if pos >= n or expr[pos].lower() != "d":
@@ -340,22 +406,40 @@ def _parse_dice_token(expr: str, pos: int) -> tuple[DiceGroup | None, int]:
 
     pos += 1  # 消耗 'd'
 
-    # 3. 骰面：'F'/'f' = FATE，否则整数
+    # 3. 骰面：'F'/'f' = FATE，否则整数 或 '(' 子表达式 ')'
     fate = False
     sides = 0
+    sides_expr = None
+    sides_src = None
     if pos < n and expr[pos].lower() == "f":
         fate = True
         sides = 0
         pos += 1
     else:
-        sides_val, pos2 = _read_int(expr, pos)
-        if sides_val is None:
+        m2 = _INT_TOKEN_RE.match(expr, pos)
+        if m2 is not None:
+            sides = int(m2.group(0))
+            pos = m2.end()
+        elif pos < n and expr[pos] == "(":
+            sub2, end2 = _parse_expr(expr, pos + 1)
+            if end2 >= n or expr[end2] != ")":
+                raise DiceParseError(f"骰面位置的括号未闭合: {expr[pos:]!r}")
+            sides_expr = sub2
+            sides_src = expr[pos : end2 + 1]
+            pos = end2 + 1
+        else:
             return None, start
-        sides = sides_val
-        pos = pos2
 
     count = count_val if count_val is not None else 1
-    group = DiceGroup(count=count, sides=sides, fate=fate)
+    group = DiceGroup(
+        count=count,
+        sides=sides,
+        fate=fate,
+        count_src=count_src,
+        sides_src=sides_src,
+        count_expr=count_expr,
+        sides_expr=sides_expr,
+    )
 
     # 4–8. 循环应用各类修饰：Roll20 语法不限定修饰符书写顺序
     # （如 4d6r<2kh3、8d6s!），单趟固定顺序会漏解析，
@@ -380,6 +464,160 @@ def _parse_dice_token(expr: str, pos: int) -> tuple[DiceGroup | None, int]:
         )
 
     return group, pos
+
+
+# ---------------------------------------------------------------------------
+# 表达式层：递归下降文法（v0.47.0，四则运算 + 括号）
+# ---------------------------------------------------------------------------
+#
+# expr   := term (('+' | '-') term)*      左结合
+# term   := factor (('*' | '/') factor)*  左结合，除法求值期向下取整
+# factor := ('+' | '-') factor | atom     一元符号
+# atom   := dice_token | '(' expr ')' | NUMBER
+#
+# 与 _parse_dice_token 相互递归（骰数/骰面位置的括号算式由 _parse_expr 解析）。
+
+
+def _parse_expr(s: str, pos: int) -> tuple[ExprNode, int]:
+    node, pos = _parse_term(s, pos)
+    while pos < len(s) and s[pos] in ("+", "-"):
+        op = s[pos]
+        pos += 1
+        right, pos = _parse_term(s, pos)
+        node = BinOpNode(op, node, right)
+    return node, pos
+
+
+def _parse_term(s: str, pos: int) -> tuple[ExprNode, int]:
+    node, pos = _parse_factor(s, pos)
+    while pos < len(s) and s[pos] in ("*", "/"):
+        op = s[pos]
+        pos += 1
+        right, pos = _parse_factor(s, pos)
+        node = BinOpNode(op, node, right)
+    return node, pos
+
+
+def _parse_factor(s: str, pos: int) -> tuple[ExprNode, int]:
+    if pos < len(s) and s[pos] in ("+", "-"):
+        sign = s[pos]
+        pos += 1
+        operand, pos = _parse_factor(s, pos)
+        return (NegNode(operand) if sign == "-" else operand), pos
+    return _parse_atom(s, pos)
+
+
+def _parse_atom(s: str, pos: int) -> tuple[ExprNode, int]:
+    # 骰子 token 优先（它支持骰数/骰面位置的括号算式，如 (2+3)d6）。
+    group, new_pos = _parse_dice_token(s, pos)
+    if group is not None:
+        return DiceNode(group), new_pos
+    # 括号分组
+    if pos < len(s) and s[pos] == "(":
+        child, pos = _parse_expr(s, pos + 1)
+        if pos >= len(s) or s[pos] != ")":
+            raise DiceParseError("括号未闭合")
+        return GroupNode(child), pos + 1
+    # 常数
+    m = _INT_TOKEN_RE.match(s, pos)
+    if m:
+        return ConstNode(int(m.group(0))), m.end()
+    raise DiceParseError(f"无法解析表达式中的 '{s[pos:]}'")
+
+
+def _validate_success_root_only(root: ExprNode) -> None:
+    """
+    计数组限根校验：带 >N/<N/fN 计数修饰的骰组只能作为整条表达式（可被一元负号
+    包裹）出现，不得参与任何四则运算或出现在括号中（含骰数/骰面位置的括号算式）。
+    """
+    counted: list[DiceNode] = []
+
+    def walk(n: ExprNode) -> None:
+        if isinstance(n, DiceNode):
+            if n.group.success_compare is not None:
+                counted.append(n)
+            if n.group.count_expr is not None:
+                walk(n.group.count_expr)  # type: ignore[arg-type]
+            if n.group.sides_expr is not None:
+                walk(n.group.sides_expr)  # type: ignore[arg-type]
+        elif isinstance(n, GroupNode):
+            walk(n.child)  # type: ignore[arg-type]
+        elif isinstance(n, NegNode):
+            walk(n.operand)  # type: ignore[arg-type]
+        elif isinstance(n, BinOpNode):
+            walk(n.left)  # type: ignore[arg-type]
+            walk(n.right)  # type: ignore[arg-type]
+
+    walk(root)
+    if not counted:
+        return
+    # 允许：根是 NegNode(DiceNode) 或 DiceNode，且为唯一计数组、未被括号包裹。
+    effective = root.operand if isinstance(root, NegNode) else root  # type: ignore[attr-defined]
+    if (
+        isinstance(effective, DiceNode)
+        and effective.group.success_compare is not None
+        and len(counted) == 1
+    ):
+        return
+    raise DiceParseError(
+        "计数骰（>N/<N/fN）不能参与四则运算或出现在括号中；请单独投掷计数骰"
+    )
+
+
+def _flatten_sum(node: ExprNode, sign: int = 1) -> tuple[list[DiceGroup], int] | None:
+    """
+    尝试把 AST 扁平化为现行 (groups, flat_modifier) 结构。
+
+    仅当 AST 为纯 +/- 和（无 * /、无括号、骰数/骰面为字面整数）时可行；
+    否则返回 None。sign 表示当前子树的符号（-1 = 取反），复刻旧扁平循环的
+    group.modifier 哨兵与 flat_modifier 累积语义。
+    """
+    if isinstance(node, ConstNode):
+        return [], sign * node.value
+    if isinstance(node, NegNode):
+        return _flatten_sum(node.operand, -sign)  # type: ignore[arg-type]
+    if isinstance(node, GroupNode):
+        return _flatten_sum(node.child, sign)  # type: ignore[arg-type]
+    if isinstance(node, DiceNode):
+        g = node.group
+        if g.count_expr is not None or g.sides_expr is not None:
+            return None  # 骰数/骰面含算式 → 不可扁平
+        g.modifier = -1 if sign == -1 else 0
+        return [g], 0
+    if isinstance(node, BinOpNode):
+        if node.op == "+":
+            left_res = _flatten_sum(node.left, sign)  # type: ignore[arg-type]
+            right_res = _flatten_sum(node.right, sign)  # type: ignore[arg-type]
+        elif node.op == "-":
+            left_res = _flatten_sum(node.left, sign)  # type: ignore[arg-type]
+            right_res = _flatten_sum(node.right, -sign)  # type: ignore[arg-type]
+        else:
+            return None  # * 或 / → 不可扁平
+        if left_res is None or right_res is None:
+            return None
+        lg, lm = left_res
+        rg, rm = right_res
+        return lg + rg, lm + rm
+    return None
+
+
+def _extract_repeat(raw: str) -> tuple[int, str]:
+    """
+    从表达式开头提取多重投掷前缀 N#（Roll20 重复投掷语法）。
+
+    消歧规则（位置敏感）：仅当 '#' 左侧整体为纯数字且位于表达式开头时，
+    视为重复次数；其余位置的 '#' 一律留给 _strip_label 按标签分隔符处理。
+      '3#d20+d6'      → (3, 'd20+d6')
+      '3#d20+d6#攻击' → (3, 'd20+d6#攻击')，第二个 '#' 仍为标签
+      'd20+5#攻击'    → (1, 'd20+5#攻击')（左侧非纯数字，不匹配）
+      '2d6#3'         → (1, '2d6#3')（'2d6' 后是 'd'，不匹配）
+
+    返回 (repeat, 剩余表达式)；无前缀时返回 (1, raw)。
+    """
+    m = re.match(r"^(\d+)#(.*)$", raw)
+    if m:
+        return int(m.group(1)), m.group(2).strip()
+    return 1, raw
 
 
 def _strip_label(raw: str) -> tuple[str, str]:
@@ -477,7 +715,13 @@ def parse(
             groups=[DiceGroup(count=1, sides=default_sides)], flat_modifier=0, label=""
         )
 
-    expr_str, label = _strip_label(raw.strip())
+    stripped = raw.strip()
+    # 多重投掷前缀（N#）必须先于 _strip_label 提取：后者的 '#' 拆分是标签语义。
+    repeat, stripped = _extract_repeat(_normalize_fullwidth(stripped))
+    if repeat < 1:
+        raise DiceParseError(f"重复投掷次数必须至少为 1，得到 {repeat}（如 3#d20）")
+
+    expr_str, label = _strip_label(stripped)
 
     # 检测标签末尾是否为整数，若是则提取为难度等级（DC）。
     # 仅识别「空格 + 整数尾段」或「纯数字标签」两种写法：
@@ -498,56 +742,43 @@ def parse(
             dc = int(label.strip())
             label = ""
 
+    # 多重投掷禁用 DC：每次投掷独立输出，无法承载单一 DC 判定。
+    if repeat > 1 and dc is not None:
+        raise DiceParseError(
+            f"多重投掷（{repeat}#）不支持 DC 判定；"
+            "请去掉标签末尾的难度等级数字，或改为单次投掷"
+        )
+
     # 去掉表达式内部的空格，便于 token 解析。
     expr_str = expr_str.replace(" ", "")
     if not expr_str:
         raise DiceParseError(f"无法解析骰池表达式: '{raw}'")
 
-    # 逐 token 遍历表达式字符串。
-    groups: list[DiceGroup] = []
-    flat_modifier = 0
-    pos = 0
-    found_any = False
-
-    while pos < len(expr_str):
-        # 处理可选 +/- 符号
-        sign = 1
-        if expr_str[pos] in ("+", "-"):
-            sign = 1 if expr_str[pos] == "+" else -1
-            pos += 1
-            if pos >= len(expr_str):
-                raise DiceParseError(f"表达式末尾不能是运算符: '{raw}'")
-
-        group, new_pos = _parse_dice_token(expr_str, pos)
-        if group is not None:
-            if new_pos == pos:
-                # 安全守卫：_parse_dice_token 返回了骰子组但位置未前进，
-                # 这将导致死循环。正常情况下不应出现，属于防御性布局。
-                raise DiceParseError(f"无法继续解析骰池表达式: '{raw}'")
-            found_any = True
-            if sign == -1:
-                group.modifier = -1  # 哨兵值：执行器将对小计取反
-            groups.append(group)
-            pos = new_pos
-        else:
-            # 尝试匹配平坦整数修正值。
-            m2 = _INT_TOKEN_RE.match(expr_str, pos)
-            if m2:
-                found_any = True
-                flat_modifier += sign * int(m2.group(0))
-                pos = m2.end()
-            else:
-                raise DiceParseError(
-                    f"无法解析骰池表达式中的 '{expr_str[pos:]}' (完整输入: '{raw}')\n"
-                    "示例语法: d20, 1d20+5, 4d6kh3, d20adv, d6!, 3d6>3, 2d8r<2, 4dF"
-                )
-
-    if not found_any:
+    # 递归下降构建表达式树。
+    ast, pos = _parse_expr(expr_str, 0)
+    if pos < len(expr_str):
         raise DiceParseError(
-            f"输入中未找到有效的骰池表达式: '{raw}'\n"
+            f"无法解析骰池表达式中的 '{expr_str[pos:]}' (完整输入: '{raw}')\n"
             "示例语法: d20, 1d20+5, 4d6kh3, d20adv, d6!, 3d6>3, 2d8r<2, 4dF"
         )
 
+    # 计数组限根校验：>N/<N/fN 不得参与四则或括号。
+    _validate_success_root_only(ast)
+
+    # 扁平兼容回退：纯 +/- 和 → 保留 groups + flat_modifier（与旧解析等价，
+    # 零回归）；否则保留 ast 走新求值路径。
+    groups: list[DiceGroup] = []
+    flat_modifier = 0
+    flattened = _flatten_sum(ast)
+    if flattened is not None:
+        groups, flat_modifier = flattened
+        ast = None
+
     return ParsedExpression(
-        groups=groups, flat_modifier=flat_modifier, label=label, dc=dc
+        groups=groups,
+        flat_modifier=flat_modifier,
+        label=label,
+        dc=dc,
+        repeat=repeat,
+        ast=ast,
     )

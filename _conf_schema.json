@@ -96,6 +96,17 @@
             "step": 10
         }
     },
+    "max_repeat_count": {
+        "description": "多重投掷最大重复次数",
+        "hint": "3#d20 这类重复投掷允许的最大次数，防止一次输出过多行刷屏",
+        "type": "int",
+        "default": 20,
+        "slider": {
+            "min": 1,
+            "max": 100,
+            "step": 1
+        }
+    },
     "enable_history": {
         "description": "启用投掷历史记录",
         "hint": "开启后，每次成功投掷都会被记录到会话历史，可通过 /rh 命令查看",

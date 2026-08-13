@@ -241,3 +241,81 @@ class TestMultiGroupRegression:
         result = roll(parse("1d8-1d6"))
         assert result.total == 5
         assert result.group_results[1].subtotal == -3
+
+
+# ---------------------------------------------------------------------------
+# v0.47.0：多重投掷（N#）
+# ---------------------------------------------------------------------------
+
+
+class TestRepeatRoll:
+    def test_repeat_produces_independent_sub_results(self, make_rng) -> None:
+        make_rng([20, 5, 12])
+        result = roll(parse("3#d20"))
+        assert len(result.sub_results) == 3
+        assert result.group_results == []
+        assert [r.total for r in result.sub_results] == [20, 5, 12]
+        assert result.total == 37
+
+    def test_repeat_exceeds_max_raises(self) -> None:
+        with pytest.raises(DiceRollError):
+            roll(parse("21#d20"), max_repeat=20)
+
+    def test_repeat_budget_exceeds_max_dice_raises(self) -> None:
+        with pytest.raises(DiceRollError):
+            roll(parse("3#100d6"))  # 300 颗 > max_dice 100
+
+    def test_repeat_success_count_independent(self, make_rng) -> None:
+        make_rng([6, 1, 2, 3, 5, 4, 2, 6, 3])
+        result = roll(parse("3#3d6>3"))
+        assert len(result.sub_results) == 3
+        assert result.is_success_mode
+        assert [r.total for r in result.sub_results] == [1, 3, 2]
+
+    def test_repeat_natural_roll_disabled(self, make_rng) -> None:
+        make_rng([20, 5])
+        result = roll(parse("2#d20"))
+        assert result.is_natural_20 is False
+        assert result.is_natural_1 is False
+        assert result.sub_results[0].is_natural_20  # 子结果仍可单独判定
+
+
+# ---------------------------------------------------------------------------
+# v0.47.0：复杂公式求值
+# ---------------------------------------------------------------------------
+
+
+class TestArithmeticRoll:
+    def test_multiply_two_groups(self, make_rng) -> None:
+        # 3d6 = 3+5+4 = 12；6d12 = 4+6+1+5+6+2 = 24 → 288
+        make_rng([3, 5, 4, 4, 6, 1, 5, 6, 2])
+        result = roll(parse("3d6*(2+4)d12"))
+        assert result.total == 288
+        assert len(result.group_results) == 2
+        assert result.ast_value == 288
+
+    def test_division_floors_left_assoc(self, make_rng) -> None:
+        make_rng([5])
+        assert roll(parse("(5/2)*3")).total == 6
+
+    def test_division_by_zero_raises(self, make_rng) -> None:
+        make_rng([4])
+        with pytest.raises(DiceRollError):
+            roll(parse("1d4/0"))
+
+    def test_sides_expression(self, make_rng) -> None:
+        make_rng([8])
+        result = roll(parse("3d(2*4)"))
+        assert result.group_results[0].group.sides == 8
+
+    def test_count_expression_with_dice(self, make_rng) -> None:
+        # (1d6+1) = 3 → 3 颗 d8
+        make_rng([2, 1, 2, 3])
+        result = roll(parse("(1d6+1)d8"))
+        # group_results: [count_expr 的 1d6, 主骰组 3d8]
+        assert len(result.group_results) == 2
+        assert result.group_results[1].group.count == 3
+
+    def test_negative_middle_result(self, make_rng) -> None:
+        make_rng([1, 6])
+        assert roll(parse("1d4-1d6")).total == -5

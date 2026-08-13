@@ -3,7 +3,15 @@
 from __future__ import annotations
 
 import pytest
-from astrbot_plugin_trpg_assistant.dice_parser import DiceParseError, parse
+from astrbot_plugin_trpg_assistant.dice_parser import (
+    BinOpNode,
+    ConstNode,
+    DiceNode,
+    DiceParseError,
+    GroupNode,
+    NegNode,
+    parse,
+)
 
 # ---------------------------------------------------------------------------
 # F5：修饰符顺序不再硬编码
@@ -161,3 +169,151 @@ class TestParserRegression:
         assert len(expr.groups) == 1
         assert expr.groups[0].sides == 20
         assert expr.flat_modifier == 5
+
+
+# ---------------------------------------------------------------------------
+# v0.47.0：多重投掷前缀 N#（Repeat Roll）
+# ---------------------------------------------------------------------------
+
+
+class TestRepeatExtraction:
+    def test_repeat_prefix(self) -> None:
+        expr = parse("3#d20+d6")
+        assert expr.repeat == 3
+        assert [(g.count, g.sides) for g in expr.groups] == [(1, 20), (1, 6)]
+
+    def test_repeat_with_label(self) -> None:
+        expr = parse("3#d20+d6#攻击")
+        assert expr.repeat == 3
+        assert expr.label == "攻击"
+        assert [(g.count, g.sides) for g in expr.groups] == [(1, 20), (1, 6)]
+
+    def test_repeat_defaults_to_one(self) -> None:
+        assert parse("d20+5").repeat == 1
+
+    def test_hash_label_unchanged(self) -> None:
+        expr = parse("d20+5#攻击")
+        assert expr.repeat == 1
+        assert expr.label == "攻击"
+
+    def test_hash_dc_unchanged(self) -> None:
+        expr = parse("2d6#3")
+        assert expr.repeat == 1
+        assert expr.label == ""
+        assert expr.dc == 3
+
+    def test_fullwidth_hash_repeat(self) -> None:
+        expr = parse("3＃d20")
+        assert expr.repeat == 3
+        assert expr.groups[0].sides == 20
+
+    def test_zero_repeat_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("0#d20")
+
+    def test_repeat_with_dc_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("3#d20 感知 15")
+
+    def test_empty_expression_after_hash_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("3#")
+
+
+# ---------------------------------------------------------------------------
+# v0.47.0：复杂公式 AST
+# ---------------------------------------------------------------------------
+
+
+class TestArithmeticAst:
+    def test_multiply_precedence_shape(self) -> None:
+        ast = parse("2d6*3+1").ast
+        assert isinstance(ast, BinOpNode) and ast.op == "+"
+        assert isinstance(ast.left, BinOpNode) and ast.left.op == "*"
+        assert isinstance(ast.left.left, DiceNode)
+        assert isinstance(ast.left.right, ConstNode) and ast.left.right.value == 3
+        assert isinstance(ast.right, ConstNode) and ast.right.value == 1
+
+    def test_count_expression_src(self) -> None:
+        expr = parse("(2+3)d6")
+        assert isinstance(expr.ast, DiceNode)
+        g = expr.ast.group
+        assert g.count_src == "(2+3)"
+        assert g.count_expr is not None
+
+    def test_sides_expression_src(self) -> None:
+        expr = parse("3d(2*4)")
+        assert isinstance(expr.ast, DiceNode)
+        g = expr.ast.group
+        assert g.sides_src == "(2*4)"
+        assert g.sides_expr is not None
+
+    def test_count_expression_with_dice(self) -> None:
+        expr = parse("(1d6+1)d8")
+        assert isinstance(expr.ast, DiceNode)
+        g = expr.ast.group
+        assert g.count_expr is not None
+        assert g.count_src == "(1d6+1)"
+
+    def test_flat_subtraction_still_flattens(self) -> None:
+        expr = parse("1d4-1d6")
+        assert expr.ast is None
+        assert len(expr.groups) == 2
+        assert expr.groups[1].modifier == -1
+
+    def test_group_node_preserves_parentheses(self) -> None:
+        ast = parse("(2d6+3)*4").ast
+        assert isinstance(ast, BinOpNode) and ast.op == "*"
+        assert isinstance(ast.left, GroupNode)
+
+    def test_negation_flattens_to_negative_group(self) -> None:
+        # -d20+5 等价于「负 d20 + 常数 5」，可扁平化。
+        expr = parse("-d20+5")
+        assert expr.ast is None
+        assert expr.groups[0].modifier == -1
+        assert expr.flat_modifier == 5
+
+    def test_negation_node_when_not_flattenable(self) -> None:
+        ast = parse("-(2d6*3)").ast
+        assert isinstance(ast, NegNode)
+
+
+class TestArithmeticErrors:
+    def test_trailing_operator_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("1d4/")
+
+    def test_unclosed_parenthesis_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("(2d6")
+
+    def test_success_count_mixed_with_arithmetic_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("3d6>3+1d4")
+
+    def test_success_count_in_parentheses_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("(3d6>3)")
+
+    def test_success_count_as_count_raises(self) -> None:
+        with pytest.raises(DiceParseError):
+            parse("(3d6>3)d4")
+
+
+class TestArithmeticLexicalBoundary:
+    def test_sort_then_multiply(self) -> None:
+        g = parse("2d6s*3").ast
+        assert isinstance(g, BinOpNode) and g.op == "*"
+        assert isinstance(g.left, DiceNode)
+        assert g.left.group.sort_order == "asc"
+
+    def test_keep_then_multiply(self) -> None:
+        g = parse("2d6k*3").ast
+        assert isinstance(g, BinOpNode) and g.op == "*"
+        assert g.left.group.keep_mode == "kh"
+
+    def test_explode_threshold_then_multiply(self) -> None:
+        g = parse("d6!>4*2").ast
+        assert isinstance(g, BinOpNode) and g.op == "*"
+        assert g.left.group.exploding
+        assert g.left.group.explode_value == 4

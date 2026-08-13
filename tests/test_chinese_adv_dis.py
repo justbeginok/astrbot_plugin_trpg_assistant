@@ -170,6 +170,19 @@ class TestZhAdvDisRollCmd:
         assert "战斗优势" in out[0]
         assert extract_total(out[0]) == 7
 
+    def test_repeat_with_zh_adv(self, make_rng) -> None:
+        """多重投掷 + 中文优势：3#d20优势 → 3 次 d20adv。"""
+        p = make_plugin()
+        make_rng([18, 5, 12, 3])
+        out = r_cmd(p, ev("/r 2#d20优势"))
+        lines = out[0].splitlines()
+        assert lines[0] == "2#2d20adv: 重复 2 次"
+        assert lines[1].startswith("#1 [18")
+        assert lines[2].startswith("#2 [12")
+        # 历史记录保存完整原始表达式。
+        hist = p._kv["history:group:1"]
+        assert hist[-1]["expr"] == "2#d20优势"
+
     def test_no_active_card_goes_to_do_roll(self, make_rng) -> None:
         """无活跃卡时 `/r d20优势` 走普通掷骰而非角色卡联动。"""
         p = make_plugin()

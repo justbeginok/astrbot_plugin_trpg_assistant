@@ -69,3 +69,18 @@ class TestComposeToolExprParseRoundTrip:
         parsed = parse(full_expr)
         assert parsed.label == ""
         assert parsed.dc == 15
+
+
+class TestComposeToolExprRepeatPrefix:
+    def test_repeat_expression_with_label_double_hash(self) -> None:
+        # LLM 传 3#d20 + 标签「攻击」→ 双重 #，应天然分层：repeat=3 + label=攻击。
+        full_expr = _compose_tool_expr("3#d20", "攻击", None, 20)
+        assert full_expr == "3#d20#攻击"
+        parsed = parse(full_expr)
+        assert parsed.repeat == 3
+        assert parsed.label == "攻击"
+
+    def test_repeat_expression_parse_round_trip(self) -> None:
+        parsed = parse(_compose_tool_expr("3#d20+d6", "", None, 20))
+        assert parsed.repeat == 3
+        assert [(g.count, g.sides) for g in parsed.groups] == [(1, 20), (1, 6)]

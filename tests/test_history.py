@@ -251,3 +251,24 @@ class TestConcurrencyRegression:
                 f"第 {i + 1} 个操作应紧跟在对应 get 之后，实际为 {ops[i + 1]}"
             )
             assert first_key == second_key == "history:group:1"
+
+
+# ---------------------------------------------------------------------------
+# v0.47.0：多重投掷多行结果的摘要取标题行
+# ---------------------------------------------------------------------------
+
+
+def test_multiline_result_summary_takes_title_line() -> None:
+    """多重投掷输出多行时，历史摘要应取第一行标题行而非 #N 明细行。"""
+    from astrbot_plugin_trpg_assistant.history import HistoryEntry
+
+    event = FakeEvent("group:123", "u1", "玩家A")
+    multi = (
+        "攻击 3#d20+d6: 重复 3 次\n"
+        "#1 [12] [4] = 16\n"
+        "#2 [7] [3] = 10\n"
+        "#3 [18] [6] = 24\n"
+        "合计: 50  平均: 16.67"
+    )
+    entry = HistoryEntry.build(event, "3#d20+d6#攻击", multi)
+    assert entry.result == "攻击 3#d20+d6: 重复 3 次"

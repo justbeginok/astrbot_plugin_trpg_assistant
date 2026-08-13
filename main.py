@@ -61,6 +61,10 @@ main.py — AstrBot 跑团助手插件入口。
   2d6ro<2                重骰：<=2 只重掷一次。
   8d6s / 8d6sd           掷 8d6，结果升序/降序显示。
   2d6+1d4+3              多骰组合加修正值。
+  3#d20+d6                多重投掷：重复投掷 3 次 d20+d6（上限 20 次）。
+  3d6*(2+4)d12            完整四则运算：乘法与括号。
+  (2+3)d6                 括号算式作为骰数（5 枚 d6）。
+  3d(2*4)                 括号算式作为骰面（3 枚 d8）。
   1d20+5#攻击检定        用 '#' 分隔附加标签。
   1d20+5 攻击检定        用空格分隔附加标签。
   d20 感知 15            技能检定：标签 + DC，输出"成功/失败"。
@@ -332,6 +336,10 @@ _SYNTAX_HELP = (
     "  /r 8d6s                 排序(升序)\n"
     "  /r 8d6sd                排序(降序)\n"
     "  /r 2d6+1d4+3 伤害\n"
+    "  /r 3#d20+d6              重复投掷3次（上限20）\n"
+    "  /r 3d6*(2+4)d12          四则运算+括号\n"
+    "  /r (2+3)d6               括号算式作骰数\n"
+    "  /r 3d(2*4)               括号算式作骰面\n"
     "  /r 1d20+5#攻击检定\n"
     "  /r d20 感知 15\n"
     "  /r d20adv 察觉 13\n"
@@ -1542,6 +1550,8 @@ _HELP_SECTIONS = {
         "cmds": "/r /roll /dnd /dset /rprefix",
         "lines": [
             "/r [表达式]             掷骰（d20、4d6kh3、2d20kl1、5d6!!、3d6>3…）",
+            "/r 3#d20+d6             重复投掷 3 次（上限 20）",
+            "/r 3d6*(2+4)d12         四则运算 + 括号；括号可作骰数/骰面",
             "/r d20 感知 15          技能检定（标签 + DC，输出成功/失败）",
             "/r 攻击 长剑 15         角色卡攻击检定（默认主手武器，可指定武器 + DC）",
             "/r d20优势 /r d20劣势   中文优势/劣势（紧贴后缀，等价 d20adv / d20dis）",
@@ -1678,6 +1688,9 @@ class TrpgAssistantPlugin(Star):
         )
         self.max_input_len: int = _safe_int(
             cfg.get("max_input_len"), 200, min_val=10, max_val=1000
+        )
+        self.max_repeat_count: int = _safe_int(
+            cfg.get("max_repeat_count"), 20, min_val=1, max_val=100
         )
         self.show_detail: bool = _safe_bool(cfg.get("show_detail"), True)
 
@@ -2025,6 +2038,7 @@ class TrpgAssistantPlugin(Star):
                 max_dice=self.max_dice_count,
                 max_sides=self.max_dice_sides,
                 exploding_depth=self.exploding_max_depth,
+                max_repeat=self.max_repeat_count,
             )
         except DiceRollError as e:
             return f"掷骰错误: {e}"
@@ -2049,6 +2063,7 @@ class TrpgAssistantPlugin(Star):
                 max_dice=self.max_dice_count,
                 max_sides=self.max_dice_sides,
                 exploding_depth=self.exploding_max_depth,
+                max_repeat=self.max_repeat_count,
             )
         except (DiceParseError, DiceRollError) as e:
             logger.warning(f"[trpg_assistant] 先攻掷骰失败: {e}")
@@ -2072,6 +2087,7 @@ class TrpgAssistantPlugin(Star):
                 max_dice=self.max_dice_count,
                 max_sides=self.max_dice_sides,
                 exploding_depth=self.exploding_max_depth,
+                max_repeat=self.max_repeat_count,
             )
         except DiceRollError as e:
             return None, f"掷骰错误: {e}"
@@ -5675,6 +5691,8 @@ class TrpgAssistantPlugin(Star):
             expression(string): DnD/Roll20 标准骰池表达式，不含标签和 DC。
                 常用格式：d20、1d20+5、4d6kh3、2d20kl1（劣势）、4dF（FATE 骰）、
                 d6!（爆炸骰）、3d6>3（目标数成功计数）。留空则掷当前会话默认骰。
+                支持多重投掷（3#d20+d6 = 重复 3 次，上限 20，不支持 dc）与
+                四则运算/括号（3d6*(2+4)d12、(2+3)d6、3d(2*4)）。
                 也可直接写角色卡联动别名：「力量/感知/敏捷豁免/攻击/攻击 长剑」，
                 将自动使用玩家活跃卡上的修正掷 d20。
             label(string): 本次投掷的说明，不需要标签时传空字符串。

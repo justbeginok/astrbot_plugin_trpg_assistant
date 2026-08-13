@@ -267,7 +267,9 @@ def test_class_command_base(tmp_path: Path) -> None:
     msgs = collect(p.kb_class_cmd(ev("/查职业 战士")))
     text = msgs[0]
     assert "【战士 Fighter】" in text
-    assert "1级：战斗风格" in text
+    # v0.48.0：分层概要总表（每行「N级 名称：一句话概要」）
+    assert "1级 战斗风格：" in text
+    assert "【第1层 1-4级】" in text
     assert "可选子职：冠军武士" in text
 
 
@@ -282,14 +284,16 @@ def test_class_command_with_subclass(tmp_path: Path) -> None:
 
 
 def test_class_command_feature_all(tmp_path: Path) -> None:
-    """v0.29.0：/查职业 <职业> 特性 → 本职特性完整正文。"""
+    """v0.48.0：/查职业 <职业> 特性 → 按层级段分条发送全文（默认版本）。"""
     p = make_plugin(tmp_path)
     msgs = collect(p.kb_class_cmd(ev("/查职业 战士 特性")))
-    text = msgs[0]
-    assert "【战士 Fighter】" in text
-    assert "【2014 版 · 本职特性】" in text
-    assert "◆ 1 级 战斗风格：" in text
-    assert "你采取一种特别的作战风格作为专长。" in text
+    # 分条：head + 层级段 + 提示，>= 2 条
+    assert len(msgs) >= 2
+    assert "【战士 Fighter】" in msgs[0]
+    # 层段标题独立一条消息
+    assert "【战士·第1层 1-4级】" in msgs[1]
+    assert "◆ 1 级 战斗风格：" in msgs[1]
+    assert "你采取一种特别的作战风格作为专长。" in msgs[1]
 
 
 def test_class_command_feature_single(tmp_path: Path) -> None:
@@ -315,6 +319,80 @@ def test_class_command_unknown(tmp_path: Path) -> None:
     p = make_plugin(tmp_path)
     msgs = collect(p.kb_class_cmd(ev("/查职业 不存在的职业")))
     assert "未找到" in msgs[0]
+
+
+def test_class_command_edition_param(tmp_path: Path) -> None:
+    """v0.48.0：第二参数 2014/2024 覆盖版本。fixture 仅 2014 → 2024 回退提示。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 2014")))
+    assert "1级 战斗风格：" in msgs[0]
+    # 2024 版无数据（fixture 只有 2014）→ 提示 + 回退
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 2024")))
+    assert any("2024 版无特性数据" in m for m in msgs)
+    assert "1级 战斗风格：" in "".join(msgs)
+
+
+def test_class_command_tier_drill(tmp_path: Path) -> None:
+    """v0.48.0：第N层钻取 → 该层特性全文。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 第1层")))
+    assert "【战士 Fighter】" in msgs[0]
+    joined = "\n".join(msgs)
+    assert "【战士·第1层 1-4级】" in joined
+    assert "◆ 1 级 战斗风格：" in joined
+    # 不在该层的特性不出现
+    assert "动作如潮" in joined  # 动作如潮 L2 也在第1层
+
+
+def test_class_command_level_drill(tmp_path: Path) -> None:
+    """v0.48.0：N级 / N-M级 钻取 → 命中等级的特性全文。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 1级")))
+    joined = "\n".join(msgs)
+    assert "战斗风格" in joined
+    assert "动作如潮" not in joined  # 2 级特性不在 1 级
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 1-2级")))
+    joined = "\n".join(msgs)
+    assert "战斗风格" in joined
+    assert "动作如潮" in joined
+    # 超出范围
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 19级")))
+    assert any("没有" in m and "特性数据" in m for m in msgs)
+
+
+def test_class_command_subclass_priority(tmp_path: Path) -> None:
+    """v0.48.0：子职名精确匹配优先于版本/等级词（子职名不会被误判）。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 冠军")))
+    assert "◆ 3 级 精通重击" in msgs[0]
+    # 不存在的子职 → 明确提示 + 候选
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士 不存在的子职")))
+    assert "未找到" in msgs[0]
+    assert "可选子职：冠军武士" in msgs[0]
+
+
+def test_class_command_group_rule_edition(tmp_path: Path) -> None:
+    """v0.48.0：默认版本 = 群规则（chargen_rule:{origin}）的 edition。
+
+    fixture 战士仅 2014 → 群规则设 2024 时触发「无数据回退」提示，
+    证明群规则生效（否则默认 editions[0]=2014 不会回退）。
+    """
+    p = make_plugin(tmp_path)
+    run(p.put_kv_data(
+        "chargen_rule:group:1",
+        {"edition": "2024", "ability": {"kind": "point_buy"}, "starting_level": 1},
+    ))
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士")))
+    assert any("2024 版无特性数据" in m for m in msgs)
+    # 群规则改回 2014 → 直接命中，无回退提示
+    run(p.put_kv_data(
+        "chargen_rule:group:1",
+        {"edition": "2014", "ability": {"kind": "point_buy"}, "starting_level": 1},
+    ))
+    msgs = collect(p.kb_class_cmd(ev("/查职业 战士")))
+    joined = "\n".join(msgs)
+    assert "1级 战斗风格：" in joined
+    assert "无特性数据" not in joined
 
 
 # ---------------------------------------------------------------------------
@@ -875,13 +953,13 @@ def test_tool_class_features(tmp_path: Path) -> None:
 
 
 def test_tool_class_features_feature(tmp_path: Path) -> None:
-    """v0.29.0：LLM 工具支持 feature 参数细化本职特性。"""
+    """v0.48.0：LLM 工具 feature 参数细化本职特性（按层级段全文）。"""
     p = make_plugin(tmp_path)
     # 全部本职特性全文
     text = run(p.query_dnd_knowledge_tool(
         ev(""), action="class_features", name="战士", feature="*"
     ))
-    assert "【2014 版 · 本职特性】" in text
+    assert "【战士·第1层 1-4级】" in text
     assert "◆ 1 级 战斗风格：" in text
     # 单个特性（跨版本）
     text = run(p.query_dnd_knowledge_tool(

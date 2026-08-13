@@ -757,6 +757,25 @@ class ChargenManager:
             pass
         return ChargenRule()
 
+    async def get_rule_edition(self, event: AstrMessageEvent) -> str | None:
+        """群规则版本（v0.48.0）：无 KV 数据返回 None（私聊/未设规则），
+        以便调用方区分「显式设 2014」与「未设规则（应取最新版）」。
+
+        与 get_rule 不同：get_rule 缺省返回 ChargenRule()（edition="2014"），
+        无法区分两种情况。
+        """
+        try:
+            raw = await self._star.get_kv_data(self._rule_key(event.unified_msg_origin), None)
+            if isinstance(raw, dict):
+                ed = ChargenRule.from_dict(raw).edition
+                if ed in ("2014", "2024"):
+                    return ed
+        except (OSError, ValueError, TypeError, RuntimeError) as e:
+            logger.warning(f"[trpg_assistant] 读取开卡规则失败: {e}")
+        except Exception:  # noqa: BLE001
+            pass
+        return None
+
     async def set_rule(self, event: AstrMessageEvent, rule: ChargenRule) -> None:
         try:
             await self._star.put_kv_data(

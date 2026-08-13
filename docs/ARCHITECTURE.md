@@ -59,8 +59,8 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 | `chargen_engine.py` | 规则引擎：战斗字段 base 层重算（纯函数，含 v0.30.0 先攻=敏捷修正） | `RecalcReport` | 被 character/chargen 调用 |
 | `build_advisor.py` | 构筑咨询纯函数层（v0.35.0）：goal 自由文本消歧（别名归一+CJK 复合词抽取+查库 facet 归属）→ 各维度候选档案组装；专长前置「标注不过滤」（✅/❌/⚠️）；职业法术表查询；确定性法术环上限表 | `BuildDossier`（dict 结构见 ADR-0012） | `advise_build`（不持久化） |
 | `card_import.py` | 文本角色卡宽松解析落库（纯函数） | — | `/卡 导入` `/车卡 导入` |
-| `kb.py` | 知识库 Manager + 查询/筛选/格式化；v0.36.0 起合并运行期私设 overlay | `KbEntry` / `SearchHit` / `FilterResult` 等 | `/查X` `/筛X` `/查询` `kb` `query_dnd_knowledge` |
-| `kb_tags.py` | 构建期标签提取（facet/value 归一化） | — | 仅构建期 |
+| `kb.py` | 知识库 Manager + 查询/筛选/格式化；v0.36.0 起合并运行期私设 overlay；v0.48.0 职业特性分层展示（`ClassTierSegment`/`ClassDisplay` + `build_class_display`/`class_display_messages`，`CLASS_TIERS`/`tier_of` 层级分段，`class_features(edition=)` 版本过滤） | `KbEntry` / `SearchHit` / `FilterResult` / `ClassDisplay` 等 | `/查X` `/筛X` `/查询` `kb` `query_dnd_knowledge` |
+| `kb_tags.py` | 构建期标签提取（facet/value 归一化）+ 5etools 内联标签清洗（v0.48.0 标签名放开数字，`{@5etools 专长|feats.html}` → 专长） | — | 构建期 + kb.py 显示层兜底 |
 | `kb_enums.py` | 中文↔英文枚举映射（学派/伤害/稀有度/类型…）；v0.40.0 加怪物阵营映射 `ALIGN_ABV_CN` + `format_alignment`（渲染规则与 5etools-cn 站点一致）与类型反查 `MONSTER_TYPE_CN_REV` | `RARITY_CN` 等 | 查询期 |
 | `kb_build_lib.py` | 条目渲染/侧表提取共享纯函数（v0.36.0 从 build_kb.py 抽取）：`_kind_body` 正文渲染链、`is_machine_entry` 机翻判定、`_parse_cr`/`_fmt_ac`/`_fmt_hp` 数值解析、`_ability_payload`/`_item_combat_cols`/`_item_value_weight` 侧表工具；v0.40.0 怪物头部渲染升级——体型中文化 + 类型/阵营段（`_monster_type_line`，缺失阵营显示「不固定阵营」）+ 挑战等级附 XP/巢穴/PB（`_cr_text`，CR→XP 表 `_CR_XP` + `_proficiency_bonus`）；v0.40.2 `_fmt_spellcasting` 渲染 spellcasting 顶层 `daily`（每项N/日，874 只怪物）+ `charges`/`rest`/`restLong`（此前只查 spells 环阶内 daily，死代码）；v0.44.0 法术 `_spell_body` 改 PHB 卡片式（环位行从 level/school/classes/ritual 重建，可选 `classes` 参数供构建期注入，与 chm_parser._build_body 同构） | — | 构建期（build_kb.py）+ 运行期（homebrew.py）共用 |
 | `homebrew.py` | 运行期私设 overlay（v0.36.0）：扫描 `{data_dir}/trpg_homebrew/*.json` 双格式解析 → 内存条目池；reload 原子替换；overlay 侧三级搜索/结构化过滤 | `HomebrewEntry` / `HomebrewLoadResult` / `HomebrewManager` | `/kb reload` `/kb 私设` |
@@ -412,7 +412,7 @@ v0.47.0（ADR-0022）新增：
 | `卡`（char, 角色卡）| 角色卡 | v0.31.0：攻击条目删除（`/卡 设 攻击 名=-`）与已知法术单条增删（`/卡 法术 加|删 <环阶> <法术名>`）；v0.32.0：命名掷骰全套 CRUD（`/卡 骰 <名> <表达式>` / `<名> -` 删除 / `/卡 详情 掷骰`）；v0.41.0：`/卡 设` 补全六维属性（力量/敏捷/体质/智力/感知/魅力，clamp 1-30）、种族、职业（整体替换含子职等级）、版本，设置后自动触发战斗字段重算 |
 | `车卡`（chargen）| 车卡引导 | |
 | `车卡规则`（车规, chargenrule）| 群开卡规则 | |
-| `查法术`(spell) `查怪`(monster,怪物) `查物品`(item,物品) `查专长`(feat,专长) `查背景`(background,背景) `查状态`(condition,状态) `查种族`(race,种族) `查职业`(class,职业) `kb` `查询`(search,搜,q) `筛怪`(mfilter,筛怪物) `筛法术`(sfilter,筛魔法) `筛物品`(ifilter,筛道具) `筛种族`(rfilter,筛血统) `筛专长`(ffilter,专长筛) `筛职业`(cfilter,职业筛) `筛子职`(sublass_filter,子职筛) `筛背景`(bfilter,背景筛) | 知识库 | 筛专长 v0.26.0 起支持能力标签反查；筛法术 v0.27.0 起支持语义大类标签反查（裸词自动消歧，如「控场/治疗/伤害/召唤」；前缀词「标签」显式指定；别名归一），v0.35.0 起支持职业法术表反查（前缀词「职业 法师」，中英文职业名均可）。筛职业/筛子职 v0.33.0 起支持定位+能力标签反查（职业：`/筛职业 武者` 定位、`/筛职业 近战 爆发` 标签、`/筛职业 奥术施法 智力`；子职：`/筛子职 治疗 神圣`、`/筛子职 塑能`；前缀词「定位/标签」；裸词自动消歧）。筛种族 v0.34.0 起支持能力标签反查（裸词自动消歧，如「变形/水陆两栖/魅力」→ race_keyword，伤害词「火焰/光耀」仍优先走天生抗性 dmg_resist；前缀词「标签」）。筛背景 v0.34.0 新建（裸词技能/身份/工具/起始专长反查，如 `/筛背景 隐匿 盗贼工具`、`/筛背景 贵族`；前缀词「标签」）。筛怪 v0.45.0 起支持六维（ADR-0020）：伤害细分后缀词（火焰伤害/抗性/免疫/易伤→dmg_dealt/dmg_resist/dmg_immune/dmg_vuln；「X免疫」伤害词表优先、未命中落状态）、状态免疫（震慑免疫→condition_immune）、速度类型（掘穴速度→speed_type，值归一中文）、感官（真实视觉→sense_type，颤动感知归一震颤感知）、阵营（守序善良→alignment）、特性名（再生→monster_trait，裸词自动消歧 resolve_monster_free_term 兜底）；裸词「火焰」保持=火焰伤害向后兼容，结果底部提示细分词。查职业 v0.29.0 起第二参数支持「特性」关键词细化本职特性：`/查职业 <职业> 特性`（全部本职特性全文）、`/查职业 <职业> 特性 <特性名>`（单个特性跨版本全文）；v0.33.0 起 /查职业 头部展示职业定位与 AI 概要；v0.34.0 起 /查种族 /查背景 头部展示 AI 概要；`/kb reload`（v0.36.0 重载私设目录）/`kb 私设`（查看私设概况） |
+| `查法术`(spell) `查怪`(monster,怪物) `查物品`(item,物品) `查专长`(feat,专长) `查背景`(background,背景) `查状态`(condition,状态) `查种族`(race,种族) `查职业`(class,职业) `kb` `查询`(search,搜,q) `筛怪`(mfilter,筛怪物) `筛法术`(sfilter,筛魔法) `筛物品`(ifilter,筛道具) `筛种族`(rfilter,筛血统) `筛专长`(ffilter,专长筛) `筛职业`(cfilter,职业筛) `筛子职`(sublass_filter,子职筛) `筛背景`(bfilter,背景筛) | 知识库 | 筛专长 v0.26.0 起支持能力标签反查；筛法术 v0.27.0 起支持语义大类标签反查（裸词自动消歧，如「控场/治疗/伤害/召唤」；前缀词「标签」显式指定；别名归一），v0.35.0 起支持职业法术表反查（前缀词「职业 法师」，中英文职业名均可）。筛职业/筛子职 v0.33.0 起支持定位+能力标签反查（职业：`/筛职业 武者` 定位、`/筛职业 近战 爆发` 标签、`/筛职业 奥术施法 智力`；子职：`/筛子职 治疗 神圣`、`/筛子职 塑能`；前缀词「定位/标签」；裸词自动消歧）。筛种族 v0.34.0 起支持能力标签反查（裸词自动消歧，如「变形/水陆两栖/魅力」→ race_keyword，伤害词「火焰/光耀」仍优先走天生抗性 dmg_resist；前缀词「标签」）。筛背景 v0.34.0 新建（裸词技能/身份/工具/起始专长反查，如 `/筛背景 隐匿 盗贼工具`、`/筛背景 贵族`；前缀词「标签」）。筛怪 v0.45.0 起支持六维（ADR-0020）：伤害细分后缀词（火焰伤害/抗性/免疫/易伤→dmg_dealt/dmg_resist/dmg_immune/dmg_vuln；「X免疫」伤害词表优先、未命中落状态）、状态免疫（震慑免疫→condition_immune）、速度类型（掘穴速度→speed_type，值归一中文）、感官（真实视觉→sense_type，颤动感知归一震颤感知）、阵营（守序善良→alignment）、特性名（再生→monster_trait，裸词自动消歧 resolve_monster_free_term 兜底）；裸词「火焰」保持=火焰伤害向后兼容，结果底部提示细分词。查职业 v0.29.0 起第二参数支持「特性」关键词细化本职特性：`/查职业 <职业> 特性`（全部本职特性全文）、`/查职业 <职业> 特性 <特性名>`（单个特性跨版本全文）；v0.33.0 起 /查职业 头部展示职业定位与 AI 概要；v0.34.0 起 /查种族 /查背景 头部展示 AI 概要；v0.48.0（ADR-0023）起 /查职业 分层钻取：默认返回层级概要总表（第1~4层=1-4/5-10/11-16/17-20级，每行「N级 名称：一句话概要」），第二参数按优先级解析 子职名精确匹配→版本(2014/2024)→层级(第N层)→等级段(N级/N-M级)→特性关键词；「特性」全量按层级段分条 yield 多条消息（AstrBot pipeline 对 async generator 每个 yield 发一条独立消息）；默认版本=群级开卡规则（chargen_rule 的 edition，chargen.py `get_rule_edition`）→私聊/无规则取最新版，目标版本无数据自动回退并提示；`/kb reload`（v0.36.0 重载私设目录）/`kb 私设`（查看私设概况） |
 | `帮助`（menu,菜单,commands,cmds）| 帮助 | |
 
 **LLM 工具（9 个）**：`roll_dice` / `manage_initiative` / `manage_inventory`
@@ -455,6 +455,9 @@ kind=种族/背景的支持：能力标签逗号分隔 AND、别名归一，返�
 供 LLM 给出种族/背景选取建议；v0.35.0 加 `spell_class`（职业法术表反查，
 中英文职业名均可）与 `class_level`（class_features 等级过滤，如「野蛮人 7 级
 获得什么」→ action=class_features + class_level=7，38→40 参数）。
+v0.48.0（ADR-0023）起 class_features 默认返回**分层概要层**（第1~4层分段，
+每行「N级 名称：一句话概要」），要全文用 `feature="*"`/特性名/`class_level`，
+docstring 已同步指引。
 `guide_chargen` 参数（v0.35.0）：action=start 新增 `race`/`class_name`/
 `background` 可选预填（值必须来自 advise_build 档案；chargen.py start 逐项
 复用知识库校验，合法跳步、非法回退正常询问并在 check 注明；2014 全预填→

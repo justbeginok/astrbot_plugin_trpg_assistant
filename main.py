@@ -32,9 +32,11 @@ main.py — AstrBot 跑团助手插件入口。
     默认 1 组，上限 20，结果可直接分配填入六维）。
   /查法术|查怪|查物品|查专长|查背景 <名称>
                  查询 DND 知识库，返回同名全部版本（如 2014/2024 双版法术）。
-  /查职业 <职业名> [子职名|特性 [特性名]]
-                 查询职业 1-20 级特性总表与子职能力；第二参数「特性」
-                 输出本职特性完整说明（如：战士 特性、战士 特性 动作如潮）。
+  /查职业 <职业名> [子职名|版本|等级段|特性 [特性名]]
+                 查询职业特性：默认返回分层概要总表（第1~4层，每行
+                 「N级 名称：一句话概要」）；第二参数可钻取子职（战士 勇士）、
+                 版本（战士 2024）、层级（战士 第2层）、等级段（战士 5级）
+                 或「特性」输出本职特性完整说明（按层级分条发送）。
   /kb version   查看知识库版本与数据来源。
   /帮助 [组名]   指令大全（/帮助 知识库 查看知识库指令详解）。
 
@@ -136,6 +138,7 @@ from .homebrew_writer import (
 from .initiative import InitiativeManager
 from .inventory import InventoryManager, _UNSET
 from .kb import (
+    CLASS_TIERS,
     MACHINE_FLAG,
     NO_HALLUCINATION_NOTE,
     KnowledgeBaseManager,
@@ -1458,7 +1461,7 @@ _HELP_SECTIONS = {
             "/查物品 <名称>          查询魔法物品（稀有度、同调、效果）",
             "/查专长 <名称>          查询专长",
             "/查背景 <名称>          查询背景",
-            "/查职业 <职业> [子职|特性]  查询职业 1-20 级特性与子职能力；第二参数「特性」输出本职特性完整说明，如：/查职业 战士 特性、/查职业 战士 特性 动作如潮",
+            "/查职业 <职业> [子职|版本|等级段|特性]  默认返回分层概要总表（第1~4层，每行「N级 名称：一句话概要」，版本随群规则/最新版）；第二参数可钻取：子职（战士 勇士）、版本（战士 2024）、层级（战士 第2层）、等级段（战士 5级）、特性全文（战士 特性，按层级分条发送；战士 特性 动作如潮 查看单个特性）",
             "/查状态 <名称>          查询状态（目盲/魅惑…，2014/2024 双版本）",
             "/查种族 <名称>          查询种族（体型/速度/黑暗视觉/抗性/天生施法）",
             "/查询 <关键词> [-全文]  跨法术/怪物/物品等全部类别广搜，-全文 额外搜正文",
@@ -4858,12 +4861,14 @@ class TrpgAssistantPlugin(Star):
         arg: str,
         display_prefix: str = "/",
     ) -> AsyncGenerator:
-        """职业查询核心逻辑：查职业 <职业名> [子职名|特性 [特性名]]。
+        """职业查询核心逻辑：查职业 <职业名> [子职名|版本|等级段|特性 [特性名]]。
 
-        第二参数为「特性/详情/detail」等关键词时进入本职特性细化：
-          - 查职业 <职业> 特性         → 输出职业本身全部特性的完整正文；
-          - 查职业 <职业> 特性 <特性名> → 只输出该特性（跨版本）的完整正文。
-        否则第二参数按子职名解析（现状）。
+        第二参数优先级解析链（v0.48.0，ADR-0023）：
+          - 「特性/详情/detail…」→ 本职特性细化：全量按层级段分条，单特性跨版本；
+          - 「2014/2024」→ 版本覆盖（其余模式仍按群规则/最新版）；
+          - 「第N层」/「N级」/「N-M级」→ 等级段钻取（全文）；
+          - 其他 → 子职名精确匹配（显示名或短名均可）。
+        默认版本 = 群级开卡规则（chargen_rule 的 edition）→ 私聊/无规则取最新版。
         """
         if not self.kb_manager.available:
             yield event.plain_result("知识库不可用（数据文件缺失，请重装插件）。")
@@ -4871,10 +4876,13 @@ class TrpgAssistantPlugin(Star):
         arg = arg.strip()
         if not arg:
             yield event.plain_result(
-                f"用法：{display_prefix}查职业 <职业名> [子职名]\n"
+                f"用法：{display_prefix}查职业 <职业名> [子职名|版本|等级段]\n"
                 f"示例：{display_prefix}查职业 战士\n"
                 f"      {display_prefix}查职业 战士 勇士\n"
-                f"      {display_prefix}查职业 战士 特性  （本职特性完整说明）"
+                f"      {display_prefix}查职业 战士 2024\n"
+                f"      {display_prefix}查职业 战士 第2层\n"
+                f"      {display_prefix}查职业 战士 5级\n"
+                f"      {display_prefix}查职业 战士 特性  （本职特性完整说明，按层级分条）"
             )
             return
         parts = arg.split(None, 2)
@@ -4882,44 +4890,31 @@ class TrpgAssistantPlugin(Star):
         second = parts[1].strip() if len(parts) > 1 else ""
         third = parts[2].strip() if len(parts) > 2 else ""
 
-        # v0.29.0 本职特性细化关键词
+        # ---- 第二参数解析（优先级链）----
         feature: str | None = None
+        edition: str | None = None
+        lo = hi = 0  # 等级段钻取区间（0=不限）
+        subclass: str | None = None
         if second in ("特性", "详情", "详细", "detail", "feature", "features"):
             feature = third if third else "*"
+        elif second in ("2014", "2024"):
+            edition = second
+        elif (m := re.fullmatch(r"第([1-4])层", second)):
+            lo, hi, _label = CLASS_TIERS[int(m.group(1)) - 1]
+        elif (m := re.fullmatch(r"(\d{1,2})级", second)):
+            lo = hi = int(m.group(1))
+        elif (m := re.fullmatch(r"(\d{1,2})\s*[-~—～]\s*(\d{1,2})级", second)):
+            lo, hi = int(m.group(1)), int(m.group(2))
+        elif second:
+            subclass = second
 
-        if feature is not None:
-            result = self.kb_manager.class_features(cls_name, feature=feature)
-            if not result.base_rows:
-                hits = self.kb_manager.search(cls_name, kind="class")
-                if len(hits) == 1:
-                    result = self.kb_manager.class_features(
-                        hits[0].name, feature=feature
-                    )
-                elif hits:
-                    yield event.plain_result(
-                        KnowledgeBaseManager.format_hits(hits)
-                    )
-                    return
-                else:
-                    yield event.plain_result(f"未找到职业「{cls_name}」。")
-                    return
-            yield event.plain_result(
-                KnowledgeBaseManager.format_class_features(result)
-            )
-            return
-
-        result = self.kb_manager.class_features(cls_name, second or None)
-        has_data = (
-            bool(result.base_rows)
-            or bool(result.subclass_rows)
-            or bool(result.subclass_candidates)
-        )
-        if not has_data:
+        # 先做一次无参查询：校验职业存在 + 拿 editions / 子职候选
+        base = self.kb_manager.class_features(cls_name)
+        if not base.base_rows and not base.subclass_candidates:
             hits = self.kb_manager.search(cls_name, kind="class")
             if len(hits) == 1:
-                result = self.kb_manager.class_features(
-                    hits[0].name, second or None
-                )
+                cls_name = hits[0].name
+                base = self.kb_manager.class_features(cls_name)
             elif hits:
                 yield event.plain_result(
                     KnowledgeBaseManager.format_hits(hits)
@@ -4928,9 +4923,90 @@ class TrpgAssistantPlugin(Star):
             else:
                 yield event.plain_result(f"未找到职业「{cls_name}」。")
                 return
-        yield event.plain_result(
-            KnowledgeBaseManager.format_class_features(result)
-        )
+
+        # 默认版本：群规则感知 → 无规则/私聊取最新版（显式覆盖优先）
+        if edition is None:
+            edition = await self._resolve_class_edition(event, base)
+
+        # 特性细化：全量按层级段分条；单特性跨版本（不按版本过滤）
+        if feature is not None:
+            f_edition = None if (feature and feature != "*") else edition
+            result = self.kb_manager.class_features(
+                cls_name, feature=feature, edition=f_edition
+            )
+            for msg in KnowledgeBaseManager.class_display_messages(
+                result, full=True
+            ):
+                yield event.plain_result(msg)
+            return
+
+        # 子职：一次给齐（应用版本策略）
+        if subclass:
+            result = self.kb_manager.class_features(
+                cls_name, subclass=subclass, edition=edition
+            )
+            if not result.subclass_rows:
+                msg = f"未找到「{cls_name}」的子职「{subclass}」。"
+                if base.subclass_candidates:
+                    msg += "\n可选子职：" + "、".join(base.subclass_candidates)
+                yield event.plain_result(msg)
+                return
+            yield event.plain_result(
+                KnowledgeBaseManager.format_class_features(result)
+            )
+            return
+
+        # 等级段/层级钻取：全文，按层级分条
+        if lo or hi:
+            result = self.kb_manager.class_features(
+                cls_name, level_min=lo, level_max=hi, edition=edition
+            )
+            if not result.base_rows:
+                yield event.plain_result(
+                    f"「{cls_name}」在 {edition} 版没有「{second}」相关的特性数据。"
+                )
+                return
+            for msg in KnowledgeBaseManager.class_display_messages(
+                result, full=True
+            ):
+                yield event.plain_result(msg)
+            return
+
+        # 默认概要总表（分层 + 一句话概要 + 子职候选 + 提示）
+        result = self.kb_manager.class_features(cls_name, edition=edition)
+        # 回退判断只看本职特性（子职候选查询不带 edition 过滤，不能作为版本有无依据）
+        if not result.base_rows:
+            alt = [e for e in base.editions if e != edition]
+            if alt:
+                yield event.plain_result(
+                    f"「{cls_name}」在 {edition} 版无特性数据，已改展示 {alt[0]} 版。"
+                )
+                result = self.kb_manager.class_features(
+                    cls_name, edition=alt[0]
+                )
+                if not result.base_rows:
+                    yield event.plain_result("（未找到该职业的特性数据）")
+                    return
+            else:
+                yield event.plain_result("（未找到该职业的特性数据）")
+                return
+        for msg in KnowledgeBaseManager.class_display_messages(result):
+            yield event.plain_result(msg)
+
+    async def _resolve_class_edition(
+        self,
+        event: AstrMessageEvent,
+        result,
+    ) -> str:
+        """职业查询默认版本（v0.48.0）：群级开卡规则优先，否则最新版。"""
+        try:
+            rule_ed = await self.chargen_manager.get_rule_edition(event)
+            if rule_ed in ("2014", "2024"):
+                return rule_ed
+        except Exception as e:  # noqa: BLE001
+            logger.warning(f"[trpg_assistant] 读取群规则版本失败: {e}")
+        editions = result.editions or []
+        return editions[0] if editions else "2014"
 
     async def _handle_kb(
         self, event: AstrMessageEvent, arg: str, display_prefix: str = "/"
@@ -6907,8 +6983,11 @@ class TrpgAssistantPlugin(Star):
         - 按条件筛选（如「挑战等级为 3 的龙类」「造成暗蚀伤害的武器」）→
           action=filter，kind 必填，条件参数按需填写（可组合，全部 AND）。
         - 询问某职业/子职的能力 → action=class_features，kind=职业。
-        - 需要某职业本职特性的完整说明（而非名字总表）→ action=class_features，
-          feature="*"（全部）或 feature=具体特性名（单个，跨版本）。
+          默认返回「分层概要总表」：按层级（第1~4层）分段，每行
+          「N级 特性名：一句话概要」——足以回答「这个职业有什么能力、各是什么」。
+        - 需要某职业本职特性的完整说明（而非概要）→ action=class_features，
+          feature="*"（全部全文）或 feature=具体特性名（单个，跨版本全文）；
+          只看某等级获得什么 → class_level=N（如「野蛮人 7 级获得什么」）。
 
         Args:
             action(string): 要执行的操作。取值：detail=按 name 精确查询并返回同名
@@ -6931,8 +7010,9 @@ class TrpgAssistantPlugin(Star):
                 非魔法物品（基础物品）/魔法物品（整体反查，稀有度非无）。
             subclass(string): 子职名，仅 class_features 时可选。
             feature(string): 本职特性细化，仅 class_features 时可选：传 "*" 返回该职业
-                全部本职特性的完整说明；传具体特性名（如 "施法"）只返回该特性跨版本的
-                完整说明。不传则返回特性名字总表。
+                全部本职特性的完整说明（按层级分段）；传具体特性名（如 "施法"）只返回
+                该特性跨版本的完整说明。不传则返回分层概要总表（第1~4层，每行
+                「N级 特性名：一句话概要」），问「职业有什么能力」用默认即可。
             damage_type(string): 造成的伤害类型（仅 filter+怪物/法术/物品 时），中文取值：
                 强酸/钝击/寒冷/火焰/力场/闪电/暗蚀/穿刺/毒素/心灵/光耀/挥砍/雷鸣。
                 注意：kind=种族 时该参数表示天生抗性（对某伤害有抗性的种族）。
@@ -7038,7 +7118,7 @@ class TrpgAssistantPlugin(Star):
                 可施展的法术（中英文均可，如 "法师"/"Wizard"）。例：找法师 3 环
                 控制法术 → spell_class="法师" + level=3 + spell_keywords="控场"。
             class_level(number): 特性等级（仅 class_features），只返回该等级获得
-                的职业特性（如想知道「野蛮人 7 级获得什么」→ action=class_features
+                的职业特性全文（如想知道「野蛮人 7 级获得什么」→ action=class_features
                 + name=野蛮人 + class_level=7）；不筛则 -1。
         """
         event = _resolve_event(event)

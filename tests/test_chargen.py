@@ -234,6 +234,33 @@ class TestRuleModel:
         assert POINT_BUY_COST == {8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9}
 
 
+class TestRuleEdition:
+    """v0.48.0：get_rule_edition —— 区分「显式设版本」与「未设规则」。"""
+
+    def test_value_when_rule_set(self) -> None:
+        star = _KVStar()
+        cm = CharacterManager(star=star)
+        cg = ChargenManager(star=star, character_manager=cm)
+        run(cg.set_rule(_Event(origin="group:1"), ChargenRule(edition="2024")))
+        assert run(cg.get_rule_edition(_Event(origin="group:1"))) == "2024"
+        assert run(cg.get_rule_edition(_Event(origin="group:1"))) != "2014"
+
+    def test_none_when_missing(self) -> None:
+        star = _KVStar()
+        cm = CharacterManager(star=star)
+        cg = ChargenManager(star=star, character_manager=cm)
+        # 私聊/未设规则：无 KV 数据 → None（调用方据此取最新版）
+        assert run(cg.get_rule_edition(_Event(origin="private:u1"))) is None
+
+    def test_invalid_value_normalized_to_2014(self) -> None:
+        star = _KVStar()
+        cm = CharacterManager(star=star)
+        cg = ChargenManager(star=star, character_manager=cm)
+        # 非法版本在模型层被归一化为 2014（__post_init__），不抛异常
+        run(cg.set_rule(_Event(origin="group:9"), ChargenRule(edition="1999")))
+        assert run(cg.get_rule_edition(_Event(origin="group:9"))) == "2014"
+
+
 class TestAliases:
     def test_registry_contents(self) -> None:
         assert ABILITY_GEN_ALIASES["27buy"].pool == 27

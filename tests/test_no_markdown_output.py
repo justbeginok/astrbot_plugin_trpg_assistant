@@ -12,12 +12,18 @@ from __future__ import annotations
 
 import asyncio
 from collections.abc import AsyncGenerator
+from pathlib import Path
 
 import pytest
 
 from astrbot_plugin_trpg_assistant.inventory import InventoryManager
+from astrbot_plugin_trpg_assistant.kb import KnowledgeBaseManager
 from astrbot_plugin_trpg_assistant.main import TrpgAssistantPlugin
 from astrbot_plugin_trpg_assistant.shop import ShopManager
+from scripts.build_kb import build
+
+FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures" / "kb_sample"
+NO_PATCH_DIR = Path(__file__).resolve().parent / "fixtures" / "no_patches"
 
 
 class FakeEvent:
@@ -48,9 +54,11 @@ class FakeEvent:
 
 
 class _MemoryPlugin(TrpgAssistantPlugin):
-    def __init__(self, config: dict | None = None) -> None:
+    def __init__(self, config: dict | None = None, db_path: Path | None = None) -> None:
         super().__init__(context=None, config=config)
         self._kv: dict[str, object] = {}
+        if db_path is not None:
+            self._kb_manager = KnowledgeBaseManager(db_path)
 
     async def get_kv_data(self, key: str, default: object = None) -> object:
         return self._kv.get(key, default)
@@ -167,3 +175,18 @@ def test_outputs_are_plain_text(producer) -> None:
     assert outputs, "生产器应产出至少一条输出"
     for text in outputs:
         _assert_plain(str(text))
+
+
+def test_kb_class_outputs_are_plain_text(tmp_path: Path) -> None:
+    """v0.48.0（ADR-0023）：/查职业 概要层与全文分条逐条守卫纯文本。"""
+    db = tmp_path / "kb" / "dnd_kb.db"
+    build(FIXTURE_DIR, db, commit="fixture-abc123", patch_root=NO_PATCH_DIR)
+    p = _MemoryPlugin(db_path=db)
+    # 概要总表（单条）
+    for text in run(_collect(p.kb_class_cmd(FakeEvent("/查职业 战士")))):
+        _assert_plain(text)
+    # 全文分条（多条）
+    msgs = run(_collect(p.kb_class_cmd(FakeEvent("/查职业 战士 特性"))))
+    assert len(msgs) >= 2
+    for text in msgs:
+        _assert_plain(text)

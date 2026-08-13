@@ -18,7 +18,8 @@ from __future__ import annotations
 import re
 
 # 标签通用形态：{@tag 内容}，内容内不允许再出现花括号（嵌套由迭代处理）。
-_TAG_RE = re.compile(r"\{@([A-Za-z]+)(?:\s+([^{}]*))?\}")
+# 标签名允许数字开头（如站点级链接 {@5etools 专长|feats.html} → 专长）。
+_TAG_RE = re.compile(r"\{@([A-Za-z0-9]+)(?:\s+([^{}]*))?\}")
 
 # 迭代轮数上限：正文嵌套深度通常 <= 3，20 轮足够；兜底后再做一次清理。
 _MAX_PASSES = 20

@@ -23,6 +23,7 @@ from pathlib import Path
 from typing import Any
 
 from .kb_enums import edition_of_source, format_rarity
+from .kb_tags import clean_5etools_tags
 from .money import format_cp
 from .homebrew import (
     HOMEBREW_FLAG,
@@ -35,6 +36,17 @@ from .homebrew import (
 
 # 单条条目返回的最大字符数，超出截断并提示。
 MAX_ENTRY_LEN = 4000
+
+
+def _first_line(text: str) -> str:
+    """概要回退：取正文首行（概要层某特性缺 summary 时用，v0.48.0）。"""
+    text = (text or "").strip()
+    if not text:
+        return ""
+    line = text.splitlines()[0].strip()
+    if len(line) > 80:
+        line = line[:80] + "…"
+    return line
 
 # 知识库 schema 版本：与 scripts/build_kb.py 的 SCHEMA_VERSION 保持一致。
 # resolve_db_path 用它在「旧版 kb_update.db」与「新版内置库」之间做回退选择。
@@ -170,6 +182,31 @@ class ClassFeatureRow:
     summary: str
     body: str
 
+    @property
+    def edition(self) -> str:
+        """从 source 推断规则版本（v0.48.0，分层展示按版本过滤用）。"""
+        return edition_of_source(self.source)
+
+
+# 职业特性层级分段（v0.48.0，ADR-0023）：第1层 1-4级 / 第2层 5-10级 /
+# 第3层 11-16级 / 第4层 17-20级。L1 概要总表、L2 层级钻取、L3 全文分条共用。
+CLASS_TIERS: list[tuple[int, int, str]] = [
+    (1, 4, "第1层 1-4级"),
+    (5, 10, "第2层 5-10级"),
+    (11, 16, "第3层 11-16级"),
+    (17, 20, "第4层 17-20级"),
+]
+
+
+def tier_of(level: int | None) -> int | None:
+    """level → 层级 1..4；None 或越界返回 None。"""
+    if level is None:
+        return None
+    for idx, (lo, hi, _label) in enumerate(CLASS_TIERS, start=1):
+        if lo <= level <= hi:
+            return idx
+    return None
+
 
 @dataclass
 class ClassFeatureResult:
@@ -185,6 +222,34 @@ class ClassFeatureResult:
     # v0.33.0 职业/子职富化：AI 一句话概要 + 职业定位（classes 侧表带出）。
     class_summary: str = ""
     class_role: str = ""
+
+
+@dataclass
+class ClassTierSegment:
+    """职业特性按 (版本, 层级) 分组后的一个展示段（v0.48.0，ADR-0023）。"""
+
+    tier: int
+    label: str          # "第1层 1-4级"
+    edition: str        # "2014" / "2024" / "other"
+    rows: list[ClassFeatureRow]
+
+
+@dataclass
+class ClassDisplay:
+    """职业特性分层展示的结构化结果（v0.48.0）。
+
+    overview：L1 概要层（每行「N级 名称：一句话概要」）分段；
+    full_segments：L3 全文层（每条特性完整正文）分段，按层级一段；
+    subclass_part：子职全文单块（v0.11.0 一次给齐）；
+    prompts：末尾提示行。
+    """
+
+    head: str
+    overview: list[ClassTierSegment] = field(default_factory=list)
+    full_segments: list[ClassTierSegment] = field(default_factory=list)
+    subclass_part: str = ""
+    prompts: list[str] = field(default_factory=list)
+    has_data: bool = False
 
 
 @dataclass
@@ -1223,6 +1288,7 @@ class KnowledgeBaseManager:
         self, class_name: str, subclass: str | None = None,
         feature: str | None = None,
         level_min: int = 0, level_max: int = 0,
+        edition: str | None = None,
     ) -> ClassFeatureResult:
         """职业特性：基础特性总表 + 子职特性（subclass 为空时给出候选子职列表）。
 
@@ -1232,6 +1298,8 @@ class KnowledgeBaseManager:
         细化模式下 subclass 参数被忽略。
         level_min/level_max（v0.35.0）：基础特性按等级区间过滤（0=不限），
         供升级建议场景取「第 N 级获得什么」。
+        edition（v0.48.0）：按规则版本过滤 base_rows 与 subclass_rows
+        （仅 "2014"/"2024" 生效；feature 细化模式不过滤，保持单特性跨版本）。
         """
         cn = (class_name or "").strip()
         if not cn:
@@ -1287,6 +1355,11 @@ class KnowledgeBaseManager:
                 and (not level_min or r.level >= level_min)
                 and (not level_max or r.level <= level_max)
             ]
+        # v0.48.0：版本过滤（仅 2014/2024 生效；单特性细化模式不过滤，跨版本）
+        if edition in ("2014", "2024"):
+            fq = (feature or "").strip()
+            if fq == "" or fq == "*":
+                base_rows = [r for r in base_rows if r.edition == edition]
 
         # v0.29.0 本职特性细化：只返回匹配的特性行（跨版本），subclass 忽略。
         if feature is not None:
@@ -1310,6 +1383,8 @@ class KnowledgeBaseManager:
                 " WHERE class_name = ? AND (subclass_name = ? OR subclass_short = ?)",
                 [cn, sub, sub],
             )
+            if edition in ("2014", "2024"):
+                sub_rows = [r for r in sub_rows if r.edition == edition]
             return ClassFeatureResult(
                 class_name=cn,
                 eng_name=eng_name,
@@ -2010,90 +2085,264 @@ class KnowledgeBaseManager:
                 return "（" + "｜".join(parts) + "）"
         return ""
 
+    # ------------------------------------------------------------------
+    # 职业特性分层展示（v0.48.0，ADR-0023）
+    # ------------------------------------------------------------------
+
     @staticmethod
-    def format_class_features(result: ClassFeatureResult) -> str:
-        if not result.class_name:
-            return "请提供职业名称。"
-        lines: list[str] = []
+    def _class_head(result: ClassFeatureResult, editions: list[str]) -> str:
+        """职业头部：名称+英文+版本+定位+概要。editions 决定版本标注（已过滤时单版本）。"""
         head = f"【{result.class_name} {result.eng_name}】"
-        if result.editions:
-            head += "（" + "、".join(f"{e}版" for e in result.editions) + "）"
+        if editions:
+            head += "（" + "、".join(f"{e}版" for e in editions) + "）"
         # v0.33.0：职业富化（AI 一句话概要 + 职业定位）展示在头部
         if result.class_role:
             head += f"\n定位：{result.class_role}"
         if result.class_summary:
             head += f"\n概要：{result.class_summary}"
+        return head
 
-        # v0.29.0 本职特性细化：输出职业本身特性的完整正文（按版本分组，
-        # 与子职格式一致）；feature_query="*"=全部，否则=名称匹配的单个特性。
-        if result.feature_query:
-            lines.append(head)
-            if result.feature_query != "*":
-                lines.append(f"特性「{result.feature_query}」")
-            by_edition: dict[str, list[ClassFeatureRow]] = {}
-            for row in result.base_rows:
-                ed = edition_of_source(row.source)
-                by_edition.setdefault(ed, []).append(row)
-            for ed, items in sorted(by_edition.items()):
-                lines.append(f"【{ed} 版 · 本职特性】")
-                for row in items:
-                    body = row.body or row.summary or ""
-                    if len(body) > MAX_ENTRY_LEN:
-                        body = body[:MAX_ENTRY_LEN] + "\n…（内容过长已截断）"
-                    lines.append(f"◆ {row.level} 级 {row.name}：")
-                    lines.append(body)
-                    lines.append("")
+    @staticmethod
+    def _group_tiers(
+        rows: list[ClassFeatureRow],
+    ) -> list[ClassTierSegment]:
+        """把特性行按 (edition, tier) 分组：edition 降序（新在前）、tier 升序。
+
+        段标题是否带版本前缀由调用方按「多版本存在」决定。
+        """
+        groups: list[ClassTierSegment] = []
+        for row in rows:
+            tier = tier_of(row.level)
+            if tier is None:
+                continue
+            seg = next(
+                (g for g in groups if g.edition == row.edition and g.tier == tier),
+                None,
+            )
+            if seg is None:
+                seg = ClassTierSegment(
+                    tier=tier,
+                    label=CLASS_TIERS[tier - 1][2],
+                    edition=row.edition,
+                    rows=[],
+                )
+                groups.append(seg)
+            seg.rows.append(row)
+        groups.sort(key=lambda g: (g.edition != "2024", g.edition != "2014", g.tier))
+        return groups
+
+    @staticmethod
+    def _clean_row_text(text: str) -> str:
+        """显示层兜底剥除残留 5etools 标签（v0.48.0；构建期已清洗的新库幂等）。"""
+        return clean_5etools_tags(text) if text else text
+
+    @staticmethod
+    def build_class_display(result: ClassFeatureResult) -> ClassDisplay:
+        """构建分层展示结构（概要层 + 全文层 + 子职 + 提示）。"""
+        head = KnowledgeBaseManager._class_head(result, result.editions)
+        display = ClassDisplay(head=head)
+        display.has_data = bool(
+            result.base_rows or result.subclass_rows or result.subclass_candidates
+        )
+
+        # 概要层：默认只展示「第一优先级版本」（editions 已按 edition DESC）。
+        # 命令层会先按版本过滤，这里兜底处理未过滤（如 LLM 工具）的多版本数据：
+        # 只取最新版本的行，其余版本仅出现在提示里（避免概要层重新变长）。
+        base_editions = sorted({r.edition for r in result.base_rows},
+                               key=lambda e: e != "2024")
+        if not result.feature_query and result.base_rows:
+            primary = base_editions[0]
+            primary_rows = [r for r in result.base_rows if r.edition == primary]
+            display.overview = KnowledgeBaseManager._group_tiers(primary_rows)
+            # 职业存在其他版本（未展示）→ 提示可看旧版（覆盖参数）。
+            for other in result.editions:
+                if other != primary:
+                    display.prompts.append(
+                        f"另有 {other} 版，回复「查职业 <职业> {other}」查看。"
+                    )
+                    break
+
+        # 全文层：特性细化 / 等级段钻取（base_rows 已按目标过滤）→ 按层级段分组。
+        if result.base_rows:
+            display.full_segments = KnowledgeBaseManager._group_tiers(result.base_rows)
+
+        # 子职：v0.11.0 一次给齐（全量）；版本策略只保留第一优先级版本。
+        if result.subclass_rows:
+            sub_editions = sorted({r.edition for r in result.subclass_rows},
+                                  key=lambda e: e != "2024")
+            primary = sub_editions[0]
+            sub_rows = [r for r in result.subclass_rows if r.edition == primary]
+            sub_name = sub_rows[0].subclass_name if sub_rows else ""
+            lines: list[str] = []
+            if sub_name:
+                lines.append(f"【{result.class_name}·子职 {sub_name}】")
+            for row in sub_rows:
+                body = KnowledgeBaseManager._clean_row_text(
+                    row.body or row.summary or ""
+                )
+                if len(body) > MAX_ENTRY_LEN:
+                    body = body[:MAX_ENTRY_LEN] + "\n…（内容过长已截断）"
+                lines.append(f"◆ {row.level} 级 {row.name}：")
+                lines.append(body)
+                lines.append("")
             while lines and lines[-1] == "":
                 lines.pop()
-            if not by_edition:  # 没匹配到任何特性
-                lines.append(
+            display.subclass_part = "\n".join(lines)
+        elif result.subclass_candidates:
+            display.subclass_part = (
+                "可选子职：" + "、".join(result.subclass_candidates)
+            )
+            display.prompts.append(
+                "回复「查职业 <职业> <子职名>」查看某个子职的全部能力。"
+            )
+
+        # 提示：概要层 → 钻取引导；全文层 → 单特性钻取。
+        if not result.feature_query and result.base_rows:
+            display.prompts.append(
+                "回复「查职业 <职业> 特性」查看本职特性完整说明。"
+            )
+            display.prompts.append(
+                "回复「查职业 <职业> 第2层」查看某层级详情。"
+            )
+        elif result.feature_query and result.base_rows:
+            display.prompts.append(
+                "回复「查职业 <职业> 特性 <特性名>」查看单个特性。"
+            )
+        return display
+
+    @staticmethod
+    def _render_overview_segment(seg: ClassTierSegment) -> str:
+        """L1 概要段：每特性一行「N级 名称：一句话概要」。"""
+        lines = [f"【{seg.label}】"]
+        for row in seg.rows:
+            summary = KnowledgeBaseManager._clean_row_text(
+                row.summary or _first_line(row.body or "")
+            )
+            lines.append(f"{row.level}级 {row.name}：{summary}")
+        return "\n".join(lines)
+
+    @staticmethod
+    def _render_full_segment(seg: ClassTierSegment, class_name: str) -> str:
+        """L3 全文段：段标题 + 每条特性完整正文。"""
+        lines = [f"【{class_name}·{seg.label}】"]
+        for row in seg.rows:
+            body = KnowledgeBaseManager._clean_row_text(row.body or row.summary or "")
+            if len(body) > MAX_ENTRY_LEN:
+                body = body[:MAX_ENTRY_LEN] + "\n…（内容过长已截断）"
+            lines.append(f"◆ {row.level} 级 {row.name}：")
+            lines.append(body)
+            lines.append("")
+        while lines and lines[-1] == "":
+            lines.pop()
+        return "\n".join(lines)
+
+    @staticmethod
+    def format_class_features(result: ClassFeatureResult) -> str:
+        """职业特性单条消息输出（LLM 工具与兼容路径）。
+
+        - 非细化模式：head + 概要层 + 子职 + 提示（默认只展示最新版本概要）；
+        - feature 细化模式：head + 全文层（跨版本按层级段）+ 提示。
+        """
+        if not result.class_name:
+            return "请提供职业名称。"
+        display = KnowledgeBaseManager.build_class_display(result)
+        parts: list[str] = [display.head]
+        if result.feature_query:
+            if result.feature_query != "*":
+                parts.append(f"特性「{result.feature_query}」")
+            if display.full_segments:
+                for seg in display.full_segments:
+                    parts.append(
+                        KnowledgeBaseManager._render_full_segment(
+                            seg, result.class_name
+                        )
+                    )
+            else:
+                parts.append(
                     f"（未找到该职业的「{result.feature_query}」特性）"
                     if result.feature_query != "*"
                     else "（未找到该职业的本职特性数据）"
                 )
-            return "\n".join(lines)
-
-        lines.append(head)
-
-        # 基础特性总表（按版本次分组）
-        by_edition = {}
-        for row in result.base_rows:
-            ed = edition_of_source(row.source)
-            by_edition.setdefault(ed, []).append((row.level, row.name))
-        for ed, items in sorted(by_edition.items()):
-            rows_text = "；".join(
-                f"{lv}级：{name}" for lv, name in items
-            )
-            lines.append(f"【{ed} 版特性】{rows_text}")
-
-        # 子职：输出每个特性的全文（v0.11.0 设计决策：子职能力一次给齐）。
-        if result.subclass_rows:
-            by_edition_sub: dict[str, list[ClassFeatureRow]] = {}
-            for row in result.subclass_rows:
-                ed = edition_of_source(row.source)
-                by_edition_sub.setdefault(ed, []).append(row)
-            for ed, items in sorted(by_edition_sub.items()):
-                lines.append(f"【{ed} 版 · 子职特性】")
-                for row in items:
-                    body = row.body
-                    if len(body) > MAX_ENTRY_LEN:
-                        body = body[:MAX_ENTRY_LEN] + "\n…（内容过长已截断）"
-                    lines.append(f"◆ {row.level} 级 {row.name}：")
-                    lines.append(body)
-                    lines.append("")
-            while lines and lines[-1] == "":
-                lines.pop()
-        elif result.subclass_candidates:
-            lines.append(
-                "可选子职：" + "、".join(result.subclass_candidates)
-            )
-            lines.append("回复「查职业 <职业> <子职名>」查看某个子职的全部能力。")
         else:
-            lines.append("（未找到该职业的特性数据）")
-        # v0.29.0：提示本职特性可细化（仅非细化模式下出现，且该职业确有基础特性）。
-        if not result.feature_query and result.base_rows:
-            lines.append("回复「查职业 <职业> 特性」查看本职特性的完整说明。")
-        return "\n".join(lines)
+            for seg in display.overview:
+                parts.append(KnowledgeBaseManager._render_overview_segment(seg))
+            if display.subclass_part:
+                parts.append(display.subclass_part)
+            elif not display.has_data:
+                parts.append("（未找到该职业的特性数据）")
+        parts.extend(display.prompts)
+        return "\n\n".join(p for p in parts if p)
+
+    @staticmethod
+    def class_display_messages(
+        result: ClassFeatureResult, full: bool = False
+    ) -> list[str]:
+        """职业特性分条输出（命令层 multi-yield 用，v0.48.0）。
+
+        - full=False（概要层）：单条；超 3600 字符时按层级拆多条（保险）。
+        - full=True（全文层/钻取）：head + 每条一层的全文；每条独立一条消息。
+        """
+        if not result.class_name:
+            return ["请提供职业名称。"]
+        display = KnowledgeBaseManager.build_class_display(result)
+        msgs: list[str] = []
+        if full or result.feature_query:
+            # 单特性：head + 段合并为单条（内容短，无需分条）
+            if result.feature_query and result.feature_query != "*":
+                parts = [display.head, f"特性「{result.feature_query}」"]
+                for seg in display.full_segments:
+                    parts.append(
+                        KnowledgeBaseManager._render_full_segment(
+                            seg, result.class_name
+                        )
+                    )
+                if display.prompts:
+                    parts.append("\n".join(display.prompts))
+                if not display.full_segments:
+                    parts.append(
+                        f"（未找到该职业的「{result.feature_query}」特性）"
+                    )
+                return ["\n\n".join(parts)]
+            # 全量（feature="*" / 钻取）：head 一条，每层一条
+            msgs.append(display.head)
+            for seg in display.full_segments:
+                msgs.append(
+                    KnowledgeBaseManager._render_full_segment(
+                        seg, result.class_name
+                    )
+                )
+            if display.prompts:
+                msgs.append("\n".join(display.prompts))
+            if not display.full_segments:
+                msgs.append(
+                    f"（未找到该职业的「{result.feature_query}」特性）"
+                    if result.feature_query
+                    else "（未找到该职业的本职特性数据）"
+                )
+            return msgs
+
+        # 概要层：整段拼接，超长按层级拆
+        body_parts = [display.head]
+        for seg in display.overview:
+            body_parts.append(KnowledgeBaseManager._render_overview_segment(seg))
+        if display.subclass_part:
+            body_parts.append(display.subclass_part)
+        elif not display.has_data:
+            body_parts.append("（未找到该职业的特性数据）")
+        body_parts.extend(display.prompts)
+        joined = "\n\n".join(p for p in body_parts if p)
+        if len(joined) <= 3600:
+            return [joined]
+        # 保险拆条：head+提示一条，每层一条
+        head = display.head
+        prompts = "\n".join(display.prompts)
+        seg_msgs = []
+        for seg in display.overview:
+            seg_msgs.append(KnowledgeBaseManager._render_overview_segment(seg))
+        if display.subclass_part:
+            seg_msgs.append(display.subclass_part)
+        tail = [prompts] if prompts else []
+        return [head] + seg_msgs + tail
 
     @staticmethod
     def format_version(version: dict[str, str]) -> str:

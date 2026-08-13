@@ -46,6 +46,11 @@ from astrbot_plugin_trpg_assistant.kb_tags import clean_5etools_tags
         # 未知标签兜底取首段
         ("{@quickref 护甲等级|PHB|2}", "护甲等级"),
         ("{@homebrew 自定内容|xx}", "自定内容"),
+        # 数字开头的标签名（站点级链接，v0.48.0 修复）
+        ("你也可以选择一个{@5etools 专长|feats.html}。", "你也可以选择一个专长。"),
+        ("{@5etools 属性|abilities.html} 前缀", "属性 前缀"),
+        ("{@5etools 专长|feats.html} 与 {@spell 火球术|PHB}", "专长 与 火球术"),
+        ("{@4etools 某页|x.html}", "某页"),
         # 嵌套标签迭代
         ("掷 {@dice 1d4 + {@damage 2d6}}", "掷 1d4 + 2d6"),
         # 名称类标签：第三段是显示覆盖

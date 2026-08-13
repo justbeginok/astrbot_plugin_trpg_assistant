@@ -385,6 +385,60 @@ def test_class_features_feature_empty_str_is_all(manager: KnowledgeBaseManager) 
     assert len(result.base_rows) == 2
 
 
+def test_class_features_edition_filter(manager: KnowledgeBaseManager) -> None:
+    """v0.48.0：edition 参数过滤 base_rows 与 subclass_rows（fixture 仅 2014）。"""
+    result = manager.class_features("战士", edition="2014")
+    assert [r.name for r in result.base_rows] == ["战斗风格", "动作如潮"]
+    result = manager.class_features("战士", edition="2024")
+    assert result.base_rows == []
+    # 子职行同样过滤
+    result = manager.class_features("战士", subclass="冠军武士", edition="2014")
+    assert len(result.subclass_rows) == 2
+    result = manager.class_features("战士", subclass="冠军武士", edition="2024")
+    assert result.subclass_rows == []
+    # 非法值不生效
+    result = manager.class_features("战士", edition="other")
+    assert len(result.base_rows) == 2
+
+
+def test_class_features_edition_not_applied_to_feature(manager: KnowledgeBaseManager) -> None:
+    """v0.48.0：feature 细化模式不过滤版本（保持 v0.29.0 跨版本语义）。"""
+    result = manager.class_features("战士", feature="动作如潮", edition="2024")
+    assert [r.name for r in result.base_rows] == ["动作如潮"]
+
+
+def test_class_feature_row_edition_property() -> None:
+    """v0.48.0：ClassFeatureRow.edition 由 source 推断。"""
+    from astrbot_plugin_trpg_assistant.kb import ClassFeatureRow
+
+    def _row(source: str) -> ClassFeatureRow:
+        return ClassFeatureRow(
+            class_name="战士", subclass_name="", source=source,
+            level=1, name="测试", summary="", body="",
+        )
+
+    assert _row("PHB").edition == "2014"
+    assert _row("XPHB").edition == "2024"
+    assert _row("UA2020").edition == "other"
+
+
+def test_tier_of() -> None:
+    """v0.48.0：层级分段边界（1-4/5-10/11-16/17-20）。"""
+    from astrbot_plugin_trpg_assistant.kb import tier_of
+
+    assert tier_of(1) == 1
+    assert tier_of(4) == 1
+    assert tier_of(5) == 2
+    assert tier_of(10) == 2
+    assert tier_of(11) == 3
+    assert tier_of(16) == 3
+    assert tier_of(17) == 4
+    assert tier_of(20) == 4
+    assert tier_of(None) is None
+    assert tier_of(0) is None
+    assert tier_of(21) is None
+
+
 # ---------------------------------------------------------------------------
 # version / 路径解析
 # ---------------------------------------------------------------------------
@@ -506,7 +560,9 @@ def test_format_class_features(manager: KnowledgeBaseManager) -> None:
     result = manager.class_features("战士")
     text = KnowledgeBaseManager.format_class_features(result)
     assert "【战士 Fighter】" in text
-    assert "1级：战斗风格" in text
+    # v0.48.0：分层概要总表（每行「N级 名称：一句话概要」）
+    assert "1级 战斗风格：" in text
+    assert "【第1层 1-4级】" in text
     assert "可选子职：冠军武士" in text
 
     result = manager.class_features("战士", subclass="冠军武士")
@@ -522,11 +578,11 @@ def test_format_class_features(manager: KnowledgeBaseManager) -> None:
 
 
 def test_format_class_features_detail_all(manager: KnowledgeBaseManager) -> None:
-    """v0.29.0：feature="*" → 输出全部本职特性完整正文（按版本分组）。"""
+    """v0.48.0：feature="*" → 按层级段输出本职特性完整正文（默认版本）。"""
     result = manager.class_features("战士", feature="*")
     text = KnowledgeBaseManager.format_class_features(result)
     assert "【战士 Fighter】" in text
-    assert "【2014 版 · 本职特性】" in text
+    assert "【战士·第1层 1-4级】" in text
     assert "◆ 1 级 战斗风格：" in text
     assert "你采取一种特别的作战风格作为专长。" in text
     assert "◆ 2 级 动作如潮：" in text
@@ -553,6 +609,159 @@ def test_format_class_features_detail_not_found(manager: KnowledgeBaseManager) -
     result = manager.class_features("战士", feature="不存在的特性")
     text = KnowledgeBaseManager.format_class_features(result)
     assert "未找到该职业的「不存在的特性」特性" in text
+
+
+def test_build_class_display_overview_tiers() -> None:
+    """v0.48.0：概要层按 (edition, tier) 分段，层级标签正确。"""
+    from astrbot_plugin_trpg_assistant.kb import (
+        ClassFeatureRow,
+        ClassFeatureResult,
+        KnowledgeBaseManager,
+    )
+
+    def _row(level: int, name: str, source: str = "PHB") -> ClassFeatureRow:
+        return ClassFeatureRow(
+            class_name="测试", subclass_name="", source=source,
+            level=level, name=name, summary=f"{name}概要", body=f"{name}正文",
+        )
+
+    result = ClassFeatureResult(
+        class_name="测试", eng_name="Test", editions=["2014"],
+        base_rows=[
+            _row(1, "A"), _row(6, "B"), _row(12, "C"), _row(18, "D"),
+        ],
+    )
+    display = KnowledgeBaseManager.build_class_display(result)
+    assert [s.tier for s in display.overview] == [1, 2, 3, 4]
+    assert [s.label for s in display.overview] == [
+        "第1层 1-4级", "第2层 5-10级", "第3层 11-16级", "第4层 17-20级",
+    ]
+    # 概要行格式：N级 名称：概要
+    seg1 = KnowledgeBaseManager._render_overview_segment(display.overview[0])
+    assert "1级 A：A概要" in seg1
+    assert "【第1层 1-4级】" in seg1
+
+
+def test_build_class_display_primary_edition_only() -> None:
+    """v0.48.0：多版本数据概要层只取最新版，旧版仅提示。"""
+    from astrbot_plugin_trpg_assistant.kb import (
+        ClassFeatureRow,
+        ClassFeatureResult,
+        KnowledgeBaseManager,
+    )
+
+    def _row(level: int, name: str, source: str) -> ClassFeatureRow:
+        return ClassFeatureRow(
+            class_name="测试", subclass_name="", source=source,
+            level=level, name=name, summary="概要", body="正文",
+        )
+
+    result = ClassFeatureResult(
+        class_name="测试", eng_name="Test", editions=["2024", "2014"],
+        base_rows=[
+            _row(1, "新特性", "XPHB"),
+            _row(1, "旧特性", "PHB"),
+        ],
+    )
+    display = KnowledgeBaseManager.build_class_display(result)
+    assert [r.name for s in display.overview for r in s.rows] == ["新特性"]
+    assert any("2014 版" in p for p in display.prompts)
+
+
+def test_build_class_display_residual_tag_stripped() -> None:
+    """v0.48.0：显示层剥除残留 {@5etools …} 标签（旧库兜底）。"""
+    from astrbot_plugin_trpg_assistant.kb import (
+        ClassFeatureRow,
+        ClassFeatureResult,
+        KnowledgeBaseManager,
+    )
+
+    row = ClassFeatureRow(
+        class_name="测试", subclass_name="", source="PHB",
+        level=1, name="专长源",
+        summary="选择{@5etools 专长|feats.html}。",
+        body="你也可以选择一个{@5etools 专长|feats.html}。",
+    )
+    result = ClassFeatureResult(
+        class_name="测试", eng_name="Test", editions=["2014"],
+        base_rows=[row],
+    )
+    display = KnowledgeBaseManager.build_class_display(result)
+    text = KnowledgeBaseManager._render_overview_segment(display.overview[0])
+    assert "{@" not in text
+    assert "选择专长" in text
+
+
+def test_class_display_messages_full_segments() -> None:
+    """v0.48.0：全文层分条 = head + 每层一条 + 提示；段标题带职业名。"""
+    from astrbot_plugin_trpg_assistant.kb import (
+        ClassFeatureRow,
+        ClassFeatureResult,
+        KnowledgeBaseManager,
+    )
+
+    def _row(level: int, name: str) -> ClassFeatureRow:
+        return ClassFeatureRow(
+            class_name="战士", subclass_name="", source="PHB",
+            level=level, name=name, summary="概要", body=f"{name}正文",
+        )
+
+    result = ClassFeatureResult(
+        class_name="战士", eng_name="Fighter", editions=["2014"],
+        base_rows=[_row(1, "战斗风格"), _row(6, "额外攻击")],
+        feature_query="*",
+    )
+    msgs = KnowledgeBaseManager.class_display_messages(result, full=True)
+    assert len(msgs) == 4  # head + 第1层 + 第2层 + 提示
+    assert "【战士 Fighter】" in msgs[0]
+    assert "【战士·第1层 1-4级】" in msgs[1]
+    assert "◆ 1 级 战斗风格：" in msgs[1]
+    assert "【战士·第2层 5-10级】" in msgs[2]
+    assert "◆ 6 级 额外攻击：" in msgs[2]
+    assert "查看单个特性" in msgs[3]
+
+
+def test_class_display_messages_overview_single() -> None:
+    """v0.48.0：概要层（含提示）单条输出，不触发分条。"""
+    from astrbot_plugin_trpg_assistant.kb import (
+        ClassFeatureRow,
+        ClassFeatureResult,
+        KnowledgeBaseManager,
+    )
+
+    row = ClassFeatureRow(
+        class_name="战士", subclass_name="", source="PHB",
+        level=1, name="战斗风格", summary="概要", body="正文",
+    )
+    result = ClassFeatureResult(
+        class_name="战士", eng_name="Fighter", editions=["2014"],
+        base_rows=[row], subclass_candidates=["冠军武士"],
+    )
+    msgs = KnowledgeBaseManager.class_display_messages(result)
+    assert len(msgs) == 1
+    assert "【第1层 1-4级】" in msgs[0]
+    assert "可选子职：冠军武士" in msgs[0]
+    assert "第2层" in msgs[0]  # 钻取提示
+
+
+def test_subclass_part_header_uses_subclass_name() -> None:
+    """v0.48.0：子职模式标题带子职显示名（非短名）。"""
+    from astrbot_plugin_trpg_assistant.kb import (
+        ClassFeatureRow,
+        ClassFeatureResult,
+        KnowledgeBaseManager,
+    )
+
+    row = ClassFeatureRow(
+        class_name="战士", subclass_name="冠军武士", source="PHB",
+        level=3, name="精通重击", summary="概要", body="正文",
+    )
+    result = ClassFeatureResult(
+        class_name="战士", eng_name="Fighter", editions=["2014"],
+        subclass_rows=[row],
+    )
+    display = KnowledgeBaseManager.build_class_display(result)
+    assert "【战士·子职 冠军武士】" in display.subclass_part
 
 
 # ---------------------------------------------------------------------------

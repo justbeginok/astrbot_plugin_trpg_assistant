@@ -87,7 +87,8 @@ def test_overview_contains_all_groups() -> None:
 def test_topic_detail() -> None:
     text = _format_help_topic("知识库")
     assert "/查法术 <名称>" in text
-    assert "/查职业 <职业> [子职|特性]" in text
+    # v0.48.0：职业命令语法扩展（子职|版本|等级段|特性）
+    assert "/查职业 <职业> [子职|版本|等级段|特性]" in text
     text = _format_help_topic("背包")
     assert "/bag add <名称> <数量>" in text
     assert "/bag party clear" in text

@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "法师",
+   "ENG_name": "Wizard",
+   "className": "法师",
+   "source": "PHB"
+  },
+  {
+   "name": "法师",
+   "ENG_name": "Wizard",
+   "className": "法师",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "剑咏",

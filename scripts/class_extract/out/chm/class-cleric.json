@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "牧师",
+   "ENG_name": "Cleric",
+   "className": "牧师",
+   "source": "PHB"
+  },
+  {
+   "name": "牧师",
+   "ENG_name": "Cleric",
+   "className": "牧师",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "奥秘领域",

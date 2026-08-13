@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "吟游诗人",
+   "ENG_name": "Bard",
+   "className": "吟游诗人",
+   "source": "PHB"
+  },
+  {
+   "name": "吟游诗人",
+   "ENG_name": "Bard",
+   "className": "吟游诗人",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "创造学院",

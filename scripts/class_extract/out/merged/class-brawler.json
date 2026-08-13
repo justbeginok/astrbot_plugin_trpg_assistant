@@ -1,5 +1,12 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "拳斗士",
+   "ENG_name": "Pugilist",
+   "className": "拳斗士",
+   "source": "BF"
+  }
+ ],
  "subclass": [],
  "classFeature": [
   {

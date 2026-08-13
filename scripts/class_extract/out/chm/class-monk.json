@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "武僧",
+   "ENG_name": "Monk",
+   "className": "武僧",
+   "source": "PHB"
+  },
+  {
+   "name": "武僧",
+   "ENG_name": "Monk",
+   "className": "武僧",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "日魂宗",

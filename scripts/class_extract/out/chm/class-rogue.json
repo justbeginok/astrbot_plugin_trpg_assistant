@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "游荡者",
+   "ENG_name": "Rogue",
+   "className": "游荡者",
+   "source": "PHB"
+  },
+  {
+   "name": "游荡者",
+   "ENG_name": "Rogue",
+   "className": "游荡者",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "策士",

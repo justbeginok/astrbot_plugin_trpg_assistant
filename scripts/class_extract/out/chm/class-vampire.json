@@ -1,5 +1,12 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "血族",
+   "ENG_name": "Kindred",
+   "className": "血族",
+   "source": "VTM"
+  }
+ ],
  "subclass": [
   {
    "name": "冈格罗",

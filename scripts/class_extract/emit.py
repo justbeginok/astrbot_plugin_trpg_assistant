@@ -39,6 +39,18 @@ def _resolve_class(cls: str) -> str:
     return _CLASS_ALIAS.get(cls, cls)
 
 
+def _class_eng_name(text: str) -> str:
+    """从职业 md 标题/frontmatter 提取英文名（# 拳斗士 Pugilist / title: 血族 Kindred）。"""
+    for m in re.finditer(
+        r"(?:^#{1,2}\s+|^title:\s*)([\u4e00-\u9fa5][^A-Za-z\n]{0,20}?)"
+        r"([A-Za-z][A-Za-z0-9'’\- ]{1,40})",
+        text,
+        re.M,
+    ):
+        return m.group(2).strip()
+    return ""
+
+
 def _clean_entries_body(body: str) -> list[str]:
     """body → entries（清洗空行；body 是纯文本，单元素即可）。"""
     body = clean_body(body)
@@ -83,7 +95,16 @@ def emit_one(item: PlanItem, text: str) -> tuple[str, dict]:
     out: dict = {"class": [], "subclass": [], "classFeature": [], "subclassFeature": []}
 
     if item.kind == "class":
-        # 职业主体：本职特性 → classFeature
+        # 职业主体：class 条目（entries kind='class' 用，支撑 editions/英文名/富化/
+        # 广搜；v0.50.1 补——此前 chm 独有职业 entries 无 class 条目导致
+        # 2024 群规则下版本回退失效 + /查询 广搜查不到）+ classFeature
+        eng = _class_eng_name(text)
+        out["class"].append({
+            "name": cls,
+            "ENG_name": eng,
+            "className": cls,
+            "source": item.source,
+        })
         for f in feats:
             rows = _feature_rows(f, cls, item.source, None)
             out["classFeature"].extend(r for r in rows if r["entries"])

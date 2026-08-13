@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "野蛮人",
+   "ENG_name": "Barbarian",
+   "className": "野蛮人",
+   "source": "PHB"
+  },
+  {
+   "name": "野蛮人",
+   "ENG_name": "Barbarian",
+   "className": "野蛮人",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "图腾武者_剑湾追加",

@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "战士",
+   "ENG_name": "Fighter",
+   "className": "战士",
+   "source": "PHB"
+  },
+  {
+   "name": "战士",
+   "ENG_name": "Fighter",
+   "className": "战士",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "紫龙骑士",

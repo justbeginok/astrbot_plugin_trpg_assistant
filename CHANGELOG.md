@@ -5,6 +5,20 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.50.1] - 2026-08-14
+
+### 修复：第三方职业（血族/拳斗士/铳士/血猎手/邪狱使）查不到
+- 根因：5e_chm 提取的 class-*.json 缺 `class` 数组 → build_kb 未生成
+  entries.kind='class' 条目 → editions/英文名/富化概要为空，2024 群规则下
+  版本回退失效（「未找到该职业的特性数据」），/查询 广搜与 LLM 工具也查不到。
+- 修复：emit 的 class 分支补 class 条目（英文名从 md 标题/frontmatter 提取，
+  如「# 拳斗士 Pugilist」→ Pugilist）；finalize 按名合并时 chm 独有职业的
+  class 条目补入（同名家不重复）。
+- 效果：`/查职业 拳斗士` 在 2024 群规则下自动回退显示 2014 版并提示；
+  `/查询 拳斗士` 广搜命中；职业头部显示英文名。
+- 新增 tests/test_class_extract.py 回归（emit class 数组 / 英文名提取 /
+  finalize 合并）；全量 1268 通过。
+
 ## [0.50.0] - 2026-08-14
 
 ### 可定制职业选项入库（魔能祈唤/战技/超魔法/战斗风格，ADR-0025）

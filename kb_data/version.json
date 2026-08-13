@@ -1,7 +1,7 @@
 {
   "data_version": "unknown-20260813",
   "source_commit": "unknown",
-  "build_time": "2026-08-13T16:18:58Z",
+  "build_time": "2026-08-13T16:58:33Z",
   "schema_version": "11",
   "counts": {
     "spell": 1220,
@@ -13,7 +13,7 @@
     "race": 160,
     "optionalfeature": 153,
     "spellClass": 2491,
-    "class": 30,
+    "class": 35,
     "subclass": 571,
     "classFeature": 828,
     "subclassFeature": 2670

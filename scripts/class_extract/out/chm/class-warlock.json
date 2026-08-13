@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "魔契师",
+   "ENG_name": "Warlock",
+   "className": "魔契师",
+   "source": "PHB"
+  },
+  {
+   "name": "魔契师",
+   "ENG_name": "Warlock",
+   "className": "魔契师",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "不朽者",

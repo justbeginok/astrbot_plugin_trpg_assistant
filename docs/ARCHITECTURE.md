@@ -130,6 +130,9 @@ chm 覆盖同 (className, subclass, source, level, name) 行 + 保留 cn 独有 
 产物 out/llm/ 合并进 chm 目录）。构建命令：
 `run_extract.py --md <5e_chm/md> --cn <5etools-cn/data/class>`（--emit-only/
 --no-emit/--dry-run），产物覆盖 data/class/ 后 `build_kb.py` 重建。
+（v0.50.1：emit class 分支补 `class` 数组条目——chm 独有职业如血族/拳斗士
+entries 无 kind='class' 会导致 editions/英文名/版本回退/广搜全失效；英文名
+从 md 标题/frontmatter 提取，finalize 按名合并补入 cn 缺失的 class 条目。）
 **选项数据源（v0.50.0，ADR-0025）**：可定制职业选项（魔能祈唤 EI/战技 MV/
 超魔法 MM/战斗风格 FS，5etools 官方 featureType 枚举）新增第七类
 `optionalfeature`（中文「选项」）：`scripts/optional_extract/extract.py` 从

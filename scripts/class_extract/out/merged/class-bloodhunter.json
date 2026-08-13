@@ -1,5 +1,12 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "血猎手",
+   "ENG_name": "Blood Hunter",
+   "className": "血猎手",
+   "source": "BH"
+  }
+ ],
  "subclass": [],
  "classFeature": [
   {

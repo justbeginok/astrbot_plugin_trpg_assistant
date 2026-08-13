@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "游侠",
+   "ENG_name": "Ranger",
+   "className": "游侠",
+   "source": "PHB"
+  },
+  {
+   "name": "游侠",
+   "ENG_name": "Ranger",
+   "className": "游侠",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "妖精漫游者",

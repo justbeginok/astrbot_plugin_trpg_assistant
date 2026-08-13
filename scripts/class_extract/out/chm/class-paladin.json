@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "圣武士",
+   "ENG_name": "Paladin",
+   "className": "圣武士",
+   "source": "PHB"
+  },
+  {
+   "name": "圣武士",
+   "ENG_name": "Paladin",
+   "className": "圣武士",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "王冠之誓",

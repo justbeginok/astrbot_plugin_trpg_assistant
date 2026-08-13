@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "德鲁伊",
+   "ENG_name": "Druid",
+   "className": "德鲁伊",
+   "source": "PHB"
+  },
+  {
+   "name": "德鲁伊",
+   "ENG_name": "Druid",
+   "className": "德鲁伊",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "孢子结社",

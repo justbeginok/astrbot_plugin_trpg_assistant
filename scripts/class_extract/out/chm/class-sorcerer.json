@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "术士",
+   "ENG_name": "Sorcerer",
+   "className": "术士",
+   "source": "PHB"
+  },
+  {
+   "name": "术士",
+   "ENG_name": "Sorcerer",
+   "className": "术士",
+   "source": "XPHB"
+  }
+ ],
  "subclass": [
   {
    "name": "风暴术法",

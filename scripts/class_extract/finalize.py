@@ -117,6 +117,18 @@ def merge_one(chm_path: Path | None, cn_path: Path) -> tuple[dict, dict]:
     merged["subclass"] = new_sub
 
     # ---- 2) 追加 chm 独有（chm 里 cn 没有的，如 2024 新特性/第三方）----
+    # class 数组（v0.50.1）：chm 职业主体条目（血族/拳斗士等 cn 独有）补入，
+    # 使 entries.kind='class' 存在 → editions/英文名/富化/广搜可用。
+    chm_class_keys = {
+        (r.get("name", ""), r.get("source", "")) for r in chm.get("class", [])
+    }
+    merged_class_keys = {
+        (r.get("name", ""), r.get("source", "")) for r in merged["class"]
+    }
+    for r in chm.get("class", []):
+        k = (r.get("name", ""), r.get("source", ""))
+        if k in chm_class_keys and k not in merged_class_keys:
+            merged["class"].append(r)
     for r in chm.get("classFeature", []):
         if _feature_key(r) not in {_feature_key(x) for x in merged["classFeature"]}:
             merged["classFeature"].append(r)

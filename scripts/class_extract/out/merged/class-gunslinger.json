@@ -1,5 +1,12 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "铳士",
+   "ENG_name": "Gunslinger",
+   "className": "铳士",
+   "source": "VDS"
+  }
+ ],
  "subclass": [
   {
    "name": "快枪客",

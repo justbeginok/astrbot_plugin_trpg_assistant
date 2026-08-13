@@ -1,5 +1,18 @@
 {
- "class": [],
+ "class": [
+  {
+   "name": "奇械师",
+   "ENG_name": "",
+   "className": "奇械师",
+   "source": "TCE"
+  },
+  {
+   "name": "奇械师",
+   "ENG_name": "Artificer",
+   "className": "奇械师",
+   "source": "EFA"
+  }
+ ],
  "subclass": [
   {
    "name": "奇械师注法",

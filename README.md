@@ -1,6 +1,6 @@
 # astrbot_plugin_trpg_assistant
 
-**当前版本：v0.48.0**（各功能版本演进详见 [CHANGELOG.md](CHANGELOG.md)）
+**当前版本：v0.49.0**（各功能版本演进详见 [CHANGELOG.md](CHANGELOG.md)）
 
 适用于 [AstrBot](https://github.com/AstrBotDevs/AstrBot) 的 TRPG 跑团助手插件：完整 Roll20 规范的 D&D 骰池投掷、技能检定、投掷历史、战斗先攻追踪、个人/队伍背包、会话商店、角色卡与 LLM 引导车卡、内置 DND 5e 中文知识库，并提供 LLM 函数工具供 AI 主持人在叙事中自动调用。
 
@@ -263,7 +263,7 @@ DM/管理员设置群级开卡规则（写入需群聊白名单权限）：
 
 ## DND 知识库查询
 
-插件内置一份 DND 5e 中文资料库（SQLite，随包分发），覆盖法术、怪物、物品（含基础武器/防具）、专长、背景、职业/子职、状态、种族。数据源自 [5etools 中文站](https://github.com/tjliqy/5etools-mirror-2.github.io)（cn2.0 分支）的结构化 JSON。
+插件内置一份 DND 5e 中文资料库（SQLite，随包分发），覆盖法术、怪物、物品（含基础武器/防具）、专长、背景、职业/子职、状态、种族。法术/怪物/职业数据以 5e_chm 人工校对中文为主源，其余类别源自 [5etools 中文站](https://github.com/tjliqy/5etools-mirror-2.github.io)（cn2.0 分支）的结构化 JSON。
 
 ### 查询
 

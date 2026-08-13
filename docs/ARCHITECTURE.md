@@ -116,6 +116,20 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 `scripts/gen_enrich.py` 规则生成缺口 summary+keywords（+学派兜底词），
 `kb_patches/spell_enrich.json` 554→1255 条，spells.summary 与
 entry_tags.spell_keyword 覆盖率 100%。
+**职业数据源（v0.49.0，ADR-0024）**：职业/子职**特性数据**（class_features 表）
+改以 5e_chm Markdown 人工校对中文为主源（对齐法术 ADR-0018 / 怪物 ADR-0021）：
+提取管道 `scripts/class_extract/` —— `inventory.py`（归属推断：职业主体/子职/
+多子职合体/选项列表，血族/铳士/2024 角色职业特判）→ `parser.py`（三格式族：
+2024/第三方显式等级标题 `1级：特性名`、2014 `#### 特性名`+正文首句等级推断、
+裸标题 `回气Second Wind`/`心灵之刃 Psychic Blades`、HTML 特性表；特性表锚点
+多等级展开 + 去括号别名；噪音过滤职业表/生命值/装备等）→ `emit.py`（5etools
+兼容 class-*.json，className 别名「邪术师→魔契师」）→ `finalize.py`（按名合并：
+chm 覆盖同 (className, subclass, source, level, name) 行 + 保留 cn 独有 source
+[EGW/FRHoF/UA…] + 伪子职过滤 [subclass 名=职业名，2024 映射瑕疵]）→
+`llm_fallback.py`（LLM 子代理兜底格式混乱第三方文件，契约 llm_class_schema.md，
+产物 out/llm/ 合并进 chm 目录）。构建命令：
+`run_extract.py --md <5e_chm/md> --cn <5etools-cn/data/class>`（--emit-only/
+--no-emit/--dry-run），产物覆盖 data/class/ 后 `build_kb.py` 重建。
 **法术显示（v0.44.0，ADR-0019）**：详情改 PHB 卡片式——`entries.body`（构建期
 预渲染，`chm_parser._build_body` 与 `kb_build_lib._spell_body` 同构）= 环位行
 + 4 属性行 + 正文 + 升环段；标题/概要/标签/版本行由 `kb.format_entry` 法术分支
@@ -213,6 +227,11 @@ feats(entry_id PK, summary TEXT DEFAULT '')
 -- v0.33.0「职业/子职富化」：classes 侧表存 AI 生成的一句话概要（summary）与职业定位
 --   （role，武者/奥法/神职/专家，仅职业有），源 kb_patches/class_enrich.json
 --   （职业 29 条含 role + 子职 186 条，排除 UA/Plane Shift 跨界，合计 215 条全覆盖）
+-- v0.49.0 起职业/子职**特性数据**（class_features 表）改以 5e_chm 人工校对中文
+--   为主源（ADR-0024）：职业 30 条/子职 285 个/本职特性 828 行/子职特性 2586 行，
+--   提取管道 scripts/class_extract/（inventory→parser→emit→finalize→llm_fallback），
+--   与 5etools-cn 按名合并（chm 覆盖同名家 + 保留 cn 独有 source + 伪子职过滤）；
+--   富化侧表（classes.summary/role）仍由 kb_patches/class_enrich.json 提供。
 classes(entry_id PK, summary TEXT DEFAULT '', role TEXT DEFAULT '')
 
 -- v0.34.0「种族/背景富化」：backgrounds 侧表存 AI 生成的一句话概要（summary，

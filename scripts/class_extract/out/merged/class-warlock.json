@@ -1,0 +1,5743 @@
+{
+ "class": [
+  {
+   "ENG_name": "Warlock",
+   "name": "魔契师",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "reprintedAs": [
+    "魔契师|XPHB"
+   ],
+   "edition": "classic",
+   "hd": {
+    "number": 1,
+    "faces": 8
+   },
+   "proficiency": [
+    "wis",
+    "cha"
+   ],
+   "spellcastingAbility": "cha",
+   "casterProgression": "pact",
+   "cantripProgression": [
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "spellsKnownProgression": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15
+   ],
+   "spellsKnownProgressionFixedByLevel": {
+    "11": {
+     "6": 1
+    },
+    "13": {
+     "7": 1
+    },
+    "15": {
+     "8": 1
+    },
+    "17": {
+     "9": 1
+    }
+   },
+   "optionalfeatureProgression": [
+    {
+     "ENG_name": "Eldritch Invocations",
+     "name": "魔能祈唤",
+     "featureType": [
+      "EI"
+     ],
+     "progression": [
+      0,
+      2,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      7,
+      7,
+      7,
+      8,
+      8,
+      8
+     ]
+    },
+    {
+     "ENG_name": "Pact Boon",
+     "name": "魔契恩泽",
+     "featureType": [
+      "PB"
+     ],
+     "progression": {
+      "3": 1
+     }
+    }
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light"
+    ],
+    "weapons": [
+     "简易"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "arcana",
+        "deception",
+        "history",
+        "intimidation",
+        "investigation",
+        "nature",
+        "religion"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "default": [
+     "(a) 一把{@item 轻弩|phb}和{@item 弩矢(20)|phb|20支弩箭}或 (b) 任何{@filter 简易武器|items|source=phb|category=基础|type=简易武器}",
+     "(a) 一个 {@item 材料包|phb}或 (b) 一件{@item 奥术法器|phb}",
+     "(a) 一个{@item 学者套组|phb}或(b) 一个{@item 地城套组|phb}",
+     "{@item 皮甲|phb}，任意 {@filter 简易武器|items|source=phb|category=基础|type=简易武器}，以及两把 {@item 匕首|phb|匕首}"
+    ],
+    "goldAlternative": "{@dice 4d4 × 10|4d4 × 10|起始金币}",
+    "defaultData": [
+     {
+      "a": [
+       "轻弩|phb",
+       "弩矢(20)|phb"
+      ],
+      "b": [
+       {
+        "equipmentType": "weaponSimple"
+       }
+      ]
+     },
+     {
+      "a": [
+       "材料包|phb"
+      ],
+      "b": [
+       {
+        "equipmentType": "focusSpellcastingArcane"
+       }
+      ]
+     },
+     {
+      "a": [
+       "学者套组|phb"
+      ],
+      "b": [
+       "地城套组|phb"
+      ]
+     },
+     {
+      "_": [
+       "皮甲|phb",
+       {
+        "equipmentType": "weaponSimple"
+       },
+       {
+        "item": "匕首|phb",
+        "quantity": 2
+       }
+      ]
+     }
+    ]
+   },
+   "multiclassing": {
+    "requirements": {
+     "cha": 13
+    },
+    "proficienciesGained": {
+     "armor": [
+      "light"
+     ],
+     "weapons": [
+      "简易"
+     ]
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "{@filter 已知戏法|spells|level=0|class=魔契师}",
+      "{@filter 已知法术|spells|class=魔契师}",
+      "法术位",
+      "法术位环阶",
+      "{@filter 已知祈唤|optionalfeatures|feature type=ei}"
+     ],
+     "rows": [
+      [
+       2,
+       2,
+       1,
+       "{@filter 1st|spells|level=1|class=魔契师}",
+       0
+      ],
+      [
+       2,
+       3,
+       2,
+       "{@filter 1st|spells|level=1|class=魔契师}",
+       2
+      ],
+      [
+       2,
+       4,
+       2,
+       "{@filter 2nd|spells|level=2|class=魔契师}",
+       2
+      ],
+      [
+       3,
+       5,
+       2,
+       "{@filter 2nd|spells|level=2|class=魔契师}",
+       2
+      ],
+      [
+       3,
+       6,
+       2,
+       "{@filter 3rd|spells|level=3|class=魔契师}",
+       3
+      ],
+      [
+       3,
+       7,
+       2,
+       "{@filter 3rd|spells|level=3|class=魔契师}",
+       3
+      ],
+      [
+       3,
+       8,
+       2,
+       "{@filter 4th|spells|level=4|class=魔契师}",
+       4
+      ],
+      [
+       3,
+       9,
+       2,
+       "{@filter 4th|spells|level=4|class=魔契师}",
+       4
+      ],
+      [
+       3,
+       10,
+       2,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       5
+      ],
+      [
+       4,
+       10,
+       2,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       5
+      ],
+      [
+       4,
+       11,
+       3,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       5
+      ],
+      [
+       4,
+       11,
+       3,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       6
+      ],
+      [
+       4,
+       12,
+       3,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       6
+      ],
+      [
+       4,
+       12,
+       3,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       6
+      ],
+      [
+       4,
+       13,
+       3,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       7
+      ],
+      [
+       4,
+       13,
+       3,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       7
+      ],
+      [
+       4,
+       14,
+       4,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       7
+      ],
+      [
+       4,
+       14,
+       4,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       8
+      ],
+      [
+       4,
+       15,
+       4,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       8
+      ],
+      [
+       4,
+       15,
+       4,
+       "{@filter 5th|spells|level=5|class=魔契师}",
+       8
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "契约魔法|魔契师||1",
+    {
+     "classFeature": "异界宗主|魔契师||1",
+     "gainSubclassFeature": true
+    },
+    "魔能祈唤|魔契师||2",
+    "魔契恩泽|魔契师||3",
+    "属性值提升|魔契师||4",
+    "替换魔能|魔契师||4|TCE",
+    {
+     "classFeature": "异界宗主特性|魔契师||6",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|魔契师||8",
+    {
+     "classFeature": "异界宗主特性|魔契师||10",
+     "gainSubclassFeature": true
+    },
+    "玄奥秘法(6环)|魔契师||11",
+    "属性值提升|魔契师||12",
+    "玄奥秘法(7环)|魔契师||13",
+    {
+     "classFeature": "异界宗主特性|魔契师||14",
+     "gainSubclassFeature": true
+    },
+    "玄奥秘法(8环)|魔契师||15",
+    "属性值提升|魔契师||16",
+    "玄奥秘法(9环)|魔契师||17",
+    "属性值提升|魔契师||19",
+    "魔能掌控|魔契师||20"
+   ],
+   "subclassTitle": "异界宗主",
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Warlock",
+   "name": "魔契师",
+   "source": "XPHB",
+   "page": 152,
+   "srd52": true,
+   "basicRules2024": true,
+   "edition": "one",
+   "primaryAbility": [
+    {
+     "cha": true
+    }
+   ],
+   "hd": {
+    "number": 1,
+    "faces": 8
+   },
+   "proficiency": [
+    "wis",
+    "cha"
+   ],
+   "spellcastingAbility": "cha",
+   "casterProgression": "pact",
+   "preparedSpellsProgression": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15
+   ],
+   "preparedSpellsChange": "level",
+   "cantripProgression": [
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "spellsKnownProgressionFixedByLevel": {
+    "11": {
+     "6": 1
+    },
+    "13": {
+     "7": 1
+    },
+    "15": {
+     "8": 1
+    },
+    "17": {
+     "9": 1
+    }
+   },
+   "additionalSpells": [
+    {
+     "prepared": {
+      "9": [
+       "异界探知|xphb"
+      ]
+     }
+    }
+   ],
+   "featProgression": [
+    {
+     "ENG_name": "Epic Boon",
+     "name": "传奇恩惠",
+     "category": [
+      "EB"
+     ],
+     "progression": {
+      "19": 1
+     }
+    }
+   ],
+   "optionalfeatureProgression": [
+    {
+     "ENG_name": "Eldritch Invocations",
+     "name": "魔能祈唤",
+     "featureType": [
+      "EI"
+     ],
+     "progression": [
+      1,
+      3,
+      3,
+      3,
+      5,
+      5,
+      6,
+      6,
+      7,
+      7,
+      7,
+      8,
+      8,
+      8,
+      9,
+      9,
+      9,
+      10,
+      10,
+      10
+     ]
+    }
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light"
+    ],
+    "weapons": [
+     "简易"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "arcana",
+        "deception",
+        "history",
+        "intimidation",
+        "investigation",
+        "nature",
+        "religion"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "defaultData": [
+     {
+      "A": [
+       {
+        "item": "皮甲|xphb"
+       },
+       {
+        "item": "镰刀|xphb"
+       },
+       {
+        "item": "匕首|xphb",
+        "quantity": 2
+       },
+       {
+        "item": "法球|xphb"
+       },
+       {
+        "item": "书籍|xphb"
+       },
+       {
+        "item": "学者套组|xphb"
+       },
+       {
+        "value": 1500
+       }
+      ],
+      "B": [
+       {
+        "value": 10000
+       }
+      ]
+     }
+    ],
+    "entries": [
+     "{@i 选择A或B：} (A) {@item 皮甲|XPHB}、{@item 镰刀|XPHB}、2把{@item 匕首|XPHB|匕首}、{@item 奥术法器|XPHB}（{@item 法球|XPHB}）、{@item 书籍|XPHB}（秘传学识）、{@item 学者套组|XPHB}以及15 GP；或 (B) 100 GP"
+    ]
+   },
+   "multiclassing": {
+    "proficienciesGained": {
+     "armor": [
+      "light"
+     ]
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "{@filter 祈唤|optionalfeatures|feature type=ei}",
+      "{@filter 戏法|spells|level=0|class=魔契师}",
+      "{@filter 准备法术|spells|level=!0|class=魔契师}",
+      "法术位",
+      "法术位环阶"
+     ],
+     "rows": [
+      [
+       1,
+       2,
+       2,
+       1,
+       1
+      ],
+      [
+       3,
+       2,
+       3,
+       2,
+       1
+      ],
+      [
+       3,
+       2,
+       4,
+       2,
+       2
+      ],
+      [
+       3,
+       3,
+       5,
+       2,
+       2
+      ],
+      [
+       5,
+       3,
+       6,
+       2,
+       3
+      ],
+      [
+       5,
+       3,
+       7,
+       2,
+       3
+      ],
+      [
+       6,
+       3,
+       8,
+       2,
+       4
+      ],
+      [
+       6,
+       3,
+       9,
+       2,
+       4
+      ],
+      [
+       7,
+       3,
+       10,
+       2,
+       5
+      ],
+      [
+       7,
+       4,
+       10,
+       2,
+       5
+      ],
+      [
+       7,
+       4,
+       11,
+       3,
+       5
+      ],
+      [
+       8,
+       4,
+       11,
+       3,
+       5
+      ],
+      [
+       8,
+       4,
+       12,
+       3,
+       5
+      ],
+      [
+       8,
+       4,
+       12,
+       3,
+       5
+      ],
+      [
+       9,
+       4,
+       13,
+       3,
+       5
+      ],
+      [
+       9,
+       4,
+       13,
+       3,
+       5
+      ],
+      [
+       9,
+       4,
+       14,
+       4,
+       5
+      ],
+      [
+       10,
+       4,
+       14,
+       4,
+       5
+      ],
+      [
+       10,
+       4,
+       15,
+       4,
+       5
+      ],
+      [
+       10,
+       4,
+       15,
+       4,
+       5
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "魔能祈唤|魔契师|XPHB|1",
+    "契约魔法|魔契师|XPHB|1",
+    "魔能祈唤选项|魔契师|XPHB|1",
+    "秘法回流|魔契师|XPHB|2",
+    {
+     "classFeature": "魔契师子职|魔契师|XPHB|3",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|魔契师|XPHB|4",
+    {
+     "classFeature": "子职特性|魔契师|XPHB|6",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|魔契师|XPHB|8",
+    "联络宗主|魔契师|XPHB|9",
+    {
+     "classFeature": "子职特性|魔契师|XPHB|10",
+     "gainSubclassFeature": true
+    },
+    "玄奥秘法|魔契师|XPHB|11",
+    "属性值提升|魔契师|XPHB|12",
+    "玄奥秘法|魔契师|XPHB|13",
+    {
+     "classFeature": "子职特性|魔契师|XPHB|14",
+     "gainSubclassFeature": true
+    },
+    "玄奥秘法|魔契师|XPHB|15",
+    "属性值提升|魔契师|XPHB|16",
+    "玄奥秘法|魔契师|XPHB|17",
+    "传奇恩惠|魔契师|XPHB|19",
+    "魔能掌控|魔契师|XPHB|20"
+   ],
+   "subclassTitle": "魔契师子职",
+   "hasFluff": true,
+   "hasFluffImages": true
+  }
+ ],
+ "subclass": [
+  {
+   "name": "至高妖精",
+   "shortName": "至高妖精",
+   "className": "魔契师",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "The Archfey",
+   "name": "至高妖精",
+   "shortName": "至高妖精",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Archfey",
+    "name": "至高妖精",
+    "source": "PHB",
+    "shortName": "至高妖精",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "至高妖精|魔契师|XPHB|至高妖精||3",
+    "雾隐遁行|魔契师||至高妖精||6",
+    "斗转星移|魔契师||至高妖精||10",
+    "幻影黑幕|魔契师||至高妖精||14"
+   ]
+  },
+  {
+   "ENG_name": "The Fiend",
+   "name": "邪魔宗主",
+   "shortName": "邪魔",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 109,
+   "srd": true,
+   "reprintedAs": [
+    "邪魔|魔契师|XPHB|XPHB"
+   ],
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "expanded": {
+      "s1": [
+       "燃烧之手",
+       "命令术"
+      ],
+      "s2": [
+       "目盲术/耳聋术",
+       "灼热射线"
+      ],
+      "s3": [
+       "火球术",
+       "臭云术"
+      ],
+      "s4": [
+       "火焰护盾",
+       "火墙术"
+      ],
+      "s5": [
+       "焰击术",
+       "圣居"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "邪魔宗主|魔契师||邪魔||1",
+    "黑暗强运|魔契师||邪魔||6",
+    "邪魔体魄|魔契师||邪魔||10",
+    "直坠噩梦|魔契师||邪魔||14"
+   ]
+  },
+  {
+   "ENG_name": "The Fiend",
+   "name": "邪魔宗主",
+   "shortName": "邪魔",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Fiend",
+    "name": "邪魔宗主",
+    "source": "PHB",
+    "shortName": "邪魔",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "邪魔宗主|魔契师|XPHB|邪魔||3",
+    "黑暗强运|魔契师||邪魔||6",
+    "邪魔体魄|魔契师||邪魔||10",
+    "直坠噩梦|魔契师||邪魔||14"
+   ]
+  },
+  {
+   "ENG_name": "The Great Old One",
+   "name": "旧日支配者宗主",
+   "shortName": "旧日支配者",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 109,
+   "reprintedAs": [
+    "旧日支配者|魔契师|XPHB|XPHB"
+   ],
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "expanded": {
+      "s1": [
+       "不谐低语",
+       "塔莎狂笑术"
+      ],
+      "s2": [
+       "侦测思想",
+       "魅影之力"
+      ],
+      "s3": [
+       "鹰眼术",
+       "短讯术"
+      ],
+      "s4": [
+       "支配野兽",
+       "艾伐黑触手"
+      ],
+      "s5": [
+       "支配类人",
+       "心灵遥控"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "旧日支配者宗主|魔契师||旧日支配者||1",
+    "熵光结界|魔契师||旧日支配者||6",
+    "思维之盾|魔契师||旧日支配者||10",
+    "创造奴仆|魔契师||旧日支配者||14"
+   ]
+  },
+  {
+   "ENG_name": "The Great Old One",
+   "name": "旧日支配者宗主",
+   "shortName": "旧日支配者",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Great Old One",
+    "name": "旧日支配者宗主",
+    "source": "PHB",
+    "shortName": "旧日支配者",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "旧日支配者宗主|魔契师|XPHB|旧日支配者||3",
+    "熵光结界|魔契师||旧日支配者||6",
+    "思维之盾|魔契师||旧日支配者||10",
+    "创造奴仆|魔契师||旧日支配者||14"
+   ]
+  },
+  {
+   "ENG_name": "The Undying",
+   "name": "不朽者宗主",
+   "shortName": "不朽者",
+   "source": "SCAG",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 139,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "known": {
+      "1": [
+       "维生术#c"
+      ]
+     },
+     "expanded": {
+      "s1": [
+       "虚假生命",
+       "致病射线"
+      ],
+      "s2": [
+       "目盲术/耳聋术",
+       "沉默术"
+      ],
+      "s3": [
+       "假死术",
+       "死者交谈"
+      ],
+      "s4": [
+       "生命灵光",
+       "防死结界"
+      ],
+      "s5": [
+       "疫病术",
+       "通晓传奇"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "不朽者宗主|魔契师||不朽者|SCAG|1",
+    "悍不畏死|魔契师||不朽者|SCAG|6",
+    "不朽之理|魔契师||不朽者|SCAG|10",
+    "永恒生命|魔契师||不朽者|SCAG|14"
+   ]
+  },
+  {
+   "ENG_name": "The Undying",
+   "name": "不朽者宗主",
+   "shortName": "不朽者",
+   "source": "SCAG",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Undying",
+    "name": "不朽者宗主",
+    "source": "SCAG",
+    "shortName": "不朽者",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "不朽者宗主|魔契师|XPHB|不朽者|SCAG|3",
+    "悍不畏死|魔契师||不朽者|SCAG|6",
+    "不朽之理|魔契师||不朽者|SCAG|10",
+    "永恒生命|魔契师||不朽者|SCAG|14"
+   ]
+  },
+  {
+   "ENG_name": "The Celestial",
+   "name": "天界宗主",
+   "shortName": "天界",
+   "source": "XGE",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 54,
+   "reprintedAs": [
+    "天界|魔契师|XPHB|XPHB"
+   ],
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "known": {
+      "1": [
+       "圣火术#c",
+       "光亮术#c"
+      ]
+     },
+     "expanded": {
+      "s1": [
+       "疗伤术",
+       "光导箭"
+      ],
+      "s2": [
+       "炽焰法球",
+       "次等复原术"
+      ],
+      "s3": [
+       "昼明术",
+       "回生术"
+      ],
+      "s4": [
+       "信仰守卫",
+       "火墙术"
+      ],
+      "s5": [
+       "焰击术",
+       "高等复原术"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "天界宗主|魔契师||天界|XGE|1",
+    "光耀之魂|魔契师||天界|XGE|6",
+    "天界韧性|魔契师||天界|XGE|10",
+    "灼光复仇|魔契师||天界|XGE|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "The Celestial",
+   "name": "天界宗主",
+   "shortName": "天界",
+   "source": "XGE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Celestial",
+    "name": "天界宗主",
+    "source": "XGE",
+    "shortName": "天界",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "天界宗主|魔契师|XPHB|天界|XGE|3",
+    "光耀之魂|魔契师||天界|XGE|6",
+    "天界韧性|魔契师||天界|XGE|10",
+    "灼光复仇|魔契师||天界|XGE|14"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "The Celestial",
+     "name": "天界宗主",
+     "source": "XGE",
+     "shortName": "天界",
+     "className": "魔契师",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "The Hexblade",
+   "name": "咒剑宗主",
+   "shortName": "咒剑",
+   "source": "XGE",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 55,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "expanded": {
+      "s1": [
+       "护盾术",
+       "激愤斩"
+      ],
+      "s2": [
+       "朦胧术",
+       "印记斩"
+      ],
+      "s3": [
+       "闪现术",
+       "元素武器"
+      ],
+      "s4": [
+       "魅影杀手",
+       "惊惧斩"
+      ],
+      "s5": [
+       "放逐斩",
+       "寒冰锥"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "咒剑宗主|魔契师||咒剑|XGE|1",
+    "咒缚幽灵|魔契师||咒剑|XGE|6",
+    "巫咒盔甲|魔契师||咒剑|XGE|10",
+    "巫咒大师|魔契师||咒剑|XGE|14"
+   ],
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "The Hexblade",
+   "name": "咒剑宗主",
+   "shortName": "咒剑",
+   "source": "XGE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Hexblade",
+    "name": "咒剑宗主",
+    "source": "XGE",
+    "shortName": "咒剑",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "咒剑宗主|魔契师|XPHB|咒剑|XGE|3",
+    "咒缚幽灵|魔契师||咒剑|XGE|6",
+    "巫咒盔甲|魔契师||咒剑|XGE|10",
+    "巫咒大师|魔契师||咒剑|XGE|14"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "The Hexblade",
+     "name": "咒剑宗主",
+     "source": "XGE",
+     "shortName": "咒剑",
+     "className": "魔契师",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "The Fathomless",
+   "name": "深海意志宗主",
+   "shortName": "深海意志",
+   "source": "TCE",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 72,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "expanded": {
+      "s1": [
+       "造水术/枯水术",
+       "雷鸣波"
+      ],
+      "s2": [
+       "造风术",
+       "沉默术"
+      ],
+      "s3": [
+       "闪电束",
+       "雪雨暴"
+      ],
+      "s4": [
+       "操控水体",
+       "元素召唤术|tce"
+      ],
+      "s5": [
+       "毕格比之手",
+       "寒冰锥"
+      ]
+     },
+     "known": {
+      "10": {
+       "daily": {
+        "1": [
+         "艾伐黑触手"
+        ]
+       }
+      }
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "深海意志宗主|魔契师||深海意志|TCE|1",
+    "海渊魂灵|魔契师||深海意志|TCE|6",
+    "守卫缠绕|魔契师||深海意志|TCE|6",
+    "擒握触手|魔契师||深海意志|TCE|10",
+    "海渊传送|魔契师||深海意志|TCE|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "The Fathomless",
+   "name": "深海意志宗主",
+   "shortName": "深海意志",
+   "source": "TCE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Fathomless",
+    "name": "深海意志宗主",
+    "source": "TCE",
+    "shortName": "深海意志",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "深海意志宗主|魔契师|XPHB|深海意志|TCE|3",
+    "海渊魂灵|魔契师||深海意志|TCE|6",
+    "守卫缠绕|魔契师||深海意志|TCE|6",
+    "擒握触手|魔契师||深海意志|TCE|10",
+    "海渊传送|魔契师||深海意志|TCE|14"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "The Fathomless",
+     "name": "深海意志宗主",
+     "source": "TCE",
+     "shortName": "深海意志",
+     "className": "魔契师",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "The Genie",
+   "name": "巨灵宗主",
+   "shortName": "巨灵",
+   "source": "TCE",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 73,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "ENG_name": "Dao",
+     "name": "土巨灵",
+     "expanded": {
+      "9": [
+       "祈愿术"
+      ],
+      "s1": [
+       "侦测善恶",
+       "庇护术"
+      ],
+      "s2": [
+       "魅影之力",
+       "荆棘丛生"
+      ],
+      "s3": [
+       "造粮术",
+       "融身入石"
+      ],
+      "s4": [
+       "魅影杀手",
+       "塑石术"
+      ],
+      "s5": [
+       "造物术",
+       "石墙术"
+      ]
+     }
+    },
+    {
+     "ENG_name": "Djinni",
+     "name": "气巨灵",
+     "expanded": {
+      "9": [
+       "祈愿术"
+      ],
+      "s1": [
+       "侦测善恶",
+       "雷鸣波"
+      ],
+      "s2": [
+       "魅影之力",
+       "造风术"
+      ],
+      "s3": [
+       "造粮术",
+       "风墙术"
+      ],
+      "s4": [
+       "魅影杀手",
+       "高等隐形术"
+      ],
+      "s5": [
+       "造物术",
+       "伪装术"
+      ]
+     }
+    },
+    {
+     "ENG_name": "Efreeti",
+     "name": "火巨灵",
+     "expanded": {
+      "9": [
+       "祈愿术"
+      ],
+      "s1": [
+       "侦测善恶",
+       "燃烧之手"
+      ],
+      "s2": [
+       "魅影之力",
+       "灼热射线"
+      ],
+      "s3": [
+       "造粮术",
+       "火球术"
+      ],
+      "s4": [
+       "魅影杀手",
+       "火焰护盾"
+      ],
+      "s5": [
+       "造物术",
+       "焰击术"
+      ]
+     }
+    },
+    {
+     "ENG_name": "Marid",
+     "name": "水巨灵",
+     "expanded": {
+      "9": [
+       "祈愿术"
+      ],
+      "s1": [
+       "侦测善恶",
+       "云雾术"
+      ],
+      "s2": [
+       "魅影之力",
+       "朦胧术"
+      ],
+      "s3": [
+       "造粮术",
+       "雪雨暴"
+      ],
+      "s4": [
+       "魅影杀手",
+       "操控水体"
+      ],
+      "s5": [
+       "造物术",
+       "寒冰锥"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "巨灵宗主|魔契师||巨灵|TCE|1",
+    "元素赐福|魔契师||巨灵|TCE|6",
+    "器皿庇护所|魔契师||巨灵|TCE|10",
+    "有限祈愿术|魔契师||巨灵|TCE|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "The Genie",
+   "name": "巨灵宗主",
+   "shortName": "巨灵",
+   "source": "TCE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "The Genie",
+    "name": "巨灵宗主",
+    "source": "TCE",
+    "shortName": "巨灵",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "巨灵宗主|魔契师|XPHB|巨灵|TCE|3",
+    "元素赐福|魔契师||巨灵|TCE|6",
+    "器皿庇护所|魔契师||巨灵|TCE|10",
+    "有限祈愿术|魔契师||巨灵|TCE|14"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "The Genie",
+     "name": "巨灵宗主",
+     "source": "TCE",
+     "shortName": "巨灵",
+     "className": "魔契师",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "The Undead",
+   "name": "死灵宗主",
+   "shortName": "亡灵",
+   "source": "VRGR",
+   "className": "魔契师",
+   "classSource": "PHB",
+   "page": 30,
+   "reprintedAs": [
+    "亡灵|魔契师|XPHB|RHW"
+   ],
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "expanded": {
+      "s1": [
+       "灾祸术",
+       "虚假生命"
+      ],
+      "s2": [
+       "目盲术/耳聋术",
+       "魅影之力"
+      ],
+      "s3": [
+       "魅影驹",
+       "死者交谈"
+      ],
+      "s4": [
+       "防死结界",
+       "高等隐形术"
+      ],
+      "s5": [
+       "防活物护罩",
+       "死云术"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "死灵宗主|魔契师||亡灵|VRGR|1",
+    "坟冢之触|魔契师||亡灵|VRGR|6",
+    "死疽躯壳|魔契师||亡灵|VRGR|10",
+    "灵魂投射|魔契师||亡灵|VRGR|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "The Undead",
+   "name": "死灵宗主",
+   "shortName": "亡灵",
+   "source": "VRGR",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "reprintedAs": [
+    "亡灵|魔契师|XPHB|RHW"
+   ],
+   "_copy": {
+    "ENG_name": "The Undead",
+    "name": "死灵宗主",
+    "source": "VRGR",
+    "shortName": "亡灵",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "死灵宗主|魔契师|XPHB|亡灵|VRGR|3",
+    "坟冢之触|魔契师||亡灵|VRGR|6",
+    "死疽躯壳|魔契师||亡灵|VRGR|10",
+    "灵魂投射|魔契师||亡灵|VRGR|14"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "The Undead",
+     "name": "死灵宗主",
+     "source": "VRGR",
+     "shortName": "亡灵",
+     "className": "魔契师",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "Archfey Patron",
+   "name": "至高妖精宗主",
+   "shortName": "至高妖精",
+   "source": "XPHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "page": 159,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "安定心神|xphb",
+       "妖火|xphb",
+       "迷踪步|xphb",
+       "魅影之力|xphb",
+       "睡眠术|xphb"
+      ],
+      "5": [
+       "闪现术|xphb",
+       "植物滋长|xphb"
+      ],
+      "7": [
+       "支配野兽|xphb",
+       "高等隐形术|xphb"
+      ],
+      "9": [
+       "支配类人|xphb",
+       "伪装术|xphb"
+      ]
+     },
+     "innate": {
+      "_": {
+       "daily": {
+        "cha": [
+         "迷踪步|xphb"
+        ]
+       }
+      }
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "至高妖精宗主|魔契师|XPHB|至高妖精|XPHB|3",
+    "雾隐遁行|魔契师|XPHB|至高妖精|XPHB|6",
+    "斗转星移|魔契师|XPHB|至高妖精|XPHB|10",
+    "醉心魔法|魔契师|XPHB|至高妖精|XPHB|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Celestial Patron",
+   "name": "天界宗主",
+   "shortName": "天界",
+   "source": "XPHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "page": 160,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "known": {
+      "1": [
+       "圣火术|xphb#c",
+       "光亮术|xphb#c"
+      ]
+     },
+     "prepared": {
+      "3": [
+       "援助术|xphb",
+       "疗伤术|xphb",
+       "光导箭|xphb",
+       "次等复原术|xphb"
+      ],
+      "5": [
+       "昼明术|xphb",
+       "回生术|xphb"
+      ],
+      "7": [
+       "信仰守卫|xphb",
+       "火墙术|xphb"
+      ],
+      "9": [
+       "高等复原术|xphb",
+       "天界召唤术|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "天界宗主|魔契师|XPHB|天界|XPHB|3",
+    "光耀之魂|魔契师|XPHB|天界|XPHB|6",
+    "天界韧性|魔契师|XPHB|天界|XPHB|10",
+    "灼光复仇|魔契师|XPHB|天界|XPHB|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Fiend Patron",
+   "name": "邪魔宗主",
+   "shortName": "邪魔",
+   "source": "XPHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "page": 161,
+   "srd52": true,
+   "basicRules2024": true,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "燃烧之手|xphb",
+       "命令术|xphb",
+       "灼热射线|xphb",
+       "暗示术|xphb"
+      ],
+      "5": [
+       "火球术|xphb",
+       "臭云术|xphb"
+      ],
+      "7": [
+       "火焰护盾|xphb",
+       "火墙术|xphb"
+      ],
+      "9": [
+       "指使术|xphb",
+       "疫病虫群|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "邪魔宗主|魔契师|XPHB|邪魔|XPHB|3",
+    "黑暗强运|魔契师|XPHB|邪魔|XPHB|6",
+    "邪魔体魄|魔契师|XPHB|邪魔|XPHB|10",
+    "直坠噩梦|魔契师|XPHB|邪魔|XPHB|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Great Old One Patron",
+   "name": "旧日支配者宗主",
+   "shortName": "旧日支配者",
+   "source": "XPHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "page": 162,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "侦测思想|xphb",
+       "不谐低语|xphb",
+       "魅影之力|xphb",
+       "塔莎狂笑术|xphb"
+      ],
+      "5": [
+       "鹰眼术|xphb",
+       "哈达之欲|xphb"
+      ],
+      "7": [
+       "困惑术|xphb",
+       "异怪召唤术|xphb"
+      ],
+      "9": [
+       "篡改记忆|xphb",
+       "心灵遥控|xphb"
+      ]
+     },
+     "innate": {
+      "10": [
+       "脆弱诅咒|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "旧日支配者宗主|魔契师|XPHB|旧日支配者|XPHB|3",
+    "锐眼斗士|魔契师|XPHB|旧日支配者|XPHB|6",
+    "骇异恶咒|魔契师|XPHB|旧日支配者|XPHB|10",
+    "思维之盾|魔契师|XPHB|旧日支配者|XPHB|10",
+    "创造奴仆|魔契师|XPHB|旧日支配者|XPHB|14"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Undead Patron",
+   "name": "死灵宗主",
+   "shortName": "亡灵",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "灾祸术|xphb",
+       "目盲术/耳聋术|xphb",
+       "魅影之力|xphb",
+       "致病射线|xphb"
+      ],
+      "5": [
+       "死者交谈|xphb",
+       "亡灵召唤术|xphb"
+      ],
+      "7": [
+       "高等隐形术|xphb",
+       "魅影杀手|xphb"
+      ],
+      "9": [
+       "防活物护罩|xphb",
+       "死云术|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "死灵宗主|魔契师|XPHB|亡灵|RHW|3|RHW",
+    "坟冢之触|魔契师|XPHB|亡灵|RHW|6|RHW",
+    "死疽躯壳|魔契师|XPHB|亡灵|RHW|10|RHW",
+    "超凡战栗|魔契师|XPHB|亡灵|RHW|14|RHW"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "name": "不朽者",
+   "shortName": "不朽者",
+   "className": "魔契师",
+   "source": "SCAG"
+  },
+  {
+   "name": "巨灵宗主",
+   "shortName": "巨灵宗主",
+   "className": "魔契师",
+   "source": "TCE"
+  },
+  {
+   "name": "深海意志",
+   "shortName": "深海意志",
+   "className": "魔契师",
+   "source": "TCE"
+  },
+  {
+   "name": "旧日支配者",
+   "shortName": "旧日支配者",
+   "className": "魔契师",
+   "source": "PHB"
+  },
+  {
+   "name": "邪魔",
+   "shortName": "邪魔",
+   "className": "魔契师",
+   "source": "PHB"
+  },
+  {
+   "name": "天界宗主",
+   "shortName": "天界宗主",
+   "className": "魔契师",
+   "source": "XPHB"
+  },
+  {
+   "name": "旧日支配者宗主",
+   "shortName": "旧日支配者宗主",
+   "className": "魔契师",
+   "source": "XPHB"
+  },
+  {
+   "name": "至高妖精宗主",
+   "shortName": "至高妖精宗主",
+   "className": "魔契师",
+   "source": "XPHB"
+  },
+  {
+   "name": "邪魔宗主",
+   "shortName": "邪魔宗主",
+   "className": "魔契师",
+   "source": "XPHB"
+  },
+  {
+   "name": "咒剑",
+   "shortName": "咒剑",
+   "className": "魔契师",
+   "source": "XGE"
+  },
+  {
+   "name": "天界",
+   "shortName": "天界",
+   "className": "魔契师",
+   "source": "XGE"
+  },
+  {
+   "name": "愚神宗主",
+   "shortName": "愚神宗主",
+   "className": "魔契师",
+   "source": "WYM"
+  },
+  {
+   "name": "角之王宗主",
+   "shortName": "角之王宗主",
+   "className": "魔契师",
+   "source": "WYM"
+  },
+  {
+   "name": "崇高猫猫庭",
+   "shortName": "崇高猫猫庭",
+   "className": "魔契师",
+   "source": "THC"
+  },
+  {
+   "name": "众首",
+   "shortName": "众首",
+   "className": "魔契师",
+   "source": "GTS"
+  },
+  {
+   "name": "未来于你",
+   "shortName": "未来于你",
+   "className": "魔契师",
+   "source": "VDS"
+  },
+  {
+   "name": "灯笼",
+   "shortName": "灯笼",
+   "className": "魔契师",
+   "source": "LOO"
+  },
+  {
+   "name": "猎食者",
+   "shortName": "猎食者",
+   "className": "魔契师",
+   "source": "HMS"
+  },
+  {
+   "name": "悲伤之母",
+   "shortName": "悲伤之母",
+   "className": "魔契师",
+   "source": "ACT"
+  },
+  {
+   "name": "死灵宗主",
+   "shortName": "死灵宗主",
+   "className": "魔契师",
+   "source": "VRGR"
+  },
+  {
+   "name": "死灵宗主",
+   "shortName": "死灵宗主",
+   "className": "魔契师",
+   "source": "VRGR-V"
+  }
+ ],
+ "classFeature": [
+  {
+   "name": "异界宗主",
+   "className": "魔契师",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级时，你就跟某个异界的存在订下契约。你可以从至高妖精Archfey、邪魔Fiend、旧日支配者Great Old One等选项中选择其一。随后你将在第1、第6、第10、第14级获得相应的职业特性。"
+   ]
+  },
+  {
+   "name": "契约魔法",
+   "className": "魔契师",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "你的法术力量源于你的奥秘研究和宗主的魔法馈赠。参考第10章的施法规则，以及第11章的魔契师法术列表。"
+   ]
+  },
+  {
+   "ENG_name": "Eldritch Invocations",
+   "name": "魔能祈唤",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 2,
+   "entries": [
+    "你在神秘学识的研习过程中发掘出魔能祈唤的方式，这些禁忌的知识残章让你获得了持久的魔法能力。",
+    "第2级时，你获得两种自选的魔能祈唤（祈唤的具体内容见{@filter 可选特性|optionalfeatures|Feature Type=EI}）。在获得更高的魔契师等级后你还可以习得其它的魔能祈唤，具体数据见\"魔契师职业表\"中\"已知祈唤\"一栏。",
+    "另外，你提升本职的等级时，可以用新的祈唤替换一个已学会的祈唤，但你的角色必须满足学习新祈唤的先决条件。",
+    "如果一个魔能祈唤有先决条件，你必须满足先决条件才能学习魔能祈唤，你可以在满足先决的同时学习这个魔能祈唤。对等级的要求意为对你邪术师职业等级的要求。"
+   ]
+  },
+  {
+   "name": "魔契恩泽",
+   "className": "魔契师",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级时，你的宗主赋予你一份馈赠作为你忠诚服务的回馈。你可以从下列特性中自选其一。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 4,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Eldritch Versatility",
+   "name": "替换魔能",
+   "source": "TCE",
+   "page": 70,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 4,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 4级魔契师 {@variantrule 可选职业特性|tce|可选特性}}",
+    "每当你的邪术师达到了可以获得属性值提升的等级，你可以做以下的一件事来代表你在奥秘研究当中重点的转变。",
+    {
+     "type": "list",
+     "items": [
+      "可以将你从该职业契约法术中学到的戏法替换为另一个{@filter 魔契师法术列表|spells|level=0|class=魔契师}中的戏法。",
+      "可以将你从魔契恩泽中选择的一个选项替换为此魔契的另一选项。",
+      "如果你的角色已经12级或者更高，你可以将一个玄奥秘法的法术替换为另一个同环魔契师法术。"
+     ]
+    },
+    "如果这些转变让你不再符合某些魔能祈唤的条件，你必须现在选择那些符合你条件的祈唤来替换它们。"
+   ]
+  },
+  {
+   "ENG_name": "Otherworldly Patron feature",
+   "name": "异界宗主特性",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 6,
+   "entries": [
+    "在第6级时，你获得相应的职业特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 8,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Otherworldly Patron feature",
+   "name": "异界宗主特性",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 10,
+   "entries": [
+    "在第10级时，你获得相应的职业特性。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Arcanum (6th level)",
+   "name": "玄奥秘法(6环)",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 11,
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个{@filter 魔契师法术列表中的6环法术|spells|level=6|class=魔契师}作为你的玄奥秘法。",
+    "你施展秘法时无需消耗法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。",
+    "在获得更高的魔契师等级后，你将可以选择更多的魔契师法术以该方式施展：第13级时可选一个7环法术，15级时可选一个8环法术，17级时可选一个9环法术。完成一次长休后，所有消耗掉的秘法都会恢复。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 12,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Arcanum (7th level)",
+   "name": "玄奥秘法(7环)",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 13,
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个{@filter 魔契师法术列表中的7环法术|spells|level=7|class=魔契师}作为你的玄奥秘法。",
+    "你施展秘法时无需消耗法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。"
+   ]
+  },
+  {
+   "ENG_name": "Otherworldly Patron feature",
+   "name": "异界宗主特性",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 14,
+   "entries": [
+    "在第14级时，你获得相应的职业特性。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Arcanum (8th level)",
+   "name": "玄奥秘法(8环)",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 15,
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个{@filter 魔契师法术列表中的8环法术|spells|level=8|class=魔契师}作为你的玄奥秘法。",
+    "你施展秘法时无需消耗法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 16,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Arcanum (9th level)",
+   "name": "玄奥秘法(9环)",
+   "source": "PHB",
+   "page": 105,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "level": 17,
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个{@filter 魔契师法术列表中的9环法术|spells|level=9|class=魔契师}作为你的玄奥秘法。",
+    "你施展秘法时无需消耗法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 19,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "魔能掌控",
+   "className": "魔契师",
+   "level": 20,
+   "source": "PHB",
+   "entries": [
+    "第20级时，你可以利用储备的魔力祈求你的宗主为你恢复已消耗的法术位。你可以花1分钟祈求宗主的帮助，恢复所有你已消耗的契约魔法法术位。使用该特性恢复法术位后，你必须完成一次长休才能再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Eldritch Invocation Options",
+   "name": "魔能祈唤选项",
+   "source": "XPHB",
+   "page": 153,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "level": 1,
+   "entries": [
+    "魔能祈唤选项按字母顺序排列。",
+    {
+     "type": "options",
+     "count": 1,
+     "entries": [
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "苦痛魔爆|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "幽影护甲|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "星移步法|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "魔鬼视界|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "灭世魔刃|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "魔能意志|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "魔能斩|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "魔能长枪|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "邪魔活力|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "共视感官|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "深海赠礼|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "守护馈赠|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "链主赋能|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "原初之一的教习|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "饮命者|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "千面之脸|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "万形之主|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "迷雾幻影|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "融身入影|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "超凡跳跃|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "刃之魔契|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "链之魔契|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "书之魔契|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "斥力魔爆|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "饥渴魔刃|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "穹宇尽视|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "坟墓低语|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "巫术视界|XPHB",
+       "preserve": {
+        "prerequisite": true
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Eldritch Invocations",
+   "name": "魔能祈唤",
+   "source": "XPHB",
+   "page": 153,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "level": 1,
+   "entries": [
+    "你在神秘学识的研习过程中发掘出了使用魔能祈唤的方式，这些禁忌的知识残章让你获得了持久的魔法能力。你获得一个自选的魔能祈唤，如书之魔契（详见后文\"{@filter 魔能祈唤选项|optionalfeatures|feature type=EI|source=XPHB}\"）。",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Prerequisites",
+       "name": "先决",
+       "type": "entries",
+       "entries": [
+        "如果一个魔能祈唤具有先决，那你必须满足它才能选取。例如，若一个魔能祈唤需要你魔契师等级5+，则只有你魔契师等级达到5级才可以选取该祈唤。"
+       ]
+      },
+      {
+       "ENG_name": "Replacing and Gaining Invocations",
+       "name": "替换与获取魔能祈唤",
+       "type": "entries",
+       "entries": [
+        "每当你获得一级魔契师等级时，你都可以用新的祈唤替换一个已有的祈唤，但你必须满足其先决条件。如果一个祈唤是某个其他祈唤的先决条件，那你无法替换它。"
+       ]
+      }
+     ]
+    },
+    "当你到达特定的魔契师等级时，你还可以习得更多的魔能祈唤，具体数据见魔契师特性表中祈唤一列。",
+    "你不能多次重复选择同一个魔能祈唤，除非该祈唤的描述另有说明。"
+   ]
+  },
+  {
+   "name": "契约魔法",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "依靠玄秘的仪式，你与一位神秘存在缔结契约以获得魔法力量。这位存在隐于影中，仅闻其声，身份不明——但其恩泽是切实的。施法规则见第七章。下文将详述如何将这些规则应用于魔契师法术，魔契师法术详见本章后文职业描述中的魔契师法术列表。\n戏法Cantrips。你知晓两道你选择的魔契师戏法。推荐选择*魔能爆Eldritch Blast*和*魔法伎俩Prestidigitation*。每当你获得一个魔契师等级，你都能从此特性的戏法中选择其一替换为另一道你所选择的魔契师戏法。\n当你的魔契师等级到达4级和10级时，你都能另选一道魔契师戏法并习得，如魔契师特性表中戏法一列所示。\n法术位Spell Slots。魔契师特性表中显示了你可用于施展一环到五环魔契师法术的法术位数量。表中还显示了法术位对应的法术环阶，你所有的法术位都属于同一环阶。当你完成短休或长休时，你重获所有已消耗的法术位。\n例如，5级时，你总共具有两枚三环法术位。你施展一环法术*巫术箭Witch Bolt*时，必须消耗这些法术位其中之一，并把它作为一个三环法术施展。\n一环及以上的准备法术Prepared Spells of Level 1+。你准备可供你以此特性施展的一环及更高环阶的法术列表。最初，选择两道魔契师法术。推荐选择*魅惑类人Charm Person*和*脆弱诅咒Hex*。\n已准备法术数量会随你魔契师等级的提升而增加，如魔契师特性表中的准备法术一列所示。每当这一列的数字增加时，从魔契师法术列表中选择额外法术准备，直至已准备法术的数量与表格中的数字一致。你所选择法术的环阶必须不高于表中法术位环阶一栏中的环阶。例如，当你到达6级时，你可以新习得一道一环到三环的魔契师法术。\n如果魔契师的其他特性给了你始终准备着的法术，这些法术不计入你以此法准备的法术数量，但这些法术对你而言都视为魔契师法术。\n改变你的准备法术Changing Your Prepared Spells。每当你获得一个魔契师等级，你可以将你准备列表上的一道法术法术替换为另一道魔契师法术，新法术的环阶必须小于或等于你当前的法术位环阶。\n施法属性Spellcasting Ability。你魔契师法术的施法属性是魅力。\n施法法器Spellcasting Focus。 你可以使用奥术法器作为你魔契师法术的施法法器。"
+   ]
+  },
+  {
+   "name": "秘法回流",
+   "className": "魔契师",
+   "level": 2,
+   "source": "XPHB",
+   "entries": [
+    "你可以举行一道耗时1分钟的秘传仪式，并在仪式结束后重获一半已消耗的魔契师法术位（向上取整）。此特性一经使用，直至完成长休你都无法再次使用。"
+   ]
+  },
+  {
+   "name": "魔契师子职",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你选择获得一项魔契师子职：至高妖精宗主，天界宗主，邪魔宗主或旧日支配者宗主。子职的内容见后文。子职是一种特化，在特定的魔契师等级给予你对应的独特能力。此后你将获得你所选的子职所有能力——只要其所需等级不超过你的魔契师等级。魔契师特性表列出了你从子职中获得新特性的魔契师等级。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 4,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如魔契师特性表所示，你还会在第8，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 155,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "level": 6,
+   "entries": [
+    "你获得一个来自魔契师子职的特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 8,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如魔契师特性表所示，你还会在第8，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "联络宗主",
+   "className": "魔契师",
+   "level": 9,
+   "source": "XPHB",
+   "entries": [
+    "在过去，你通常需要通过各种渠道才能联络宗主。但现在，你可以直接联络宗主本身。你始终准备着法术*异界探知Contact Other Plane* 。你可以无需法术位地以此特性来联络宗主，并自动通过该法术的豁免。\n一旦你以此法施展了该法术，直至完成长休你都无法再次以此法施展该法术。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 155,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "level": 10,
+   "entries": [
+    "你获得一个来自魔契师子职的特性。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 11,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一道六环的魔契师法术作为你的玄奥秘法。\n你可以无需法术位地施展该秘法，但在你完成一次长休前无法再次以这种方式施展秘法。\n如魔契师特性表所示，当你获得更高的魔契师等级后，你将可以选择更多的魔契师法术来以这种方式施展：第13级时可选一道七环法术，15级时可选一道八环法术，17级时可选一道九环法术。当你完成长休时，重获所有已消耗的秘法使用次数。\n每当你获得魔契师等级时，你都可以将一道秘法的法术替换为另一道同环阶的魔契师法术。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 12,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如魔契师特性表所示，你还会在第8，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 13,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一道六环的魔契师法术作为你的玄奥秘法。\n你可以无需法术位地施展该秘法，但在你完成一次长休前无法再次以这种方式施展秘法。\n如魔契师特性表所示，当你获得更高的魔契师等级后，你将可以选择更多的魔契师法术来以这种方式施展：第13级时可选一道七环法术，15级时可选一道八环法术，17级时可选一道九环法术。当你完成长休时，重获所有已消耗的秘法使用次数。\n每当你获得魔契师等级时，你都可以将一道秘法的法术替换为另一道同环阶的魔契师法术。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 155,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "level": 14,
+   "entries": [
+    "你获得一个来自魔契师子职的特性。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 15,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一道六环的魔契师法术作为你的玄奥秘法。\n你可以无需法术位地施展该秘法，但在你完成一次长休前无法再次以这种方式施展秘法。\n如魔契师特性表所示，当你获得更高的魔契师等级后，你将可以选择更多的魔契师法术来以这种方式施展：第13级时可选一道七环法术，15级时可选一道八环法术，17级时可选一道九环法术。当你完成长休时，重获所有已消耗的秘法使用次数。\n每当你获得魔契师等级时，你都可以将一道秘法的法术替换为另一道同环阶的魔契师法术。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "魔契师",
+   "level": 16,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如魔契师特性表所示，你还会在第8，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一道六环的魔契师法术作为你的玄奥秘法。\n你可以无需法术位地施展该秘法，但在你完成一次长休前无法再次以这种方式施展秘法。\n如魔契师特性表所示，当你获得更高的魔契师等级后，你将可以选择更多的魔契师法术来以这种方式施展：第13级时可选一道七环法术，15级时可选一道八环法术，17级时可选一道九环法术。当你完成长休时，重获所有已消耗的秘法使用次数。\n每当你获得魔契师等级时，你都可以将一道秘法的法术替换为另一道同环阶的魔契师法术。"
+   ]
+  },
+  {
+   "name": "传奇恩惠",
+   "className": "魔契师",
+   "level": 19,
+   "source": "XPHB",
+   "entries": [
+    "你获得一项传奇恩惠专长（见第五章）或其他一项你选择的适用的专长。推荐选择扭曲命运之恩惠。"
+   ]
+  },
+  {
+   "name": "魔能掌控",
+   "className": "魔契师",
+   "level": 20,
+   "source": "XPHB",
+   "entries": [
+    "当你使用秘法回流特性时，你改为重获所有已消耗的魔契师法术位。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 11,
+   "source": "PHB",
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个6环的魔契师法术作为你的玄奥秘法。\n你施展秘法时无需法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。\n在获得更高的魔契师等级后，你将可以选择更多的魔契师法术以该方式施展：第13级时可选一个7环法术，15级时可选一个8环法术，17级时可选一个9环法术。完成一次长休后，所有消耗掉的秘法都会恢复。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 13,
+   "source": "PHB",
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个6环的魔契师法术作为你的玄奥秘法。\n你施展秘法时无需法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。\n在获得更高的魔契师等级后，你将可以选择更多的魔契师法术以该方式施展：第13级时可选一个7环法术，15级时可选一个8环法术，17级时可选一个9环法术。完成一次长休后，所有消耗掉的秘法都会恢复。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 15,
+   "source": "PHB",
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个6环的魔契师法术作为你的玄奥秘法。\n你施展秘法时无需法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。\n在获得更高的魔契师等级后，你将可以选择更多的魔契师法术以该方式施展：第13级时可选一个7环法术，15级时可选一个8环法术，17级时可选一个9环法术。完成一次长休后，所有消耗掉的秘法都会恢复。"
+   ]
+  },
+  {
+   "name": "玄奥秘法",
+   "className": "魔契师",
+   "level": 17,
+   "source": "PHB",
+   "entries": [
+    "第11级时，你的宗主赋予你一种称为秘法的魔法奥秘。你可以选择一个6环的魔契师法术作为你的玄奥秘法。\n你施展秘法时无需法术位，而消耗掉的秘法可以通过完成一次长休进行恢复。\n在获得更高的魔契师等级后，你将可以选择更多的魔契师法术以该方式施展：第13级时可选一个7环法术，15级时可选一个8环法术，17级时可选一个9环法术。完成一次长休后，所有消耗掉的秘法都会恢复。"
+   ]
+  }
+ ],
+ "subclassFeature": [
+  {
+   "ENG_name": "The Archfey",
+   "name": "至高妖精",
+   "source": "PHB",
+   "page": 108,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "PHB",
+   "level": 1,
+   "entries": [
+    "你的宗主是一位妖精的领主或女王，身为传奇生物的他们守护着凡人种族出现前就早已被遗忘的秘密。他们的行为往往难以理解，有时甚至不可理喻，而其动机通常是关于寻求更强魔力，或是渴望报复老旧仇怨。这类存在包括霜冻亲王Prince of Frost、\"薄暮议会Gloaming Court\"的统治者空暗女王Queen of Air and Darkness、\"仲夏议会Summer Court\"的泰坦尼娅Titania和她的丈夫\"苍翠之王Green Lord\"奥伯龙Oberon，以及\"愚者亲王Prince of Fools\"希尔萨姆Hyrsam和各远古鬼婆们。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "学习魔契师法术时，你的至高妖精宗主赐予你将以下法术加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "至高妖精扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 妖火}, {@spell 睡眠术}"
+        ],
+        [
+         "2nd",
+         "{@spell 安定心神}, {@spell 魅影之力}"
+        ],
+        [
+         "3rd",
+         "{@spell 闪现术}, {@spell 植物滋长}"
+        ],
+        [
+         "4th",
+         "{@spell 支配野兽}, {@spell 高等隐形术}"
+        ],
+        [
+         "5th",
+         "{@spell 支配类人}, {@spell 伪装术}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "妖精仪态|魔契师||至高妖精||1"
+    }
+   ]
+  },
+  {
+   "name": "妖精仪态",
+   "className": "魔契师",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级时，你的宗主授予你如同妖精一般魅惑和威吓他人的能力。作为一个动作，你可以令以你为原点的10尺立方区域内所有生物进行一次对抗你法术豁免DC的感知豁免，豁免失败者直至你下一回合结束前受你魅惑或陷入对你恐慌（由你选择）。\n你必须完成一次长休或短休后才能再次使用该特性。"
+   ],
+   "subclassShortName": "至高妖精"
+  },
+  {
+   "ENG_name": "Misty Escape",
+   "name": "雾隐遁行",
+   "source": "PHB",
+   "page": 108,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "PHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "第6级起，你在受到伤害时可以在一团迷雾中消失无踪。你受到伤害时，可以使用你的反应进入{@condition 隐形}，并传送到60尺内一处你能看见且未被占据的空间。直至你的下一回合开始，或直至你发动攻击或施法，你将维持{@condition 隐形}状态。",
+    "你必须完成一次长休或短休后才能再次使用该特性。"
+   ]
+  },
+  {
+   "name": "斗转星移",
+   "className": "魔契师",
+   "level": 10,
+   "source": "PHB",
+   "entries": [
+    "第10级时，你的宗主教会你如何通过逆转敌人所施展的心智魔法对付其自身。你获得魅惑状态的免疫，且当其他生物试图魅惑你时，你可以使用你的反应将魅惑效应反施予该生物。该生物必须进行一次对抗你法术豁免DC的感知豁免，豁免失败者将受你魅惑，并持续1分钟。该效应会在其受到任何伤害时终止。"
+   ],
+   "subclassShortName": "至高妖精"
+  },
+  {
+   "name": "幻影黑幕",
+   "className": "魔契师",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级时，你可以使一个生物陷入虚幻领域中。作为一个动作，你可以指定你周边60尺范围内一个你能看见的生物。目标生物必须进行一次对抗你法术豁免DC的感知豁免。豁免失败者将受你魅惑或因你而陷入恐慌（由你选择），并持续1分钟，或直至你的专注被打断（等同于你专注一个法术）。如果该生物受到伤害，那么该效应提前终止。\n直至幻象结束前，该生物都会以为自己迷失在了一个迷雾区域中，而区域的形象则由你选择。该生物只看见和听到其自身、你和幻象三者。\n你必须完成一次长休或短休才能再次使用此特性。"
+   ],
+   "subclassShortName": "至高妖精"
+  },
+  {
+   "ENG_name": "The Fiend",
+   "name": "邪魔宗主",
+   "source": "PHB",
+   "page": 109,
+   "srd": true,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "PHB",
+   "level": 1,
+   "entries": [
+    "你与某位下层位面的邪魔缔结了契约。这些存在抱有邪恶的企图，但你不一定愿意与之同流合污。邪魔们追求着世间万物的堕落与毁灭，而这连你本身也无法独善其身最终。那些强大到能与凡人缔结契约的邪魔包括有狄摩高根Demogorgon、奥喀斯Orcus、弗拉兹厄鲁Fraz-Urb'luu和巴弗灭Baphomet这样的恶魔领主；阿斯蒙蒂斯Asmodeus、迪斯帕特Dispater、墨菲斯托费利斯Mephistopheles和贝利亚Belial这样的大魔鬼；一些特别强大的深狱炼魔和巴洛炎魔；以及奥法罗斯魔与其他尤格罗斯魔领主。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "学习魔契师法术时，你的邪魔宗主赐予你将以下法术加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "邪魔宗主扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 燃烧之手}, {@spell 命令术}"
+        ],
+        [
+         "2nd",
+         "{@spell 目盲术/耳聋术}, {@spell 灼热射线}"
+        ],
+        [
+         "3rd",
+         "{@spell 火球术}, {@spell 臭云术}"
+        ],
+        [
+         "4th",
+         "{@spell 火焰护盾}, {@spell 火墙术}"
+        ],
+        [
+         "5th",
+         "{@spell 焰击术}, {@spell 圣居}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "黑暗赐福|魔契师||邪魔||1"
+    }
+   ]
+  },
+  {
+   "name": "黑暗赐福",
+   "className": "魔契师",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级起，每当你把一个敌对生物的生命值降至0，你都会获得等同于你的魅力调整值＋你的邪术师等级的临时生命值（最低为1）。"
+   ],
+   "subclassShortName": "邪魔"
+  },
+  {
+   "name": "黑暗强运",
+   "className": "魔契师",
+   "level": 6,
+   "source": "PHB",
+   "entries": [
+    "第6级起，你可以呼唤你的宗主有利的改写你的命运。当你进行属性检定或豁免检定时，可以使用该特性为此次掷骰增添一个d10骰。你可在看到掷骰结果后，其结果生效前使用该特性。\n直到你必须完成一次长休或短休才能再次使用该特性。"
+   ],
+   "subclassShortName": "邪魔"
+  },
+  {
+   "name": "邪魔体魄",
+   "className": "魔契师",
+   "level": 10,
+   "source": "PHB",
+   "entries": [
+    "第10级起，每当你完成一次长休或短休后你都可以选择一种伤害类型。直到你使用此能力选择另外一种伤害类型之前，你都拥有对于所选伤害类型的抗性。魔法武器或镀银武器所造成的伤害无视此抗性。"
+   ],
+   "subclassShortName": "邪魔"
+  },
+  {
+   "name": "直坠噩梦",
+   "className": "魔契师",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级起，每当你的攻击成功命中一个生物时，你可以使用此能力将目标瞬间传送并穿越下层位面。该生物立刻消失并前往如同噩梦一般的风景。\n在你下一回合结束时，目标返回先前所占据的空间、或是最近的未占据空间。如果目标并非邪魔，则他因这次可怖的经历而受到10d10点心灵伤害。\n你必须完成一次长休才能再次使用该特性。"
+   ],
+   "subclassShortName": "邪魔"
+  },
+  {
+   "ENG_name": "The Great Old One",
+   "name": "旧日支配者宗主",
+   "source": "PHB",
+   "page": 109,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "PHB",
+   "level": 1,
+   "entries": [
+    "你的宗主是一个神秘的存在实体，其本质与现实的结构格格不入。它可能来自于遥远国度，现实之外的空间，或是一位只有在传说之中才能有所耳闻的古神。其行为无法让凡人理解，其知识却异常的渊博，乃至世间最伟大的图书馆也无法与其掌握的虚空之秘想比拟。旧日支配者可能完全没有意识到你的存在或是对你的存在无动于衷，但你所学的神秘知识让你得以从其身上获得魔法。    这类存在包括被称作\"潜伏者That Which Lurks\"的关纳德Ghaunadar、\"受缚之神Chained God\"萨瑞兹顿Tharizdun、\"暗夜巨蛇Night Serpent\"丹达尔Dendar、\"归来者Returner\"扎贡Zargon、\"伟大克苏鲁Great Cthulhu\"，以及其他一些不可名状之存在。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "学习魔契师法术时，你的旧日支配者宗主赐予你将以下法术加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "旧日支配者扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 不谐低语}, {@spell 塔莎狂笑术}"
+        ],
+        [
+         "2nd",
+         "{@spell 侦测思想}, {@spell 魅影之力}"
+        ],
+        [
+         "3rd",
+         "{@spell 鹰眼术}, {@spell 短讯术}"
+        ],
+        [
+         "4th",
+         "{@spell 支配野兽}, {@spell 艾伐黑触手}"
+        ],
+        [
+         "5th",
+         "{@spell 支配类人}, {@spell 心灵遥控}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "唤醒心灵|魔契师||旧日支配者||1"
+    }
+   ]
+  },
+  {
+   "name": "唤醒心灵",
+   "className": "魔契师",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级时，你的异界知识赋予你接触其他生物心灵的能力。你可以与身边30尺内任意你能看见的生物通过心灵感应方式进行交流。你不必须懂得该生物的语言也能使其理解你通过心灵感应所传达的话语，但它必须至少能够理解一种语言。"
+   ],
+   "subclassShortName": "旧日支配者"
+  },
+  {
+   "name": "熵光结界",
+   "className": "魔契师",
+   "level": 6,
+   "source": "PHB",
+   "entries": [
+    "第6级时，你习得了一种可以帮你抵挡攻击的魔法结界，并可将敌人失败的攻击转化为自己的幸运。当一个生物对你发动攻击检定时，你可以用你的反应迫使该攻击检定具有劣势。如果该攻击检定失败，则你直至你下一回合结束前，下一次对该生物发动攻击检定时具有优势。\n你必须完成一次长休或短休后才能再次使用该特性。"
+   ],
+   "subclassShortName": "旧日支配者"
+  },
+  {
+   "name": "思维之盾",
+   "className": "魔契师",
+   "level": 10,
+   "source": "PHB",
+   "entries": [
+    "第10级时，除非获得你的允许，否则你的思维无法被心灵感应或者其他手段阅读。此外你还具有对心灵伤害抗性，且每当一个生物对你造成心灵伤害时，该生物将受到与你相同的伤害。"
+   ],
+   "subclassShortName": "旧日支配者"
+  },
+  {
+   "name": "创造奴仆",
+   "className": "魔契师",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级时，你从获得以宗主的异界魔法感染类人生物心智的能力。你可以用你的动作触碰一个处于失能状态的类人生物。该生物随即陷入受你魅惑的状态，直至被施以法术*移除诅咒remove curse*、其魅惑状态被移除，或直至你再使用此特性。\n只要你和你的奴仆处于同一位面，你就可以通过心灵感应与你的奴仆进行交流。"
+   ],
+   "subclassShortName": "旧日支配者"
+  },
+  {
+   "ENG_name": "The Undying",
+   "name": "不朽者宗主",
+   "source": "SCAG",
+   "page": 139,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "不朽者",
+   "subclassSource": "SCAG",
+   "level": 1,
+   "entries": [
+    "死亡无法左右你的宗主，因其已经解开了永恒生命的秘密，尽管这样的成就——就像所有的力量一样——是有代价的。曾为凡人，不朽者见证了凡人的一生如四季一般流逝，如无尽的日夜一般闪烁。它可以分享寿命的秘密，生与死的秘密。这类存在包括：维克那Vecna，手与眼之主Lord of the Hand and the Eye；恐惧者·埃乌兹the dread Iuz；巫妖女王·沃尔the lich-queen Vol；艾伦诺的不朽王庭the Undying Court of Aerenal；维拉基斯Vlaakith，吉斯洋基人的巫妖女王lich-queen of the githyanki；以及不死法师·费斯坦但提勒斯the deathless wizard Fistandantalus。",
+    "在国度，不朽者宗主包括：阴影之王·拉洛克Larloch the Shadow King，魔契师之墓的传奇大师legendary master of Warlock's Crypt，以及吉尔金Gilgeam，恩瑟的黄金王the God-King of Unther。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "学习魔契师法术时，你的不朽者宗主赐予你将以下法术加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "不朽者扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 虚假生命}, {@spell 致病射线}"
+        ],
+        [
+         "2nd",
+         "{@spell 目盲术/耳聋术}, {@spell 沉默术}"
+        ],
+        [
+         "3rd",
+         "{@spell 假死术}, {@spell 死者交谈}"
+        ],
+        [
+         "4th",
+         "{@spell 生命灵光}, {@spell 防死结界}"
+        ],
+        [
+         "5th",
+         "{@spell 疫病术}, {@spell 通晓传奇}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "历经死亡|魔契师||不朽者|SCAG|1"
+    }
+   ]
+  },
+  {
+   "name": "历经死亡",
+   "className": "魔契师",
+   "level": 1,
+   "source": "SCAG",
+   "entries": [
+    "从1级起，你学会戏法 *维生术spare the dying* ，它对你来说是一个魔契师戏法。你同时在对任何疾病的豁免上具有优势。\n此外，亡灵将更难伤害你。若有亡灵直接指定你为攻击或者有害法术的目标，这个生物必须进行一次感知豁免来对抗你的法术豁免DC（但他不需要在使用包括你在内的区域能力时进行豁免，比如火球术）。若失败，这个生物必须选择一个新的目标，如果他没有除你以外的目标可以选择则他将浪费这次法术或者攻击。若他成功通过了豁免，这个亡灵在接下来24小时里对这个效果免疫。如果你以他为目标进行攻击或施放了有害法术，那么这个亡灵在接下来24小时里也会对这个效果免疫。"
+   ],
+   "subclassShortName": "不朽者"
+  },
+  {
+   "ENG_name": "Defy Death",
+   "name": "悍不畏死",
+   "source": "SCAG",
+   "page": 139,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "不朽者",
+   "subclassSource": "SCAG",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级起，你可以在成功欺骗了自己的死亡或帮助其他人欺骗死亡时，给予自己一些活力。在某些条件下，你可以立即回复{@dice 1d8} +你的体质调整值 的生命值（最少为1点生命值）。回复生命的前提是，你成功进行一次死亡豁免或者你使用{@spell 维生术}使其他生物稳定伤势时。",
+    "必须完成一次长休才能再次使用该特性。"
+   ]
+  },
+  {
+   "name": "不朽之理",
+   "className": "魔契师",
+   "level": 10,
+   "source": "SCAG",
+   "entries": [
+    "从10级起，你可以无限制地屏住呼吸，并且你不再需要食物、水和睡眠，虽然你仍旧需要休息来从长休或短休中获得收益或减少力竭等级。\n此外，你以更慢的速度的增长年龄。每过去10年，你的身体只会衰老1年，并且你免疫魔法衰老。"
+   ],
+   "subclassShortName": "不朽者"
+  },
+  {
+   "name": "永恒生命",
+   "className": "魔契师",
+   "level": 14,
+   "source": "SCAG",
+   "entries": [
+    "从14级起，你窥探到一些有关于不朽者Undying 的真正秘密。你可以在你的回合使用一个附赠动作来恢复自己 1d8+魔契师等级的生命值。此外，如果你在使用这个能力的同时把自己一部分被切断的躯体放置在断口处，那部分断口将会愈合。\n一旦你使用了这个能力，直到你完成一次短休或长休之前你都不能再次使用它。"
+   ],
+   "subclassShortName": "不朽者"
+  },
+  {
+   "ENG_name": "The Fathomless",
+   "name": "深海意志宗主",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 1,
+   "entries": [
+    "你已经浸没于和深渊的契约。你现在可以汲取整个大洋，水元素位面或者其他的异界海洋的无尽力量。你的宗主仅仅是想利用你去了解陆地，或者它希望你打开深海的阀门去淹没整个世界？",
+    "也许你生为的信徒，你的家族世代崇拜深海宗主和祂之眷族。或者你曾经遭遇海难，在溺死的边缘被你的宗主所拯救，祂给了你生存的机会。不管你为何和祂缔结契约，大海和它那未知的深渊听从你的召唤。",
+    "能够赋予魔契师力量的深渊存在包括克拉肯们（泛指神话中的海妖），古老的元素生物，寇涛鱼人神话幻想中的存在，人鱼半神和海鬼婆集会。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "{@i 1级深海意志特性}",
+      "当你学习一个魔契师法术时，你的深海意志宗主赐予你将以下法术加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "深海意志扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 造水术/枯水术}, {@spell 雷鸣波}"
+        ],
+        [
+         "2nd",
+         "{@spell 造风术}, {@spell 沉默术}"
+        ],
+        [
+         "3rd",
+         "{@spell 闪电束}, {@spell 雪雨暴}"
+        ],
+        [
+         "4th",
+         "{@spell 操控水体}, {@spell 元素召唤术|tce}（仅水元素）"
+        ],
+        [
+         "5th",
+         "{@spell 毕格比之手}（呈现为触手形态）, {@spell 寒冰锥}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "深海触手|魔契师||深海意志|TCE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "海洋馈赠|魔契师||深海意志|TCE|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Gift of the Sea",
+   "name": "海洋馈赠",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级深海意志特性}",
+    "你获得40尺的游泳速度，并可以在水下呼吸。"
+   ]
+  },
+  {
+   "ENG_name": "Tentacle of the Deeps",
+   "name": "深海触手",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级深海意志特性}",
+    "你可以以魔法的形式召唤一根幽灵触手攻击你的敌人。以一个附赠动作，你可以在你60尺范围内你能看见的一点上，创造一根10尺长的触手。这根触手会持续存在一分钟。若你使用此能力创造另一根触手，先前的一根会立刻消失。",
+    "当你创造触手时，你可以立刻对其10尺内的目标进行一次近战法术攻击。该目标将受到{@damage 1d8}寒冷伤害，且速度降低10尺，直到你的下一回合开始前。当你邪术师等级达到10级时，这一伤害将提高至{@damage 2d8}。",
+    "在你的回合中，你可以再使用一个附赠动作将触手移动至多30尺，然后重复上述的攻击。",
+    "你可以召唤的触手的次数等于你的熟练加值次，且当你完成一次长休后你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Guardian Coil",
+   "name": "守卫缠绕",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级深海意志特性}",
+    "你的深海触手可以保护你和其他人，用自己将你们和危险隔开。当你或你可以看见的一个位于触手10尺内的生物承受伤害时，你可以使用反应，选择这些受伤生物之一，并使那个生物遭受的伤害减少{@dice 1d8}。当你达到邪术师10级时，触手可以抵消的伤害增加到{@dice 2d8}。"
+   ]
+  },
+  {
+   "ENG_name": "Oceanic Soul",
+   "name": "海渊魂灵",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级深海意志特性}",
+    "深海对你来说如家一般熟悉。你获得寒冷伤害的抗性。此外，当你完全浸没在水中时，任何同样完全被浸没的生物都能理解你说出的话，你也能听懂他们说的话。"
+   ]
+  },
+  {
+   "ENG_name": "Grasping Tentacles",
+   "name": "擒握触手",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "{@i 10级深海意志特性}",
+    "你习得法术{@spell 艾伐黑触手}。它对你来说是一个魔契师法术，且不计入你的已知法术数量。你可以在不消耗法术位的情况下使用该法术一次。当你完成长休后，你重获免费施展它的次数。",
+    "每当你施展 艾伐黑触手Evard's Black tentacles时，你宗主的魔力都将鼓舞着你，并且赐予你等同于你魔契师等级点的临时生命值。不仅如此，对你造成的伤害无法破坏你对于该法术的{@status 专注}。"
+   ]
+  },
+  {
+   "ENG_name": "Fathomless Plunge",
+   "name": "海渊传送",
+   "source": "TCE",
+   "page": 72,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "{@i 14级深海意志特性}",
+    "你可以魔法性地打开一个前往水域目的地的临时通道。以一个动作，你可以传送自己和最多五个30尺范围内的可见自愿生物。在一团触须的漩涡中，你们全部消失，然后在至多1英里以内的你曾见过的水域（至少要有池塘的大小）或者那片水域周围的30尺范围内。你们当中的每一个人都出现在距离其他人30尺以内的一个未被占据的空间内。",
+    "你必须完成一次长休或短休后才能再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Bottled Respite",
+   "name": "瓶中小憩",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 1,
+   "entries": [
+    "以一个动作，你可以用魔法消失并进到你的器皿内，器皿将留在你所在的原地。器皿内是与其本身相似的20尺半径，20尺高的圆柱形超维度空间。器皿内部温度适宜，并安放有舒适的垫子和茶几。在器皿之中时，你可以如同身在器皿所在之处一般听到外界的声音。你在器皿内可停留的时间等同于你熟练加值双倍数目的小时。如果你死亡，或是器皿被摧毁，抑或是使用一个附赠动作离开，你将提前从器皿中出来。当你离开器皿时，你出现在距离它最近的不被占据的空间中。在器皿内的一切物件将被留在其中直到被取出，而倘若器皿被摧毁，其中的物品则会完好无损地出现在距离它最近的不被占据的空间中。一旦你进入器皿，直到你完成一次长休后你不能再度进入。"
+   ]
+  },
+  {
+   "ENG_name": "Genie's Wrath",
+   "name": "巨灵之怒",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 1,
+   "entries": [
+    "在你的每个回合仅限一次，你可以在你攻击骰命中时对目标造成等同于你熟练加值的额外伤害。伤害类型取决于你的宗主类型：钝击（土巨灵），雷鸣（气巨灵），火焰（火巨灵），冷冻（水巨灵）。"
+   ]
+  },
+  {
+   "ENG_name": "The Genie",
+   "name": "巨灵宗主",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 1,
+   "entries": [
+    "你与巨灵中的稀有群体，巨灵贵族缔结了契约。巨灵贵族乃是广阔的元素位面的统治者，并对其他次等巨灵与次等元素生物具有莫大的影响力。巨灵贵族们的动机各不相同，但都傲慢自大且有着匹敌次等神明的强大伟力。他们喜好让热衷于缚誓巨灵的凡人们反过来服侍他们，并对于缔结能扩张他们在多元宇宙中势力的契约有着巨大的热情。",
+    "你可以选择你宗主是哪种巨灵，也可以通过巨灵种类表让骰子决定。",
+    {
+     "type": "table",
+     "caption": "巨灵类型",
+     "colLabels": [
+      "d4",
+      "类型",
+      "元素"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-5",
+      "col-5"
+     ],
+     "rows": [
+      [
+       1,
+       "{@creature 土巨灵}",
+       "土"
+      ],
+      [
+       2,
+       "{@creature 气巨灵}",
+       "空气"
+      ],
+      [
+       3,
+       "{@creature 火巨灵}",
+       "火焰"
+      ],
+      [
+       4,
+       "{@creature 水巨灵}",
+       "水"
+      ]
+     ]
+    },
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "{@i 1级巨灵特性}",
+      "当你学习一个魔契师法术时，你的巨灵宗主赐予你将以下法术加入魔契师法术列表进行选择的权力，且除了全巨灵共用的法术列表外，另一组为你提供的法术与祂们的类型有关：土巨灵dao、气巨灵djinni、火巨灵eferrti、或水巨灵marid",
+      {
+       "type": "table",
+       "caption": "巨灵扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "巨灵法术",
+        "土巨灵法术",
+        "气巨灵法术",
+        "火巨灵法术",
+        "水巨灵法术"
+       ],
+       "colStyles": [
+        "col-1 text-center",
+        "col-2-2",
+        "col-2-2",
+        "col-2-2",
+        "col-2-2",
+        "col-2-2"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 侦测善恶}",
+         "{@spell 庇护术}",
+         "{@spell 雷鸣波}",
+         "{@spell 燃烧之手}",
+         "{@spell 云雾术}"
+        ],
+        [
+         "2nd",
+         "{@spell 魅影之力}",
+         "{@spell 荆棘丛生}",
+         "{@spell 造风术}",
+         "{@spell 灼热射线}",
+         "{@spell 朦胧术}"
+        ],
+        [
+         "3rd",
+         "{@spell 造粮术}",
+         "{@spell 融身入石}",
+         "{@spell 风墙术}",
+         "{@spell 火球术}",
+         "{@spell 雪雨暴}"
+        ],
+        [
+         "4th",
+         "{@spell 魅影杀手}",
+         "{@spell 塑石术}",
+         "{@spell 高等隐形术}",
+         "{@spell 火焰护盾}",
+         "{@spell 操控水体}"
+        ],
+        [
+         "5th",
+         "{@spell 造物术}",
+         "{@spell 石墙术}",
+         "{@spell 伪装术}",
+         "{@spell 焰击术}",
+         "{@spell 寒冰锥}"
+        ],
+        [
+         "9th",
+         "{@spell 祈愿术}",
+         "—",
+         "—",
+         "—",
+         "—"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "巨灵器皿|魔契师||巨灵|TCE|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Genie's Vessel",
+   "name": "巨灵器皿",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级巨灵特性}",
+    "你的宗主赐予你一个包含巨灵之力的魔法器皿。该器皿是一个微型物件，你可以将其作为施展你魔契师法术的法器。你决定物件的类别，或者你可以通过巨灵器皿表来决定。",
+    {
+     "type": "table",
+     "caption": "巨灵器皿",
+     "colLabels": [
+      "d6",
+      "器皿"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "油灯"
+      ],
+      [
+       "2",
+       "瓮"
+      ],
+      [
+       "3",
+       "可装东西的戒指"
+      ],
+      [
+       "4",
+       "被塞住的瓶子"
+      ],
+      [
+       "5",
+       "空心小雕像"
+      ],
+      [
+       "6",
+       "华丽提灯"
+      ]
+     ]
+    },
+    "当你触碰器皿时，你可以用以下方式使用它：",
+    {
+     "type": "options",
+     "style": "list-hang-notitle",
+     "entries": [
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "瓶中小憩|魔契师|PHB|巨灵|TCE|1"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "巨灵之怒|魔契师|PHB|巨灵|TCE|1"
+      }
+     ]
+    },
+    "器皿的AC等同于你的法术豁免DC。它的生命值等于你的魔契师等级加熟练加值，并免疫于毒素和心灵伤害。",
+    "倘若器皿被摧毁或是丢失，你可以进行一场持续1小时的仪式来从你的宗主处获得一个替代品。这一仪式可于短休或长休时进行，并会摧毁之前仍存在的器皿。当你死亡时，器皿在一阵元素能量的闪耀中消失。"
+   ]
+  },
+  {
+   "ENG_name": "Elemental Gift",
+   "name": "元素赐福",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级巨灵特性}",
+    "你逐渐显露出你的巨灵宗主的特质。你对由你的宗主类型决定的一种伤害类型具有抗性：钝击（土巨灵），雷鸣（气巨灵），火焰（火巨灵），冷冻（水巨灵）。",
+    "同时，以一个附赠动作，你可以获得一个持续10分钟的30尺飞行速度，并且在飞行时你可以悬浮。你可以使用此附赠动作的次数等同于你的熟练加值，并在完成一次长休后恢复所有使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Sanctuary Vessel",
+   "name": "器皿庇护所",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "{@i 10级巨灵特性}",
+    "当你使用瓶中小憩Bottled Respite特性进入你的巨灵器皿时，你可以选择30尺内最多5个可见自愿生物与你一同进入器皿。",
+    "以一个附赠动作，你可以将任意数目的生物从器皿中逐出，且如果你离开器皿或是其被摧毁，所有生物都将被逐出。",
+    "同时，在器皿中停留至少10分钟的任何生物（包括你自己）可视为完成了一次短休，且使用生命骰恢复生命值时的恢复量可以加上你的熟练加值。"
+   ]
+  },
+  {
+   "ENG_name": "Limited Wish",
+   "name": "有限祈愿术",
+   "source": "TCE",
+   "page": 73,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "{@i 14级巨灵特性}",
+    "你祈求你的宗主，并实现你的小小愿望。以一个动作，你可以向你的巨灵器皿说出你的愿望，并请求实现一个{@filter 6环或以下，施法时间为1个动作的法术|spells|cast time=动作|level=0;1;2;3;4;5;6}的法术效应。这一法术可以来自任何职业的法术列表，且你不需要满足法术材料需求，法术仅仅是作为此动作的一部分生效。",
+    "你使用此特性后，你直到完成{@dice 1d4}次长休后才能再次使用它。"
+   ]
+  },
+  {
+   "ENG_name": "The Undead",
+   "name": "死灵宗主",
+   "source": "VRGR",
+   "page": 30,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "VRGR",
+   "level": 1,
+   "entries": [
+    "你与一位不死的存在一位蔑视生与死的轮回、抛却凡人的躯壳、永恒追寻无尽野心的生命立下了契约。对于这些存在而言，时间和道德都不过过眼云烟，只有生命的沙漏匆匆流逝的凡夫俗子才会在意。这些古老的不死者曾是凡人，对于如何实现野心，跨过死亡之门有着切身体会。他们迫切地希望将这亵渎的知识分享给在生者间履行他们意志之人。",
+    "这般存在包括了半巫妖阿瑟瑞克、吸血鬼暴君血手凯斯、吉斯洋基巫妖女王维拉基斯、龙巫妖卓公煞、不死法老安卡霍特普、以及失踪的黑暗领主亚扎林雷克斯。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "{@i 1级死灵特性}",
+      "当你学习魔契师法术时，死灵宗主让你能从扩大的法术列表中选择，将以下法术为你添加到魔契师法术列表中。",
+      {
+       "type": "table",
+       "caption": "死灵宗主扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 灾祸术}, {@spell 虚假生命}"
+        ],
+        [
+         "2nd",
+         "{@spell 目盲术/耳聋术}, {@spell 魅影之力}"
+        ],
+        [
+         "3rd",
+         "{@spell 魅影驹}, {@spell 死者交谈}"
+        ],
+        [
+         "4th",
+         "{@spell 防死结界}, {@spell 高等隐形术}"
+        ],
+        [
+         "5th",
+         "{@spell 防活物护罩}, {@spell 死云术}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "战栗形态|魔契师||亡灵|VRGR|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Form of Dread",
+   "name": "战栗形态",
+   "source": "VRGR",
+   "page": 30,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "VRGR",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级死灵特性}",
+    "你显现出你宗主可怕力量的一个侧面。以一个附赠动作，你变身持续1分钟。变身时你获得以下好处：",
+    {
+     "type": "list",
+     "items": [
+      "你获得等于{@dice 1d10} +你的魔契师等级的临时生命。",
+      "在你的每个回合中一次，当你攻击检定命中一个生物时，你可以强迫其进行一次感知豁免。若失败，目标直到你的下一个回合结束陷入对你的{@condition 恐慌} 。",
+      "你对{@condition 恐慌}状态免疫。"
+     ]
+    },
+    "你可以变身的次数等于你的熟练值，当你完成长休后，你恢复所有已消耗的变身次数。",
+    "你战栗形态下的外观反映了你宗主的某些方面。例如，你的战栗形态可能披着阴影的纱幕，化作你的巫妖宗主王冠和长袍的形状，或者你的身体开始发光，现出古代葬礼仪式的符印，并被沙尘旋风所环绕，暗示着你的木乃伊宗主。"
+   ]
+  },
+  {
+   "ENG_name": "Grave Touched",
+   "name": "坟冢之触",
+   "source": "VRGR",
+   "page": 30,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "VRGR",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级死灵特性}",
+    "你宗主的力量对你的身体和魔法产生了深远的影响。你不需要吃、喝、呼吸。",
+    "此外，每个你的回合中一次，当你用攻击检定命中一个生物并对该生物投掷伤害骰时，你可以将伤害类型替换为暗蚀伤害。当你使用战栗形态时，你可以在决定目标受到该暗蚀伤害的数值时，额外投掷一枚伤害骰。"
+   ]
+  },
+  {
+   "ENG_name": "Necrotic Husk",
+   "name": "死疽躯壳",
+   "source": "VRGR",
+   "page": 30,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "VRGR",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "{@i 10级死灵特性}",
+    "你与亡灵和暗蚀能量的联系现在充斥着你的身体。你对暗蚀伤害具有抗性。如果你使用战栗形态变身，你改为会对暗蚀伤害免疫。",
+    "此外，当你的生命值降低到0时，你可以使用反应，改为将生命值降低到1，并使你的身体爆发出死亡能量。你周围30英尺内的每个你选择的生物都会受到相当于{@damage 2d10}+你的魔契师等级的暗蚀伤害。你获得1级的{@condition 力竭}。一旦你使用该反应，直到你完成{@dice 1d4} 次长休为止你不能再次使用。"
+   ]
+  },
+  {
+   "ENG_name": "Spirit Projection",
+   "name": "灵魂投射",
+   "source": "VRGR",
+   "page": 30,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "VRGR",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "{@i 14级死灵特性}",
+    "你的灵魂能脱离你物理形态的约束。作为一个动作，你可以从你的身体投射出你的灵魂。你留下的身体会陷入{@condition 昏迷}，并处于人事不省状态。",
+    "你的灵魂与你的正常形态各个方面高度相似，复制你的游戏数据，但不包括你的携带物。任何对你的灵魂或物理身体造成的伤害或其他效果会传递到另一方。你的灵魂可以在你的身体之外停留长达1小时，或者直到你的{@status 专注}中断（如同{@status 专注||专注于} 于一个法术）。当你的投射结束时，你的灵魂会回到你的身体，或者你的身体会魔法地的传送到你灵魂所在的空间（由你选择）。",
+    "当投射你的灵魂时，你获得以下好处：",
+    {
+     "type": "list",
+     "items": [
+      "你的灵魂和身体获得对钝击、穿刺和挥砍伤害的抗性。",
+      "当你施放一个咒法学派或死灵学派的法术时，该法术不再需要语言、姿势或不消耗金币的材料成分。",
+      "你获得等于你步行速度的飞行速度，并且可以在空中悬浮。你可以如同穿过{@quickref 困难地形||3}一般穿过生物和物体，但如果你在生物或物件内结束自己回合，你会受到{@damage 1d10}的力场伤害。",
+      "当你使用战栗形态时，在你的每个回合中只有一次，当你对一个生物造成暗蚀伤害时，你会恢复相当于暗蚀伤害量一半的生命值。"
+     ]
+    },
+    "一旦你使用了这个特性，直到你完成了一次长休为止你无法再次使用它。"
+   ]
+  },
+  {
+   "ENG_name": "The Celestial",
+   "name": "天界宗主",
+   "source": "XGE",
+   "page": 54,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XGE",
+   "level": 1,
+   "entries": [
+    "你的宗主是上层位面的强大存在。你与一位古老的至高天、炽天神侍、麒麟、独角兽、或其他居住于那些永享极乐的位面中的存在立下了契约。你与它们的契约让你体会到裸身沐浴在照亮多元宇宙的圣光中的独特体验。",
+    "沐浴在如此力量下，你的行为和信念也许会因此改变。你可能发现自己投身于消灭不死生物、抵御邪魔、保护无辜者的事业当中。不时地，你的心中会充斥着对你宗主拥有的天国的渴望，期冀于在你的余生中享有的天堂美景。但你知道你现在的任务是栖身于凡世之中，并给世界的黑暗角落带去光明。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "学习魔契师法术时，你的天界宗主赐予你将以下列表加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "天界宗主扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 疗伤术}, {@spell 光导箭}"
+        ],
+        [
+         "2nd",
+         "{@spell 炽焰法球}, {@spell 次等复原术}"
+        ],
+        [
+         "3rd",
+         "{@spell 昼明术}, {@spell 回生术}"
+        ],
+        [
+         "4th",
+         "{@spell 信仰守卫}, {@spell 火墙术}"
+        ],
+        [
+         "5th",
+         "{@spell 焰击术}, {@spell 高等复原术}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "额外戏法|魔契师||天界|XGE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "治愈之光|魔契师||天界|XGE|1"
+    }
+   ]
+  },
+  {
+   "name": "额外戏法",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "在1级时，你习得光亮术Light 和圣火术Sacred Flame 两个戏法。他们对你而言是魔契师戏法，且不计入你的魔契师可知戏法总数中。"
+   ],
+   "subclassShortName": "天界"
+  },
+  {
+   "name": "治愈之光",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "在1级时，你获得了引导天界能量以治愈伤口的能力。它是一个有着 1+你的魔契师等级枚d6骰的骰池，用以施展你的治愈能力。\n以一个附赠动作，你可以消耗骰池中的任意数量骰子，以此治疗你周围60尺以内的一个生物。每次你能消耗的最大骰子数量等同于你的魅力调整值枚（至少1枚）。投掷你消耗的全部骰子，这些骰值相加的总值即为所能恢复的生命值。\n当你完成一次长休后，你的骰池将重获所有已消耗的骰子。"
+   ],
+   "subclassShortName": "天界"
+  },
+  {
+   "name": "光耀之魂",
+   "className": "魔契师",
+   "level": 6,
+   "source": "XGE",
+   "entries": [
+    "自6级起，你与你天界宗主的链接允许你化身为祂降下光耀能量的媒介。你获得对光耀伤害的抗性，而当你施展一个造成光耀伤害或火焰伤害的法术时，你可以将你的魅力调整值加到该法术对其中一个目标造成的一次光耀伤害骰或火焰伤害骰上。"
+   ],
+   "subclassShortName": "天界"
+  },
+  {
+   "name": "天界韧性",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XGE",
+   "entries": [
+    "从10级开始，每当你完成一次长休或短休后，你都会得到一定数额的临时生命值。其数额等同于你的魔契师等级+你的魅力调整值。此外，在你完成休息时，你还可以选择最多五个可见的生物。这些生物各自获得等同于你的魔契师等级的一半+你的魅力调整值点的临时生命值。"
+   ],
+   "subclassShortName": "天界"
+  },
+  {
+   "name": "灼光复仇",
+   "className": "魔契师",
+   "level": 14,
+   "source": "XGE",
+   "entries": [
+    "从14级开始，你引导的光耀能量能让你抵抗死亡。当你在回合开始时，若你需要进行一次死亡豁免检定，你可以选择不进行，改为在一次光耀能量的爆发中跃起。你恢复等于你生命值上限一半的生命值，你可以选择在这同时立刻起立。所有处于你周围30尺范围内的、由你所选择的生物都将受到 2d8+你的魅力调整值点的光耀伤害，并陷入目盲Blinded ，持续直至你当前回合的结束。\n此特性一旦被使用，直到你完成一次长休前你都无法再次使用它。"
+   ],
+   "subclassShortName": "天界"
+  },
+  {
+   "ENG_name": "The Hexblade",
+   "name": "咒剑宗主",
+   "source": "XGE",
+   "page": 55,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "咒剑",
+   "subclassSource": "XGE",
+   "level": 1,
+   "entries": [
+    "你与一个来自堕影冥界的神秘实体订立了契约——是一股力量，那些在阴影物质雕琢的智能魔法武器隐约显露出的力量。这些智能武器之中，最著名的是一把名为 黑刃Blackrazor 的强大巨剑，其在无数年间辗转于多元宇宙之中。而隐藏在这些武器背后的暗影之力，能为与之立契的魔契师带来能力。大部分咒剑魔契师会模仿这些在堕影冥界中锻造的兵器来塑造自己的利刃。而剩下的选择不使用这些武器，转向链接堕影冥界的暗影魔法网络来施展法术。",
+    "鉴于人尽皆知是 鸦后Raven Queen 锻造出了世间第一把此类武器，许多贤者推测她就是这些暗影武器力量的幕后黑手，而这些武器——以及咒剑魔契师们——只是她用来玩弄物质位面的是非，以实现她难以揣测的目的工具罢了。",
+    {
+     "ENG_name": "Expanded Spell List",
+     "name": "扩展法术列表",
+     "type": "entries",
+     "entries": [
+      "学习魔契师法术时，你的咒剑宗主赐予你将以下列表加入魔契师法术列表进行选择的权力。",
+      {
+       "type": "table",
+       "caption": "咒剑扩展法术",
+       "colLabels": [
+        "法术环阶",
+        "法术"
+       ],
+       "colStyles": [
+        "col-2 text-center",
+        "col-10"
+       ],
+       "rows": [
+        [
+         "1st",
+         "{@spell 护盾术}, {@spell 激愤斩}"
+        ],
+        [
+         "2nd",
+         "{@spell 朦胧术}, {@spell 印记斩}"
+        ],
+        [
+         "3rd",
+         "{@spell 闪现术}, {@spell 元素武器}"
+        ],
+        [
+         "4th",
+         "{@spell 魅影杀手}, {@spell 惊惧斩}"
+        ],
+        [
+         "5th",
+         "{@spell 放逐斩}, {@spell 寒冰锥}"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "咒剑诅咒|魔契师||咒剑|XGE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "巫咒战士|魔契师||咒剑|XGE|1"
+    }
+   ]
+  },
+  {
+   "name": "巫咒战士",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "在1级时，你进行了有效的战斗训练让自己获得了新装备的熟练。你获得中甲、盾牌、与军用武器的熟练项。\n此外，你宗主的影响也让你得以通过一把特定武器来魔法的引导你的意志。每当你完成长休时，你都可以够触碰一把你已经熟练的、不具有双手属性的武器，接下来你用这把武器发动攻击检定与其伤害掷骰时，可以使用你的魅力调整值，以代替力量或敏捷。这一增益将一直持续到你完成下一次长休为止。如果你在后续选择了刃之魔契特性，你用那个魔契召唤的任何一把契约武器都可以享受到这一增益，且不限武器类型。"
+   ],
+   "subclassShortName": "咒剑"
+  },
+  {
+   "name": "咒剑诅咒",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "从1级起，你得到了向一个敌人施加恶毒诅咒的能力。以一个附赠动作，选择你周围30尺内的一个可见生物，该生物将被你诅咒1分钟。该诅咒将会在目标死亡、你死亡、或你陷入失能时提前结束。诅咒存在期间，你获得以下好处：\n· 你对受咒目标投掷的伤害掷骰得到加值。其数值等同于你的熟练加值。\n· 你对受咒目标发动的攻击检定在掷出19或20时即可形成重击。\n· 若受咒目标死亡，你恢复等于你魔契师等级+你的魅力调整值的生命值（至少恢复1点）。\n此特性一旦被使用，直到你完成一次短休或长休前你都无法再次使用它。"
+   ],
+   "subclassShortName": "咒剑"
+  },
+  {
+   "ENG_name": "Accursed Specter",
+   "name": "咒缚幽灵",
+   "source": "XGE",
+   "page": 55,
+   "className": "魔契师",
+   "classSource": "PHB",
+   "subclassShortName": "咒剑",
+   "subclassSource": "XGE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级开始，你可以诅咒命丧你手者的灵魂，短暂的将其束缚来为你服务。当你杀死一个类人生物，你可以让它的灵魂从尸体出现，化作一个 {@creature 恶灵}，其数据见《怪物手册》。当幽灵出现时，它立刻获得等同于你魔契师等级一半的临时生命值。在战斗中，幽灵独立投掷先攻并有自己的回合，其服从你的口头命令。此外，它在任何攻击检定上都会获得等同于 你的魅力调整值（最低+0） 点的特殊加值。",
+    "幽灵将为你服务到你完成下一次长休前，它将在此时消失并进入来世。",
+    "一旦你用此特性唤起了一个幽灵，直到完成一次长休前你都不能再次使用它。"
+   ]
+  },
+  {
+   "name": "巫咒盔甲",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XGE",
+   "entries": [
+    "在10级时，你的巫咒成长为了更强大的力量。若被你咒剑诅咒的目标以一次攻击检定击中了你，你可以立刻用你的反应投一次d6。如果骰出了4或更高的骰值，则这次攻击改为失手，不论其骰值是多少。"
+   ],
+   "subclassShortName": "咒剑"
+  },
+  {
+   "name": "巫咒大师",
+   "className": "魔契师",
+   "level": 14,
+   "source": "XGE",
+   "entries": [
+    "从14级起，你可以将从一个被杀的生物身上的咒剑诅咒，转移到另一个生物身上。当被你咒剑诅咒的生物死亡时，如果此时你未处于失能Incapacitated 状态，你就可以将那诅咒转移到距离你30尺内的另一个你可见的生物身上。当你以此法转移诅咒时，你无法从先前受咒目标的死亡中获得生命值回复。"
+   ],
+   "subclassShortName": "咒剑"
+  },
+  {
+   "ENG_name": "The Archfey",
+   "name": "至高妖精",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "PHB",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Archfey",
+    "name": "至高妖精",
+    "source": "PHB",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "至高妖精",
+    "subclassSource": "PHB",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Fiend",
+   "name": "邪魔宗主",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "PHB",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Fiend",
+    "name": "邪魔宗主",
+    "source": "PHB",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "邪魔",
+    "subclassSource": "PHB",
+    "level": 1,
+    "_preserve": {
+     "page": true,
+     "srd": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Great Old One",
+   "name": "旧日支配者宗主",
+   "source": "PHB",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "PHB",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Great Old One",
+    "name": "旧日支配者宗主",
+    "source": "PHB",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "旧日支配者",
+    "subclassSource": "PHB",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Undead Patron",
+   "name": "死灵宗主",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "{@i 悍不畏死以获取亵渎法力}",
+    "你与某种蔑视生死轮回的存在缔结了契约，那或许是强大的巫妖、古老的吸血鬼，亦或是其他某种不死实体。这些古老宗主也曾是凡人，它们亲身蹚过了野心之路，更是摸透了跨越死亡大门的捷径。如今，它们迫不及待地想要将这些亵渎的知识与秘辛，赐予那些甘愿在生者之中代行其意志的信徒。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "战栗形态|魔契师|XPHB|亡灵|RHW|3|RHW"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "死灵法术|魔契师|XPHB|亡灵|RHW|3|RHW"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Form of Dread",
+   "name": "战栗形态",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "RHW",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "作为{@variantrule 附赠动作|XPHB}，你化身为雇主恐怖的法力化身，获得下方增益持续1分钟，直到你处于{@condition 失能|XPHB}状态，或你结束该形态（无需动作）。你可转化的次数等同于你的魅力调整值（至少一次），且完成一次{@variantrule 长休|XPHB}后恢复所有使用次数。",
+    {
+     "ENG_name": "Facsimile of Life",
+     "name": "生命摹写",
+     "type": "entries",
+     "entries": [
+      "你获得等于{@dice 1d10}加上你的魔契师等级的{@variantrule 临时生命值|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Fearless Form",
+     "name": "无畏之姿",
+     "type": "entries",
+     "entries": [
+      "你免疫{@condition 恐慌|XPHB}状态。若你在变身时正陷入恐慌，则该状态对你立即终止。"
+     ]
+    },
+    {
+     "ENG_name": "Frightful Avatar",
+     "name": "恐惧化身",
+     "type": "entries",
+     "entries": [
+      "每回合一次，当你以攻击检定命中一个生物时，你可以迫使其进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则目标陷入{@condition 恐慌|XPHB}状态，直至你的下一回合结束。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Undead Spells",
+   "name": "死灵法术",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "RHW",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达死灵法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。",
+    {
+     "type": "table",
+     "caption": "死灵法术",
+     "colLabels": [
+      "魔契师等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 灾祸术|XPHB}, {@spell 目盲术/耳聋术|XPHB}, {@spell 魅影之力|XPHB}, {@spell 致病射线|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 死者交谈|XPHB}, {@spell 亡灵召唤术|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 高等隐形术|XPHB}, {@spell 魅影杀手|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 防活物护罩|XPHB}, {@spell 死云术|XPHB}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Grave Touched",
+   "name": "坟冢之触",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "RHW",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "宗主的伟力深刻侵染了你的肉体与魔法，赋予你以下增益。",
+    {
+     "ENG_name": "Arcane Necrosis",
+     "name": "坏疽秘法",
+     "type": "entries",
+     "entries": [
+      "源自你的攻击、魔契师法术以及魔契师特性的暗蚀伤害，无视暗蚀伤害{@variantrule 抗性|XPHB}。每回合一次，当你施展一道造成伤害的法术时，你可以将该法术的伤害类型改为暗蚀伤害。"
+     ]
+    },
+    {
+     "ENG_name": "Dreaded Necrosis",
+     "name": "战栗死气",
+     "type": "entries",
+     "entries": [
+      "使用你的战栗形态特性期间，当你以攻击检定命中一个生物并造成暗蚀伤害时，你可以在决定目标受到的暗蚀伤害时额外掷一枚伤害骰。你每回合只能使用一次此增益。"
+     ]
+    },
+    {
+     "ENG_name": "Undead Endurance",
+     "name": "不死坚韧",
+     "type": "entries",
+     "entries": [
+      "你不会因{@hazard 脱水|XPHB}、{@hazard 饥饿|XPHB}或{@hazard 窒息|XPHB}而获得{@condition 力竭|XPHB}等级。此外，你无需睡眠，魔法也无法使你陷入睡眠。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Necrotic Husk",
+   "name": "死疽躯壳",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "RHW",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "你与不死者的连接彻底浸透了你的身躯。你获得以下增益。",
+    {
+     "ENG_name": "Necrotic Resilience",
+     "name": "暗蚀抗性",
+     "type": "entries",
+     "entries": [
+      "你具有暗蚀伤害{@variantrule 抗性|XPHB}。使用你的战栗形态特性期间，你具有对暗蚀伤害的{@variantrule 免疫|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Unholy Resuscitation",
+     "name": "邪秽复苏",
+     "type": "entries",
+     "entries": [
+      "若你的生命值降至0且没有立即死亡，则你可以令你的躯体爆发出一阵死亡能量。源自你的30尺{@variantrule 光环 [效应区域]|XPHB|光环}区域内每个由你选择的生物都必须进行一次对抗你法术豁免DC的体质豁免。若豁免失败，则受到{@dice 2d10}+你魅力调整值的暗蚀伤害；若豁免成功，则伤害减半。随后，你的生命值变为你魔契师等级的两倍，同时你获得一级{@condition 力竭|XPHB}。",
+      "一旦你使用了这个增益，在完成一次{@variantrule 短休|XPHB|短}或{@variantrule 长休|XPHB}之前无法再次使用。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Superior Dread",
+   "name": "超凡战栗",
+   "source": "RHW",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "RHW",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "你的战栗形态获得强化，并在你使用期间赋予你以下增益。",
+    {
+     "ENG_name": "Dread Resistance",
+     "name": "战栗抗性",
+     "type": "entries",
+     "entries": [
+      "你具有钝击，穿刺和挥砍伤害的{@variantrule 抗性|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Ghostly Flight",
+     "name": "幽魂飞行",
+     "type": "entries",
+     "entries": [
+      "你具有等于你{@variantrule 速度|XPHB}的{@variantrule 飞行速度|XPHB}，并且可以悬浮。你可以如同穿过{@variantrule 困难地形|XPHB}一般移动穿过生物或物件；但若你在你的回合结束时仍处于生物或物件内部，你受到{@damage 1d10}力场伤害。"
+     ]
+    },
+    {
+     "ENG_name": "Profane Casting",
+     "name": "亵渎施法",
+     "type": "entries",
+     "entries": [
+      "每当你施展一道咒法学派或死灵学派的魔契师法术时，你可以免除该法术的言语、姿势以及材料成分，除非该材料成分已标明价值或会被消耗。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "The Undying",
+   "name": "不朽者宗主",
+   "source": "SCAG",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "不朽者",
+   "subclassSource": "SCAG",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Undying",
+    "name": "不朽者宗主",
+    "source": "SCAG",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "不朽者",
+    "subclassSource": "SCAG",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Fathomless",
+   "name": "深海意志宗主",
+   "source": "TCE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "深海意志",
+   "subclassSource": "TCE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Fathomless",
+    "name": "深海意志宗主",
+    "source": "TCE",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "深海意志",
+    "subclassSource": "TCE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Genie",
+   "name": "巨灵宗主",
+   "source": "TCE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "巨灵",
+   "subclassSource": "TCE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Genie",
+    "name": "巨灵宗主",
+    "source": "TCE",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "巨灵",
+    "subclassSource": "TCE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Undead",
+   "name": "死灵宗主",
+   "source": "VRGR",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "亡灵",
+   "subclassSource": "VRGR",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Undead",
+    "name": "死灵宗主",
+    "source": "VRGR",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "亡灵",
+    "subclassSource": "VRGR",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Celestial",
+   "name": "天界宗主",
+   "source": "XGE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XGE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Celestial",
+    "name": "天界宗主",
+    "source": "XGE",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "天界",
+    "subclassSource": "XGE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "The Hexblade",
+   "name": "咒剑宗主",
+   "source": "XGE",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "咒剑",
+   "subclassSource": "XGE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "The Hexblade",
+    "name": "咒剑宗主",
+    "source": "XGE",
+    "className": "魔契师",
+    "classSource": "PHB",
+    "subclassShortName": "咒剑",
+    "subclassSource": "XGE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Archfey Patron",
+   "name": "至高妖精宗主",
+   "source": "XPHB",
+   "page": 159,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 与喜怒无常的妖精交易}",
+    "你的契约从妖精荒野，神秘的妖精国度处取得力量。当你选择此子职时，你可能与某个强大的至高妖精签订了契约，比如霜冻亲王；薄暮王庭之主，空与黑暗女王；仲夏王庭的泰坦尼亚，或是一位远古鬼婆。你可能是与众多妖精们共处，结成一道好感与人情交织的复杂网络。不管你的宗主是谁，祂们的行为往往都难以理解，有时甚至不可理喻。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "至高妖精法术|魔契师|XPHB|至高妖精|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "妖精步伐|魔契师|XPHB|至高妖精|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Archfey Spells",
+   "name": "至高妖精法术",
+   "source": "XPHB",
+   "page": 159,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达至高妖精法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。",
+    {
+     "type": "table",
+     "caption": "至高妖精法术",
+     "colLabels": [
+      "魔契师等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 安定心神|XPHB}, {@spell 妖火|XPHB}, {@spell 迷踪步|XPHB}, {@spell 魅影之力|XPHB}, {@spell 睡眠术|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 闪现术|XPHB}, {@spell 植物滋长|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 支配野兽|XPHB}, {@spell 高等隐形术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 支配类人|XPHB}, {@spell 伪装术|XPHB}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Steps of the Fey",
+   "name": "妖精步伐",
+   "source": "XPHB",
+   "page": 159,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你的宗主授予你在位面的边界之间穿行的能力。你可以无需消耗法术位地施展{@spell 迷踪步|XPHB}，次数等于你的魅力调整值（最少 1 次），并在完成一次{@variantrule 长休|XPHB}时重获所有已消耗的次数。",
+    "此外，每当你施展该法术时，你都可以选择造成下列额外效应之一：",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Refreshing Step",
+       "name": "复苏步伐",
+       "type": "entries",
+       "entries": [
+        "在你传送之后，你或一个你可见的位于你 10 尺内的生物立刻获得{@dice 1d10}{@variantrule 临时生命值|XPHB}。"
+       ]
+      },
+      {
+       "ENG_name": "Taunting Step",
+       "name": "嘲弄步伐",
+       "type": "entries",
+       "entries": [
+        "位于你传送前的空间 5 尺内的生物必须成功通过一次对抗你法术豁免DC的感知豁免，否则其在对除你之外的生物发动攻击检定时具有{@variantrule 劣势|XPHB}，直至你的下一回合开始。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Misty Escape",
+   "name": "雾隐遁行",
+   "source": "XPHB",
+   "page": 159,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "当你受到伤害时，你可以用{@variantrule 反应|XPHB}施展{@spell 迷踪步|XPHB}。",
+    "此外，你的妖精步伐获得以下选项。",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Disappearing Step",
+       "name": "无踪步伐",
+       "type": "entries",
+       "entries": [
+        "你获得{@condition 隐形|XPHB}状态，持续到你的下一回合开始或你进行攻击检定、造成伤害、或是施展一道法术之后。"
+       ]
+      },
+      {
+       "ENG_name": "Dreadful Step",
+       "name": "惊惧步伐",
+       "type": "entries",
+       "entries": [
+        "位于你传送前或传送后的空间（由你选择）5 尺内的生物必须进行一次对抗你法术豁免DC的感知豁免，豁免失败则受到{@damage 2d10}心灵伤害。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Beguiling Defenses",
+   "name": "斗转星移",
+   "source": "XPHB",
+   "page": 159,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "XPHB",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "你的宗主教会了你如何保护自己的心和身。你获得对{@condition 魅惑|XPHB}状态的免疫。",
+    "此外，当一个你能看见的敌人的攻击检定命中你后，你可以立刻使用{@variantrule 反应|XPHB}令该次攻击的伤害减半（向下取整），且你可以迫使攻击者进行一次对抗你法术豁免DC的感知豁免，豁免失败则会受到一定的心灵伤害，具体数值等同于你本次承受的实际伤害。此{@variantrule 反应|XPHB}一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。你也可以消耗一个契约魔法法术位（无需动作）来重置此反应的使用权。"
+   ]
+  },
+  {
+   "ENG_name": "Bewitching Magic",
+   "name": "醉心魔法",
+   "source": "XPHB",
+   "page": 160,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "至高妖精",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "你的宗主赋予你将魔法与传送之力编织在一起的能力。当你以一个动作消耗法术位施展一道幻术或惑控法术时，你可以无需法术位地立刻施展{@spell 迷踪步|XPHB}作为该动作的一部分。"
+   ]
+  },
+  {
+   "ENG_name": "Celestial Patron",
+   "name": "天界宗主",
+   "source": "XPHB",
+   "page": 160,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 呼唤天堂诸界之伟力}",
+    "你的契约从众上层位面，极乐永驻之地处取得力量。当你选择此子职时，你可能与一位至高天、一条羽蛇、一只斯芬克斯、一匹独角兽、或其他天界存在达成了协议。亦或是你结识了众多与你目的一致的天界存在。你的契约令你沐浴在照亮多元宇宙的圣洁辉光之下。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "天界法术|魔契师|XPHB|天界|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "治愈之光|魔契师|XPHB|天界|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Celestial Spells",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达天界法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "天界法术",
+     "colLabels": [
+      "魔契师等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 援助术|XPHB}，{@spell 疗伤术|XPHB}，{@spell 光导箭|XPHB}， {@spell 次等复原术|XPHB}，{@spell 光亮术|XPHB}，{@spell 圣火术|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 昼明术|XPHB}，{@spell 回生术|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 信仰守卫|XPHB}，{@spell 火墙术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 高等复原术|XPHB}，{@spell 天界召唤术|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 1,
+   "level": 3,
+   "name": "天界法术",
+   "page": 160,
+   "source": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Healing Light",
+   "name": "治愈之光",
+   "source": "XPHB",
+   "page": 160,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你获得了引导天界能量以治愈伤口的能力。它是一个有着 1 + 你的魔契师等级枚d6骰的骰池，用以施展你的治愈能力。",
+    "以一个{@variantrule 附赠动作|XPHB}，你可以消耗骰池中的任意数量的骰子，来治疗你自己或一个你可见的位于你 60 尺内的生物。每次你能消耗的最大骰子数量等于你的魅力调整值（最少 1 枚）。投掷全部被消耗骰子，这些骰值相加的总值即为所能恢复的{@variantrule 生命值|XPHB}。当你完成一次{@variantrule 长休|XPHB}时，你的骰池将重获所有已消耗的骰子。"
+   ]
+  },
+  {
+   "ENG_name": "Radiant Soul",
+   "name": "光耀之魂",
+   "source": "XPHB",
+   "page": 160,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "你与你天界宗主的链接允许你成为光耀能量的渠道。你获得对光耀伤害的{@variantrule 抗性|XPHB}。每回合一次，当一个你施展的法术造成光耀伤害或火焰伤害时，你可以将你的魅力调整值加到该法术对其中一个目标所造成的伤害上。"
+   ]
+  },
+  {
+   "ENG_name": "Celestial Resilience",
+   "name": "天界韧性",
+   "source": "XPHB",
+   "page": 161,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XPHB",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "每当你使用秘法回流，或是完成一次{@variantrule 短休|XPHB|短}或{@variantrule 长休|XPHB}后，你都会获得一定的{@variantrule 临时生命值|XPHB}。其数值等于你的魔契师等级 + 你的魅力调整值。此外，在你获得该{@variantrule 临时生命值|XPHB}时，你还可以选择至多五个你可见的生物。这些生物也会获得等同于你魔契师等级的一半 + 你的魅力调整值的{@variantrule 临时生命值|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Searing Vengeance",
+   "name": "灼光复仇",
+   "source": "XPHB",
+   "page": 161,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "天界",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "当你或位于你 60 尺内的一名盟友将要进行一次{@variantrule 死亡豁免检定|XPHB}时，你可以释放出一道光能来拯救那名生物。那名生物恢复等于其{@variantrule 生命值|XPHB}上限一半的{@variantrule 生命值|XPHB|生命值}，且可以选择结束自身的{@condition 倒地|XPHB}状态。之后，每个由你选择的位于那名生物 30 尺内的生物都将受到{@dice 2d8} + 你的魅力调整值的光耀伤害，并陷入{@condition 目盲|XPHB}状态直至当前回合结束。",
+    "此特性一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。"
+   ]
+  },
+  {
+   "ENG_name": "Fiend Patron",
+   "name": "邪魔宗主",
+   "source": "XPHB",
+   "page": 161,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 与下层位面之物签订契约}",
+    "你的契约从众下层位面——诸类邪魔之乡那里取得力量。当你选择此子职时，你可能完成了一次交易——对方可能是一位恶魔领主，诸如狄魔高根，奥喀斯；或是一位大魔鬼，诸如阿斯蒙蒂斯；亦可能是一位极为强大的深狱炼魔，巴洛炎魔，尤格罗斯魔，甚至是夜鬼婆。无论如何，你的宗主的目标都是邪恶的——邪魔们追求着世间万物的堕落与毁灭，而最终连你本身也无法独善其身。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "邪魔法术|魔契师|XPHB|邪魔|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "黑暗赐福|魔契师|XPHB|邪魔|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Dark One's Blessing",
+   "name": "黑暗赐福",
+   "source": "XPHB",
+   "page": 161,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "当你将一个敌人的{@variantrule 生命值|XPHB}降至 0 时，你获得等于你的魅力调整值 + 你的魔契师等级的{@variantrule 临时生命值|XPHB}（最低为 1{@variantrule 临时生命值|XPHB|临时生命值}）。而若其他人将一个位于你 10 尺内的你的敌人的{@variantrule 生命值|XPHB}降至 0 时，你也会获得此增益。"
+   ]
+  },
+  {
+   "ENG_name": "Fiend Spells",
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达邪魔法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "邪魔法术",
+     "colLabels": [
+      "魔契师等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 燃烧之手|XPHB}，{@spell 命令术|XPHB}，{@spell 灼热射线|XPHB}，{@spell 暗示术|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 火球术|XPHB}，{@spell 臭云术|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 火焰护盾|XPHB}，{@spell 火墙术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 指使术|XPHB}，{@spell 疫病虫群|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 2,
+   "level": 3,
+   "name": "邪魔法术",
+   "page": 161,
+   "source": "XPHB",
+   "srd52": true,
+   "subclassShortName": "邪魔",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Dark One's Own Luck",
+   "name": "黑暗强运",
+   "source": "XPHB",
+   "page": 162,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "你可以呼唤你的宗主将命运改写为对你有利的方向。当你进行属性检定或豁免检定时，你可以使用该特性为此次掷骰增添一个{@dice 1d10}骰。你可在看到掷骰结果后，其结果生效前使用该特性。",
+    "你可以使用此特性的次数等于你的魅力调整值（最少 1 次），但你在一次检定中只能使用此特性一次。你在完成一次{@variantrule 长休|XPHB}后恢复所有已消耗的次数。"
+   ]
+  },
+  {
+   "ENG_name": "Fiendish Resilience",
+   "name": "邪魔体魄",
+   "source": "XPHB",
+   "page": 162,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "XPHB",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "每当你完成一次{@variantrule 短休|XPHB|短}或{@variantrule 长休|XPHB}时，选择一种除力场之外的伤害类型。直到你以此特性选择另外一种伤害类型前，你都具有对所选伤害类型的{@variantrule 抗性|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Hurl Through Hell",
+   "name": "直坠噩梦",
+   "source": "XPHB",
+   "page": 162,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "邪魔",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "每回合一次，当你以攻击检定命中一个生物时，你可以将目标瞬间传送并拉入下层位面。目标必须进行一次对抗你法术豁免DC的魅力豁免，豁免失败则该生物立刻消失并坠入如同噩梦一般的景色中。若目标并非邪魔，则它会受到{@damage 8d10}点心灵伤害。目标还会陷入{@condition 失能|XPHB}状态直至你的下一回合结束，此时目标返回先前所占据的空间、或是最近的未被占据空间。",
+    "此特性一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。你也可以消耗一个契约魔法法术位（无需动作）来重置此特性的使用权。"
+   ]
+  },
+  {
+   "ENG_name": "Great Old One Patron",
+   "name": "旧日支配者宗主",
+   "source": "XPHB",
+   "page": 162,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 洞见不可名状的存在与知识}",
+    "当你选择此子职时，你可能缚身遥远国度中的不可名状之存在，或是只在传说中出现过的失落古神——诸如潜伏者关纳德；受缚之神萨瑞兹顿；归来者扎贡；暗夜巨蛇丹德尔；或是伟大的克苏鲁。或者，你靠着骇异的学识祈唤众多此等存在之名，并择取一位，与之结合。此等存在行为无法让凡人理解，这些旧日支配者甚至可能对你的存在也漠不关心——但你所学的神秘知识让你得以从其身上获取魔法。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "旧日支配者法术|魔契师|XPHB|旧日支配者|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "唤醒心灵|魔契师|XPHB|旧日支配者|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "心灵法术|魔契师|XPHB|旧日支配者|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Awakened Mind",
+   "name": "唤醒心灵",
+   "source": "XPHB",
+   "page": 162,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你能够在自己与他人的意识中构建一道心灵感应的链接。以一个{@variantrule 附赠动作|XPHB}，你可以选择 30 尺内一个你可见的生物创造这一链接。链接能使你与其能够通过心灵感应方式进行交流，但交流时，你们之间距离的里数不超过你的魅力调整值里（至少 1 里）。你们必须使用互相知晓的语言进行心灵交流，才能使其理解你通过心灵感应传达的话语。",
+    "这道心灵连结持续等于你魔契师等级的分钟。它也会在你使用此特性形成另一道心灵连结时提前结束。"
+   ]
+  },
+  {
+   "ENG_name": "Great Old One Spells",
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达旧日支配者法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "旧日支配者法术",
+     "colLabels": [
+      "魔契师等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 侦测思想|XPHB}，{@spell 不谐低语|XPHB}，{@spell 魅影之力|XPHB}，{@spell 塔莎狂笑术|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 鹰眼术|XPHB}，{@spell 哈达之欲|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 困惑术|XPHB}，{@spell 异怪召唤术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 篡改记忆|XPHB}，{@spell 心灵遥控|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 1,
+   "level": 3,
+   "name": "旧日支配者法术",
+   "page": 163,
+   "source": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Psychic Spells",
+   "name": "心灵法术",
+   "source": "XPHB",
+   "page": 163,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "当你施放一个造成伤害的魔契师法术时，你可以将其伤害类型改为心灵。此外，当你施放一个属于{@filter 惑控|spells|class=魔契师|school=E}或{@filter 幻术|spells|class=魔契师|school=I}的魔契师法术时，你可以无需言语或姿势成分进行施放。"
+   ]
+  },
+  {
+   "ENG_name": "Clairvoyant Combatant",
+   "name": "锐眼斗士",
+   "source": "XPHB",
+   "page": 163,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "当你用唤醒心灵与一个生物形成心灵连结时，你可以迫使对方进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则该生物在连结期间对你进行的攻击检定具有{@variantrule 劣势|XPHB}，而你对它进行的攻击检定具有{@variantrule 优势|XPHB}。",
+    "一旦你使用了此特性，除非你消耗一个契约魔法法术位（无需动作）来复原其使用次数，否则你无法再次使用它，直到你完成一次{@variantrule 短休|XPHB|短}或{@variantrule 长休|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Eldritch Hex",
+   "name": "骇异恶咒",
+   "source": "XPHB",
+   "page": 163,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "你的异界宗主给予你强大的诅咒之力。你始终准备着{@spell 脆弱诅咒|XPHB}法术。当你施展{@spell 脆弱诅咒|XPHB}并选择了一项属性时，目标在法术持续时间内还会在以这项属性进行的豁免上具有{@variantrule 劣势|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Thought Shield",
+   "name": "思维之盾",
+   "source": "XPHB",
+   "page": 163,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 10,
+   "header": 2,
+   "entries": [
+    "除非获得你的允许，否则你的思维无法被心灵感应或者其他手段阅读。此外你还具有对心灵伤害的{@variantrule 抗性|XPHB}，且每当一个生物对你造成心灵伤害时，该生物将受到与你承受的同等的伤害。"
+   ]
+  },
+  {
+   "ENG_name": "Create Thrall",
+   "name": "创造奴仆",
+   "source": "XPHB",
+   "page": 163,
+   "className": "魔契师",
+   "classSource": "XPHB",
+   "subclassShortName": "旧日支配者",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "当你施展{@spell 异怪召唤术|XPHB}时，你可以修改此法术使其无需{@status 专注|XPHB}。以此法施展时，此法术的持续时间将变为 1 分钟，且召唤来的异怪拥有等于你魔契师等级 + 你的魅力调整值的{@variantrule 临时生命值|XPHB}。",
+    "此外，该异怪在每个回合中第一次命中一个被你的{@spell 脆弱诅咒|XPHB}影响的生物时，该异怪会对目标额外造成等于此法术附加伤害的心灵伤害。"
+   ]
+  },
+  {
+   "name": "反抗死亡",
+   "className": "魔契师",
+   "level": 6,
+   "source": "SCAG",
+   "entries": [
+    "从6级起，你可以在成功欺骗了自己的死亡或帮助其他人欺骗死亡时，给予自己一些活力。当你成功进行一次死亡豁免，或者你使用 *维生术spare the dying* 使其他生物稳定伤势时，你可以立即回复 1d8+你的体质调整值的生命值（最少为1点生命值）。\n一旦你使用了这个能力，直到一次完成长休前你都不能再次使用它。"
+   ],
+   "subclassShortName": "不朽者"
+  },
+  {
+   "name": "你的宗主赐予你一个包含巨灵之力的魔法器皿。该器皿是一个微型物件，你可以将其作为施展你魔契师法术的法器。你可以自行决定物件的类别，或者你也可以通过巨灵器皿表来决定它。",
+   "className": "魔契师",
+   "level": 1,
+   "source": "TCE",
+   "entries": [
+    "在你触碰你器皿的情况下，你可以用以下的方式使用它：\n\n瓶中小憩 Bottled Respit。以一个动作，你可以用魔法消失并进到你的器皿内，器皿将留在你所在的原地。器皿内是与其本身相似的20尺半径，20尺高的圆柱形异次元空间。器皿内部温度适宜，并安放有舒适的垫子和茶几。在器皿之中时，你可以如同身在器皿所在之处一般听到外界的声音。你在器皿内可停留的时间等同于你熟练加值双倍数目的小时。如果你死亡，或是器皿被摧毁，抑或是使用一个附赠动作离开，你将提前从器皿中出来。当你离开器皿时，你出现在一处距离它最近的未占据空间中。在器皿内的一切物件将被留在其中直到被取出，而倘若器皿被摧毁，其中的物品则会完好无损地出现在距离它最近的不被占据的空间中。一旦你进入了器皿，直到你完成一次长休前你都不能再度进入它。\n巨灵之怒 Genie's Wrath。在每个你的回合中，你可以在你攻击检定命中时，对攻击目标造成等同于你熟练加值的额外伤害。额外伤害的类型取决于你的宗主类型：钝击（土巨灵）、雷鸣（气巨灵）、火焰（火巨灵）、寒冷（水巨灵）。这一额外伤害每回合只能产生一次。\n\n器皿具有与你的法术豁免DC相同数值的AC，它的生命值等于你的魔契师等级加熟练加值，且免疫毒素和心灵伤害。\n倘若器皿被摧毁或是丢失，你可以进行一场持续1小时的仪式来从你的宗主处获得一个替代品。这一仪式可于短休或长休时进行，并会摧毁之前仍存在的器皿。当你死亡时，器皿将在一阵元素能量的闪耀中消失。"
+   ],
+   "subclassShortName": "巨灵宗主"
+  },
+  {
+   "name": "你逐渐显露出你的巨灵宗主的特质。你对一种特定的伤害类型具有抗性，具体由你的宗主类型决定：钝击（土巨灵）、雷鸣（气巨灵）、火焰（火巨灵）、寒冷（水巨灵）。",
+   "className": "魔契师",
+   "level": 6,
+   "source": "TCE",
+   "entries": [
+    "此外，以一个附赠动作，你可以获得30尺飞行速度，并且可以悬浮，持续10分钟。你可以使用此附赠动作的次数等同于你的熟练加值次，在完成一次长休后你重获全部已消耗的使用次数。"
+   ],
+   "subclassShortName": "巨灵宗主"
+  },
+  {
+   "name": "当你使用瓶中小憩Bottled Respite 特性进入你的巨灵器皿时，你可以选择30尺内最多5个可见自愿生物与你一同进入器皿。",
+   "className": "魔契师",
+   "level": 10,
+   "source": "TCE",
+   "entries": [
+    "以一个附赠动作，你可以将任意数目的生物从你的器皿中逐出。如果你离开器皿、或是器皿被摧毁，所有的生物都将被一并逐出。\n同时，在器皿中停留至少10分钟的任何生物（包括你自己）可视为完成了一次短休，且在短休时使用生命骰决定生命值恢复时，其恢复量中可以加入你的熟练加值。"
+   ],
+   "subclassShortName": "巨灵宗主"
+  },
+  {
+   "name": "你祈求你的宗主，并实现你的小小愿望。以一个动作，你可以向你的巨灵器皿说出你的愿望，并请求实现一个6环或更低环阶的，且施法时间为1动作的法术效应。这一法术可以来自任何职业的法术列表，且你不需要满足法术的任何需求，包括那些有价值的材料成分；该法术仅仅是作为此动作的一部分产生自己的效应。",
+   "className": "魔契师",
+   "level": 14,
+   "source": "TCE",
+   "entries": [
+    "你使用此特性后，直到你完成1d4次长休前，你都不能再次使用它。"
+   ],
+   "subclassShortName": "巨灵宗主"
+  },
+  {
+   "name": "你可以以魔法的形式召唤一根幽灵触手攻击你的敌人。以一个附赠动作，你可以在你60尺范围内你能看见的一点上，创造一根10尺长的触手。这根触手会持续存在一分钟。若你使用此能力创造另一根触手，先前的一根会立刻消失。",
+   "className": "魔契师",
+   "level": 1,
+   "source": "TCE",
+   "entries": [
+    "当你创造触手时，你可以立刻对其10尺内的生物进行一次近战法术攻击。目标将受到1d8寒冷伤害，且速度降低10尺，直到你的下一回合开始前。当你魔契师等级达到10级时，这一伤害将提高至2d8。\n在你的回合中，你可以再使用一个附赠动作将触手移动至多30尺，然后重复上述的攻击。\n你可以召唤的触手的次数等于你的熟练加值次，且当你完成一次长休后你重获全部已消耗的使用次数。"
+   ],
+   "subclassShortName": "深海意志"
+  },
+  {
+   "name": "你习得法术 *艾伐黑触手Evard's Black tentacles*。它对你来说是一个魔契师法术，且不计入你的已知法术数量。你可以在不消耗法术位的情况下使用该法术一次。当你完成长休后，你重获免费施展它的次数。",
+   "className": "魔契师",
+   "level": 10,
+   "source": "TCE",
+   "entries": [
+    "每当你施展* 艾伐黑触手Evard's Black tentacles*时，你宗主的魔力都将鼓舞着你，并且赐予你等同于你魔契师等级点的临时生命值。不仅如此，对你造成的伤害无法破坏你对于该法术的专注。"
+   ],
+   "subclassShortName": "深海意志"
+  },
+  {
+   "name": "雾遁",
+   "className": "魔契师",
+   "level": 6,
+   "source": "PHB",
+   "entries": [
+    "第6级起，你在受到伤害时可以在一团迷雾中消失无踪。你受到伤害时，可以使用你的反应进入隐形，并传送到60尺内一处你能看见且未占据空间。直至你的下一回合开始，或直至你发动攻击或施法，你将维持隐形状态。\n你必须完成一次长休或短休后才能再次使用该特性。"
+   ],
+   "subclassShortName": "至高妖精"
+  },
+  {
+   "name": "天界法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达天界法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "天界宗主"
+  },
+  {
+   "name": "治愈之光",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你获得了引导天界能量以治愈伤口的能力。它是一个有着1+你的魔契师等级枚d6骰的骰池，用以施展你的治愈能力。\n以一个附赠动作，你可以消耗骰池中的任意数量的骰子，来治疗你自己或一个你可见的位于你60尺内的生物。每次你能消耗的最大骰子数量等于你的魅力调整值（至少一枚）。投掷全部被消耗骰子，这些骰值相加的总值即为所能恢复的生命值。\n当你完成一次长休时，你的骰池将重获所有已消耗的骰子。"
+   ],
+   "subclassShortName": "天界宗主"
+  },
+  {
+   "name": "光耀之魂",
+   "className": "魔契师",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你与你天界宗主的链接允许你成为光耀能量的渠道。你获得对光耀伤害的抗性。每回合一次，当一个你施展的法术造成光耀伤害或火焰伤害时，你可以将你的魅力调整值加到该法术对其中一个目标所造成的伤害上。"
+   ],
+   "subclassShortName": "天界宗主"
+  },
+  {
+   "name": "天界韧性",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "每当你使用秘法回流，或是完成一次短休或长休后，你都会获得一定的临时生命值。其数值等于你的魔契师等级+你的魅力调整值。此外，在你获得该临时生命值时，你还可以选择至多五个你可见的生物。这些生物也会获得等同于你魔契师等级的一半+你的魅力调整值的临时生命值。"
+   ],
+   "subclassShortName": "天界宗主"
+  },
+  {
+   "name": "灼光复仇",
+   "className": "魔契师",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "当你或位于你60尺内的一名盟友将要进行一次死亡豁免时，你可以释放出一道光能来拯救那名生物。那名生物恢复等于其生命值上限一半的生命值，且可以选择结束自身的倒地状态。之后，每个由你选择的位于那名生物30尺内的生物都将受到2d8+你的魅力调整值的光耀伤害，并陷入目盲状态直至当前回合结束。\n此特性一经使用，直至完成长休你都无法再次使用。"
+   ],
+   "subclassShortName": "天界宗主"
+  },
+  {
+   "name": "旧日支配者法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达旧日支配者法术 表中特定的魔契师等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "唤醒心灵",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你的心灵可以与其他心灵建立感应联系。以一个附赠动作，你指定一个位于你30尺内的可见生物并创造一道心灵连结。当你与目标相距不超过等于你魅力调整值（至少1英里）的英里数时，你们便可以互相用心灵感应交谈。为了理解彼此，你们都必须在心灵交流中使用一种对方具有的语言。\n这道心灵连结持续等于你魔契师等级的分钟。它也会在你使用此特性形成另一道心灵连结时提前结束。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "心灵法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你施展一道造成伤害的魔契师法术时，你可以将其伤害类型改为心灵伤害。此外，当你施展一道惑控/幻术学派的魔契师法术时，你可以令该法术不再具有言语与姿势成分。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "锐眼斗士",
+   "className": "魔契师",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "当你用唤醒心灵与一个生物形成心灵连结时，你可以迫使对方进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则该生物在连结期间对你进行的攻击检定具有劣势，而你对它进行的攻击检定具有优势。\n此特性一经使用，直至完成短休或长休你都无法再次使用。你也可以消耗一个契约魔法法术位（无需动作）来重置此特性的使用权。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "骇异恶咒",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "你的异界宗主给予你强大的诅咒之力。你始终准备着*脆弱诅咒Hex*法术。当你施展脆弱诅咒并选择了一项属性时，目标在法术持续时间内还会在以这项属性进行的豁免上具有劣势。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "思维之盾",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "除非获得你的允许，否则你的思维无法被心灵感应或者其他手段阅读。此外你还具有对心灵伤害的抗性，且每当一个生物对你造成心灵伤害时，该生物将受到与你承受的同等的伤害。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "创造奴仆",
+   "className": "魔契师",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "当你施展*异怪召唤术Summon Aberration*时，你可以修改此法术使其无需专注。以此法施展时，此法术的持续时间将变为1分钟，且召唤来的异怪拥有等于你魔契师等级+你的魅力调整值的临时生命值。\n此外，该异怪在每个回合中第一次命中一个被你的*脆弱诅咒Hex*影响的生物时，该异怪会对目标额外造成等于此法术附加伤害的心灵伤害。"
+   ],
+   "subclassShortName": "旧日支配者宗主"
+  },
+  {
+   "name": "至高妖精法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达至高妖精法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "至高妖精宗主"
+  },
+  {
+   "name": "妖精步伐",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主授予你在位面的边界之间穿行的能力。你可以无需法术位地施展*迷踪步Misty Step*，次数等于你的魅力调整值（至少1次），并在完成一次长休时重获所有已消耗的次数。\n此外，每当你施展该法术时，你都可以选择造成下列额外效应之一：\n复苏步伐Refreshing Step。在你传送之后，你或一个你可见的位于你10尺内的生物立刻获得1d10临时生命值。\n嘲弄步伐Taunting Step。位于你传送前的空间5尺内的生物必须成功通过一次对抗你法术豁免DC的感知豁免，否则其在对除你之外的生物发动攻击检定时具有劣势，直至你的下一回合开始。"
+   ],
+   "subclassShortName": "至高妖精宗主"
+  },
+  {
+   "name": "雾遁",
+   "className": "魔契师",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "当你受到伤害时，你可以用反应施展*迷踪步Misty Step*。\n此外，你的妖精步伐获得以下选项。\n无踪步伐Disappearing Step。你获得隐形状态，持续到你的下一回合开始或你进行攻击检定、造成伤害、或是施展一道法术之后。\n惊惧步伐Dreadful Step。位于你传送前或传送后的空间（由你选择）5尺内的生物必须进行一次对抗你法术豁免DC的感知豁免，豁免失败则受到2d10心灵伤害。"
+   ],
+   "subclassShortName": "至高妖精宗主"
+  },
+  {
+   "name": "斗转星移",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主教会了你如何保护自己的心和身。你获得对魅惑状态的免疫。\n此外，当一个你能看见的敌人的攻击检定命中你后，你可以立刻使用反应令该次攻击的伤害减半（向下取整），且你可以迫使攻击者进行一次对抗你法术豁免DC的感知豁免，豁免失败则会受到一定的心灵伤害，具体数值等同于你本次承受的实际伤害。此反应一经使用，直至完成长休你都无法再次使用。你也可以消耗一个契约魔法法术位（无需动作）来重置此反应的使用权。"
+   ],
+   "subclassShortName": "至高妖精宗主"
+  },
+  {
+   "name": "醉心魔法",
+   "className": "魔契师",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "你的宗主赋予你将魔法与传送之力编织在一起的能力。当你以一个动作消耗法术位施展一道幻术或惑控法术时，你可以无需法术位地立刻施展*迷踪步Misty Step* 作为该动作的一部分。"
+   ],
+   "subclassShortName": "至高妖精宗主"
+  },
+  {
+   "name": "邪魔法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达邪魔法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "邪魔宗主"
+  },
+  {
+   "name": "黑暗赐福",
+   "className": "魔契师",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你将一个敌人的生命值降至0时，你获得等于你的魅力调整值＋你的魔契师等级的临时生命值（最低为1）。而若其他人将一个位于你10尺内的你的敌人的生命值降至0时，你也会获得此增益。"
+   ],
+   "subclassShortName": "邪魔宗主"
+  },
+  {
+   "name": "黑暗强运",
+   "className": "魔契师",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你可以呼唤你的宗主将命运改写为对你有利的方向。当你进行属性检定或豁免检定时，你可以使用该特性为此次掷骰增添一个d10骰。你可在看到掷骰结果后，其结果生效前使用该特性。\n你可以使用此特性的次数等于你的魅力调整值（至少一次），但你在一次检定中只能使用此特性一次。你在完成一次长休后恢复所有已消耗的次数。"
+   ],
+   "subclassShortName": "邪魔宗主"
+  },
+  {
+   "name": "邪魔体魄",
+   "className": "魔契师",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "每当你完成一次短休或长休时，选择一种除力场之外的伤害类型。直到你以此特性选择另外一种伤害类型前，你都具有对所选伤害类型的抗性。"
+   ],
+   "subclassShortName": "邪魔宗主"
+  },
+  {
+   "name": "直坠噩梦",
+   "className": "魔契师",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "每回合一次，当你以攻击检定命中一个生物时，你可以尝试将目标瞬间转移至下层位面。目标必须进行一次对抗你法术豁免DC的魅力豁免，豁免失败则该生物立刻消失并坠入如同噩梦一般的景色中。若目标并非邪魔，则它会受到8d10心灵伤害。目标还会陷入失能状态直至你的下一回合结束，此时目标返回先前所占据的空间、或是最近的未占据空间。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗一个契约魔法法术位（无需动作）来重置此特性的使用权。"
+   ],
+   "subclassShortName": "邪魔宗主"
+  },
+  {
+   "name": "扩展法术列表",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "学习魔契师法术时，你的咒剑宗主赐予你将以下列表加入魔契师法术列表进行选择的权力。\n咒剑扩展法术"
+   ],
+   "subclassShortName": "咒剑"
+  },
+  {
+   "name": "咒缚恶灵",
+   "className": "魔契师",
+   "level": 6,
+   "source": "XGE",
+   "entries": [
+    "从6级开始，你可以诅咒命丧你手者的灵魂，短暂的将其束缚来为你服务。当你杀死一个类人生物，你可以让它的灵魂从尸体出现，化作一个 恶灵Specter ，其数据见《怪物手册》。当恶灵出现时，它立刻获得等同于你魔契师等级一半的临时生命值。在战斗中，恶灵独立投掷先攻并有自己的回合，其服从你的口头命令。此外，它在任何攻击检定上都会获得等同于你的魅力调整值（最低+0） 点的特殊加值。\n恶灵将为你服务到你完成下一次长休前，它将在此时消失并进入来世。\n一旦你用此特性唤起了一个恶灵，直到完成一次长休前你都不能再次使用它。"
+   ],
+   "subclassShortName": "咒剑"
+  },
+  {
+   "name": "扩展法术列表",
+   "className": "魔契师",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "学习魔契师法术时，你的天界宗主赐予你将以下列表加入魔契师法术列表进行选择的权力。\n天界宗主扩展法术"
+   ],
+   "subclassShortName": "天界"
+  },
+  {
+   "name": "愚神法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "宗主赐予的魔法使你始终准备了特定的法术。当你到达愚神法术表中特定的魔契师等级时，你就始终准备了表中对应的法术。"
+   ],
+   "subclassShortName": "愚神宗主"
+  },
+  {
+   "name": "致命玩笑",
+   "className": "魔契师",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "你能洞察万物中的幽默——尤其是在其终结之时。当你周边60尺范围内一个你可见的生物受到伤害或豁免检定失败时，你可以使用反应对该生物施展*恶言相加Vicious Mockery* 。你可以使用此反应的次数等于你的魅力调整值（至少一次）。你可以在完成短休时恢复一次已消耗的次数，完成长休时恢复所有已消耗的次数。"
+   ],
+   "subclassShortName": "愚神宗主"
+  },
+  {
+   "name": "弄臣戏谑",
+   "className": "魔契师",
+   "level": 6,
+   "source": "WYM",
+   "entries": [
+    "你能召唤愚神的一缕显象，诅咒你的敌人。你可以使用魔法动作迫使你周边60尺范围内一个你可见的生物进行一次对抗你法术豁免DC的魅力豁免，豁免失败则承受以下一种由你选择的诅咒。\n\n- 花朵喷雾Flower Spurt。你向该生物的眼睛喷射一种奇怪的液体，使其陷入目盲状态。\n\n- 小丑之履Clown Shoes。该生物的脚或类似肢体以笨拙夸张的比例长大。该生物的速度减半，并且在依赖敏捷的属性检定和豁免检定中具有劣势。\n\n- 吱哒喇叭Honk Honk。无论多么轻微，该生物的移动都会发出在100尺内都能听见的，诸如喇叭声、铃铛声或吱嘎声等声音。该生物无法从隐形状态受益。\n\n- 滑稽兵器Jolly Arms。该生物用来攻击的任何武器或徒手打击（包括诸如獠牙和利爪之类的天生武器），都会呈现出滑稽的外观，仿佛是由木头、填充布料或气球制成。目标使用武器攻击和徒手打击造成的伤害减半。\n\n诅咒持续1分钟。该生物在其每个回合结束时重复该豁免，豁免成功则诅咒终止。\n一旦你使用此特性，则直至完成一次短休或长休，你都无法再次使用。"
+   ],
+   "subclassShortName": "愚神宗主"
+  },
+  {
+   "name": "讽刺戏语",
+   "className": "魔契师",
+   "level": 10,
+   "source": "WYM",
+   "entries": [
+    "你辛辣刻薄的调侃已能直击敌人的心灵。当一个生物对你造成伤害时，你可以使用反应迫使该生物进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则该生物受到等于你所受触发伤害的心灵伤害；若豁免成功，则只受到一半伤害。此反应一经使用，则直至完成一次短休或长休，你都无法再次使用。"
+   ],
+   "subclassShortName": "愚神宗主"
+  },
+  {
+   "name": "丑角登场",
+   "className": "魔契师",
+   "level": 14,
+   "source": "WYM",
+   "entries": [
+    "你可以召唤愚神信徒中那些嬉笑讥讽的幽灵，前来击溃你的敌人。你可以使用魔法动作召唤三个幽灵小丑。这些小丑半透明且无实体，它们看起来像丑角、弄臣或类似的艺人。对你周边60尺范围内的生物进行至多三次近战法术攻击。若命中，则目标受到2d10心灵伤害，并且陷入恐慌状态，直至其下一回合结束，或者陷入倒地状态（由你选择）。你可以在后续回合中使用你的动作来重复这些攻击。\n这些小丑会持续1分钟，或者直至你陷入失能状态或死亡。一旦你使用此特性，则直至完成一次长休，你都无法再次使用。"
+   ],
+   "subclassShortName": "愚神宗主"
+  },
+  {
+   "name": "角之王法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "宗主赐予的魔法使你始终准备了特定的法术。当你到达角之王法术表中特定的魔契师等级时，你就始终准备了表中对应的法术。"
+   ],
+   "subclassShortName": "角之王宗主"
+  },
+  {
+   "name": "巫印",
+   "className": "魔契师",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "当你完成长休时，你可以将魔法注入一个你正在持握的非魔法微型物件。选择一道施法时间为动作的你已准备的魔契师法术。任何持握该巫印物件的生物可以使用魔法动作来施展该法术（使用你的魅力调整值、法术攻击加值或法术豁免DC）。该巫印会在该法术被从中施展或当你完成长休时消散。"
+   ],
+   "subclassShortName": "角之王宗主"
+  },
+  {
+   "name": "咒怨",
+   "className": "魔契师",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "你可以呼唤角之王的恶意来操纵机运。你可以使用魔法动作诅咒一个你周边60尺范围内的你可见生物，直至其下个回合结束。或者，当一名上述范围内的生物将你作为一次攻击检定或法术的目标时，你可以使用反应来诅咒该生物，选择以下诅咒之一。你可以使用此特性的次数等于你的魅力调整值（至少一次）。你在完成长休时恢复所有已消耗的次数。\n苦痛Agony。 目标在下一次攻击检定或为维持专注而进行的体质豁免中具有劣势（由你选择）。\n憎恨Hate。 目标在下一次智力、感知或魅力豁免中具有劣势（由你选择）。\n腐烂Rot。 目标下一次受到伤害时，会额外受到1d10暗蚀伤害，并且无法恢复生命值，直至其下一回合结束。"
+   ],
+   "subclassShortName": "角之王宗主"
+  },
+  {
+   "name": "怨毒诅咒",
+   "className": "魔契师",
+   "level": 6,
+   "source": "WYM",
+   "entries": [
+    "当你使用咒怨时，作为该特性的动作或反应的一部分，你可以不消耗法术位地施展法术*降咒Bestow Curse* ，并在完成一次长休时重获以此方式施展该法术的能力。如果目标为对抗该法术而进行的豁免检定成功，则不消耗该特性的使用次数。\n当你以此方式施展该法术时，其施法距离变为60尺，并且持续1分钟，无需专注。如果目标为对抗该法术而进行的豁免检定成功，则目标将改为承受你从咒怨特性中选择的一项诅咒。"
+   ],
+   "subclassShortName": "角之王宗主"
+  },
+  {
+   "name": "角之王冠",
+   "className": "魔契师",
+   "level": 10,
+   "source": "WYM",
+   "entries": [
+    "你可以使用附赠动作显化出角之王的威严之力，持续1分钟。持续时间内，你身上会出现一个可见的印记——例如由角构成的王冠悬于你的头顶，或你生出巨大的鹿角——并且你获得如下增益。你必须完成一次长休才能再次使用该特性。你也可以消耗一枚契约魔法法术位（无需动作）来恢复该特性的使用次数。\n黑暗之心Dark Heart。 你的每个回合一次，当你对一个生物造成伤害时，目标会额外受到1d8暗蚀伤害。\n万物之王King of All。 你在源自你的20尺光环区域内散发出力量灵光。当你激活此特性，以及你的每个回合开始时，你可以选择灵光内一个你可见的生物。目标必须进行一次对抗你法术豁免DC的魅力豁免，豁免失败则会受到你所选择的以下一种效应，直至你的下一回合开始：\n\n- 惑心Enticement。 目标陷入魅惑状态。\n\n- 不义Wickedness。 目标在攻击检定与属性检定中具有劣势。\n\n- 惧怖Terror。 目标陷入恐慌状态，并且在其回合内必须沿着最安全的路线远离你，除非无处可逃。"
+   ],
+   "subclassShortName": "角之王宗主"
+  },
+  {
+   "name": "密会集结",
+   "className": "魔契师",
+   "level": 14,
+   "source": "WYM",
+   "entries": [
+    "你现在可以将角之王的力量分享给你认可的人。你可以进行一次1小时的仪式，与至多六个自愿生物建立联结，它们在仪式期间必须保持在你周边10尺范围内，仪式可以在休息期间进行。你可以解除任意数量生物的联结（无需动作），并且当你死亡时，该联结会结束。该联结提供以下增益。\n巫咒之术Witchcraft。 从你的咒怨特性中选择一项诅咒。被联结生物现在可以各使用一次该反应选项，并在完成一次长休后重获该能力的使用次数。\n翔于夜空Fly By Night。 作为一项附赠动作，选择一个被联结生物。如果你和目标位于同一存在位面，则你魔法性地传送至该生物旁边最近的未占据空间。你可以使用此增益一次，并在完成一次短休或长休后重获该能力的使用次数。如果你在角之王冠特性激活期间使用该附赠动作，则不消耗该能力的使用次数。\n国王之手Hand of the King。 在你的角之王冠特性激活期间，被联结生物在其回合内第一次伤害另一个生物时，目标会额外受到1d10暗蚀伤害。"
+   ],
+   "subclassShortName": "角之王宗主"
+  },
+  {
+   "name": "猫之宠爱",
+   "className": "魔契师",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "你获得与世界的真正显贵交流的能力。你可以无需法术位地施展法术动物交谈术。当你以此法施展该法术时，你只能与猫咪进行口头交谈，不过大多数猫咪不会愿意和你这样头脑简单的无趣家伙交流"
+   ],
+   "subclassShortName": "崇高猫猫庭"
+  },
+  {
+   "name": "猫之形态",
+   "className": "魔契师",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "你的宗主对你赐下怜悯并令你能转换为更高贵且愉悦的形态。以一个附赠动作，你变形为一只猫，一名微型野兽。你能保持该形态数小时，时间等于你魔契师等级的一半（向下取整），或者在你你再次使用该特性，陷入失能或死亡时提前结束。你能够以附赠动作提前结束该形态。变形期间，你保持你的人格、记忆和说话的能力，并遵循以下规则：\n游戏数据Game Statistics。你的游戏数据被野兽的数据卡所替换，但你保留你的生物类型；生命值；生命骰；智力，感知和魅力值；职业特性；语言；专长。你同样保留你的技能和豁免熟练，并且在这些项目中使用你自己的熟练加值。如果变形的野兽在资料卡上的技能或豁免检定的调整值高于你的，使用资料卡的调整值。\n施法Spellcasting。处于猫形态期间，你仅可以施展猫咪法术表上的法术。你可以无需材料成分地施展这些法术。此外，若你具有躲藏动作赋予的隐形状态并施展一道未指定敌对生物为目标的法术，你维持隐形。变形不会打断你的专注，也不会打断你已经施展的法术。\n装备Equipment。你可以选择将你的装备丢在所处空间，或者将其融入新形态，又或者直接着装在身上。新形态直接着装的装备可以如常起作用，但DM有权基于你微型野兽形态判断穿戴某件装备是否合理。你的装备不会改变尺寸或形状来搭配新的形态，新形态无法着装某装备时，该装备会掉落到你所处的空间或融入新形态中。融入新形态的装备失去其效应。\n你能够使用此特性的次数等于你的魅力调整值（至少一次）。当你完成长休时，你重获所有已消耗的使用次数。"
+   ],
+   "subclassShortName": "崇高猫猫庭"
+  },
+  {
+   "name": "魂牵梦萦心难静",
+   "className": "魔契师",
+   "level": 6,
+   "source": "THC",
+   "entries": [
+    "处于猫咪形态期间，你可以将最具破坏力、令人恼火且扰人心绪的举止表现得可爱且迷人。\n猫形态下以一个附赠动作，选择位于你5尺内能看见或听见你的一名生物，目标必须成功进行一次对抗你法术豁免DC的感知豁免，否则被你选择的以下效应之一影响：\n\n- 嗔怒Annoy。目标的D20检定具有劣势直至你的下个回合结束。\n\n- 困扰Confound。目标的速度降至0直至你的下个回合结束。\n\n- 分心Distract。你选择的一名生物对目标而言具有全身掩护直至你的下个回合结束。\n\n你能够使用此特性的次数等于你的魅力调整值（至少一次）。当你完成长休时，你重获所有已消耗的使用次数。"
+   ],
+   "subclassShortName": "崇高猫猫庭"
+  },
+  {
+   "name": "九命猫",
+   "className": "魔契师",
+   "level": 10,
+   "source": "THC",
+   "entries": [
+    "你被赐予了不可思议的生存力，让你在危险的环境里安然无恙。你获得九条命，这些命将被以下方式消耗：\n\n- 若你生命值为0时受到伤害，你能够消耗一条命以不承受死亡豁免失败。若此伤害来自重击。你必须消耗两条命以避免两次死亡豁免失败。\n\n- 若你被迫使进行死亡豁免，你能够消耗一条命使其改为成功。\n\n- 若你被迫使进行死亡豁免，你能够消耗五条命使其骰值改为20。\n\n- 若你将因过量伤害被立即杀死，你能够消耗一条命改为降至0生命值。\n\n- 若你被指定为某个令你立即死亡的效应（如*律令死亡Power Word Kill* ），你能够消耗九条命忽视该效应。\n\n当你完成长休时，你重获所有已消耗的命。"
+   ],
+   "subclassShortName": "崇高猫猫庭"
+  },
+  {
+   "name": "众臣归位",
+   "className": "魔契师",
+   "level": 14,
+   "source": "THC",
+   "entries": [
+    "在为猫猫庭尽职尽责地表现出你的优雅、机灵和风度后，你终于获得了它们的青睐。当你受到位于你60尺内的生物的伤害时，你能够以反应唤来猫猫庭的怒火。一大群嘶鸣的幽灵猫自异界天空浮现并向伤害你的生物俯冲而下。该生物受到5d10力场伤害并陷入目盲与倒地状态持续至你的下个回合结束。\n此特性一经使用，直至你完成长休你都无法再次使用。你也可以消耗一枚契约法术位（无需动作）以重置该特性的使用权。"
+   ],
+   "subclassShortName": "崇高猫猫庭"
+  },
+  {
+   "name": "魔能众首",
+   "className": "魔契师",
+   "level": 1,
+   "source": "GTS",
+   "entries": [
+    "在1级时，你获得数量等同于你熟练加值的魔能之首。只有你和具有真实视觉的生物能看到这些魔能之首，它们从你的肩膀上生出，象征着你的宗主。你可以选择忽视这些魔能之首，使它们从你的视野中消失。\n这些魔能之首为你提供来自宗主的力量微粒，可以消耗它们来获得以下增益：\n\n- 每回合一次，当你的攻击命中一个生物时，你可以消耗一个魔能之首使该生物受到额外的心灵伤害，伤害值等于1+你的熟练加值。\n\n- 当你进行魅力（威吓）检定时，你可以消耗一个魔能之首以在该检定上获得优势。当你这样做时，你的魔能之首会短暂地显现给所有人看见。\n\n- 当你的死亡豁免失败时，你可以消耗一个魔能之首来将其转为成功。\n\n当一个魔能之首被消耗后，其形态化作缥缈烟气，但其发光的眼睛依然存在。当你完成一次长休后，你会恢复所有已消耗的魔能之首。\n此外，你可以使用一个附赠动作向你的宗主发出祈求以恢复两个已消耗的魔能之首。一旦你使用此能力，直到完成一次长休前你都不能再次使用它。"
+   ],
+   "subclassShortName": "众首"
+  },
+  {
+   "name": "众目守护",
+   "className": "魔契师",
+   "level": 1,
+   "source": "GTS",
+   "entries": [
+    "从1级起，只要你还有至少一个魔能之首存在，你就不会被突袭。此外，若有生物因其盟友位于你身边5尺内而对你的攻击掷骰具有优势，其攻击掷骰将不再具有优势。"
+   ],
+   "subclassShortName": "众首"
+  },
+  {
+   "name": "众首精通",
+   "className": "魔契师",
+   "level": 6,
+   "source": "GTS",
+   "entries": [
+    "6级时，你掌握了更多运用魔能之首的方式。你获得以下增益：\n\n- 你可以用一个附赠动作消耗一个魔能之首并将其重新吸收，获得等同于2d6+你的魅力调整值的临时生命值。\n\n- 每回合一次，即使你已经使用过反应，你也可以消耗一个魔能之首来获得一次额外的反应。你不能在正常使用反应的同一回合内使用此增益。\n\n- 当你为抵抗魔法造成的魅惑、恐慌或睡眠效果所做的豁免检定失败时，你可以消耗一个魔能之首来重骰该豁免检定。如果你这样做，你必须采用新的骰值。"
+   ],
+   "subclassShortName": "众首"
+  },
+  {
+   "name": "众智同心",
+   "className": "魔契师",
+   "level": 10,
+   "source": "GTS",
+   "entries": [
+    "从10级起，你的魔能之首始终支持着你的凡躯与凡智。你的智力检定、感知（察觉）检定和智力豁免获得等同于你熟练加值一半的加值。"
+   ],
+   "subclassShortName": "众首"
+  },
+  {
+   "name": "众首狂啸",
+   "className": "魔契师",
+   "level": 14,
+   "source": "GTS",
+   "entries": [
+    "14级起，你可以用一个动作使已消耗的魔能之首在狂乱中复苏，它们在此期间对所有人可见。当你这么做时，你恢复所有已消耗的魔能之首。它们撕裂现实降临，并发出雷鸣般的咆哮，其声音可传至300尺。你可以选择距你60尺内最多等同于你这次恢复的魔能之首数量的生物。每个目标必须进行一次对抗你魔契师法术豁免DC的智力豁免。豁免失败时，目标受到4d8点心灵伤害，且由于其心智被异域能量淹没而陷入失能，直到你下一回合结束。豁免成功时，目标受到一半伤害且不会陷入失能。\n使用此特性后，你必须完成一次长休才能再次使用它。"
+   ],
+   "subclassShortName": "众首"
+  },
+  {
+   "name": "事情是这样发生的",
+   "className": "魔契师",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "你与未来自己的交流使得你对未来的发展略知一二。每当你完成一次短休或长休时，DM会暗掷一个d20和一个d4，并记录下d20的结果。除非d4的结果掷出4，否则DM会如实告诉你所记录的d20点数；如果d4的结果是4，则DM谎报这个点数。\n你可以将你自己或你可见的一个生物进行的任意D20检定，替换为这个被记录的d20掷骰（无需动作）。你必须在掷骰前选择是否替换，并且这个数字只能使用一次。\n如果DM之前对你说了谎，只有在你替换检定之后才会告知你真实的记录结果。"
+   ],
+   "subclassShortName": "未来于你"
+  },
+  {
+   "name": "我可不想再多几道伤疤",
+   "className": "魔契师",
+   "level": 6,
+   "source": "VDS",
+   "entries": [
+    "未来的你自己经常会提醒你注意某些特定的攻击。当一个你可见的生物用一次攻击检定命中你时，你可以使用反应使你的AC在抵挡这次攻击时获得+10加值，从而有可能使该攻击落空。\n你可以使用此特性两次。你可以在完成一次短休后恢复1次已消耗的使用次数，完成一次长休后恢复所有已消耗的使用次数。"
+   ],
+   "subclassShortName": "未来于你"
+  },
+  {
+   "name": "小心埋伏",
+   "className": "魔契师",
+   "level": 10,
+   "source": "VDS",
+   "entries": [
+    "你在进行先攻检定时具有优势，并且在战斗的第一轮获得对所有伤害的抗性。"
+   ],
+   "subclassShortName": "未来于你"
+  },
+  {
+   "name": "祖父悖论",
+   "className": "魔契师",
+   "level": 14,
+   "source": "VDS",
+   "entries": [
+    "你可以用一个动作挑衅一个你60尺范围内能看见且能听见你的生物，使其引发一次悖论。该生物必须进行一次智力豁免，对抗你的法术豁免DC。豁免失败时，该生物会受到10d6心灵伤害，并因被困于相互冲突的时间线之间而陷入震慑状态，持续1分钟。豁免成功则目标仅受半伤。被震慑的生物可以在其每回合结束时重复该豁免，豁免成功则结束该效应。\n此特性一经使用，直至完成长休你都无法再次使用。"
+   ],
+   "subclassShortName": "未来于你"
+  },
+  {
+   "name": "启明灵光",
+   "className": "魔契师",
+   "level": 1,
+   "source": "LOO",
+   "entries": [
+    "1级起，你灵界生物宗主的精粹被灌注入灯笼之中，并以其微小形态显现。你可以将该灯笼作为你施展魔契师法术的法器。\n你可以使用附赠动作激活你的灯笼，使其发出20尺半径的明亮光照以及额外20尺微光光照。此光照持续1分钟，或直至你松开灯笼，或选择提前结束此效应（无需动作）。在此期间，你获得以下增益：\n\n- 每当你看到处于你灯笼明亮光照范围内的生物进行豁免检定时，你可以使用反应令其豁免检定获得等同于你魅力调整值（最低为+1）的加值。\n\n- 每当一个位于你灯笼微光光照范围内的敌对生物豁免检定失败时，它会受到等同于你魔契师等级一半（向上取整）的光耀伤害。\n\n一旦你使用了此特性，则直至你完成一次短休或长休前，都无法再次使用。"
+   ],
+   "subclassShortName": "灯笼"
+  },
+  {
+   "name": "揭示之光",
+   "className": "魔契师",
+   "level": 1,
+   "source": "LOO",
+   "entries": [
+    "1级起，你可以使用一个动作令你的灯笼照射出鲜艳的褐红色光芒，发出10尺半径的明亮光照以及额外10尺微光光照。处于灯笼的明亮光照范围内的隐形生物和物件会显形。灯笼以这种方式发光1小时，或直至你以附赠动作将其提前熄灭。\n一旦你使用了此特性，则直至你完成一次短休或长休前，都无法再次使用。"
+   ],
+   "subclassShortName": "灯笼"
+  },
+  {
+   "name": "危险器具",
+   "className": "魔契师",
+   "level": 6,
+   "source": "LOO",
+   "entries": [
+    "6级起，你的启明灵光不再因你松开灯笼而提前结束。当你没有持握你的灯笼期间，你可以魔法性地控制它1分钟（无需动作），将其作为一道*灵体武器Spiritual Weapon* （二环版本）来使用。在使用此特性期间，你的灯笼仍可作为你的法器，即使你已不再持握灯笼。\n*灵体武器Spiritual Weapon* 的环阶会随着你在此职业等级的提升而提高，在10级时提升至四环，在15级时提升至六环。\n一旦你以此方式控制你的灯笼，则直至你完成一次长休前，都无法再次这么做。你也可以消耗一枚魔契师法术位（无需动作）来再次控制它。"
+   ],
+   "subclassShortName": "灯笼"
+  },
+  {
+   "name": "神谕之辉",
+   "className": "魔契师",
+   "level": 6,
+   "source": "LOO",
+   "entries": [
+    "6级起，你可以使用一个动作将你的心智魔法性地连接到一个你可见或熟悉的光源，例如蜡烛或火把。该光源如同法术*鹰眼术Clairvoyance* 创造的传感器般运作，赋予你相同的增益。你可以如此使用该光源持续10分钟，或直至你再次使用此特性。\n一旦你对一个光源使用此特性，则直至你完成一次长休前，你无法对此光源再次使用该特性。"
+   ],
+   "subclassShortName": "灯笼"
+  },
+  {
+   "name": "炽耀之辉",
+   "className": "魔契师",
+   "level": 10,
+   "source": "LOO",
+   "entries": [
+    "10级起，当你灯笼的启明灵光处于激活状态时，你可以使用一个动作令其光芒骤然迸发出势不可挡的耀眼闪光。除你之外，每个被你灯笼的明亮光照或微光光照（由你选择）所照亮的生物，都必须进行一次对抗你魔契师法术豁免DC的体质豁免检定。若豁免失败，则该生物会受到2d8+你魔契师等级的光耀伤害，并陷入目盲直至你的下一回合结束。若豁免成功，则该生物仅受一半伤害且不会陷入目盲。\n一旦你使用了此特性，则直至你完成一次短休或长休前，都无法再次使用。"
+   ],
+   "subclassShortName": "灯笼"
+  },
+  {
+   "name": "愈加璀璨",
+   "className": "魔契师",
+   "level": 14,
+   "source": "LOO",
+   "entries": [
+    "14级起，你可以随意激活你灯笼的启明灵光的能力。与启明灵光协同使用的特性，例如危险器具和炽耀之辉，仍受各自特性中描述的使用次数限制。\n此外，当你持握你的灯笼期间，你可以使用一个动作令其照射出苍白蓝光，揭示一条通往一个你熟悉地点的发光奥术路径，如同施展法术*寻路术Find the Path* 。\n一旦你以此方式使用你的灯笼，则直至你完成一次长休前，都无法再次这么做。"
+   ],
+   "subclassShortName": "灯笼"
+  },
+  {
+   "name": "额外熟练",
+   "className": "魔契师",
+   "level": 1,
+   "source": "HMS",
+   "entries": [
+    "自1级起，你的宗主给予了你更强大的追踪技能。你获得求生技能的专精——你进行的所有感知（求生）检定都可以加入双倍的熟练加值。"
+   ],
+   "subclassShortName": "猎食者"
+  },
+  {
+   "name": "野兽之形",
+   "className": "魔契师",
+   "level": 1,
+   "source": "HMS",
+   "entries": [
+    "自1级起，你可以用你的附赠动作引导你宗主的凶残与狡诈之力，你将变化成野兽般的姿态。10分钟内，你获得以下这些能力：\n\n- 你的体内充满了肾上腺素，除了狩猎的快感你感受不到任何事情。你获得等同于你魔契师等级两倍的临时生命值（至多20点，即10级后达到上限）这些临时生命值会持续直至你的变化形态结束为止。\n\n- 你的感官变得超自然般的敏锐。你为追踪猎物或跟踪猎物进行的敏捷（隐匿）、感知（察觉）、感知（求生）检定具有优势。\n\n- 你长出了一套尖锐的利牙与锯齿状的兽爪，它们是可以用来对你5尺内的生物发动徒手打击的天生武器。你熟练于这些天生武器，且可以在攻击检定与伤害掷骰中使用你的魅力调整值。命中时，你的啃咬造成1d6点穿刺伤害，而你的爪击造成1d4点挥砍伤害。如果你已经拥有啃咬（bite）或爪击（claw）攻击项（利爪（talon）攻击项也被算作爪击攻击项），该攻击项的伤害增大一级（从d4变成d6，从d6变为d8，以此类推）。在你使用啃咬攻击之后，你可以用附赠动作发动一次爪击攻击。\n\n- 自第5级起，你的肌肉变得强壮，你的动作变得迅敏。在你用动作发动过啃咬攻击之后，你可以用附赠动作发动两次爪击攻击。此外，自第5级起，处于野兽之形Form of the Beast下，你可以用附赠动作执行疾走或躲藏动作。\n\n每次短休或长休后，你可以使用此特性两次。第6级时，你的变化将持续1小时，而非原本的10分钟。"
+   ],
+   "subclassShortName": "猎食者"
+  },
+  {
+   "name": "狩猎狂热",
+   "className": "魔契师",
+   "level": 6,
+   "source": "HMS",
+   "entries": [
+    "在6级时，当你处于野兽之形期间，你获得从敌人身上汲取活力的能力。每回合一次，当你以啃咬攻击命中一个生物时，你可以令这次攻击造成额外的3d6暗蚀伤害。你恢复等同于这次攻击所造成总伤害一半的生命值。\n一旦你使用了本特性，直至以啃咬或爪击攻击造成一次重击，又或是完成一次短休或长休，你都无法再次使用。\n在10级时，该特性提供的额外暗蚀伤害增加至5d6。"
+   ],
+   "subclassShortName": "猎食者"
+  },
+  {
+   "name": "惊惧威仪",
+   "className": "魔契师",
+   "level": 10,
+   "source": "HMS",
+   "entries": [
+    "在10级时，你学会了如何引导某个骇人野兽的威仪，即便是未变身时。你可以使用你的动作，使你30尺范围内你可见的敌对生物进行一次一次对抗你法术豁免DC的感知豁免。若豁免失败，目标陷入持续1分钟的对你的恐慌状态，直至你的下个回合结束，陷入恐慌的生物可以在其每回合结束时重复该豁免，成功则结束自己身上的效应。\n一旦你使用了本特性，直至完成一次短休或长休你都无法再次使用。"
+   ],
+   "subclassShortName": "猎食者"
+  },
+  {
+   "name": "脱笼困兽",
+   "className": "魔契师",
+   "level": 14,
+   "source": "HMS",
+   "entries": [
+    "当到达14级时，在你被逼至极限时，你将变得更加凶残。当一个你可见的攻击者以一次攻击命中你时，你可以使用你的反应立即变身为野兽之型，随后对你5尺范围内的一名敌人进行一次啃咬或爪击攻击。\n此外，在变身为野兽之形期间，当你受到来自你5尺范围内某个生物的伤害时，你可以使用你的反应对该生物进行一次啃咬或爪击攻击。"
+   ],
+   "subclassShortName": "猎食者"
+  },
+  {
+   "name": "毒之魂",
+   "className": "魔契师",
+   "level": 1,
+   "source": "ACT",
+   "entries": [
+    "1级起，你获得超自然的毒素亲和力。你造成的毒素伤害忽视抗性和免疫。"
+   ],
+   "subclassShortName": "悲伤之母"
+  },
+  {
+   "name": "猛毒印",
+   "className": "魔契师",
+   "level": 1,
+   "source": "ACT",
+   "entries": [
+    "同样1级起，以一个附赠动作，选择一名位于你30尺内你可见的生物为目标。目标被诅咒，持续1分钟。若目标死亡、你死亡或你陷入失能状态，诅咒提前结束。诅咒结束前，每当你以法术攻击命中目标时，目标额外受到1d6毒素伤害（即使某法术有多次法术攻击实例——例如*魔能爆Eldritch Blast*——你的每个法术也仅能造成一次该伤害。）\n若目标的生命值在诅咒结束前降至0，你能在你随后的回合中以附赠动作诅咒一名新的生物。任何时间都只会有一名生物受到猛毒印效应影响。"
+   ],
+   "subclassShortName": "悲伤之母"
+  },
+  {
+   "name": "病态报偿",
+   "className": "魔契师",
+   "level": 6,
+   "source": "ACT",
+   "entries": [
+    "6级起，你可以对伤害你的生物进行复仇。当你受到伤害时，你能够以反应毒害伤害你的生物。触发者必须进行一次对抗你魔契师法术豁免DC的体质豁免，否则陷入中毒，持续1分钟。受影响生物在其每个回合结束时重复豁免，成功则终止其身上的该效应。\n此特性一经使用，直至你完成短休或长休都无法再次使用。"
+   ],
+   "subclassShortName": "悲伤之母"
+  },
+  {
+   "name": "黑暗疫苗",
+   "className": "魔契师",
+   "level": 10,
+   "source": "ACT",
+   "entries": [
+    "10级起，你的毒魔法注入体内。你免疫疾病、毒素伤害和中毒状态。"
+   ],
+   "subclassShortName": "悲伤之母"
+  },
+  {
+   "name": "悲伤之触",
+   "className": "魔契师",
+   "level": 14,
+   "source": "ACT",
+   "entries": [
+    "14级起，当你以攻击命中生物时，你能够以此特性将你的悲伤注入目标。目标必须进行一次感知豁免，否则陷入麻痹和中毒，持续24小时。生物将维持麻痹状态直至其受到任何伤害或不再陷入中毒，\n你必须完成短休或长休才能再次使用该特性。"
+   ],
+   "subclassShortName": "悲伤之母"
+  },
+  {
+   "name": "你显现出你宗主可怕力量的一个侧面。以一个附赠动作，你变身持续1分钟。变身时你获得以下好处",
+   "className": "魔契师",
+   "level": 1,
+   "source": "VRGR",
+   "entries": [
+    "- 你获得等于1d10+你的魔契师等级的临时生命。\n\n- 在你的每个回合中一次，当你攻击检定命中一个生物时，你可以强迫其进行一次感知豁免。若失败，目标直到你的下一个回合结束陷入对你的恐慌。\n\n- 你对恐慌状态免疫。\n\n你可以变身的次数等于你的熟练值，当你完成长休后，你恢复所有已消耗的变身次数。\n\n你战栗形态下的外观反映了你宗主的某些方面。例如，你的战栗形态可能披着阴影的纱幕，化作你的巫妖宗主王冠和长袍的形状，或者你的身体开始发光，现出古代葬礼仪式的符印，并被沙尘旋风所环绕，暗示着你的木乃伊宗主。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "你宗主的力量对你的身体和魔法产生了深远的影响。你不需要吃、喝、呼吸。",
+   "className": "魔契师",
+   "level": 6,
+   "source": "VRGR",
+   "entries": [
+    "此外，每个你的回合中一次，当你用攻击检定命中一个生物并对该生物投掷伤害骰时，你可以将伤害类型替换为暗蚀伤害。当你使用战栗形态时，你可以在决定目标受到该暗蚀伤害的数值时，额外投掷一枚伤害骰。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "你与亡灵和暗蚀能量的联系现在充斥着你的身体。你对暗蚀伤害具有抗性。如果你使用战栗形态变身，你改为会对暗蚀伤害免疫。",
+   "className": "魔契师",
+   "level": 10,
+   "source": "VRGR",
+   "entries": [
+    "此外，当你的生命值降低到0时，你可以使用反应，改为将生命值降低到1，并使你的身体爆发出死亡能量。你周围30英尺内的每个你选择的生物都会受到相当于2d10+你的魔契师等级的暗蚀伤害。你获得1级的力竭。一旦你使用该反应，直到你完成1d4次长休为止你不能再次使用。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "你的灵魂能脱离你物理形态的约束。作为一个动作，你可以从你的身体投射出你的灵魂。你留下的身体会陷入昏迷，并处于人事不省状态。",
+   "className": "魔契师",
+   "level": 14,
+   "source": "VRGR",
+   "entries": [
+    "你的灵魂与你的正常形态各个方面高度相似，复制你的游戏数据，但不包括你的携带物。任何对你的灵魂或物理身体造成的伤害或其他效果会传递到另一方。你的灵魂可以在你的身体之外停留长达1小时，或者直到你的专注中断（如同专注于一个法术）。当你的投射结束时，你的灵魂会回到你的身体，或者你的身体会魔法地的传送到你灵魂所在的空间（由你选择）。\n\n当投射你的灵魂时，你获得以下好处：\n\n- 你的灵魂和身体获得对钝击、穿刺和挥砍伤害的抗性。\n\n- 当你施放一个咒法学派或死灵学派的法术时，该法术不再需要语言、姿势或不消耗金币的材料成分。\n\n- 你获得等于你步行速度的飞行速度，并且可以在空中悬浮。你可以如同穿过困难地形一般穿过生物和物体，但如果你在生物或物件内结束自己回合，你会受到1d10的力场伤害。\n\n- 当你使用战栗形态时，在你的每个回合中只有一次，当你对一个生物造成暗蚀伤害时，你会恢复相当于暗蚀伤害量一半的生命值。\n\n一旦你使用了这个特性，直到你完成了一次长休为止你无法再次使用它。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "死灵法术",
+   "className": "魔契师",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "宗主赐予的魔法使你始终准备着特定的法术。当你到达死灵法术表中特定的魔契师等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "战栗形态",
+   "className": "魔契师",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "你可以使用附赠动作变身为你宗主那骇人伟力的化身。你获得以下增益，持续1分钟；当你陷入失能状态，或你主动结束该形态时（无需动作），该效应提前结束。你可以进行变身的次数等于你的魅力调整值（至少一次）。完成长休时，你恢复所有已消耗的使用次数。\n生命摹写Facsimile of Life。 你获得等于1d10+你魔契师等级的临时生命值。\n无畏之姿Fearless Form。 你免疫恐慌状态。若你在变身时正陷入恐慌，则该状态对你立即终止。\n恐惧化身Frightful Avatar。 每回合一次，当你以攻击检定命中一个生物时，你可以迫使其进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则目标陷入恐慌状态，直至你的下一回合结束。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "坟冢之触",
+   "className": "魔契师",
+   "level": 6,
+   "source": "VRGR-V",
+   "entries": [
+    "宗主的伟力深刻侵染了你的肉体与魔法，赋予你以下增益。\n坏疽秘法Arcane Necrosis。 源自你的攻击、魔契师法术以及魔契师特性的暗蚀伤害，无视暗蚀伤害抗性。每回合一次，当你施展一道造成伤害的法术时，你可以将该法术的伤害类型改为暗蚀伤害。\n战栗死气Dreaded Necrosis。 使用你的战栗形态特性期间，当你以攻击检定命中一个生物并造成暗蚀伤害时，你可以在决定目标受到的暗蚀伤害时额外掷一枚伤害骰。你每回合只能使用一次此增益。\n不死坚韧Undead Endurance。 你不会因脱水、饥饿或窒息而获得力竭等级。此外，你无需睡眠，魔法也无法使你陷入睡眠。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "死疽躯壳",
+   "className": "魔契师",
+   "level": 10,
+   "source": "VRGR-V",
+   "entries": [
+    "你与不死者的连接彻底浸透了你的身躯。你获得以下增益。\n暗蚀抗性Necrotic Resilience。 你具有暗蚀伤害抗性。使用你的战栗形态特性期间，你具有对暗蚀伤害的免疫。\n邪秽复苏Unholy Resuscitation。 若你的生命值降至0且没有立即死亡，则你可以令你的躯体爆发出一阵死亡能量。源自你的30尺光环区域内每个由你选择的生物都必须进行一次对抗你法术豁免DC的体质豁免。若豁免失败，则受到2d10+你魅力调整值的暗蚀伤害；若豁免成功，则伤害减半。随后，你的生命值变为你魔契师等级的两倍，同时你获得一级力竭。\n该增益一经使用，则直至你完成一次短休或长休前，都无法再次使用。"
+   ],
+   "subclassShortName": "死灵宗主"
+  },
+  {
+   "name": "超凡战栗",
+   "className": "魔契师",
+   "level": 14,
+   "source": "VRGR-V",
+   "entries": [
+    "你的战栗形态获得强化，并在你使用期间赋予你以下增益。\n战栗抗性Dread Resistance。 你具有钝击、穿刺和挥砍伤害抗性。\n幽魂飞行Ghostly Flight。 你具有等于你速度的飞行速度，并且可以悬浮。你可以如同穿过困难地形一般移动穿过生物或物件；但若你在你的回合结束时仍处于生物或物件内部，你受到1d10力场伤害。\n亵渎施法Profane Casting。 每当你施展一道咒法学派或死灵学派的魔契师法术时，你可以免除该法术的言语、姿势以及材料成分，除非该材料成分已标明价值或会被消耗。"
+   ],
+   "subclassShortName": "死灵宗主"
+  }
+ ]
+}

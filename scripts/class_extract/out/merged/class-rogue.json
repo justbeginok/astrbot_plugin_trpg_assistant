@@ -1,0 +1,4347 @@
+{
+ "class": [
+  {
+   "ENG_name": "Rogue",
+   "name": "游荡者",
+   "source": "PHB",
+   "page": 94,
+   "srd": true,
+   "basicRules": true,
+   "reprintedAs": [
+    "游荡者|XPHB"
+   ],
+   "edition": "classic",
+   "hd": {
+    "number": 1,
+    "faces": 8
+   },
+   "proficiency": [
+    "dex",
+    "int"
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light"
+    ],
+    "weapons": [
+     "简易",
+     "{@item 手弩|phb|手弩}",
+     "{@item 长剑|phb|长剑}",
+     "{@item 刺剑|phb|刺剑}",
+     "{@item 短剑|phb|短剑}"
+    ],
+    "tools": [
+     "{@item 盗贼工具|PHB}"
+    ],
+    "toolProficiencies": [
+     {
+      "thieves' tools": true
+     }
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "acrobatics",
+        "athletics",
+        "deception",
+        "insight",
+        "intimidation",
+        "investigation",
+        "perception",
+        "performance",
+        "persuasion",
+        "sleight of hand",
+        "stealth"
+       ],
+       "count": 4
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "default": [
+     "(a) 一把{@item 刺剑|phb}或 (b) 一把{@item 短剑|phb}",
+     "（a）一把{@item 短弓|phb}和一个{@item 箭袋|phb}（含{@item 箭矢 (20)|phb|20支箭}）或（b）一把{@item 短剑|phb}",
+     "（a）一个{@item 窃贼套组|phb}，（b）一个{@item 地城套组|phb}或（c）一个{@item 探索套组|phb}",
+     "{@item 皮甲|phb}, 两把{@item 匕首|phb|匕首}，以及{@item 盗贼工具|phb}"
+    ],
+    "goldAlternative": "{@dice 4d4 × 10|4d4 × 10|起始金币}",
+    "defaultData": [
+     {
+      "a": [
+       "刺剑|phb"
+      ],
+      "b": [
+       "短剑|phb"
+      ]
+     },
+     {
+      "a": [
+       "短弓|phb",
+       "箭矢 (20)|phb"
+      ],
+      "b": [
+       "短剑|phb"
+      ]
+     },
+     {
+      "a": [
+       "窃贼套组|phb"
+      ],
+      "b": [
+       "地城套组|phb"
+      ],
+      "c": [
+       "探索套组|phb"
+      ]
+     },
+     {
+      "_": [
+       "皮甲|phb",
+       {
+        "item": "匕首|phb",
+        "quantity": 2
+       },
+       "盗贼工具|phb"
+      ]
+     }
+    ]
+   },
+   "multiclassing": {
+    "requirements": {
+     "dex": 13
+    },
+    "proficienciesGained": {
+     "armor": [
+      "light"
+     ],
+     "skills": [
+      {
+       "choose": {
+        "from": [
+         "acrobatics",
+         "athletics",
+         "deception",
+         "insight",
+         "intimidation",
+         "investigation",
+         "perception",
+         "performance",
+         "persuasion",
+         "sleight of hand",
+         "stealth"
+        ],
+        "count": 1
+       }
+      }
+     ],
+     "tools": [
+      "{@item 盗贼工具|PHB}"
+     ],
+     "toolProficiencies": [
+      {
+       "thieves' tools": true
+      }
+     ]
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "偷袭"
+     ],
+     "rows": [
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 1,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 1,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 2,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 2,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 3,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 3,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 4,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 4,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 5,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 5,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 6,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 6,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 7,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 7,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 8,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 8,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 9,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 9,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 10,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 10,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "专精|游荡者||1",
+    "偷袭|游荡者||1",
+    "盗贼黑话|游荡者||1",
+    "灵巧动作|游荡者||2",
+    {
+     "classFeature": "游荡者范型|游荡者||3",
+     "gainSubclassFeature": true
+    },
+    "稳定瞄准|游荡者||3|TCE",
+    "属性值提升|游荡者||4",
+    "直觉闪避|游荡者||5",
+    "专精|游荡者||6",
+    "反射闪避|游荡者||7",
+    "属性值提升|游荡者||8",
+    {
+     "classFeature": "游荡者范型特性|游荡者||9",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游荡者||10",
+    "可靠才能|游荡者||11",
+    "属性值提升|游荡者||12",
+    {
+     "classFeature": "游荡者范型特性|游荡者||13",
+     "gainSubclassFeature": true
+    },
+    "听声辨位|游荡者||14",
+    "圆滑心智|游荡者||15",
+    "属性值提升|游荡者||16",
+    {
+     "classFeature": "游荡者范型特性|游荡者||17",
+     "gainSubclassFeature": true
+    },
+    "飘忽不定|游荡者||18",
+    "属性值提升|游荡者||19",
+    "幸运一击|游荡者||20"
+   ],
+   "subclassTitle": "游荡者范型",
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Rogue",
+   "name": "游荡者",
+   "source": "XPHB",
+   "page": 128,
+   "srd52": true,
+   "basicRules2024": true,
+   "edition": "one",
+   "primaryAbility": [
+    {
+     "dex": true
+    }
+   ],
+   "hd": {
+    "number": 1,
+    "faces": 8
+   },
+   "proficiency": [
+    "dex",
+    "int"
+   ],
+   "featProgression": [
+    {
+     "ENG_name": "Epic Boon",
+     "name": "传奇恩惠",
+     "category": [
+      "EB"
+     ],
+     "progression": {
+      "19": 1
+     }
+    }
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light"
+    ],
+    "weapons": [
+     "简易",
+     "具有{@filter 灵巧或轻型|items|type=军用武器|property=灵巧;轻型}属性的军用武器"
+    ],
+    "weaponProficiencies": [
+     {
+      "simple": true,
+      "all": {
+       "fromFilter": "type=军用武器|property=轻型;灵巧"
+      }
+     }
+    ],
+    "tools": [
+     "{@item 盗贼工具|XPHB}"
+    ],
+    "toolProficiencies": [
+     {
+      "thieves' tools": true
+     }
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "acrobatics",
+        "athletics",
+        "deception",
+        "insight",
+        "intimidation",
+        "investigation",
+        "perception",
+        "persuasion",
+        "sleight of hand",
+        "stealth"
+       ],
+       "count": 4
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "defaultData": [
+     {
+      "A": [
+       {
+        "item": "皮甲|xphb"
+       },
+       {
+        "item": "匕首|xphb",
+        "quantity": 2
+       },
+       {
+        "item": "短剑|xphb"
+       },
+       {
+        "item": "短弓|xphb"
+       },
+       {
+        "item": "箭矢 (20)|xphb"
+       },
+       {
+        "item": "箭袋|xphb"
+       },
+       {
+        "item": "盗贼工具|xphb"
+       },
+       {
+        "item": "窃贼套组|xphb"
+       },
+       {
+        "value": 800
+       }
+      ],
+      "B": [
+       {
+        "value": 10000
+       }
+      ]
+     }
+    ],
+    "entries": [
+     "{@i 选择A或B：} (A) {@item 皮甲|XPHB}, 2把{@item 匕首|XPHB|匕首}, {@item 短剑|XPHB}, {@item 短弓|XPHB}, {@item 箭矢 (20)|XPHB|20支箭}, {@item 箭袋|XPHB}, {@item 盗贼工具|XPHB}, {@item 窃贼套组|XPHB}以及8 GP；或 (B) 100 GP"
+    ]
+   },
+   "multiclassing": {
+    "proficienciesGained": {
+     "armor": [
+      "light"
+     ],
+     "tools": [
+      "{@item 盗贼工具|XPHB}"
+     ],
+     "toolProficiencies": [
+      {
+       "thieves' tools": true
+      }
+     ],
+     "skills": [
+      {
+       "choose": {
+        "from": [
+         "acrobatics",
+         "athletics",
+         "deception",
+         "insight",
+         "intimidation",
+         "investigation",
+         "perception",
+         "persuasion",
+         "sleight of hand",
+         "stealth"
+        ],
+        "count": 1
+       }
+      }
+     ]
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "偷袭"
+     ],
+     "rows": [
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 1,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 1,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 2,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 2,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 3,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 3,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 4,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 4,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 5,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 5,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 6,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 6,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 7,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 7,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 8,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 8,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 9,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 9,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 10,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ],
+      [
+       {
+        "type": "dice",
+        "toRoll": [
+         {
+          "number": 10,
+          "faces": 6
+         }
+        ],
+        "rollable": true
+       }
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "专精|游荡者|XPHB|1",
+    "偷袭|游荡者|XPHB|1",
+    "盗贼黑话|游荡者|XPHB|1",
+    "武器精通|游荡者|XPHB|1",
+    "灵巧动作|游荡者|XPHB|2",
+    {
+     "classFeature": "游荡者子职|游荡者|XPHB|3",
+     "gainSubclassFeature": true
+    },
+    "稳定瞄准|游荡者|XPHB|3",
+    "属性值提升|游荡者|XPHB|4",
+    "诡诈打击|游荡者|XPHB|5",
+    "直觉闪避|游荡者|XPHB|5",
+    "专精|游荡者|XPHB|6",
+    "反射闪避|游荡者|XPHB|7",
+    "可靠才能|游荡者|XPHB|7",
+    "属性值提升|游荡者|XPHB|8",
+    {
+     "classFeature": "子职特性|游荡者|XPHB|9",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游荡者|XPHB|10",
+    "进阶诡诈打击|游荡者|XPHB|11",
+    "属性值提升|游荡者|XPHB|12",
+    {
+     "classFeature": "子职特性|游荡者|XPHB|13",
+     "gainSubclassFeature": true
+    },
+    "凶狡打击|游荡者|XPHB|14",
+    "圆滑心智|游荡者|XPHB|15",
+    "属性值提升|游荡者|XPHB|16",
+    {
+     "classFeature": "子职特性|游荡者|XPHB|17",
+     "gainSubclassFeature": true
+    },
+    "飘忽不定|游荡者|XPHB|18",
+    "传奇恩惠|游荡者|XPHB|19",
+    "幸运一击|游荡者|XPHB|20"
+   ],
+   "subclassTitle": "游荡者子职",
+   "hasFluff": true,
+   "hasFluffImages": true
+  }
+ ],
+ "subclass": [
+  {
+   "name": "诡术师",
+   "shortName": "诡术师",
+   "className": "游荡者",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Arcane Trickster",
+   "name": "诡术师",
+   "shortName": "诡术师",
+   "source": "PHB",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Arcane Trickster",
+    "name": "诡术师",
+    "source": "PHB",
+    "shortName": "诡术师",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "刺客",
+   "shortName": "刺客",
+   "className": "游荡者",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Assassin",
+   "name": "刺客",
+   "shortName": "刺客",
+   "source": "PHB",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Assassin",
+    "name": "刺客",
+    "source": "PHB",
+    "shortName": "刺客",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "盗贼",
+   "shortName": "盗贼",
+   "className": "游荡者",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Thief",
+   "name": "盗贼",
+   "shortName": "盗贼",
+   "source": "PHB",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Thief",
+    "name": "盗贼",
+    "source": "PHB",
+    "shortName": "盗贼",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "调查员",
+   "shortName": "调查员",
+   "className": "游荡者",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Inquisitive",
+   "name": "调查员",
+   "shortName": "调查员",
+   "source": "XGE",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Inquisitive",
+    "name": "调查员",
+    "source": "XGE",
+    "shortName": "调查员",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "策士",
+   "shortName": "策士",
+   "className": "游荡者",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Mastermind",
+   "name": "策士",
+   "shortName": "策士",
+   "source": "XGE",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Mastermind",
+    "name": "策士",
+    "source": "XGE",
+    "shortName": "策士",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "斥候",
+   "shortName": "斥候",
+   "className": "游荡者",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Scout",
+   "name": "斥候",
+   "shortName": "斥候",
+   "source": "XGE",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Scout",
+    "name": "斥候",
+    "source": "XGE",
+    "shortName": "斥候",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Swashbuckler",
+   "name": "剑客",
+   "shortName": "剑客",
+   "source": "XGE",
+   "className": "游荡者",
+   "classSource": "PHB",
+   "page": 48,
+   "otherSources": [
+    {
+     "source": "SCAG",
+     "page": 135
+    }
+   ],
+   "edition": "classic",
+   "subclassFeatures": [
+    "剑客|游荡者||剑客|XGE|3",
+    "潇洒气质|游荡者||剑客|XGE|9",
+    "优雅战技|游荡者||剑客|XGE|13",
+    "决斗大师|游荡者||剑客|XGE|17"
+   ],
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Swashbuckler",
+   "name": "剑客",
+   "shortName": "剑客",
+   "source": "XGE",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Swashbuckler",
+    "name": "剑客",
+    "source": "XGE",
+    "shortName": "剑客",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "鬼魅",
+   "shortName": "鬼魅",
+   "className": "游荡者",
+   "source": "TCE"
+  },
+  {
+   "ENG_name": "Phantom",
+   "name": "鬼魅",
+   "shortName": "鬼魅",
+   "source": "TCE",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "reprintedAs": [
+    "鬼魅|游荡者|XPHB|RHW"
+   ],
+   "_copy": {
+    "ENG_name": "Phantom",
+    "name": "鬼魅",
+    "source": "TCE",
+    "shortName": "鬼魅",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Phantom",
+     "name": "鬼魅",
+     "source": "TCE",
+     "shortName": "鬼魅",
+     "className": "游荡者",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "name": "魂刃",
+   "shortName": "魂刃",
+   "className": "游荡者",
+   "source": "TCE"
+  },
+  {
+   "ENG_name": "Soulknife",
+   "name": "魂刃",
+   "shortName": "魂刃",
+   "source": "TCE",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Soulknife",
+    "name": "魂刃",
+    "source": "TCE",
+    "shortName": "魂刃",
+    "className": "游荡者",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Soulknife",
+     "name": "魂刃",
+     "source": "TCE",
+     "shortName": "魂刃",
+     "className": "游荡者",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "name": "诡术师",
+   "shortName": "诡术师",
+   "className": "游荡者",
+   "source": "XPHB"
+  },
+  {
+   "name": "刺客",
+   "shortName": "刺客",
+   "className": "游荡者",
+   "source": "XPHB"
+  },
+  {
+   "name": "魂刃",
+   "shortName": "魂刃",
+   "className": "游荡者",
+   "source": "XPHB"
+  },
+  {
+   "name": "盗贼",
+   "shortName": "盗贼",
+   "className": "游荡者",
+   "source": "XPHB"
+  },
+  {
+   "ENG_name": "Scion of the Three",
+   "name": "三神门徒",
+   "shortName": "三神门徒",
+   "source": "FRHoF",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "page": 23,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "innate": {
+      "3": [
+       {
+        "choose": {
+         "from": [
+          "次级幻象|xphb#c",
+          "剑刃防护|xphb#c",
+          "颤栗之触|xphb#c"
+         ],
+         "count": 1
+        }
+       }
+      ]
+     },
+     "ability": "int"
+    }
+   ],
+   "subclassFeatures": [
+    "三神门徒|游荡者|XPHB|三神门徒|FRHoF|3|FRHoF",
+    "袭杀恐惧|游荡者|XPHB|三神门徒|FRHoF|9|FRHoF",
+    "恶毒灵光|游荡者|XPHB|三神门徒|FRHoF|13|FRHoF",
+    "恐怖化身|游荡者|XPHB|三神门徒|FRHoF|17|FRHoF"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Phantom",
+   "name": "鬼魅",
+   "shortName": "鬼魅",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "innate": {
+      "9": {
+       "rest": {
+        "1": [
+         "死者交谈|xphb"
+        ]
+       }
+      }
+     },
+     "ability": "dex"
+    }
+   ],
+   "subclassFeatures": [
+    "鬼魅|游荡者|XPHB|鬼魅|RHW|3|RHW",
+    "逝者遗物|游荡者|XPHB|鬼魅|RHW|9|RHW",
+    "死亡之声|游荡者|XPHB|鬼魅|RHW|9|RHW",
+    "幽灵漫步|游荡者|XPHB|鬼魅|RHW|13|RHW",
+    "死亡之友|游荡者|XPHB|鬼魅|RHW|17|RHW"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "name": "策士",
+   "shortName": "策士",
+   "className": "游荡者",
+   "source": "SCAG"
+  },
+  {
+   "name": "风流剑客",
+   "shortName": "风流剑客",
+   "className": "游荡者",
+   "source": "SCAG"
+  },
+  {
+   "name": "风流剑客",
+   "shortName": "风流剑客",
+   "className": "游荡者",
+   "source": "XGE"
+  },
+  {
+   "name": "光辉之刃",
+   "shortName": "光辉之刃",
+   "className": "游荡者",
+   "source": "SHO"
+  },
+  {
+   "name": "罪人",
+   "shortName": "罪人",
+   "className": "游荡者",
+   "source": "WYM"
+  },
+  {
+   "name": "暗影潜行者",
+   "shortName": "暗影潜行者",
+   "className": "游荡者",
+   "source": "THC"
+  },
+  {
+   "name": "残戮行医",
+   "shortName": "残戮行医",
+   "className": "游荡者",
+   "source": "GTS"
+  },
+  {
+   "name": "蛛网追猎者",
+   "shortName": "蛛网追猎者",
+   "className": "游荡者",
+   "source": "VDS"
+  },
+  {
+   "name": "蜡艺师",
+   "shortName": "蜡艺师",
+   "className": "游荡者",
+   "source": "LOO"
+  },
+  {
+   "name": "缚影使",
+   "shortName": "缚影使",
+   "className": "游荡者",
+   "source": "ACT"
+  },
+  {
+   "name": "鬼魅",
+   "shortName": "鬼魅",
+   "className": "游荡者",
+   "source": "VRGR-V"
+  }
+ ],
+ "classFeature": [
+  {
+   "name": "专精",
+   "className": "游荡者",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级起，你选择两个已有技能熟练项，或者一个技能熟练项和盗贼工具熟练项。此后你进行该项目的检定时，可以使用双倍的熟练加值。\n第6级时，你可以再选择另外两个已有的技能熟练项（或盗贼工具熟练项）从该特性中获益。"
+   ]
+  },
+  {
+   "name": "偷袭",
+   "className": "游荡者",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级起，你就知道如何精确地攻击分心的敌人。每当你的攻击命中一个生物时，如果该攻击的攻击检定带有优势，则可以造成额外1d6的伤害。该伤害每回合可以产生一次，且造成伤害的攻击必须使用带灵巧属性的武器或远程武器。\n如果目标生物身边5尺内还有其他与之敌对的未失能生物，则只要你的攻击检定不具有劣势，就可以发动偷袭。（但仍需要灵巧或远程武器）\n你的偷袭伤害也将会随游荡者职业等级的提升而提高，其具体数值见“游荡者职业表”。"
+   ]
+  },
+  {
+   "name": "盗贼黑话",
+   "className": "游荡者",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "作为一名游荡者，你在平时的练习中学会了盗贼间的黑话。盗贼黑话是一门混合了土话、术语和密语的秘密语言，掌握这门语言后，你可以在平时对话中不落痕迹的加入隐藏信息。而只有另一个懂盗贼黑话的生物才能看懂这些隐藏信息。不过这种交流方式需要花费四倍于直接交流所需要的时间。\n另外，你还习得一套用以传达简单短小信息的秘密符文和标识。它能发布的内容诸如某地区是否危险，是否受盗贼公会管辖，附近是否有战利品，附近的人是否好主顾或者路上是否有安全的房屋以供庇护。"
+   ]
+  },
+  {
+   "name": "灵巧动作",
+   "className": "游荡者",
+   "level": 2,
+   "source": "PHB",
+   "entries": [
+    "第2级起，你精妙的反应与身手使你的行动无比迅速。你在战斗中每回合可执行一次附赠动作，该附赠动作可用以执行撤离Disengage、疾走Dash或躲藏Hide三种动作项其中之一。"
+   ]
+  },
+  {
+   "name": "游荡者范型",
+   "className": "游荡者",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级时，你选择学习一种特定的战斗范型。你可以从盗贼Thief、刺客Assassin或者诡术师Arcane Trickster中选择其一。随后，你将在第3，第9，第13、第17级时获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "ENG_name": "Steady Aim",
+   "name": "稳定瞄准",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "level": 3,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 3级游荡者{@variantrule 可选职业特性|tce|可选特性}}",
+    "作为一个附赠动作，你在当前回合为你的下一次攻击提供优势。你只能在你本回合还没有移动的时候使用这个附赠动作，而且在你使用这个附赠动作后，你的速度在当前回合里归0."
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 4,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第10、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "直觉闪避",
+   "className": "游荡者",
+   "level": 5,
+   "source": "PHB",
+   "entries": [
+    "第5级起，当一个你能看见的敌人攻击命中你时，你可以用反应让此次攻击的伤害减半。"
+   ]
+  },
+  {
+   "name": "专精",
+   "className": "游荡者",
+   "level": 6,
+   "source": "PHB",
+   "entries": [
+    "第1级起，你选择两个已有技能熟练项，或者一个技能熟练项和盗贼工具熟练项。此后你进行该项目的检定时，可以使用双倍的熟练加值。\n第6级时，你可以再选择另外两个已有的技能熟练项（或盗贼工具熟练项）从该特性中获益。"
+   ]
+  },
+  {
+   "name": "反射闪避",
+   "className": "游荡者",
+   "level": 7,
+   "source": "PHB",
+   "entries": [
+    "第7级起，你可以灵巧躲过某些特定的区域效应，比如红龙的火焰吐息或是法术*冰风暴Ice storm*。你在成为某一范围效应影响对象时，若该效应允许你通过成功的敏捷豁免来使伤害减半，则你在该豁免成功时不受伤害，而豁免失败时只受一半伤害。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 8,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第10、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Roguish Archetype feature",
+   "name": "游荡者范型特性",
+   "source": "PHB",
+   "page": 94,
+   "srd": true,
+   "basicRules": true,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "level": 9,
+   "entries": [
+    "第9级时，你获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 10,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第10、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "可靠才能",
+   "className": "游荡者",
+   "level": 11,
+   "source": "PHB",
+   "entries": [
+    "第11级起，你自身技能经过精炼而更趋于完美。每当你进行的属性检定可以使用熟练加值时，你可以将d20骰中9或以下的结果都视为10。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 12,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第10、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Roguish Archetype feature",
+   "name": "游荡者范型特性",
+   "source": "PHB",
+   "page": 94,
+   "srd": true,
+   "basicRules": true,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "level": 13,
+   "entries": [
+    "第13级时，你获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "听声辨位",
+   "className": "游荡者",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级起，只要能听到声音，你就可以定位身边10尺内躲藏或隐形的生物。"
+   ]
+  },
+  {
+   "name": "圆滑心智",
+   "className": "游荡者",
+   "level": 15,
+   "source": "PHB",
+   "entries": [
+    "第15级起，你的心理素质获得了大大的加强，并因此获得感知豁免的熟练项。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 16,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第10、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Roguish Archetype feature",
+   "name": "游荡者范型特性",
+   "source": "PHB",
+   "page": 94,
+   "srd": true,
+   "basicRules": true,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "level": 17,
+   "entries": [
+    "第17级时，你获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "飘忽不定",
+   "className": "游荡者",
+   "level": 18,
+   "source": "PHB",
+   "entries": [
+    "第18级起，你飘忽不定的身形让敌人攻击时无从下手。除非你处于失能状态，否则以你为目标的攻击检定无法取得优势。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 19,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第10、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "幸运一击",
+   "className": "游荡者",
+   "level": 20,
+   "source": "PHB",
+   "entries": [
+    "第20级时，你掌握了一手非凡技巧，让你可以随时把握自己的成功之时。当你的攻击未命中时，可以直接更改判定为命中。或者，当你的属性检定失败时，可以直接将d20骰的结果视为20。\n你必须完成一次短休或长休后才能再次使用该特性。"
+   ]
+  },
+  {
+   "name": "专精",
+   "className": "游荡者",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你获得两项由你选择的你已熟练的技能的专精。\n如果你有这两项技能的熟练的话，推荐选择巧手和隐匿。\n当你的游荡者等级为6级时，你额外再获得两项由你选择的你已熟练的技能的专精。"
+   ]
+  },
+  {
+   "name": "偷袭",
+   "className": "游荡者",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你知道如何利用敌人的分心并发动致命的精巧打击。每个回合一次，当你以攻击检定命中了一个生物时，你可以造成1d6的额外伤害。这次攻击必须使用一把灵巧或远程武器并具有优势。额外伤害的伤害类型与该武器的伤害类型一致。\n除此之外，若你的目标周围5尺内有你的盟友，并且该盟友没有陷入失能状态，你的攻击检定也没有劣势的话，则你不需要优势也造成额外伤害。\n你的额外伤害会随着你的游荡者等级提高而增长，具体如游荡者特性表中的偷袭一列所示。"
+   ]
+  },
+  {
+   "name": "盗贼黑话",
+   "className": "游荡者",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你在施展自己游荡者才华的社区里学习了多样的语言。你习得盗贼黑话和第二章的语言表中的一项语言。"
+   ]
+  },
+  {
+   "name": "武器精通",
+   "className": "游荡者",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你对武器的训练使你能够运用两种自选的你具有熟练的武器的精通词条，例如匕首和短弓。\n每当你完成一次长休时，你可以改变你所选择的武器类型。比如你可以改为弯刀和短剑。"
+   ]
+  },
+  {
+   "name": "灵巧动作",
+   "className": "游荡者",
+   "level": 2,
+   "source": "XPHB",
+   "entries": [
+    "你精妙的思维与身手使你的行动无比迅速。在你的回合内，你能够以附赠动作执行疾走，撤离或躲藏动作之一。"
+   ]
+  },
+  {
+   "name": "游荡者子职",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你选择获得一项游荡者子职：诡术师，刺客，  魂刃 或 盗贼。子职的内容见后文。子职是一种特化，在特定的游荡者等级给予你对应的独特能力。此后你将获得你所选的子职所有能力——只要其所需等级不超过你的游荡者等级。游荡者特性表列出了你从子职中获得新特性的游荡者等级。"
+   ]
+  },
+  {
+   "name": "稳定瞄准",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "以一个附赠动作，你在当前回合为你的下一次攻击提供优势。你只能在你本回合还没有移动的时候使用这个附赠动作，而且在你使用这个附赠动作后，你的速度在当前回合里归0。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 4,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如游荡者特性表所示，你还会在第8，第10，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "诡诈打击",
+   "className": "游荡者",
+   "level": 5,
+   "source": "XPHB",
+   "entries": [
+    "你学会了如何使你的偷袭更加狡诈的方法。当你造成偷袭伤害时，你可以选择下列一种诡诈打击的效果加入到本次偷袭中。每种效果都需要花费一定数量的偷袭伤害骰才能生效。你必须在投掷伤害前扣除所花费的偷袭的伤害骰，而效果会在这次攻击的伤害产生后立即发生。例如，如果你在本次偷袭中选择了淬毒效果，那么你在投掷偷袭伤害骰前需要先减少一颗1d6。\n如果一种诡诈打击的效果要求目标进行豁免，其DC为8+你的熟练加值+你的敏捷调整值。\n淬毒Poison（花费：1d6）。你为你的打击附上毒素，强迫目标进行一次体质豁免。若失败，目标将陷入一分钟的中毒状态。目标可以在每次自己的回合结束时重新进行豁免，若成功，中毒状态终止。为了使用这个效果，你必须携带一套制毒工具在身上。\n摔绊Trip（花费：1d6）。若偷袭的目标是大型及以下，它必须成功通过一次敏捷豁免，否则陷入倒地状态。\n撤步Withdraw (花费：1d6)。攻击后你立刻移动至多等于你速度的一半的距离，并且不会引发借机攻击。"
+   ]
+  },
+  {
+   "ENG_name": "Poison (Cost: 1d6)",
+   "name": "投毒（花费：1d6）",
+   "source": "XPHB",
+   "page": 129,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 5,
+   "entries": [
+    "你为你的打击附上毒素，强迫目标进行一次体质豁免。若失败，目标将陷入一分钟的{@condition 中毒|XPHB}状态。目标可以在每次自己的回合结束时重新进行豁免，若成功，{@condition 中毒|XPHB}状态终止。",
+    "为了使用这个效果，你必须携带一套{@item 毒药工具|XPHB}在身上。"
+   ]
+  },
+  {
+   "ENG_name": "Trip (Cost: 1d6)",
+   "name": "摔绊（花费：1d6）",
+   "source": "XPHB",
+   "page": 129,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 5,
+   "entries": [
+    "若目标是大型及以下，它必须成功通过一次敏捷豁免，否则陷入{@condition 倒地|XPHB}状态。"
+   ]
+  },
+  {
+   "name": "直觉闪避",
+   "className": "游荡者",
+   "level": 5,
+   "source": "XPHB",
+   "entries": [
+    "当一个你能看见的攻击者用一次攻击检定命中你时，你可以用你的反应将这次攻击对你造成的伤害减半（向下取整）。"
+   ]
+  },
+  {
+   "ENG_name": "Withdraw (Cost: 1d6)",
+   "name": "撤步（花费：1d6）",
+   "source": "XPHB",
+   "page": 129,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 5,
+   "entries": [
+    "攻击后你立刻移动至多等于你{@variantrule 速度|XPHB}的一半的距离，并且不会引发{@action 借机攻击|XPHB|借机攻击}。"
+   ]
+  },
+  {
+   "name": "专精",
+   "className": "游荡者",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你获得两项由你选择的你已熟练的技能的专精。\n如果你有这两项技能的熟练的话，推荐选择巧手和隐匿。\n当你的游荡者等级为6级时，你额外再获得两项由你选择的你已熟练的技能的专精。"
+   ]
+  },
+  {
+   "name": "反射闪避",
+   "className": "游荡者",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "你可以灵敏地躲避特定的危险。当你受到一个允许你进行敏捷豁免来只承受一半伤害的效应影响时，你在豁免成功时不受伤害，豁免失败时只承受一半伤害。你无法在失能状态下使用此特性。"
+   ]
+  },
+  {
+   "name": "可靠才能",
+   "className": "游荡者",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "每当你进行属性检定，并且可以运用你的某项技能熟练或工具熟练时，你可以将D20投出的9及以下的结果视为10。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 8,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如游荡者特性表所示，你还会在第8，第10，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 130,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 9,
+   "entries": [
+    "你获得一个游荡者子职特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如游荡者特性表所示，你还会在第8，第10，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "进阶诡诈打击",
+   "className": "游荡者",
+   "level": 11,
+   "source": "XPHB",
+   "entries": [
+    "你在造成偷袭伤害时可以一次性选用两种诡诈打击效果，每种效果都需要独立扣除对应的偷袭伤害骰。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 12,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如游荡者特性表所示，你还会在第8，第10，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 131,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 13,
+   "entries": [
+    "你获得一个游荡者子职特性。"
+   ]
+  },
+  {
+   "ENG_name": "Daze (Cost: 2d6)",
+   "name": "恍惚（花费：2d6）",
+   "source": "XPHB",
+   "page": 131,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 14,
+   "entries": [
+    "目标必须成功通过一次体质豁免，否则该目标的下一回合只能选择下列行为中的一项：移动、执行一个动作或执行一个{@variantrule 附赠动作|XPHB}。"
+   ]
+  },
+  {
+   "name": "凶狡打击",
+   "className": "游荡者",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "你习得了新的偷袭方法，使你的偷袭变得更为凶狠卑劣。下列效果现在加入你的诡诈打击选项。\n恍惚Daze（花费：2d6）。目标必须成功通过一次体质豁免，否则该目标的下一回合只能选择下列行为中的一项：移动、执行一个动作或执行一个附赠动作。\n击昏Knock Out（花费：6d6）。目标必须成功通过一次体质豁免，否则将陷入昏迷状态，持续一分钟或受到任何伤害。昏迷的目标每在自己的回合结束时都可以重新进行豁免，若通过，则状态结束。\n眩目Obscure(花费：3d6)。你对目标的眼睛发动袭击。目标必须成功通过一次敏捷豁免，否则将陷入目盲状态，直到其下个回合结束。"
+   ]
+  },
+  {
+   "ENG_name": "Knock Out (Cost: 6d6)",
+   "name": "击昏（花费：6d6）",
+   "source": "XPHB",
+   "page": 131,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 14,
+   "entries": [
+    "目标必须成功通过一次体质豁免，否则将陷入{@condition 昏迷|XPHB}状态，持续一分钟或受到任何伤害。{@condition 昏迷|XPHB}的目标每在自己的回合结束时都可以重新进行豁免，若通过，则状态结束。"
+   ]
+  },
+  {
+   "ENG_name": "Obscure (Cost: 3d6)",
+   "name": "眩目（花费：3d6）",
+   "source": "XPHB",
+   "page": 131,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 14,
+   "entries": [
+    "目标必须成功通过一次敏捷豁免，否则将陷入{@condition 目盲|XPHB}状态，直到其下个回合结束。"
+   ]
+  },
+  {
+   "name": "圆滑心智",
+   "className": "游荡者",
+   "level": 15,
+   "source": "XPHB",
+   "entries": [
+    "你狡猾的头脑很难被人控制。你获得感知豁免与魅力豁免的熟练。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游荡者",
+   "level": 16,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如游荡者特性表所示，你还会在第8，第10，第12，第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 131,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "level": 17,
+   "entries": [
+    "你获得一个游荡者子职特性。"
+   ]
+  },
+  {
+   "name": "飘忽不定",
+   "className": "游荡者",
+   "level": 18,
+   "source": "XPHB",
+   "entries": [
+    "你飘忽不定的身形让敌人攻击时无从下手。只要你并未失能，以你为目标的攻击检定无法具有优势。"
+   ]
+  },
+  {
+   "name": "传奇恩惠",
+   "className": "游荡者",
+   "level": 19,
+   "source": "XPHB",
+   "entries": [
+    "你获得一项传奇恩惠专长（见第五章）或其他一项你选择的适用的专长。推荐选择暗夜精魂之恩惠。"
+   ]
+  },
+  {
+   "name": "幸运一击",
+   "className": "游荡者",
+   "level": 20,
+   "source": "XPHB",
+   "entries": [
+    "你留了一手非凡技巧，让你可以随时把握自己的成功之际。当你在一次D20检定中失败时，你可以将骰值改为20。\n此特性一经使用，直至完成短休或长休你都无法再次使用。"
+   ]
+  }
+ ],
+ "subclassFeature": [
+  {
+   "ENG_name": "Arcane Trickster",
+   "name": "诡术师",
+   "source": "PHB",
+   "page": 97,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "诡术师",
+   "subclassSource": "PHB",
+   "level": 3,
+   "entries": [
+    "一些游荡者会学习幻术系和惑控系的诡术，以这些魔法来提高自己已经相当老练的隐匿和灵动水平。这些游荡者包括扒手和窃贼，也包括一些恶作剧者或离间者，也有相当一些成为冒险者。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "施法|游荡者||诡术师||3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "法师之手诈术|游荡者||诡术师||3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Mage Hand Legerdemain",
+   "name": "法师之手诈术",
+   "source": "PHB",
+   "page": 97,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "诡术师",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "第3级起，你施展{@spell 法师之手}时可以制作一个{@condition 隐形}的幽灵手，且你可以用它来做下列特殊任务：",
+    {
+     "type": "list",
+     "items": [
+      "你可以传递一个幽灵手持握的物件到其他生物携带或着装的容器中。",
+      "你可以取回一个其他生物携带或着装容器内的物件。",
+      "你可以用{@item 盗贼工具|phb}在其施法范围内撬锁和解除陷阱。"
+     ]
+    },
+    "你可以在目标生物不知情的前提下完成这些任务之一，前提是你必须进行一次敏捷（{@skill 巧手}）检定，并在与该生物的感知（{@skill 察觉}）检定对抗中胜出。",
+    "此外，你还可以用你的灵巧动作特性给予的附赠动作来控制法师之手。"
+   ]
+  },
+  {
+   "ENG_name": "Spellcasting",
+   "name": "施法",
+   "source": "PHB",
+   "page": 97,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "诡术师",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "第3级起，你获得施法能力。参考{@book 第十章|PHB|10}的施法规则，以及{@book 第十一章|PHB|11}的{@filter 法师法术列表|spells|class=法师}。",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Cantrips",
+       "name": "戏法",
+       "type": "entries",
+       "entries": [
+        "你从法师法术列表中选择三个戏法作为已知法术（{@spell 法师之手}以及另外两个法师法术列表中的自选戏法）。第10级时，你再获得额外一个法师戏法。"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Spell Slots",
+       "name": "法术位",
+       "type": "entries",
+       "entries": [
+        "\"诡术师施法能力\"表中列出了你用以施展你{@filter 法师法术|spells|class=法师}的1环及更高环阶法术位数量。施展这些法术时，你必须同时消耗一个不低于该法术环阶的法术位。而已消耗的法术位可以通过完成以此长休进行恢复。",
+        "例如，如果你已经习得1环法术{@spell 魅惑类人}，并且有一个1环和一个2环法术位可用，你可以使用任一法术位来施放{@spell 魅惑类人}。"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Spells Known of 1st-Level and Higher",
+       "name": "已知法术",
+       "type": "entries",
+       "entries": [
+        "你习得三个自选的1环法师法术，其中两个必须从惑控系和幻术系中选择。",
+        "表格\"诡术师施法能力\"中\"已知法术\"一栏记录了你获得更多已知法术时的相应等级。你只能选择惑控系或幻术系法术，且所获得法术的环阶不能超过你所拥有的最高法术位环阶。例如，如果你在本职业达到第7级，则可以学习一个新的1环法术或2环法术。",
+        "在第8、14和20级时，你可以学习任何学派的法术。",
+        "你每次提升本职业等级时，可以将一个已知法术替换为另一个法师法术。这个新法术的环阶不能超过你所拥有的最高法术位达到环阶，且必须从惑控系或幻术系中选择（除非你替换的是第8，第14或第20级习得的法术）。"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Spellcasting Ability",
+       "name": "施法属性",
+       "type": "entries",
+       "entries": [
+        "你通过研究和记忆学习魔法，因此智力是你施展法师法术的关键属性。每当你的法术需要施法属性时均指向你的智力值。而你的法师法术的豁免DC和攻击检定，则使用你的智力调整值",
+        {
+         "ENG_name": "Spell",
+         "name": "法术",
+         "type": "abilityDc",
+         "attributes": [
+          "int"
+         ]
+        },
+        {
+         "ENG_name": "Spell",
+         "name": "法术",
+         "type": "abilityAttackMod",
+         "attributes": [
+          "int"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "诡术伏击",
+   "className": "游荡者",
+   "level": 9,
+   "source": "PHB",
+   "entries": [
+    "第9级起，如果你在针对某个生物躲藏的状态下对其施法，则该生物在本回合里对抗该法术所进行的豁免检定具有劣势。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "name": "万能诡术",
+   "className": "游荡者",
+   "level": 13,
+   "source": "PHB",
+   "entries": [
+    "第13级时，你获得用你的*法师之手mage hand*使目标分心的能力。作为一个附赠动作，你可以在自己的回合内指定该法术之幽灵手周边5尺内的一个生物。直至该回合结束之前，你对该生物发动的攻击检定具有优势。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "name": "法术窃贼",
+   "className": "游荡者",
+   "level": 17,
+   "source": "PHB",
+   "entries": [
+    "第17级起，你获得盗取其他施法者施法知识的能力。\n当一个生物施展的一个法术以你为目标，或其法术效应范围包含你所在区域时，你可以立即用你的反应强迫该生物以其施法属性调整值进行一次豁免。其DC等同于你的法术豁免DC。若其豁免失败，则你取消该法术对你的效应。如果该法术至少为1环且属于你可以施展的环阶（但不需要是法师法术），则你还可以盗取该法术的知识。在接下来的8小时内，你视为习得该法术且能用你的法术位施展该法术。而目标生物则无法施展该法术直至8小时过去。\n你必须完成一次长休后才能再次使用该特性。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "ENG_name": "Assassin",
+   "name": "刺客",
+   "source": "PHB",
+   "page": 97,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "刺客",
+   "subclassSource": "PHB",
+   "level": 3,
+   "entries": [
+    "你专注于残忍冷酷的死亡艺术。许多不同的游荡者都会追随此范型：诸如雇佣杀手，间谍，赏金猎人，甚至还有那些专为神歼灭敌人的特殊祭司。他们会结合利用隐匿、下毒、易容等手段有效的铲除敌人。",
+    "你将在第3，第9，第13、第17级时获得所选范型的相应特性。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "暗杀|游荡者||刺客||3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "附赠熟练|游荡者||刺客||3"
+    }
+   ]
+  },
+  {
+   "name": "暗杀",
+   "className": "游荡者",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级起，你一旦获得先机就会变得更加致命。你对战斗开始后还没开始过自己回合的生物发动攻击时，所进行的攻击检定具有优势。此外，当你攻击命中被突袭的生物时，你本次攻击视为掷出了重击。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "ENG_name": "Bonus Proficiencies",
+   "name": "附赠熟练",
+   "source": "PHB",
+   "page": 97,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "刺客",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你在第3级选择此范型时，获得{@item 易容工具|phb}和{@item 毒药工具|phb}的熟练项。"
+   ]
+  },
+  {
+   "name": "专业渗透",
+   "className": "游荡者",
+   "level": 9,
+   "source": "PHB",
+   "entries": [
+    "第9级起，你可以不限次的为自己伪造身份。你必须花费七天和25gp来为身份编造历史、工作和人际关系。不过你不能伪造成已存在的角色。例如，你获得相应的衣服、介绍信和官方证明，使得你自己看上去就是一个来自偏远城市贸易屋的成员，然后你就可以混入其他商人中间。\n此后，如果你通过易容获取了这个身份，其他生物就相信你是那个人，直至其得到一个显而易见的理由可以否定这个身份。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "冒充者",
+   "className": "游荡者",
+   "level": 13,
+   "source": "PHB",
+   "entries": [
+    "第13级起，你获得准确模仿他人说话，写字和行为的能力。你必须花费至少三小时来学习模仿目标的这三方面行为：听他说话，练习写字并观察其特殊习惯。\n这种伪装手段主要针对那些不细心观察的对象。如果某个机警的生物觉得你有问题，则你此时为避免被识破而进行的所有魅力（欺瞒）检定都具有优势。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "致命一击",
+   "className": "游荡者",
+   "level": 17,
+   "source": "PHB",
+   "entries": [
+    "第17级起，你熟练掌握瞬杀的技巧。你攻击命中一个被突袭的生物时，该生物必须进行一次体质豁免（DC8＋你的敏捷调整值＋你的熟练加值）。豁免失败时，你将对其造成双倍伤害。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "ENG_name": "Thief",
+   "name": "盗贼",
+   "source": "PHB",
+   "page": 97,
+   "srd": true,
+   "basicRules": true,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "盗贼",
+   "subclassSource": "PHB",
+   "level": 3,
+   "entries": [
+    "你专注于训练盗窃的技能。窃贼，匪徒，扒手和其他的犯罪类型常常会追随此范型，还有那些自称寻宝者，探险家，探索者和调查员的游荡者也是如此。除了提升灵巧和隐匿的技艺外，你还将学会如何探索古代废墟，解读罕见的语言和使用魔法物品的技巧。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "快手|游荡者||盗贼||3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "梁上君子|游荡者||盗贼||3"
+    }
+   ]
+  },
+  {
+   "name": "快手",
+   "className": "游荡者",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级起，你可以使用从“灵巧动作”特性中得到的附赠动作来进行一次敏捷（巧手）检定，或是以该附赠动作使用盗贼工具来解除陷阱、撬锁，或执行“使用物件”动作。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "梁上君子",
+   "className": "游荡者",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级选择此范型起，你获得比通常情况更快的攀爬速度，从而使攀爬不再消耗额外的移动力。\n此外，当你做一个有助跑的跳远时，跳远距离增加一定的尺数，其数值等于你的敏捷调整值。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "极效潜行",
+   "className": "游荡者",
+   "level": 9,
+   "source": "PHB",
+   "entries": [
+    "第9级起，当回合内移动距离不超过自身速度一半时，你的敏捷（隐匿）检定将获得优势。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "使用魔法装置",
+   "className": "游荡者",
+   "level": 13,
+   "source": "PHB",
+   "entries": [
+    "第13级起，你学习的魔法知识足以让你使用并不是为你设计的魔法物品。此后你在使用魔法物品时，可以忽略所有职业、种族和等级的限制条件。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "窃盗本能",
+   "className": "游荡者",
+   "level": 17,
+   "source": "PHB",
+   "entries": [
+    "第17级起，你变的更加擅长伏击和快速脱离险境。战斗的第一轮里，你可以行动两个回合：即你先以自己正常的先攻执行一个回合行动，再以先攻数值减10的数值作为另一先攻额外执行一回合的行动。你不能在遭受突袭时使用该特性。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "ENG_name": "Phantom",
+   "name": "鬼魅",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "TCE",
+   "level": 3,
+   "entries": [
+    "游荡者的生活常常是日复一日的游走在生死边缘，一边冒着生命危险，另一边取走别人的性命。在生死之间冒险的时候，一些游荡者与死亡本身结下了奇妙的不解之缘。他们浸淫于与负能量之中，从死者那里获取知识，直到他们自身都变得如同幽灵一般。盗贼工会对鬼魅们高度重视，因为他们是极其高效的情报员和间谍。",
+    "堕影冥界的诸多影灵专精于这些骇人的技艺，有些甚至愿意传授。在塞尔Thay（被遗忘的国度）与坎纳斯Karrnath（艾伯伦）有不少潜心修炼的死灵法师，一名鬼魅可能成为一位法师的密友抑或是左右手。在死神的神殿之中，鬼魅则会是追踪逃避死亡之人并获取墓穴中失落的知识的特工。",
+    "你是如何发现的这一黑暗力量？你是否曾长眠于墓场之中并在醒来时意识到了自己的特异能力？抑或是你在侍奉于一名死神的神殿或盗贼工会中获取了这份力量？",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "亡者余声|游荡者||鬼魅|TCE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "墓穴惊嚎|游荡者||鬼魅|TCE|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Wails from the Grave",
+   "name": "墓穴惊嚎",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级鬼魅特性}",
+    "当你将某人推向墓穴时，你也可以沟通死亡之力，使得亡者的嚎哭短暂环绕着新的目标。当你在你的回合对于一个生物造成了偷袭攻击的伤害之后，你可以立即使该生物30尺内第二个可见生物受到一次暗蚀伤害。掷你一半数量的偷袭骰（向上取整），你对第二目标造成等同于投掷结果之和数值的暗蚀伤害。",
+    "你可以使用此能力的次数等同于你的熟练加值。当你完成一次长休后，你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Whispers of the Dead",
+   "name": "亡者余声",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级鬼魅特性}",
+    "死者的回响依附着你，一个幽灵般的存在会向你分享它的知识。每当你完成一次短休或长休时，你可以选择一项你缺乏熟练的技能或工具，并获得它的熟练项。当你用这个能力来获得一项不同的熟练时，你会失去原来选择的那项熟练项。"
+   ]
+  },
+  {
+   "ENG_name": "Tokens of the Departed",
+   "name": "逝者遗物",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "TCE",
+   "level": 9,
+   "header": 2,
+   "entries": [
+    "{@i 9级鬼魅特性}",
+    "当生命终结于你的眼前，你可从离去的灵魂中抓取出一小片其生命精华的具现化象征：当你30尺内一个可见生物死亡时，你可以以一个反应张开一只空闲的手，使得一个微型的饰品出现在你的掌中，那是一个魂器。DM决定魂器的外观，或者让你骰{@item 饰品|phb|饰品}表（{@i 玩家手册}）来决定它的外观。你最多可以同时持有你的熟练加值个的魂器，当你所持魂器数目达到上限时你不再能制造新的魂器。",
+    "你能以下列方式使用魂器：",
+    {
+     "type": "list",
+     "items": [
+      "当你随身携带着魂器时，由于你的生命力受到了魂器内蕴藏的生命精华的强化，你在死亡豁免和体质豁免上具有优势。",
+      "当你在你的回合里造成偷袭攻击伤害时，你可以销毁你的一个魂器，在不消耗能力使用次数的情况下，立刻使用墓穴惊嚎特性。",
+      "以一个动作，你可以销毁一个你的魂器（无论它在哪里）。当你如此做时，你可以向与魂器相关的灵魂一个问题。灵魂将出现在你面前并以它生前所知的一种语言回答。它并无义务对你诚实，并由于其对自由的渴望将回答地尽可能的简略。这个灵魂应当只会知道他生前所知的事实，不过一切以你的DM为准。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Ghost Walk",
+   "name": "幽灵漫步",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "TCE",
+   "level": 13,
+   "header": 2,
+   "entries": [
+    "{@i 13级鬼魅特性}",
+    "你可以部分的进入死亡的领域，变得如同一个幽灵。作为一个附赠动作，你化为一种灵体的形态。处于这种形态时，你获得10尺的飞行速度、能悬浮、且以你为目标的攻击检定都将具有劣势。你也可以如同是{@quickref 困难地形||3}那样穿过生物或者物品，但是如果回合结束时你仍然在一个生物或物品的位置上，你将受到{@damage 1d10}点力场伤害。",
+    "该形态持续10分钟。你也可以用一个附赠动作将其提前解除。若你想要再次使用特性，要么你得完成一次长休，要么你得销毁一个你的魂器（作为激活幽灵漫步的附赠动作的一部分）。"
+   ]
+  },
+  {
+   "ENG_name": "Death's Friend",
+   "name": "死亡之友",
+   "source": "TCE",
+   "page": 62,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "TCE",
+   "level": 17,
+   "header": 2,
+   "entries": [
+    "{@i 17级鬼魅特性}",
+    "你与死亡的联系变得如此紧密，以至于你获得了如下增益：",
+    {
+     "type": "list",
+     "items": [
+      "当你使用墓穴惊嚎的时候，你可以同时对你的攻击目标和第二目标造成那份暗蚀伤害，",
+      "在一次长休的结束时，若你没有任何魂器，一些死者的灵魂会自动被你吸引，在你手中形成一个魂器。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Psi-Bolstered Knack",
+   "name": "灵振诀窍",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 3,
+   "consumes": {
+    "ENG_name": "Psionic Energy Die",
+    "name": "灵能骰"
+   },
+   "entries": [
+    "如果你使用具有熟练的技能或工具进行一次属性检定但失败，你可以投掷灵能骰，并将掷骰结果加到检定结果中，这可能会让失败的检定变为成功。你只在掷骰结果让检定变为成功时才会消耗那颗灵能骰。"
+   ]
+  },
+  {
+   "ENG_name": "Psychic Whispers",
+   "name": "心灵低语",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 3,
+   "entries": [
+    "你能够利用灵能力在自己和他人之间建立起基于心灵感应的交流——在需要无声渗透时这堪称完美。以一个动作，从可见的生物中选择一到至多等同于你熟练加值数量的生物，掷一枚灵能骰。你在投掷结果数值小时内，获得与选择的生物通过心灵感应进行交流的能力。你可以和选择生物进行双向的心灵感应交流，但在发送或接收信息时（无需动作），你和选择生物之间的距离不可超过一里。不会说任何语言的生物无法通过此方法进行交流，而且生物可以随时终止心灵感应的链接（无需动作）。你和链接的生物不需要能说同一种语言也能互相理解话语。",
+    "在每次长休后你可以免费使用一次这个异能。除此之外，每次使用它你都得消耗一枚灵能骰。"
+   ]
+  },
+  {
+   "ENG_name": "Soulknife",
+   "name": "魂刃",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 3,
+   "entries": [
+    "绝大多数的刺客都用物理的武器袭击，而许多的夜贼和密探利用{@item 盗贼工具|PHB}来潜入安全的位置。与他们相反，一个魂刃者利用心灵的力量来攻击和渗透，击穿阻碍他们的物理和心灵障碍。这些游荡者们从内心之中发掘出灵能之力，并且引导灵能来协助他们的老本行。尽管有些游荡者极力排斥\"奇怪的心灵力量\"，并对使用这一力量经营生意的魂刃者表示怀疑，但魂刃者依然能轻易成为盗贼行会的一员，同时大多数政府也乐意雇佣他们作为间谍。",
+    "在物质界和妖精荒野的古老森林中，一些木精灵踏上了魂刃者之道，使他们成为森林中无声而致命的守护者。在吉斯人永无止境的战争中，当吉斯泽莱人需要对吉斯洋基仇敌进行秘密行动时，他们会被鼓励成为魂刃者。",
+    "身为一名魂刃者，你的灵能可能从你还是个孩子的时候就一直伴随着你，直到你在面临冒险的压力时才显露潜能。或者你可能找到了一个隐居的灵能修士团，花了很多年的时间学习如何显现你的力量。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "灵能力量|游荡者||魂刃|TCE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "心灵之刃|游荡者||魂刃|TCE|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Psionic Power",
+   "name": "灵能力量",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级魂刃特性}",
+    "你内心拥有一个灵能力量的源泉。这股能量表现为每个{@dice d6}的灵能骰。你拥有两倍熟练加值的灵能骰数量，且它们为你所拥有的各种心灵异能提供能量，详情如下。",
+    "你在使用一些能力时需要消耗灵能骰，如异能描述中所述，如果一些异能在你的灵能骰全部掷完后还需要你使用一个灵能骰，你就不能使用该异能。你可以在完成一次长休后恢复所有已使用的灵能骰。此外，你可以使用一个附赠动作重新获得一个已使用的灵能骰，但你在完成一次短休或长休之前不能再次获得。",
+    "当你达到此职业的特定等级时，你的灵能骰大小有所增长：第5级({@dice d8})，第11级({@dice d10})，第17级({@dice d12})。",
+    "可以在以下异能使用你的灵能骰：",
+    {
+     "type": "options",
+     "entries": [
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "灵振诀窍|游荡者|PHB|魂刃|TCE|3"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "心灵低语|游荡者|PHB|魂刃|TCE|3"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Psychic Blades",
+   "name": "心灵之刃",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级魂刃特性}",
+    "你能将自己的心灵异能塑造为由灵能构成的闪亮刀刃。当你执行{@action 攻击}动作时，你能在空闲的手中塑造出心灵之刃，并使用它来进行攻击。这把魔法刀刃是一件具有灵巧和投掷属性的简易近战武器。它的正常射程为60尺且没有最大射程，命中时造成等于{@damage 1d6}加上用于攻击检定的属性值调整值的心灵伤害。该刀刃在命中或失手后立即消失，若造成伤害也不会在目标身上留下任何痕迹。",
+    "当你使用心灵之刃发动攻击后的同一回合中，只要你的另一只手空闲，就能以一个附赠动作在那只手中塑造第二把念刃，并再进行一次近战武器攻击或是远程武器攻击。此附赠攻击的伤害骰为{@damage 1d4}，而非{@damage 1d6}。"
+   ]
+  },
+  {
+   "ENG_name": "Homing Strikes",
+   "name": "寻的攻击",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 9,
+   "entries": [
+    "若在使用心灵之刃进行的攻击中失手，你可以掷一枚灵能骰，并将掷骰结果加到这次攻击检定中。如果这使攻击变为了命中，那枚灵能骰将被消耗。"
+   ]
+  },
+  {
+   "ENG_name": "Psychic Teleportation",
+   "name": "心灵传送",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 9,
+   "entries": [
+    "以一个附赠动作，你塑造一把心灵之刃，消耗并投掷一枚灵能骰，将心灵之刃投掷到至多距离灵能骰结果数字十倍尺数的一处可见的未被占据的空间内。你传送到目标位置，同时那把心灵之刃将消失。"
+   ]
+  },
+  {
+   "ENG_name": "Soul Blades",
+   "name": "灵魂之刃",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 9,
+   "header": 2,
+   "entries": [
+    "{@i 9级魂刃特性}",
+    "你的心灵之刃现在成为了你那充盈灵能之灵魂的具现，这使你能够通过以下的方式更好地控制它：",
+    {
+     "type": "options",
+     "entries": [
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "寻的攻击|游荡者|PHB|魂刃|TCE|9"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "心灵传送|游荡者|PHB|魂刃|TCE|9"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Psychic Veil",
+   "name": "灵能面纱",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 13,
+   "header": 2,
+   "entries": [
+    "{@i 13级魂刃特性}",
+    "你可以编织一层灵能面纱来掩盖你。以一个动作，你连同你所穿或携带的任何东西可以魔法性地{@condition 隐形}至多1小时。若你主动解除隐形（无需动作）、发动攻击、或迫使一个生物进行豁免检定，此隐形状态将会提前结束。",
+    "当你使用该特性后，直到你完成一次长休为止你都不能再次使用它。你也可以消耗一枚灵能骰来再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Rend Mind",
+   "name": "撕裂心智",
+   "source": "TCE",
+   "page": 63,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "TCE",
+   "level": 17,
+   "header": 2,
+   "entries": [
+    "{@i 17级魂刃特性}",
+    "你能让你的念刃直接切削一个生物的心智。当你使用心灵之刃对一个生物造成偷袭攻击伤害时，你能迫使其进行一次感知豁免（DC=8+你的熟练加值+你的敏捷调整值）。若豁免失败，目标将在陷入长达一分钟的{@condition 震慑}。被{@condition 震慑}的目标可以在他的回合结束时重复豁免，如果成功这一效应将结束。",
+    "当你使用该特性后，直到你完成一次长休为止你都不能再次使用它。你也可以消耗三枚灵能骰来再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Inquisitive",
+   "name": "调查员",
+   "source": "XGE",
+   "page": 45,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "调查员",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "作为一名经典的调查员人员，你精于揭开秘密，开解谜团。你不光用锐利的双眼去寻找细节，也会使用老练的技术去阅读他人的言辞与表情，从他们的一言一词中发掘他们的话中真意。你娴于找出那些行凶后藏匿于人群中的凶手，并击败它们。而你的精益学识与你的锐利眼光能令你揭示并终结隐藏的罪恶。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "辨谎之耳|游荡者||调查员|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "鉴识之眼|游荡者||调查员|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "战术洞悉|游荡者||调查员|XGE|3"
+    }
+   ]
+  },
+  {
+   "name": "辨谎之耳",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "当你在3级选择此范型时，你发掘出了凭音辨认谎言的能力。当你进行一次感知（洞悉）检定来察觉一个生物是否在说谎时，你可以将d20骰中7或更低的骰值视为8。"
+   ],
+   "subclassShortName": "调查员"
+  },
+  {
+   "name": "鉴识之眼",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "3级起，你可以使用附赠动作来进行一次感知（察觉）检定来侦测一个隐藏的生物或物体，或者是进行一次智力（调查）检定来揭示和破译线索。"
+   ],
+   "subclassShortName": "调查员"
+  },
+  {
+   "name": "战术洞悉",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "3级时，你获得了解到敌人的战术并加以反制的能力。以一个附赠动作，你对你周围一个你能看见的，且未处于 失能Incapacitated 的生物进行一次感知（洞悉）检定，对抗目标的魅力（欺瞒）检定。若你对抗成功，则你在你的攻击检定并未对该生物具有优势的情况下，也能对其发动偷袭攻击（但在你的攻击检定具有劣势时依旧不行）。\n这一增益将持续1分钟。如果你成功对另一个目标使用了此特性时，前一次的增益将提前结束。"
+   ],
+   "subclassShortName": "调查员"
+  },
+  {
+   "name": "目不转睛",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XGE",
+   "entries": [
+    "9级时，只要你在某一回合中没有移动超过你速度半数的距离，同一回合中你进行任何感知（察觉）检定与智力（调查）检定就都将具有优势。\n（译注：此处是“回合”而非“轮”，鉴于除了自己回合外你没法用移动力移动，所以不使用反应进行移动的话，在你自己回合之外你进行的此类检定将永久带有优势——我是说，预备动作之类的。）"
+   ],
+   "subclassShortName": "调查员"
+  },
+  {
+   "ENG_name": "Unerring Eye",
+   "name": "火眼金睛",
+   "source": "XGE",
+   "page": 45,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "调查员",
+   "subclassSource": "XGE",
+   "level": 13,
+   "header": 2,
+   "entries": [
+    "13级时，你的感官几乎无法再被任何事物欺骗。只要你未处于  {@condition 目盲} 或 {@condition 耳聋}状态，你就可以以一个动作感知你周围30尺内的幻术存在、不在原本形态下的变形生物、以及其他意在欺瞒你感官的魔法。你能感知到有某一效果正在试图欺骗你，但你并无法得知被隐藏的真相与它的真实形态是什么。",
+    "你可以使用本特性的次数等同于你的感知调整值次（至少一次），当你完成一次长休后，你重获所有已消耗的次数。"
+   ]
+  },
+  {
+   "name": "伺隙锐瞳",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XGE",
+   "entries": [
+    "17级时，你学会了如何通过仔细研究生物的战术与行为来找到它弱点。在你对生物使用的战术洞悉 Insightful Fighting 成功生效期间，你对被洞悉生物造成的偷袭伤害提高3d6。"
+   ],
+   "subclassShortName": "调查员"
+  },
+  {
+   "ENG_name": "Mastermind",
+   "name": "策士",
+   "source": "XGE",
+   "page": 46,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "策士",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "策士专注于对人们施加影响和知晓他们的秘密。许多间谍，朝臣和阴谋家会追随这个范型，在密谋中渡过他们全部的生命。言语像你的匕首和毒药一般作为你的武器，通过它们你得到你最喜欢的宝藏--人们的要害所在以及他们言不由衷的支持。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "谋陷大师|游荡者||策士|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "战术大师|游荡者||策士|XGE|3"
+    }
+   ]
+  },
+  {
+   "name": "谋陷大师",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "从3级选择此范型时，你获得易容工具、文书伪造工具、以及一种你自选赌博工具的熟练项。你还会习得两门你自选的语言。\n此外，如果你曾听过一个生物讲话1分钟，且你懂得它说的那门语言，你就可以准确无误地模仿出他的语气与口音。这允许你模仿成某个有特殊地区的特别口音的人。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "战术大师",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "从第3级开始，你可以以附赠动作执行协助Help 动作。此外，当你使用协助Help 动作去支援盟友攻击某个生物时，那一攻击目标可以是30尺范围内的，而不仅限于协助描述的5尺范围内。当然，前提是攻击目标可以看到你或听到你。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "帷幄之士",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XGE",
+   "entries": [
+    "从第9级开始，如果你至少花1分钟观察或与战斗之外的其他生物进行交互，你可以了解到该生物与你自己的各项能力相比的差距信息。选择下列能力之二，DM将告诉它的这些能力，是与你的相等、比你更高、还是比你更低：\n· 智力值\n· 感知值\n· 魅力值\n· 职业等级（如果有的话）\n如果你的DM想的话，你也有可能因此知道这个生物的一段经历或者它的一个性格特征，当然前提是它有的话。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "误导",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XGE",
+   "entries": [
+    "从13级起，你有时候能让另一个生物代替你承受攻击。如果你被选为一次攻击的目标，而你周围5尺范围内有另一个生物为你提供了掩护，你就可以用你的反应将这次攻击的目标转嫁到掩护你的生物身上。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "瞒天之魂",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XGE",
+   "entries": [
+    "从17级起，除非经过你的同意，否则你的思想无法被心灵感应或者其他能力阅读。你还能在这种情况下，使用魅力（欺瞒）检定对抗思想阅读者的感知（洞悉）检定，对抗成功时你可以让其阅读到虚假的思想。\n此外，不管你在说什么，你总是可以选择让魔法判定你在说真话并显现出相应的迹象。你也不会因为魔法效应的影响而被强迫说出真话。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "ENG_name": "Scout",
+   "name": "斥候",
+   "source": "XGE",
+   "page": 47,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "斥候",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "你擅长在远离城市和街道的地方潜行和生存，这让你在探险中能离开你的同伴带头侦查。这一泛型的斥候许多都以荒野为家，与野蛮人和游侠同行，也有许多斥候充当着战争地带的眼睛和耳朵。伏击兵，间谍，赏金猎人--这些只是斥候在世界范围内所扮演的少数角色。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "散兵战术|游荡者||斥候|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "生存专家|游荡者||斥候|XGE|3"
+    }
+   ]
+  },
+  {
+   "name": "散兵战术",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "从3级起，你在战斗中变得难以被压制。当一个敌人在你周围5尺内结束其回合时，你可以以一个反应移动至多你速度一半的距离。此移动不会引发借机攻击。"
+   ],
+   "subclassShortName": "斥候"
+  },
+  {
+   "name": "生存专家",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "当你在3级时选择此范型时，你获得自然与求生技能的熟练项。且当使用上述熟练项进行的任何属性检定时加入你的双倍熟练加值。"
+   ],
+   "subclassShortName": "斥候"
+  },
+  {
+   "name": "优异灵活",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XGE",
+   "entries": [
+    "在9级时，你的步行速度获得10尺加值。若你具有攀爬速度或是游泳速度，这一加值同样会增加到这些速度上。"
+   ],
+   "subclassShortName": "斥候"
+  },
+  {
+   "name": "伏击大师",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XGE",
+   "entries": [
+    "从13级起，你精通于引领伏击战，在战斗中率先行动。\n你进行的先攻检定具有优势。此外，在战斗中的第一轮被你击中的生物将更容易遭受攻击；直到你的下个回合开始前，任何以这些生物为目标的攻击都将具有优势。"
+   ],
+   "subclassShortName": "斥候"
+  },
+  {
+   "name": "瞬息打击",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XGE",
+   "entries": [
+    "从17级起，你可以极度致命的速度打击你的敌人。若你在自己回合中执行了攻击动作，你就可以用附赠动作发起一次额外的攻击。且即使你本回合是否已经用过了偷袭，这次攻击同样可以受益于你的偷袭特性，不过你无法在同一回合中对同一个目标使用超过一次偷袭。"
+   ],
+   "subclassShortName": "斥候"
+  },
+  {
+   "ENG_name": "Swashbuckler",
+   "name": "剑客",
+   "source": "XGE",
+   "page": 48,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "剑客",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "你全身心投入剑术的训练，一种兼顾了速度、优雅和魅力的剑术。对比其他被重甲包裹成粗蛮罐头的战士，你战斗的方式看起来更象在表演。扫荡者、决斗家和海盗是这类的典型。",
+    "风流剑客擅长一对一的决斗，也精通于无所顾虑地双持武器攻击对手，并在那以后飞快远离敌人。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "梦幻舞步|游荡者||剑客|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "潇洒无畏|游荡者||剑客|XGE|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Fancy Footwork",
+   "name": "梦幻舞步",
+   "source": "XGE",
+   "page": 48,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "剑客",
+   "subclassSource": "XGE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "从3级你选择此范型起，你习得如何无机可循的发动打击，让你的敌人无可借机。在你的回合中，如果你对某一生物发动了一次近战攻击，那个生物在你本回合的剩余时间内将无法对你进行借机攻击。"
+   ]
+  },
+  {
+   "ENG_name": "Rakish Audacity",
+   "name": "潇洒无畏",
+   "source": "XGE",
+   "page": 48,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "剑客",
+   "subclassSource": "XGE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "从3级起，你万无一失的自信驱使着你去战斗。你可以将你的魅力调整值作为加值加入到你的先攻检定中。",
+    "你也获得了一种全新的使用你 偷袭Sneak Attack 的方法；只要你在目标生物周围5尺范围内，且没有其他生物在你周围5尺内，而你的攻击检定也没有劣势，那么你就可以无需在攻击检定上具有优势也能对目标生物进行偷袭。不过其他所有关于偷袭的规则依然适用于你。"
+   ]
+  },
+  {
+   "ENG_name": "Panache",
+   "name": "潇洒气质",
+   "source": "XGE",
+   "page": 48,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "剑客",
+   "subclassSource": "XGE",
+   "level": 9,
+   "header": 2,
+   "entries": [
+    "从9级起，你的魅力变得更加万众瞩目。你可以用一个动作进行一次魅力（{@skill 游说}）检定来对抗一个生物的感知（{@skill 洞悉}）检定。目标生物必须能听到你的声音，并且你们两个必须会同一种语言。",
+    "若你的检定成功，且目标生物与你敌对，则它对除你之外的其他目标攻击都将具有劣势，且不能对除你之外的目标进行借机攻击。这个效果持续1分钟。若你的队友攻击了它或是用法术影响了它，或你与目标之间的距离超过了60尺时，这个效果将提前结束。",
+    "若你的检定成功，且目标生物并不与你敌对，它被你{@condition 魅惑}1分钟。当它被{@condition 魅惑}时，它认为你是一个友好的熟人。若你或者你的队友做出任何对他作出了任何有害的行为，这个效果将立即提前结束。"
+   ]
+  },
+  {
+   "ENG_name": "Elegant Maneuver",
+   "name": "优雅战技",
+   "source": "XGE",
+   "page": 48,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "剑客",
+   "subclassSource": "XGE",
+   "level": 13,
+   "header": 2,
+   "entries": [
+    "从13级起，你可以在你的回合中使用附赠动作，来使同一回合中下一次敏捷（{@skill 特技}）检定或力量（{@skill 运动}）检定获得优势。"
+   ]
+  },
+  {
+   "ENG_name": "Master Duelist",
+   "name": "决斗大师",
+   "source": "XGE",
+   "page": 48,
+   "className": "游荡者",
+   "classSource": "PHB",
+   "subclassShortName": "剑客",
+   "subclassSource": "XGE",
+   "level": 17,
+   "header": 2,
+   "entries": [
+    "从17级起，你对剑术的精通使你可以在战斗中转败为胜。当你的攻击失手时，你可以选择以优势再投一次攻击检定。一旦你使用了这一特性，直到完成一次短休或长休前你都不能再次使用它。"
+   ]
+  },
+  {
+   "ENG_name": "Bloodthirst",
+   "name": "嗜血",
+   "source": "FRHoF",
+   "page": 23,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "三神门徒",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "当一个你可见的敌人在距离你30尺内受到伤害，并因此伤害而陷入{@status 浴血|XPHB}状态并且未被直接杀死时，你可以使用一个{@variantrule 反应|XPHB}来{@variantrule 传送|XPHB|传送术}至该敌人5尺内的、你可见的未占据空间。接着你可以进行一次近战攻击。你可以使用此特性的次数等于你的智力调整值（至少1次）。完成一次{@variantrule 长休|XPHB}后，你恢复所有已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Dread Allegiance",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "entries": [
+    "选择死亡三神中的一位：{@deity 班恩|费伦|FRHoF}、{@deity 巴尔|费伦|FRHoF}或{@deity 米尔寇|费伦|FRHoF}。你获得一种伤害类型的{@variantrule 抗性|XPHB}和施展某道戏法的能力，如下表所示。你施展该戏法的施法属性是智力。当你完成一次{@variantrule 长休|XPHB}时，你可以重新选择一位神明。",
+    {
+     "colLabels": [
+      "神",
+      "伤害抗性",
+      "戏法"
+     ],
+     "colStyles": [
+      "col-4",
+      "col-4",
+      "col-4"
+     ],
+     "page": 7,
+     "rows": [
+      [
+       "{@deity 班恩|费伦|FRHoF}",
+       "心灵",
+       "{@spell 次级幻象|XPHB}"
+      ],
+      [
+       "{@deity 巴尔|费伦|FRHoF}",
+       "毒素",
+       "{@spell 剑刃防护|XPHB}"
+      ],
+      [
+       "{@deity 米尔寇|费伦|FRHoF}",
+       "暗蚀",
+       "{@spell 颤栗之触|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "level": 3,
+   "name": "敬怖之忠",
+   "source": "FRHoF",
+   "subclassShortName": "三神门徒",
+   "subclassSource": "FRHoF",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Scion of the Three",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "entries": [
+    "{@i 成为恶意的恐怖代理人}",
+    "三神门徒的力量来源于一群邪恶神祇——在博德之门，人们称这些神祇为\"死亡三神\"，祂们分别是：暴政之神{@deity 班恩|费伦|FRHoF}、谋杀之神{@deity 巴尔|费伦|FRHoF}以及死亡之神{@deity 米尔寇|费伦|FRHoF}。该子职下的游荡者中，一部分人是全心全意地侍奉这三位恐怖神明；但也有一些人是因诅咒或命运的扭曲而被迫走上这条道路的。但无论出于信仰还是诅咒，门徒的力量会让他们掌握到各类神秘的秘术礼赠、展露出用于打击和恐吓敌人的超凡才能。",
+    "三神门徒最常见于博德之门，那是死亡三神尚未成神时的凡间故乡。在{@deity 班恩|费伦|FRHoF}、{@deity 巴尔|费伦|FRHoF}与{@deity 米尔寇|费伦|FRHoF}的地下邪教中，三神门徒常常是教派中最有效率的刺客与间谍。而在博德之门以外，像安姆的影贼公会或深水城的珊萨娜公会这样的世俗盗贼行会，也可能雇佣三神门徒去执行那些极端暴力的契约任务。",
+    {
+     "subclassFeature": "嗜血|游荡者|XPHB|三神门徒|FRHoF|3|FRHoF",
+     "type": "refSubclassFeature"
+    },
+    {
+     "subclassFeature": "敬怖之忠|游荡者|XPHB|三神门徒|FRHoF|3|FRHoF",
+     "type": "refSubclassFeature"
+    }
+   ],
+   "level": 3,
+   "name": "三神门徒",
+   "source": "FRHoF",
+   "subclassShortName": "三神门徒",
+   "subclassSource": "FRHoF",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Strike Fear",
+   "name": "袭杀恐惧",
+   "source": "FRHoF",
+   "page": 23,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "三神门徒",
+   "subclassSource": "FRHoF",
+   "level": 9,
+   "header": 2,
+   "entries": [
+    "你获得以下{@classFeature 诡诈打击|游荡者|XPHB|5|XPHB}选项。",
+    {
+     "ENG_name": "Terrify (Cost: {@dice 1d6})",
+     "name": "震怖（花费：{@dice 1d6}）",
+     "type": "entries",
+     "page": 7,
+     "entries": [
+      "目标必须成功通过一次感知豁免，否则将陷入{@condition 恐慌|XPHB}状态，持续1分钟。当目标因此陷入恐慌时，你对该目标的攻击检定具有{@variantrule 优势|XPHB}。",
+      "被{@condition 恐慌|XPHB}的目标每个自己的回合结束时都可以重新进行该豁免，成功则其身上的该效应提前结束。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Aura of Malevolence",
+   "name": "恶毒灵光",
+   "source": "FRHoF",
+   "page": 24,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "三神门徒",
+   "subclassSource": "FRHoF",
+   "level": 13,
+   "header": 2,
+   "entries": [
+    "你散发出与死亡三神其一相关的恶性之力。每当你使用{@subclassFeature 嗜血|游荡者|XPHB|三神门徒|FRHoF|3|FRHoF}特性并传送时，你传送离开或传送目标的空间（由你选择）10尺内的每个你所选生物都会承受等于你智力调整值的伤害；伤害类型与你选择的敬怖之忠特性赋予的{@variantrule 抗性|XPHB}类型相同。该特性所造成的伤害无视{@variantrule 抗性|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Dread Incarnate",
+   "name": "恐怖化身",
+   "source": "FRHoF",
+   "page": 24,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "三神门徒",
+   "subclassSource": "FRHoF",
+   "level": 17,
+   "header": 2,
+   "entries": [
+    "你获得以下增益。",
+    {
+     "ENG_name": "Cutthroat",
+     "name": "割喉",
+     "type": "entries",
+     "page": 7,
+     "entries": [
+      "每当你完成一次{@variantrule 短休|XPHB}，你恢复一次已消耗的{@subclassFeature 嗜血|游荡者|XPHB|三神门徒|FRHoF|3|FRHoF}特性使用次数。"
+     ]
+    },
+    {
+     "ENG_name": "Murderous Intent",
+     "name": "杀戮意图",
+     "type": "entries",
+     "page": 7,
+     "entries": [
+      "当你投掷{@classFeature 偷袭|游荡者|XPHB|1|XPHB}伤害时，你可以将伤害骰投出的1和2都视为3。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Phantom",
+   "name": "鬼魅",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "{@i 拥抱死亡，驾驭幽冥之力}",
+    "有些游荡者能够穿行于生与死之间的帷幕，引导敌人步入坟墓，并如幽灵般悄无声息地游走于世间。在这样的追寻中，游荡者或许会发现自己与死亡本身建立起一种神秘的联系。他们会逐渐浸淫于负能量之中，使自己的攻击浸染致命的死亡之力，并从已逝的灵魂那里窃取知识。各大盗贼公会极为器重这类游荡者，将其视作最高效的情报搜集者与间谍。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "墓穴惊嚎|游荡者|XPHB|鬼魅|RHW|3|RHW"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "亡者余声|游荡者|XPHB|鬼魅|RHW|3|RHW"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Wails from the Grave",
+   "name": "墓穴惊嚎",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "当你在自己回合内对一个生物造成偷袭伤害后，你可以立即选择第一个生物30尺范围内你可见的第二个生物作为目标。掷出一半数量的偷袭骰（基于你的游荡者等级；向上取整），亡者的哀嚎将在第二个生物周围回荡，该生物受到等同于掷骰结果总和的暗蚀伤害。",
+    "你可以使用此特性的次数等同于你的敏捷调整值（至少一次），且完成一次{@variantrule 长休|XPHB}后恢复所有已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Whispers of the Dead",
+   "name": "亡者余声",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "每当你完成一次{@variantrule 短休|XPHB|短}或{@variantrule 长休|XPHB}时，你可以选择一项你缺乏的技能或工具熟练并获得它，如同一个幽体存在与你分享它的知识。当你再次使用此增益选择不同的熟练时，你将失去此熟练。"
+   ]
+  },
+  {
+   "ENG_name": "Tokens of the Departed",
+   "name": "逝者遗物",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 9,
+   "header": 2,
+   "entries": [
+    "死者的精魂被你吸纳，其过往生命的回响化为承载着共鸣之力的怪异古玩。",
+    "你获得两件灵魂饰品；每个灵魂饰品都是一件微型的物件（由DM决定饰品的具体形态，或者你可以在{@book 玩家手册|XPHB}中的{@item 饰品|XPHB|饰品表}来掷骰生成）。如果你距离某件你的灵魂饰品超过30尺，该饰品会立即传送到你的身上某处出现。",
+    {
+     "ENG_name": "Using Soul Trinkets",
+     "name": "使用灵魂饰品",
+     "type": "entries",
+     "entries": [
+      "你能以下列方式使用魂器：",
+      {
+       "type": "list",
+       "style": "list-hang-notitle",
+       "items": [
+        {
+         "ENG_name": "Death's Knell",
+         "name": "死亡丧钟",
+         "type": "item",
+         "entry": "当你在自己回合里造成偷袭伤害时，你可以摧毁一件灵魂饰品，并立即使用墓冢哀嚎，且不消耗该特性的使用次数。"
+        },
+        {
+         "ENG_name": "Life Essence",
+         "name": "生命精华",
+         "type": "item",
+         "entry": "当你至少拥有一个灵魂饰品时，你在{@variantrule 死亡豁免检定|XPHB|死亡豁免检定}和体质豁免检定上具有{@variantrule 优势|XPHB}。"
+        },
+        {
+         "ENG_name": "Spirit Query",
+         "name": "灵魂问询",
+         "type": "item",
+         "entry": "你可以执行{@action 魔法|XPHB}动作来摧毁一件灵魂饰品，并立即施展法术{@spell 卜筮术|XPHB}，无需任何法术成分，并以体质作为其施法属性。如果你知道该饰品与哪个生物相关联，你可以向该生物的灵魂提出一个问题来替代施展该法术。在此情况下，该灵魂会出现在你面前，并用其生前掌握的一种语言尽可能简明扼要地回答你的问题。"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "ENG_name": "Gaining Additional Soul Trinkets",
+     "name": "获得额外的灵魂饰品",
+     "type": "entries",
+     "entries": [
+      "当你30尺内你可见的一个生物死亡时，你可以用{@variantrule 反应|XPHB}去攫取该生物离体灵魂的碎片，以获得一个新的灵魂饰品。新的饰品会出现在你身上的某处。",
+      "你同时最多只能持有两个灵魂饰品。如果你在达到上限时试图获得一件灵魂饰品，则你现有的一件灵魂饰品会立即被摧毁，并由新饰品取代。你的灵魂饰品持有上限会在你的游荡者等级达到13级时（变为三个）与17级时（变为四个）提升。",
+      "每当你完成{@variantrule 长休|XPHB}时，若你拥有的灵魂饰品不足两件，你将获得灵魂饰品，直到拥有两件为止。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Voice of Death",
+   "name": "死亡之声",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 9,
+   "header": 2,
+   "entries": [
+    "你可以无需法术位地施展一次{@spell 死者交谈|XPHB}，无需任何法术成分，并以敏捷作为其施法属性。当你完成一次短休或长休后你重获以此方式施展该法术的能力。",
+    "当你施展该法术时，你可以选择逝者遗物特性中的一件灵魂饰品作为目标，而非一具尸体。从而使与该饰品相关联生物的灵魂来回答你的提问。"
+   ]
+  },
+  {
+   "ENG_name": "Ghost Walk",
+   "name": "幽灵漫步",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 13,
+   "header": 2,
+   "entries": [
+    "作为一个{@variantrule 附赠动作|XPHB}，你化为某种幽魂形态，并获得以下增益，持续10分钟，或直到你主动结束它们（无需动作）。一旦你使用了这一特性，直到完成一次{@variantrule 长休|XPHB}前你都无法再次使用它，你也可以销毁你的一件来自逝者遗物特性的灵魂饰品来重获这一能力的使用权（无需动作）。",
+    {
+     "ENG_name": "Flight",
+     "name": "飞行",
+     "type": "entries",
+     "entries": [
+      "你获得10尺的{@variantrule 飞行速度|XPHB}且可以悬浮。"
+     ]
+    },
+    {
+     "ENG_name": "Hazy Form",
+     "name": "朦胧形态",
+     "type": "entries",
+     "entries": [
+      "对你进行的攻击检定具有{@variantrule 劣势|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Incorporeal Movement",
+     "name": "虚体移动",
+     "type": "entries",
+     "entries": [
+      "你可以移动穿过其他生物或物件，如同穿过{@variantrule 困难地形|XPHB}一般。如果你的回合结束时处于某个生物或物件内，则会受到{@damage 1d10}力场伤害。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Death's Friend",
+   "name": "死亡之友",
+   "source": "RHW",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "鬼魅",
+   "subclassSource": "RHW",
+   "level": 17,
+   "header": 2,
+   "entries": [
+    "你与死亡的联系变得如此紧密，以至于你获得以下增益。",
+    {
+     "ENG_name": "Death's Lament",
+     "name": "悼亡挽歌",
+     "type": "entries",
+     "entries": [
+      "当你使用墓冢哀嚎时，你可以让第一和第二个目标生物同时受到该特性的暗蚀伤害。"
+     ]
+    },
+    {
+     "ENG_name": "Draw of Death",
+     "name": "死者归引",
+     "type": "entries",
+     "entries": [
+      "当你投掷{@variantrule 先攻|XPHB}时，若你的逝者遗物特性没有剩余的灵魂饰品，则你获得一件灵魂饰品。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Arcane Trickster",
+   "name": "诡术师",
+   "source": "XPHB",
+   "page": 132,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "诡术师",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 利用奥术魔法强化潜行}",
+    "有些游荡者会通过法术来进一步提高自己早已炉火纯青的潜行技艺，并学习各类魔法花招来辅助自己的行当。一些诡术师会利用自己的天赋去帮助自己偷盗或入室行窃，而还有一些诡术师则乐于将掌握的魔法化为恶作剧。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "施法|游荡者|XPHB|诡术师|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "法师之手诈术|游荡者|XPHB|诡术师|XPHB|3"
+    }
+   ]
+  },
+  {
+   "name": "法师之手诈术",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你施展*法师之手Mage Hand*时，你可以通过附赠动作施展，并且你能够使幽灵手变得隐形。你可以通过附赠动作控制幽灵手，并且你可以通过它进行敏捷（巧手 ）检定。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "ENG_name": "Spellcasting",
+   "name": "施法",
+   "source": "XPHB",
+   "page": 132,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "诡术师",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "你学会了如何施展法术。施法规则见{@book 第七章|XPHB|7}。下文将详述如何将这些规则应用于诡术师。",
+    {
+     "ENG_name": "Cantrips",
+     "name": "戏法",
+     "type": "entries",
+     "entries": [
+      "你习得三道法师戏法。{@spell 法师之手|XPHB}以及{@filter 法师法术列表|spells|class=法师}中你选择的两道戏法（法师法术列表见法师职业部分）。推荐选择{@spell 心灵之楔|XPHB}和{@spell 次级幻象|XPHB}。",
+      "每当你获得一个游荡者等级时，你都能从你的非{@spell 法师之手|XPHB}的戏法中选择其一替换为另一道你所选择的法师戏法。",
+      "当你的游荡者等级达到 10 时，你将学会一个自选的法师戏法。"
+     ]
+    },
+    {
+     "ENG_name": "Spell Slots",
+     "name": "法术位",
+     "type": "entries",
+     "entries": [
+      "诡术师施法表显示了你可用于施展一环及以上法术的法术位数量。当你完成{@variantrule 长休|XPHB}时，你重获所有已消耗的法术位。"
+     ]
+    },
+    {
+     "ENG_name": "Prepared Spells of 1st+ Level",
+     "name": "一环及以上的准备法术",
+     "type": "entries",
+     "entries": [
+      "你准备可供你以此特性施展的一环及更高环阶的法术列表。最初，选择三道一环法师法术。推荐选择{@spell 魅惑类人|XPHB}、{@spell 易容术|XPHB}和{@spell 云雾术|XPHB}。",
+      "已准备法术数量会随你游荡者等级的提升而增加，如诡术师施法表中的准备法术一列所示。每当这一列的数字增加时，从法师法术列表中选择额外法术准备，直至已准备法术的数量与表格中的数字一致。你所选择法术的环阶必须是你所拥有法术位对应的环阶。例如，如果你是一名7级游荡者，则你的准备法术列表能包括五道一环或二环的游荡者法术，随意组合。"
+     ]
+    },
+    {
+     "ENG_name": "Changing Your Prepared Spells",
+     "name": "改变你的准备法术",
+     "type": "entries",
+     "entries": [
+      "每当你获得一个游荡者等级时，你就可以将你准备列表上的一道法术替换为另一道法师法术，你必须拥有替换后法术对应环阶的法术位才可以替换。"
+     ]
+    },
+    {
+     "ENG_name": "Spellcasting Ability",
+     "name": "施法属性",
+     "type": "entries",
+     "entries": [
+      "你法师法术的施法属性是智力。"
+     ]
+    },
+    {
+     "ENG_name": "Spellcasting Focus",
+     "name": "法器",
+     "type": "entries",
+     "entries": [
+      "你可以使用{@item 奥术法器|XPHB}作为你法师法术的{@variantrule 法器|XPHB}。"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "诡术伏击",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XPHB",
+   "entries": [
+    "处于隐形状态期间，若你对一名生物施展法术，它在那个回合中为对抗该法术而进行的任何豁免检定都具有劣势。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "name": "万能诡术",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XPHB",
+   "entries": [
+    "你获得了使用*法师之手Mage Hand* 干扰敌人的能力。当你对一个生物使用诡诈打击中的摔绊选项时，你还可以对法师之手五尺内的另一个生物施加这个效果。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "name": "法术窃贼",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "你获得了如何以魔法从其他施法者那里偷取有关如何施展某一法术的知识的能力。\n当一个生物施展了一个目标是你或是其效应范围会影响你的法术后，你可以立刻使用你的反应来迫使该生物进行一次智力豁免。其豁免DC等同于你的施法DC。若豁免失败，你消除这个法术对你的影响，并且你将偷走使用这个法术的知识，但这个法术最低必须是一环并且你可以施展的更高等级的法术（不需要是法师法术）。接下来的八小时内，你准备了这个法术。同时该生物在此期间无法施展这个法术，直到八小时结束以后。\n此特性一经使用，直至完成长休你都无法再次使用。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "ENG_name": "Assassin",
+   "name": "刺客",
+   "source": "XPHB",
+   "page": 134,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "刺客",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 践行死亡的不法技艺}",
+    "刺客专注于利用潜行、毒药和伪装来干净利落地歼灭敌人。一些踏上这条道路的游荡者成为了雇佣杀手、间谍或赏金猎人，但即使作为冒险者去面对千奇百怪的怪物，这个子职也仍然能够发挥同等惊人的潜能。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "暗杀|游荡者|XPHB|刺客|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "刺客工具|游荡者|XPHB|刺客|XPHB|3"
+    }
+   ]
+  },
+  {
+   "name": "刺客工具",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你获得一套易容工具和一套毒药工具，并获得这些工具的熟练。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "暗杀",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你精通于对目标发起奇袭，你获得以下增益：\n\n- 先攻Initiative。你的先攻掷骰具有优势。\n\n- 惊扰突袭Surprising Strikes。每次战斗的第一轮中，你对任何还没有经历过自己回合的生物发动的攻击检定都具有优势。如果你在那一轮里命中并偷袭了任意目标，该目标将承受等同于你的游荡者等级的额外伤害，该伤害的类型与你的武器伤害类型一致。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "专业渗透",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XPHB",
+   "entries": [
+    "你是潜入渗透的专家，你熟练掌握了以下技巧来帮助自己的潜入：\n\n- 模仿大师Masterful Mimicry。在你至少花费了一小时的时间来进行钻研后，你能够精准无误的模仿其他人的言语、笔迹或同时模仿以上两项内容。\n\n- 机动瞄准Roving Aim。你使用稳定瞄准特性时速度不会归零。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "淬毒武器",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XPHB",
+   "entries": [
+    "当你使用诡诈打击时，每当目标在对抗你的淬毒选项时豁免检定失败，它会受到额外2D6的毒素伤害。该伤害无视毒素抗性。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "ENG_name": "Death Strike",
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "entries": [
+    "当你在战斗的第一轮命中并偷袭了某一目标时，该目标必须成功通过一次体质豁免（{@dc 8|= 8} + 你的{@variantrule 熟练|XPHB|熟练加值} + 你的敏捷调整值），否则本次攻击将对该目标造成双倍的伤害。"
+   ],
+   "header": 2,
+   "level": 17,
+   "name": "致命一击",
+   "page": 134,
+   "source": "XPHB",
+   "subclassShortName": "刺客",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Soulknife",
+   "name": "魂刃",
+   "source": "XPHB",
+   "page": 135,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 以念为刃屠戮敌手}",
+    "魂刃杀手们将意念化作刺杀敌人们的武器，割裂那些阻碍他们的物理和心灵障碍。这些游荡者们从内心之中发掘出灵能之力，并且引导灵能来协助他们的老本行。身为一名魂刃者，你的灵能可能从你还是个孩子的时候就一直伴随着你，直到你在面临冒险的压力时才显露潜能。或者你可能找到了一个隐居的灵能修士团，花了很多年的时间学习如何显现你的力量。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "灵能力量|游荡者|XPHB|魂刃|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "心灵之刃|游荡者|XPHB|魂刃|XPHB|3"
+    }
+   ]
+  },
+  {
+   "name": "灵能力量",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你内心蕴含着一股灵能力量，这股能量表现为你拥有数枚灵能骰。你可以使用这些灵能骰来驱动你从这个子职中获得的特定心灵异能。下方的魂刃灵能骰列表展示了你在达到特定游荡者等级时会拥有多少颗灵能骰，该列表同样列出了骰子大小。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "ENG_name": "Psychic Blades",
+   "name": "心灵之刃",
+   "source": "XPHB",
+   "page": 136,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你能将自己的心灵异能塑造为由灵能构成的闪亮刀刃。当你执行{@action 攻击|XPHB}动作或者进行一次{@action 借机攻击|XPHB}时，你能在空闲的手中塑造出{@item 心灵之刃|XPHB}，并使用它来进行攻击。这种魔法刀刃具有以下特性：",
+    {
+     "ENG_name": "Psychic Blade",
+     "name": "心灵之刃",
+     "type": "statblock",
+     "tag": "item",
+     "source": "XPHB"
+    },
+    "心灵之刃会在你进行一次近战或远程攻击后立刻消失，并且即使它造成伤害也不会留下任何痕迹。",
+    "当你使用心灵之刃攻击后的同一回合中，只要你的另一只手空闲，就能以一个{@variantrule 附赠动作|XPHB}在那只手中塑造第二把心灵之刃，并再进行一次近战武器攻击或是远程武器攻击。此附赠攻击的伤害骰为{@damage 1d4}，而非{@damage 1d6}。"
+   ]
+  },
+  {
+   "ENG_name": "Psi-Bolstered Knack",
+   "name": "灵振诀窍",
+   "source": "XPHB",
+   "page": 135,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Psionic Energy Die",
+    "name": "灵能骰"
+   },
+   "entries": [
+    "如果你使用具有熟练的技能或工具进行一次属性检定但失败，你可以投掷灵能骰，并将掷骰结果加到检定结果中，这可能会让失败的检定变为成功。你只在掷骰结果让检定变为成功时才会消耗那颗灵能骰。"
+   ]
+  },
+  {
+   "ENG_name": "Psychic Whispers",
+   "name": "心灵低语",
+   "source": "XPHB",
+   "page": 135,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Psionic Energy Die",
+    "name": "灵能骰"
+   },
+   "entries": [
+    "你能够利用灵能在自己和他人之间建立起基于心灵感应的交流。以一个{@action 魔法|XPHB}动作，从可见的生物中选择一到至多等同于你{@variantrule 熟练|XPHB|熟练加值}数量的生物，掷一枚灵能骰。你在投掷结果数的小时内，你选择的生物能够通过心灵感应与你进行交流，你也能通过心灵感应与他们进行交流。你们在发送或接收信息时（无需动作），你和选择生物之间的距离不可超过一里。生物可以随时终止心灵感应的链接（无需动作）。"
+   ]
+  },
+  {
+   "ENG_name": "Homing Strikes",
+   "name": "寻的攻击",
+   "source": "XPHB",
+   "page": 136,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "XPHB",
+   "level": 9,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Psionic Energy Die",
+    "name": "灵能骰"
+   },
+   "entries": [
+    "如果你在使用{@item 心灵之刃|XPHB}进行攻击检定时没有命中目标，你可以掷一枚灵能骰，并将掷骰结果加到这次攻击检定中。如果这使攻击变为了命中，那枚灵能骰将被消耗。"
+   ]
+  },
+  {
+   "ENG_name": "Psychic Teleportation",
+   "name": "心灵传送",
+   "source": "XPHB",
+   "page": 136,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "魂刃",
+   "subclassSource": "XPHB",
+   "level": 9,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Psionic Energy Die",
+    "name": "灵能骰"
+   },
+   "entries": [
+    "以一个{@variantrule 附赠动作|XPHB}，你塑造一把{@item 心灵之刃|XPHB}，消耗并投掷一枚灵能骰，将心灵之刃投掷到至多距离灵能骰结果数字十倍尺数的一处可见的未占据空间内。你传送到目标位置，同时那把心灵之刃将消失。"
+   ]
+  },
+  {
+   "name": "灵魂之刃",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XPHB",
+   "entries": [
+    "你现在能能够通过念刃使用以下能力：\n\n- 寻的斩击Homing Strikes。如果你在使用念刃进行攻击检定时没有命中目标，你可以掷一枚灵能骰，并将掷骰结果加到这次攻击检定中。如果这使攻击变为了命中，那枚灵能骰将被消耗。\n\n- 心灵传送Psychic Teleportation。以一个附赠动作，你塑造一把念刃，消耗并投掷一枚灵能骰，将心灵之刃投掷到至多距离灵能骰结果数字十倍尺数的一处可见的未占据空间内。你传送到目标位置，同时那把念刃将消失。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "灵能面纱",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XPHB",
+   "entries": [
+    "你可以编织一层灵能面纱来掩盖你。以一个魔法动作，你获得隐形状态持续至多1小时或直到你主动解除隐形（无需动作）。造成伤害或迫使一个生物进行豁免检定会导致隐形状态立刻结束。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗一枚灵能骰（无需动作）重置此特性的使用权。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "撕裂心智",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "你能让你的念刃直接切削一个生物的心智。当你使用念刃对一个生物造成偷袭攻击伤害时，你能迫使其进行一次感知豁免（DC=8+你的熟练加值+你的敏捷调整值）。若豁免失败，目标将在陷入长达一分钟的震慑。被震慑的目标可以在他的回合结束时重复豁免，如果成功这一效应将结束。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗三枚灵能骰（无需动作）重置此特性的使用权。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "快手",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你可以通过附赠动作来进行下列行为中的一个：\n\n- 巧手Sleight of Hand。进行一次敏捷（巧手）检定来利用盗贼工具解开一个锁或解除陷阱，或是使用这个检定进行扒窃。\n\n- 使用物件Use an Object。执行操作动作，或是执行魔法动作来使用一个要求该动作的魔法物品。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "梁上君子",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你的训练使你擅长抵达那些难以到达的地方。你获得以下增益：\n\n- 攀爬者Climber。你获得等同于你的速度的攀爬速度。\n\n- 跳跃者Jumper。你的跳跃距离能由你的敏捷决定而不是你的力量决定。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "ENG_name": "Thief",
+   "name": "盗贼",
+   "source": "XPHB",
+   "page": 137,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游荡者",
+   "classSource": "XPHB",
+   "subclassShortName": "盗贼",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 追秘猎宝的经典冒险家}",
+    "飞贼、宝藏猎人、探险家，你是一切经典冒险者形象的缩影。这个子职不仅提高了你的灵活与隐匿技术，还为你提供了探索古老遗迹的游荡技巧，使你永远能够最大化利用藏匿其中的魔法物品。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "快手|游荡者|XPHB|盗贼|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "梁上君子|游荡者|XPHB|盗贼|XPHB|3"
+    }
+   ]
+  },
+  {
+   "name": "极效潜行",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XPHB",
+   "entries": [
+    "你获得以下诡诈打击选项。\n\n- 无声袭击Stealth Attack (花费：1d6)。如果你具有躲藏动作的隐形状态，只要你在四分之三掩护或全身掩护后结束该回合，本次攻击就不会终止你身上的该隐形状态。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "使用魔法装置",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XPHB",
+   "entries": [
+    "在你的寻宝历险生涯中，你学会了如何最大化利用魔法装置。你获得以下增益：\n\n- 同调Attunement。你可以一次性同调最多四件魔法物品。\n\n- 充能Charges。每当你使用一个魔法物品的消耗充能的特性时，投一个d6，如果结果为6，本次使用不消耗充能。\n\n- 卷轴Scrolls。你可以使用任何法术卷轴，并以智力作为你施展那个法术的施法关键属性。你可以稳定使用戏法或是一环的法术卷轴。如果这个法术卷轴记载了更高等级的法术，你必须通过一次成功的智力（奥秘）检定（DC为10+该法术的等级）。检定成功时，你能够使用卷轴施展该法术。如果失败，卷轴化为尘埃。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "窃盗本能",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "你变的更加擅长伏击和快速脱离险境。每次战斗的第一轮里，你可以行动两个回合。你先以自己正常的先攻执行你的第一个回合的行动，再以先攻数值减10的先攻执行你的第二个回合的行动。"
+   ],
+   "subclassShortName": "盗贼"
+  },
+  {
+   "name": "谋陷大师",
+   "className": "游荡者",
+   "level": 3,
+   "source": "SCAG",
+   "entries": [
+    "从3级选择此范型时，你获得易容工具、文书伪造工具、以及一种你自选赌博工具的熟练项。你还会习得两门你自选的语言。\n此外，如果你曾听过一个生物讲话1分钟，且你懂得它说的那门语言，你就可以准确无误地模仿出他的语气与口音。这允许你模仿成某个有特殊地区的特别口音的人。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "误导",
+   "className": "游荡者",
+   "level": 13,
+   "source": "SCAG",
+   "entries": [
+    "从13级起，你有时候能让另一个生物代替你承受攻击。如果你被选为一次攻击的目标，而你周围5尺范围内有另一个生物为你提供了掩护，你就可以用你的反应将这次攻击的目标转嫁到掩护你的生物身上。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "瞒天之魂",
+   "className": "游荡者",
+   "level": 17,
+   "source": "SCAG",
+   "entries": [
+    "从17级起，除非经过你的同意，否则你的思想无法被心灵感应或者其他能力阅读。你还能在这种情况下，使用魅力（欺瞒）检定对抗思想阅读者的感知（洞悉）检定，对抗成功时你可以让其阅读到虚假的思想。\n此外，不管你在说什么，你总是可以选择让魔法判定你在说真话并显现出相应的迹象。你也不会因为魔法效应的影响而被强迫说出真话。"
+   ],
+   "subclassShortName": "策士"
+  },
+  {
+   "name": "梦幻舞步",
+   "className": "游荡者",
+   "level": 3,
+   "source": "SCAG",
+   "entries": [
+    "从3级你选择此范型起，你习得如何无机可循的发动打击，让你的敌人无可借机。在你的回合中，如果你对某一生物发动了一次近战攻击，那个生物在你本回合的剩余时间内将无法对你进行借机攻击。\n\n边栏：风流剑客与双武器战斗Swashbucklers and Two-Weapon Fighting\n游玩风流剑客的玩家需要有一些对DND规则的理解，并需要明白相关规则是如何运作的——在使用双武器战斗时更是如此。如果遇到不得不撤离出近战范围的情况，其他角色也许必须要执行一次 撤离Disengage 动作，但风流剑客的梦幻舞步特性能在你攻击时为你提供一次类似撤离动作（虽然限制更大）的效应。而这也就意味着你可以解放你的附赠动作，去用两把武器战斗，然后再安全的撤出被你攻击敌人的攻击范围。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "潇洒无畏",
+   "className": "游荡者",
+   "level": 3,
+   "source": "SCAG",
+   "entries": [
+    "从3级起，你万无一失的自信驱使着你去战斗。你可以将你的魅力调整值作为加值加入到你的先攻检定中。\n你也获得了一种全新的使用你偷袭Sneak Attack 的方法；只要你在目标生物周围5尺符文内，且没有其他生物在你周围5尺内，而你的攻击检定也没有劣势，那么你就可以无需在攻击检定上具有优势也能对目标生物进行偷袭。不过其他所有关于偷袭的规则依然适用于你。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "潇洒气质",
+   "className": "游荡者",
+   "level": 9,
+   "source": "SCAG",
+   "entries": [
+    "从9级起，你的魅力变得更加万众瞩目。你可以用一个动作进行一次魅力（游说）检定来对抗一个生物的感知（洞悉）检定。目标生物必须能听到你的声音，并且你们两个必须会同一种语言。\n若你的检定成功，且目标生物与你敌对，则它对除你之外的其他目标攻击都将具有劣势，且不能对除你之外的目标进行借机攻击。这个效果持续1分钟。若你的队友攻击了它或是用法术影响了它，或你与目标之间的距离超过了60尺时，这个效果将提前结束。\n若你的检定成功，且目标生物并不与你敌对，它被你魅惑1分钟。当它被魅惑时，它认为你是一个友好的熟人。若你或者你的队友做出任何对他作出了任何有害的行为，这个效果将立即提前结束。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "优雅战技",
+   "className": "游荡者",
+   "level": 13,
+   "source": "SCAG",
+   "entries": [
+    "从13级起，你可以在你的回合中使用附赠动作，来使同一回合中下一次敏捷（特技）检定或力量（运动）检定获得优势。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "决斗大师",
+   "className": "游荡者",
+   "level": 17,
+   "source": "SCAG",
+   "entries": [
+    "从17级起，你对剑术的精通使你可以在战斗中转败为胜。当你的攻击失手时，你可以选择以优势再投一次攻击检定。一旦你使用了这一特性，直到完成一次短休或长休前你都不能再次使用它。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "当你将某人推向墓穴时，你也可以沟通死亡之力，使得亡者的嚎哭短暂环绕着新的目标。当你在你的回合对于一个生物造成了偷袭攻击的伤害之后，你可以立即使该生物30尺内第二个可见生物受到一次暗蚀伤害。掷你一半数量的偷袭骰（向上取整），你对第二目标造成等同于投掷结果之和数值的暗蚀伤害。",
+   "className": "游荡者",
+   "level": 3,
+   "source": "TCE",
+   "entries": [
+    "你可以使用此特性的次数等同于你的熟练加值次，当你完成一次长休后你重获全部已消耗的使用次数。\n（译者注：3级1d6，5级2d6，9级3d6，13级4d6，17级5d6）"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "你可以部分的进入死亡的领域，变得如同一个幽灵。作为一个附赠动作，你化为一种灵体的形态。处于这种形态时，你获得10尺的飞行速度、能悬浮、且以你为目标的攻击检定都将具有劣势。你也可以如同是困难地形那样穿过生物或者物品，但是如果回合结束时你仍然在一个生物或物品的位置上，你将受到1d10点力场伤害。",
+   "className": "游荡者",
+   "level": 13,
+   "source": "TCE",
+   "entries": [
+    "该形态持续10分钟。你也可以用一个附赠动作将其提前解除。若你想要再次使用特性，要么你得完成一次长休，要么你得销毁一个你的魂器（作为激活幽灵漫步的附赠动作的一部分）。"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "你内心拥有一个灵能力量的源泉。这股能量表现为每个d6的灵能骰。你拥有两倍熟练加值的灵能骰数量，且它们为你所拥有的各种心灵异能提供能量，详情如下。",
+   "className": "游荡者",
+   "level": 3,
+   "source": "TCE",
+   "entries": [
+    "你在使用一些能力时需要消耗灵能骰，如异能描述中所述，如果一些异能在你的灵能骰全部掷完后还需要你使用一个灵能骰，你就不能使用该异能。你可以在完成一次长休后恢复所有已使用的灵能骰。此外，你可以使用一个附赠动作重新获得一个已使用的灵能骰，但你在完成一次短休或长休之前不能再次获得。\n\n当你达到特定游荡者等级时，你的灵能骰大小有所增长：第5级(d8)，第11级(d10)，第17级(d12)。\n\n可以在以下异能使用你的灵能骰：\n\n灵振诀窍Psi-Bolstered Knack。当你接受的常规训练没法让你搞定时，你的心灵异能会帮助你：如果你使用具有熟练的技能或工具进行一次属性检定，但失败时，你可以投掷灵能骰，并将掷骰结果加到检定结果中，这可能会让失败的检定变为成功。你只在灵能让检定成功时才会消耗那一灵能骰。\n\n心灵低语Psychic Whispers。你能够利用灵能力在自己和他人之间建立起基于心灵感应的交流——在需要无声渗透时这堪称完美。以一个动作，从可见的生物中选择一到至多等同于你熟练加值数量的生物，掷一枚灵能骰。你在投掷结果数值小时内，获得与选择的生物通过心灵感应进行交流的能力。你可以和选择生物进行双向的心灵感应交流，但在发送或接收信息时（无需动作），你和选择生物之间的距离不可超过一里。不会说任何语言的生物无法通过此方法进行交流，而且生物可以随时终止心灵感应的链接（无需动作）。你和链接的生物不需要能说同一种语言也能互相理解话语。\n在每次长休后你可以免费使用一次这个异能。除此之外，每次使用它你都得消耗一枚灵能骰。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "你能将自己的心灵异能塑造为由灵能构成的闪亮刀刃。当你执行攻击动作时，你能以空闲的手中塑造出心灵之刃，并使用它来进行攻击。这种魔法刀刃是一种简易近战武器，具有灵巧与投掷属性。它的常规射程为60尺（无最大射程）。在命中时，它造成 1d6+你用于攻击的属性调整值点的心灵伤害。不论它是否命中了它的目标，念刃会在那之后立刻消失。",
+   "className": "游荡者",
+   "level": 3,
+   "source": "TCE",
+   "entries": [
+    "当你使用念刃发动攻击后的同一回合中，只要你的另一只手空闲，就能以一个附赠动作在那只手中塑造第二把念刃，并再进行一次近战武器攻击或是远程武器攻击。此附赠攻击的伤害骰为1d4，而非1d6。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "你的心灵之刃现在成为了你那充盈灵能之灵魂的具现，这使你能够通过以下的方式更好地控制它",
+   "className": "游荡者",
+   "level": 9,
+   "source": "TCE",
+   "entries": [
+    "寻的攻击Homing Strikes。若在使用心灵之刃进行的攻击中失手，你可以掷一枚灵能骰，并将掷骰结果加到这次攻击检定中。如果这使攻击变为了命中，那枚灵能骰将被消耗。\n\n心灵传送Psychic Teleportation。以一个附赠动作，你塑造一把心灵之刃，消耗并投掷一枚灵能骰，将心灵之刃投掷到至多距离灵能骰结果数字十倍尺数的一处可见的未占据空间内。你传送到目标位置，同时那把心灵之刃将消失。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "你可以编织一层灵能面纱来掩盖你。以一个动作，你连同你所穿或携带的任何东西可以魔法性地隐形至多1小时。若你主动解除隐形（无需动作）、发动攻击、或迫使一个生物进行豁免检定，此隐形状态将会提前结束。",
+   "className": "游荡者",
+   "level": 13,
+   "source": "TCE",
+   "entries": [
+    "当你使用该特性后，直到你完成一次长休为止你都不能再次使用它。你也可以消耗一枚灵能骰来再次使用该特性。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "你能让你的念刃直接切削一个生物的心智。当你使用心灵之刃对一个生物造成偷袭攻击伤害时，你能迫使其进行一次感知豁免（DC=8+你的熟练加值+你的敏捷调整值）。若豁免失败，目标将在陷入长达一分钟的震慑。被震慑的目标可以在他的回合结束时重复豁免，如果成功这一效应将结束。",
+   "className": "游荡者",
+   "level": 17,
+   "source": "TCE",
+   "entries": [
+    "当你使用该特性后，直到你完成一次长休为止你都不能再次使用它。你也可以消耗三枚灵能骰来再次使用该特性。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "附赠熟练项",
+   "className": "游荡者",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "你在第3级选择此范型时，获得易容工具和制毒者工具的熟练项。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "*法师之手 *诈术",
+   "className": "游荡者",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "*Mage Hand* Legerdemain\n\n第3级起，你施展*法师之手mage hand*时可以制作一个隐形的幽灵手，且你可以用它来做下列特殊任务：\n\n· 你可以传递一个幽灵手持握的物件到其他生物携带或着装的容器中。\n\n· 你可以取回一个其他生物携带或着装容器内的物件。\n\n· 你可以用盗贼工具在其施法范围内撬锁和解除陷阱。"
+   ],
+   "subclassShortName": "诡术师"
+  },
+  {
+   "name": "致命袭杀",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "当你在战斗的第一轮命中并偷袭了某一目标时，该目标必须成功通过一次体质豁免（DC8+你的熟练加值+你的敏捷调整值），否则本次攻击将对该目标造成双倍的伤害。"
+   ],
+   "subclassShortName": "刺客"
+  },
+  {
+   "name": "念刃",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你能将自己的心灵异能塑造为由灵能构成的闪亮刀刃。当你执行攻击动作或者进行一次借机攻击时，你能在空闲的手中塑造出心灵之刃，并使用它来进行攻击。这种魔法刀刃具有以下特性：\n\n- 武器种类：简易武器\n\n- 命中伤害：1d6点心灵伤害，附加用于该次攻击检定的属性调整值\n\n- 词条：灵巧，投掷（60/120尺射程）\n\n- 精通：侵扰（你能使用它的精通，而不算作你能使用的武器精通总数中）\n\n念刃会在你进行一次近战或远程攻击后立刻消失，并且即使它造成伤害也不会留下任何痕迹。\n当你使用念刃发动攻击后的同一回合中，只要你的另一只手空闲，就能以一个附赠动作在那只手中塑造第二把念刃，并再进行一次近战武器攻击或是远程武器攻击。此附赠攻击的伤害骰为1d4，而非1d6。"
+   ],
+   "subclassShortName": "魂刃"
+  },
+  {
+   "name": "明察秋毫",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XGE",
+   "entries": [
+    "13级时，你的感官几乎无法再被任何事物欺骗。只要你未处于目盲Blinded 或耳聋Deafened 状态，你就可以以一个动作感知你周围30尺内的幻术存在、不在原本形态下的变形生物、以及其他意在欺瞒你感官的魔法。你能感知到有某一效果正在试图欺骗你，但你并无法得知被隐藏的真相与它的真实形态是什么。\n你可以使用本特性的次数等同于你的感知调整值次（至少一次），当你完成一次长休后，你重获所有已消耗的次数。"
+   ],
+   "subclassShortName": "调查员"
+  },
+  {
+   "name": "梦幻舞步",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "从3级你选择此范型起，你习得如何无机可循的发动打击，让你的敌人无可借机。在你的回合中，如果你对某一生物发动了一次近战攻击，那个生物在你本回合的剩余时间内将无法对你进行借机攻击。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "潇洒无畏",
+   "className": "游荡者",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "从3级起，你万无一失的自信驱使着你去战斗。你可以将你的魅力调整值作为加值加入到你的先攻检定中。\n你也获得了一种全新的使用你 偷袭Sneak Attack 的方法；只要你在目标生物周围5尺范围内，且没有其他生物在你周围5尺内，而你的攻击检定也没有劣势，那么你就可以无需在攻击检定上具有优势也能对目标生物进行偷袭。不过其他所有关于偷袭的规则依然适用于你。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "潇洒气质",
+   "className": "游荡者",
+   "level": 9,
+   "source": "XGE",
+   "entries": [
+    "从9级起，你的魅力变得更加万众瞩目。你可以用一个动作进行一次魅力（游说）检定来对抗一个生物的感知（洞悉）检定。目标生物必须能听到你的声音，并且你们两个必须会同一种语言。\n若你的检定成功，且目标生物与你敌对，则它对除你之外的其他目标攻击都将具有劣势，且不能对除你之外的目标进行借机攻击。这个效果持续1分钟。若你的队友攻击了它或是用法术影响了它，或你与目标之间的距离超过了60尺时，这个效果将提前结束。\n若你的检定成功，且目标生物并不与你敌对，它被你魅惑1分钟。当它被魅惑时，它认为你是一个友好的熟人。若你或者你的队友做出任何对他作出了任何有害的行为，这个效果将立即提前结束。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "优雅战技",
+   "className": "游荡者",
+   "level": 13,
+   "source": "XGE",
+   "entries": [
+    "从13级起，你可以在你的回合中使用附赠动作，来使同一回合中下一次敏捷（特技）检定或力量（运动）检定获得优势。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "决斗大师",
+   "className": "游荡者",
+   "level": 17,
+   "source": "XGE",
+   "entries": [
+    "从17级起，你对剑术的精通使你可以在战斗中转败为胜。当你的攻击失手时，你可以选择以优势再投一次攻击检定。一旦你使用了这一特性，直到完成一次短休或长休前你都不能再次使用它。"
+   ],
+   "subclassShortName": "风流剑客"
+  },
+  {
+   "name": "崇圣天选",
+   "className": "游荡者",
+   "level": 3,
+   "source": "SHO",
+   "entries": [
+    "你的严酷训练终于结出硕果。你获得军用武器熟练以及中甲受训。\n每当你完成一次短休时，你可以对一把你具有熟练、且造成穿刺或挥砍伤害的近战武器执行一场仪式，将其圣化。其将成为你的圣刃。你同一时间只能拥有一把这样的剑刃。对你而言，该剑刃具有灵巧词条；并且，你使用它对异怪、邪魔以及亡灵发动的攻击无视其伤害抗性。"
+   ],
+   "subclassShortName": "光辉之刃"
+  },
+  {
+   "name": "神圣恩泽",
+   "className": "游荡者",
+   "level": 3,
+   "source": "SHO",
+   "entries": [
+    "你对根除教会之敌的虔诚，化作了公义的力量。你拥有一个神圣点池，其点数上限等于1+你的感知调整值（至少为1点）。完成一次短休或长休后，你恢复所有已消耗的神圣点。\n此外，每当你使用圣刃击杀一个CR为1/2或更高的异怪、野兽、邪魔或亡灵时，你恢复1点已消耗的神圣点。\n光辉豁免DC Radiance Save DC。如果此子职业的某个特性需要进行豁免检定，其DC等于8+你的感知调整值+你的熟练加值。\n你可以消耗神圣点来使用以下特性：\n虔信盔甲Armor of the Faithful。 当一个生物以你为目标发起攻击时，你可以执行反应消耗1神圣点，迫使该生物进行一次感知豁免。若豁免失败，则攻击者必须重新选择一个目标，否则该次攻击无效；并且，其无法再次将你选为目标，直至你的下一回合开始。此特性无法保护你免受区域效应的伤害，例如法术火球术Fire ball的爆炸。\n蒙受神启Divine Inspiration。 当你进行一次智力（历史或宗教）或感知（洞悉）检定时，你可以消耗1神圣点来重掷该d20，且必须使用新的掷骰结果。你可以选择在掷骰之后，但在结果决定之前使用此特性。你在该检定中获得等同于你感知调整值的加值（至少为1）。\n斩裂渎圣Rend the Blasphemous。当你在自己回合内使用圣刃执行攻击动作后，你可以执行附赠动作并消耗1个神圣点，让神圣之手引导你。使用该武器对你触及范围内的一个生物进行一次武器攻击。此次攻击检定获得等于你感知调整值（至少为1）的加值。"
+   ],
+   "subclassShortName": "光辉之刃"
+  },
+  {
+   "name": "正义武装",
+   "className": "游荡者",
+   "level": 9,
+   "source": "SHO",
+   "entries": [
+    "你的信仰赋予了你足以反抗命运本身的力量。你学会以下需要使用神圣点的特性：\n审判锁链Chains of Judgement。 当你使用圣刃命中一个生物时，你可以消耗1神圣点，在目标周围创造出神圣的锁链。目标必须进行一次力量豁免，豁免失败则受到等于你感知调整值的光耀伤害，并陷入束缚状态，直至你的下一回合结束。\n神圣反击Divine Retaliation。 在你正持用你的圣刃期间，当一个生物以近战攻击对你造成伤害时，你可以执行反应消耗1神圣点，使用你的剑刃对该生物发动一次近战攻击。该次伤害掷骰获得等同于你感知调整值的加值。\n圣刃爆发Erupting Blades。当你的攻击命中一个生物，且此次攻击本可对其造成偷袭伤害时，你可以放弃以此次攻击造成偷袭伤害，转而消耗2神圣点，令光辉剑刃如暴雨般降临战场。该目标以及以其为源点、长45尺、宽5尺的线状区域内的每个生物都必须进行一次敏捷豁免。豁免失败者受到等同于你偷袭伤害数值的光耀伤害，豁免成功则伤害减半。"
+   ],
+   "subclassShortName": "光辉之刃"
+  },
+  {
+   "name": "化圣天启",
+   "className": "游荡者",
+   "level": 13,
+   "source": "SHO",
+   "entries": [
+    "你体验到了神圣的启示，其向你展示了如何引导神圣能量来强化你的剑刃。你从牧师法术列表中习得两道你自选的戏法。此外，你始终准备了法术*英雄气概Heroism*、*防护善恶Protection from Evil and Good*以及*虔诚护盾Shield of Faith*。借由此特性，你可以无需消耗法术位和法术成分地随意施展这些法术，但目标仅能为你自身。感知是你施展这些法术的施法属性。\n自游荡者等级17级起，当你使用此特性施展这些法术时，其不再需要维持专注。然而，你在同一时间只能保持一道以此特性施展的法术处于激活；如果你施展了第二道，前一道法术就会立即结束。"
+   ],
+   "subclassShortName": "光辉之刃"
+  },
+  {
+   "name": "最终审判",
+   "className": "游荡者",
+   "level": 17,
+   "source": "SHO",
+   "entries": [
+    "你的圣刃已被注入了神圣力量，赋予你以下增益：\n圣灵降世Divine Spirits。持用该剑刃期间，你可以使用魔法动作来无需消耗法术位和法术成分地施展法术*灵体卫士Spirit Guardians* 。在判定你的偷袭触发条件时，位于该法术区域内的生物均被视为处于你的一名盟友5尺范围内。一旦你使用此特性施展了该法术，则直至你完成一次长休都无法再次使用。你也可以消耗3神圣点来恢复使用次数（无需动作）。\n辉耀利刃Radiant Blade。你可以说出一个命令语（无需动作），使你的剑刃发出半径30尺的明亮光照以及额外30尺的微光光照。该光照将一直持续至你再次说出该命令语，或者你收起武器。以此方式发出光照期间，该武器被视为魔法武器，并且使用其发动的攻击在命中时造成额外2d4光耀伤害。"
+   ],
+   "subclassShortName": "光辉之刃"
+  },
+  {
+   "name": "降咒客",
+   "className": "游荡者",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "当你通过偷袭特性对一个生物造成伤害时，你可以释放厄运伎俩Jinxcraft 的力量。当你掷偷袭骰时，在掷骰前指定其中两枚骰子（单独投掷这两枚骰子或者使用两枚颜色不同的骰子）。查阅降咒客厄运表，这两枚骰子的掷骰总和决定了你厄运伎俩的效果。该特性的可用次数等于你的魅力调整值，你在完成一次短休后恢复所有已消耗的次数。"
+   ],
+   "subclassShortName": "罪人"
+  },
+  {
+   "name": "厄艺傍身",
+   "className": "游荡者",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "你学会了名为厄运伎俩的秘密技艺——从黑暗契约和罪恶交易中汲取魔法力量。你获得以下增益。\n牌骰双绝Cards and Bones。 你获得两种你选择的赌具的熟练项（建议选择纸牌和骰子）。\n厄运武器Jinx Weapon。 通过使用一套赌具进行1小时的仪式，你通过魔法制作一件能够引导你的厄运伎俩的武器。该武器使用手铳或赌具的外观（均使用手铳Pistol的数据），对你而言，厄运武器无视装填词条，可以自行创造造成力场伤害的弹药。在赌具形态下，你可以投掷卡牌、骰子或其他赌具，也可以通过它们施展诅咒魔法。此外，你也可以将厄运伎俩注入一件你具有熟练项的简易武器或军用武器，将其变为你的厄运武器。受影响的厄运武器造成力场伤害而不是通常的伤害类型。如果你制作第二件厄运武器，第一件诅咒武器消失或失去上面的厄运伎俩效果。\n魔术把戏Parlor Trick。你选择并习得以下戏法之一：*舞光术Dancing Lights*，*法师之手Mage Hand*，*次级幻象Minor Illusion*，*莫测仪容Mysterious Presence或*魔法伎俩Prestidigitation* 。该戏法的施法属性为魅力。"
+   ],
+   "subclassShortName": "罪人"
+  },
+  {
+   "name": "借来好运",
+   "className": "游荡者",
+   "level": 9,
+   "source": "WYM",
+   "entries": [
+    "当你使用降咒客时，你会带走目标的部分运气。如果你没有英雄激励，你获得英雄激励。如果你具有英雄激励，你可以消耗英雄激励来代替消耗降咒客的使用次数。"
+   ],
+   "subclassShortName": "罪人"
+  },
+  {
+   "name": "任君自取",
+   "className": "游荡者",
+   "level": 13,
+   "source": "WYM",
+   "entries": [
+    "当你使用降咒客时，你可以将所指定的偷袭骰投掷两次，选择使用哪一次的掷骰总和。\n如果你所选的掷骰结果是两个骰子点数相同，则目标受到等于你等级一半的心灵伤害。如果你所选择的掷骰总和为2或12，你不会消耗该次降咒客的使用次数。"
+   ],
+   "subclassShortName": "罪人"
+  },
+  {
+   "name": "彼岸相助",
+   "className": "游荡者",
+   "level": 17,
+   "source": "WYM",
+   "entries": [
+    "你可以呼唤自己在下层位面的异界朋友来改变对你有利之事的概率。你获得以下增益。\n岔路诈术Crossroads Devilry。 当你失手于一次攻击检定，或者失败于一次豁免检定时，你可以消耗并投掷任意数量的偷袭骰（在你投掷前选择数量），并将所掷总和加入该攻击或豁免，这可能将失手改为命中，或将失败变为成功。已消耗的骰子会在你下次使用你的偷袭后恢复。\n幸运女神在微笑Lady Luck's Smiling。 当一个生物以一次攻击检定中命中你时，你可以消耗并投掷任意数量的偷袭骰（在你投掷前选择数量），并将所掷总和加入你对抗该次攻击的AC中，这可能将命中改为失手。已消耗的骰子会在你下次使用你的偷袭后恢复。"
+   ],
+   "subclassShortName": "罪人"
+  },
+  {
+   "name": "暗影映像",
+   "className": "游荡者",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "以一个魔法动作，你可以将你的影子从身旁驱离并加以操控。它出现在你身边5尺内的一个未占据的空间中，体型与你相同。\n暗影映像可以执行下列操作：操控一个物件、打开一扇未上锁的门或容器、将一件未被装备的物品收起或从某处取回、或是倾倒一个小瓶。在后续你的回合中，你可以再次以一个魔法动作、或在你使用灵巧动作特性时，作为这次附赠动作的一部分来操控你的影子。你可以令你的影子移动至多等于你的速度的距离。\n影子不能进行攻击，不能激活魔法物品，且无法承载超过10磅重的物质。你的影子会在受到任何伤害、成为任何效果的目标，或你陷入失能状态时立即消失。"
+   ],
+   "subclassShortName": "暗影潜行者"
+  },
+  {
+   "name": "幽影尘埃",
+   "className": "游荡者",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "你的幽影尘埃体现了你拥有操控黑暗的能力。你可以消耗这些尘埃以强化或触发你的某些暗影潜行者特性。\n你的幽影尘埃数量等同于你的游荡者等级。你初始掌握以下三种使用方式：暗影斥候、暗影置换、扰目之影，详述如下。\n每当你消耗一点幽影尘埃，该尘埃会在你完成一次长休后恢复。你还会在将一名敌对生物的生命值降至0时，恢复1点已消耗的幽影尘埃。\n\n- 暗影斥候Shadow Scout。 以一个魔法动作，你可以消耗1点幽影尘埃，来将你的感官投射至你的暗影映像上。在接下来的1分钟内，你可以如同身处其位置一般，通过映像视物和聆听，并且你可以将其移动到距离你至多120尺远的地方。\n若你受到任何伤害，或陷入失能状态，则此效果提前终止。\n\n- 暗影置换Shadow Swap。 当你使用灵巧动作特性时，作为该附赠动作的一部分，你可以消耗1点幽影尘埃，来与你的暗影映像互换位置。你传送至它所在的位置，而它则出现在你原来的地方。\n若你出现在一个已占据空间，你会被弹开至最近的未占据空间，并受到等同于你被移动的尺数的力场伤害。\n\n- 扰目之影Vexing Shadow。 当你用武器进行的攻击检定命中了一名生物，且你的暗影映像在那个生物的5尺范围内时，你可以立即消耗1点幽影尘埃，来获得获得仅对该生物有效的隐形状态，持续至你的下一个回合结束。"
+   ],
+   "subclassShortName": "暗影潜行者"
+  },
+  {
+   "name": "暗影庇护",
+   "className": "游荡者",
+   "level": 9,
+   "source": "THC",
+   "entries": [
+    "你可以通过编织暗影来拦截攻击，并将其无害地偏转至虚无之中。当你使用直觉闪避特性时，你可以将该次攻击对你造成的伤害降为0。\n此特性一经使用，直至完成长休你都无法再次使用。"
+   ],
+   "subclassShortName": "暗影潜行者"
+  },
+  {
+   "name": "暗影之门",
+   "className": "游荡者",
+   "level": 13,
+   "source": "THC",
+   "entries": [
+    "你的暗影映像可以打开一条你和你的同伴能够使用的黑暗通道。\n当你的暗影映像处于你5尺范围内时，你可以通过一个附赠动作，来消耗4枚幽影尘埃施展*任意门Dimension Door* 。智力是你施展该法术的施法属性。你的暗影映像也可以通过该法术进行转移。"
+   ],
+   "subclassShortName": "暗影潜行者"
+  },
+  {
+   "name": "真实暗影",
+   "className": "游荡者",
+   "level": 17,
+   "source": "THC",
+   "entries": [
+    "你的暗影映像获得化身为你的致命复制体的能力。\n以一个附赠动作，你的暗影映像变为你自身的完整镜像。你的暗影映像将变得实体化，持续1小时，并且你还可以在操控你的暗影映像时令它执行攻击、躲藏或操作动作。其攻击动作使用你的游戏数据，包括职业特性、专长、武器等。\n该映像在其生命值降至0时消散。\n此外，当你对一名在映像5尺范围内的生物进行攻击检定时，该检定获得优势。\n此特性一经使用，直至完成长休你都无法再次使用。"
+   ],
+   "subclassShortName": "暗影潜行者"
+  },
+  {
+   "name": "医者",
+   "className": "游荡者",
+   "level": 3,
+   "source": "GTS",
+   "entries": [
+    "当你在3级选择此职业范型时，若你尚未拥有医药技能熟练，则立即获得该技能的熟练。你使用此技能进行的所有属性检定，其熟练加值翻倍。\n此外，你对鲜血的认知已与魔法交融，使你对其产生某种程度的掌控。因此，你可以通过一个附赠动作，魔法地稳定5尺范围内一名陷入昏迷的生物的伤势。\n当你运用传统治疗手段时，你也可以利用这种魔法——你能以附赠动作消耗一次医疗包的使用次数来将其作用于某生物。当你这么做时，该生物恢复1d4+你熟练加值的生命值。该生物必须在完成一次短休或长休后，才能再次通过此特性恢复生命值。"
+   ],
+   "subclassShortName": "残戮行医"
+  },
+  {
+   "name": "汲血",
+   "className": "游荡者",
+   "level": 3,
+   "source": "GTS",
+   "entries": [
+    "自3级起，每个你的回合中，当你对非构装或亡灵的生物造成偷袭时，你获得等同于你感知调整值的临时生命值（至少为1）。达到13级后，你获得的临时生命值等同于你的感知调整值的两倍。这些临时生命值持续至你的下个回合开始。"
+   ],
+   "subclassShortName": "残戮行医"
+  },
+  {
+   "name": "战地医师",
+   "className": "游荡者",
+   "level": 9,
+   "source": "GTS",
+   "entries": [
+    "自9级起，你的医疗造诣与血魔法令你能通过无痛的外科手段为盟友治疗创伤。此特性必须在短休开始时发动，选择一名你触及范围内自愿的生物。投掷你的偷袭骰并记录结果值，短休结束时该生物恢复等同于偷袭骰总值的生命值。通过此特性恢复过生命值的生物，都必须完成一次长休才能再次从中受益。"
+   ],
+   "subclassShortName": "残戮行医"
+  },
+  {
+   "name": "败血休克",
+   "className": "游荡者",
+   "level": 13,
+   "source": "GTS",
+   "entries": [
+    "自13级起，当你通过汲血特性获得临时生命值时，攻击目标将被一股病潮侵袭。直到其下个回合结束，目标速度减少10尺，且在其下个回合结束前进行的下一次攻击检定或属性检定具有劣势。"
+   ],
+   "subclassShortName": "残戮行医"
+  },
+  {
+   "name": "血盟",
+   "className": "游荡者",
+   "level": 17,
+   "source": "GTS",
+   "entries": [
+    "自17级起，你能掌控特定生物体内的鲜血。当你对野兽或类人生物造成偷袭伤害后，可立即迫使该生物进行一次体质豁免，其DC等于8+你的熟练加值+你的感知调整值。若豁免失败，该生物将受到*支配野兽Dominate Beast*或*支配类人Dominate Person* 的法术效应影响，持续1分钟或直至你主动终止效应（无需动作）。\n此特性一经使用，直至完成长休前你都无法再次使用。"
+   ],
+   "subclassShortName": "残戮行医"
+  },
+  {
+   "name": "织网",
+   "className": "游荡者",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "你可以以附赠动作魔法地从你的手掌中产生粘稠柔滑的蜘蛛网。该网在1分钟后溶解，你可以用此网执行下列动作之一：\n自己拉自己Pull Yourself。你向30尺内可见一点射一条网线，将自己以直线拉去而不会引起借机攻击。当你倒地时，你可以以反应使用此特性将你拉向10尺内一点。\n操作物件Manipulate Objects。你可以使用网线操纵30尺内没有被穿戴或携带的物品。例如你可以将物件拉到手上、关上门，或抓起一个重量小于 10磅的小型或更小的物体。\n创建绳索Create Rope。 你可以制作一条60尺长的网绳，并将其固定在你选择的一点上。\n蛛网术Web Spell。你可以在不使用法术位的情况下用此特性的附赠动作施展法术*蛛网术web* （DC＝8+你的敏捷调整值+熟练加值）。 使用此特性施展该法术时，网会充满1处5尺立方区域，法术持续时间变为1分钟。 你可以使用此特性施展该法术两次。 当你完成短休时重获一次已消耗的使用次数，当你完成长休时重获所以已消耗的使用次数。"
+   ],
+   "subclassShortName": "蛛网追猎者"
+  },
+  {
+   "name": "毒液打击",
+   "className": "游荡者",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "当你对一个生物造成偷袭伤害时，你可以选择将偷袭的伤害骰改为d8的毒素伤害而不是与武器类型相同的d6骰。"
+   ],
+   "subclassShortName": "蛛网追猎者"
+  },
+  {
+   "name": "爬墙",
+   "className": "游荡者",
+   "level": 9,
+   "source": "VDS",
+   "entries": [
+    "你已经习惯了像蜘蛛一样移动，这让你获得了以下好处。\n攀爬者Climber。你获得等于你速度的攀爬速度。\n隐匿于顶Hiding on Ceilings。如果你在天花板上并被轻度遮蔽，只要任何可见你的敌人都在你的下方，你就可以执行躲藏动作。\n蛛行Spider Climb。你可以在垂直表面和天花板上向上向下、横跨移动，同时双手不受限制。"
+   ],
+   "subclassShortName": "蛛网追猎者"
+  },
+  {
+   "name": "蜘蛛感应",
+   "className": "游荡者",
+   "level": 13,
+   "source": "VDS",
+   "entries": [
+    "当你进行一次豁免并受到伤害时，你能够以反应执行直觉闪避，令你受到的伤害减半（向下取整）。"
+   ],
+   "subclassShortName": "蛛网追猎者"
+  },
+  {
+   "name": "麻痹毒液",
+   "className": "游荡者",
+   "level": 17,
+   "source": "VDS",
+   "entries": [
+    "你获得以下诡诈打击选项。\n麻痹Paralyze（花费4d6）。当你以毒液打击造成毒素伤害时，目标必须通过一次体质豁免，否则陷入麻痹，直到你的下一个回合结束。"
+   ],
+   "subclassShortName": "蛛网追猎者"
+  },
+  {
+   "name": "咒唤炽焰",
+   "className": "游荡者",
+   "level": 3,
+   "source": "LOO",
+   "entries": [
+    "3级时，你习得戏法*舞光术Dancing Lights*（光源形似漂浮的蜡烛）和*燃火术Produce Flame*。"
+   ],
+   "subclassShortName": "蜡艺师"
+  },
+  {
+   "name": "魔蜡技艺",
+   "className": "游荡者",
+   "level": 15,
+   "source": "LOO",
+   "entries": [
+    "当你3级选择此范型时，你习得魔蜡技艺，这种技艺受你从灵界汲取和操控能量的能力所驱动。此能力会表现为一定数量的烛心点。\n魔艺Enchantments。你习得自选的三种魔艺，这些魔艺会在下方内容中列出。\n你会在5级、10级和15级时额外习得额外两种魔艺。每当你习得新的魔艺，你还可以将你已知的一种魔艺替换为另一种。\n豁免检定Saving Throws。 你的某些魔艺会需要生物进行一次豁免以抵抗魔艺的效果。豁免检定DC的计算方式如下：\n\n魔艺豁免DC = 8 + 你的熟练加值 + 你的智力或魅力调整值（由你选择）\n\n烛心点Wick Points。 你持有3烛心点，它代表了你当前操控灵界魔法的能力。操控异界的魔法，并将其能量注入另一个物体，哪怕只是一支蜡烛这般微小简易的物体，也会对施术者造成身心的双重负担。你消耗的烛心点需要在你完成一次短休或长休后恢复。\n每当你提升一个游荡者等级，你获得1点额外的烛心点。"
+   ],
+   "subclassShortName": "蜡艺师"
+  },
+  {
+   "name": "白焰连击",
+   "className": "游荡者",
+   "level": 9,
+   "source": "LOO",
+   "entries": [
+    "9级起，当你成功在敌人毫无防备时发动攻击时，你可以引燃你的武器，令其迸发出炽白的光焰。当你在你的回合内造成偷袭伤害时，你可以花费烛心点对目标造成额外的火焰伤害。每消耗1烛芯点就会额外造成1d6伤害，至多造成4d6伤害。"
+   ],
+   "subclassShortName": "蜡艺师"
+  },
+  {
+   "name": "强化魔艺",
+   "className": "游荡者",
+   "level": 13,
+   "source": "LOO",
+   "entries": [
+    "当你来到13级时，你的部分魔艺将变得更为强力。你现在可以使用下方列出的替换魔艺。如果你还未习得以下的任何魔艺，你可以习得其中的一种特性。\n绽光明烛Blooming Light。13级起，绽光明烛的效应持续8小时。\n延时燃烧Burning Delay。13级起，你可以将魔艺的效果延迟1轮，3轮，1分钟，10分钟，或1小时。\n噼啪蜜蜡Candle Pop。13级起，噼啪蜜蜡会影响目标及其5尺内的每个生物。\n美味佳烛Delicacy。13级起，目标生物恢复1d12生命值，且你的使用此魔艺时至多可以同时持有4根蜡烛。\n魔匠印击Maker's Mark。13级起，魔匠印击不再具有每回合的使用次数限制。\n守御蜡封Shielding Seal。13级起，你可以至多同时令三个守御蜡封同时生效，而非一个。\n蜡灵Waxlings 。13级起，你可以以一个动作花费3烛心点，而非2点，并同时召唤两个蜡灵。"
+   ],
+   "subclassShortName": "蜡艺师"
+  },
+  {
+   "name": "灵界烛焰",
+   "className": "游荡者",
+   "level": 17,
+   "source": "LOO",
+   "entries": [
+    "17级时，你学会使用粉蜡制作一根特殊的蜡烛。以一个附赠动作，你可以引燃蜡烛，蜡烛将持续燃烧1分钟。只要你持有正在燃烧的蜡烛，你获得以下好处：\n\n- 你使用魔艺花费的烛心点消耗减少1点。\n\n- 你免疫于火焰伤害。\n\n- 灵类生物对你发动的攻击检定具有劣势。\n\n若你在持有点燃的蜡烛时陷入倒地，你必须成功通过一个DC15的敏捷豁免，否则蜡烛将提前熄灭。\n一旦你使用了此特性，你不能再次使用此特性直到你完成一次长休。"
+   ],
+   "subclassShortName": "蜡艺师"
+  },
+  {
+   "name": "夜之眸",
+   "className": "游荡者",
+   "level": 3,
+   "source": "ACT",
+   "entries": [
+    "当你在3级选择此范型时，你对暗影魔法法则的经验将影响你的感官。你获得120尺黑暗视觉。"
+   ],
+   "subclassShortName": "缚影使"
+  },
+  {
+   "name": "缚影",
+   "className": "游荡者",
+   "level": 3,
+   "source": "ACT",
+   "entries": [
+    "3级起，你能够以秘仪吸取暗影之力将其束缚于身。你可以在长休期间进行该仪式。执行该仪式需要在非魔法的黑暗环境冥想至少1小时。仪式结束时，你选择以下效应之一，该效应持续24小时或在你再次执行该仪式时提前结束：\n\n- 当你身处微光光照或黑暗时，作为你移动的一部分，你可以传送至多等于你速度一半的距离至一处你可见的、同样处于微光光照或黑暗的未占据空间。然后直到你回合结束前，你进行的敏捷（隐匿）检定具有优势。\n\n- 当你身处微光光照或黑暗时，若你移动了至少等于你速度一半的距离，你获得永久的半身掩护直至你的下个回合开始（你的AC和敏捷豁免获得+2加值。）\n\n- 当你的近战或远程武器攻击命中时，你可以令此次攻击额外造成等于你熟练加值的寒冷伤害。此特性仅能在每个你的回合使用一次。"
+   ],
+   "subclassShortName": "缚影使"
+  },
+  {
+   "name": "无影之锋",
+   "className": "游荡者",
+   "level": 9,
+   "source": "ACT",
+   "entries": [
+    "9级起，阴影将你的锋芒藏起。你获得一种额外的触发偷袭的方式。若你位于你攻击的生物30尺内且你身处微光光照或黑暗，只要此次攻击检定不具有劣势，即使你不具有优势也能够使用偷袭。其他所有关于偷袭的规则依然适用于你。"
+   ],
+   "subclassShortName": "缚影使"
+  },
+  {
+   "name": "黑暗魔法",
+   "className": "游荡者",
+   "level": 13,
+   "source": "ACT",
+   "entries": [
+    "13级起，你可以吸引更多暗影的力量束缚于身。以一个附赠动作，你可以无需材料成分的施展*黑暗术Darkness*。此特性至多使用三次，当你完成长休时才能再次使用此特性。\n此外，当你身处微光光照或黑暗区域时，你能够以动作变得隐形。隐形状态持续至你发动攻击、施展法术或身处明亮光照。"
+   ],
+   "subclassShortName": "缚影使"
+  },
+  {
+   "name": "暗影之攫",
+   "className": "游荡者",
+   "level": 17,
+   "source": "ACT",
+   "entries": [
+    "17级起，你能够将敌人包裹在能弱化力量的阴影中。当你对生物造成偷袭伤害时，你可以迫使其进行一次敏捷豁免（DC等于8+你的熟练加值+你的敏捷调整值）。豁免失败则目标陷入束缚持续1分钟。束缚目标在其每个回合结束时重复豁免，成功则终止其身上的该效应。\n此特性一经使用，直至你完成短休或长休前都无法再次使用。"
+   ],
+   "subclassShortName": "缚影使"
+  },
+  {
+   "name": "墓冢哀嚎",
+   "className": "游荡者",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "当你在自己回合内对一个生物造成偷袭伤害后，你可以立即选择第一个生物30尺范围内你可见的第二个生物作为目标。掷出一半数量的偷袭骰（基于你的游荡者等级；向上取整），亡者的哀嚎将在第二个生物周围回荡，该生物受到等同于掷骰结果总和的暗蚀伤害。\n你可以使用此特性的次数等于你的敏捷调整值（至少1次），当你完成长休时你重获所有已消耗的使用次数。"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "亡者余声",
+   "className": "游荡者",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "每当你完成一次短休或长休时，你可以选择一项你不具有熟练的技能或工具，某种幽灵般的存在会与你分享其生前学识，使你获得该熟练。当你再次使用该增益选择一项不同的熟练时，你会失去原来选择的那项熟练。"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "逝者遗物",
+   "className": "游荡者",
+   "level": 9,
+   "source": "VRGR-V",
+   "entries": [
+    "死者的精魂被你吸纳，其过往生命的回响化为承载着共鸣之力的怪异古玩。\n你获得两件灵魂饰品；每个灵魂饰品都是一件微型的物件（由DM决定饰品的具体形态，或者你可以在《玩家手册》中的饰品表格来掷骰生成）。如果你距离某件你的灵魂饰品超过30尺，该饰品会立即传送到你的身上某处出现。\n使用灵魂饰品Using Soul Trinkets。你能以下列方式使用你的灵魂饰品：\n\n- 丧钟Death's Knell。当你在自己回合里造成偷袭伤害时，你可以摧毁一件灵魂饰品，并立即使用墓冢哀嚎，且不消耗该特性的使用次数。\n\n- 生命精华Life Essence。只要你还具有至少一件灵魂饰品，你进行的死亡豁免和体质豁免就具有优势。\n\n- 灵魂问询Soul Query。你可以执行魔法动作来摧毁一件灵魂饰品，并立即施展法术*卜筮术Augury*，无需任何法术成分，并以体质作为其施法属性。如果你知道该饰品与哪个生物相关联，你可以向该生物的灵魂提出一个问题来替代施展该法术。在此情况下，该灵魂会出现在你面前，并用其生前掌握的一种语言尽可能简明扼要地回答你的问题。\n\n获得额外的灵魂饰品Gaining Additional Soul Trinkets。 当你30尺内你可见的一个生物死亡时，你可以用反应去攫取该生物离体灵魂的碎片，以获得一个新的灵魂饰品。新的饰品会出现在你身上的某处。\n你同时持有的灵魂饰品数量上限为二。如果你在达到上限时试图获得一件灵魂饰品，则你现有的一件灵魂饰品会被立即摧毁，并由新饰品取代。你的灵魂饰品数量上限会在你的游荡者等级达到13级时（三个）与17级时（四个）提升。\n每当你完成长休时，若你拥有的灵魂饰品不足两件，你将获得灵魂饰品，直到拥有两件为止。"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "死亡之声",
+   "className": "游荡者",
+   "level": 9,
+   "source": "VRGR-V",
+   "entries": [
+    "你可以无需法术位地施展一次*死者交谈Speak with Dead* ，无需任何法术成分，并以敏捷作为其施法属性。当你完成一次短休或长休后你重获以此方式施展该法术的能力。\n当你施展该法术时，你可以选择逝者遗物特性中的一件灵魂饰品作为目标，而非一具尸体。从而使与该饰品相关联生物的灵魂来回答你的提问。"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "幽灵漫步",
+   "className": "游荡者",
+   "level": 13,
+   "source": "VRGR-V",
+   "entries": [
+    "作为一个附赠动作，你化为某种幽魂形态，并获得以下增益，持续10分钟，或直到你主动结束它们（无需动作）。一旦你使用了这一特性，直到完成一次长休前你都无法再次使用它，你也可以销毁你的一件来自逝者遗物特性的灵魂饰品来重获这一能力的使用权（无需动作）。\n飞行Flight。 你获得10尺飞行速度，且能悬浮。\n朦胧形态Hazy Form。 对你进行的攻击检定具有劣势。\n虚体移动Incorporeal Movement。 你可以移动穿过其他生物或物件，如同穿过困难地形一般。如果你的回合结束时处于某个生物或物件内，则会受到1d10力场伤害。"
+   ],
+   "subclassShortName": "鬼魅"
+  },
+  {
+   "name": "死亡之友",
+   "className": "游荡者",
+   "level": 17,
+   "source": "VRGR-V",
+   "entries": [
+    "你与死亡之间的联系已变得无比紧密，因此获得以下增益：\n悼亡挽歌Death's Lament。 当你使用墓冢哀嚎时，你可以让第一和第二个目标生物同时受到该特性的暗蚀伤害。\n死者归引Draw of Death。 当你投掷先攻时，若你的逝者遗物特性没有剩余的灵魂饰品，则你获得一件灵魂饰品。"
+   ],
+   "subclassShortName": "鬼魅"
+  }
+ ]
+}

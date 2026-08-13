@@ -1,0 +1,5073 @@
+{
+ "class": [
+  {
+   "ENG_name": "Ranger",
+   "name": "游侠",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "reprintedAs": [
+    "游侠|XPHB"
+   ],
+   "edition": "classic",
+   "hd": {
+    "number": 1,
+    "faces": 10
+   },
+   "proficiency": [
+    "str",
+    "dex"
+   ],
+   "spellcastingAbility": "wis",
+   "casterProgression": "1/2",
+   "spellsKnownProgression": [
+    0,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11
+   ],
+   "optionalfeatureProgression": [
+    {
+     "ENG_name": "Fighting Style",
+     "name": "战斗风格",
+     "featureType": [
+      "FS:R"
+     ],
+     "progression": {
+      "2": 1
+     }
+    }
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "weapons": [
+     "简易",
+     "军用"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "animal handling",
+        "athletics",
+        "insight",
+        "investigation",
+        "nature",
+        "perception",
+        "stealth",
+        "survival"
+       ],
+       "count": 3
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "default": [
+     "(a) {@item 鳞甲|phb} 或 (b) {@item 皮甲|phb}",
+     "(a) 二把{@item 短剑|phb|短剑}或 (b) 二把{@filter 简易近战武器|items|source=phb|category=基础|type=简易武器;近战武器=sand}",
+     "(a) 一个{@item 地城套组|phb}或(b) 一个{@item 探索套组|phb}",
+     "一把{@item 长弓|phb}和一个{@item 箭袋|phb}（内含{@item 箭矢 (20)|phb|20支箭}）"
+    ],
+    "goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金币}",
+    "defaultData": [
+     {
+      "a": [
+       "鳞甲|phb"
+      ],
+      "b": [
+       "皮甲|phb"
+      ]
+     },
+     {
+      "a": [
+       {
+        "item": "短剑|phb",
+        "quantity": 2
+       }
+      ],
+      "b": [
+       {
+        "equipmentType": "weaponSimpleMelee",
+        "quantity": 2
+       }
+      ]
+     },
+     {
+      "a": [
+       "地城套组|phb"
+      ],
+      "b": [
+       "探索套组|phb"
+      ]
+     },
+     {
+      "_": [
+       "长弓|phb",
+       "箭矢 (20)|phb"
+      ]
+     }
+    ]
+   },
+   "multiclassing": {
+    "requirements": {
+     "dex": 13,
+     "wis": 13
+    },
+    "proficienciesGained": {
+     "armor": [
+      "light",
+      "medium",
+      "shield"
+     ],
+     "skills": [
+      {
+       "choose": {
+        "from": [
+         "animal handling",
+         "athletics",
+         "insight",
+         "investigation",
+         "nature",
+         "perception",
+         "stealth",
+         "survival"
+        ],
+        "count": 1
+       }
+      }
+     ],
+     "weapons": [
+      "简易",
+      "军用"
+     ]
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "{@filter 已知法术|spells|class=游侠}"
+     ],
+     "rows": [
+      [
+       0
+      ],
+      [
+       2
+      ],
+      [
+       3
+      ],
+      [
+       3
+      ],
+      [
+       4
+      ],
+      [
+       4
+      ],
+      [
+       5
+      ],
+      [
+       5
+      ],
+      [
+       6
+      ],
+      [
+       6
+      ],
+      [
+       7
+      ],
+      [
+       7
+      ],
+      [
+       8
+      ],
+      [
+       8
+      ],
+      [
+       9
+      ],
+      [
+       9
+      ],
+      [
+       10
+      ],
+      [
+       10
+      ],
+      [
+       11
+      ],
+      [
+       11
+      ]
+     ]
+    },
+    {
+     "title": "每环法术位",
+     "colLabels": [
+      "{@filter 1st|spells|level=1|class=游侠}",
+      "{@filter 2nd|spells|level=2|class=游侠}",
+      "{@filter 3rd|spells|level=3|class=游侠}",
+      "{@filter 4th|spells|level=4|class=游侠}",
+      "{@filter 5th|spells|level=5|class=游侠}"
+     ],
+     "rowsSpellProgression": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       2,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       2,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       2,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       2,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       2,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "宿敌|游侠||1",
+    "夙敌|游侠||1|TCE",
+    "自然探索者|游侠||1",
+    "熟练探险家|游侠||1|TCE",
+    "战斗风格|游侠||2",
+    "施法|游侠||2",
+    "法器|游侠||2|TCE",
+    {
+     "classFeature": "游侠范型|游侠||3",
+     "gainSubclassFeature": true
+    },
+    "原初意识|游侠||3",
+    "原始意识|游侠||3|TCE",
+    "属性值提升|游侠||4",
+    "替换武术|游侠||4|TCE",
+    "额外攻击|游侠||5",
+    "增加宿敌及偏好环境|游侠||6",
+    "熟练探险家增效|游侠||6|TCE",
+    {
+     "classFeature": "范型特性|游侠||7",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠||8",
+    "大地行者|游侠||8",
+    "遁术|游侠||10",
+    "自然面纱|游侠||10|TCE",
+    "增加偏好环境|游侠||10",
+    "熟练探险家增效|游侠||10|TCE",
+    {
+     "classFeature": "范型特性|游侠||11",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠||12",
+    "无踪步|游侠||14",
+    "增加宿敌|游侠||14",
+    {
+     "classFeature": "范型特性|游侠||15",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠||16",
+    "野性感官|游侠||18",
+    "属性值提升|游侠||19",
+    "屠灭众敌|游侠||20"
+   ],
+   "subclassTitle": "游侠范型",
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Ranger",
+   "name": "游侠",
+   "source": "XPHB",
+   "page": 118,
+   "srd52": true,
+   "basicRules2024": true,
+   "edition": "one",
+   "primaryAbility": [
+    {
+     "dex": true,
+     "wis": true
+    }
+   ],
+   "hd": {
+    "number": 1,
+    "faces": 10
+   },
+   "proficiency": [
+    "str",
+    "dex"
+   ],
+   "spellcastingAbility": "wis",
+   "casterProgression": "artificer",
+   "preparedSpellsProgression": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    6,
+    7,
+    7,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    14,
+    14,
+    15,
+    15
+   ],
+   "preparedSpellsChange": "restLong",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "1": [
+       "猎人印记|xphb"
+      ]
+     }
+    }
+   ],
+   "featProgression": [
+    {
+     "ENG_name": "Fighting Style",
+     "name": "战斗风格",
+     "category": [
+      "FS",
+      "FS:R"
+     ],
+     "progression": {
+      "2": 1
+     }
+    },
+    {
+     "ENG_name": "Epic Boon",
+     "name": "传奇恩惠",
+     "category": [
+      "EB"
+     ],
+     "progression": {
+      "19": 1
+     }
+    }
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "weapons": [
+     "简易",
+     "军用"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "animal handling",
+        "athletics",
+        "insight",
+        "investigation",
+        "nature",
+        "perception",
+        "stealth",
+        "survival"
+       ],
+       "count": 3
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "defaultData": [
+     {
+      "A": [
+       {
+        "item": "镶钉皮甲|xphb"
+       },
+       {
+        "item": "弯刀|xphb"
+       },
+       {
+        "item": "短剑|xphb"
+       },
+       {
+        "item": "长弓|xphb"
+       },
+       {
+        "item": "箭矢 (20)|xphb"
+       },
+       {
+        "item": "箭袋|xphb"
+       },
+       {
+        "item": "槲寄生枝条|xphb"
+       },
+       {
+        "item": "探索套组|xphb"
+       },
+       {
+        "value": 700
+       }
+      ],
+      "B": [
+       {
+        "value": 15000
+       }
+      ]
+     }
+    ],
+    "entries": [
+     "{@i 选择A或B：} (A) {@item 镶钉皮甲|XPHB}、{@item 弯刀|XPHB}、{@item 短剑|XPHB}、{@item 长弓|XPHB}、{@item 箭矢 (20)|XPHB|20支箭}、{@item 箭袋|XPHB}、{@item 德鲁伊法器|XPHB}（{@item 槲寄生枝条|XPHB}）、{@item 探索套组|XPHB}和7 GP；或 (B) 150 GP"
+    ]
+   },
+   "multiclassing": {
+    "proficienciesGained": {
+     "weapons": [
+      "军用"
+     ],
+     "armor": [
+      "light",
+      "medium",
+      "shield"
+     ],
+     "skills": [
+      {
+       "choose": {
+        "from": [
+         "animal handling",
+         "athletics",
+         "insight",
+         "investigation",
+         "nature",
+         "perception",
+         "stealth",
+         "survival"
+        ],
+        "count": 1
+       }
+      }
+     ]
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "宿敌"
+     ],
+     "rows": [
+      [
+       2
+      ],
+      [
+       2
+      ],
+      [
+       2
+      ],
+      [
+       2
+      ],
+      [
+       3
+      ],
+      [
+       3
+      ],
+      [
+       3
+      ],
+      [
+       3
+      ],
+      [
+       4
+      ],
+      [
+       4
+      ],
+      [
+       4
+      ],
+      [
+       4
+      ],
+      [
+       5
+      ],
+      [
+       5
+      ],
+      [
+       5
+      ],
+      [
+       5
+      ],
+      [
+       6
+      ],
+      [
+       6
+      ],
+      [
+       6
+      ],
+      [
+       6
+      ]
+     ]
+    },
+    {
+     "colLabels": [
+      "{@filter 准备法术|spells|level=!0|class=游侠}"
+     ],
+     "rows": [
+      [
+       2
+      ],
+      [
+       3
+      ],
+      [
+       4
+      ],
+      [
+       5
+      ],
+      [
+       6
+      ],
+      [
+       6
+      ],
+      [
+       7
+      ],
+      [
+       7
+      ],
+      [
+       9
+      ],
+      [
+       9
+      ],
+      [
+       10
+      ],
+      [
+       10
+      ],
+      [
+       11
+      ],
+      [
+       11
+      ],
+      [
+       12
+      ],
+      [
+       12
+      ],
+      [
+       14
+      ],
+      [
+       14
+      ],
+      [
+       15
+      ],
+      [
+       15
+      ]
+     ]
+    },
+    {
+     "title": "每环法术位",
+     "colLabels": [
+      "{@filter 1st|spells|level=1|class=游侠}",
+      "{@filter 2nd|spells|level=2|class=游侠}",
+      "{@filter 3rd|spells|level=3|class=游侠}",
+      "{@filter 4th|spells|level=4|class=游侠}",
+      "{@filter 5th|spells|level=5|class=游侠}"
+     ],
+     "rowsSpellProgression": [
+      [
+       2,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       2,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       2,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       2,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       2,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       2,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "施法|游侠|XPHB|1",
+    "宿敌|游侠|XPHB|1",
+    "武器精通|游侠|XPHB|1",
+    "熟练探险家|游侠|XPHB|2",
+    "战斗风格|游侠|XPHB|2",
+    {
+     "classFeature": "游侠子职|游侠|XPHB|3",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠|XPHB|4",
+    "额外攻击|游侠|XPHB|5",
+    "越野|游侠|XPHB|6",
+    {
+     "classFeature": "子职特性|游侠|XPHB|7",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠|XPHB|8",
+    "专精|游侠|XPHB|9",
+    "不知疲倦|游侠|XPHB|10",
+    {
+     "classFeature": "子职特性|游侠|XPHB|11",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠|XPHB|12",
+    "永恒追猎|游侠|XPHB|13",
+    "自然面纱|游侠|XPHB|14",
+    {
+     "classFeature": "子职特性|游侠|XPHB|15",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|游侠|XPHB|16",
+    "致命猎杀|游侠|XPHB|17",
+    "野性感官|游侠|XPHB|18",
+    "传奇恩惠|游侠|XPHB|19",
+    "屠灭众敌|游侠|XPHB|20"
+   ],
+   "subclassTitle": "游侠子职",
+   "hasFluff": true,
+   "hasFluffImages": true
+  }
+ ],
+ "subclass": [
+  {
+   "name": "驯兽师",
+   "shortName": "驯兽师",
+   "className": "游侠",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Beast Master",
+   "name": "驯兽师",
+   "shortName": "驯兽师",
+   "source": "PHB",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Beast Master",
+    "name": "驯兽师",
+    "source": "PHB",
+    "shortName": "驯兽师",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "猎人",
+   "shortName": "猎人",
+   "className": "游侠",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Hunter",
+   "name": "猎人",
+   "shortName": "猎人",
+   "source": "PHB",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Hunter",
+    "name": "猎人",
+    "source": "PHB",
+    "shortName": "猎人",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "幽域追踪者",
+   "shortName": "幽域追踪者",
+   "className": "游侠",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Gloom Stalker",
+   "name": "幽域追踪者",
+   "shortName": "幽域追踪者",
+   "source": "XGE",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Gloom Stalker",
+    "name": "幽域追踪者",
+    "source": "XGE",
+    "shortName": "幽域追踪者",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "边界行者",
+   "shortName": "边界行者",
+   "className": "游侠",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Horizon Walker",
+   "name": "边界行者",
+   "shortName": "边界行者",
+   "source": "XGE",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Horizon Walker",
+    "name": "边界行者",
+    "source": "XGE",
+    "shortName": "边界行者",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "怪物杀手",
+   "shortName": "怪物杀手",
+   "className": "游侠",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Monster Slayer",
+   "name": "怪物杀手",
+   "shortName": "怪物杀手",
+   "source": "XGE",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Monster Slayer",
+    "name": "怪物杀手",
+    "source": "XGE",
+    "shortName": "怪物杀手",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   }
+  },
+  {
+   "name": "妖精漫游者",
+   "shortName": "妖精漫游者",
+   "className": "游侠",
+   "source": "TCE"
+  },
+  {
+   "ENG_name": "Fey Wanderer",
+   "name": "妖精漫游者",
+   "shortName": "妖精漫游者",
+   "source": "TCE",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Fey Wanderer",
+    "name": "妖精漫游者",
+    "source": "TCE",
+    "shortName": "妖精漫游者",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Fey Wanderer",
+     "name": "妖精漫游者",
+     "source": "TCE",
+     "shortName": "妖精漫游者",
+     "className": "游侠",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "Swarmkeeper",
+   "name": "集群守卫",
+   "shortName": "集群守卫",
+   "source": "TCE",
+   "className": "游侠",
+   "classSource": "PHB",
+   "page": 59,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "known": {
+      "3": [
+       "法师之手#c",
+       "妖火"
+      ],
+      "5": [
+       "蛛网术"
+      ],
+      "9": [
+       "气化形体"
+      ],
+      "13": [
+       "秘法眼"
+      ],
+      "17": [
+       "疫病虫群"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "集群守卫|游侠||集群守卫|TCE|3",
+    "翻腾浪涌|游侠||集群守卫|TCE|7",
+    "壮大集群|游侠||集群守卫|TCE|11",
+    "群逸逃散|游侠||集群守卫|TCE|15"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Swarmkeeper",
+   "name": "集群守卫",
+   "shortName": "集群守卫",
+   "source": "TCE",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Swarmkeeper",
+    "name": "集群守卫",
+    "source": "TCE",
+    "shortName": "集群守卫",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Swarmkeeper",
+     "name": "集群守卫",
+     "source": "TCE",
+     "shortName": "集群守卫",
+     "className": "游侠",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "Drakewarden",
+   "name": "龙兽守卫",
+   "shortName": "龙兽守卫",
+   "source": "FTD",
+   "className": "游侠",
+   "classSource": "PHB",
+   "page": 15,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "known": {
+      "3": [
+       "奇术#c"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "龙兽守卫|游侠||龙兽守卫|FTD|3",
+    "牙鳞之联|游侠||龙兽守卫|FTD|7",
+    "龙兽吐息|游侠||龙兽守卫|FTD|11",
+    "完美联结|游侠||龙兽守卫|FTD|15"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Drakewarden",
+   "name": "龙兽守卫",
+   "shortName": "龙兽守卫",
+   "source": "FTD",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Drakewarden",
+    "name": "龙兽守卫",
+    "source": "FTD",
+    "shortName": "龙兽守卫",
+    "className": "游侠",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Drakewarden",
+     "name": "龙兽守卫",
+     "source": "FTD",
+     "shortName": "龙兽守卫",
+     "className": "游侠",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "name": "驯兽师",
+   "shortName": "驯兽师",
+   "className": "游侠",
+   "source": "XPHB"
+  },
+  {
+   "name": "妖精漫游者",
+   "shortName": "妖精漫游者",
+   "className": "游侠",
+   "source": "XPHB"
+  },
+  {
+   "ENG_name": "Gloom Stalker",
+   "name": "幽域追踪者",
+   "shortName": "幽域追踪者",
+   "source": "XPHB",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "page": 125,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "易容术|xphb"
+      ],
+      "5": [
+       "魔绳术|xphb"
+      ],
+      "9": [
+       "恐惧术|xphb"
+      ],
+      "13": [
+       "高等隐形术|xphb"
+      ],
+      "17": [
+       "伪装术|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "幽域追踪者|游侠|XPHB|幽域追踪者|XPHB|3",
+    "钢铁意志|游侠|XPHB|幽域追踪者|XPHB|7",
+    "追猎如风|游侠|XPHB|幽域追踪者|XPHB|11",
+    "如影随形|游侠|XPHB|幽域追踪者|XPHB|15"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "name": "猎人",
+   "shortName": "猎人",
+   "className": "游侠",
+   "source": "XPHB"
+  },
+  {
+   "ENG_name": "Winter Walker",
+   "name": "凛冬行者",
+   "shortName": "凛冬行者",
+   "source": "FRHoF",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "page": 21,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "冰刃|xphb"
+      ],
+      "5": [
+       "定身类人|xphb"
+      ],
+      "9": [
+       "移除诅咒|xphb"
+      ],
+      "13": [
+       "冰风暴|xphb"
+      ],
+      "17": [
+       "寒冰锥|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "凛冬行者|游侠|XPHB|凛冬行者|FRHoF|3|FRHoF",
+    "凝冻之魂|游侠|XPHB|凛冬行者|FRHoF|7|FRHoF",
+    "寒心复仇|游侠|XPHB|凛冬行者|FRHoF|11|FRHoF",
+    "冰结恶灵|游侠|XPHB|凛冬行者|FRHoF|15|FRHoF"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Hollow Warden",
+   "name": "幽邃戍卫",
+   "shortName": "幽邃戍卫",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "激愤斩|xphb"
+      ],
+      "5": [
+       "变身术|xphb"
+      ],
+      "9": [
+       "魅影驹|xphb"
+      ],
+      "13": [
+       "支配野兽|xphb"
+      ],
+      "17": [
+       "钢风斩|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "幽邃戍卫|游侠|XPHB|幽邃戍卫|RHW|3|RHW",
+    "渴血予力|游侠|XPHB|幽邃戍卫|RHW|7|RHW",
+    "枯朽残虐|游侠|XPHB|幽邃戍卫|RHW|11|RHW",
+    "古源蛮力|游侠|XPHB|幽邃戍卫|RHW|15|RHW"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "name": "集群牧者",
+   "shortName": "集群牧者",
+   "className": "游侠",
+   "source": "TCE"
+  },
+  {
+   "name": "幽域追猎者",
+   "shortName": "幽域追猎者",
+   "className": "游侠",
+   "source": "XPHB"
+  },
+  {
+   "name": "酷刑密会",
+   "shortName": "酷刑密会",
+   "className": "游侠",
+   "source": "SHO"
+  },
+  {
+   "name": "噩兆先驱",
+   "shortName": "噩兆先驱",
+   "className": "游侠",
+   "source": "WYM"
+  },
+  {
+   "name": "荒径守护者",
+   "shortName": "荒径守护者",
+   "className": "游侠",
+   "source": "THC"
+  },
+  {
+   "name": "天鹏旅人",
+   "shortName": "天鹏旅人",
+   "className": "游侠",
+   "source": "GTS"
+  },
+  {
+   "name": "兽染",
+   "shortName": "兽染",
+   "className": "游侠",
+   "source": "VDS"
+  },
+  {
+   "name": "侵蚀行者",
+   "shortName": "侵蚀行者",
+   "className": "游侠",
+   "source": "LOO"
+  },
+  {
+   "name": "龙兽守卫",
+   "shortName": "龙兽守卫",
+   "className": "游侠",
+   "source": "FTFT"
+  },
+  {
+   "name": "幽邃戍卫",
+   "shortName": "幽邃戍卫",
+   "className": "游侠",
+   "source": "VRGR-V"
+  },
+  {
+   "name": "侵蚀行者",
+   "shortName": "侵蚀行者",
+   "className": "游侠",
+   "source": ""
+  }
+ ],
+ "classFeature": [
+  {
+   "ENG_name": "Deft Explorer",
+   "name": "熟练探险家",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 1,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 1级游侠{@variantrule 可选职业特性|tce|可选特性}，替代自然探索者特性}",
+    "你是一个无与伦比的探险家和求生专家。你在1级时获得对应的特性，然后在第6级和第10级时再各获得对应的特性。",
+    {
+     "ENG_name": "Canny",
+     "name": "精明",
+     "type": "entries",
+     "entries": [
+      "你选择一项你拥有熟练的技能，你在使用该技能时所做的任何属性检定中的熟练加值变为两倍。",
+      "你还可以额外说、读、写两门额外的自选语言。"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "宿敌",
+   "className": "游侠",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级起，你针对一种特定类型敌人的研究令你有着充足的经验用以追踪、狩猎乃至与之交流。\n从下列种类中选择其一作为宿敌：异怪、野兽、天族、构装生物、龙、元素生物、妖精、邪魔、巨人、怪兽、泥怪、植物、亡灵。或者作为另一种方案，你也可以选择两个类人生物种族（例如鬣狗人gnolls和兽人orcs）作为宿敌。\n追踪宿敌时，你的感知（求生）检定，以及回想关于宿敌信息时进行的智力检定具有优势。\n获得该特性时，如果你选择的宿敌具有语言能力，则你还可以学会宿敌所知晓的一门语言。\n第6和第14级时，你将分别获得一个额外的宿敌以及相关语言。另外，随着等级的提升，你所选择的宿敌应该与你在冒险中所遭遇怪物的种类层次相符。"
+   ]
+  },
+  {
+   "ENG_name": "Favored Foe",
+   "name": "夙敌",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 1,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 1级游侠{@variantrule 可选职业特性|tce|可选特性}，替代宿敌特性并与屠灭众敌特性同时生效}",
+    "当你以一次攻击掷骰命中一个生物时，你可以呼唤你与自然的神秘羁连以将目标标记为你的夙敌，持续一分钟或直到你失去{@status 专注}(如同你在{@status 专注||专注于}一道法术)。",
+    "你在你的回合内第一次命中你的夙敌并对其造成伤害，包括你标记它的时候，你可以造成额外的{@damage 1d4}点伤害。",
+    "你可以使用同等于你的熟练加值次该特性来标记你的夙敌，你在完成一次长休后恢复所有已使用的次数。",
+    "此特性的额外伤害会在你达到该职业特定等级时提升：6级时提升至{@damage 1d6}，14级时提升至{@damage 1d8}。"
+   ]
+  },
+  {
+   "name": "自然探索者",
+   "className": "游侠",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "你对某种自然环境特别熟悉，并适应了在其中行走及生存。从下列类别中选择一种偏爱地形：极地arctic、海岸coast、荒漠desert、丛林forest、草原grassland、山地mountain、沼泽swamp或幽暗地域Underdark。当你进行与偏好地形相关的智力或感知检定时，如果你拥有该技能的熟练项，则在检定时加入双倍熟练加值。\n当你在偏好地形上移动一小时或更长时间时，你获得以下增益：\n\n· 你的队伍旅行时不会因困难地形而变慢\n\n· 除非受魔法效应影响，否则你的队伍不会迷路\n\n· 旅行时，即使你进行另一项活动（如觅食、导航或追踪），仍能对危险保持警觉\n\n· 独自旅行时，你能够保持隐匿状态以正常步调移动\n\n· 觅食时，你会发现两倍的食物\n\n· 追踪其他生物时，你还能了解他们的确切数量、体型以及离开踪迹的时间\n\n你在第6级和第10级时将分别获得一个额外的偏好地形。"
+   ]
+  },
+  {
+   "name": "战斗风格",
+   "className": "游侠",
+   "level": 2,
+   "source": "PHB",
+   "entries": [
+    "第2级起，你将精进于一种战斗风格，从下列选项中选择其一。另外，即使你有多次选择战斗风格的机会，也不能重复选择同一个战斗风格。"
+   ]
+  },
+  {
+   "ENG_name": "Spellcasting",
+   "name": "施法",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 2,
+   "entries": [
+    "第2级起，你学会运用自然世界的魔法本源进行施法，你的施法方式与德鲁伊类似。参考{@book 第十章|PHB|10}的施法基本规则以及{@book 第十一章|PHB|11}的{@filter 游侠法术列表|spells|class=游侠}。",
+    {
+     "ENG_name": "Spell Slots",
+     "name": "法术位",
+     "type": "entries",
+     "entries": [
+      "\"游侠职业表\"中记录了你可用以施展你{@filter 游侠法术|spells|class=游侠}的1环及更高环阶法术位数量。施展某个游侠法术时，你必须同时消耗其对应环阶的法术位。而已消耗的法术位则可以通过完成一次长休进行恢复。",
+      "例如，如果你已经习得一环法术{@spell 化兽为友}，并且有一个一环和二环法术位可用，你可以使用任一法术位来施放{@spell 化兽为友}。"
+     ]
+    },
+    {
+     "ENG_name": "Spells Known of 1st Level and Higher",
+     "name": "1环及更高等级已知法术",
+     "type": "entries",
+     "entries": [
+      "你从游侠法术列表里选两个1环法术作为自己的已知法术。",
+      "\"游侠职业表\"中\"已知法术\"一栏记录了你获得更多已知法术时的相应等级。你只能获取已有相应环阶法术位的法术。比如，当你达到第5级时，你将获得一个1环或2环法术。",
+      "另外，你每提升一个游侠等级，还可以从游侠法术列表里选择一个新法术来代替一个已知法术列表中的旧法术。但是，你必须拥有新法术的相应环阶法术位。"
+     ]
+    },
+    {
+     "ENG_name": "Spellcasting Ability",
+     "name": "施法属性",
+     "type": "entries",
+     "entries": [
+      "你的魔法来自你与自然的同调，因此感知是你施展游侠法术的关键属性。每当你的游侠法术需要施法属性时均指向你的感知值。而你游侠法术的豁免DC和攻击检定，则使用你的感知调整值。",
+      {
+       "ENG_name": "Spell",
+       "name": "法术",
+       "type": "abilityDc",
+       "attributes": [
+        "wis"
+       ]
+      },
+      {
+       "ENG_name": "Spell",
+       "name": "法术",
+       "type": "abilityAttackMod",
+       "attributes": [
+        "wis"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Spellcasting Focus",
+   "name": "法器",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 2,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 2级游侠{@variantrule 可选职业特性|tce|可选特性}}",
+    "你可以使用{@item 德鲁伊法器|phb}作为你的游侠法术的施法法器。德鲁伊法器可能是一小枝槲寄生或冬青、由紫杉或其他特殊木材制成的魔杖或权杖、从活树上完整取下的法杖，或是包含神圣动物的羽毛、皮毛、骨头和牙齿的物品。"
+   ]
+  },
+  {
+   "ENG_name": "Primal Awareness",
+   "name": "原始意识",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 3,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 3级游侠{@variantrule 可选职业特性|tce|可选特性}，替代原初意识特性}",
+    "你可以通过与自然的共鸣而集中你的意识:若你尚未习得下方表格种的法术，那么你在抵达对应等级时学会下方原始意识法术表格中的法术。这些法术不占用你的游侠已知法术。",
+    {
+     "type": "table",
+     "caption": "原始意识法术",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3rd",
+       "{@spell 动物交谈}"
+      ],
+      [
+       "5th",
+       "{@spell 野兽感官}"
+      ],
+      [
+       "9th",
+       "{@spell 植物交谈}"
+      ],
+      [
+       "13th",
+       "{@spell 生物定位术}"
+      ],
+      [
+       "17th",
+       "{@spell 问道自然}"
+      ]
+     ]
+    },
+    "你可以不消耗法术位的施展这些法术每个一次。一旦你用这种方式施展了那个法术，直到你完成一次长休前你都不能再次以此施展它。"
+   ]
+  },
+  {
+   "name": "原初意识",
+   "className": "游侠",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级起，你可以消耗一枚游侠法术位，并用动作将你的意识集中在身处的区域，感测1里内是否存在以下类型生物（在偏爱地形中时，扩展至6里）：异怪、天族、龙、妖精、邪魔、元素生物和亡灵。所消耗法术位每提高一环阶感测效果持续时间就多加1分钟。另外，该特性并不会知晓生物的位置或数量。"
+   ]
+  },
+  {
+   "name": "游侠范型",
+   "className": "游侠",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级时，你选择学习一种特定的战斗范型。你可以从猎人Hunter或驯兽师Beast Master中进行选择。随后，你将在第3，第7，第11、第15级时获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 4,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Martial Versatility",
+   "name": "替换武术",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 4,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 4级游侠{@variantrule 可选职业特性|tce|可选特性}}",
+    "当你的游侠职业等级抵达能让你获得属性值提升职业特性时，你能用一个游侠可用的战斗风格替换原有的一个战斗风格。这种变化代表着你改变了武术训练和练习的重点。"
+   ]
+  },
+  {
+   "name": "额外攻击",
+   "className": "游侠",
+   "level": 5,
+   "source": "PHB",
+   "entries": [
+    "第5级起，你在自己回合内执行攻击动作时可以发动两次攻击而非一次。"
+   ]
+  },
+  {
+   "ENG_name": "Deft Explorer Improvement",
+   "name": "熟练探险家增效",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 6,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "该职业等级6级时，获得额外的特性。",
+    {
+     "ENG_name": "Roving",
+     "name": "越野",
+     "type": "entries",
+     "entries": [
+      "你的步行速度增加5。同时，你获得等于你步行速度的攀爬速度和游泳速度。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Favored Enemy and Natural Explorer improvements",
+   "name": "增加宿敌及偏好环境",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 6,
+   "entries": [
+    "第6级时，你获得一个额外的偏好地形。",
+    "第6级时，你将获得一个额外的宿敌以及相关语言。你所选择的宿敌应该与你在冒险中所遭遇怪物的种类层次相符。"
+   ]
+  },
+  {
+   "ENG_name": "Ranger Archetype feature",
+   "name": "范型特性",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 7,
+   "entries": [
+    "第7级时，你获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 8,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "大地行者",
+   "className": "游侠",
+   "level": 8,
+   "source": "PHB",
+   "entries": [
+    "第8级起，你穿过非魔法的困难地形时不会消耗额外移动力。你穿过非魔法的植物时不会消耗额外移动力，且这类植物的荆棘、毛刺或类似的危害物也无法对你造成伤害。\n另外，在抵抗魔法制造或控制的植物造成的移动障碍效应时（例如*纠缠术entangle*），你的豁免检定具有优势。"
+   ]
+  },
+  {
+   "ENG_name": "Deft Explorer Improvement",
+   "name": "熟练探险家增效",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 10,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "该职业等级10级时，获得额外的特性。",
+    {
+     "ENG_name": "Tireless",
+     "name": "不知疲倦",
+     "type": "entries",
+     "entries": [
+      "以一个动作，你能够给予自己{@dice 1d8}+你的感知调整值的临时生命值（至少1点临时生命值）。你能够使用此特性的次数等于你的熟练加值次，当你完成一次长休后，你恢复已消费的全部次数。",
+      "此外，当你完成一次短休时，你的{@condition 力竭}等级减少1级（若有）。"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "遁术",
+   "className": "游侠",
+   "level": 10,
+   "source": "PHB",
+   "entries": [
+    "第10级起，你可以花1分钟来为自己制作伪装。你需要取用新鲜的泥土、植物、煤烟、以及其他天然物料制作这套伪装。\n伪装完成后，你可以将自己贴上至少跟自己等高等阔的实体表面（如树干或墙壁）并尝试躲藏。如果你留在原地不移动且不执行动作，则你的敏捷（隐匿）检定获得 +10加值。一旦移动、执行动作或执行反应，你都必须重新伪装以重获该增益。"
+   ]
+  },
+  {
+   "ENG_name": "Natural Explorer improvement",
+   "name": "增加偏好环境",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 10,
+   "entries": [
+    "你获得了一个额外的偏好地形。"
+   ]
+  },
+  {
+   "ENG_name": "Nature's Veil",
+   "name": "自然面纱",
+   "source": "TCE",
+   "page": 56,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 10,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 10级游侠{@variantrule 可选职业特性|tce|可选特性}，替代蔽于平野特性}",
+    "你可以暂时地使用自然的力量将你的身形遮蔽。以一个附赠动作，你可以魔法地使自己与正携带、着装的任何装备变得{@condition 隐形}，直到你的下个回合开始。",
+    "你可以使用此能力的次数等同于你的熟练加值。当你完成一次长休后，你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Ranger Archetype feature",
+   "name": "范型特性",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 11,
+   "entries": [
+    "第11级时，你获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 12,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Favored Enemy improvement",
+   "name": "增加宿敌",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 14,
+   "entries": [
+    "第14级时，你将获得一个额外的宿敌以及相关语言。你所选择的宿敌应该与你在冒险中所遭遇怪物的种类层次相符。"
+   ]
+  },
+  {
+   "name": "无踪步",
+   "className": "游侠",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级起，你可以在自己回合以一个附赠动作的形式执行躲藏Hide动作。此时，你无法被非魔法手段追踪到，除非你主动留下踪迹。"
+   ]
+  },
+  {
+   "ENG_name": "Ranger Archetype feature",
+   "name": "范型特性",
+   "source": "PHB",
+   "page": 89,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "level": 15,
+   "entries": [
+    "第15级时，你获得所选范型的相应特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 16,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "野性感官",
+   "className": "游侠",
+   "level": 18,
+   "source": "PHB",
+   "entries": [
+    "第18级时，你获得超自然的感官以帮助你对抗看不到的生物。此后，你攻击一个看不到的生物时不会因此承受劣势。\n另外，你还能感测30尺内所有隐形敌人的位置，前提是该生物并没有针对你进行躲藏，而你也没有陷入目盲或耳聋。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 19,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4、第8、第12、第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "屠灭众敌",
+   "className": "游侠",
+   "level": 20,
+   "source": "PHB",
+   "entries": [
+    "第20级时，你成为了猎杀敌人的无双猎手。你在自己的每个回合内，都有一次机会将你的感知调整值加到你对宿敌进行的攻击检定或伤害掷骰上。你可以在掷骰之前或者之后决定使用该特性，但必须在该掷骰的相关效应被应用之前。"
+   ]
+  },
+  {
+   "name": "宿敌",
+   "className": "游侠",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你始终准备着法术*猎人印记Hunter's Mark*。你可以无需法术位地施展此法术共计两次，并在完成一次长休后恢复此能力的所有使用次数。\n你能无需法术位施展该法术的次数会在你获得特定游侠等级时提升，见游侠特性表中的宿敌一栏。"
+   ]
+  },
+  {
+   "ENG_name": "Spellcasting",
+   "name": "施法",
+   "source": "XPHB",
+   "page": 119,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "level": 1,
+   "entries": [
+    "你学会运用自然世界的魔法本源进行施法。施法规则见{@book 第七章|XPHB|7}。下文将详述如何将这些规则应用于游侠法术，游侠法术详见本章后文职业描述中的{@filter 游侠法术列表|spells|class=游侠}。",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Spell Slots",
+       "name": "法术位",
+       "type": "entries",
+       "entries": [
+        "游侠特性表显示了你可用于施展一环及以上法术的法术位数量。当你完成{@variantrule 长休|XPHB}时，你重获所有已消耗的法术位。"
+       ]
+      },
+      {
+       "ENG_name": "Prepared Spells of Level 1+",
+       "name": "1环及以上的准备法术",
+       "type": "entries",
+       "entries": [
+        "你准备可供你以此特性施展的一环及更高环阶的法术列表。最初，选择两道{@filter 1环游侠法术|spells|class=游侠|level=1}。推荐选择{@spell 疗伤术|XPHB}和{@spell 诱捕打击|XPHB}。",
+        "已准备法术数量会随你游侠等级的提升而增加，如游侠特性表中的准备法术一列所示。每当这一列的数字增加时，从游侠法术列表中选择额外法术准备，直至已准备法术的数量与表格中的数字一致。你所选择法术的环阶必须是你所拥有法术位对应的环阶。例如，如果你是一名5级游侠，则你的准备法术列表能包括六道一环或二环的游侠法术，随意组合。",
+        "如果游侠的其他特性给了你始终准备着的法术，这些法术不计入你以此法准备的法术数量，但这些法术对你而言都视为游侠法术。"
+       ]
+      },
+      {
+       "ENG_name": "Changing Your Prepared Spells",
+       "name": "改变你的准备法术",
+       "type": "entries",
+       "entries": [
+        "每当你完成一次{@variantrule 长休|XPHB}时，你可以将你准备列表上的一道法术替换为其他游侠法术，新替换的法术必须是你拥有法术位的法术。"
+       ]
+      },
+      {
+       "ENG_name": "Spellcasting Ability",
+       "name": "施法属性",
+       "type": "entries",
+       "entries": [
+        "感知是你游侠法术的施法属性。"
+       ]
+      },
+      {
+       "ENG_name": "Spellcasting Focus",
+       "name": "法器",
+       "type": "entries",
+       "entries": [
+        "你可以使用{@item 德鲁伊法器|XPHB}作为你游侠法术的{@variantrule 法器|XPHB}。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "武器精通",
+   "className": "游侠",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你对武器的训练使你能够自选并使用2种已熟练武器的精通词条，例如长弓和短剑。\n当你完成一次长休时，你可以改变你所选择的武器类型。比如你可以将其改为弯刀和长剑。"
+   ]
+  },
+  {
+   "name": "熟练探险家",
+   "className": "游侠",
+   "level": 2,
+   "source": "XPHB",
+   "entries": [
+    "得益于你的旅途，你获得以下增益。\n专精Expertise。选择一项你熟练但不具备专精的技能。你在那个技能上获得专精。\n语言Languages。 你习得第二章的语言表中的两门语言"
+   ]
+  },
+  {
+   "name": "战斗风格",
+   "className": "游侠",
+   "level": 2,
+   "source": "XPHB",
+   "entries": [
+    "你获得一项战斗风格专长（见第五章），你也可以选择以下选项。\n德鲁伊教战士Druidic Warrior。你习得两道你选择的德鲁伊戏法（德鲁伊法术列表见德鲁伊职业部分），推荐选取*神导术Guidance*和*点点星芒Starry Wisp*。它们对你视作游侠法术，且这些法术的施法属性是感知。每当你获得一个游侠等级时，你都能从这些戏法中选择其一替换为另一道你所选择的德鲁伊戏法。"
+   ]
+  },
+  {
+   "name": "游侠子职",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你选择获得一项游侠子职：驯兽师，妖精漫游者，幽域追猎者或猎人。子职的内容见后文。子职是一种特化，在特定的游侠等级给予你对应的独特能力。此后你将获得你所选的子职所有能力——只要其所需等级不超过你的游侠等级。游侠特性表列出了你从子职中获得新特性的游侠等级。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 4,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。你还会在你的游侠等级达到第8、第12和第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "额外攻击",
+   "className": "游侠",
+   "level": 5,
+   "source": "XPHB",
+   "entries": [
+    "你在自己回合内执行攻击动作时，可以发动两次攻击而非一次。"
+   ]
+  },
+  {
+   "name": "越野",
+   "className": "游侠",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "只要你未着装重甲，你的速度提升10尺。你也获得等于你速度的攀爬速度和游泳速度。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 121,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "level": 7,
+   "entries": [
+    "你获得一个来自你游侠子职的特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 8,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。你还会在你的游侠等级达到第8、第12和第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "专精",
+   "className": "游侠",
+   "level": 9,
+   "source": "XPHB",
+   "entries": [
+    "选择两项你熟练但不具备专精的技能，你获得这些技能的专精。"
+   ]
+  },
+  {
+   "name": "不知疲倦",
+   "className": "游侠",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "原初的力量现在会帮你重整旗鼓，重新踏上旅途。你因它获得以下增益：\n临时生命值Temporary Hit Points。以一个魔法动作，你能够给予自己 1d8+你的感知调整值（最低为1） 的临时生命值。你能够使用此特性的次数等于你的感知调整值次（最低一次），当你完成一次长休时，你重获全部已消耗的使用次数。\n减少力竭Decrease Exhaustion。当你完成一次短休时，你的力竭等级减少1级（若有）。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 121,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "level": 11,
+   "entries": [
+    "你获得一个来自你游侠子职的特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 12,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。你还会在你的游侠等级达到第8、第12和第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "永恒追猎",
+   "className": "游侠",
+   "level": 13,
+   "source": "XPHB",
+   "entries": [
+    "受到伤害不会打断你对*猎人印记Hunter's Mark* 的专注。"
+   ]
+  },
+  {
+   "name": "自然面纱",
+   "className": "游侠",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "你祈唤自然精魂，魔法性地将身形遮蔽隐蔽。以一个附赠动作，你可以让自己进入隐形状态，持续到你的下一回合结束。\n你可以使用该特性的次数同等于你的感知调整值次（最少1次），完成一次长休时，你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 121,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "level": 15,
+   "entries": [
+    "你获得一个来自你游侠子职的特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "游侠",
+   "level": 16,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。你还会在你的游侠等级达到第8、第12和第16级时再次获得本特性。"
+   ]
+  },
+  {
+   "name": "致命猎杀",
+   "className": "游侠",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "你在对你的*猎人印记Hunter's Mark* 当前指定的目标的攻击检定中具有优势。"
+   ]
+  },
+  {
+   "name": "野性感官",
+   "className": "游侠",
+   "level": 18,
+   "source": "XPHB",
+   "entries": [
+    "你与自然的链接给予了你30尺盲视 。"
+   ]
+  },
+  {
+   "name": "传奇恩惠",
+   "className": "游侠",
+   "level": 19,
+   "source": "XPHB",
+   "entries": [
+    "你获得一项传奇恩惠专长（见第五章）或其他一项你选择的适用的专长。推荐选择次元旅行之恩惠 。"
+   ]
+  },
+  {
+   "name": "屠灭众敌",
+   "className": "游侠",
+   "level": 20,
+   "source": "XPHB",
+   "entries": [
+    "你的*猎人印记Hunter's Mark* 的额外伤害骰从d6变为d10。"
+   ]
+  }
+ ],
+ "subclassFeature": [
+  {
+   "ENG_name": "Drakewarden",
+   "name": "龙兽守卫",
+   "source": "FTD",
+   "page": 15,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "龙兽守卫",
+   "subclassSource": "FTD",
+   "level": 3,
+   "entries": [
+    "你与自然的连接形式表现为一条龙族精魄，精魄能化形为龙兽。随着你的能量增长，你的龙兽也会一同增长，从四条腿的小伙伴蜕变为宏伟的巨大带翼生物，强壮到能让你骑乘。这一过程中，你也会不断获得增长的，令人敬畏的龙族力量。",
+    "思考与你联结的龙族精魄的起源。龙兽守卫起源表提供了范例。",
+    {
+     "type": "table",
+     "caption": "龙兽守卫起源",
+     "colLabels": [
+      "d6",
+      "起源"
+     ],
+     "colStyles": [
+      "col-1 text-center",
+      "col-11"
+     ],
+     "rows": [
+      [
+       "1",
+       "你通过研究龙的鳞片或爪子，或一件从龙的宝库里找到的饰品，从这些徽记物上获取了残留的龙族魔法，构成了联结。"
+      ],
+      [
+       "2",
+       "一个专门收集和保护龙族学问的游侠会社向你传授了他们的道途。"
+      ],
+      [
+       "3",
+       "一条龙给了你一枚晶球或宝石，并让你进行照看，你没想到的是，龙兽从这块石头里孵化了出来。"
+      ],
+      [
+       "4",
+       "你曾吞下了几滴龙血，永远给你的自然魔法注入了龙的力量。"
+      ],
+      [
+       "5",
+       "当你大声朗读巨石柱上的古代龙纹铭文后，你被赋予了力量。"
+      ],
+      [
+       "6",
+       "你做了一个逼真的梦，你梦见一个神秘的人物，有七只黄色的金丝雀伴随其左右，警告你即将到来的浩劫。当你醒来时，你的龙兽就在你的身边盯着你。"
+      ]
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "龙族赠礼|游侠||龙兽守卫|FTD|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "龙兽伙伴|游侠||龙兽守卫|FTD|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Draconic Gift",
+   "name": "龙族赠礼",
+   "source": "FTD",
+   "page": 15,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "龙兽守卫",
+   "subclassSource": "FTD",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级龙兽守卫特性}",
+    "通过与你龙兽的联结，你获得与龙族之间的联系，增强你的气场，赋予你知识，你获得以下增益 :",
+    {
+     "type": "list",
+     "style": "list-hang-notitle",
+     "items": [
+      {
+       "ENG_name": "Thaumaturgy",
+       "name": "奇术",
+       "type": "item",
+       "entry": "你习得戏法{@spell 奇术}，这对你而言是一个游侠法术。"
+      },
+      {
+       "ENG_name": "Tongue of Dragons",
+       "name": "龙之言语",
+       "type": "item",
+       "entry": "你学会说，读，写龙语或另一门你选择的语言。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Drake Companion",
+   "name": "龙兽伙伴",
+   "source": "FTD",
+   "page": 15,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "龙兽守卫",
+   "subclassSource": "FTD",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级龙兽守卫特性}",
+    "以一个动作，你能魔法地召唤出与你联结的龙兽。龙兽会出现在你30尺内一处由你选择的未被占据的空间里。",
+    "这只龙兽对你和你的同伴是友好的，并且它服从你的命令。请参阅随附的{@creature 龙兽伙伴|FTD}具体数值块中的游戏具体数值，它在几个地方使用了你的熟练加值（PB）。每当你召唤龙兽时，从它的龙族精华特性中选择一种伤害类型。你可以决定龙兽的外观特征，如它的颜色、它的鳞片质地，或任何可见的龙族精华效果；你的选择不会影响它的游戏具体数值。",
+    "战斗中，龙兽与你共享先攻，会在你的回合结束之后立即进行自己的回合。龙兽能自己独自移动和使用反应，除非你在你的回合里使用附赠动作命令龙兽执行一个动作，否则龙兽只会使用{@action 回避}动作。执行的动作可以是数据卡上的，也可以是其他的。当你{@condition 失能}时，龙兽能独自进行任何动作选项，而不是只能{@action 回避}。",
+    "龙兽持续直到它的生命值降为0，或你使用本特性召唤另一只龙兽，或你死亡。当龙兽消失时，它穿戴和携带的物品会留在原地。",
+    "当你召唤龙兽后，你需要完成一次长休才能再次这样做。你也能使用一个一环或更高的法术位来召唤龙兽。"
+   ]
+  },
+  {
+   "ENG_name": "Bond of Fang and Scale",
+   "name": "牙鳞之联",
+   "source": "FTD",
+   "page": 15,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "龙兽守卫",
+   "subclassSource": "FTD",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "{@i 7级龙兽守卫特性}",
+    "你与龙兽之间的纽带加强，激发龙兽的狂怒，为你提供保护。当你召唤龙兽时，一对翅膀在其背后长出，并获得与步行速度相等的飞行速度。",
+    "此外，当召唤的龙兽在场时，你和龙兽获得以下增益:",
+    {
+     "type": "list",
+     "style": "list-hang-notitle",
+     "items": [
+      {
+       "ENG_name": "Drake Mount",
+       "name": "龙兽坐骑",
+       "type": "item",
+       "entries": [
+        "龙兽成长为中等体型。作为你特别联结的反映，你能够将龙兽当做坐骑骑乘，即使你的体型也为中型。当你骑乘龙兽时，龙兽不能使用从本特性中获得的飞行速度。"
+       ]
+      },
+      {
+       "ENG_name": "Magic Fang",
+       "name": "魔法獠牙",
+       "type": "item",
+       "entries": [
+        "龙兽的啃咬攻击额外造成与龙族精粹伤害类型相同的{@damage 1d6}伤害。"
+       ]
+      },
+      {
+       "ENG_name": "Resistance",
+       "name": "抗性",
+       "type": "item",
+       "entries": [
+        "你获得与龙族精粹伤害类型相同的伤害抗性。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Drake's Breath",
+   "name": "龙兽吐息",
+   "source": "FTD",
+   "page": 15,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "龙兽守卫",
+   "subclassSource": "FTD",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "{@i 11级龙兽守卫特性}",
+    "使用一个动作，你能喷吐 30尺锥形的伤害吐息，或者你也能将喷射起点设为你的龙兽。选择强酸，冷冻，闪电，火焰，或毒性伤害。（你的选择和龙族精粹特性无关。）锥形范围内的生物进行一次敏捷豁免对抗你的法术DC，豁免失败时受到{@damage 8d6}伤害，成功时受到一半的伤害。",
+    "当你在此职业达到15级时，此伤害提升至{@damage 10d6}。",
+    "当你使用本特性后，你需要完成一次长休才能再次这样做。你也能使用一个三环或更高的法术位来再次使用。"
+   ]
+  },
+  {
+   "ENG_name": "Perfected Bond",
+   "name": "完美联结",
+   "source": "FTD",
+   "page": 15,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "龙兽守卫",
+   "subclassSource": "FTD",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "{@i 15级龙兽守卫特性}",
+    "你与龙兽的联结抵达其力量的巅峰。当召唤的龙兽在场时，你和龙兽获得以下增益 :",
+    {
+     "type": "list",
+     "style": "list-hang-notitle",
+     "items": [
+      {
+       "ENG_name": "Empowered Bite",
+       "name": "强化啃咬",
+       "type": "item",
+       "entries": [
+        "龙兽的啃咬攻击额外造成与龙族精粹属性相同的 {@damage 1d6}伤害。（总共{@damage 2d6}额外伤害。）"
+       ]
+      },
+      {
+       "ENG_name": "Large Drake",
+       "name": "大型龙兽",
+       "type": "item",
+       "entries": [
+        "你的龙兽成长为大型。当你骑乘龙兽时，使用飞行速度不再受限于牙鳞之联。"
+       ]
+      },
+      {
+       "ENG_name": "Reflexive Resistance",
+       "name": "反射抗性",
+       "type": "item",
+       "entries": [
+        "当你与龙兽相距30尺内，你或你的龙兽受到伤害时，你能使用你的反应为你或你的龙兽对这次伤害提供抗性。你能使用本反应的次数与你的熟练值相等，当你完成一次长休后恢复所有的使用次数。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Beast Master",
+   "name": "驯兽师",
+   "source": "PHB",
+   "page": 93,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "驯兽师",
+   "subclassSource": "PHB",
+   "level": 3,
+   "entries": [
+    "驯兽师范型体现了文明种族与野兽之间的友谊。野兽和游侠团结一致，共同对抗威胁文明或自然的可怕敌人。追随驯兽师之道意味着将自己奉献予这一理念，并以伴侣和朋友的身份与一名动物协同合作。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "游侠伴侣|游侠||驯兽师||3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "原初伴侣|游侠||驯兽师||3|TCE"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Primal Companion",
+   "name": "原初伴侣",
+   "source": "TCE",
+   "page": 61,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "驯兽师",
+   "subclassSource": "PHB",
+   "level": 3,
+   "isClassFeatureVariant": true,
+   "header": 1,
+   "entries": [
+    "{@i 3级驯兽师变体特性，替代游侠伴侣特性}",
+    "你魔法性的召唤出一只原初野兽，其力量来自于与你与自然的联系。这只野兽对你和你的伙伴态度友善，并会听从你的命令。你从{@creature 大地野兽|TCE}，{@creature 海洋野兽|TCE}和{@creature 天空野兽|TCE}的数据中为它选择其一作为它的数据，它数据表中许多地方将会用到你的熟练加值（PB）。且你决定原初野兽是何种动物，选择适合其数据的外形。无论你选择什么样的动物，这只野兽都带有原始的印记，暗示着其神秘的起源。",
+    "在战斗中，原初野兽会在你的回合中行动。它能自主的移动或使用反应，但除非你在你的回合中以一个附赠动作命令它执行其他动作，它只会执行{@action 回避} 动作。命令的动作可以是其数据中列出的动作或是之外的其他动作。作为另一种命令方式，你也能在使用自己的{@action 攻击}动作时，牺牲其中一次自己的攻击来命令野兽执行{@action 攻击}动作。如果你陷入{@condition 失能}，野兽将会自主行动，而非仅使用{@action 回避}动作。",
+    "如果野兽死亡不超过一小时，你能使用你的动作触碰它，并消耗一个一环或更高的法术位使它复活。它会在一分钟后死而复生并获得所有生命值。",
+    "当你结束一次长休后，你能够召唤一只不同的原初野兽。这只新的野兽出现在你5尺内未被占据的空间内，并由你选择其数据和外表。如果你已经通过此特性获得了一只原初野兽，它会在新的原初野兽出现时消失。原初野兽也会在你死亡时消失。"
+   ]
+  },
+  {
+   "name": "游侠伴侣",
+   "className": "游侠",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级时，你获得一个野兽伴侣陪你一起冒险，这名训练有素的伙伴能与你合作无间地战斗。指定一个不大于中型体型，且挑战等级为1/4或更低的野兽（其属性数据以附录D中的猎鹰、獒犬和豹为例）。将你的熟练加值加到该野兽的AC，攻击检定，伤害掷骰以及其所有具有熟练项的豁免和技能检定中。其生命值上限选用其原上限，或你游侠等级的四倍两者中较高者。跟其他别的生物一样，该野兽也可在短休时使用生命骰。\n动物伴侣会尽可能执行你的命令。它会在轮到你的先攻时行动。你在自己回合内可以用声音指令指示该野兽往何处移动（无需执行其他动作）。你可以用你的动作以声音指令指示它执行攻击Attack，疾走Dash，撤离Disengage或协助Help动作。若你无法发出指令，该野兽将自主执行回避Dodge动作。如果你具有额外攻击特性，则你可以在命令该野兽执行攻击动作的同时自己发动一次武器攻击。\n若你陷入失能或并不在场，该野兽将自主活动，并集中致力于保护你和它自己。该野兽此时无需你下达指令即可使用期反应，比如以此发动一次借机攻击。\n身处偏好地形时，如果只有该野兽与你一起，则你仍可以保持隐匿状态以正常步调旅行。\n如果该野兽死亡，则你可以耗费8小时与另一个非敌对关系的野兽建立魔法联结成为伴侣，新的伴侣不一定要与之前的野兽类型相同。\n该野兽可以跟其他生物一样在短休时使用其生命骰。当你陷入失能或不在身边时，该野兽也可以自主的保护你或者它自身。它被借机攻击时，不需等待你的命令就可以执行其反应。"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "name": "特殊训练",
+   "className": "游侠",
+   "level": 7,
+   "source": "PHB",
+   "entries": [
+    "第7级起，如果你的野兽伴侣在你的回合内未曾发动攻击，则你可以在本回合用一个附赠动作命令该野兽在其回合内执行“疾走”“撤离”或“协助”动作。此外，该野兽的攻击作用于非魔法攻击与伤害的免疫与抗性时视为魔法。"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "name": "兽性狂怒",
+   "className": "游侠",
+   "level": 11,
+   "source": "PHB",
+   "entries": [
+    "第11级起，当你命令野兽伴侣执行攻击动作时，它可以发动两次攻击。或者，若其拥有“多重攻击Multiattack”动作项，则它也可以执行该动作项。"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "name": "法术共享",
+   "className": "游侠",
+   "level": 15,
+   "source": "PHB",
+   "entries": [
+    "第15级起，当你施展一个目标为自身的法术时，如果你的野兽伴侣处于你身边30尺范围内，则该法术效应同时也作用于你的野兽伴侣。"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "ENG_name": "Hunter",
+   "name": "猎人",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 3,
+   "entries": [
+    "选择猎人范型，意味着你接受文明社会与惊粟荒野间的交界作为你的战斗岗位。走上猎人之路后，你将学习专业的战斗技巧，并面临的各种威胁：从狂暴的食人魔和成群的兽人，到高耸的巨人和可怕的龙都是你前进的障碍。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "猎杀技艺|游侠||猎人||3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Horde Breaker",
+   "name": "灭族者",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "进行武器攻击时，你可以用该武器对位于目标5尺内，且在你武器射程内的另一生物发动一次攻击。你在每个自己的回合里只能造成一次这种额外攻击。"
+   ]
+  },
+  {
+   "ENG_name": "Hunter's Prey",
+   "name": "猎杀技艺",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "第3级时，你选择获得以下特性之一。",
+    {
+     "type": "options",
+     "count": 1,
+     "entries": [
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "巨像屠夫|游侠||猎人||3"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "巨人杀手|游侠||猎人||3"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "灭族者|游侠||猎人||3"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Colossus Slayer",
+   "name": "巨像屠夫",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "你强而有力的攻击可以击倒最强壮的对手。当你用武器攻击命中敌人时，如果该敌人当前生命值低于其上限，则其额外受到{@damage 1d8}点伤害。你每回合只能造成一次这种额外伤害。"
+   ]
+  },
+  {
+   "ENG_name": "Giant Killer",
+   "name": "巨人杀手",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "一个距离你5尺内的大型或更大体型生物对你发动攻击时，无论该次攻击是否命中，只要你能看见它就可以在该攻击结束后用一个反应对该生物发动攻击。"
+   ]
+  },
+  {
+   "name": "防守战术",
+   "className": "游侠",
+   "level": 7,
+   "source": "PHB",
+   "entries": [
+    "第7级时，你选择获得以下特性之一。\n*冲出重围Escape the Horde*。以你为目标的借机攻击具有劣势。\n*多重防御Multiattack Defense*。你被生物的攻击命中时，你在本回合内对抗该敌人所有后续攻击的AC获得 +4加值。\n*钢铁意志Steel Will*。你对抗恐慌的豁免具有优势。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "ENG_name": "Escape the Horde",
+   "name": "冲出重围",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "以你为目标的借机攻击具有劣势。"
+   ]
+  },
+  {
+   "ENG_name": "Multiattack Defense",
+   "name": "多重防御",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "你被生物的攻击命中时，你在本回合内对抗该敌人所有后续攻击的AC获得 +4加值。"
+   ]
+  },
+  {
+   "ENG_name": "Steel Will",
+   "name": "钢铁意志",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "你进行对抗{@condition 恐慌}的豁免时具有优势。"
+   ]
+  },
+  {
+   "name": "多重攻击",
+   "className": "游侠",
+   "level": 11,
+   "source": "PHB",
+   "entries": [
+    "第11级时，你选择获得以下特性之一。\n*箭雨Volley*。你使用你的动作指定你的远程武器射程内你能看见的某点，并分别对该点周围10尺范围内任意数量的生物发动一次远程攻击。发动该特性时，你必须有足够的弹药用以攻击敌人，且要为每个目标进行独立的攻击检定。\n*剑刃风暴Whirlwind Attack*。你使用你的动作指定你身边5尺内任意数量的生物，并分别对其发动一次近战攻击，每个受此攻击的目标必须进行独立的攻击检定。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "ENG_name": "Volley",
+   "name": "箭雨",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "你使用你的动作指定你的远程武器射程内你能看见的某点，并分别对该点周围10尺范围内任意数量的生物发动一次远程攻击。发动该特性时，你必须有足够的弹药用以攻击敌人，且要为每个目标进行独立的攻击检定。"
+   ]
+  },
+  {
+   "ENG_name": "Whirlwind Attack",
+   "name": "剑刃风暴",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "你使用你的动作指定你身边5尺内任意数量的生物，并分别对其发动一次近战攻击，每个受此攻击的目标必须进行独立的攻击检定。"
+   ]
+  },
+  {
+   "ENG_name": "Evasion",
+   "name": "反射闪避",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "你可以灵巧躲过某些特定的区域效应，比如红龙的火焰吐息或是法术{@spell 闪电束}。你在成为某一范围效应影响对象时，若该效应允许你通过成功的敏捷豁免来使伤害减半，则你在该豁免成功时不受伤害，而豁免失败时只受一半伤害。"
+   ]
+  },
+  {
+   "ENG_name": "Stand Against the Tide",
+   "name": "逆潮而立",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "当敌人对你的近战攻击未命中时，你可以用反应迫使敌人向你所指定的生物（除攻击者外）重新发动攻击。"
+   ]
+  },
+  {
+   "ENG_name": "Superior Hunter's Defense",
+   "name": "高效防守战术",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "第15级时，你选择获得以下特性之一。",
+    {
+     "type": "options",
+     "count": 1,
+     "entries": [
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "反射闪避|游侠||猎人||15"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "逆潮而立|游侠||猎人||15"
+      },
+      {
+       "type": "refSubclassFeature",
+       "subclassFeature": "直觉闪避|游侠||猎人||15"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Uncanny Dodge",
+   "name": "直觉闪避",
+   "source": "PHB",
+   "page": 93,
+   "srd": true,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "PHB",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "当一个你能看见的敌人攻击命中你时，你可以用反应让此次攻击的伤害减半。"
+   ]
+  },
+  {
+   "ENG_name": "Fey Wanderer",
+   "name": "妖精漫游者",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 3,
+   "entries": [
+    "或来自一位至高妖精的恩惠，或是来自你食用的一枚从能言之树上取下的闪亮果实，或是来自你曾浸游于中的魔法清泉，或是来自其它妙事，你的身侧因那次奇遇而有妖精的魔力缠绕。无论你是怎么得到你来自妖精的魔法的，你现在是一名代表了凡间与妖精国度双方的游侠妖精漫游者。你漫步于多元宇宙之时，你轻快的笑声为受压迫者们带来欣喜的希望，你英勇的技艺直击你敌人的恐惧，你所就的伟绩乃是妖精的喜悦，你散步的恐惧乃是妖精的愤怒。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "哀惧灵袭|游侠||妖精漫游者|TCE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "妖精漫游者魔法|游侠||妖精漫游者|TCE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "妖冶娴都|游侠||妖精漫游者|TCE|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Dreadful Strikes",
+   "name": "哀惧灵袭",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级妖精漫游者特性}",
+    "你能够使用来自妖精荒野中黑暗空洞的摄心魔法以强化你的武器攻击。当你用一把武器击中一个生物时，你可以对目标造成额外的{@damage 1d4}点心灵伤害。每个生物在每个回合只能够受到这一额外伤害一次。",
+    "当你在此职业达到11级时，额外伤害提升至{@damage 1d6}。"
+   ]
+  },
+  {
+   "ENG_name": "Fey Wanderer Magic",
+   "name": "妖精漫游者魔法",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级妖精漫游者特性}",
+    "你在达到特定等级时，你会额外习得一个下方妖精漫游者法术列表中列出的法术。这些法术对你而言视作游侠法术，且不计入你的游侠已知法术数量中。",
+    {
+     "type": "table",
+     "caption": "妖精漫游者法术",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3rd",
+       "{@spell 魅惑类人}"
+      ],
+      [
+       "5th",
+       "{@spell 迷踪步}"
+      ],
+      [
+       "9th",
+       "{@spell 解除魔法}"
+      ],
+      [
+       "13th",
+       "{@spell 任意门}"
+      ],
+      [
+       "17th",
+       "{@spell 假象术}"
+      ]
+     ]
+    },
+    "你还获得了来自一位妖精盟友或一处妖精神力的神奇祝福。你可以在下方妖精荒原之赐表格中选择你的祝福，或者随机决定它。",
+    {
+     "type": "table",
+     "caption": "精野之赐",
+     "colLabels": [
+      "d6",
+      "赠礼"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "在你进行长休或短休时，缥缈的蝴蝶在你周身振翅。"
+      ],
+      [
+       "2",
+       "每天黎明，新鲜的、当季的花朵将在你的头发中生长。"
+      ],
+      [
+       "3",
+       "你身上有淡淡的肉桂、薰衣草或肉豆蔻，或另一种令人舒适的药草或香料的香味。"
+      ],
+      [
+       "4",
+       "你的影子会在没人直视它时起舞。"
+      ],
+      [
+       "5",
+       "你的头发中长出纤细的触角或鹿角。"
+      ],
+      [
+       "6",
+       "每天黎明，你的肤色和发色会随当前季节的变化而变化。"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Otherworldly Glamour",
+   "name": "妖冶娴都",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级妖精漫游者特性}",
+    "你的妖精特质给予了你超脱凡俗的魅惑力。因此，每当你进行一次魅力检定时，你都可以在那次检定中获得等同于你的感知调整值的加值（至少+1）。",
+    "另外，你获得下列技能之一的熟练项（由你选择）：{@skill 欺瞒}、{@skill 表演}、或{@skill 游说}。"
+   ]
+  },
+  {
+   "ENG_name": "Beguiling Twist",
+   "name": "妖思魅缕",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "{@i 7级妖精漫游者特性}",
+    "妖精荒原的魔法护卫着你的心灵。你在对抗陷入{@condition 魅惑}或{@condition 恐慌}的豁免检定上具有优势。",
+    "此外，当你或周围120尺内你可见的一个生物成功通过了一次对抗{@condition 魅惑}或{@condition 恐慌}的豁免检定时，你可以用你的反应迫使120尺内的另一个你可见的不同生物通过一次感知豁免，豁免DC等同于你的法术豁免DC。若其豁免失败，则目标被你{@condition 魅惑}，或对你{@condition 恐慌}（由你选择），持续一分钟。目标能够在他的每回合结束时重复这次豁免，豁免成功时效果提前终止。"
+   ]
+  },
+  {
+   "ENG_name": "Fey Reinforcements",
+   "name": "精宸所与",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "{@i 11级妖精漫游者特性}",
+    "妖精荒原的皇庭赐予你获得精类援助的祝福：你习得法术{@spell 妖精召唤术|tce}。它不计入你的已知游侠法术，且你施展它时无需材料成分。你可以免费施展这个法术一次而不需要消耗法术位，在你完成一次长休后，你重获免费施展该法术的能力。",
+    "每当你施展此法术前，你都可以微调这一法术使其本次施展与维持无需你保持{@status 专注}。以无需专注的方式施展时，该法术的持续时间将变为一分钟。"
+   ]
+  },
+  {
+   "ENG_name": "Misty Wanderer",
+   "name": "雾行漫游",
+   "source": "TCE",
+   "page": 58,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "TCE",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "{@i 15级妖精漫游者特性}",
+    "你可以在眨眼之间穿梭妖精荒原以进行移动：你可以免费施展{@spell 迷踪步}而不需要消耗法术位，次数等同于你的感知调整值（至少一次），在完成一次长休后，你重获所有的已消耗的次数。",
+    "另外，每当你施展{@i 迷踪步}时，你可以携带一个五尺以内你可见的自愿生物与你一同传送。那个生物会被传送到由你选择的，位于你的目标位置周围五尺范围内的一处未被占据的空间内。"
+   ]
+  },
+  {
+   "ENG_name": "Swarmkeeper",
+   "name": "集群守卫",
+   "source": "TCE",
+   "page": 59,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "集群守卫",
+   "subclassSource": "TCE",
+   "level": 3,
+   "entries": [
+    "有的游侠感受到了与周身自然之间的紧密联系，他们通过自己与世界之间的魔法联系向自然的本源伸出双手，并通过一片自然精魂的集群与自然本身羁连。集群随后化作战斗中的强力帮手，或游侠的一位得力助手。有的游侠是被放逐者或隐士，他们更在意修行自我而非与他人打交道并找不快。而其他的集群守卫则乐意创造服务于所有被他们视为自然集群的一部分者集体利益的美丽社会。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "蜂聚集群|游侠||集群守卫|TCE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "集群守卫魔法|游侠||集群守卫|TCE|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Gathered Swarm",
+   "name": "蜂聚集群",
+   "source": "TCE",
+   "page": 59,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "集群守卫",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级集群牧者特性}",
+    "无形自然精魂形成的集群与你形影不离并会在战斗中对你施以援手。直到你死亡为止，集群会存在于你的空间中，在你身上爬行或在你周身的空间里飞舞或窜动。你自行决定集群的外观，或者你投掷集群外观表格来决定其外观。",
+    {
+     "type": "table",
+     "caption": "集群外观",
+     "colLabels": [
+      "d4",
+      "外貌"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "群聚的昆虫"
+      ],
+      [
+       "2",
+       "微小的枯枝怪"
+      ],
+      [
+       "3",
+       "飞舞的群鸟"
+      ],
+      [
+       "4",
+       "好动的皮克精"
+      ]
+     ]
+    },
+    "每个你的回合一次，当你的攻击命中一个生物后，你能立刻让集群以以下一种方式助你一臂之力：",
+    {
+     "type": "list",
+     "items": [
+      "集群对这次攻击的目标造成{@damage 1d6}点穿刺伤害。",
+      "这次攻击的目标必须成功通过对抗你法术豁免DC的力量豁免检定，豁免失败将被集群水平移动最多15尺，方向由你选择。",
+      "你被集群水平移动5尺，方向由你选择。"
+     ]
+    },
+    {
+     "ENG_name": "It's Your Swarm",
+     "name": "你的集群",
+     "type": "inset",
+     "entries": [
+      "一位集群守卫的集群和法术反应了角色与自然精魂的联系。在游戏中，多抓住机会来描述你自己的集群和游侠法术。比方说，当你的游侠施展气化形体时，施法对象可能会消失在他自己的集群中，而非变为一团雾气，而{@spell 秘法眼}则可以创造出一部分分离的集群为你进行侦查。这样的描述不会改变法术的效应，但它们能让通过特性描述自己的角色更加引人入胜。需要更多个性化法术的指导，请见第三章中的\"定制法术\"一节。",
+      "同样，记住你的集群外表能由你自己定制，别局限于单一的造型。也许精魂的外表会随着游侠的情绪而千变万化，或者随着季节而呈现出不同的形象。这一切都由你自己选择。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Swarmkeeper Magic",
+   "name": "集群守卫魔法",
+   "source": "TCE",
+   "page": 59,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "集群守卫",
+   "subclassSource": "TCE",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "{@i 3级集群牧者特性}",
+    "若你之前还未习得{@spell 法师之手}这个戏法，你习得之。当你施展法师之手时，那只手会以你的集群自然精魂形态出现。",
+    "此外，当你到达指定游侠等级时，你会习得一个额外的1环或更高环阶的法术，如集群守卫法术列表所示。这些法术对你视为游侠法术，且不计入你的已知法术总数中。",
+    {
+     "type": "table",
+     "caption": "集群守卫法术",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3rd",
+       "{@spell 妖火}"
+      ],
+      [
+       "5th",
+       "{@spell 蛛网术}"
+      ],
+      [
+       "9th",
+       "{@spell 气化形体}"
+      ],
+      [
+       "13th",
+       "{@spell 秘法眼}"
+      ],
+      [
+       "17th",
+       "{@spell 疫病虫群}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Writhing Tide",
+   "name": "翻腾浪涌",
+   "source": "TCE",
+   "page": 59,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "集群守卫",
+   "subclassSource": "TCE",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "{@i 7级集群牧者特性}",
+    "你能将你的集群的一部分凝聚成一股集中的力量，来将你托起。以一个附赠动作，你获得10尺飞行速度，且能悬浮。该效应持续1分钟。若你陷入{@condition 失能}状态，它会提前结束。",
+    "你可以使用此能力的次数等同于你的熟练加值。当你完成一次长休后，你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Mighty Swarm",
+   "name": "壮大集群",
+   "source": "TCE",
+   "page": 59,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "集群守卫",
+   "subclassSource": "TCE",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "{@i 11级集群牧者特性}",
+    "你的蜂聚集群通过以下方式变得更加强大：",
+    {
+     "type": "list",
+     "items": [
+      "蜂聚集群造成的伤害提升至{@damage 1d8}。",
+      "如果一个生物在对抗被蜂聚集群移动的豁免中失败，你还能驱使集群将该生物击倒在地（陷入{@condition 倒地}）。",
+      "当你被蜂聚集群移动后，直至你下个回合开始前，它会使你获得{@quickref 掩护||3||半身掩护}。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Swarming Dispersal",
+   "name": "群逸逃散",
+   "source": "TCE",
+   "page": 59,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "集群守卫",
+   "subclassSource": "TCE",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "{@i 15级集群牧者特性}",
+    "你能将自己散入集群来躲避危险。当你受到伤害时，你能使用你的反应让自己获得对该次伤害的抗性。你会消失在自己的集群之中，然后传送至30尺内一个未被占据的可见空间中，你的集群使你重新出现在那里。",
+    "你可以使用此能力的次数等同于你的熟练加值。当你完成一次长休后，你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Gloom Stalker",
+   "name": "幽域追踪者",
+   "source": "XGE",
+   "page": 41,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "幽域追踪者居身于致暗之地：地表深处，暗巷之间，太古丛林，和其他任何光无法照亮的地方。很多人进入到这种地区都会有种强烈的不安，但是幽域追踪者却能在黑暗中大胆冒险，在敌人能够触及到更开阔的地区之前搜寻并袭击他们。这种游侠经常出现在幽暗地域，但是他们会前往任何邪恶势力蛰伏的地区。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "幽域追猎者魔法|游侠||幽域追踪者|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "恐惧伏击|游侠||幽域追踪者|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "阴影视野|游侠||幽域追踪者|XGE|3"
+    }
+   ]
+  },
+  {
+   "name": "恐惧伏击",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "在第3级时，你精通于伏击的艺术。你的先攻检定获得等同于你感知调整值的加值。\n在每一场战斗中你的第一个回合的开始时，你的步行速度增加10尺，持续直至该回合结束。如果你在该回合进行攻击动作，则你可以做一次额外的武器攻击，作为那次攻击动作的一部分。如果那次攻击成功命中，目标还将受到额外1d8点伤害，额外伤害类型与武器相同。"
+   ],
+   "subclassShortName": "幽域追踪者"
+  },
+  {
+   "name": "幽域追猎者魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "3级起，每当你在此职业达到特定等级时你都能学会一个额外的游侠法术，如幽域追猎者法术表所示的那样。这些法术对你视为游侠法术，且它们不计入你的游侠已知法术总数中。\n幽域追猎者法术"
+   ],
+   "subclassShortName": "幽域追踪者"
+  },
+  {
+   "name": "阴影视野",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "自3级起，你获得60尺黑暗视觉。如果你已经从种族特质中获得了黑暗视觉，则改为那一黑暗视觉范围增加30尺。\n你还擅长回避依赖黑暗视觉的生物。在黑暗中，你对于任何依靠黑暗视觉观察你的生物而言视为隐形Invisible 的生物。"
+   ],
+   "subclassShortName": "幽域追踪者"
+  },
+  {
+   "name": "钢铁意志",
+   "className": "游侠",
+   "level": 7,
+   "source": "XGE",
+   "entries": [
+    "7级时，你已经磨炼出用来抵御来自于你的猎物的精神影响能量的能力。你获得感知豁免的熟练。如果你已经有此熟练项，作为代替，你获得智力豁免、或魅力豁免的熟练（由你选择）。"
+   ],
+   "subclassShortName": "幽域追踪者"
+  },
+  {
+   "name": "追猎如风",
+   "className": "游侠",
+   "level": 11,
+   "source": "XGE",
+   "entries": [
+    "在11级时，你学会了以出人意料的速度来发动攻击，以至于你能够将一次失手转化为另一次攻击。每个你的回合一次，当你的一次武器攻击未命中时，你可以作出另一次武器攻击，作为同一动作的一部分。"
+   ],
+   "subclassShortName": "幽域追踪者"
+  },
+  {
+   "ENG_name": "Shadowy Dodge",
+   "name": "如影随形",
+   "source": "XGE",
+   "page": 41,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XGE",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "15级起，伴随着一缕围绕在你身边的神奇暗影，你能以某种让人始料未及的方式躲闪。无论何时，当一名角色对你进行一次攻击检定，且那次检定不具有优势时，你能用反应对其施加劣势。你必须在知晓攻击检定的结果之前使用此特性。"
+   ]
+  },
+  {
+   "ENG_name": "Horizon Walker",
+   "name": "边界行者",
+   "source": "XGE",
+   "page": 42,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "边界行者",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "边界行者会保护世界不受其他位面或者那些妄图利用异界魔法摧残现有世界的恶徒的威胁。他们会找到传送门并看守他们，会为了追捕他们的敌人而穿梭于内层位面与外层外面。这些游侠也是多元宇宙中任何守护位面秩序与生灵势力的盟友——尤其是那些向善的龙类、精类与元素生物。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "边界行者魔法|游侠||边界行者|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "侦测传送门|游侠||边界行者|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "位面战士|游侠||边界行者|XGE|3"
+    }
+   ]
+  },
+  {
+   "name": "侦测传送门",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "在3级时，你得到了侦测位面传送门的魔法感官。以一个动作，你侦测在你周围1里的范围内距离你最近的位面传送门，并以此知晓它于你之间的距离和方向。\n一旦你使用了此特性。直到你完成一次短休或长休前你都无法再次使用它。\n详见《城主指南》第二章的“位面旅行”章节，以了解位面传送门的范例。"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "name": "边界行者魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "3级起，每当你在此职业达到特定等级时你都能学会一个额外的游侠法术，如边界行者法术表所示的那样。这些法术对你视为游侠法术，且它们不计入你的游侠已知法术总数中。\n边界行者法术"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "name": "位面战士",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "3级时，你学会了如何通过吸取多元宇宙的能量来强化你的攻击。\n以一个附赠动作，选择你周围30尺范围内的一名你可见的角色。本回合内你对其的下一次武器攻击命中时，本次攻击将造成力场伤害，且目标额外受到来自于该攻击的1d8力场伤害。当你的在此职业上到达11级时，这一额外伤害将变为2d8。"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "name": "以太漫步",
+   "className": "游侠",
+   "level": 7,
+   "source": "XGE",
+   "entries": [
+    "在7级时，你习得了如何踏入以太位面。以一个附赠动作，你能够用此特性施展法术以太化etherealness ，无需法术位。但是这个法术在当前回合结束时结束。\n一旦你使用了此特性，直到你完成一次短休或长休前你无法再次使用它。"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "name": "闪现打击",
+   "className": "游侠",
+   "level": 11,
+   "source": "XGE",
+   "entries": [
+    "在11级时，你得到了能够在眨眼之间穿梭于位面之中的能力。当你执行攻击Attack 动作时，你能够在每一次攻击前传送10尺到一片你可见的未占据空间内。\n如果你在攻击Attack 动作中，攻击了至少两个不同的生物，则你可以额外发动一次攻击，以攻击第三个生物。"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "name": "灵体防御",
+   "className": "游侠",
+   "level": 15,
+   "source": "XGE",
+   "entries": [
+    "在15级时，你的位面传送能力使你能在战斗中流转于空间边缘以减少伤害。当你因一次攻击而受到伤害时，你可以用你的反应以获取那次攻击伤害中包含的所有类型的抗性，持续直至当前回合结束。"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "ENG_name": "Monster Slayer",
+   "name": "怪物杀手",
+   "source": "XGE",
+   "page": 43,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "怪物杀手",
+   "subclassSource": "XGE",
+   "level": 3,
+   "entries": [
+    "怪物杀手们专注于猎杀那些黑夜中的怪物与邪恶魔法的使用者。他们四处搜寻着吸血鬼、龙、邪恶精类、邪魔、以及其他的魔法威胁。他们为了击败这些怪物而训练超自然的技巧。怪物杀手精通于找出并击败这些强大且神秘的敌人。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "怪物杀手魔法|游侠||怪物杀手|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "猎手感知|游侠||怪物杀手|XGE|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "狩猎开始|游侠||怪物杀手|XGE|3"
+    }
+   ]
+  },
+  {
+   "name": "猎手感知",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "自3级起，你获得了观察生物并魔法性地分析出最佳狩猎方式的能力。以一个动作，选择周围60尺范围内的一个你可见的生物。你立刻知晓该生物拥有的伤害免疫、抗性、与易伤。如果该角色被预言系魔法所隐瞒，你只会感知到它没有任何伤害免疫，抗性、易伤。\n你能使用该特性的次数等同于你的感知调整值次（至少1次），当你完成一次长休后你重获全部已被消耗的使用次数。"
+   ],
+   "subclassShortName": "怪物杀手"
+  },
+  {
+   "name": "怪物杀手魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "3级起，每当你在此职业达到特定等级时你都能学会一个额外的游侠法术，如怪物杀手法术表所示的那样。这些法术对你视为游侠法术，且它们不计入你的游侠已知法术总数中。\n怪物杀手法术"
+   ],
+   "subclassShortName": "怪物杀手"
+  },
+  {
+   "name": "狩猎开始",
+   "className": "游侠",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "自3级起，你能将你的怒火集中于单一敌人，增幅你对其造成的损伤。以一个附赠动作，你指定周围60尺范围内的一个你可见的生物作为本特性的目标。接下来，每个回合中你首次以武器攻击命中该目标时，它额外受到1d6点伤害，额外伤害类型与武器相同。\n此增益将一直持续到你完成短休或长休为止。如果你用其指定了另外一个生物，前一次的增益也将提前结束。"
+   ],
+   "subclassShortName": "怪物杀手"
+  },
+  {
+   "ENG_name": "Supernatural Defense",
+   "name": "异能防护",
+   "source": "XGE",
+   "page": 43,
+   "className": "游侠",
+   "classSource": "PHB",
+   "subclassShortName": "怪物杀手",
+   "subclassSource": "XGE",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "7级时，你对那些尝试攻破你心灵与肉体的敌人拥有着额外的抵抗力。当你的狩猎开始特性目标迫使你进行一次豁免检定时，或你为逃脱那个目标的擒抱而进行一次属性检定时，你可以投掷{@dice 1d6}，并将骰值加入到你的那次检定上。"
+   ]
+  },
+  {
+   "name": "魔法使的克星",
+   "className": "游侠",
+   "level": 11,
+   "source": "XGE",
+   "entries": [
+    "11级时，你获得干扰其他人的魔法的能力。当你看见你周围60尺范围内，有生物施展法术或者传送时，你可以用你的反应，尝试以魔法性阻止它。那个生物必须通过一次DC等同于你的法术豁免DC的感知豁免，否则它的法术或传送将失败并浪费。\n一旦你使用了此特性，直到你完成一次短休或长休前你都不能再次使用它。"
+   ],
+   "subclassShortName": "怪物杀手"
+  },
+  {
+   "name": "杀手反制",
+   "className": "游侠",
+   "level": 15,
+   "source": "XGE",
+   "entries": [
+    "15级时，你得到了在你的猎物企图干扰你时进行回击的能力。当你的狩猎开始 Slayer's Prey 特性目标迫使你进行一次豁免检定时，你在进行豁免检定前，立刻用你的反应来对其进行一次武器攻击。一旦你的攻击命中，除了攻击的正常效果外，你本次豁免将自动成功。"
+   ],
+   "subclassShortName": "怪物杀手"
+  },
+  {
+   "ENG_name": "Frigid Explorer",
+   "name": "冻原探索者",
+   "source": "FRHoF",
+   "page": 21,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "你获得以下增益。",
+    {
+     "ENG_name": "Biting Cold",
+     "name": "刺骨严寒",
+     "type": "entries",
+     "page": 6,
+     "entries": [
+      "你的武器攻击、游侠法术以及游侠特性所造成的伤害无视寒冷{@variantrule 抗性|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Frost Resistance",
+     "name": "冰霜抵抗",
+     "type": "entries",
+     "page": 6,
+     "entries": [
+      "你获得寒冷伤害的{@variantrule 抗性|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Polar Strikes",
+     "name": "极地打击",
+     "type": "entries",
+     "page": 6,
+     "entries": [
+      "当你用武器对生物进行一次攻击检定并命中时，你可以额外对目标造成{@damage 1d4}点寒冷伤害。每名目标每回合仅会受到一次该额外伤害。你的游侠等级达到11级时，这一额外伤害变为{@dice 1d6}。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Hunter's Rime",
+   "name": "冬猎霜寒",
+   "source": "FRHoF",
+   "page": 21,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "冰霜会复盖你和你的猎物，保护你并让你的猎物变得迟缓。当你施展{@spell 猎人印记|XPHB}法术时，你获得等同于{@dice 1d10}+你{@class 游侠|XPHB}等级的{@variantrule 临时生命值|XPHB}。",
+    "此外，当一个生物被你的{@spell 猎人印记|XPHB}法术所标记时，其不可执行{@action 撤离|XPHB}动作。"
+   ]
+  },
+  {
+   "ENG_name": "Winter Walker",
+   "name": "凛冬行者",
+   "source": "FRHoF",
+   "page": 21,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "{@i 抵御来自冰冻荒原的恐怖}",
+    "凛冬行者在冰风谷等充斥着极寒和荒芜的地区中磨练他们的技艺.这些冷酷无情，披冰盖雪的游侠狩猎着那些盘踞在极北荒原的怪物，最终自身也成为凛冽的恐怖存在。凛冬行者深谙发生在这片土地上的种种特异现象，包括在坠落的耐瑟瑞尔都市中沉寂的魔法，{@creature 雪怪|XMM|雪怪们}和{@creature 峭壁猫|SKT|峭壁猫}等本土怪物，以及来自幽暗地域的入侵者们日渐迫近的威胁。凛冬行者冷酷的追求实效，掌握的恐怖魔法，以及对这片土地掌控，令人们又尊敬又害怕。十镇的居民们说，凛冬行者因其频繁接触邪恶存在的经历，赋予了他们令人畏惧的力量。另一种说法则是，瑞格冰川的游牧民认为，这是自然精魂赋予凛冬行者的一种独特诅咒。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "冻原探索者|游侠|XPHB|凛冬行者|FRHoF|3|FRHoF"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "冬猎霜寒|游侠|XPHB|凛冬行者|FRHoF|3|FRHoF"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "凛冬行者魔法|游侠|XPHB|凛冬行者|FRHoF|3|FRHoF"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Winter Walker Spells",
+   "name": "凛冬行者魔法",
+   "source": "FRHoF",
+   "page": 22,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "在达到下方凛冬行者法术列表中列出特定等级时，你将始终准备了等级对应的法术。",
+    {
+     "type": "table",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 冰刃|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 定身类人|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 移除诅咒|XPHB}"
+      ],
+      [
+       "13",
+       "{@spell 冰风暴|XPHB}"
+      ],
+      [
+       "17",
+       "{@spell 寒冰锥|XPHB}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Fortifying Soul",
+   "name": "凝冻之魂",
+   "source": "FRHoF",
+   "page": 22,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "你在酷烈环境中生存的经验不仅足够支撑你自己，也能帮助你的盟友。以一个{@action 魔法|XPHB}动作，你可以选择等同于你感知调整值（至少1个）数量的可见生物。所选的生物能够恢复等同于 {@dice 1d10}+你的游侠等级点的{@variantrule 生命值|XPHB}，且接下来的1小时内，其为避免或结束{@condition 恐慌|XPHB}状态所进行的豁免具有{@variantrule 优势|XPHB}。",
+    "此特性一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。"
+   ]
+  },
+  {
+   "ENG_name": "Chilling Retribution",
+   "name": "寒心复仇",
+   "source": "FRHoF",
+   "page": 22,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "当你被一次攻击检定命中时，你可以用你的{@variantrule 反应|XPHB}迫使攻击你的该生物进行一次感知豁免（使用你的法术豁免DC），豁免失败则目标将陷入{@condition 震慑|XPHB}状态直到你的下个回合结束。且当目标因此陷入{@condition 震慑|XPHB}状态时，其{@variantrule 速度|XPHB}降至0。",
+    "你可以使用该特性的次数等同于你的感知调整值（最少 1 次）。你在完成一次{@variantrule 长休|XPHB}时重获所有已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Frozen Haunt",
+   "name": "冰结恶灵",
+   "source": "FRHoF",
+   "page": 22,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "凛冬行者",
+   "subclassSource": "FRHoF",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "当你施展{@spell 猎人印记|XPHB}时，你还能化身为冰雪复盖的幽灵形态。这一形态持续直至该法术结束为止。处于该形态下，你将获得以下这些增益。这一特性一经使用，直到你完成一次{@variantrule 长休|XPHB}前你都无法再次使用它，除非你为此消耗一枚环阶4+的法术位（无需动作）。",
+    {
+     "ENG_name": "Frozen Soul",
+     "name": "寒冰之魂",
+     "type": "entries",
+     "page": 6,
+     "entries": [
+      "你{@variantrule 免疫|XPHB}寒冷伤害。在你化身为幽灵形态时（以及在此形态的后续每个回合开始时），以你自身为源点，15尺{@variantrule 光环 [效应区域]|XPHB|光环}范围内的每名由你选择的生物都将受到{@damage 2d4}点寒冷伤害。"
+     ]
+    },
+    {
+     "ENG_name": "Partially Incorporeal",
+     "name": "有限虚体",
+     "type": "entries",
+     "page": 6,
+     "entries": [
+      "你{@variantrule 免疫|XPHB}于{@condition 受擒|XPHB}、{@condition 倒地|XPHB}和{@condition 束缚|XPHB}状态。你可以如同穿过{@variantrule 困难地形|XPHB}般穿过生物与物件，但如果你在一名生物或一个物件内停下，你将受到{@damage 1d10}点力场伤害。如果这一形态结束时你身处一名生物或一个物件内，你将被弹出到最近的未占据空间中。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Hollow Warden",
+   "name": "幽邃戍卫",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽邃戍卫",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "{@i 汲取荒古灾厄之威}",
+    "传说，在大地那些最为古老的幽邃深处，潜伏着最为原始且嗜血的骇人存在。幽邃戍卫们敬奉这些恐怖实体并从中汲取力量，将自身化作冷酷无情的怪异护卫。他们在嶙峋的海岸、险峻的群山绝壁，以及其他无尽黑暗的蛮荒之地中潜行游猎。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "幽邃戍卫魔法|游侠|XPHB|幽邃戍卫|RHW|3|RHW"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "荒野之怒|游侠|XPHB|幽邃戍卫|RHW|3|RHW"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Hollow Warden Spells",
+   "name": "幽邃戍卫魔法",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽邃戍卫",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "当你到达幽邃戍卫法术表中特定的游侠等级时，你就始终准备了表中对应的法术。",
+    {
+     "type": "table",
+     "caption": "幽邃戍卫魔法",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 激愤斩|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 变身术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 魅影驹|XPHB}"
+      ],
+      [
+       "13",
+       "{@spell 支配野兽|XPHB}"
+      ],
+      [
+       "17",
+       "{@spell 钢风斩|XPHB}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Wrath of the Wild",
+   "name": "荒野之怒",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽邃戍卫",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "你从这片大地上奇异而远古的惊惧兽身上汲取法力，导致你身上长出非自然的增生，例如血淋淋的鹿角或腐尸般的尖牙，或者让你的幽影伸长或在你周围扭曲。以一个{@variantrule 附赠动作|XPHB}，你可以消耗一次青睐{@variantrule 敌人|XPHB}的使用次数，变形为一个可怖形态，获得以下增益，持续1分钟，或直到你陷入{@condition 失能|XPHB}状态、死亡、或结束变形（无需动作）。",
+    {
+     "ENG_name": "Ancient Armor",
+     "name": "远古护甲",
+     "type": "entries",
+     "entries": [
+      "你的身躯被腐朽的树皮与野兽般的粗毛所包裹，使你的AC获得+1加值。当你的游侠等级到达11级时，该加值提升至+2。"
+     ]
+    },
+    {
+     "ENG_name": "Prowling Retribution",
+     "name": "巡猎报复",
+     "type": "entries",
+     "entries": [
+      "当你5尺范围内一个你可见的生物对你或你的一名盟友造成伤害后，你可以立即对该生物发动一次{@action 借机攻击|XPHB}。"
+     ]
+    },
+    {
+     "ENG_name": "Unnerving Aura",
+     "name": "恐吓灵光",
+     "type": "entries",
+     "entries": [
+      "当你变身时，以及之后每个你的回合开始时，源自你的10尺{@variantrule 光环 [效应区域]|XPHB|光环}内每个由你指定的生物，都必须进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则生物陷入{@condition 恐慌|XPHB}状态，直至你的下一回合开始。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Hungering Might",
+   "name": "渴血予力",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽邃戍卫",
+   "subclassSource": "RHW",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "你的体质豁免检定获得等同于你感知调整值的加值（至少为+1）。",
+    "此外，每回合一次，当你处于荒野之怒变身下并以攻击检定命中一个生物时，若你在命中目标时处于{@status 浴血|XPHB}，则你恢复等于{@dice 1d10}+你感知调整值的生命值。"
+   ]
+  },
+  {
+   "ENG_name": "Rot and Violence",
+   "name": "枯朽残虐",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽邃戍卫",
+   "subclassSource": "RHW",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "你对荒野中那些诡异存在的供奉进一步改变了你。当你使用荒野之怒变形时，你获得以下额外增益：",
+    {
+     "ENG_name": "Menacing Aura",
+     "name": "威吓灵光",
+     "type": "entries",
+     "entries": [
+      "当一个生物在对抗你悚然灵光的豁免检定中失败时，直至你的下一回合开始，其还会无法恢复{@variantrule 生命值|XPHB}，也无法执行{@variantrule 反应|XPHB|反应}。"
+     ]
+    },
+    {
+     "ENG_name": "Strangling Roots",
+     "name": "索命根须",
+     "type": "entries",
+     "entries": [
+      "当你使用武器发动攻击检定命中一个生物时，除了这把武器本身的精通词条外，你还可以为其应用{@itemMastery 削弱}或{@itemMastery 缓速}精通词条。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Ancient Might",
+   "name": "古源蛮力",
+   "source": "RHW",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽邃戍卫",
+   "subclassSource": "RHW",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "荒野中那古老而骇人的力量充盈你的全身，赋予你以下增益：",
+    {
+     "ENG_name": "Ominous Strikes",
+     "name": "死兆强袭",
+     "type": "entries",
+     "entries": [
+      "当你以攻击检定命中一个陷入{@condition 恐慌|XPHB}状态的生物时，该次攻击造成等同于你感知调整值的额外伤害。"
+     ]
+    },
+    {
+     "ENG_name": "Persistent Wrath",
+     "name": "不息狂怒",
+     "type": "entries",
+     "entries": [
+      "当你处于荒野之怒变身下，且{@variantrule 生命值|XPHB}被降至0但未被立即杀死时，你可以使狂野之力喷薄而出。你的{@variantrule 生命值|XPHB}改为变成等同于你游侠等级两倍的数值。该特性一经使用，则直至你完成一次{@variantrule 长休|XPHB}前，都无法再次使用。你也可以消耗一枚四环或更高环阶的法术位来恢复该特性的使用次数（无需动作）。"
+     ]
+    },
+    {
+     "ENG_name": "Timeless",
+     "name": "永不安眠",
+     "type": "entries",
+     "entries": [
+      "你对{@condition 力竭|XPHB}状态具有{@variantrule 免疫|XPHB}。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Beast Master",
+   "name": "驯兽师",
+   "source": "XPHB",
+   "page": 123,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "驯兽师",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 与原始野兽结缘}",
+    "驯兽师，他们同这片大地有着深刻的共鸣，挥舞着原初魔法与超自然野兽形成了神秘的联系。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "原初伴侣|游侠|XPHB|驯兽师|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Primal Companion",
+   "name": "原初伴侣",
+   "source": "XPHB",
+   "page": 123,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "驯兽师",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "你魔法性的召唤出一只原初野兽，其力量来自于与你与自然的联系。你从{@creature 大地野兽|XPHB}、{@creature 海洋野兽|XPHB}和{@creature 天空野兽|XPHB}中选择其一项作为它的数据卡。你决定原初野兽是何种动物，选择适合其数据卡的外形。无论你选择什么样的动物，这只野兽都带有原初之力的印痕，暗示着其超凡起源。",
+    "这只野兽对你和你的伙伴态度友善，并会听从你的命令。野兽会在你死亡时消失。",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "The Beast in Combat",
+       "name": "战斗中的野兽",
+       "type": "entries",
+       "entries": [
+        "战斗中，原初野兽会在你的回合中行动。它能自主地移动或使用{@variantrule 反应|XPHB}，但除非你在你的回合中以一个{@variantrule 附赠动作|XPHB}命令它执行其他动作，它只会执行{@action 回避|XPHB}动作。命令的动作可以是其数据卡中列出的动作或是之外的其他动作。作为另一种命令方式，你也能在使用自己的{@action 攻击|XPHB}动作时，牺牲一次自己的攻击来命令野兽执行野兽打击动作。如果你陷入{@condition 失能|XPHB}，野兽将会自主行动，而非仅使用{@action 回避|XPHB}动作。"
+       ]
+      },
+      {
+       "ENG_name": "Restoring or Replacing the Beast",
+       "name": "复活或替换野兽",
+       "type": "entries",
+       "entries": [
+        "如果野兽死亡不超过一小时，你能够以一个{@action 魔法|XPHB}动作，并消耗一个法术位使它复活。它会在一分钟后死而复生并恢复所有{@variantrule 生命值|XPHB}。",
+        "每当你完成{@variantrule 长休|XPHB}时，你都能召唤一只不同的原初野兽。这只新的野兽出现在位于你 5 尺内的一处未占据空间内，并由你选择其数据卡和外表。如果你已经通过此特性获得了一只原初野兽，它会在新的原初野兽出现时消失。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Exceptional Training",
+   "name": "特殊训练",
+   "source": "XPHB",
+   "page": 124,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "驯兽师",
+   "subclassSource": "XPHB",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "当你以{@variantrule 附赠动作|XPHB}命令你的原初行侣野兽执行动作时，你还可以令它以它自己的{@variantrule 附赠动作|XPHB}执行{@action 疾走|XPHB}、{@action 撤离|XPHB}、{@action 回避|XPHB}或{@action 协助|XPHB}动作。",
+    "此外，每当你的野兽的攻击检定命中并造成伤害时，其伤害类型可以是力场伤害或其原本的伤害类型（由你选择）"
+   ]
+  },
+  {
+   "name": "兽性狂怒",
+   "className": "游侠",
+   "level": 11,
+   "source": "XPHB",
+   "entries": [
+    "当你命令原初行侣执行野兽打击动作时，它能使用该动作两次。\n此外，每个回合中，当它首次击中一个受到你的法术*猎人印记Hunter's Mark*影响的生物时，它可以额外造成一定的力场伤害，其数值等同于那个法术的额外伤害。"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "name": "法术共享",
+   "className": "游侠",
+   "level": 15,
+   "source": "XPHB",
+   "entries": [
+    "当你施展的法术指定了你自己作为目标，并且你的原初行侣正位于你30尺范围内时，你可以让该法术效应同时作用于你的原初行侣。\n\n##### 大地野兽Beast of the Land\n\n中型野兽，中立"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "ENG_name": "Fey Wanderer",
+   "name": "妖精漫游者",
+   "source": "XPHB",
+   "page": 124,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 驾驭妖精的哀与乐}",
+    "或来自一位至高妖精的恩惠，或是在妖精荒野中的一次奇遇，你的身侧因那次奇遇而有妖精的魔力缠绕。无论你是怎么得到你来自妖精的魔法的，你现在是一名妖精漫游者。你轻快的笑声为受压迫者们带来欣喜的希望，你英勇的技艺直击你敌人的恐惧，你所就的伟绩乃是妖精的喜悦，你散布的恐惧乃是妖精的愤怒。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "哀惧灵袭|游侠|XPHB|妖精漫游者|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "妖精漫游者法术|游侠|XPHB|妖精漫游者|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "妖冶娴都|游侠|XPHB|妖精漫游者|XPHB|3"
+    }
+   ]
+  },
+  {
+   "name": "哀惧灵袭",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你能够使用来自妖精荒野中黑暗空洞的摄心魔法以强化你的武器攻击。当你用一把武器击中一个生物时，你可以对目标造成额外的1d4点心灵伤害。每名目标每回合仅会受到一次该额外伤害。你的游侠等级达到11级时，这一额外伤害变为1d6。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "ENG_name": "Fey Wanderer Spells",
+   "name": "妖精漫游者法术",
+   "source": "XPHB",
+   "page": 124,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "妖精漫游者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "当你到达妖精漫游者法术表中特定的游侠等级时，你就始终准备着表中对应的法术。",
+    {
+     "type": "table",
+     "caption": "妖精漫游者法术",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3rd",
+       "{@spell 魅惑类人|XPHB}"
+      ],
+      [
+       "5th",
+       "{@spell 迷踪步|XPHB}"
+      ],
+      [
+       "9th",
+       "{@spell 妖精召唤术|XPHB}"
+      ],
+      [
+       "13th",
+       "{@spell 任意门|XPHB}"
+      ],
+      [
+       "17th",
+       "{@spell 假象术|XPHB}"
+      ]
+     ]
+    },
+    "你还获得了一种妖精祝福。你可以在下方精野之赐表中选择你的祝福或者随机决定它。",
+    {
+     "type": "table",
+     "caption": "精野之赐",
+     "colLabels": [
+      "1d6",
+      "赠礼"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "当你进行{@variantrule 短休|XPHB|短}或{@variantrule 长休|XPHB}时，缥缈的蝴蝶在你周身振翅。"
+      ],
+      [
+       "2",
+       "每天拂晓时分，花朵从你的发间盛放。"
+      ],
+      [
+       "3",
+       "你身上有淡淡的肉桂、薰衣草或肉豆蔻，或另一种令人舒适的药草或香料的香味。"
+      ],
+      [
+       "4",
+       "你的影子会在没人直视它时起舞。"
+      ],
+      [
+       "5",
+       "你的头发中长出纤细的触角或鹿角。"
+      ],
+      [
+       "6",
+       "你的肤色和发色会在每个拂晓时改变。"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "妖冶娴都",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "每当你进行一次魅力检定时，你都可以在那次检定中获得等于你的感知调整值的加值（至少+1）。\n另外，你选择获得下列技能之一的熟练：欺瞒、表演或游说 。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "妖思魅缕",
+   "className": "游侠",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "妖精荒原的魔法护卫着你的心灵。你在对抗或终止魅惑或恐慌状态的豁免检定上具有优势。\n此外，当你或位于你120尺内的一个你可见的生物，通过了一次对抗或终止魅惑或恐慌状态的豁免检定时，你可以用你的反应迫使位于你120尺内的另一个你可见的不同生物，进行一次对抗你法术豁免DC的感知豁免。豁免失败，目标则陷入魅惑或恐慌状态（由你选择）1分钟。目标在其每回合结束时重复此豁免，豁免成功则结束此效应。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "精宸所与",
+   "className": "游侠",
+   "level": 11,
+   "source": "XPHB",
+   "entries": [
+    "你可以无需材料成分地施展*妖精召唤术Summon Fey* 。同时，你可以免费施展这个法术一次而不需要消耗法术位，在你完成一次长休后，你重获免费施展该法术的能力。\n每当你施展此法术时，你都可以微调这一法术使其无需专注。以无需专注的方式施法时，该法术的持续时间将变为一分钟。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "雾行漫游",
+   "className": "游侠",
+   "level": 15,
+   "source": "XPHB",
+   "entries": [
+    "你可以免费施展*迷踪步Misty Step* 而不需要消耗法术位，次数等同于你的感知调整值次（至少一次），在完成一次长休后，你重获所有的已消耗的次数。\n另外，每当你施展*迷踪步Misty Step* 时，你可以携带一个位于你5尺内你可见的自愿生物与你一同传送。那个生物会被传送到由你选择的，位于你的目标位置5尺内的一处未占据空间内。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "ENG_name": "Dread Ambusher",
+   "name": "恐惧伏击",
+   "source": "XPHB",
+   "page": 125,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "你精通于伏击的恐怖技艺，并获得了以下增益。",
+    {
+     "ENG_name": "Ambusher's Leap",
+     "name": "伏击者之跃",
+     "type": "entries",
+     "entries": [
+      "在每一场战斗的你的第一个回合的开始，你的{@variantrule 速度|XPHB}增加 10 尺，直到那个回合结束。"
+     ]
+    },
+    {
+     "ENG_name": "Dreadful Strike",
+     "name": "恐惧打击",
+     "type": "entries",
+     "entries": [
+      "当你用武器对生物攻击并命中时，你可以额外对目标造成{@damage 2d6}点心灵伤害。你在每回合中只能使用一次这个增益，你可以使用这一增益的次数等同于你的感知调整值（最低一次），并在完成一次{@variantrule 长休|XPHB}后重获全部已消耗的使用次数。"
+     ]
+    },
+    {
+     "ENG_name": "Initiative Bonus",
+     "name": "先攻加值",
+     "type": "entries",
+     "entries": [
+      "当你投掷{@variantrule 先攻|XPHB}时，你可以在那次掷骰中加入你的感知调整值。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Gloom Stalker",
+   "name": "幽域追踪者",
+   "source": "XPHB",
+   "page": 125,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 利用阴影魔法制敌}",
+    "幽域追猎者们以至暗之地为家，驾驭着来自堕影冥界的魔法与潜伏在黑暗中的敌人作战。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "恐惧伏击|游侠|XPHB|幽域追踪者|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "幽域追踪者法术|游侠|XPHB|幽域追踪者|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "阴影视野|游侠|XPHB|幽域追踪者|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Gloom Stalker Spells",
+   "className": "游侠",
+   "classSource": "XPHB",
+   "entries": [
+    "当你到达幽域追猎者法术表中特定的游侠等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "幽域追踪者法术",
+     "colLabels": [
+      "游侠等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-1 text-center",
+      "col-11"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 易容术|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 魔绳术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 恐惧术|XPHB}"
+      ],
+      [
+       "13",
+       "{@spell 高等隐形术|XPHB}"
+      ],
+      [
+       "17",
+       "{@spell 伪装术|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "level": 3,
+   "name": "幽域追踪者法术",
+   "page": 126,
+   "source": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Umbral Sight",
+   "name": "阴影视野",
+   "source": "XPHB",
+   "page": 126,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "你获得 60 尺黑暗视觉。如果你获得本特性时已拥有了{@sense 黑暗视觉|XPHB}，那个{@sense 黑暗视觉|XPHB}的范围增加 60 尺。",
+    "你还擅长避开依赖{@sense 黑暗视觉|XPHB}的角色。完全身处{@variantrule 黑暗|XPHB}期间，对于任何依靠{@sense 黑暗视觉|XPHB}观察{@variantrule 黑暗|XPHB}中的你的生物而言，你具有{@condition 隐形|XPHB}状态。"
+   ]
+  },
+  {
+   "ENG_name": "Iron Mind",
+   "name": "钢铁意志",
+   "source": "XPHB",
+   "page": 126,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "level": 7,
+   "header": 2,
+   "entries": [
+    "你已经磨炼出了抵御精神影响的能力。你获得感知豁免熟练。如果你已经有这项熟练，你可以获得智力或者魅力豁免熟练（由你选择）来代替。"
+   ]
+  },
+  {
+   "ENG_name": "Stalker's Flurry",
+   "name": "追猎如风",
+   "source": "XPHB",
+   "page": 126,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "level": 11,
+   "header": 2,
+   "entries": [
+    "你的恐惧打击造成的心灵伤害变为{@damage 2d8}。另外，当你使用恐惧伏击的恐惧打击特性时，你可以创造出以下的额外效应之一。",
+    {
+     "ENG_name": "Sudden Strike",
+     "name": "瞬息打击",
+     "type": "entries",
+     "entries": [
+      "你可以用同一把武器，对位于原目标5尺范围内的另一生物再发动一次攻击，新目标必须处于你武器的触及或射程内。"
+     ]
+    },
+    {
+     "ENG_name": "Mass Fear",
+     "name": "群慌",
+     "type": "entries",
+     "entries": [
+      "目标与位于目标10尺范围内的每个生物都必须通过一次对抗你法术豁免DC的感知豁免。若豁免失败，生物将会陷入{@condition 恐慌|XPHB}状态，持续至你的下一回合开始。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Shadowy Dodge",
+   "name": "如影随形",
+   "source": "XPHB",
+   "page": 126,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "幽域追踪者",
+   "subclassSource": "XPHB",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "当一个生物对你发动了一次攻击检定时，你能用{@variantrule 反应|XPHB}对这次检定施加{@variantrule 劣势|XPHB}。不管那次攻击命中或失手，你都能在那之后传送至你 30 尺范围内的一处未被占据的、你可见的空间。"
+   ]
+  },
+  {
+   "ENG_name": "Hunter",
+   "name": "猎人",
+   "source": "XPHB",
+   "page": 127,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 保护自然与人民免于毁灭}",
+    "你追逐猎物直到天涯海角，运用你的猎人的本领去保护自然与人民，使其不受灾祸的毁灭。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "猎杀技艺|游侠|XPHB|猎人|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "猎人学识|游侠|XPHB|猎人|XPHB|3"
+    }
+   ]
+  },
+  {
+   "name": "猎人学识",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你可以呼唤自然的力量以揭晓猎物的强弱。在一个生物被你的猎人印记标记的期间，你知道那个生物是否拥有任何免疫、抗性或易伤，并且能够得知其具体的项目是什么。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "name": "猎杀技艺",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你选择并获得以下特性选项之一。当你完成一次短休或长休时，你可以将所选的选项替换为另一个。\n巨像屠夫Colossus Slayer。你强而有力的攻击可以击倒最强壮的对手。当你用武器命中生物时，如果该敌人生命值不满，则该武器额外对目标造成1d8点伤害。你每回合只能造成一次这种额外伤害。\n灭族者Horde Breaker。每个你的回合一次，当你用武器进行攻击时，你可以用该武器对位于目标5尺内的另一生物发动另一次攻击。额外攻击的目标必须处于你武器射程或范围内，且是你这回合没有攻击过的目标。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "name": "防守战术",
+   "className": "游侠",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "你选择并获得以下特性选项之一。当你完成一次短休或长休时，你可以将所选的选项替换为另一个。\n冲出重围Escape the Horde。对你发动的借机攻击具有劣势。\n多重防御Multiattack Defense。当一个生物的攻击检定命中你时，该生物在本回合内对你进行的其他攻击检定具有劣势。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "name": "高阶猎杀技艺",
+   "className": "游侠",
+   "level": 11,
+   "source": "XPHB",
+   "entries": [
+    "每回合一次，当你对被你的猎人印记所标记的生物造成伤害时，你可以对位于这个生物30尺范围内的一个你能看见的另一名生物，同样施加由猎人印记造成的额外伤害。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "ENG_name": "Superior Hunter's Defense",
+   "name": "高效防守战术",
+   "source": "XPHB",
+   "page": 127,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "游侠",
+   "classSource": "XPHB",
+   "subclassShortName": "猎人",
+   "subclassSource": "XPHB",
+   "level": 15,
+   "header": 2,
+   "entries": [
+    "当你受到伤害时，你可以用你的{@variantrule 反应|XPHB}使你获得对该伤害以及相同伤害类型的{@variantrule 抗性|XPHB}, 直至当前回合结束。"
+   ]
+  },
+  {
+   "name": "哀惧灵袭",
+   "className": "游侠",
+   "level": 11,
+   "source": "TCE",
+   "entries": [
+    "*第3级妖精漫游者特性\n*你能够使用来自妖精荒野中黑暗空洞的摄心魔法以强化你的武器攻击。当你用一把武器击中一个生物时，你可以对目标造成额外的1d4点心灵伤害。每个生物在每个回合只能够受到这一额外伤害一次。\n你的游侠等级达到11级时，这一额外伤害变为1d6。\n\n（校对注：按照原文的which can take来看，其“一回合一次”的主语是“每个生物受到一次伤害”，而非与其他游侠一样是“造成一次伤害”。\n意味着5级之后攻击两个不同目标时，两个目标都能受到额外1d4点心灵伤害。.\n此外，这里的条件是“用武器”，而不是“武器攻击”。简而言之就是能够享受某些特定增益或效果的，与其他同类文本不同的文本。谨慎甄别。 ）"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "妖精荒原的魔法护卫着你的心灵。你在对抗陷入魅惑或恐惧的豁免检定上具有优势。",
+   "className": "游侠",
+   "level": 7,
+   "source": "TCE",
+   "entries": [
+    "此外，当你或周围120尺内你可见的一个生物成功通过了一次对抗魅惑或恐惧的豁免检定时，你可以用你的反应迫使120尺内的另一个你可见的不同生物通过一次感知豁免，豁免DC等同于你的法术豁免DC。若其豁免失败，则目标被你魅惑，或对你恐惧（由你选择），持续一分钟。目标能够在他的每回合结束时重复这次豁免，豁免成功时效果提前终止。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "妖精荒原的皇庭赐予你获得妖精援助的祝福：你习得法术 *妖精召唤术summon fey*（一个出自第三章的法术)。它不计入你的已知游侠法术，且你施展它时无需材料成分。你可以免费施展这个法术一次而不需要消耗法术位，在你完成一次长休后，你重获免费施展该法术的能力。",
+   "className": "游侠",
+   "level": 11,
+   "source": "TCE",
+   "entries": [
+    "每当你施展 *妖精召唤术summon fey *前，你都可以微调这一法术使其本次施展与维持无需你保持专注。以无需专注的方式施展时，该法术的持续时间将变为一分钟。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "你可以在眨眼之间穿梭妖精荒原以进行移动：你可以免费施展 *迷踪步misty step*而不需要消耗法术位，次数等同于你的感知调整值次（至少一次），在完成一次长休后，你重获所有的已消耗的次数。",
+   "className": "游侠",
+   "level": 15,
+   "source": "TCE",
+   "entries": [
+    "另外，每当你施展 *迷踪步misty step*时，你可以携带一个五尺以内你可见的自愿生物与你一同传送。那个生物会被传送到由你选择的，位于你的目标位置周围五尺范围内的一处未占据空间内。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "若你之前还未习得 *法师之手mage hand* 这个戏法，你习得之。当你施展法师之手时，那只手会以你的集群自然精魂形态出现。",
+   "className": "游侠",
+   "level": 3,
+   "source": "TCE",
+   "entries": [
+    "此外，当你到达指定游侠等级时，你会习得一个额外的1环或更高环阶的法术，如集群牧者法术列表所示。这些法术对你视为游侠法术，且不计入你的已知法术总数中。"
+   ],
+   "subclassShortName": "集群牧者"
+  },
+  {
+   "name": "你能将你的集群的一部分凝聚成一股集中的力量，来将你托起。以一个附赠动作，你获得10尺飞行速度，且能悬浮。该效应持续1分钟。若你陷入失能状态，它会提前结束。",
+   "className": "游侠",
+   "level": 7,
+   "source": "TCE",
+   "entries": [
+    "你能使用该特性的次数等于你的熟练加值次，在完成一次长休后你重获全部消耗的次数。"
+   ],
+   "subclassShortName": "集群牧者"
+  },
+  {
+   "name": "你的蜂聚集群通过以下方式变得更加强大",
+   "className": "游侠",
+   "level": 11,
+   "source": "TCE",
+   "entries": [
+    "- 蜂聚集群造成的伤害提升至1d8。\n\n- 如果一个生物在对抗被蜂聚集群移动的豁免中失败，你还能驱使集群将该生物击倒在地（陷入倒地）。\n\n- 当你被蜂聚集群移动后，它会使你获得半身掩护，直至你下个回合开始前。"
+   ],
+   "subclassShortName": "集群牧者"
+  },
+  {
+   "name": "你能将自己散入集群来躲避危险。当你受到伤害时，你能使用你的反应让自己获得对该次伤害的抗性。你会消失在自己的集群之中，然后传送至30尺内一个未被占据的可见空间中，你的集群使你重新出现在那里。",
+   "className": "游侠",
+   "level": 15,
+   "source": "TCE",
+   "entries": [
+    "你能使用该特性的次数等于你的熟练加值次，在完成一次长休后你重获全部消耗的次数。"
+   ],
+   "subclassShortName": "集群牧者"
+  },
+  {
+   "name": "猎物",
+   "className": "游侠",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级时，你选择获得以下特性之一。\n*巨像屠夫Colossus Slayer*。你强而有力的攻击可以击倒最强壮的对手。当你用武器攻击命中敌人时，如果该敌人当前生命值低于其上限，则其额外受到1d8点伤害。你每回合只能造成一次这种额外伤害。\n*巨人杀手Giant Killer*。一个距离你5尺内的大型或更大体型生物对你发动攻击时，无论该次攻击是否命中，只要你能看见它就可以在该攻击结束后用一个反应对该生物发动攻击。\n*灭族者Horde Breaker*。进行武器攻击时，你可以用该武器对位于目标5尺内，且在你武器射程内的另一生物发动一次攻击。你在每个自己的回合里只能造成一次这种额外攻击。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "name": "高效猎人防术",
+   "className": "游侠",
+   "level": 15,
+   "source": "PHB",
+   "entries": [
+    "第15级时，你选择获得以下特性之一。\n*反射闪避Evasion*。你可以灵巧躲过某些特定的区域效应，比如红龙的火焰吐息或是法术*闪电束lightning bolt*。你在成为某一范围效应影响对象时，若该效应允许你通过成功的敏捷豁免来使伤害减半，则你在该豁免成功时不受伤害，而豁免失败时只受一半伤害。\n*逆流而上Stand Against the Tide*。当敌人对你的近战攻击未命中时，你可以用反应迫使敌人向你所指定的生物（除攻击者外）重新发动攻击。\n*直觉闪避Uncanny Dodge*。当一个你能看见的敌人攻击命中你时，你可以用反应让此次攻击的伤害减半。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "name": "妖精漫游者魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你到达妖精漫游者法术表中特定的游侠等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "妖精漫游者"
+  },
+  {
+   "name": "恐惧伏击",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你精通于伏击的恐怖技艺，并获得了以下增益。\n伏击者之跃Ambusher's Leap。在每一场战斗的你的第一个回合的开始，你的移动速度增加10尺，直到那个回合结束。\n恐惧打击 Dreadful Strike。当你用武器对生物攻击并命中时，你可以额外对目标造成2d6点心灵伤害。你在每回合中只能使用一次这个增益，你可以使用这一增益的次数等同于你的感知调整值（最低一次），并在完成一次长休后重获全部已消耗的使用次数。\n先攻加值Initiative Bonus。当你投掷先攻时，你可以在那次掷骰中加入你的感知调整值。"
+   ],
+   "subclassShortName": "幽域追猎者"
+  },
+  {
+   "name": "幽域追猎者魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你到达幽域追猎者法术表中特定的游侠等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "幽域追猎者"
+  },
+  {
+   "name": "阴影视野",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你获得60尺黑暗视觉。如果你获得本特性时已拥有了黑暗视觉，那个黑暗视觉的范围增加60尺。\n你还擅长避开依赖黑暗视觉的角色。完全身处黑暗期间，对于任何依靠黑暗视觉观察黑暗中的你的生物而言，你具有隐形状态。"
+   ],
+   "subclassShortName": "幽域追猎者"
+  },
+  {
+   "name": "钢铁意志",
+   "className": "游侠",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "你已经磨炼出了抵御精神影响的能力。你获得感知豁免熟练。如果你已经有这项熟练，你可以获得智力或者魅力豁免熟练（由你选择）来代替。"
+   ],
+   "subclassShortName": "幽域追猎者"
+  },
+  {
+   "name": "追猎如风",
+   "className": "游侠",
+   "level": 11,
+   "source": "XPHB",
+   "entries": [
+    "你的恐惧打击造成的心灵伤害变为2d8。另外，当你使用恐惧伏击的恐惧打击特性时，你可以创造出以下的额外效应之一。\n瞬杀Sudden Strike。你可以用同一把武器，对位于原目标5尺范围内的另一生物再发动一次攻击，新目标必须处于你武器的触及或射程内。\n群慌Mass Fear。目标与位于目标10尺范围内的每个生物都必须通过一次对抗你法术豁免DC的感知豁免。若豁免失败，生物将会陷入恐慌状态，持续至你的下一回合开始。"
+   ],
+   "subclassShortName": "幽域追猎者"
+  },
+  {
+   "name": "如影随行",
+   "className": "游侠",
+   "level": 15,
+   "source": "XPHB",
+   "entries": [
+    "当一个生物对你发动了一次攻击检定时，你能用反应对这次检定施加劣势。不管那次攻击命中或失手，你都能在那之后传送至你30尺范围内的一处未被占据的、你可见的空间。"
+   ],
+   "subclassShortName": "幽域追猎者"
+  },
+  {
+   "name": "高阶防守战术",
+   "className": "游侠",
+   "level": 15,
+   "source": "XPHB",
+   "entries": [
+    "当你受到伤害时，你可以用你的反应使你获得对该伤害以及相同伤害类型的抗性, 直至当前回合结束。"
+   ],
+   "subclassShortName": "猎人"
+  },
+  {
+   "name": "原初行侣",
+   "className": "游侠",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你魔法性的召唤出一只原初野兽，其力量来自于与你与自然的联系。你从大地野兽Beast of the Land、海洋野兽Beast of the Sea和天空野兽Beast of the Sky中选择其一项作为它的数据卡。你决定原初野兽是何种动物，选择适合其数据卡的外形。无论你选择什么样的动物，这只野兽都带有原初之力的印痕，暗示着其超凡起源。\n这只野兽对你和你的伙伴态度友善，并会听从你的命令。野兽会在你死亡时消失。\n战斗中的野兽The Beast in Combat。战斗中，原初野兽会在你的回合中行动。它能自主地移动或使用反应，但除非你在你的回合中以一个附赠动作命令它执行其他动作，它只会执行回避动作。命令的动作可以是其数据卡中列出的动作或是之外的其他动作。作为另一种命令方式，你也可以在你执行攻击动作时牺牲其中一次你的攻击，来命令野兽执行野兽打击动作。如果你陷入失能，野兽将会自主行动，而非仅使用回避动作。\n复活或替换野兽Restoring or Replacing the Beast。如果野兽死亡不超过一小时，你能够以一个魔法动作，并消耗一个法术位使它复活。它会在一分钟后死而复生并恢复所有生命值。\n每当你完成长休时，你都能召唤一只不同的原初野兽。这只新的野兽出现在位于你5尺内的一处未占据空间内，并由你选择其数据卡和外表。如果你已经通过此特性获得了一只原初野兽，它会在新的原初野兽出现时消失。"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "name": "特效训练",
+   "className": "游侠",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "当你以附赠动作命令你的原初行侣野兽执行动作时，你还可以令它以它自己的附赠动作执行疾走、撤离、回避或协助动作。\n此外，每当你的野兽的攻击检定命中并造成伤害时，其伤害类型可以是力场伤害或其原本的伤害类型（由你选择）"
+   ],
+   "subclassShortName": "驯兽师"
+  },
+  {
+   "name": "如影随行",
+   "className": "游侠",
+   "level": 15,
+   "source": "XGE",
+   "entries": [
+    "15级起，伴随着一缕围绕在你身边的神奇暗影，你能以某种让人始料未及的方式躲闪。无论何时，当一名角色对你进行一次攻击检定，且那次检定不具有优势时，你能用反应对其施加劣势。你必须在知晓攻击检定的结果之前使用此特性。"
+   ],
+   "subclassShortName": "幽域追踪者"
+  },
+  {
+   "name": "卓越防守",
+   "className": "游侠",
+   "level": 7,
+   "source": "XGE",
+   "entries": [
+    "7级时，你对那些尝试攻破你心灵与肉体的敌人拥有着额外的抵抗力。当你的狩猎开始 Slayer's Prey 特性目标迫使你进行一次豁免检定时，或你为逃脱那个目标的擒抱时你进行一次技能检定时。你可以投掷1d6，并将骰值加入到你的那次检定上。"
+   ],
+   "subclassShortName": "怪物杀手"
+  },
+  {
+   "name": "位面战士",
+   "className": "游侠",
+   "level": 11,
+   "source": "XGE",
+   "entries": [
+    "3级时，你学会了如何通过吸取多元宇宙的能量来强化你的攻击。\n以一个附赠动作，选择你周围30尺范围内的一名你可见的角色。本回合内你对其的下一次武器攻击命中时，本次攻击将造成力场伤害，且目标额外受到来自于该攻击的1d8力场伤害。当你的在此职业上到达11级时，这一额外伤害将变为2d8。"
+   ],
+   "subclassShortName": "边界行者"
+  },
+  {
+   "name": "行当用具",
+   "className": "游侠",
+   "level": 3,
+   "source": "SHO",
+   "entries": [
+    "你学会了审讯和使用刑讯工具。你获得酷刑工具和洞悉技能的熟练，并且具有这两者的专精。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "酷刑技法",
+   "className": "游侠",
+   "level": 3,
+   "source": "SHO",
+   "entries": [
+    "你学会了使用技法。与那些需要耐心和精心准备的人不同，你的技法完全由魔法驱动，这让你能够在狩猎途中使用酷刑工具——没有任何生物能因其过于古怪或意志坚定而逃脱你的手段。\n你可以使用每种技法两次，并在完成一次长休后恢复所有已消耗的使用次数。你可以消耗一次宿敌特性的使用次数（无需动作）来恢复一次技法的使用次数。\n技法Techniques。当你用一把近战武器或一次徒手打击命中一个生物，且你一只手持有酷刑工具（或者一只空手且你可以使用的酷刑工具就在手边，譬如捆在腿上）时，作为该次攻击的一部分，你可以使用一种技法来以某种方式增强它。你每回合只能使用每种技法一次，但你可以在同一回合中使用不同的技法，并且每次攻击只能使用一种技法。\n赋能技法Empowered Techniques。当你使用一种技法时，你可以通过消耗一个法术位来强化它（无需动作）。当你如此做时，你对目标造成额外伤害，并且目标必须在对抗该技法的豁免检定中减去一定数量的d4。伤害量和减去的骰数取决于所消耗法术位的环阶，如下表所示。你可以消耗的法术位环阶上限由你的游侠等级决定，同样如下表所示。如果你消耗一次宿敌特性的使用次数，此举也可用于强化技法，这相当于消耗一个一环法术位。\n\n<table>\n<tr><td></td></tr>\n<tr><td></td><td>游侠等级</td><td></td><td>法术环阶</td><td></td><td>额外伤害</td><td></td><td>豁免减值</td><td></td></tr>\n<tr><td></td></tr>\n<tr><td></td><td>3</td><td></td><td>一环</td><td></td><td>感知调整值</td><td></td><td>1D4</td><td></td></tr>\n<tr><td></td></tr>\n<tr><td></td><td>5</td><td></td><td>二环</td><td></td><td>2倍感知调整值</td><td></td><td>2D4</td><td></td></tr>\n<tr><td></td></tr>\n<tr><td></td><td>9</td><td></td><td>三环</td><td></td><td>3倍感知调整值</td><td></td><td>3D4</td><td></td></tr>\n<tr><td></td></tr>\n<tr><td></td><td>13</td><td></td><td>四环</td><td></td><td>4倍感知调整值</td><td></td><td>4D4</td><td></td></tr>\n<tr><td></td></tr>\n<tr><td></td><td>17</td><td></td><td>五环</td><td></td><td>5倍感知调整值</td><td></td><td>5D4</td><td></td></tr>\n<tr><td></td></tr>\n</table>"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "梳毛",
+   "className": "游侠",
+   "level": 7,
+   "source": "SHO",
+   "entries": [
+    "你劈砍、撕裂并剥开受害者的躯体。命中时，目标受到额外1d10挥砍伤害。\n从你的游侠等级到达7级起，若你连续两轮使用此技法对目标造成伤害，则目标必须进行一次体质豁免。若豁免失败，则目标的身体开始裂解，在他的回合开始时，其受到相当于你感知调整值的暗蚀伤害，持续1分钟。此伤害无法被降低或避免。目标在其每个回合结束时可以重复此豁免，成功则终止该效果。\n任何作用于该技法的赋能所导致的额外伤害也可以加在该暗蚀伤害上，一个生物同一时间内不能遭受多个该种效应。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "挑筋",
+   "className": "游侠",
+   "level": 7,
+   "source": "SHO",
+   "entries": [
+    "你斩击生物的肌腱。命中时，目标受到额外1d6挥砍伤害，且必须成功通过一次体质豁免，否则其速度降至变为0，持续到你的下一回合开始。\n从你的游侠等级到达7级起，若目标连续两轮未能通过针对此技法的豁免，则其速度变为0，持续1分钟。目标在其每个回合结束时可以重复此豁免，成功则终止该效果。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "割喉",
+   "className": "游侠",
+   "level": 11,
+   "source": "SHO",
+   "entries": [
+    "你向目标的咽喉发动一次猛烈的劈砍，严重削弱其进行呼吸和开口说话的基础官能。命中时，目标受到额外1d8暗蚀伤害，且在你的下一回合开始前无法说话或施展带有言语成分的法术。\n从你的游侠等级到达11级起，如果你用该技法连续两轮命中该目标，它必须进行一次体质豁免。豁免失败时，目标陷入震慑状态，直到你的下一回合结束。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "击破鼓膜",
+   "className": "游侠",
+   "level": 7,
+   "source": "SHO",
+   "entries": [
+    "你猛击目标的双耳，试图使其失去平衡。命中时，目标受到额外1d8钝击伤害，且必须成功通过一次体质豁免，否则将陷入耳聋状态，持续1分钟。处于耳聋状态的目标在其每个回合结束时可以重复此豁免，成功则终止该效果。\n从你的游侠等级到达7级起，若目标连续两轮未能通过针对此技法的豁免，则其在击破鼓膜持续时间内陷入定向障碍。定向障碍期间，目标无法执行反应。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "堕落之心",
+   "className": "游侠",
+   "level": 7,
+   "source": "SHO",
+   "entries": [
+    "你已见识过世间最极端的堕落，并且亲手造就了其中大多数。你对恐慌状态具有免疫，并获得心灵伤害的抗性。\n此外，若有生物试图读取你的思想或违背你的意愿与你进行心灵感应对话，它必须首先进行一次对抗你技法豁免DC的感知豁免。豁免失败时，它将目睹你内心的恐怖景象，受到等同于你等级的心灵伤害，并且无法与你进行沟通。豁免成功时，它可以以这种方式与你互动 1 分钟，在此期间无需再次进行豁免。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "苦痛面纱",
+   "className": "游侠",
+   "level": 11,
+   "source": "SHO",
+   "entries": [
+    "当你使用酷刑技法对一个生物造成伤害时，你可以尝试用痛苦动摇其心智（无需动作）。目标必须成功通过一次对抗你技法豁免DC的感知豁免，否则将开始将你的存在从意识中剥离——他的大脑拒绝承认你带给他的剧痛，而只把你视作一闪而过的幻觉剪影。你对该目标而言具有隐形状态，持续1分钟。目标在其每个回合结束时可以重复此豁免，成功则终止该效果。\n你可以使用此特性的次数等于你的感知调整值（至少1次），并在完成一次长休后恢复所有已消耗的使用次数。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "精神创痛",
+   "className": "游侠",
+   "level": 15,
+   "source": "SHO",
+   "entries": [
+    "你深谙如何在肉体与精神上给你的猎物带来双重痛苦。当一个距离你60尺内、在你上一回合开始以来曾在你的一项酷刑技法的豁免中失败的生物进行智力、感知或魅力豁免检定时，你可以用反应亮出你的刀片、露出微笑或者做出诸如此类的惊悚举动。目标的该次豁免检定减去1d10。对恐慌状态免疫的生物对此效果免疫。"
+   ],
+   "subclassShortName": "酷刑密会"
+  },
+  {
+   "name": "噩兆先驱法术",
+   "className": "游侠",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "当你到达噩兆先驱法术表中特定的游侠等级时，你就始终准备着表中对应的法术："
+   ],
+   "subclassShortName": "噩兆先驱"
+  },
+  {
+   "name": "死兆星闪",
+   "className": "游侠",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "你可以使用附赠动作选择周边90尺范围内一个你可见的生物，魔法般地封定其末日，持续1小时。每回合一次，当你以攻击命中被封定的目标时，它额外受到1d6暗蚀伤害。\n此外，名为噩兆Grim的幽灵般的生物出现在目标周边30尺范围内的一处未占据空间内。噩兆通常以幽灵般的黑色猎犬的形象现身，但你也可以选择与其数据卡相符的其他外观。\n噩兆对你和你的盟友友好，遵循你的命令。噩兆会在你死亡，或被封定的生物死亡，或其生命值降至0，或你再次使用此特性时消失。\n你能使用本特性的次数等于你的感知调整值（至少为1）。完成一次短休或长休后，你重获所有已消耗的使用次数。你也可以消耗一枚法术位（无需动作）来恢复该特性的使用次数。\n战斗中的噩兆The Grim in Combat。 战斗中，噩兆会在你的回合中行动。它能自主地移动或使用其反应，但除非你使用附赠动作命令它执行其数据卡中的动作或其它动作，它只会执行回避动作。你可以作为使用死兆星闪特性这一附赠动作的一部分来命令它。当你执行攻击动作时，你可以放弃一次攻击，命令噩兆执行死兆撕裂动作。如果你陷入失能状态，噩兆可以自主行动，且不再受限于只执行回避动作。"
+   ],
+   "subclassShortName": "噩兆先驱"
+  },
+  {
+   "name": "灾劫使者",
+   "className": "游侠",
+   "level": 7,
+   "source": "WYM",
+   "entries": [
+    "你对厄运的操控日趋强大，获得以下增益。\n荒坟猎手Graveyard Hunter。 噩兆的死兆撕裂动作在命中时额外造成1d6暗蚀伤害。\n凡尘警示Mortal Reminder。 当你对被你的死兆星闪封定厄运的生物造成伤害时，你可以将伤害类型改为暗蚀伤害。\n恐惧渐生Mounting Dread。 你或噩兆造成的暗蚀伤害无视抗性。"
+   ],
+   "subclassShortName": "噩兆先驱"
+  },
+  {
+   "name": "墓契相连",
+   "className": "游侠",
+   "level": 11,
+   "source": "WYM",
+   "entries": [
+    "你从墓穴中汲取更深层的力量。你获得以下增益。\n阴森猎犬Ghastly Hound。 噩兆对钝击、穿刺和挥砍伤害具有抗性。\n墓穴坚毅Grave Fortitude。 你对暗蚀伤害具有抗性。\n宿命难逃Inescapable Fate。 当你的死兆星闪目标成功于一次豁免检定时，你可以使用反应迫使其以劣势重骰该豁免，并使用新的掷骰结果。一旦你通过此增益导致一次豁免失败，在当前死兆星闪结束之前，你无法再次使用它。"
+   ],
+   "subclassShortName": "噩兆先驱"
+  },
+  {
+   "name": "宿命已定",
+   "className": "游侠",
+   "level": 15,
+   "source": "WYM",
+   "entries": [
+    "你的死兆星闪力量达到巅峰，当它处于激活状态时，为你带来以下增益。\n毁灭之颚Jaws of Doom。 噩兆的死兆撕裂动作在命中时额外造成1d6暗蚀伤害（总计额外2d6伤害）。\n终亡印记Marked for Death。 当你使用死兆星闪时，你可以迫使目标进行一次对抗你法术豁免DC的魅力豁免。若豁免失败，则直至当前死兆星闪结束，目标对噩兆造成的伤害以及你通过死兆星闪造成的额外伤害具有易伤。一旦你使用了此特性，则直至你完成一次长休前，都无法再次使用。你也可以消耗一枚四环或更高环阶的法术位（无需动作）来重置该特性的使用权。\n\n##### 噩兆Grim\n\n中型亡灵，中立"
+   ],
+   "subclassShortName": "噩兆先驱"
+  },
+  {
+   "name": "荒径守护者法术",
+   "className": "游侠",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "当你到达荒径守护者法术表中特定的游侠等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "荒径守护者"
+  },
+  {
+   "name": "协同战术",
+   "className": "游侠",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "你对协调团队协作有着与生俱来的洞察力。这一能力通过你的团队骰决定，团队骰将用于本子职赋予你的各项能力。当你达到特定的游侠等级时，团队骰的骰面会发生变化，具体变化参考团队骰表。\n在你的回合开始时，投掷你的团队骰，并直至你下一回合开始时重新投掷前使用该结果。\n协同打击Coordinated Strikes。 当你能看见的另一名生物通过攻击检定命中目标时，你可以使用反应投掷你的团队骰，并将掷出的数值加到该次攻击对目标造成的伤害上。此额外伤害的类型与初始攻击造成的伤害类型相同。\n协同战术Coordinated Tactics。 你赋予盟友在战场上协调站位的能力。在你的回合开始时投掷团队骰后，你可以选择任意位于你60尺范围内且能看见你的自愿生物。每个被选中的生物均可使用反应进行一段移动，移动距离为投掷值的5倍或其速度（取两者中较低者）。此移动不会触发借机攻击，且不受困难地形影响。"
+   ],
+   "subclassShortName": "荒径守护者"
+  },
+  {
+   "name": "引领前路",
+   "className": "游侠",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "当你使用具备专精的技能熟练项进行属性检定并成功时，你可以选择自身60尺范围内其他任意生物。直至你下一回合开始前每个被选中的生物在进行同类检定时，可获得一个等于你该回合团队骰掷出值的加值。"
+   ],
+   "subclassShortName": "荒径守护者"
+  },
+  {
+   "name": "战术突袭",
+   "className": "游侠",
+   "level": 7,
+   "source": "THC",
+   "entries": [
+    "你指挥盟友行动与攻击的能力得到提升。\n当你使用协同战术选择盟友时，每个能看见或听见你的被选盟友可从以下增益效果中选择选择一项获得。\n守护策略Guardian Maneuver。 直至你下一回合开始前，当该盟友首次受到伤害时，其可减免等同于你团队骰掷出值的伤害。\n侦察策略Recon Maneuver。 当盟友使用反应进行移动时，可将躲藏动作作为该反应的一部分。其敏捷（隐匿）检定将获得等同于你团队骰掷出值的加值。"
+   ],
+   "subclassShortName": "荒径守护者"
+  },
+  {
+   "name": "协同奋战",
+   "className": "游侠",
+   "level": 11,
+   "source": "THC",
+   "entries": [
+    "若你进行先攻检定时未处于失能状态，你可以投掷团队骰；你和30尺范围内所有能看见或听见你盟友的先攻值均获得等同于该掷骰结果的加值。"
+   ],
+   "subclassShortName": "荒径守护者"
+  },
+  {
+   "name": "群体围攻",
+   "className": "游侠",
+   "level": 15,
+   "source": "THC",
+   "entries": [
+    "你能够协调盟友对强敌发起协同攻击。若你使用攻击动作且所有攻击均指向同一目标时，你可指定自身60尺范围内其他任意生物。每个被选中的生物针对该目标的下一次攻击检定及伤害掷骰均可获得等同于你团队骰掷出值的加值。"
+   ],
+   "subclassShortName": "荒径守护者"
+  },
+  {
+   "name": "天鹏旅人魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "GTS",
+   "entries": [
+    "自3级起，当你在此职业上达到特定等级时你将习得一项额外的法术，如天鹏旅人法术列表所示的那般。该法术对你而言视为游侠法术，但不会占用你可已知的游侠法术数量。"
+   ],
+   "subclassShortName": "天鹏旅人"
+  },
+  {
+   "name": "指引之风",
+   "className": "游侠",
+   "level": 3,
+   "source": "GTS",
+   "entries": [
+    "自3级起，当你发动攻击时，你可以轻声低语，让风指引你攻击的方向。你可以在每个你的回合之中，从以下两道增益中选择一次并获得它：\n\n- 当你的武器攻击命中时，目标将受到额外1d4点与武器同类型的伤害。当你在此职业上达到11级时，此额外伤害增加至1d10点。\n\n- 当你的武器攻击失手时，你可以改变它的轨迹去攻击另一个敌人，新的目标必须位于此武器的攻击范围内，且必须位于原先敌人周围5尺内。此时，你对新的目标的攻击检定直接采用你原先这次攻击检定的结果，外加上你的感知调整值（至少+0）点加值。当你在此职业上达到11级后，新的目标可以是原目标周围15尺内的目标（但其仍需位于武器攻击范围内）。"
+   ],
+   "subclassShortName": "天鹏旅人"
+  },
+  {
+   "name": "知识之语",
+   "className": "游侠",
+   "level": 3,
+   "source": "GTS",
+   "entries": [
+    "同样在3级起，你可以询问随风飘摇的精魂，以寻得你需要的知识。你可以用10分钟时间与行过的精魂交谈，让它们为你提供它的所见所闻：选择一项你还未具备其熟练的技能或工具，你获得其熟练。在下一次你完成短休或你完成长休后，这项熟练会消失。\n你可以使用此特性的次数等同于你的感知调整值次（至少可以用一次）。你完成一次长休时可以重获全部已消耗的使用。"
+   ],
+   "subclassShortName": "天鹏旅人"
+  },
+  {
+   "name": "天鹏之翼",
+   "className": "游侠",
+   "level": 11,
+   "source": "GTS",
+   "entries": [
+    "在11级后，在你助跑起跳后，你可以立刻以附赠动作展开双翼，一对如鹏鸟般的灵体翅膀显现在你的身后并持续存在至你的下个回合结束，或至你重新落回地上为止。在双翼存在期间，你拥有等同于你步行速度的飞行速度。"
+   ],
+   "subclassShortName": "天鹏旅人"
+  },
+  {
+   "name": "飓风之护",
+   "className": "游侠",
+   "level": 15,
+   "source": "GTS",
+   "entries": [
+    "在15级时，风与你之间的联系变得无比紧密，风中的精魂甚至能化为一场魔法的狂风来守护你。当你受到伤害时，你可以用你的反应为你自己提供该次伤害的抗性（如果这次伤害是坠落伤害，那么效果将改为免受此次伤害）。此时，你可以选择15尺内任意数量的生物，每个所选生物都必须进行一次力量豁免（DC使用你的游侠法术豁免DC）。豁免失败的生物将受到等同于你游侠等级点的钝击伤害并受击倒地。豁免成功时，生物将受到豁免失败时伤害的一半，且不会被击倒。\n使用此特性时，你还能让风之精魂立刻带你飞到30尺内的一处可见的未占据空间中（不会引发借机攻击）。\n此特性一经使用，直至完成短休或长休你都无法再次使用。"
+   ],
+   "subclassShortName": "天鹏旅人"
+  },
+  {
+   "name": "兽化人",
+   "className": "游侠",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "你的真实形态是一种半兽混合体，并获得以下增益。\n利爪Claws。你长出一对锋利的利爪，可用于徒手打击。你可以使用敏捷调整值代替力量调整值进行徒手攻击的攻击检定与伤害掷骰。当你的徒手打击造成伤害时，可造成1d6+你的力量或敏捷调整值的挥砍伤害，而非徒手打击原本的伤害。\n攀爬速度Climb Speed。 你获得等同于自身步行速度的攀爬速度。\n黑暗视觉Darkvision。你获得60尺黑暗视觉。如果你原本已拥有黑暗视觉，则其距离增加60尺。"
+   ],
+   "subclassShortName": "兽染"
+  },
+  {
+   "name": "兽性姿态",
+   "className": "游侠",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "在战斗的狂热之中，你会逐渐失去控制，并转变为更加接近野兽的形态。\n你的变化程度由兽性姿态等级表示，初始为0。你的兽性姿态等级会赋予你下表所示的增益。你会获得当前等级以及所有更低等级的全部增益。\n当你对敌人造成伤害时，你可以使用一个附赠动作使你的兽性姿态等级提高1级。如果你在1分钟内没有对任何敌人造成伤害，你的兽性姿态等级重置为0。"
+   ],
+   "subclassShortName": "兽染"
+  },
+  {
+   "name": "野性嚎叫",
+   "className": "游侠",
+   "level": 7,
+   "source": "VDS",
+   "entries": [
+    "当你投掷先攻时，你可以掷一粒d4，并将你的兽性姿态等级提升至掷骰结果对应的数值。"
+   ],
+   "subclassShortName": "兽染"
+  },
+  {
+   "name": "嗜血狂怒",
+   "className": "游侠",
+   "level": 11,
+   "source": "VDS",
+   "entries": [
+    "你已经学会掌控自己的兽性狂怒，并获得以下增益。\n兽性印记Bestial Mark。当你使用附赠动作提高兽性姿态等级时，你可以将施展法术*猎人印记Hunter's Mark* 作为该附赠动作的一部分。\n强化杀戮Greater Carnage。 你的杀戮增益提供的伤害加值由+2提高为+3。"
+   ],
+   "subclassShortName": "兽染"
+  },
+  {
+   "name": "怪物韧性",
+   "className": "游侠",
+   "level": 15,
+   "source": "VDS",
+   "entries": [
+    "每回合一次，当你受到伤害时，你可以减少此次所受伤害，最低可降至0。减少的伤害量等于你的体质调整值加你的兽性姿态等级。"
+   ],
+   "subclassShortName": "兽染"
+  },
+  {
+   "name": "以一个动作，你能魔法地召唤出与你联结的龙兽。龙兽会出现在你 30尺内一处由你选择的未占据空间里。",
+   "className": "游侠",
+   "level": 3,
+   "source": "FTFT",
+   "entries": [
+    "龙兽听从你的指令，并且对你和你的同伴友善。从龙兽伙伴数据卡中查看龙兽的游戏数据，其中有几处使用了你的熟练值（PB）。当你召唤龙兽时，从龙族精粹特性的列表中选择伤害类型。你能自订龙兽的外观特征，如颜色，鳞片纹理，和龙族精粹的视觉效果；你的外观选择对游戏数据没有影响。\n\n战斗中，龙兽与你共享先攻，会在你的回合结束之后立即进行自己的回合。龙兽能自己独自移动和使用反应，除非你在你的回合里使用附赠动作命令龙兽执行一个动作，否则龙兽只会使用回避动作。执行的动作可以是数据卡上的，也可以是其他的。当你失能时，龙兽能独自进行任何动作选项，而不是只能回避。\n\n龙兽持续直到它的生命值降为0，或你使用本特性召唤另一只龙兽，或你死亡。当龙兽消失时，它穿戴和携带的物品会留在原地。\n\n当你召唤龙兽后，你需要完成一次长休才能再次这样做。你也能使用一个一环或更高的法术位来召唤龙兽。"
+   ],
+   "subclassShortName": "龙兽守卫"
+  },
+  {
+   "name": "你与龙兽之间的纽带加强，激发龙兽的狂怒，为你提供保护。当你召唤龙兽时，一对翅膀在其背后长出，并获得与步行速度相等的飞行速度。",
+   "className": "游侠",
+   "level": 7,
+   "source": "FTFT",
+   "entries": [
+    "此外，当召唤的龙兽在场时，你和龙兽获得以下增益:\n\n龙兽坐骑Drake Mount。 龙兽成长为中等体型。作为你特别联结的反映，你能够将龙兽当做坐骑骑乘，即使你的体型也为中型。当你骑乘龙兽时，龙兽不能使用从本特性中获得的飞行速度。\n\n魔法獠牙Magic Fang。 龙兽的啃咬攻击额外造成与龙族精粹伤害类型相同的d6伤害。\n\n抗性Resistance。你获得与龙族精粹伤害类型相同的伤害抗性。"
+   ],
+   "subclassShortName": "龙兽守卫"
+  },
+  {
+   "name": "使用一个动作，你能喷吐 30尺锥形的伤害吐息，或者你也能将喷射起点设为你的龙兽。选择强酸，寒冷，闪电，火焰或毒素伤害。（你的选择和龙族精粹特性无关。）锥形范围内的生物进行一次敏捷豁免对抗你的法术豁免DC，豁免失败时受到8d6伤害，成功时受到一半的伤害。",
+   "className": "游侠",
+   "level": 11,
+   "source": "FTFT",
+   "entries": [
+    "当你达到15级后，这一伤害将增长至10d6。\n当你使用本特性后，你需要完成一次长休才能再次这样做。你也能使用一个三环或更高的法术位来再次使用。"
+   ],
+   "subclassShortName": "龙兽守卫"
+  },
+  {
+   "name": "你与龙兽的联结抵达其力量的巅峰。当召唤的龙兽在场时，你和龙兽获得以下增益",
+   "className": "游侠",
+   "level": 15,
+   "source": "FTFT",
+   "entries": [
+    "强化啃咬Empowered Bite。龙兽的啃咬攻击额外造成与龙族精粹属性相同的d6伤害。（总共2d6额外伤害。）\n\n大型龙兽Large Drake。你的龙兽成长为大型。当你骑乘龙兽时，使用飞行速度不再受限于牙鳞之联。\n\n反射抗性Reflexive Resistance。当你与龙兽相距30尺内，你或你的龙兽受到伤害时，你能使用你的反应为你或你的龙兽对这次伤害提供抗性。你能使用本反应的次数与你的熟练值相等，当你完成一次长休后恢复所有的使用次数。"
+   ],
+   "subclassShortName": "龙兽守卫"
+  },
+  {
+   "name": "幽邃戍卫魔法",
+   "className": "游侠",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "当你到达幽邃戍卫法术表中特定的游侠等级时，你就始终准备了表中对应的法术。"
+   ],
+   "subclassShortName": "幽邃戍卫"
+  },
+  {
+   "name": "荒野之怒",
+   "className": "游侠",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "你汲取这片土地上古老而奇诡的恐怖力量，令你的身体上长出不自然之物，例如滴血的鹿角或腐臭的獠牙，或者令你身后的阴影被拉长并扭曲着缠绕全身。你可以执行附赠动作消耗一次宿敌特性的使用次数来变身为骇人形态。该形态持续1分钟，或在你陷入失能状态、死亡或是主动结束变身（无需动作）时提前结束。变身期间，你获得以下增益：\n远古护甲Ancient Armor。 你的身躯被腐朽的树皮与野兽般的粗毛所包裹，使你的AC获得+1加值。当你的游侠等级到达11级时，该加值提升至+2。\n巡猎报复Prowling Retribution。 当你5尺范围内一个你可见的生物对你或你的一名盟友造成伤害后，你可以立即对该生物发动一次借机攻击。\n悚然灵光Unnerving Aura。 当你变身时，以及之后每个你的回合开始时，源自你的10尺光环区域内每个由你指定的生物，都必须进行一次对抗你法术豁免DC的感知豁免。若豁免失败，则生物陷入恐慌状态，直至你的下一回合开始。"
+   ],
+   "subclassShortName": "幽邃戍卫"
+  },
+  {
+   "name": "渴血予力",
+   "className": "游侠",
+   "level": 7,
+   "source": "VRGR-V",
+   "entries": [
+    "你的体质豁免检定获得等同于你感知调整值的加值（至少为+1）。\n此外，每回合一次，当你处于荒野之怒变身下并以攻击检定命中一个生物时，若你在命中目标时处于浴血，则你恢复等于1d10+你感知调整值的生命值。"
+   ],
+   "subclassShortName": "幽邃戍卫"
+  },
+  {
+   "name": "枯朽残虐",
+   "className": "游侠",
+   "level": 11,
+   "source": "VRGR-V",
+   "entries": [
+    "你对荒野中那些诡异存在的供奉进一步改变了你。当你使用荒野之怒变形时，你获得以下额外增益：\n威吓灵光Menacing Aura。 当一个生物在对抗你悚然灵光的豁免检定中失败时，直至你的下一回合开始，其还会无法恢复生命值，也无法执行反应。\n索命根须Strangling Roots。 当你使用武器发动攻击检定命中一个生物时，除了这把武器本身的精通词条外，你还可以为其应用削弱或缓速精通词条。"
+   ],
+   "subclassShortName": "幽邃戍卫"
+  },
+  {
+   "name": "亘古凶威",
+   "className": "游侠",
+   "level": 15,
+   "source": "VRGR-V",
+   "entries": [
+    "荒野中那古老而骇人的力量充盈你的全身，赋予你以下增益：\n死兆强袭Ominous Strikes。 当你以攻击检定命中一个陷入恐慌状态的生物时，该次攻击造成等同于你感知调整值的额外伤害。\n不息狂怒Persistent Wrath。 当你处于荒野之怒变身下，且生命值被降至0但未被立即杀死时，你可以使狂野之力喷薄而出。你的生命值改为变成等同于你游侠等级两倍的数值。该特性一经使用，则直至你完成一次长休前，都无法再次使用。你也可以消耗一枚四环或更高环阶的法术位来恢复该特性的使用次数（无需动作）。\n永不安眠Timeless。 你免疫力竭状态。"
+   ],
+   "subclassShortName": "幽邃戍卫"
+  },
+  {
+   "name": "第一性状",
+   "level": 3,
+   "entries": [
+    "自3级开始，你内在的侵蚀开始在战斗中显现其力量。每当你受到伤害，你还会获得一个诅咒标记；如果你承受了来自一次重击的伤害，则你获得两个诅咒标记。直至下个你自己的回合结束前，这些标记会持续生效，且你一次至多可以积攒2个诅咒标记。当你以一次武器攻击命中一个生物时，你持有的所有诅咒标记将立刻被消耗，每消耗一个标记就会额外对目标造成1d4的暗蚀伤害。或者，你可以以一个附赠动作唤起侵蚀的力量，并立刻获得你能获取的最大数量的诅咒标记。当你使用此能力时，你不能获得超出你最大可持有诅咒标记数量的标记。你一次能够积攒的诅咒标记数会随着你达到特定等级而提升：5级时3个，11级时4个，17级时5个。"
+   ]
+  },
+  {
+   "name": "第二性状",
+   "level": 3,
+   "entries": [
+    "3级时，你开始注意到自己体内正在发生的诡异变化。有时你会发现自己的四肢和躯干会独立地做出动作，就好像这出于它们自己的意愿。当你进行一次力量或敏捷检定时，你可以选择将结果替换为 10+你的游侠等级的数值。你可以等到掷出d20后，但在DM宣布检定成功或失败前，再决定是否使用此特性，你可以使用此特性的次数等于你熟练加值的一半（向上取整），且你在完成一次长休后重新获得所有已消耗的使用次数。"
+   ]
+  },
+  {
+   "name": "第三性状",
+   "level": 7,
+   "entries": [
+    "自7级开始，当你对一个生物发动一次武器攻击时，你可以花费一个诅咒标记并掷一枚d4骰，然后将结果加入到这次攻击检定中。你可以在你进行一次攻击检定掷骰之前或之后选择以此方式使用一个诅咒标记。你一回合仅能以此法消耗一个诅咒标记。此外，无论你在何时受到伤害，你都可以花费你的反应将伤害量减少等于你游侠等级的数额。一旦你以此法减少了一次所受的伤害，你不能再这么做直到你完成一次短休或长休。"
+   ]
+  },
+  {
+   "name": "第四性状",
+   "level": 11,
+   "entries": [
+    "11级时，你的病症开始对你的身体产生副作用。你选择并获得以下病症之一。灰视Graying Vision。你的视觉减弱，且你周遭的世界开始失去斑斓的色彩。为了适应你逐渐恶化的视力，你获得15尺范围内的盲视。此外，你可以自动侦测到视觉上的幻象，只要它们的智力（调查）检定的DC低于或等于你的游侠施法DC。坏肺Failing Lungs。你的肺开始作痛，每天都在不停咳嗽。有时你会觉得难以呼吸，而与此同时，你也习得了如何偷走他人的呼吸。以一个动作，你可以从一个可见生物身上夺取下一次呼吸。目标陷入倒地且不能执行反应，直到你的下个回合开始。此外，你所有的诅咒标记都会因此被消耗，并对该生物造成每个标记1d4的暗蚀伤害。或者，你也可以将你的呼吸给予一个其他生物。每当一个你能看见的生物进行一次敏捷豁免时，你可以用你的反应给予其在该豁免中的优势，且目标的速度提高15尺，直到你的下个回合开始。丧感Losing Feeling。麻木渗入你的筋肉骨骼，在皮肤表层蔓延扩散。你鲜活的知觉逐渐被无边的恨意取代。你的双手和臂膀燃烧着唯你可见的冰冷以太火焰。以一个附赠动作，你可以指定60尺内的一个可见生物，以同样的诅咒之火笼罩该生物。当你对受你的火焰所笼罩的生物通过诅咒标记造成伤害时，每个诅咒标记将额外造成1d6暗蚀伤害，而非原本的1d4。此特性在使用后，直至你完成一次短休或长休前无法再次使用。"
+   ]
+  },
+  {
+   "name": "第五性状",
+   "level": 15,
+   "entries": [
+    "15级起，你能够唤起侵蚀的力量并极大程度地改变你的天生能力。以一个附赠动作，你可以令此特性生效，你的步行速度翻倍，你的AC获得2点加值，并且当你执行攻击动作时你可以发动两次额外的攻击。此外，你在发动所有攻击时都视作你持有最大数量的诅咒标记。此特性效果持续至你的下个回合开始。你可以在两次长休间不受副作用地使用一次此特性。如果你在完成一次长休前第二次使用此特性，那么除了特性效果会在你的下个回合开始时结束外，你还会获得1级力竭，如果你在自己的回合开始时生命值大于1点，你的生命值立刻降至1点。一旦你第二次使用此特性，你不能再次使用它，直到你完成一次长休。"
+   ]
+  },
+  {
+   "name": "第一性状",
+   "level": 3,
+   "entries": [
+    "自3级开始，你内在的侵蚀开始在战斗中显现其力量。每当你受到伤害，你还会获得一个诅咒标记；如果你承受了来自一次重击的伤害，则你获得两个诅咒标记。直至下个你自己的回合结束前，这些标记会持续生效，且你一次至多可以积攒2个诅咒标记。当你以一次武器攻击命中一个生物时，你持有的所有诅咒标记将立刻被消耗，每消耗一个标记就会额外对目标造成1d4的暗蚀伤害。或者，你可以以一个附赠动作唤起侵蚀的力量，并立刻获得你能获取的最大数量的诅咒标记。当你使用此能力时，你不能获得超出你最大可持有诅咒标记数量的标记。你一次能够积攒的诅咒标记数会随着你达到特定等级而提升：5级时3个，11级时4个，17级时5个。"
+   ],
+   "className": "游侠",
+   "subclassShortName": "侵蚀行者",
+   "source": ""
+  },
+  {
+   "name": "第二性状",
+   "level": 3,
+   "entries": [
+    "3级时，你开始注意到自己体内正在发生的诡异变化。有时你会发现自己的四肢和躯干会独立地做出动作，就好像这出于它们自己的意愿。当你进行一次力量或敏捷检定时，你可以选择将结果替换为 10+你的游侠等级的数值。你可以等到掷出d20后，但在DM宣布检定成功或失败前，再决定是否使用此特性，你可以使用此特性的次数等于你熟练加值的一半（向上取整），且你在完成一次长休后重新获得所有已消耗的使用次数。"
+   ],
+   "className": "游侠",
+   "subclassShortName": "侵蚀行者",
+   "source": ""
+  },
+  {
+   "name": "第三性状",
+   "level": 7,
+   "entries": [
+    "自7级开始，当你对一个生物发动一次武器攻击时，你可以花费一个诅咒标记并掷一枚d4骰，然后将结果加入到这次攻击检定中。你可以在你进行一次攻击检定掷骰之前或之后选择以此方式使用一个诅咒标记。你一回合仅能以此法消耗一个诅咒标记。此外，无论你在何时受到伤害，你都可以花费你的反应将伤害量减少等于你游侠等级的数额。一旦你以此法减少了一次所受的伤害，你不能再这么做直到你完成一次短休或长休。"
+   ],
+   "className": "游侠",
+   "subclassShortName": "侵蚀行者",
+   "source": ""
+  },
+  {
+   "name": "第四性状",
+   "level": 11,
+   "entries": [
+    "11级时，你的病症开始对你的身体产生副作用。你选择并获得以下病症之一。灰视Graying Vision。你的视觉减弱，且你周遭的世界开始失去斑斓的色彩。为了适应你逐渐恶化的视力，你获得15尺范围内的盲视。此外，你可以自动侦测到视觉上的幻象，只要它们的智力（调查）检定的DC低于或等于你的游侠施法DC。坏肺Failing Lungs。你的肺开始作痛，每天都在不停咳嗽。有时你会觉得难以呼吸，而与此同时，你也习得了如何偷走他人的呼吸。以一个动作，你可以从一个可见生物身上夺取下一次呼吸。目标陷入倒地且不能执行反应，直到你的下个回合开始。此外，你所有的诅咒标记都会因此被消耗，并对该生物造成每个标记1d4的暗蚀伤害。或者，你也可以将你的呼吸给予一个其他生物。每当一个你能看见的生物进行一次敏捷豁免时，你可以用你的反应给予其在该豁免中的优势，且目标的速度提高15尺，直到你的下个回合开始。丧感Losing Feeling。麻木渗入你的筋肉骨骼，在皮肤表层蔓延扩散。你鲜活的知觉逐渐被无边的恨意取代。你的双手和臂膀燃烧着唯你可见的冰冷以太火焰。以一个附赠动作，你可以指定60尺内的一个可见生物，以同样的诅咒之火笼罩该生物。当你对受你的火焰所笼罩的生物通过诅咒标记造成伤害时，每个诅咒标记将额外造成1d6暗蚀伤害，而非原本的1d4。此特性在使用后，直至你完成一次短休或长休前无法再次使用。"
+   ],
+   "className": "游侠",
+   "subclassShortName": "侵蚀行者",
+   "source": ""
+  },
+  {
+   "name": "第五性状",
+   "level": 15,
+   "entries": [
+    "15级起，你能够唤起侵蚀的力量并极大程度地改变你的天生能力。以一个附赠动作，你可以令此特性生效，你的步行速度翻倍，你的AC获得2点加值，并且当你执行攻击动作时你可以发动两次额外的攻击。此外，你在发动所有攻击时都视作你持有最大数量的诅咒标记。此特性效果持续至你的下个回合开始。你可以在两次长休间不受副作用地使用一次此特性。如果你在完成一次长休前第二次使用此特性，那么除了特性效果会在你的下个回合开始时结束外，你还会获得1级力竭，如果你在自己的回合开始时生命值大于1点，你的生命值立刻降至1点。一旦你第二次使用此特性，你不能再次使用它，直到你完成一次长休。"
+   ],
+   "className": "游侠",
+   "subclassShortName": "侵蚀行者",
+   "source": ""
+  }
+ ]
+}

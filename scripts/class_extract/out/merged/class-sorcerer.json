@@ -1,0 +1,6234 @@
+{
+ "class": [
+  {
+   "ENG_name": "Sorcerer",
+   "name": "术士",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "reprintedAs": [
+    "术士|XPHB"
+   ],
+   "edition": "classic",
+   "hd": {
+    "number": 1,
+    "faces": 6
+   },
+   "proficiency": [
+    "con",
+    "cha"
+   ],
+   "spellcastingAbility": "cha",
+   "casterProgression": "full",
+   "cantripProgression": [
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "spellsKnownProgression": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    15,
+    15
+   ],
+   "optionalfeatureProgression": [
+    {
+     "ENG_name": "Metamagic",
+     "name": "超魔法",
+     "featureType": [
+      "MM"
+     ],
+     "progression": {
+      "3": 2,
+      "10": 3,
+      "17": 4
+     }
+    }
+   ],
+   "startingProficiencies": {
+    "weapons": [
+     "{@item 匕首|phb|匕首}",
+     "{@item 飞镖|phb|飞镖}",
+     "{@item 投石索|phb|投石索}",
+     "{@item 长棍|phb|长棍}",
+     "{@item 轻弩|phb|轻弩}"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "arcana",
+        "deception",
+        "insight",
+        "intimidation",
+        "persuasion",
+        "religion"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "default": [
+     "(a) 一把{@item 轻弩|phb}和{@item 弩矢(20)|phb|20支弩箭}或 (b) 任何{@filter 简易武器|items|source=phb|category=基础|type=简易武器}",
+     "(a) 一个 {@item 材料包|phb}或 (b) 一件{@item 奥术法器|phb}",
+     "(a) 一个{@item 地城套组|phb}或(b) 一个{@item 探索套组|phb}",
+     "两把{@item 匕首|phb|匕首}"
+    ],
+    "goldAlternative": "{@dice 3d4 × 10|3d4 × 10|起始金币}",
+    "defaultData": [
+     {
+      "a": [
+       "轻弩|phb",
+       "弩矢(20)|phb"
+      ],
+      "b": [
+       {
+        "equipmentType": "weaponSimple"
+       }
+      ]
+     },
+     {
+      "a": [
+       "材料包|phb"
+      ],
+      "b": [
+       {
+        "equipmentType": "focusSpellcastingArcane"
+       }
+      ]
+     },
+     {
+      "a": [
+       "地城套组|phb"
+      ],
+      "b": [
+       "探索套组|phb"
+      ]
+     },
+     {
+      "_": [
+       {
+        "item": "匕首|phb",
+        "quantity": 2
+       }
+      ]
+     }
+    ]
+   },
+   "multiclassing": {
+    "requirements": {
+     "cha": 13
+    }
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "术法点"
+     ],
+     "rows": [
+      [
+       0
+      ],
+      [
+       2
+      ],
+      [
+       3
+      ],
+      [
+       4
+      ],
+      [
+       5
+      ],
+      [
+       6
+      ],
+      [
+       7
+      ],
+      [
+       8
+      ],
+      [
+       9
+      ],
+      [
+       10
+      ],
+      [
+       11
+      ],
+      [
+       12
+      ],
+      [
+       13
+      ],
+      [
+       14
+      ],
+      [
+       15
+      ],
+      [
+       16
+      ],
+      [
+       17
+      ],
+      [
+       18
+      ],
+      [
+       19
+      ],
+      [
+       20
+      ]
+     ]
+    },
+    {
+     "colLabels": [
+      "{@filter 已知戏法|spells|level=0|class=术士}",
+      "{@filter 已知法术|spells|class=术士}"
+     ],
+     "rows": [
+      [
+       4,
+       2
+      ],
+      [
+       4,
+       3
+      ],
+      [
+       4,
+       4
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       5,
+       8
+      ],
+      [
+       5,
+       9
+      ],
+      [
+       5,
+       10
+      ],
+      [
+       6,
+       11
+      ],
+      [
+       6,
+       12
+      ],
+      [
+       6,
+       12
+      ],
+      [
+       6,
+       13
+      ],
+      [
+       6,
+       13
+      ],
+      [
+       6,
+       14
+      ],
+      [
+       6,
+       14
+      ],
+      [
+       6,
+       15
+      ],
+      [
+       6,
+       15
+      ],
+      [
+       6,
+       15
+      ],
+      [
+       6,
+       15
+      ]
+     ]
+    },
+    {
+     "title": "每环法术位",
+     "colLabels": [
+      "{@filter 1st|spells|level=1|class=术士}",
+      "{@filter 2nd|spells|level=2|class=术士}",
+      "{@filter 3rd|spells|level=3|class=术士}",
+      "{@filter 4th|spells|level=4|class=术士}",
+      "{@filter 5th|spells|level=5|class=术士}",
+      "{@filter 6th|spells|level=6|class=术士}",
+      "{@filter 7th|spells|level=7|class=术士}",
+      "{@filter 8th|spells|level=8|class=术士}",
+      "{@filter 9th|spells|level=9|class=术士}"
+     ],
+     "rowsSpellProgression": [
+      [
+       2,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       2,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       2,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       2,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       1,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       3,
+       1,
+       1,
+       1,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       3,
+       2,
+       2,
+       1,
+       1
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "施法|术士||1",
+    {
+     "classFeature": "术法起源|术士||1",
+     "gainSubclassFeature": true
+    },
+    "魔力泉涌|术士||2",
+    "超魔法|术士||3",
+    "超魔法选项|术士||3|TCE",
+    "属性值提升|术士||4",
+    "替换术法|术士||4|TCE",
+    "魔法指引|术士||5|TCE",
+    {
+     "classFeature": "术法起源特性|术士||6",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|术士||8",
+    "超魔法|术士||10",
+    "属性值提升|术士||12",
+    {
+     "classFeature": "术法起源特性|术士||14",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|术士||16",
+    "超魔法|术士||17",
+    {
+     "classFeature": "术法起源特性|术士||18",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|术士||19",
+    "术法复苏|术士||20"
+   ],
+   "subclassTitle": "术法起源",
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Sorcerer",
+   "name": "术士",
+   "source": "XPHB",
+   "page": 138,
+   "srd52": true,
+   "basicRules2024": true,
+   "edition": "one",
+   "primaryAbility": [
+    {
+     "cha": true
+    }
+   ],
+   "hd": {
+    "number": 1,
+    "faces": 6
+   },
+   "proficiency": [
+    "con",
+    "cha"
+   ],
+   "spellcastingAbility": "cha",
+   "casterProgression": "full",
+   "preparedSpellsProgression": [
+    2,
+    4,
+    6,
+    7,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    20,
+    21,
+    22
+   ],
+   "preparedSpellsChange": "level",
+   "cantripProgression": [
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "featProgression": [
+    {
+     "ENG_name": "Epic Boon",
+     "name": "传奇恩惠",
+     "category": [
+      "EB"
+     ],
+     "progression": {
+      "19": 1
+     }
+    }
+   ],
+   "optionalfeatureProgression": [
+    {
+     "ENG_name": "Metamagic",
+     "name": "超魔法",
+     "featureType": [
+      "MM"
+     ],
+     "progression": {
+      "2": 2,
+      "10": 4,
+      "17": 6
+     }
+    }
+   ],
+   "startingProficiencies": {
+    "weapons": [
+     "简易"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "arcana",
+        "deception",
+        "insight",
+        "intimidation",
+        "persuasion",
+        "religion"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "defaultData": [
+     {
+      "A": [
+       {
+        "item": "矛|xphb"
+       },
+       {
+        "item": "匕首|xphb",
+        "quantity": 2
+       },
+       {
+        "item": "水晶|xphb"
+       },
+       {
+        "item": "地城套组|xphb"
+       },
+       {
+        "value": 2800
+       }
+      ],
+      "B": [
+       {
+        "value": 5000
+       }
+      ]
+     }
+    ],
+    "entries": [
+     "{@i 选择A或B：} (A) {@item 矛|XPHB}、2把{@item 匕首|XPHB|匕首}、{@item 奥术法器|XPHB}（{@item 水晶|XPHB}）、{@item 地城套组|XPHB}和28 GP；或 (B) 50 GP"
+    ]
+   },
+   "multiclassing": {},
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "术法点"
+     ],
+     "rows": [
+      [
+       0
+      ],
+      [
+       2
+      ],
+      [
+       3
+      ],
+      [
+       4
+      ],
+      [
+       5
+      ],
+      [
+       6
+      ],
+      [
+       7
+      ],
+      [
+       8
+      ],
+      [
+       9
+      ],
+      [
+       10
+      ],
+      [
+       11
+      ],
+      [
+       12
+      ],
+      [
+       13
+      ],
+      [
+       14
+      ],
+      [
+       15
+      ],
+      [
+       16
+      ],
+      [
+       17
+      ],
+      [
+       18
+      ],
+      [
+       19
+      ],
+      [
+       20
+      ]
+     ]
+    },
+    {
+     "colLabels": [
+      "{@filter 戏法|spells|level=0|class=术士}",
+      "{@filter 准备法术|spells|level=!0|class=术士}"
+     ],
+     "rows": [
+      [
+       4,
+       2
+      ],
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       5,
+       9
+      ],
+      [
+       5,
+       10
+      ],
+      [
+       5,
+       11
+      ],
+      [
+       5,
+       12
+      ],
+      [
+       5,
+       14
+      ],
+      [
+       6,
+       15
+      ],
+      [
+       6,
+       16
+      ],
+      [
+       6,
+       16
+      ],
+      [
+       6,
+       17
+      ],
+      [
+       6,
+       17
+      ],
+      [
+       6,
+       18
+      ],
+      [
+       6,
+       18
+      ],
+      [
+       6,
+       19
+      ],
+      [
+       6,
+       20
+      ],
+      [
+       6,
+       21
+      ],
+      [
+       6,
+       22
+      ]
+     ]
+    },
+    {
+     "title": "每环法术位",
+     "colLabels": [
+      "{@filter 1st|spells|level=1|class=术士}",
+      "{@filter 2nd|spells|level=2|class=术士}",
+      "{@filter 3rd|spells|level=3|class=术士}",
+      "{@filter 4th|spells|level=4|class=术士}",
+      "{@filter 5th|spells|level=5|class=术士}",
+      "{@filter 6th|spells|level=6|class=术士}",
+      "{@filter 7th|spells|level=7|class=术士}",
+      "{@filter 8th|spells|level=8|class=术士}",
+      "{@filter 9th|spells|level=9|class=术士}"
+     ],
+     "rowsSpellProgression": [
+      [
+       2,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       2,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       2,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       2,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       1,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       0,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       3,
+       1,
+       1,
+       1,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       3,
+       2,
+       1,
+       1,
+       1
+      ],
+      [
+       4,
+       3,
+       3,
+       3,
+       3,
+       2,
+       2,
+       1,
+       1
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "施法|术士|XPHB|1",
+    "先天术法|术士|XPHB|1",
+    "魔力泉涌|术士|XPHB|2",
+    "超魔法|术士|XPHB|2",
+    "超魔法选项|术士|XPHB|2",
+    {
+     "classFeature": "术士子职|术士|XPHB|3",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|术士|XPHB|4",
+    "术法复苏|术士|XPHB|5",
+    {
+     "classFeature": "子职特性|术士|XPHB|6",
+     "gainSubclassFeature": true
+    },
+    "术法化身|术士|XPHB|7",
+    "属性值提升|术士|XPHB|8",
+    "超魔法|术士|XPHB|10",
+    "属性值提升|术士|XPHB|12",
+    {
+     "classFeature": "子职特性|术士|XPHB|14",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|术士|XPHB|16",
+    "超魔法|术士|XPHB|17",
+    {
+     "classFeature": "子职特性|术士|XPHB|18",
+     "gainSubclassFeature": true
+    },
+    "传奇恩惠|术士|XPHB|19",
+    "奥术登神|术士|XPHB|20"
+   ],
+   "subclassTitle": "术士子职",
+   "hasFluff": true,
+   "hasFluffImages": true
+  }
+ ],
+ "subclass": [
+  {
+   "name": "龙族血脉",
+   "shortName": "龙族血脉",
+   "className": "术士",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Draconic Bloodline",
+   "name": "龙族血脉",
+   "shortName": "龙族血脉",
+   "source": "PHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Draconic Bloodline",
+    "name": "龙族血脉",
+    "source": "PHB",
+    "shortName": "龙族血脉",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "龙族血脉|术士|XPHB|龙族血脉||3",
+    "元素亲和|术士||龙族血脉||6",
+    "龙翼|术士||龙族血脉||14",
+    "龙之威仪|术士||龙族血脉||18"
+   ]
+  },
+  {
+   "name": "狂野魔法",
+   "shortName": "狂野魔法",
+   "className": "术士",
+   "source": "PHB"
+  },
+  {
+   "ENG_name": "Wild Magic",
+   "name": "狂野魔法",
+   "shortName": "狂野魔法",
+   "source": "PHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Wild Magic",
+    "name": "狂野魔法",
+    "source": "PHB",
+    "shortName": "狂野魔法",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "狂野魔法|术士|XPHB|狂野魔法||3",
+    "扭曲幸运|术士||狂野魔法||6",
+    "掌控混沌|术士||狂野魔法||14",
+    "法术轰击|术士||狂野魔法||18"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Wild Magic",
+     "name": "狂野魔法",
+     "source": "PHB",
+     "shortName": "狂野魔法",
+     "className": "术士",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "Pyromancer (PSK)",
+   "name": "烈焰术士(PSK)",
+   "shortName": "烈焰术士(PSK)",
+   "source": "PSK",
+   "className": "术士",
+   "classSource": "PHB",
+   "page": 9,
+   "edition": "classic",
+   "subclassFeatures": [
+    "烈焰术士(PSK)|术士||烈焰术士(PSK)|PSK|1",
+    "火之血脉|术士||烈焰术士(PSK)|PSK|6",
+    "烈焰术士之怒|术士||烈焰术士(PSK)|PSK|14",
+    "火爆之魂|术士||烈焰术士(PSK)|PSK|18"
+   ]
+  },
+  {
+   "ENG_name": "Pyromancer (PSK)",
+   "name": "烈焰术士(PSK)",
+   "shortName": "烈焰术士(PSK)",
+   "source": "PSK",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Pyromancer (PSK)",
+    "name": "烈焰术士(PSK)",
+    "source": "PSK",
+    "shortName": "烈焰术士(PSK)",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "烈焰术士(PSK)|术士|XPHB|烈焰术士(PSK)|PSK|3",
+    "火之血脉|术士||烈焰术士(PSK)|PSK|6",
+    "烈焰术士之怒|术士||烈焰术士(PSK)|PSK|14",
+    "火爆之魂|术士||烈焰术士(PSK)|PSK|18"
+   ]
+  },
+  {
+   "name": "神圣之魂",
+   "shortName": "神圣之魂",
+   "className": "术士",
+   "source": "XGE"
+  },
+  {
+   "ENG_name": "Divine Soul",
+   "name": "神圣之魂",
+   "shortName": "神圣之魂",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Divine Soul",
+    "name": "神圣之魂",
+    "source": "XGE",
+    "shortName": "神圣之魂",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "神圣之魂|术士|XPHB|神圣之魂|XGE|3",
+    "强效治疗|术士||神圣之魂|XGE|6",
+    "异界光翼|术士||神圣之魂|XGE|14",
+    "神赐痊愈|术士||神圣之魂|XGE|18"
+   ]
+  },
+  {
+   "ENG_name": "Shadow Magic",
+   "name": "暗影魔法",
+   "shortName": "幽影",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "PHB",
+   "page": 50,
+   "reprintedAs": [
+    "幽影|术士|XPHB|RHW"
+   ],
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "known": {
+      "3": [
+       "黑暗术"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "暗影魔法|术士||幽影|XGE|1",
+    "凶兆猎犬|术士||幽影|XGE|6",
+    "幽影漫步|术士||幽影|XGE|14",
+    "幽暗之形|术士||幽影|XGE|18"
+   ],
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Shadow Magic",
+   "name": "暗影魔法",
+   "shortName": "幽影",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "reprintedAs": [
+    "幽影|术士|XPHB|RHW"
+   ],
+   "_copy": {
+    "ENG_name": "Shadow Magic",
+    "name": "暗影魔法",
+    "source": "XGE",
+    "shortName": "幽影",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "暗影魔法|术士|XPHB|幽影|XGE|3",
+    "凶兆猎犬|术士||幽影|XGE|6",
+    "幽影漫步|术士||幽影|XGE|14",
+    "幽暗之形|术士||幽影|XGE|18"
+   ]
+  },
+  {
+   "ENG_name": "Storm Sorcery",
+   "name": "风暴术法",
+   "shortName": "风暴",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "PHB",
+   "page": 51,
+   "otherSources": [
+    {
+     "source": "SCAG",
+     "page": 137
+    }
+   ],
+   "edition": "classic",
+   "subclassFeatures": [
+    "风暴术法|术士||风暴|XGE|1",
+    "风暴之心|术士||风暴|XGE|6",
+    "风暴导向|术士||风暴|XGE|6",
+    "暴风狂怒|术士||风暴|XGE|14",
+    "清风之灵|术士||风暴|XGE|18"
+   ],
+   "hasFluff": true,
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Storm Sorcery",
+   "name": "风暴术法",
+   "shortName": "风暴",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Storm Sorcery",
+    "name": "风暴术法",
+    "source": "XGE",
+    "shortName": "风暴",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "风暴术法|术士|XPHB|风暴|XGE|3",
+    "风暴之心|术士||风暴|XGE|6",
+    "风暴导向|术士||风暴|XGE|6",
+    "暴风狂怒|术士||风暴|XGE|14",
+    "清风之灵|术士||风暴|XGE|18"
+   ]
+  },
+  {
+   "name": "畸变心智",
+   "shortName": "畸变心智",
+   "className": "术士",
+   "source": "TCE"
+  },
+  {
+   "ENG_name": "Aberrant Mind",
+   "name": "畸变心智",
+   "shortName": "畸变心智",
+   "source": "TCE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Aberrant Mind",
+    "name": "畸变心智",
+    "source": "TCE",
+    "shortName": "畸变心智",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "畸变心智|术士|XPHB|畸变心智|TCE|3",
+    "灵能术法|术士||畸变心智|TCE|6",
+    "心灵防御|术士||畸变心智|TCE|6",
+    "血肉启示|术士||畸变心智|TCE|14",
+    "扭曲爆裂|术士||畸变心智|TCE|18"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Aberrant Mind",
+     "name": "畸变心智",
+     "source": "TCE",
+     "shortName": "畸变心智",
+     "className": "术士",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "name": "时械之魂",
+   "shortName": "时械之魂",
+   "className": "术士",
+   "source": "TCE"
+  },
+  {
+   "ENG_name": "Clockwork Soul",
+   "name": "时械之魂",
+   "shortName": "时械之魂",
+   "source": "TCE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Clockwork Soul",
+    "name": "时械之魂",
+    "source": "TCE",
+    "shortName": "时械之魂",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "时械之魂|术士|XPHB|时械之魂|TCE|3",
+    "律令之壁|术士||时械之魂|TCE|6",
+    "序列意识|术士||时械之魂|TCE|14",
+    "时械矩阵|术士||时械之魂|TCE|18"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Clockwork Soul",
+     "name": "时械之魂",
+     "source": "TCE",
+     "shortName": "时械之魂",
+     "className": "术士",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "Lunar Sorcery",
+   "name": "月之术法",
+   "shortName": "月",
+   "source": "DSotDQ",
+   "className": "术士",
+   "classSource": "PHB",
+   "page": 34,
+   "edition": "classic",
+   "additionalSpells": [
+    {
+     "ENG_name": "Full Moon",
+     "name": "满月",
+     "known": {
+      "1": [
+       "护盾术",
+       "致病射线",
+       "七彩喷射"
+      ],
+      "3": [
+       "次等复原术",
+       "目盲术/耳聋术",
+       "变身术"
+      ],
+      "5": [
+       "解除魔法",
+       "吸血鬼之触",
+       "魅影驹"
+      ],
+      "7": [
+       "防死结界",
+       "困惑术",
+       "幻景"
+      ],
+      "9": [
+       "拉瑞心灵联结",
+       "定身怪物",
+       "假象术"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "月之术法|术士||月|DSotDQ|1",
+    "月之恩泽|术士||月|DSotDQ|6",
+    "阴晴圆缺|术士||月|DSotDQ|6",
+    "月之赋能|术士||月|DSotDQ|14",
+    "月之异象|术士||月|DSotDQ|18"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Lunar Sorcery",
+   "name": "月之术法",
+   "shortName": "月",
+   "source": "DSotDQ",
+   "className": "术士",
+   "classSource": "XPHB",
+   "_copy": {
+    "ENG_name": "Lunar Sorcery",
+    "name": "月之术法",
+    "source": "DSotDQ",
+    "shortName": "月",
+    "className": "术士",
+    "classSource": "PHB",
+    "_preserve": {
+     "page": true,
+     "otherSources": true,
+     "referenceSources": true,
+     "srd": true,
+     "basicRules": true,
+     "reprintedAs": true
+    }
+   },
+   "subclassFeatures": [
+    "月之术法|术士|XPHB|月|DSotDQ|3",
+    "月之恩泽|术士||月|DSotDQ|6",
+    "阴晴圆缺|术士||月|DSotDQ|6",
+    "月之赋能|术士||月|DSotDQ|14",
+    "月之异象|术士||月|DSotDQ|18"
+   ],
+   "fluff": {
+    "_subclassFluff": {
+     "ENG_name": "Lunar Sorcery",
+     "name": "月之术法",
+     "source": "DSotDQ",
+     "shortName": "月",
+     "className": "术士",
+     "classSource": "PHB"
+    }
+   }
+  },
+  {
+   "ENG_name": "Aberrant Sorcery",
+   "name": "畸变术法",
+   "shortName": "畸变",
+   "source": "XPHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "page": 145,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "哈达之臂|xphb",
+       "安定心神|xphb",
+       "侦测思想|xphb",
+       "不谐低语|xphb",
+       "心灵之楔|xphb#c"
+      ],
+      "5": [
+       "哈达之欲|xphb",
+       "短讯术|xphb"
+      ],
+      "7": [
+       "艾伐黑触手|xphb",
+       "异怪召唤术|xphb"
+      ],
+      "9": [
+       "拉瑞心灵联结|xphb",
+       "心灵遥控|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "畸变术法|术士|XPHB|畸变|XPHB|3",
+    "灵能术法|术士|XPHB|畸变|XPHB|6",
+    "心灵防御|术士|XPHB|畸变|XPHB|6",
+    "血肉启示|术士|XPHB|畸变|XPHB|14",
+    "扭曲爆裂|术士|XPHB|畸变|XPHB|18"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Clockwork Sorcery",
+   "name": "时械术法",
+   "shortName": "时械",
+   "source": "XPHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "page": 146,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "援助术|xphb",
+       "警报术|xphb",
+       "次等复原术|xphb",
+       "防护善恶|xphb"
+      ],
+      "5": [
+       "解除魔法|xphb",
+       "防护能量|xphb"
+      ],
+      "7": [
+       "行动自如|xphb",
+       "构装召唤术|xphb"
+      ],
+      "9": [
+       "高等复原术|xphb",
+       "力场墙|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "时械术法|术士|XPHB|时械|XPHB|3",
+    "律令之壁|术士|XPHB|时械|XPHB|6",
+    "序列意识|术士|XPHB|时械|XPHB|14",
+    "时械矩阵|术士|XPHB|时械|XPHB|18"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Draconic Sorcery",
+   "name": "龙族术法",
+   "shortName": "龙族血脉",
+   "source": "XPHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "page": 148,
+   "srd52": true,
+   "basicRules2024": true,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "变身术|xphb",
+       "繁彩球|xphb",
+       "命令术|xphb",
+       "龙息术|xphb"
+      ],
+      "5": [
+       "恐惧术|xphb",
+       "飞行术|xphb"
+      ],
+      "7": [
+       "秘法眼|xphb",
+       "魅惑怪物|xphb"
+      ],
+      "9": [
+       "通晓传奇|xphb",
+       "龙类召唤术|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "龙族术法|术士|XPHB|龙族血脉|XPHB|3",
+    "元素亲和|术士|XPHB|龙族血脉|XPHB|6",
+    "龙翼|术士|XPHB|龙族血脉|XPHB|14",
+    "龙伴|术士|XPHB|龙族血脉|XPHB|18"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Wild Magic Sorcery",
+   "name": "狂野术法",
+   "shortName": "狂野魔法",
+   "source": "XPHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "page": 149,
+   "edition": "one",
+   "subclassFeatures": [
+    "狂野术法|术士|XPHB|狂野魔法|XPHB|3",
+    "扭曲幸运|术士|XPHB|狂野魔法|XPHB|6",
+    "掌控混沌|术士|XPHB|狂野魔法|XPHB|14",
+    "驯服浪涌|术士|XPHB|狂野魔法|XPHB|18"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Spellfire Sorcery",
+   "name": "咒火术法",
+   "shortName": "咒火",
+   "source": "FRHoF",
+   "className": "术士",
+   "classSource": "XPHB",
+   "page": 24,
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "疗伤术|xphb",
+       "光导箭|xphb",
+       "次等复原术|xphb",
+       "灼热射线|xphb"
+      ],
+      "5": [
+       "活力灵光|xphb",
+       "解除魔法|xphb"
+      ],
+      "6": [
+       "法术反制|xphb"
+      ],
+      "7": [
+       "火焰护盾|xphb",
+       "火墙术|xphb"
+      ],
+      "9": [
+       "高等复原术|xphb",
+       "焰击术|xphb"
+      ]
+     }
+    }
+   ],
+   "subclassFeatures": [
+    "咒火术法|术士|XPHB|咒火|FRHoF|3|FRHoF",
+    "汲纳法术|术士|XPHB|咒火|FRHoF|6|FRHoF",
+    "砥砺咒火|术士|XPHB|咒火|FRHoF|14|FRHoF",
+    "咒火冠冕|术士|XPHB|咒火|FRHoF|18|FRHoF"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "ENG_name": "Shadow Sorcery",
+   "name": "幽影术法",
+   "shortName": "幽影",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "edition": "one",
+   "additionalSpells": [
+    {
+     "prepared": {
+      "3": [
+       "灾祸术|xphb",
+       "黑暗术|xphb",
+       "致伤术|xphb",
+       "行动无踪|xphb"
+      ],
+      "5": [
+       "哈达之欲|xphb",
+       "回避侦测|xphb"
+      ],
+      "7": [
+       "高等隐形术|xphb",
+       "魅影杀手|xphb"
+      ],
+      "9": [
+       "疫病术|xphb",
+       "造物术|xphb"
+      ]
+     },
+     "innate": {
+      "6": {
+       "resource": {
+        "3": [
+         "野兽召唤术|xphb"
+        ]
+       }
+      }
+     },
+     "resourceName": "术法点"
+    }
+   ],
+   "subclassFeatures": [
+    "幽影术法|术士|XPHB|幽影|RHW|3|RHW",
+    "凶兆之兽|术士|XPHB|幽影|RHW|6|RHW",
+    "幽影漫步|术士|XPHB|幽影|RHW|14|RHW",
+    "幽暗之形|术士|XPHB|幽影|RHW|18|RHW"
+   ],
+   "hasFluffImages": true
+  },
+  {
+   "name": "风暴术法",
+   "shortName": "风暴术法",
+   "className": "术士",
+   "source": "SCAG"
+  },
+  {
+   "name": "时械术法",
+   "shortName": "时械术法",
+   "className": "术士",
+   "source": "XPHB"
+  },
+  {
+   "name": "狂野术法",
+   "shortName": "狂野术法",
+   "className": "术士",
+   "source": "XPHB"
+  },
+  {
+   "name": "畸变术法",
+   "shortName": "畸变术法",
+   "className": "术士",
+   "source": "XPHB"
+  },
+  {
+   "name": "龙族术法",
+   "shortName": "龙族术法",
+   "className": "术士",
+   "source": "XPHB"
+  },
+  {
+   "name": "幽影魔法",
+   "shortName": "幽影魔法",
+   "className": "术士",
+   "source": "XGE"
+  },
+  {
+   "name": "风暴术法",
+   "shortName": "风暴术法",
+   "className": "术士",
+   "source": "XGE"
+  },
+  {
+   "name": "符文之子",
+   "shortName": "符文之子",
+   "className": "术士",
+   "source": "TR"
+  },
+  {
+   "name": "猩红术法",
+   "shortName": "猩红术法",
+   "className": "术士",
+   "source": "WYM"
+  },
+  {
+   "name": "饥欲之暗",
+   "shortName": "饥欲之暗",
+   "className": "术士",
+   "source": "THC"
+  },
+  {
+   "name": "荒漠之魂",
+   "shortName": "荒漠之魂",
+   "className": "术士",
+   "source": "GTS"
+  },
+  {
+   "name": "英雄术法",
+   "shortName": "英雄术法",
+   "className": "术士",
+   "source": "VDS"
+  },
+  {
+   "name": "鬼之血脉",
+   "shortName": "鬼之血脉",
+   "className": "术士",
+   "source": "LOO"
+  },
+  {
+   "name": "织光者",
+   "shortName": "织光者",
+   "className": "术士",
+   "source": "ACT"
+  },
+  {
+   "name": "幽影术法",
+   "shortName": "幽影术法",
+   "className": "术士",
+   "source": "VRGR-V"
+  },
+  {
+   "name": "月之术法",
+   "shortName": "月之术法",
+   "className": "术士",
+   "source": "DSotDQ"
+  }
+ ],
+ "classFeature": [
+  {
+   "name": "术法起源",
+   "className": "术士",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "选择一个术法起源作为你天赋魔力的源泉。你可在龙族血脉Draconic Bloodline或狂野魔法Wild Magic中选择其一。\n随后，你将在第1、第6、第14、第18级获得相应起源的职业特性。"
+   ]
+  },
+  {
+   "ENG_name": "Spellcasting",
+   "name": "施法",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 1,
+   "entries": [
+    "过去的一个事件激发了你体内先辈的血脉，为你烙上了奥法力量的坚固印记。这股起源于某种存在的魔力驱动着你的法术能力。详见 {@book 第十章|PHB|10}的施法规则及{@book 第十一章|PHB|11}的{@filter 术士法术列表|spells|class=术士}。",
+    {
+     "ENG_name": "Cantrips",
+     "name": "戏法",
+     "type": "entries",
+     "entries": [
+      "第1级时，你从术士法术列表里选择四个戏法作为已知法术。在第4级和第10级时你还可以各习得一个戏法。"
+     ]
+    },
+    {
+     "ENG_name": "Spell Slots",
+     "name": "法术位",
+     "type": "entries",
+     "entries": [
+      "\"术士职业表\"中记录了你用以施展你{@filter 术士法术|spells|class=术士}的1环及更高环阶法术位数量。施展某个术士法术时，你必须同时消耗其对应环阶的法术位。已消耗的法术位可在完成长休后恢复。",
+      "例如，如果你已经习得1环法术{@spell 燃烧之手}，并且有一个1环和2环法术位可用，你可以使用任一法术位施放{@spell 燃烧之手}。"
+     ]
+    },
+    {
+     "ENG_name": "Spells Known of 1st Level and Higher",
+     "name": "1环及更高等级已知法术",
+     "type": "entries",
+     "entries": [
+      "你从术士法术列表里选择两个1环法术作为已知法术。",
+      "除了12级、14级、16级、18级、19级和20级之外，在每个等级你都可以学习一个额外的术士法术，这个法术由你自己选择。但是你只能获取已有相应环阶法术位的法术。比如，当你达到第3级时，你将获得一个1环或2环法术。",
+      "另外，你每提升一个术士等级，都可以从术士法术列表里选择一个新法术来代替一个已知法术列表中的旧法术。但是，你必须拥有新法术的相应环阶法术位。"
+     ]
+    },
+    {
+     "ENG_name": "Spellcasting Ability",
+     "name": "施法属性",
+     "type": "entries",
+     "entries": [
+      "你的魔力来源于你意志的现实投影，因此魅力是你施展术士法术的关键属性。每当你的法术需要施法属性时均指向你的魅力值。而你术士法术的豁免DC和攻击检定，则使用你的魅力调整值。",
+      {
+       "ENG_name": "Spell",
+       "name": "法术",
+       "type": "abilityDc",
+       "attributes": [
+        "cha"
+       ]
+      },
+      {
+       "ENG_name": "Spell",
+       "name": "法术",
+       "type": "abilityAttackMod",
+       "attributes": [
+        "cha"
+       ]
+      }
+     ]
+    },
+    {
+     "ENG_name": "Spellcasting Focus",
+     "name": "法器",
+     "type": "entries",
+     "entries": [
+      "你可以使用{@item 奥术法器|phb}，作为你施展术士法术时的法器。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Flexible Casting",
+   "name": "灵活施法",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 2,
+   "header": 1,
+   "entries": [
+    "你可以使用术法点来获得额外的法术位，或是消耗法术位来换取额外的术法点。随着术士等级的提升，你还可以学会其他术法点的使用方法。",
+    {
+     "ENG_name": "Creating Spell Slots",
+     "name": "生成法术位",
+     "type": "entries",
+     "entries": [
+      "你可以在自己回合内以附赠动作将未使用的术法点转换为法术位。以此方式生成的法术位将在完成一次长休后消散。表格\"生成法术位\"中列出了生成各法术位所需的术法点数。另外，你无法生成高于5环的法术位。",
+      {
+       "type": "table",
+       "caption": "生成法术位",
+       "colLabels": [
+        "法术位环阶",
+        "术法点消耗"
+       ],
+       "colStyles": [
+        "col-6 text-center",
+        "col-6 text-center"
+       ],
+       "rows": [
+        [
+         "1st",
+         "2"
+        ],
+        [
+         "2nd",
+         "3"
+        ],
+        [
+         "3rd",
+         "5"
+        ],
+        [
+         "4th",
+         "6"
+        ],
+        [
+         "5th",
+         "7"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "ENG_name": "Converting a Spell Slot to Sorcery Points",
+     "name": "法术位转换术法点",
+     "type": "entries",
+     "entries": [
+      "你可以在自己回合内使用附赠动作消耗一枚法术位，并获得等于该法术位环阶的术法点。"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "魔力泉涌",
+   "className": "术士",
+   "level": 2,
+   "source": "PHB",
+   "entries": [
+    "第2级时，你解除了体内魔力之源的封印，从中涌现的魔力体现为你的可用术法点。你可以使用术法点创造各种魔法效应。"
+   ]
+  },
+  {
+   "ENG_name": "Sorcery Points",
+   "name": "术法点",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 2,
+   "header": 1,
+   "entries": [
+    "开始时，你拥有2个术法点。此后你每提升一个术士等级，都会获得1个术法点，最多至第20级的20点。你的术法点永远不能超过表中所列对应你当前等级的数值。而已消耗的术法点则可以通过完成一次长休进行恢复。"
+   ]
+  },
+  {
+   "name": "超魔法",
+   "className": "术士",
+   "level": 3,
+   "source": "PHB",
+   "entries": [
+    "第3级起，你可以扭曲所施展的法术使其符合你的需求。从下述超魔法选项中选择其二。随后你将在第10和第17级分别再获得其一。\n除非特别说明，否则对一个法术只能应用一种超魔法项。"
+   ]
+  },
+  {
+   "ENG_name": "Metamagic Options",
+   "name": "超魔法选项",
+   "source": "TCE",
+   "page": 65,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 3,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 3级术士{@variantrule 可选职业特性|tce|可选特性}}",
+    "当你选择超魔法选项时，你能够选择以下额外的超魔法选项。",
+    {
+     "type": "options",
+     "entries": [
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "追踪法术|TCE",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "转化法术|TCE",
+       "preserve": {
+        "consumes": true
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 4,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Sorcerous Versatility",
+   "name": "替换术法",
+   "source": "TCE",
+   "page": 65,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 4,
+   "isClassFeatureVariant": true,
+   "entries": [
+    "{@i 4级术士 {@variantrule 可选职业特性|tce|可选特性}}",
+    "每当你通过提升术士等级获得属性值提升时，你可以进行以下一种行为，代表着你内在的法力流向了新的途径：",
+    {
+     "type": "list",
+     "items": [
+      "用另一个你能够选择的{@filter 超魔法选项|optionalfeatures|Feature Type=MM}替换你当前的一个超魔法选项。",
+      "用另一个你能够从术士法术列表中选择的戏法替换你当前已知的一个{@filter 术士法术列表|spells|level=0|class=术士}。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Magical Guidance",
+   "name": "魔法指引",
+   "source": "TCE",
+   "page": 65,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 5,
+   "isClassFeatureVariant": true,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点"
+   },
+   "entries": [
+    "{@i 5级术士{@variantrule 可选职业特性|tce|可选特性}}",
+    "你能够挖掘内在的魔力源泉，从失败中召唤成功。当你进行一次属性检定并失败时，你可以使用1术法点重投检定的{@dice d20}。你必须使用重投后的结果。此举可能导致该次检定转为成功。"
+   ]
+  },
+  {
+   "ENG_name": "Sorcerous Origin feature",
+   "name": "术法起源特性",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 6,
+   "entries": [
+    "第6级时，你获得你选择的术法起源的职业特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 8,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "超魔法",
+   "className": "术士",
+   "level": 10,
+   "source": "PHB",
+   "entries": [
+    "第3级起，你可以扭曲所施展的法术使其符合你的需求。从下述超魔法选项中选择其二。随后你将在第10和第17级分别再获得其一。\n除非特别说明，否则对一个法术只能应用一种超魔法项。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 12,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Sorcerous Origin feature",
+   "name": "术法起源特性",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 14,
+   "entries": [
+    "第14级时，你获得你选择的术法起源的职业特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 16,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "超魔法",
+   "className": "术士",
+   "level": 17,
+   "source": "PHB",
+   "entries": [
+    "第3级起，你可以扭曲所施展的法术使其符合你的需求。从下述超魔法选项中选择其二。随后你将在第10和第17级分别再获得其一。\n除非特别说明，否则对一个法术只能应用一种超魔法项。"
+   ]
+  },
+  {
+   "ENG_name": "Sorcerous Origin feature",
+   "name": "术法起源特性",
+   "source": "PHB",
+   "page": 99,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "level": 18,
+   "entries": [
+    "第18级时，你获得你选择的术法起源的职业特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 19,
+   "source": "PHB",
+   "entries": [
+    "当你达到第4，第8，第12，第16、第19级时，你可以选择一项属性值提升2点，或是选择两项属性各提升1点。不过你不能通过该特性让属性值超过20。"
+   ]
+  },
+  {
+   "name": "术法复苏",
+   "className": "术士",
+   "level": 20,
+   "source": "PHB",
+   "entries": [
+    "第20级时，你每完成一次短休，可以恢复4术法点。"
+   ]
+  },
+  {
+   "name": "先天术法",
+   "className": "术士",
+   "level": 1,
+   "source": "XPHB",
+   "entries": [
+    "你过去经历的某件事在你身上留下了不可磨灭的印记，为你注入了难以控制的涌动魔力。以一个附赠动作，你可以将魔力释放而出，持续1分钟。在这1分钟期间，你获得以下增益：\n\n- 你的术士法术豁免DC+1。\n\n- 你在你施展的术士法术的攻击检定中具有优势。\n\n你可以使用此特性两次，你在完成一次长休时重获所有已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Spellcasting",
+   "name": "施法",
+   "source": "XPHB",
+   "page": 139,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "level": 1,
+   "entries": [
+    "你从你的天生魔法汲取魔力用于施展法术。参见{@book 第七章|XPHB|7}有关施法的规则。下述信息将详述如何将这些规则应用于术士法术，术士法术详见本章后文职业描述中的{@filter 术士法术列表|spells|class=术士}。",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Cantrips",
+       "name": "戏法",
+       "type": "entries",
+       "entries": [
+        "你知晓四道你选择的术士戏法。推荐选择{@spell 光亮术|XPHB}、{@spell 魔法伎俩|XPHB}、{@spell 电爪|XPHB}和{@spell 术法爆发|XPHB}。每当你获得一个术士等级时，你都能将通过此特性知晓的其中一个戏法替换为另一个你所选择的术士戏法。",
+        "当你的术士等级达到4级和10级时，你都能另选一道术士戏法并习得，如术士特性表中戏法一列所示。"
+       ]
+      },
+      {
+       "ENG_name": "Spell Slots",
+       "name": "法术位",
+       "type": "entries",
+       "entries": [
+        "术士特性表显示了你可用于施展一环及以上法术的法术位数量。当你完成{@variantrule 长休|XPHB}时，你重获所有已消耗的法术位。"
+       ]
+      },
+      {
+       "ENG_name": "Prepared Spells of Level 1+",
+       "name": "1环及以上的准备法术",
+       "type": "entries",
+       "entries": [
+        "你准备可供你以此特性施展的一环及更高环阶的法术列表。最初，选择两道一环术士法术。推荐选择{@spell 燃烧之手|XPHB}和{@spell 侦测魔法|XPHB}。",
+        "已准备法术数量会随你术士等级的提升而增加，如术士特性表中的准备法术一列所示。每当这一列的数字增加时，从术士法术列表中选择额外法术准备，直至已准备法术的数量与表格中的数字一致。你所选择法术的环阶必须是你所拥有法术位对应的环阶。例如，如果你是一位3级术士，则你的准备法术列表能包括六道一环或二环的术士法术，随意组合。",
+        "如果术士的其他特性给了你始终准备着的法术，这些法术不计入你以此法准备的法术数量，但这些法术对你而言都视为术士法术。"
+       ]
+      },
+      {
+       "ENG_name": "Changing Your Prepared Spells",
+       "name": "改变你的准备法术",
+       "type": "entries",
+       "entries": [
+        "每当你获得一个术士等级时，你就可以将你准备列表上的一道法术替换为另一道术士法术，你必须拥有替换后法术对应环阶的法术位才可以替换。"
+       ]
+      },
+      {
+       "ENG_name": "Spellcasting Ability",
+       "name": "施法属性",
+       "type": "entries",
+       "entries": [
+        "魅力是你术士法术的施法属性。"
+       ]
+      },
+      {
+       "ENG_name": "Spellcasting Focus",
+       "name": "法器",
+       "type": "entries",
+       "entries": [
+        "你可以使用{@item 奥术法器|XPHB}作为你术士法术的{@variantrule 法器|XPHB}。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "魔力泉涌",
+   "className": "术士",
+   "level": 2,
+   "source": "XPHB",
+   "entries": [
+    "你汲取体内的魔力之源，从中涌现的魔力体现为你的可用术法点。你可以使用术法点创造各种魔法效应。\n你拥有2点术法点，你在到达更高等级时获得更多术法点，如同术士特性表中术法点一栏所示。你无法拥有比表格中对应数量更多的术法点。你在完成一次长休后重获所有已消耗的术法点。\n你可以消耗你的术法点来使用以下特性，例如超魔法。\n法术位转化为术法点Converting Spell Slots to Sorcery Points。你可以消耗一个法术位来获得等同于其环位的术法点（无需动作）。\n创造法术位Creating Spell Slots。以一个附赠动作，你可以将未消耗的术法点转化为一个法术位。创造法术位表格中展示了创造法术位所需的术法点以及创造它所需的最小术士等级。你无法创造高于五环的法术位。\n你以此特性创造的任何法术位都在完成一次长休时消失。"
+   ]
+  },
+  {
+   "name": "超魔法",
+   "className": "术士",
+   "level": 2,
+   "source": "XPHB",
+   "entries": [
+    "由于你的魔法直接从你体内流向外界，你可以修改你的法术来适应自己的需要。你从超魔法选项中选择并获得2个你所选的超魔法选项。你使用你所选的超魔法来临时改变你施展的法术。要使用一个超魔法选项，你必须消耗等同于其描述中需求的术法点。\n当你施展一道法术时，你只能在其上应用一次超魔法选项，除非超魔法选项中另有说明。\n每当你获得一级术士等级时，你可以将一个超魔法选项更改为另一个超魔法选项。当你到达10级和17级术士等级时，你可以分别再获得2个超魔法选项。"
+   ]
+  },
+  {
+   "ENG_name": "Metamagic Options",
+   "name": "超魔法选项",
+   "source": "XPHB",
+   "page": 141,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "level": 2,
+   "entries": [
+    "以下选项可用于你的超魔法特性。这些选项按字母顺序排列。",
+    {
+     "type": "options",
+     "count": 2,
+     "entries": [
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "谨慎法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "远程法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "强效法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "延效法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "升阶法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "瞬发法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "追踪法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "精妙法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "转化法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      },
+      {
+       "type": "refOptionalfeature",
+       "optionalfeature": "孪生法术|XPHB",
+       "preserve": {
+        "consumes": true
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "术士子职",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你选择获得一项术士子职。畸变术法、时械术法、龙族术法和狂野术法。子职的内容见后文。子职是一种特化，在特定的术士等级给予你对应的独特能力。此后你将获得你所选的子职所有能力——只要其所需等级不超过你的术士等级。术士特性表列出了你从子职中获得新特性的术士等级。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 4,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如术士特性表所示。你在第8，第12，第16级时会再次获得本特性。"
+   ]
+  },
+  {
+   "name": "术法复苏",
+   "className": "术士",
+   "level": 5,
+   "source": "XPHB",
+   "entries": [
+    "当你完成一次短休时，你可以恢复不大于你术士等级一半（向下取整）的已消耗术法点。\n此特性一经使用，直到你完成一次长休为止不能再次使用。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 141,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "level": 6,
+   "entries": [
+    "你获得一个来自术士子职的特性。"
+   ]
+  },
+  {
+   "name": "术法化身",
+   "className": "术士",
+   "level": 7,
+   "source": "XPHB",
+   "entries": [
+    "如果你的先天术法特性的使用次数耗尽，则你仍可以消耗2点术法点来用附赠动作继续激活该特性。\n此外，在你的先天术法特性处于激活状态期间，你可以在你施展的每道法术上应用最多两次超魔法选项。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 8,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如术士特性表所示。你在第8，第12，第16级时会再次获得本特性。"
+   ]
+  },
+  {
+   "name": "超魔法",
+   "className": "术士",
+   "level": 10,
+   "source": "XPHB",
+   "entries": [
+    "由于你的魔法直接从你体内流向外界，你可以修改你的法术来适应自己的需要。你从超魔法选项中选择并获得2个你所选的超魔法选项。你使用你所选的超魔法来临时改变你施展的法术。要使用一个超魔法选项，你必须消耗等同于其描述中需求的术法点。\n当你施展一道法术时，你只能在其上应用一次超魔法选项，除非超魔法选项中另有说明。\n每当你获得一级术士等级时，你可以将一个超魔法选项更改为另一个超魔法选项。当你到达10级和17级术士等级时，你可以分别再获得2个超魔法选项。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 12,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如术士特性表所示。你在第8，第12，第16级时会再次获得本特性。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 141,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "level": 14,
+   "entries": [
+    "你获得一个来自术士子职的特性。"
+   ]
+  },
+  {
+   "name": "属性值提升",
+   "className": "术士",
+   "level": 16,
+   "source": "XPHB",
+   "entries": [
+    "你获得属性值提升专长（见第五章）或其他你满足条件的专长。如术士特性表所示。你在第8，第12，第16级时会再次获得本特性。"
+   ]
+  },
+  {
+   "name": "超魔法",
+   "className": "术士",
+   "level": 17,
+   "source": "XPHB",
+   "entries": [
+    "由于你的魔法直接从你体内流向外界，你可以修改你的法术来适应自己的需要。你从超魔法选项中选择并获得2个你所选的超魔法选项。你使用你所选的超魔法来临时改变你施展的法术。要使用一个超魔法选项，你必须消耗等同于其描述中需求的术法点。\n当你施展一道法术时，你只能在其上应用一次超魔法选项，除非超魔法选项中另有说明。\n每当你获得一级术士等级时，你可以将一个超魔法选项更改为另一个超魔法选项。当你到达10级和17级术士等级时，你可以分别再获得2个超魔法选项。"
+   ]
+  },
+  {
+   "ENG_name": "Subclass Feature",
+   "name": "子职特性",
+   "source": "XPHB",
+   "page": 141,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "level": 18,
+   "entries": [
+    "你获得一个来自术士子职的特性。"
+   ]
+  },
+  {
+   "name": "传奇恩惠",
+   "className": "术士",
+   "level": 19,
+   "source": "XPHB",
+   "entries": [
+    "你获得一项传奇恩惠专长（见第五章）或其他一项你选择的适用的专长。推荐选择次元旅行之恩惠 。"
+   ]
+  },
+  {
+   "ENG_name": "Arcane Apotheosis",
+   "name": "奥术登神",
+   "source": "XPHB",
+   "page": 141,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "level": 20,
+   "entries": [
+    "在你的先天术法特性处于激活状态期间，每个你的回合一次，你可以无需消耗术法点地使用一次超魔法选项。"
+   ]
+  },
+  {
+   "name": "戏法",
+   "className": "术士",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级时，你从术士法术列表里选择四个戏法作为已知法术。在获得更高的术士等级后你还可以习得其他的戏法，具体数量见“术士职业表”中“已知戏法”一栏。"
+   ]
+  },
+  {
+   "name": "奥术化神",
+   "className": "术士",
+   "level": 20,
+   "source": "XPHB",
+   "entries": [
+    "在你的先天术法特性处于激活状态期间，每个你的回合一次，你可以无需消耗术法点地使用一次超魔法选项。"
+   ]
+  }
+ ],
+ "subclassFeature": [
+  {
+   "ENG_name": "Lunar Sorcery",
+   "name": "月之术法",
+   "source": "DSotDQ",
+   "page": 34,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 1,
+   "entries": [
+    "在许多世界中，月亮都是受人崇拜、具有魔法的天体。在克莱恩Krynn，魔法之神与世界中的三个月亮相关联。在托瑞尔Toril世界，女神塞伦涅Selne利用月之光辉来打击黑暗。在艾伯伦Eberron，研究巨龙预言Draconic Prophecy的学者们破解了世界中十二个月亮盈缺的古老秘密。",
+    "你或是你族系中的某人，曾暴露在你们世界月亮的集中魔力之下，使得你被灌注了月之魔法。或许你的祖先参与了一个与日蚀或月蚀有关的德鲁伊仪式，又或许一个神秘的月之碎片坠落在你的身边。无论你如何获得了魔法，你在施放术士法术时，会清晰显示出你与月亮的联系或许是你的瞳孔会发出与你们世界中的月亮同色的光芒，使得你们世界中月相的灵体显现环绕着你，又或是一些其他的效果。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "月之化身|术士||月|DSotDQ|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "月火|术士||月|DSotDQ|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Lunar Embodiment",
+   "name": "月之化身",
+   "source": "DSotDQ",
+   "page": 34,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 1,
+   "header": 2,
+   "entries": [
+    "{@i 1级月之术法特性}",
+    "当你到达本职业特定等级时，你习得下方月之法术表格中列出的额外的法术，这些法术对你而言视作术士法术，但不计入你术士已知法术总数内。",
+    {
+     "type": "table",
+     "caption": "月之法术表",
+     "colLabels": [
+      "术士等级",
+      "满月法术",
+      "朔月法术",
+      "新月法术"
+     ],
+     "colStyles": [
+      "col-1-1 text-center",
+      "col-3-3",
+      "col-3-3",
+      "col-3-3"
+     ],
+     "rows": [
+      [
+       "1st",
+       "{@spell 护盾术}",
+       "{@spell 致病射线}",
+       "{@spell 七彩喷射}"
+      ],
+      [
+       "3rd",
+       "{@spell 次等复原术}",
+       "{@spell 目盲术/耳聋术}",
+       "{@spell 变身术}"
+      ],
+      [
+       "5th",
+       "{@spell 解除魔法}",
+       "{@spell 吸血鬼之触}",
+       "{@spell 魅影驹}"
+      ],
+      [
+       "7th",
+       "{@spell 防死结界}",
+       "{@spell 困惑术}",
+       "{@spell 幻景}"
+      ],
+      [
+       "9th",
+       "{@spell 拉瑞心灵联结}",
+       "{@spell 定身怪物}",
+       "{@spell 假象术}"
+      ]
+     ]
+    },
+    "每当你完成一次长休时，你可以选择以你的魔法展现出何种月相的力量：满月Full Moon、朔月New Moon，或新月Crescent Moon。你处于选择的月相中时，可以不消耗法术位地施放一次月之法术表格中对应月相的一个一环法术。一旦你以此法施放了一个法术，你无法在完成一次长休前再如此施法。"
+   ]
+  },
+  {
+   "ENG_name": "Moon Fire",
+   "name": "月火",
+   "source": "DSotDQ",
+   "page": 34,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 1,
+   "header": 2,
+   "entries": [
+    "{@i 1级月之术法特性}",
+    "你可以呼唤月亮的耀光为你所用。你习得法术{@spell 圣火术}，此法术不计入你术士已知戏法总数内。当你施放此法术时，你可以如常选择一个生物作为目标，或是选择两个相互之间的距离在5尺以内的生物作为目标。"
+   ]
+  },
+  {
+   "ENG_name": "Lunar Boons",
+   "name": "月之恩泽",
+   "source": "DSotDQ",
+   "page": 34,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级月之术法特性}",
+    "你月之化身的月相能够影响你的超魔法特性。每个月之化身月相都与特定的魔法学派相关联，如下所示：",
+    {
+     "type": "list",
+     "style": "list-hang-notitle",
+     "items": [
+      {
+       "ENG_name": "Full Moon",
+       "name": "满月",
+       "type": "item",
+       "entries": [
+        "{@filter 防护和预言法术|spells|class=术士|school=A;D}"
+       ]
+      },
+      {
+       "ENG_name": "New Moon",
+       "name": "朔月",
+       "type": "item",
+       "entries": [
+        "{@filter 魅惑和死灵法术|spells|class=术士|school=E;N}"
+       ]
+      },
+      {
+       "ENG_name": "Crescent Moon",
+       "name": "新月",
+       "type": "item",
+       "entries": [
+        "{@filter 幻象和变化法术|spells|class=术士|school=I;T}"
+       ]
+      }
+     ]
+    },
+    "当你对你所处月相相关联的魔法学派的法术使用超魔法时，你可以将消耗的术法点降低1点（最低为0）。你可以用此方法降低超魔法术法点的次数等同于你的熟练加值，且会在完成一次长休后恢复所有已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Waxing and Waning",
+   "name": "阴晴圆缺",
+   "source": "DSotDQ",
+   "page": 35,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 6,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点"
+   },
+   "entries": [
+    "{@i 6级月之术法特性}",
+    "你可以更好地控制你月之魔法的月相。以一个附赠动作，你可以消耗1术法点来将你的月相转换为另一种不同的月相。",
+    "你现在可以不消耗法术位地施放月之法术表格中每个对应月相的一个一环法术一次，前提是你所处的月相与该法术的月相相同。一旦你以此法施放了一个月相法术，你无法在完成一次长休前再以此施展那个月相法术。"
+   ]
+  },
+  {
+   "ENG_name": "Lunar Empowerment",
+   "name": "月之赋能",
+   "source": "DSotDQ",
+   "page": 35,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "{@i 14级月之术法特性}",
+    "月相的力量渗入了你的存在本身。每当你处于月之化身中的月相时，你也会根据所选月相获得下列增益：",
+    {
+     "type": "list",
+     "style": "list-hang-notitle",
+     "items": [
+      {
+       "ENG_name": "Full Moon",
+       "name": "满月",
+       "type": "item",
+       "entries": [
+        "你可以以一个附赠动作来散发出10尺明亮光照和额外10尺的微光光照，或是熄灭前述光照。此外，你和你选择的生物处于你散发的明亮光照之中时，智力（{@skill 调查}）和感知（{@skill 察觉}）检定具有优势。"
+       ]
+      },
+      {
+       "ENG_name": "New Moon",
+       "name": "朔月",
+       "type": "item",
+       "entries": [
+        "你在敏捷（{@skill 隐匿}）检定中具有优势。此外，当你完全处于黑暗中时，对你发动的攻击检定具有劣势。"
+       ]
+      },
+      {
+       "ENG_name": "Crescent Moon",
+       "name": "新月",
+       "type": "item",
+       "entries": [
+        "你具有暗蚀和光耀伤害的抗性。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Lunar Phenomenon",
+   "name": "月之异象",
+   "source": "DSotDQ",
+   "page": 35,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "{@i 18级月之术法特性}",
+    "以一个附赠动作，你可以激发你当前所处月之化身月相的特殊能力。或者，以你阴晴圆缺特性转换月相的附赠动作的一部分，你可以立刻使用你正进入的月相的能力：",
+    {
+     "type": "list",
+     "style": "list-hang-notitle",
+     "items": [
+      {
+       "ENG_name": "Full Moon",
+       "name": "满月",
+       "type": "item",
+       "entries": [
+        "你短暂地辐射出月光。每个你选择的距你30尺内的生物必须通过一次对抗你法术豁免DC的体质豁免，否则陷入{@condition 目盲}直到其下一回合结束。此外，该区域内一个你选择的生物恢复{@dice 3d8}生命值。"
+       ]
+      },
+      {
+       "ENG_name": "New Moon",
+       "name": "朔月",
+       "type": "item",
+       "entries": [
+        "你瞬间散发出幽暗。每个你选择的距你30尺内的生物必须通过一次DC对抗你法术豁免DC的敏捷豁免，否则受到{@damage 3d10}暗蚀伤害，并且速度降为0至其下一回合结束。此外，你变为{@condition 隐形}，直至你下一回合结束。你进行攻击或施放法术后，隐形也会立刻结束。"
+       ]
+      },
+      {
+       "ENG_name": "Crescent Moon",
+       "name": "新月",
+       "type": "item",
+       "entries": [
+        "你魔法性地传送至你60尺内可见的未被占据位置。你可以携带一个距你5尺内的可见自愿生物。该生物传送至你传送目的地内5尺你选择的可见未被占据位置。此外，直至你下一回合开始，你和该生物获得所有伤害的抗性。"
+       ]
+      }
+     ]
+    },
+    "一旦你使用了上述附赠动作，在你完成一次长休之前再次使用需要消耗5点术法点。"
+   ]
+  },
+  {
+   "ENG_name": "Draconic Bloodline",
+   "name": "龙族血脉",
+   "source": "PHB",
+   "page": 102,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "PHB",
+   "level": 1,
+   "entries": [
+    "你的天赋魔法源于龙族的魔力，其本质混杂在你的血液或是祖辈传承下来的血统当中。具有该起源的术士通常都可以将其血脉追溯至远古时代曾与巨龙定下契约的某位强大术士，或者甚至是某位巨龙的血亲。同类的血脉传承在世界上有些相当知名的例子，但绝大多数都相对隐蔽。每一位现世的术士都可能是一条新血脉的开创者，这可以来自一个契约，或来自某些特殊的环境因素影响。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "巨龙先祖|术士||龙族血脉||1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "龙族体魄|术士||龙族血脉||1"
+    }
+   ]
+  },
+  {
+   "name": "龙族体魄",
+   "className": "术士",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "魔法在你的体内流动，并使你显露出你巨龙先祖的部分身体特质。第1级时，你的生命值上限提升1点，此后每提升一个术士等级，都将再次提升1点。\n此外，你部分皮肤覆盖着龙鳞样式的柔鳞。未着装护甲时，你的AC等于13＋你的敏捷调整值。"
+   ],
+   "subclassShortName": "龙族血脉"
+  },
+  {
+   "name": "巨龙先祖",
+   "className": "术士",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级时，你选择一种巨龙作为你的先祖。对应的伤害类型将在随后获得的特性中用到。"
+   ],
+   "subclassShortName": "龙族血脉"
+  },
+  {
+   "name": "元素亲和",
+   "className": "术士",
+   "level": 6,
+   "source": "PHB",
+   "entries": [
+    "第6级起，当你施展伤害类型与你巨龙先祖相对应的法术时，可以将你的魅力调整值附加到该法术其中一次伤害掷骰中。此时你还可以用1术法点来获得持续1小时的相应伤害抗性。"
+   ],
+   "subclassShortName": "龙族血脉"
+  },
+  {
+   "name": "龙翼",
+   "className": "术士",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级时，你获得一对可以从背后张开的龙翼，并获得等于你当前速度的飞行速度。你可以在自己回合内用一个附赠动作生成龙翼。龙翼持续存在至你在自己回合内用一个附赠动作将其解散。\n你不能在着装护甲时张开龙翼（除非该护甲经过特殊的设计）。而当你显现龙翼时，未经过特殊设计的衣服可能会毁坏。"
+   ],
+   "subclassShortName": "龙族血脉"
+  },
+  {
+   "ENG_name": "Draconic Presence",
+   "name": "龙之威仪",
+   "source": "PHB",
+   "page": 102,
+   "srd": true,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "PHB",
+   "level": 18,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 5
+   },
+   "entries": [
+    "18级起，你可以导引你巨龙先祖的恐怖气息，使你周围的生物感到震撼或{@condition 恐慌}。你可以用一个动作和5术法点引导这股力量，并张开一个60尺范围的震撼（或恐惧）灵光。在1分钟内，只要你保持{@status 专注}（等同于施法时进行{@status 专注}），在灵光范围内开始其回合的每个敌对生物都必须进行一次感知豁免，豁免失败则被{@condition 魅惑}（震撼灵光）或陷入{@condition 恐慌}（恐惧灵光）直至灵光消失。豁免成功者将在随后的24小时内免疫你的灵光效应。"
+   ]
+  },
+  {
+   "ENG_name": "Wild Magic",
+   "name": "狂野魔法",
+   "source": "PHB",
+   "page": 103,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "PHB",
+   "level": 1,
+   "entries": [
+    "你天生的魔力来自于与创生之秩序相生相对的混沌之狂野力量。你也许曾经暴露于某种形式的原生魔力中；也许你穿越了一扇传送门到达了混沌海，元素位面，或者神秘的遥远国度。也许你受一名强大的精类生物祝福，或被一个恶魔选中；又或许你的魔力仅仅是天生如此，没有任何明确的原因。无论事情如何发生，这种混乱的魔力已经在你体内翻涌，随时等待着释放之时。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "狂野魔法浪涌|术士||狂野魔法||1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "混沌之潮|术士||狂野魔法||1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Tides of Chaos",
+   "name": "混沌之潮",
+   "source": "PHB",
+   "page": 103,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "PHB",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "第1级起，你可以驾驭机运与混乱的力量，以使一次攻击检定，属性检定或豁免检定具有优势。此后，你必须完成一次长休后才能再次使用该特性。",
+    "在你重获使用混乱之潮的能力前，你每次施展一个不低于1环的术士法术后，DM都可以要求你立刻骰一次{@table 狂野魔法浪涌|PHB}效果。此后，你重获使用该特性的能力。"
+   ]
+  },
+  {
+   "name": "狂野魔法浪涌",
+   "className": "术士",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "在你第1级选择该起源开始，你施法时会释放出未经塑造的魔法浪涌。你每次施展一个不低于1环的术士法术后，DM都可以要求你立刻骰一次d20。如果你骰出1，则请根据表格“狂野魔法浪涌”骰出随机的魔法效应。一个魔法浪涌每回合只能出现一次。\n若该效果是一道法术，则其因过于狂野而无法受你的超魔法影响，而如果它正常情况下需要专注，则此时它无需专注。该法术生效至其持续时间结束。"
+   ],
+   "subclassShortName": "狂野魔法"
+  },
+  {
+   "name": "扭曲幸运",
+   "className": "术士",
+   "level": 6,
+   "source": "PHB",
+   "entries": [
+    "第6级起，你获得用你的狂野魔法扭曲命运的能力。当一个你能看见的生物进行攻击检定、属性检定或豁免检定时，你可以用一个反应并消耗2术法点骰一次1d4，再将结果用作加值或减值（由你决定）加到目标生物的检定结果中。你可以在看到检定结果后使用该特性，但必须在这次检定生效前声明。"
+   ],
+   "subclassShortName": "狂野魔法"
+  },
+  {
+   "ENG_name": "Controlled Chaos",
+   "name": "掌控混沌",
+   "source": "PHB",
+   "page": 103,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "PHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "第14级起，你获得了对狂野魔法涌动的些微掌控。你每次骰{@table 狂野魔法浪涌|PHB}效果时，可以骰两次检定再自选其一生效。"
+   ]
+  },
+  {
+   "name": "法术轰击",
+   "className": "术士",
+   "level": 18,
+   "source": "PHB",
+   "entries": [
+    "第18级起，你法术中的伤害性能量极度扩张。你在为法术进行伤害掷骰时，如果其中的任何一粒骰子掷出最大值，则选择这些骰子之一再骰一次，并将其结果加在伤害数值上。你每回合只能使用一次该特性。"
+   ],
+   "subclassShortName": "狂野魔法"
+  },
+  {
+   "ENG_name": "Pyromancer (PSK)",
+   "name": "烈焰术士(PSK)",
+   "source": "PSK",
+   "page": 9,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "烈焰术士(PSK)",
+   "subclassSource": "PSK",
+   "level": 1,
+   "entries": [
+    "你内在的魔法具现为火焰。你自身即是火焰，火焰即是你自身。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "火焰之心|术士||烈焰术士(PSK)|PSK|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Heart of Fire",
+   "name": "火焰之心",
+   "source": "PSK",
+   "page": 9,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "烈焰术士(PSK)",
+   "subclassSource": "PSK",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "第1级时，每当你开始施展一道可造成火焰伤害的1环或更高环阶法术时，魔法烈焰就会从身上迸出。你指定身边10英尺范围内你可以看见的任意生物，并致使该生物因本次迸发受等同你术士等级一半的火焰伤害（至少为1）。"
+   ]
+  },
+  {
+   "ENG_name": "Fire in the Veins",
+   "name": "火之血脉",
+   "source": "PSK",
+   "page": 9,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "烈焰术士(PSK)",
+   "subclassSource": "PSK",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "第6级时，你获得火焰伤害的抗性。此外，你施展的法术还可以无视火焰伤害的抗性。"
+   ]
+  },
+  {
+   "ENG_name": "Pyromancer's Fury",
+   "name": "烈焰术士之怒",
+   "source": "PSK",
+   "page": 9,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "烈焰术士(PSK)",
+   "subclassSource": "PSK",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "第14级起，你被近战攻击命中时，可以用你的反应对攻击者造成火焰伤害。该伤害数值等同于你的术士等级，且无视火焰伤害抗性。"
+   ]
+  },
+  {
+   "ENG_name": "Fiery Soul",
+   "name": "火爆之魂",
+   "source": "PSK",
+   "page": 9,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "烈焰术士(PSK)",
+   "subclassSource": "PSK",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "第18级时，你获得火焰伤害的免疫。此外，任何你制造的法术或效应都无视火焰伤害的抗性，而火焰伤害的免疫则视为火焰伤害抗性。"
+   ]
+  },
+  {
+   "ENG_name": "Aberrant Mind",
+   "name": "畸变心智",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 1,
+   "entries": [
+    "某种外来的影响曾经用它的卷须将你的意识缠绕裹拢，给予了你灵能之力。如今，你能够使用这股力量触碰他人的内心，或是用它操控多元宇宙的魔法能量颠复你周遭的世界。这种力量会从你身上如希望的灯塔一般照耀着旁人吗？抑或是使你成为恐惧之源，使他人得见你怪异的力量，受你的心灵所伤害呢？",
+    "作为一名畸变心智术士，你能决定如何获得你的能力。这是你与生俱来的吗？还是后来发生的某件事使你展现出卓越的灵能？参考奇异起源表以了解你可能的力量来源。",
+    {
+     "type": "table",
+     "caption": "奇异起源",
+     "colLabels": [
+      "d6",
+      "起源"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "你曾暴露在遥远国度扭曲的影响之下。你坚信着有触须在你身上生长，但其他人都看不到。"
+      ],
+      [
+       "2",
+       "一阵来自星界的灵能之风将心灵异能灌入你的体内。现在，当你使用这股力量时，你的身边会有微弱的光点闪烁。"
+      ],
+      [
+       "3",
+       "你曾受到底栖魔鱼的支配，它的力量在你的脑海中留下了一个精神碎片。"
+      ],
+      [
+       "4",
+       "你被植入了一只夺心魔蝌蚪，但蜕变一直没能完成。现在，其灵能力已经被你占为已有。当你使用灵能时，你的身体里会冒出奇怪的粘液。"
+      ],
+      [
+       "5",
+       "小时候，你有一个想象中的朋友，它看上去像是呋噜或是一只奇怪的鸭嘴兽形生物。某天，它赠与你灵能的力量，看上去它并不是你的想象。"
+      ],
+      [
+       "6",
+       "你的噩梦向你透露了真相：你的灵能不是来源于自身，而是从你未能成功出世的孪生兄弟/姐妹处抽取来的！"
+      ]
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "灵能法术|术士||畸变心智|TCE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "传心谈话|术士||畸变心智|TCE|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Psionic Spells",
+   "name": "灵能法术",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级畸变心智特性}",
+    "当你达到相应的术士等级时，你习得下表中的额外法术，如下方灵能法术表所示的那样。这些法术对你是术士法术，但不计入你术士已知法术数量。",
+    "每当你提升术士等级时，你可以选择一个环数相同的新法术来替换你因此特性习得的一个法术。该法术必须为一个{@filter 来自术士、魔契师或法师法术列表中的预言或惑控法术|spells|class=术士;魔契师;法师|school=D;E|level=1;2;3;4;5}。",
+    {
+     "type": "table",
+     "caption": "灵能法术",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1st",
+       "{@spell 哈达之臂}, {@spell 不谐低语}, {@spell 心灵之楔|tce}"
+      ],
+      [
+       "3rd",
+       "{@spell 安定心神}, {@spell 侦测思想}"
+      ],
+      [
+       "5th",
+       "{@spell 哈达之欲}, {@spell 短讯术}"
+      ],
+      [
+       "7th",
+       "{@spell 艾伐黑触手}, {@spell 异怪召唤术|TCE}"
+      ],
+      [
+       "9th",
+       "{@spell 拉瑞心灵联结}, {@spell 心灵遥控}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Telepathic Speech",
+   "name": "传心谈话",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级畸变心智特性}",
+    "你能够在自己与他人的意识中构建一道心灵感应的链接。以一个附赠动作，你可以选择30尺内一个你可见的生物创造这一链接。链接能使你与其能够通过心灵感应方式进行交流，但交流时，你们之间距离的里数不超过你的魅力调整值里（至少1里）。你们必须使用互相知晓的语言进行心灵交流，才能使其理解你通过心灵感应传达的话语。",
+    "心灵感应的链接持续等同于你术士等级的分钟数。如果你陷入{@condition 失能}、死亡、或你使用此能力与其他生物构建链接时，这一链接会提前结束。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Sorcery",
+   "name": "灵能术法",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级畸变心智特性}",
+    "当你施展一个灵能法术特性中的1环或更高环阶的法术时，你可以改为使用等同于该法术环数数量的术法点而非消耗法术位施放该法术。你依然可以用法术位正常施展这些法术。",
+    "当你通过此能力施放法术时，你无视该法术施法需要的语言成分或姿势成分。你同时无视该法术需要的不会消耗的材料成分。"
+   ]
+  },
+  {
+   "ENG_name": "Psychic Defenses",
+   "name": "心灵防御",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "{@i 6级畸变心智特性}",
+    "你获得心灵伤害的抗性。此外，你在对抗{@condition 魅惑} 或{@condition 恐慌}的豁免检定上获得优势。"
+   ]
+  },
+  {
+   "ENG_name": "Revelation in Flesh",
+   "name": "血肉启示",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "{@i 14级畸变心智特性}",
+    "你能够释放出潜藏在你内部扭曲的真实形态。以一个附赠动作，你使用1点或更多的术法点以魔法性地转变形态，持续10分钟。你每消耗1术法点，你便可以从下述内容中选择一项，在转变形态期间你同时获得你选择的每项效应的增益：",
+    {
+     "type": "list",
+     "items": [
+      "你能看见周围60尺内的{@condition 隐形}生物，前提是其对你来说不处于{@quickref 掩护||3||全身掩护}。你的眼睛也会变成黑色、或是变成扭动的感官触须。",
+      "你获得等同于你步行速度的飞行速度，并能悬浮。当你飞行时，你的皮肤表面流出发光的粘液、或是散发出异界的光芒。",
+      "你获得等同于你两倍步行速度的游泳速度，且你能在水下呼吸。不止如此，你的脖子两侧会长出鳃、或鳃在耳后呈扇状翻出、或你的手指变成蹼趾、或是有卷曲的纤毛从你的衣服底下延展出来。",
+      "你的身体和你携带的装备都变得柔韧粘滑。你能够轻松穿过最窄1寸宽的狭窄空间而不用挤身通过，且你可以消耗5尺移动速度以脱离非魔法的束缚状态、或{@condition 受擒}的状态。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Warping Implosion",
+   "name": "扭曲爆裂",
+   "source": "TCE",
+   "page": 66,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "{@i 18级畸变心智特性}",
+    "你能够解放你的奇异力量，从而制造扭曲空间的异常现象。以一个动作，你可以传送到120尺内你可见的一个未被占据的位置，然后你消失位置30尺内的生物必须进行一次力量豁免，豁免失败将受{@damage 3d10}力场伤害并被立即拉向你原本的位置，并停在最靠近的一处未被占据的空间内，豁免成功只受一半伤害，且不会被如此拉扯。",
+    "一旦你使用了此特性，直到你在完成一次长休前你都不能再次使用它。你也可以消耗5点术法点以再次使用此能力。"
+   ]
+  },
+  {
+   "ENG_name": "Clockwork Soul",
+   "name": "时械之魂",
+   "source": "TCE",
+   "page": 68,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 1,
+   "entries": [
+    "一股力量，一股源自宇宙本身的秩序力量，从机械境Machanus一个完全由钟表塑造的高效率存在位面或其他类似的位面之中产生，并扩散到你的灵魂之中，使你充满了魔力。你或你宗族中的某个人也许已经卷入到魔冢这种居住在机械境的秩序生命的阴谋之中。又或许，你的先祖甚至参与过魔冢长征。无论是何种起源，秩序的力量也许对旁人来说有些奇怪，但于你而言，它是一个宏伟而璀璨的系统的一部分。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "时械魔法|术士||时械之魂|TCE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "归复平衡|术士||时械之魂|TCE|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Clockwork Magic",
+   "name": "时械魔法",
+   "source": "TCE",
+   "page": 68,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级时械之魂特性}",
+    "当你达到相应的术士等级时，你习得下表中的额外法术，如下方时械法术表所示的那样。这些法术对你是术士法术，但不计入你术士已知法术数量。",
+    "每当你提升术士等级时，你可以选择一个环数相同的新法术来替换你因此特性习得的一个法术。该法术必须为一个{@filter 来自术士、魔契师或法师法术列表中的防护法术或变化法术|spells|class=术士;魔契师;法师|school=A;T|level=1;2;3;4;5}。",
+    {
+     "type": "table",
+     "caption": "时械法术",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1st",
+       "{@spell 警报术}, {@spell 防护善恶}"
+      ],
+      [
+       "3rd",
+       "{@spell 援助术}, {@spell 次等复原术}"
+      ],
+      [
+       "5th",
+       "{@spell 解除魔法}, {@spell 防护能量}"
+      ],
+      [
+       "7th",
+       "{@spell 行动自如}, {@spell 构装召唤术|TCE}"
+      ],
+      [
+       "9th",
+       "{@spell 高等复原术}, {@spell 力场墙}"
+      ]
+     ]
+    },
+    "此外，你可以从秩序显迹表格中选择或掷骰决定一种你在施法时显现出与秩序之联系的方式。",
+    {
+     "type": "table",
+     "caption": "秩序显迹",
+     "colLabels": [
+      "d6",
+      "显迹"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "幽灵般的虚幻齿轮在你身后旋转。"
+      ],
+      [
+       "2",
+       "时钟的指针出现在你的眼中。"
+      ],
+      [
+       "3",
+       "你的皮肤发出如黄铜般的金属光泽。"
+      ],
+      [
+       "4",
+       "你的体表浮动着方程式和几何图形。"
+      ],
+      [
+       "5",
+       "你的法器短暂地变化成小巧的机械装置。"
+      ],
+      [
+       "6",
+       "你和那些受到你法术影响的生物都会听到齿轮的滴答声或是钟表的响铃。"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Restore Balance",
+   "name": "归复平衡",
+   "source": "TCE",
+   "page": 68,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "{@i 1级时械之魂特性}",
+    "你与绝对秩序之位面的联系使你能重整混沌的时刻。当你60尺内一个你可见的生物即将带着优势或是劣势进行一次{@dice d20}检定时，你可以用反应使这次检定免受优势或劣势的影响。",
+    "你可以使用此能力的次数等同于你的熟练加值。当你完成一次长休后，你重获全部已消耗的使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Bastion of Law",
+   "name": "律令之壁",
+   "source": "TCE",
+   "page": 68,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 6,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点"
+   },
+   "entries": [
+    "{@i 6级时械之魂特性}",
+    "你可以利用事物的壮丽联系为一个生物激发闪烁的秩序之盾。以一个动作，你可以消耗1~5点术法点来创造出一个环绕你或30尺内的一个可见生物的魔法屏障。此屏障将一直保持存在，直到你完成一次长休，或直至你再次使用此能力。",
+    "屏障具有等同于你所消耗术法点数量的{@dice d8}骰。当被守护的生物受到伤害时，其可以消耗任意数量的这些d8骰，投掷它们，并使该伤害减少掷出结果合计的数值。"
+   ]
+  },
+  {
+   "ENG_name": "Trance of Order",
+   "name": "序列意识",
+   "source": "TCE",
+   "page": 68,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "{@i 14级时械之魂特性}",
+    "你获得了将你的意识和机械境无尽的计算达成同步的能力。以一个附赠动作，你可以在1分钟内进入此种状态。在此期间，对你进行的攻击免受优势的影响，且每当你进行一次攻击检定、属性检定、或豁免检定时，你可以将{@dice d20}掷出的9或以下的骰值视为10。",
+    "一旦你使用了此能力，直到你完成一次长休前你都不能再次使用它。你也可以消耗5点术法点以再次使用此能力。"
+   ]
+  },
+  {
+   "ENG_name": "Clockwork Cavalcade",
+   "name": "时械矩阵",
+   "source": "TCE",
+   "page": 68,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "{@i 18级时械之魂特性}",
+    "你召唤出秩序的精魂以抹除周遭的混乱。以一个动作，你在以你为中心30尺立方空间的范围内召唤出一些精魂。这些精魂看起来像是魔冢或你选择的其他构装体，其没有实体也无法被摧毁，并在消失前使立方范围内产生以下效应：",
+    {
+     "type": "list",
+     "items": [
+      "精魂合计提供至多回复100生命值，由你随意分配给范围内任意数量的生物。",
+      "范围内损坏的物件将被立即修复。",
+      "你选择范围内任意数量的生物或物件，其承受的任何6环或以下的法术结束。"
+     ]
+    },
+    "一旦你使用了此能力，直到你完成一次长休前你都不能再次使用它。你也可以消耗7点术法点以再次使用此能力。"
+   ]
+  },
+  {
+   "ENG_name": "Divine Soul",
+   "name": "神圣之魂",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "神圣之魂",
+   "subclassSource": "XGE",
+   "level": 1,
+   "entries": [
+    "有时，支持着术士的魔力火花来自他灵魂中闪耀着的一点神力。拥有这样一种神迹的灵魂，表明你内在的魔法可能来自于一个遥远而强大的家族与某种神圣的存在之间有所联系。也许你的神是一个天使，变成了一个凡人，奉神的名义来战斗。",
+    "或者你的出生可能与一个古老的预言相符，昭示着你是神的仆人，或者是被选为承载神圣魔法的容器。",
+    "一个具有天生法力的神圣之魂术士，常常被一些教会视为威胁。作为一个指挥着神圣的力量的局外人，一个神圣之魂术士可以通过声称其与神的直接联系，来随意地破坏教会的秩序。",
+    "在某些文化中，只有那些具备神圣之魂的力量之人才能统御宗教势力。在这些地方，教会的权利永远由几条血脉支配着，代代相传。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "神圣魔法|术士||神圣之魂|XGE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "众神眷恩|术士||神圣之魂|XGE|1"
+    }
+   ]
+  },
+  {
+   "name": "神圣魔法",
+   "className": "术士",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "你与神圣的联系允许从牧师职业那里习得法术。当你的施法特性让你学会或替换一个术士戏法，或一个1环或更高环阶的术士法术时，你可以从术士与牧师两者的法术列表中选择新法术。不过你必须满足选择该法术的所有其他限制。以此习得的法术对你来说视为术士法术。\n此外，为你的神力来源选择一种亲和力：善良、邪恶、守序、混乱或中立。你可以根据这个亲和力习得一个额外的法术，如下表所示。它对你来说视为术士法术，且不计入你已知术士法术的数量上限。如果你以后想要替换了这个法术，你必须以来自牧师法术列表的法术来替换它。\n（译注：这不会改变术士作为一个奥术施法者的事实）"
+   ],
+   "subclassShortName": "神圣之魂"
+  },
+  {
+   "name": "众神眷恩",
+   "className": "术士",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "从1级起，神圣力量指引着你的命运。若你在豁免检定中失败或在攻击检定中失手时，你可以投掷2d4，并将骰出结果合计加到你的检定中，这可能会改变检定的结果。\n一旦你使用了此特性，直到你完成一次短休或长休前你都无法再次使用它。"
+   ],
+   "subclassShortName": "神圣之魂"
+  },
+  {
+   "name": "强效治疗",
+   "className": "术士",
+   "level": 6,
+   "source": "XGE",
+   "entries": [
+    "自6级起，你身上流淌的神圣之力将能增幅你的治疗法术。当你或你周围5尺范围内的盟友为决定法术恢复生命值数量而掷骰时，只要你未处于失能Incapacitated ，你便可以花费1点术法点，令其重骰其中任意数量枚的骰子一次。每回合你只能使用一次该特性。"
+   ],
+   "subclassShortName": "神圣之魂"
+  },
+  {
+   "name": "异界光翼",
+   "className": "术士",
+   "level": 14,
+   "source": "XGE",
+   "entries": [
+    "自14级起，你可以使用附赠动作从你背上展现开一对光翼。光翼展现期间，你将具有30尺的飞行速度。这对光翼将一直持续到你失能、死亡、或你以一个附赠动作主动遣散为止。\n这对光翼的外观取决于你为神圣魔法Divine Magic 特性所选择的亲和力：善良与守序将展露雄鹰之翅，邪恶与混乱将展露蝙蝠之翅，而中立则将展露蜻蜓之翅。"
+   ],
+   "subclassShortName": "神圣之魂"
+  },
+  {
+   "name": "神赐痊愈",
+   "className": "术士",
+   "level": 18,
+   "source": "XGE",
+   "entries": [
+    "在18级时，你获得了克服那些严重损伤的能力。倘若你的生命值不足一半，你就可以以一个附赠动作，你可以立刻恢复等同于你生命值上限半数的生命值。\n一旦你使用了此特性，直到你完成一次长休前你无法再次使用它。"
+   ],
+   "subclassShortName": "神圣之魂"
+  },
+  {
+   "ENG_name": "Shadow Magic",
+   "name": "暗影魔法",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 1,
+   "entries": [
+    "你是一个身缠幽影的生物，你内在的魔力来自堕影冥界本身。你可以把你的世系追溯到那个地方实存的某处， 又或者你将自己暴露在了它的能量之下并被其所改变。",
+    "暗影魔法的力量给你的肉身蒙上了一层怪异的柩衣。维持你生命的火花被抑制，犹如它为了存留而挣扎着与灌输了你灵魂的黑暗力量对抗。在你的选择下，你可以从下列幽影术士怪癖表格中自选或投掷出属于自己角色的怪癖。",
+    {
+     "type": "table",
+     "caption": "幽影术士怪癖",
+     "colLabels": [
+      "d6",
+      "异象"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "你摸起来一直是冰冷的。"
+      ],
+      [
+       "2",
+       "当你熟睡时看上去停止了呼吸（尽管你需要呼吸来维生） 。"
+      ],
+      [
+       "3",
+       "你很少流血，即使身受重伤也不会见血。"
+      ],
+      [
+       "4",
+       "你的心脏一分钟才脉动一下，有时候你自己都感到吃惊。"
+      ],
+      [
+       "5",
+       "你难以记住生物和尸体应该被区别对待。"
+      ],
+      [
+       "6",
+       "你上周只眨了一次眼。"
+      ]
+     ]
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "幽暗之瞳|术士||幽影|XGE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "终焉之力|术士||幽影|XGE|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Eyes of the Dark",
+   "name": "幽暗之瞳",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "自1级起，你具有120尺范围的{@sense 黑暗视觉}。",
+    "当你在此职业上达到3级时，你将习得法术{@spell 黑暗术}，其不计入你术士已知法术数量上限中。此外，你可以花费2点术法点或1枚法术位来施展这个法术。如果你用术法点施展这个法术，你将能够看穿该法术所制造出来的{@spell 黑暗术}。"
+   ]
+  },
+  {
+   "ENG_name": "Strength of the Grave",
+   "name": "终焉之力",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "1级起，你存在于生和死之间的灰色地带，使得你难以被击败。当你受到伤害，导致生命值被降至0点时，你可以进行一次魅力豁免检定（{@dc 5} + 该次所受伤害）。若豁免成功，作为代替你的生命值降至1点。若你因光耀伤害或重击而生命值降至0点，则无法使用此特性。",
+    "当你成功通过这一豁免后，直到完成一次长休前你都不能再次使用此特性。"
+   ]
+  },
+  {
+   "ENG_name": "Hound of Ill Omen",
+   "name": "凶兆猎犬",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 6,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 3
+   },
+   "entries": [
+    "当你达到6级时，你获得了一种能力，那是能驱使嚎叫的幽暗生物来折磨你敌人的能力。你可以以一个附赠动作，花费3点术法点，选择一个120尺内你可见的生物作为目标，魔法性的召唤出一只{@creature 凶兆猎犬|XGE}去猎杀它。凶兆猎犬使用{@creature 恐狼}的数据面板（见《怪物图鉴》或《玩家手册》附录C），但具有以下变化：",
+    {
+     "type": "list",
+     "items": [
+      "猎犬被视为一只中型怪兽，而非大型野兽。",
+      "当它出现时，它会获得等同于你术士等级一半的临时生命值。",
+      "猎犬可以像穿越{@quickref 困难地形||3}一样穿过其他生物或物件。但如果当猎犬的回合结束时处于某个物件内，它会受到5点的力场伤害。",
+      "当猎犬的回合开始时，自动知晓猎物的所在。如果目标此时隐藏了起来——对于猎犬来说，它将不再视为隐藏。"
+     ]
+    },
+    "猎犬被召唤时出现在所选目标周围30尺范围内一处由你选择的未被占据的空间内。你需要为猎犬单独投掷先攻。当猎犬行动时，它只能以最短路径冲向它的目标猎物，以及只能将动作用于攻击猎物。猎犬可以使用借机攻击，但同样的，其借机攻击的对象只能是猎物。此外，当凶兆猎犬身处猎物周围5尺范围内时，猎物对抗你所施展的任何法术所进行的豁免都将具有劣势。凶兆猎犬会在5分钟后消失，如果它的生命值降至0点或猎物的生命值降至0点，它将提前消失。"
+   ]
+  },
+  {
+   "ENG_name": "Shadow Walk",
+   "name": "幽影漫步",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "在14级时，你得到了在无数阴影间隙之间穿梭的能力。若你处于微光或黑暗，你便可以用附赠动作，魔法性的将自己传送至120尺内另一处未被占据的可见空间中。以此传送的目标空间必须同样处于微光或黑暗中。"
+   ]
+  },
+  {
+   "ENG_name": "Umbral Form",
+   "name": "幽暗之形",
+   "source": "XGE",
+   "page": 50,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 18,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 6
+   },
+   "entries": [
+    "自18级起，你可以花费6点术法点，以一个附赠动作，魔法性的将自己转变为幽暗之形。在此形态下，你具有力场与光耀之外的所有伤害类型的抗性，且你可以像穿越{@quickref 困难地形||3}一般穿过其他生物或物件。若回合结束时你处于某个物件内，你将会受到5点的力场伤害。",
+    "这一形态将持续1分钟。若你陷入{@condition 失能}、你死亡、或你用附赠动作来主动解除它，则这一形态将提前结束。"
+   ]
+  },
+  {
+   "ENG_name": "Storm Sorcery",
+   "name": "风暴术法",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 1,
+   "entries": [
+    "你内在的魔法源于气元素之力量。这些力量几乎全都源自于那场惊世骇俗的 大暴雨Great Rain，而那狂风因其威力之强而仍被市井传颂；不过也许你的血脉是受到强大气元素生物的影响而成的，例如风巨灵。不论情况如何，风暴之魔力早已浸透你的灵魂。",
+    "风暴术士是极具价值的海员。其魔法足以驾驭其周边的风与气象。且他们的能力亦可用于对抗鲨华鱼人、海盗、以及其他的水上威胁。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "风语者|术士||风暴|XGE|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "暴风魔法|术士||风暴|XGE|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Tempestuous Magic",
+   "name": "暴风魔法",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "自1级起，当你在你的回合中施展了1环或更高环阶的法术后，你可以立刻用附赠动作引导气元素的旋风涡流环绕着你。此时，你可以飞行至多10尺，此次移动不会引发借机攻击。"
+   ]
+  },
+  {
+   "ENG_name": "Wind Speaker",
+   "name": "风语者",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "你操纵的奥术魔法浸染着气元素之力。你可以说、读、写{@language 原初语}。了解这种语言同时也允许你与以下这些方言的使用者互相理解：{@language 原初语||水族语}、{@language 原初语||气族语}、{@language 原初语||火族语}、以及{@language 原初语||土族语}。"
+   ]
+  },
+  {
+   "ENG_name": "Heart of the Storm",
+   "name": "风暴之心",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "第6级时，你获得闪电伤害与雷鸣伤害的抗性。每当你开始施展一个1环或以上，且能造成闪电或雷鸣伤害的法术时，猛烈的魔法将从你身体内爆发而出。这次爆发导致所有10尺内由你选择的所有可见生物受到等同于你术士等级一半的闪电伤害或雷鸣伤害（每次使用此能力时进行选择伤害类型）。"
+   ]
+  },
+  {
+   "ENG_name": "Storm Guide",
+   "name": "风暴导向",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级起，你获得对你周遭气象的微妙掌控。",
+    "如果正在下雨，你可以用一个动作，使以你为中心的20尺半径球状区域内停止下雨。你可以以一个附赠动作提前终止这一效果。",
+    "如果正在刮风，你可以每轮使用一个附赠动作，来掌控你身边100尺半径球状区域内的风向。风将改为吹向你指定的方向，直至你的下一个回合结束。此特性无法改变风速。"
+   ]
+  },
+  {
+   "ENG_name": "Storm's Fury",
+   "name": "暴风狂怒",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "从14级起，当你被一次近战攻击命中时，你可以用你的反应对攻击者造成等同于你术士等级点的闪电伤害，且攻击者必须通过一次对抗你术士法术豁免DC的力量豁免。一旦豁免失败，攻击者将被直线推开至多20尺距离。"
+   ]
+  },
+  {
+   "ENG_name": "Wind Soul",
+   "name": "清风之灵",
+   "source": "XGE",
+   "page": 51,
+   "className": "术士",
+   "classSource": "PHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "18级时，你得到了免疫闪电伤害与雷鸣伤害的能力。",
+    "同样的，你还获得了60尺的魔法性的飞行速度。以一个动作，你可以将你的飞行速度降低至30尺，并可以指定在你周围30尺范围内的至多 3+你的魅力调整值 个生物。你赋予被指定的生物30尺魔法性的飞行速度。飞行速度的降低与赋予的飞行速度均持续1小时。一旦你以此降低了速度（不论是否赋予给了其他人），直到你完成一次长休或短休为止你都不能再次使用这一动作。"
+   ]
+  },
+  {
+   "ENG_name": "Lunar Sorcery",
+   "name": "月之术法",
+   "source": "DSotDQ",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "月",
+   "subclassSource": "DSotDQ",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Lunar Sorcery",
+    "name": "月之术法",
+    "source": "DSotDQ",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "月",
+    "subclassSource": "DSotDQ",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Bolstering Flames",
+   "name": "炽焰鼓舞",
+   "source": "FRHoF",
+   "page": 24,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "你或者一名你可见的30尺内的生物获得等于{@dice 1d4}+你的魅力调整值的{@variantrule 临时生命值|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Radiant Fire",
+   "className": "术士",
+   "classSource": "XPHB",
+   "entries": [
+    "一名你可见的30尺内的生物受到{@damage 1d4}火焰或光耀伤害（由你选择）。"
+   ],
+   "level": 3,
+   "name": "辉耀之火",
+   "source": "FRHoF",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Spellfire Burst",
+   "name": "咒火迸发",
+   "source": "FRHoF",
+   "page": 24,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "当你在你的回合中作为{@action 魔法|XPHB}动作或{@variantrule 附赠动作|XPHB}的一部分消耗至少1术法点时，你可以选择并释放以下一项魔法效应。你每回合只能如此做一次。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "炽焰鼓舞|术士|XPHB|咒火|FRHoF|3|FRHoF"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "辉耀之火|术士|XPHB|咒火|FRHoF|3|FRHoF"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Spellfire Sorcery",
+   "name": "咒火术法",
+   "source": "FRHoF",
+   "page": 24,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "{@i 掌控原初魔法}",
+    "你与生俱来的力量源自魔法自身的本源——魔网。这种连接是一种稀有天赋的显现，被称为\"咒火\"，你的体内时刻涌动着这种原始魔法的辐照。凭借法术之火的禀赋，你既能治愈盟友、灼烧敌人，亦能吞噬强大的法术。",
+    "掌握咒火者多为向往冒险的漫游者。许多人在城镇之间四处游历，诸如剑湾沿，为守护公义而施展魔法；另一些则选择在同样奇异的土地上追寻自身奥秘力量的觉醒——从遭受魔法摧残的埃诺奥克荒漠，到被诸神眷顾的古老帝国荒野。在国度之中，咒火术士总会吸引那些对奥艺感兴趣的组织——如竖琴手同盟、红袍法师、龙巫教——的注意。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "咒火迸发|术士|XPHB|咒火|FRHoF|3|FRHoF"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "咒火法术|术士|XPHB|咒火|FRHoF|3|FRHoF"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Spellfire Spells",
+   "name": "咒火法术",
+   "source": "FRHoF",
+   "page": 24,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 3,
+   "entries": [
+    "当你到达咒火法术表中特定的术士等级时，你此后便始终准备了表中对应的法术。",
+    {
+     "type": "table",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 疗伤术|XPHB}, {@spell 光导箭|XPHB}, {@spell 次等复原术|XPHB}, {@spell 灼热射线|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 活力灵光|XPHB}, {@spell 解除魔法|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 火焰护盾|XPHB}, {@spell 火墙术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 高等复原术|XPHB}, {@spell 焰击术|XPHB}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Absorb Spells",
+   "name": "汲纳法术",
+   "source": "FRHoF",
+   "page": 25,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "你始终准备法术{@spell 法术反制|XPHB}。",
+    "此外，当一个目标在对抗你所施展的{@spell 法术反制|XPHB}的豁免中失败时，你重获{@dice 1d4}术法点。"
+   ]
+  },
+  {
+   "ENG_name": "Honed Spellfire",
+   "name": "砥砺咒火",
+   "source": "FRHoF",
+   "page": 25,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "你的{@subclassFeature 咒火迸发|术士|XPHB|咒火|FRHoF|3|FRHoF}更加精进。{@subclassFeature 炽焰鼓舞|术士|XPHB|咒火|FRHoF|3|FRHoF}提供的{@variantrule 临时生命值|XPHB}的数值现在获得等同于你{@class 术士|XPHB}等级的加值，并且{@subclassFeature 辉耀之火|术士|XPHB|咒火|FRHoF|3|FRHoF}的伤害提升为{@dice 1d8}。"
+   ]
+  },
+  {
+   "ENG_name": "Crown of Spellfire",
+   "name": "咒火冠冕",
+   "source": "FRHoF",
+   "page": 25,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "咒火",
+   "subclassSource": "FRHoF",
+   "level": 18,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 7
+   },
+   "entries": [
+    "当你使用{@classFeature 先天术法|术士|XPHB|1}时，你可以将其转换为用咒火的精粹充盈自身，你在此次先天术法激活期间额外获得如下增益。一旦你使用此特性转换了先天术法，直到完成一次{@variantrule 长休|XPHB}前都不能再次使用此特性。你也可以消耗5点术法点（无需动作）以恢复此特性的使用次数。",
+    {
+     "ENG_name": "Burning Life Force",
+     "name": "燃尽",
+     "type": "entries",
+     "page": 8,
+     "entries": [
+      "每回合一次，当你被一次攻击检定命中时，你可以消耗至多等于你魅力调整值（至少1枚）的{@variantrule 生命值骰|XPHB}。掷你所消耗的骰子并且从该次攻击的伤害中减去掷骰结果的数目。"
+     ]
+    },
+    {
+     "ENG_name": "Flight",
+     "name": "飞行",
+     "type": "entries",
+     "page": 8,
+     "entries": [
+      "你获得60尺{@variantrule 飞行速度|XPHB}，并且可以悬浮。"
+     ]
+    },
+    {
+     "ENG_name": "Spell Avoidance",
+     "name": "法术闪避",
+     "type": "entries",
+     "page": 8,
+     "entries": [
+      "当你受到一个允许你进行豁免来只承受一半伤害的法术或魔法效应影响时，你在豁免成功时不受伤害，豁免失败时只承受一半伤害。你无法在{@condition 失能|XPHB}状态下使用此增益。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Draconic Bloodline",
+   "name": "龙族血脉",
+   "source": "PHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "PHB",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Draconic Bloodline",
+    "name": "龙族血脉",
+    "source": "PHB",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "龙族血脉",
+    "subclassSource": "PHB",
+    "level": 1,
+    "_preserve": {
+     "page": true,
+     "srd": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Wild Magic",
+   "name": "狂野魔法",
+   "source": "PHB",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "PHB",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Wild Magic",
+    "name": "狂野魔法",
+    "source": "PHB",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "狂野魔法",
+    "subclassSource": "PHB",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Pyromancer (PSK)",
+   "name": "烈焰术士(PSK)",
+   "source": "PSK",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "烈焰术士(PSK)",
+   "subclassSource": "PSK",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Pyromancer (PSK)",
+    "name": "烈焰术士(PSK)",
+    "source": "PSK",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "烈焰术士(PSK)",
+    "subclassSource": "PSK",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Power of Shadow",
+   "name": "幽影之威",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "你获得以下增益。",
+    {
+     "ENG_name": "Eyes of the Dark",
+     "name": "幽暗之瞳",
+     "type": "entries",
+     "entries": [
+      "你具有120尺{@sense 黑暗视觉|XPHB}与10尺{@sense 盲视|XPHB}。此外，若你施展的一道法术创造了一片{@variantrule 黑暗|XPHB}区域，则你能够正常看透那道法术的黑暗。"
+     ]
+    },
+    {
+     "ENG_name": "Strength of the Grave",
+     "name": "终焉之力",
+     "type": "entries",
+     "entries": [
+      "若你的{@variantrule 生命值|XPHB}将要降至0且不会立即死亡，则你可以进行一次魅力豁免（{@dc 5}加上该次所受伤害）。若豁免成功，则你的{@variantrule 生命值|XPHB}转而变为等同于你的魅力调整值加上你的术士等级的数值。你成功于该豁免之后，直至你完成一次{@variantrule 长休|XPHB}为止不可再次使用此增益。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Shadow Sorcery",
+   "name": "幽影术法",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "{@i 掌控末日与黑暗术}",
+    "你的天生魔法源自堕影冥界（或其他充斥超自然黑暗的领域）那缥缈莫测的力量。你的血脉或许能够追溯至栖居于那些地方的存在；又或者，你曾暴露于幽影龙那不祥的能量之下并被其改变。你所掌握的幽影魔法使你能够驱使黑暗、亡者与灾厄。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "幽影法术|术士|XPHB|幽影|RHW|3|RHW"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "幽影之威|术士|XPHB|幽影|RHW|3|RHW"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Shadow Spells",
+   "name": "幽影法术",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "RHW",
+   "level": 3,
+   "entries": [
+    "当你到达幽影法术表中特定的术士等级时，你就始终准备着表中对应的法术。",
+    {
+     "type": "table",
+     "caption": "幽影法术",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 灾祸术|XPHB}, {@spell 黑暗术|XPHB}, {@spell 致伤术|XPHB}, {@spell 行动无踪|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 哈达之欲|XPHB}, {@spell 回避侦测|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 高等隐形术|XPHB}, {@spell 魅影杀手|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 疫病术|XPHB}, {@spell 造物术|XPHB}"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Beasts of Ill Omen",
+   "name": "凶兆之兽",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "RHW",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "你能够驱使一头嗥叫着的幽影生物追猎你的敌人。你可以消耗3点术法点，在无需准备该法术、无需材料成分、且不消耗法术位的情况下以一个{@variantrule 附赠动作|XPHB}施展{@spell 野兽召唤术|XPHB}。被召唤出的生物呈现为由阴影构成的野兽。此外，任何位于该召唤生物5尺内的敌人在对抗你施展的法术时进行的豁免检定均具有{@variantrule 劣势|XPHB}。",
+    "每当你施展该法术时，你都可以修改此法术使其无需{@status 专注|XPHB}。若你如此做，则此法术的持续时间将变为1分钟，且若你再次施展此法术，则法术将提前终止。"
+   ]
+  },
+  {
+   "ENG_name": "Shadow Walk",
+   "name": "幽影漫步",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "RHW",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "当你处于{@variantrule 微光光照|XPHB}或{@variantrule 黑暗|XPHB}环境期间，你可以用一个{@variantrule 附赠动作|XPHB}传送至多120尺至另一处你可见的未占据空间。以此法传送至的目标空间必须同样处于{@variantrule 微光光照|XPHB}或{@variantrule 黑暗|XPHB}中。"
+   ]
+  },
+  {
+   "ENG_name": "Umbral Form",
+   "name": "幽暗之形",
+   "source": "RHW",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "RHW",
+   "level": 18,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 6
+   },
+   "entries": [
+    "你使用先天术法时，可以同时化作幽影之躯，以此在先天术法持续期间，或直到你主动结束此形态（无需动作）为止，获得下述增益。此特性一经使用，直到你完成一次{@variantrule 长休|XPHB}或使用6点术法点重置此特性的使用权为止不能再次使用。",
+    {
+     "ENG_name": "Incorporeal Movement",
+     "name": "虚体移动",
+     "type": "entries",
+     "entries": [
+      "你可以移动穿过其他生物或物件，如同穿过{@variantrule 困难地形|XPHB}一般。如果你的回合结束时处于某个生物或物件内，则会受到{@damage 1d10}力场伤害。"
+     ]
+    },
+    {
+     "ENG_name": "Shadow Resilience",
+     "name": "幽影坚韧",
+     "type": "entries",
+     "entries": [
+      "你对所有伤害具有{@variantrule 抗性|XPHB}，除了力场且光耀伤害。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Aberrant Mind",
+   "name": "畸变心智",
+   "source": "TCE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变心智",
+   "subclassSource": "TCE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Aberrant Mind",
+    "name": "畸变心智",
+    "source": "TCE",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "畸变心智",
+    "subclassSource": "TCE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Clockwork Soul",
+   "name": "时械之魂",
+   "source": "TCE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "时械之魂",
+   "subclassSource": "TCE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Clockwork Soul",
+    "name": "时械之魂",
+    "source": "TCE",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "时械之魂",
+    "subclassSource": "TCE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Divine Soul",
+   "name": "神圣之魂",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "神圣之魂",
+   "subclassSource": "XGE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Divine Soul",
+    "name": "神圣之魂",
+    "source": "XGE",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "神圣之魂",
+    "subclassSource": "XGE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Shadow Magic",
+   "name": "暗影魔法",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "幽影",
+   "subclassSource": "XGE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Shadow Magic",
+    "name": "暗影魔法",
+    "source": "XGE",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "幽影",
+    "subclassSource": "XGE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Storm Sorcery",
+   "name": "风暴术法",
+   "source": "XGE",
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "风暴",
+   "subclassSource": "XGE",
+   "level": 3,
+   "_copy": {
+    "ENG_name": "Storm Sorcery",
+    "name": "风暴术法",
+    "source": "XGE",
+    "className": "术士",
+    "classSource": "PHB",
+    "subclassShortName": "风暴",
+    "subclassSource": "XGE",
+    "level": 1,
+    "_preserve": {
+     "page": true
+    }
+   }
+  },
+  {
+   "ENG_name": "Aberrant Sorcery",
+   "name": "畸变术法",
+   "source": "XPHB",
+   "page": 145,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 操弄非自然的灵能力量}",
+    "某种异界的影响曾经用它的卷须将你的意识缠绕裹拢，给予了你灵能之力。如今，你能够使用这股力量触碰他人的内心，还能用它操控多元宇宙的魔法能量颠覆你周遭的世界。这种力量会从你身上如希望的灯塔一般照耀着旁人吗？抑或是使你成为恐惧之源，使他人得见你怪异的力量，受你的心灵所伤害呢？",
+    "也许一股从星光位面吹来的心灵之风将灵能力量灌入你的体内，抑或是你曾暴露在遥远国度扭曲的影响之下。此外，也可能是你被植入了一只夺心魔蝌蚪，但蜕变一直没能完成。现在，其灵能力量已经被你占为已有。无论你是怎么获得这种力量的，它都在你的心灵中熊熊燃烧。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "灵能法术|术士|XPHB|畸变|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "传心谈话|术士|XPHB|畸变|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Psionic Spells",
+   "className": "术士",
+   "classSource": "XPHB",
+   "entries": [
+    "当你到达灵能法术表中特定的术士等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "灵能法术",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 哈达之臂|XPHB}，{@spell 安定心神|XPHB}，{@spell 侦测思想|XPHB}，{@spell 不谐低语|XPHB}，{@spell 心灵之楔|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 哈达之欲|XPHB}，{@spell 短讯术|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 艾伐黑触手|XPHB}，{@spell 异怪召唤术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 拉瑞心灵联结|XPHB}，{@spell 心灵遥控|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 1,
+   "level": 3,
+   "name": "灵能法术",
+   "page": 145,
+   "source": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Telepathic Speech",
+   "name": "传心谈话",
+   "source": "XPHB",
+   "page": 145,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你能够在自己与他人的意识中构建一道心灵感应的链接。以一个{@variantrule 附赠动作|XPHB}，你可以选择 30 尺内一个你可见的生物创造这一链接。链接能使你与其能够通过心灵感应方式进行交流，但交流时，你们之间距离的里数不超过你的魅力调整值里（至少 1 里）。你们必须使用互相知晓的语言进行心灵交流，才能使其理解你通过心灵感应传达的话语。",
+    "心灵感应的链接持续等同于你术士等级的分钟数。这一链接在你与另一生物构建链接时提前结束。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Sorcery",
+   "name": "灵能术法",
+   "source": "XPHB",
+   "page": 146,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "灵能法术特性中的一环或更高环阶的法术时，你可以改为使用等同于该法术环数数量的术法点而非消耗法术位施展该法术。你消耗术法点施放法术时，你无视该法术施法需要的言语成分或姿势成分。你同时无视该法术需要的不会消耗且未给出具体价值的材料成分。"
+   ]
+  },
+  {
+   "ENG_name": "Psychic Defenses",
+   "name": "心灵防御",
+   "source": "XPHB",
+   "page": 146,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "你获得心灵伤害的{@variantrule 抗性|XPHB}。此外，你在避免和结束{@condition 魅惑|XPHB}状态与{@condition 恐慌|XPHB}状态的豁免检定上具有{@variantrule 优势|XPHB}。"
+   ]
+  },
+  {
+   "ENG_name": "Revelation in Flesh",
+   "name": "血肉启示",
+   "source": "XPHB",
+   "page": 146,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "你能够释放出潜藏在你内部扭曲的真实形态。以一个{@variantrule 附赠动作|XPHB}，你使用 1 点或更多的术法点以魔法性地转变形态，持续 10 分钟。你每消耗 1 术法点，你便可以从下述内容中选择一项，在转变形态期间你同时获得你选择的每项效应的增益：",
+    {
+     "type": "entries",
+     "entries": [
+      {
+       "ENG_name": "Aquatic Adaptation",
+       "name": "水生适应",
+       "type": "entries",
+       "entries": [
+        "你获得{@variantrule 游泳速度|XPHB}（等同于你两倍的{@variantrule 速度|XPHB}），且你能在水下呼吸。不止如此，你的脖子两侧会长出鳃、或鳃在耳后呈扇状翻出、或你的手指变成蹼趾、或是有卷曲的纤毛从你的衣服底下延展出来。"
+       ]
+      },
+      {
+       "ENG_name": "Glistening Flight",
+       "name": "闪耀飞翔",
+       "type": "entries",
+       "entries": [
+        "你获得{@variantrule 飞行速度|XPHB}（等同于你的{@variantrule 速度|XPHB}），并能悬浮。当你飞行时，你的皮肤表面流出发光的粘液、或是散发出异界的光芒。"
+       ]
+      },
+      {
+       "ENG_name": "See the Invisible",
+       "name": "识破隐形",
+       "type": "entries",
+       "entries": [
+        "你能看见周围 60 尺内处于{@condition 隐形|XPHB}状态的生物，前提是其对你来说不处于{@variantrule 掩护|XPHB|全身掩护}。你的眼睛也会变成黑色、或是变成扭动的感官触须。"
+       ]
+      },
+      {
+       "ENG_name": "Wormlike Movement",
+       "name": "蠕行移动",
+       "type": "entries",
+       "entries": [
+        "你的身体和你携带的装备都变得柔韧粘滑。你能够轻松穿过最窄1寸宽的狭窄空间而不用挤进去，且你可以消耗 5 尺移动力以脱离非魔法的束缚或{@condition 受擒|XPHB}状态。"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Warping Implosion",
+   "name": "扭曲爆裂",
+   "source": "XPHB",
+   "page": 146,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "畸变",
+   "subclassSource": "XPHB",
+   "level": 18,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 5
+   },
+   "entries": [
+    "你能够释放出扭曲空间的异常现象。以一个{@action 魔法|XPHB}动作，你传送到 120 尺内你可见的一个未被占据的位置，然后你消失位置 30 尺内的每个生物必须进行一次对抗你施法DC的力量豁免，豁免失败将受{@damage 3d10}力场伤害并被立即拉向你原本的位置，并停在最靠近的一处未被占据的空间内，豁免成功只受半伤。",
+    "一旦你使用此特性，在完成一次{@variantrule 长休|XPHB}前无法再次使用，除非你消耗5点术法点（无需动作）来恢复其使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Clockwork Sorcery",
+   "name": "时械术法",
+   "source": "XPHB",
+   "page": 146,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "时械",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 引导寰宇的秩序之力}",
+    "一股源自宇宙本身的秩序力量，从机械境或其他与之类似的钟表般高效的存在位面之中产生，并扩散到你的灵魂之中，使你充满了魔力。你或你宗族中的某个人也许已经卷入到魔冢这种居住在机械境的秩序生命的谋划之中。又或许，你的先祖甚至参与过魔冢长征。无论是何种起源，秩序的力量也许对旁人来说有些奇怪，但于你而言，它是一个宏伟而璀璨的系统的一部分。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "时械法术|术士|XPHB|时械|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "归复平衡|术士|XPHB|时械|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Clockwork Spells",
+   "className": "术士",
+   "classSource": "XPHB",
+   "entries": [
+    "当你到达时械法术表中特定的术士等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "时械法术",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 援助术|XPHB}，{@spell 警报术|XPHB}，{@spell 次等复原术|XPHB}，{@spell 防护善恶|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 解除魔法|XPHB}，{@spell 防护能量|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 行动自如|XPHB}，{@spell 构装召唤术|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 高等复原术|XPHB}，{@spell 力场墙|XPHB}"
+      ]
+     ],
+     "type": "table"
+    },
+    "此外，你可以从秩序显迹表格中选择或掷骰决定一种你在施法时显现出与秩序之联系的方式。",
+    {
+     "caption": "秩序显迹",
+     "colLabels": [
+      "{@dice 1d6}",
+      "显迹"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "1",
+       "幽灵般的虚幻齿轮在你身后旋转。"
+      ],
+      [
+       "2",
+       "时钟的指针出现在你的眼中。"
+      ],
+      [
+       "3",
+       "你的皮肤发出如黄铜般的金属光泽。"
+      ],
+      [
+       "4",
+       "你的体表浮动着方程式和几何图形。"
+      ],
+      [
+       "5",
+       "你的{@variantrule 法器|XPHB}短暂地变化成小巧的机械装置。"
+      ],
+      [
+       "6",
+       "你和那些受到你法术影响的生物都会听到齿轮的滴答声或是钟表的响铃。"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 1,
+   "level": 3,
+   "name": "时械法术",
+   "page": 146,
+   "source": "XPHB",
+   "subclassShortName": "时械",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Restore Balance",
+   "name": "归复平衡",
+   "source": "XPHB",
+   "page": 146,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "时械",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你与绝对秩序之位面的联系使你能重整混沌的时刻。当你 60 尺内一个你可见的生物即将带着{@variantrule 优势|XPHB}或是{@variantrule 劣势|XPHB}进行一次{@dice d20}检定时，你可以用{@variantrule 反应|XPHB}使这次检定免受{@variantrule 优势|XPHB}或{@variantrule 劣势|XPHB}的影响。",
+    "你能使用此特性的次数等同于你的魅力调整值（最少 1 次），你在完成一次{@variantrule 长休|XPHB}后重获所有消耗的次数。"
+   ]
+  },
+  {
+   "ENG_name": "Bastion of Law",
+   "name": "律令之壁",
+   "source": "XPHB",
+   "page": 147,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "时械",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amountMin": 1,
+    "amountMax": 5
+   },
+   "entries": [
+    "你可以利用世界的均衡之力为一个生物激发闪烁的秩序之盾。以一个{@action 魔法|XPHB}动作，你可以消耗 1-5 点术法点来创造出一个环绕你或 30 尺内的一个可见生物的魔法屏障。屏障具有等同于你所消耗术法点数量的d8骰。当被守护的生物受到伤害时，其可以消耗任意数量的这些d8骰，投掷它们，并使该伤害减少掷出结果合计的数值。",
+    "此屏障将一直保持存在，直到你完成一次{@variantrule 长休|XPHB}或直至你再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Trance of Order",
+   "name": "序列意识",
+   "source": "XPHB",
+   "page": 147,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "时械",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 5
+   },
+   "entries": [
+    "你获得了将你的意识和机械境无尽的计算达成同步的能力。以一个{@variantrule 附赠动作|XPHB}，你可以在 1 分钟内进入此种状态。在此期间，对你进行的攻击免受{@variantrule 优势|XPHB}的影响，且每当你进行一次{@variantrule D20 检定|XPHB}时，你可以将{@dice d20}掷出的 9 或以下的骰值视为 10。",
+    "此特性一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。你也可以消耗 5 点术法点（无需动作）重置此特性的使用权。"
+   ]
+  },
+  {
+   "ENG_name": "Clockwork Cavalcade",
+   "className": "术士",
+   "classSource": "XPHB",
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "amount": 7,
+    "name": "术法点"
+   },
+   "entries": [
+    "你召唤出秩序的精魂以抹除周遭的混乱。以一个{@action 魔法|XPHB}动作，你在以你为源点的 30 尺{@variantrule 立方 [效应区域]|XPHB|立方}空间范围内召唤出一些精魂。这些精魂看起来像是魔冢或你选择的其他构装，其没有实体也无法被摧毁，并在消失前使{@variantrule 立方 [效应区域]|XPHB|立方}范围内产生以下效应。此特性一经使用，直到完成一次{@variantrule 长休|XPHB}前都不能再次使用。你也可以消耗 7 点术法点（无需动作）以恢复此特性的使用次数。",
+    {
+     "entries": [
+      {
+       "ENG_name": "Heal",
+       "name": "治愈",
+       "type": "entries",
+       "entries": [
+        "精魂合计提供至多恢复 100 {@variantrule 生命值|XPHB}，由你随意分配给范围内任意数量的生物。"
+       ]
+      },
+      {
+       "ENG_name": "Repair",
+       "name": "修复",
+       "type": "entries",
+       "entries": [
+        "范围内损坏的物件将被立即修复。"
+       ]
+      },
+      {
+       "ENG_name": "Dispel",
+       "name": "破法",
+       "type": "entries",
+       "entries": [
+        "你选择范围内任意数量的生物或物件，其承受的任何六环或以下的法术结束。"
+       ]
+      }
+     ],
+     "type": "entries"
+    }
+   ],
+   "header": 2,
+   "level": 18,
+   "name": "时械矩阵",
+   "page": 147,
+   "source": "XPHB",
+   "subclassShortName": "时械",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Draconic Sorcery",
+   "name": "龙族术法",
+   "source": "XPHB",
+   "page": 148,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 吐纳巨龙魔法}",
+    "你的天生魔法来自于巨龙的赠礼。也许一条濒死的远古龙将它的一部分魔力赐予了你或你的祖先。你也可能从满溢着巨龙魔法的某处地点吸收了魔力。又或者，你拿着一件从巨龙宝库中取得的宝藏，它吸收了部分龙族魔力。又或者，你只是有一位龙族先祖。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "龙族体魄|术士|XPHB|龙族血脉|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "龙族法术|术士|XPHB|龙族血脉|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Draconic Spells",
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "entries": [
+    "当你到达龙族法术表中特定的术士等级时，你就始终准备着表中对应的法术。",
+    {
+     "caption": "龙族法术",
+     "colLabels": [
+      "术士等级",
+      "法术"
+     ],
+     "colStyles": [
+      "col-2 text-center",
+      "col-10"
+     ],
+     "rows": [
+      [
+       "3",
+       "{@spell 变身术|XPHB}，{@spell 繁彩球|XPHB}，{@spell 命令术|XPHB}，{@spell 龙息术|XPHB}"
+      ],
+      [
+       "5",
+       "{@spell 恐惧术|XPHB}，{@spell 飞行术|XPHB}"
+      ],
+      [
+       "7",
+       "{@spell 秘法眼|XPHB}，{@spell 魅惑怪物|XPHB}"
+      ],
+      [
+       "9",
+       "{@spell 通晓传奇|XPHB}，{@spell 龙类召唤术|XPHB}"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 1,
+   "level": 3,
+   "name": "龙族法术",
+   "page": 148,
+   "source": "XPHB",
+   "srd52": true,
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Draconic Resilience",
+   "name": "龙族体魄",
+   "source": "XPHB",
+   "page": 148,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "魔法在你的体内流动，外化为龙族赠礼体现出的生理特质。你的{@variantrule 生命值|XPHB|生命值}上限提升 3，此后每提升一个术士等级，都将再次提升1。",
+    "你部分皮肤覆盖着龙鳞样式的柔鳞。未着装护甲时，你的基础{@variantrule 护甲等级|XPHB}等于 10 + 你的敏捷调整值 + 你的魅力调整值。"
+   ]
+  },
+  {
+   "ENG_name": "Elemental Affinity",
+   "name": "元素亲和",
+   "source": "XPHB",
+   "page": 148,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "你的龙族魔法与龙族相关的伤害类型有较强的亲和力。选择以下伤害类型之一：强酸、寒冷、火焰、闪电或毒素。",
+    "你获得对所选伤害类型的{@variantrule 抗性|XPHB}，且当你施展造成那种伤害的法术时，你可以将你的魅力调整值加到那个法术的其中一次伤害掷骰中。"
+   ]
+  },
+  {
+   "ENG_name": "Dragon Wings",
+   "name": "龙翼",
+   "source": "XPHB",
+   "page": 148,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点",
+    "amount": 3
+   },
+   "entries": [
+    "以一个{@variantrule 附赠动作|XPHB}，你可以在背后张开一对龙翼。龙翼持续 1 小时，若你选择将其解散（无需动作）则会提前终止，在龙翼持续期间你获得 60 尺{@variantrule 飞行速度|XPHB}。",
+    "此特性一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。你也可以消耗 3 点术法点（无需动作）重置此特性的使用权。"
+   ]
+  },
+  {
+   "ENG_name": "Dragon Companion",
+   "name": "龙伴",
+   "source": "XPHB",
+   "page": 148,
+   "srd52": true,
+   "basicRules2024": true,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "龙族血脉",
+   "subclassSource": "XPHB",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "你可以无需材料成分施展{@spell 龙类召唤术|XPHB}。你可以无需法术位施展它一次，随后你在完成一次{@variantrule 长休|XPHB}后重获以此法施展它的能力。",
+    "每当你开始施展此法术时，都可以修改此法术使其无需{@status 专注|XPHB}。以此法施展时，此法术的持续时间将变为 1 分钟。"
+   ]
+  },
+  {
+   "ENG_name": "Wild Magic Sorcery",
+   "name": "狂野术法",
+   "source": "XPHB",
+   "page": 149,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "entries": [
+    "{@i 释放混沌魔力}",
+    "你的天生魔法来源于创生秩序之下的混沌。你或者你的祖先可能通过一道通往其他位面，如混沌海或元素位面的传送门暴露于原生魔法之下。也许你被妖精祝福，或是被恶魔标记。又或者，你的魔法毫无征兆地偶然出现了。无论来源为何，这种魔法在你体内翻涌，等待着释放。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "狂野魔法浪涌|术士|XPHB|狂野魔法|XPHB|3"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "混沌之潮|术士|XPHB|狂野魔法|XPHB|3"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Tides of Chaos",
+   "name": "混沌之潮",
+   "source": "XPHB",
+   "page": 149,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "XPHB",
+   "level": 3,
+   "header": 1,
+   "entries": [
+    "你可以驾驭机运的力量，以获得一次自身具有{@variantrule 优势|XPHB}的{@variantrule D20 检定|XPHB}。你必须在掷出{@dice d20}之前决定是否使用此特性。此特性一经使用，你必须使用法术位施展一道术士法术、或完成{@variantrule 长休|XPHB}后才能再次使用。",
+    "如果你在完成{@variantrule 长休|XPHB}前使用法术位施展了术士法术来恢复特性，则你自动于{@table 狂野魔法浪涌|XPHB}表上掷骰。"
+   ]
+  },
+  {
+   "ENG_name": "Wild Magic Surge",
+   "className": "术士",
+   "classSource": "XPHB",
+   "entries": [
+    "你施法时会释放出未经塑造的魔法浪涌。一回合一次，你每次消耗法术位施展一道术士法术后，可以立刻骰一次{@dice 1d20}。如果你骰出 20，则在狂野魔法浪涌表上掷骰以确定随机魔法效应。",
+    "若该效果是一道法术，则其因过于狂野而无法受你的超魔法影响。",
+    {
+     "caption": "狂野魔法浪涌",
+     "colLabels": [
+      "{@dice 1d100}",
+      "效应"
+     ],
+     "colStyles": [
+      "col-1 text-center",
+      "col-11"
+     ],
+     "data": {
+      "genTables": {
+       "tableInclude": true
+      }
+     },
+     "rows": [
+      [
+       "01–04",
+       "下 1 分钟内，你在每次自己回合开始时重骰本表，并在后续的掷骰中跳过本结果。"
+      ],
+      [
+       "05–08",
+       "一名对你友善 的生物出现在位于你 60 尺内随机一处未占据空间中。此生物由DM控制，且会在 1 分钟后消失不见。投掷{@dice 1d4}以决定生物：骰值为 1，出现一只二元魔冢；骰值为 2，出现一只呋噜；骰值为 3，出现一只单元魔冢；骰值为 4，出现一头独角兽。生物数据卡见《怪物图鉴》。"
+      ],
+      [
+       "09–12",
+       "下 1 分钟内，你在每个自己的回合开始时恢复 5 {@variantrule 生命值|XPHB}。"
+      ],
+      [
+       "13–16",
+       "下 1 分钟内，你施展第一个需要豁免的法术时，成为该法术目标的生物进行豁免时具有{@variantrule 劣势|XPHB}。"
+      ],
+      [
+       "17–20",
+       "你获得一个持续 1 分钟（除非其描述另有说明）的效应。投掷{@dice 1d8}以决定效应：       骰值为 1，你被只有你和距你 5 尺内的生物才能听到的空灵音乐声环绕；骰值为 2，你的体型增大一级；骰值为 3，你脸上长出羽毛构成的络腮胡，一旦你打了喷嚏，这些羽毛会从你的脸上炸开并消失；骰值为 4，你说话时必须大声喊叫；骰值为 5，距你 10 尺范围内，会出现飞舞的虚幻蝴蝶；骰值为 6，你的前额长出第三只眼，使你在感知（{@skill 察觉|XPHB}）检定上获得{@variantrule 优势|XPHB}；骰值为 7，你一说话就会吐出粉色的泡泡；    骰值为 8，你的皮肤透出蓝色，持续 24 小时，法术{@spell 移除诅咒|XPHB}可结束此效应。"
+      ],
+      [
+       "21–24",
+       "下 1 分钟内，你所有的施法时间为动作的法术施法时间变为{@variantrule 附赠动作|XPHB}。"
+      ],
+      [
+       "25–28",
+       "你被传送到星光位面，直至你的下一回合结束时。你随后回到先前所占据的空间，若该空间被占据，则来到最近的未被占据的空间。"
+      ],
+      [
+       "29–32",
+       "下 1 分钟内，你施展的下一道造成伤害的法术的伤害不进行伤害掷骰而是取所有伤害骰的最大值。"
+      ],
+      [
+       "33–36",
+       "下 1 分钟内，你具有所有伤害类型的{@variantrule 抗性|XPHB}。"
+      ],
+      [
+       "37–40",
+       "你变成一棵植物盆栽，持续至你下个回合开始时。你变成盆栽期间陷入{@condition 失能|XPHB}状态，并具有所有伤害类型的{@variantrule 易伤|XPHB}。如果你的{@variantrule 生命值|XPHB}降至 0，则你的花盆形态被打碎，而你恢复原形。"
+      ],
+      [
+       "41–44",
+       "下 1 分钟内，你能够在每个自己回合内以一个{@variantrule 附赠动作|XPHB}传送至多 20 尺。"
+      ],
+      [
+       "45–48",
+       "你和至多 3 名 30 尺内由你选择的生物获得{@condition 隐形|XPHB}状态，持续 1 分钟。此隐形会在该生物发动攻击、造成伤害或施展法术后立即结束。"
+      ],
+      [
+       "49–52",
+       "下 1 分钟内，一面灵体般的盾牌悬浮在你的周围，为你的AC提供 +2 加值，并使你免疫{@spell 魔法飞弹|XPHB}。"
+      ],
+      [
+       "53–56",
+       "你在本回合可以额外执行一个动作。"
+      ],
+      [
+       "57–60",
+       "施展一道随机法术，如果该法术通常需要{@status 专注|XPHB}，则该情况下无需{@status 专注|XPHB}，该法术生效至其最大持续时间结束。投掷{@dice 1d10}来决定法术：1 为{@spell 困惑术|XPHB}；2 为{@spell 火球术|XPHB}；3 为{@spell 云雾术|XPHB}；4 为{@spell 飞行术|XPHB}（施放在你 60 尺内的随机生物上）；5 为{@spell 油腻术|XPHB}；6 为{@spell 浮空术|XPHB}（施放在你自己身上）；7 为{@spell 魔法飞弹|XPHB}（作为 5 环法术施放）；8 为{@spell 镜影术|XPHB}；9 为{@spell 变形术|XPHB}（施放在你自己身上），若豁免检定失败，你将变成一只山羊（见附录 B）；10 为{@spell 识破隐形|XPHB}。"
+      ],
+      [
+       "61–64",
+       "下 1 分钟内，你触碰的任何未被其他生物着装或携带的非魔法可燃物件都会燃起火焰，受到{@damage 1d4}火焰伤害，并开始燃烧。"
+      ],
+      [
+       "65–68",
+       "如果你在下 1 小时内死亡，则你立刻复活，如同被{@spell 转生术|XPHB}所复活一般。"
+      ],
+      [
+       "69–72",
+       "你陷入{@condition 恐慌|XPHB}状态，直至你的下一回合结束。由 DM 决定你的恐惧源。"
+      ],
+      [
+       "73–76",
+       "你传送至多 60 尺，至一处你可见的未占据空间。"
+      ],
+      [
+       "77–80",
+       "位于你 60 尺内的一名随机生物陷入{@condition 中毒|XPHB}状态，持续{@dice 1d4}小时。"
+      ],
+      [
+       "81–84",
+       "下 1 分钟内，你发出半径 30 尺的{@variantrule 明亮光照|XPHB}。任何在你 5 尺内结束其回合的生物将陷入{@condition 目盲|XPHB}状态，直至其下个回合结束。"
+      ],
+      [
+       "85–88",
+       "选择至多三名你可见的位于你 30 尺内的生物，各受到{@damage 1d10}暗蚀伤害。你恢复等于以此法造成的暗蚀伤害总和的{@variantrule 生命值|XPHB}。"
+      ],
+      [
+       "89–92",
+       "选择至多三名你可见且位于你 30 尺内的生物，各受到{@damage 4d10}闪电伤害。"
+      ],
+      [
+       "93–96",
+       "下 1 分钟内，你和位于你 30 尺内所有生物具有对穿刺伤害的{@variantrule 易伤|XPHB}。"
+      ],
+      [
+       "97–00",
+       "投掷{@dice 1d6}：骰值为 1，你恢复{@dice 2d10}{@variantrule 生命值|XPHB}；骰值为 2，你选择一名位于你 300 尺内的盟友恢复{@dice 2d10}{@variantrule 生命值|XPHB}；骰值为 3，你恢复一个已消耗的最低环阶的法术位；骰值为 4，你选择一名位于你 300 尺内的盟友恢复一个已消耗的最低环阶的法术位；骰值为 5，你重获所有已消耗的术法点；  骰值为 6，17-20 一行所述的所有效应同时作用于你身上。"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "header": 1,
+   "level": 3,
+   "name": "狂野魔法浪涌",
+   "page": 149,
+   "source": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "XPHB",
+   "translator": "不全书"
+  },
+  {
+   "ENG_name": "Bend Luck",
+   "name": "扭曲幸运",
+   "source": "XPHB",
+   "page": 149,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "XPHB",
+   "level": 6,
+   "header": 2,
+   "consumes": {
+    "ENG_name": "Sorcery Point",
+    "name": "术法点"
+   },
+   "entries": [
+    "你获得用你的狂野魔法扭曲命运的能力。当一个你能看见的生物投掷{@dice d20}进行{@variantrule D20 检定|XPHB}时，你可以在掷骰完成之后立即用一个{@variantrule 反应|XPHB}并消耗 1 术法点来骰一次{@dice 1d4}，并将结果用作加值或减值（由你决定）加到该{@dice d20}的骰值结果中。"
+   ]
+  },
+  {
+   "ENG_name": "Controlled Chaos",
+   "name": "掌控混沌",
+   "source": "XPHB",
+   "page": 149,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "XPHB",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "你获得了对狂野魔法浪涌的一定控制。每当你掷骰狂野魔法浪涌表格时，你可以掷骰两次并使用任一数值。"
+   ]
+  },
+  {
+   "ENG_name": "Tamed Surge",
+   "name": "驯服浪涌",
+   "source": "XPHB",
+   "page": 150,
+   "className": "术士",
+   "classSource": "XPHB",
+   "subclassShortName": "狂野魔法",
+   "subclassSource": "XPHB",
+   "level": 18,
+   "header": 2,
+   "entries": [
+    "你使用法术位施展一道术士法术之后，可以立即创造一种从{@table 狂野魔法浪涌|XPHB}表中选择的效应而非在其上掷骰。你可以选择表中任何除了最后一行的效应，且如果你选择的效应包含掷骰，则你必须掷骰。",
+    "此特性一经使用，直至完成{@variantrule 长休|XPHB}你都无法再次使用。"
+   ]
+  },
+  {
+   "name": "暴风魔法",
+   "className": "术士",
+   "level": 1,
+   "source": "SCAG",
+   "entries": [
+    "自1级起，当你在你的回合中施展了1环或更高环阶的法术后，你可以立刻用附赠动作引导气元素的旋风涡流环绕着你。此时，你可以飞行至多10尺，此次移动不会引发借机攻击。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "风暴之心",
+   "className": "术士",
+   "level": 6,
+   "source": "SCAG",
+   "entries": [
+    "第6级时，你获得闪电伤害与雷鸣伤害的抗性。每当你开始施展一个1环或以上，且能造成闪电或雷鸣伤害的法术时，猛烈的魔法将从你身体内爆发而出。这次爆发导致所有10尺内由你选择的所有可见生物受到等同于你术士等级一半的闪电伤害或雷鸣伤害（每次使用此能力时进行选择伤害类型）。\n（译注：是施法开始的时候，意味着法术反制无法阻止这一特性......）"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "风暴导向",
+   "className": "术士",
+   "level": 6,
+   "source": "SCAG",
+   "entries": [
+    "从6级起，你获得对你周遭气象的微妙掌控。\n如果正在下雨，你可以用一个动作，使以你为中心的20尺半径球状区域内停止下雨。你可以以一个附赠动作提前终止这一效果。\n如果正在刮风，你可以每轮使用一个附赠动作，来掌控你身边100尺半径球状区域内的风向。风将改为吹向你指定的方向，直至你的下一个回合结束。此特性无法改变风速。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "暴风狂怒",
+   "className": "术士",
+   "level": 14,
+   "source": "SCAG",
+   "entries": [
+    "从14级起，当你被一次近战攻击命中时，你可以用你的反应对攻击者造成等同于你术士等级点的闪电伤害，且攻击者必须通过一次对抗你术士法术豁免DC的力量豁免。一旦豁免失败，攻击者将被直线推开至多20尺距离。\n\n边栏：奥术施法者Arcane Spellcasters\n费伦世界的一般居民很难区分开术士、魔契师、和法师。绝大部分巫师Mage 相比其他奥术施法者而言，看起来都只会有些许微妙的微小差别——魔法就是魔法，管他什么意思——不过在绝大部分的情况下，术士、法师、以及魔契师都会互相尊重的魔法，将他们视为同样对技艺有所追求之人，并理解对方使用那些力量。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "清风之灵",
+   "className": "术士",
+   "level": 18,
+   "source": "SCAG",
+   "entries": [
+    "18级时，你得到了免疫闪电伤害与雷鸣伤害的能力。\n同样的，你还获得了60尺的魔法性的飞行速度。以一个动作，你可以将你的飞行速度降低至30尺，并可以指定在你周围30尺范围内的至多 3+你的魅力调整值个生物。你赋予被指定的生物30尺魔法性的飞行速度。飞行速度的降低与赋予的飞行速度均持续1小时。\n一旦你以此降低了速度（不论是否赋予给了其他人），直到你完成一次长休或短休为止你都不能再次使用这一动作。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "当你达到相应的术士等级时，你习得下表中的额外法术，如下方时械法术表所示的那样。这些法术对你是术士法术，但不计入你术士已知法术数量。",
+   "className": "术士",
+   "level": 1,
+   "source": "TCE",
+   "entries": [
+    "每当你提升术士等级时，你可以选择一个环数相同的新法术来替换你因此特性习得的一个法术。该法术必须为术士、魔契师、或法师法术列表中的一个防护学派或变化学派法术。"
+   ],
+   "subclassShortName": "时械之魂"
+  },
+  {
+   "name": "你与绝对秩序之位面的联系使你能重整混沌的时刻。当你60尺内一个你可见的生物即将带着优势或是劣势进行一次检定时，你可以用反应使这次检定免受优势或劣势的影响。",
+   "className": "术士",
+   "level": 1,
+   "source": "TCE",
+   "entries": [
+    "你可以使用此能力的次数等同于你的熟练加值。当你完成一次长休后，你重获全部已消耗的使用次数。"
+   ],
+   "subclassShortName": "时械之魂"
+  },
+  {
+   "name": "你可以利用事物的壮丽联系为一个生物激发闪烁的秩序之盾。以一个动作，你可以消耗1~5点术法点来创造出一个环绕你或30尺内的一个可见生物的魔法屏障。此屏障将一直保持存在，直到你完成一次长休，或直至你再次使用此能力。",
+   "className": "术士",
+   "level": 6,
+   "source": "TCE",
+   "entries": [
+    "屏障具有等同于你所消耗术法点数量的d8骰。当被守护的生物受到伤害时，其可以消耗任意数量的这些d8骰，投掷它们，并使该伤害减少掷出结果合计的数值。"
+   ],
+   "subclassShortName": "时械之魂"
+  },
+  {
+   "name": "你获得了将你的意识和机械境无尽的计算达成同步的能力。以一个附赠动作，你可以在1分钟内进入此种状态。在此期间，对你进行的攻击免受优势的影响，且每当你进行一次攻击检定、属性检定、或豁免检定时，你可以将d20掷出的9或以下的骰值视为10。",
+   "className": "术士",
+   "level": 14,
+   "source": "TCE",
+   "entries": [
+    "一旦你使用了此能力，直到你完成一次长休前你都不能再次使用它。你也可以消耗5点术法点以再次使用此能力。"
+   ],
+   "subclassShortName": "时械之魂"
+  },
+  {
+   "name": "你召唤出秩序的精魂以抹除周遭的混乱。以一个动作，你在以你为中心30尺立方空间的范围内召唤出一些精魂。这些精魂看起来像是魔冢或你选择的其他构装生物，其没有实体也无法被摧毁，并在消失前使立方范围内产生以下效应",
+   "className": "术士",
+   "level": 18,
+   "source": "TCE",
+   "entries": [
+    "- 精魂合计提供至多回复100生命值，由你随意分配给范围内任意数量的生物。\n\n- 范围内损坏的物件将被立即修复。\n\n- 你选择范围内任意数量的生物或物件，其承受的任何6环或以下的法术结束。\n\n一旦你使用了此能力，直到你完成一次长休前你都不能再次使用它。你也可以消耗7点术法点以再次使用此能力。"
+   ],
+   "subclassShortName": "时械之魂"
+  },
+  {
+   "name": "当你达到相应的术士等级时，你习得下表中的额外法术，如下方灵能法术表所示的那样。这些法术对你是术士法术，但不计入你术士已知法术数量。",
+   "className": "术士",
+   "level": 1,
+   "source": "TCE",
+   "entries": [
+    "每当你提升术士等级时，你可以选择一个环数相同的新法术来替换你因此特性习得的一个法术。该法术必须为术士、魔契师、或法师法术列表中的一个预言学派或惑控学派法术。"
+   ],
+   "subclassShortName": "畸变心智"
+  },
+  {
+   "name": "你能够在自己与他人的意识中构建一道心灵感应的链接。以一个附赠动作，你可以选择30尺内一个你可见的生物创造这一链接。链接能使你与其能够通过心灵感应方式进行交流，但交流时，你们之间距离的里数不超过你的魅力调整值里（至少1里）。你们必须使用互相知晓的语言进行心灵交流，才能使其理解你通过心灵感应传达的话语。",
+   "className": "术士",
+   "level": 1,
+   "source": "TCE",
+   "entries": [
+    "心灵感应的链接持续等同于你术士等级的分钟数。如果你陷入失能、死亡、或你使用此能力与其他生物构建链接时，这一链接会提前结束。"
+   ],
+   "subclassShortName": "畸变心智"
+  },
+  {
+   "name": "当你施展一个灵能法术特性中的1环或更高环阶的法术时，你可以改为使用等同于该法术环数数量的术法点而非消耗法术位施放该法术。你依然可以用法术位正常施展这些法术。",
+   "className": "术士",
+   "level": 6,
+   "source": "TCE",
+   "entries": [
+    "当你通过此能力施放法术时，你无视该法术施法需要的言语成分或姿势成分。你同时无视该法术需要的不会消耗的材料成分。"
+   ],
+   "subclassShortName": "畸变心智"
+  },
+  {
+   "name": "你能够释放出潜藏在你内部扭曲的真实形态。以一个附赠动作，你使用1点或更多的术法点以魔法性地转变形态，持续10分钟。你每消耗1术法点，你便可以从下述内容中选择一项，在转变形态期间你同时获得你选择的每项效应的增益",
+   "className": "术士",
+   "level": 14,
+   "source": "TCE",
+   "entries": [
+    "- 你能看见周围60尺内的隐形生物，前提是其对你来说不处于全身掩护。你的眼睛也会变成黑色、或是变成扭动的感官触须。\n\n- 你获得等同于你行走速度的飞行速度，并能悬浮。当你飞行时，你的皮肤表面流出发光的粘液、或是散发出异界的光芒。\n\n- 你获得等同于你两倍行走速度的游泳速度，且你能在水下呼吸。不止如此，你的脖子两侧会长出鳃、或鳃在耳后呈扇状翻出、或你的手指变成蹼趾、或是有卷曲的纤毛从你的衣服底下延展出来。\n\n- 你的身体和你携带的装备都变得柔韧粘滑。你能够轻松穿过最窄1寸宽的狭窄空间而不用挤进去，且你可以消耗5尺移动速度以脱离非魔法的束缚状态、或被擒抱的状态。"
+   ],
+   "subclassShortName": "畸变心智"
+  },
+  {
+   "name": "你能够解放你的奇异力量，从而制造扭曲空间的异常现象。以一个动作，你可以传送到120尺内你可见的一个未被占据的位置，然后你消失位置30尺内的生物必须进行一次力量豁免，豁免失败将受3d10力场伤害并被立即拉向你原本的位置，并停在最靠近的一处未占据空间内，豁免成功只受一半伤害，且不会被如此拉扯。",
+   "className": "术士",
+   "level": 18,
+   "source": "TCE",
+   "entries": [
+    "一旦你使用了此特性，直到你在完成一次长休前你都不能再次使用它。你也可以消耗5点术法点以再次使用此能力。"
+   ],
+   "subclassShortName": "畸变心智"
+  },
+  {
+   "name": "混乱之潮",
+   "className": "术士",
+   "level": 1,
+   "source": "PHB",
+   "entries": [
+    "第1级起，你可以驾驭机运与混乱的力量，以使一次攻击检定，属性检定或豁免检定具有优势。此后，你必须完成一次长休后才能再次使用该特性。\n在你重获使用混乱之潮的能力前，你每次施展一个不低于一环的术士法术后，DM都可以要求你立刻骰一次狂野魔法浪涌效果。此后，你重获使用该特性的能力。"
+   ],
+   "subclassShortName": "狂野魔法"
+  },
+  {
+   "name": "操控混沌",
+   "className": "术士",
+   "level": 14,
+   "source": "PHB",
+   "entries": [
+    "第14级起，你获得了对狂野魔法涌动的些微掌控。你每次骰狂野魔法浪涌效果时，可以骰两次检定再自选其一生效。"
+   ],
+   "subclassShortName": "狂野魔法"
+  },
+  {
+   "name": "真龙姿态",
+   "className": "术士",
+   "level": 18,
+   "source": "PHB",
+   "entries": [
+    "18级起，你可以导引你巨龙先祖的恐怖气息，使你周围的生物感到震撼或恐慌。你可以用一个动作和5术法点引导这股力量，并张开一个60尺范围的震撼（或恐惧）灵光。在1分钟内，只要你保持专注（等同于施法时进行专注），在灵光范围内开始其回合的每个敌对生物都必须进行一次感知豁免，豁免失败则被魅惑（震撼灵光）或陷入恐慌（恐惧灵光）直至灵光消失。豁免成功者将在随后的24小时内免疫你的灵光效应。"
+   ],
+   "subclassShortName": "龙族血脉"
+  },
+  {
+   "name": "时械法术",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你到达时械法术表中特定的术士等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "时械术法"
+  },
+  {
+   "name": "归复平衡",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你与绝对秩序之位面的联系使你能重整混沌的时刻。当你60尺内一个你可见的生物即将带着优势或是劣势进行一次检定时，你可以用反应使这次检定免受优势或劣势的影响。\n你可以使用此能力的次数等同于你的魅力调整值（至少1次）。当你完成一次长休时，你重获全部已消耗的使用次数。"
+   ],
+   "subclassShortName": "时械术法"
+  },
+  {
+   "name": "律令之壁",
+   "className": "术士",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你可以利用世界的均衡之力为一个生物激发闪烁的秩序之盾。以一个魔法动作，你可以消耗1~5点术法点来创造出一个环绕你或30尺内的一个可见生物的魔法屏障。屏障具有等同于你所消耗术法点数量的d8骰。当被守护的生物受到伤害时，其可以消耗任意数量的这些d8骰，投掷它们，并使该伤害减少掷出结果合计的数值。\n此屏障将一直保持存在，直到你完成一次长休或直至你再次使用该特性。"
+   ],
+   "subclassShortName": "时械术法"
+  },
+  {
+   "name": "序列意识",
+   "className": "术士",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "你获得了将你的意识和机械境无尽的计算达成同步的能力。以一个附赠动作，你可以在1分钟内进入此种状态。在此期间，对你进行的攻击免受优势的影响，且每当你进行一次d20检定时，你可以将d20掷出的9或以下的骰值视为10。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗5点术法点（无需动作）重置此特性的使用权。"
+   ],
+   "subclassShortName": "时械术法"
+  },
+  {
+   "name": "时械矩阵",
+   "className": "术士",
+   "level": 18,
+   "source": "XPHB",
+   "entries": [
+    "你召唤出秩序的精魂以抹除周遭的混乱。以一个魔法动作，你在以你为源点的30尺立方空间范围内召唤出一些精魂。这些精魂看起来像是魔冢或你选择的其他构装，其没有实体也无法被摧毁，并在消失前使立方范围内产生以下效应。此特性一经使用，直到完成一次长休前都不能再次使用。你也可以消耗7点术法点（无需动作）以恢复此特性的使用次数。\n治愈Heal。精魂合计提供至多恢复100生命值，由你随意分配给范围内任意数量的生物。\n修复Repair。范围内损坏的物件将被立即修复。\n破法Dispel。你选择范围内任意数量的生物或物件，其承受的任何六环或以下的法术结束。"
+   ],
+   "subclassShortName": "时械术法"
+  },
+  {
+   "name": "狂野魔法浪涌",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你施法时会释放出未经塑造的魔法浪涌。一回合一次，你每次消耗法术位施展一道术士法术后，可以立刻骰一次d20。如果你骰出20，则在狂野魔法浪涌表上掷骰以确定随机魔法效应。\n若掷出的魔法效应是一道法术，该法术因其过于狂野而无法受你的超魔法影响。"
+   ],
+   "subclassShortName": "狂野术法"
+  },
+  {
+   "name": "混乱之潮",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你可以驾驭机运的力量，以使一次自身的D20检定具有优势。你必须在掷出d20之前决定是否使用此特性。此特性一经使用，在你完成长休后才能再次被使用。\n此特性在你使用法术位施展术士法术时也会恢复可用，但此时你会自动于狂野魔法浪涌表上掷骰。"
+   ],
+   "subclassShortName": "狂野术法"
+  },
+  {
+   "name": "扭曲幸运",
+   "className": "术士",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你获得用你的狂野魔法扭曲命运的能力。当一个你能看见的生物投掷d20进行D20检定时，你可以在掷骰完成之后立即用一个反应并消耗1术法点来骰一次1d4，并将掷骰结果作为加值或减值（由你决定）附加到d20掷骰中。"
+   ],
+   "subclassShortName": "狂野术法"
+  },
+  {
+   "name": "受控混沌",
+   "className": "术士",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "你获得了对狂野魔法涌动的些微掌控。你每次骰狂野魔法浪涌表时，可以骰两次再自选其一生效。"
+   ],
+   "subclassShortName": "狂野术法"
+  },
+  {
+   "name": "驯服浪涌",
+   "className": "术士",
+   "level": 18,
+   "source": "XPHB",
+   "entries": [
+    "你使用法术位施展一道术士法术之后，可以立即创造一种从狂野魔法浪涌表中选择的效应而非在其上掷骰。你可以选择表中任何除了最后一行的效应，且如果你选择的效应包含掷骰，则你必须掷骰。\n此特性一经使用，直至完成长休你都无法再次使用。"
+   ],
+   "subclassShortName": "狂野术法"
+  },
+  {
+   "name": "灵能法术",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你到达灵能法术表中特定的术士等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "畸变术法"
+  },
+  {
+   "name": "传心谈话",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "你能够在自己与他人的意识中构建一道心灵感应的链接。以一个附赠动作，你可以选择30尺内一个你可见的生物创造这一链接。链接能使你与其能够通过心灵感应方式进行交流，但交流时，你们之间距离的里数不超过你的魅力调整值里（至少1里）。你们必须使用互相知晓的语言进行心灵交流，才能使其理解你通过心灵感应传达的话语。\n心灵感应的链接持续等同于你术士等级的分钟数。这一链接在你与另一生物构建链接时提前结束。"
+   ],
+   "subclassShortName": "畸变术法"
+  },
+  {
+   "name": "灵能术法",
+   "className": "术士",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "当你施展一道 灵能法术特性中的一环或更高环阶的法术时，你可以改为使用等同于该法术环数数量的术法点而非消耗法术位施展该法术。你消耗术法点施放法术时，你无视该法术施法需要的言语成分或姿势成分。你同时无视该法术需要的不会消耗且未给出具体价值的材料成分。"
+   ],
+   "subclassShortName": "畸变术法"
+  },
+  {
+   "name": "心灵防御",
+   "className": "术士",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你获得心灵伤害的抗性。此外，你在避免和结束魅惑状态与恐慌状态的豁免检定上具有优势。"
+   ],
+   "subclassShortName": "畸变术法"
+  },
+  {
+   "name": "血肉启示",
+   "className": "术士",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "你能够释放出潜藏在你内部扭曲的真实形态。以一个附赠动作，你使用1点或更多的术法点以魔法性地转变形态，持续10分钟。你每消耗1术法点，你便可以从下述内容中选择一项，在转变形态期间你同时获得你选择的每项效应的增益：\n水生适应Aquatic Adaptation。你获得等同于你两倍行走速度的游泳速度，且你能在水下呼吸。不止如此，你的脖子两侧会长出鳃、或鳃在耳后呈扇状翻出、或你的手指变成蹼趾、或是有卷曲的纤毛从你的衣服底下延展出来。\n闪耀飞翔Glistening Flight。你获得等于你速度的飞行速度，并能悬浮。当你飞行时，你的皮肤表面流出发光的粘液、或是散发出异界的光芒。\n识破隐形See the Invisible。你能看见周围60尺内处于隐形状态的生物，前提是其对你来说不处于全身掩护。你的眼睛也会变成黑色、或是变成扭动的感官触须。\n蠕行移动Wormlike Movement。你的身体和你携带的装备都变得柔韧粘滑。你能够轻松穿过最窄1寸宽的狭窄空间而不用挤进去，且你可以消耗5尺移动力以脱离非魔法的束缚或受擒状态。"
+   ],
+   "subclassShortName": "畸变术法"
+  },
+  {
+   "name": "扭曲内爆",
+   "className": "术士",
+   "level": 18,
+   "source": "XPHB",
+   "entries": [
+    "你能够释放出扭曲空间的异常现象。以一个魔法动作，你传送到120尺内你可见的一个未被占据的位置，然后你消失位置30尺内的每个生物必须进行一次对抗你施法DC的力量豁免，豁免失败将受3d10力场伤害并被立即拉向你原本的位置，并停在最靠近的一处未占据空间内，豁免成功只受半伤。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗5点术法点（无需动作）重置此特性的使用权。"
+   ],
+   "subclassShortName": "畸变术法"
+  },
+  {
+   "name": "龙族体魄",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "魔法在你的体内流动，外化为龙族赠礼体现出的生理特质。你的生命值上限提升3，此后每提升一个术士等级，都将再次提升1。\n你部分皮肤覆盖着龙鳞样式的柔鳞。未着装护甲时，你的基础AC等于10+你的敏捷调整值＋你的魅力调整值。"
+   ],
+   "subclassShortName": "龙族术法"
+  },
+  {
+   "name": "龙族法术",
+   "className": "术士",
+   "level": 3,
+   "source": "XPHB",
+   "entries": [
+    "当你到达龙族法术表中特定的术士等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "龙族术法"
+  },
+  {
+   "name": "元素亲和",
+   "className": "术士",
+   "level": 6,
+   "source": "XPHB",
+   "entries": [
+    "你的龙族魔法与龙族相关的伤害类型有较强的亲和力。选择以下伤害类型之一：强酸、寒冷、火焰、闪电或毒素。\n你获得对所选伤害类型的抗性，且当你施展造成那种伤害的法术时，你可以将你的魅力调整值加到那个法术的其中一次伤害掷骰中。"
+   ],
+   "subclassShortName": "龙族术法"
+  },
+  {
+   "name": "龙翼",
+   "className": "术士",
+   "level": 14,
+   "source": "XPHB",
+   "entries": [
+    "以一个附赠动作，你可以在背后张开一对龙翼。龙翼持续1小时，若你选择将其解散（无需动作）则会提前终止，在龙翼持续期间你获得60尺飞行速度。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗3点术法点（无需动作）重置此特性的使用权。"
+   ],
+   "subclassShortName": "龙族术法"
+  },
+  {
+   "name": "龙族伙伴",
+   "className": "术士",
+   "level": 18,
+   "source": "XPHB",
+   "entries": [
+    "你可以无需材料成分施展*龙类召唤术Summon Dragon*。你可以无需法术位施展它一次，随后你在完成一次长休后重获以此法施展它的能力。\n每当你开始施展此法术时，都可以修改此法术使其无需专注。以此法施展时，此法术的持续时间将变为1分钟。"
+   ],
+   "subclassShortName": "龙族术法"
+  },
+  {
+   "name": "幽暗之瞳",
+   "className": "术士",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "自1级起，你具有120尺范围的黑暗视觉。\n当你在此职业上达到3级时，你将习得法术 *黑暗术darkness* ，其不计入你术士已知法术数量上限中。此外，你可以花费2点术法点或1枚法术位来施展这个法术。如果你用术法点施展这个法术，你将能够看穿该法术所制造出来的黑暗。"
+   ],
+   "subclassShortName": "幽影魔法"
+  },
+  {
+   "name": "幽暗之瞳",
+   "className": "术士",
+   "level": 3,
+   "source": "XGE",
+   "entries": [
+    "自1级起，你具有120尺范围的黑暗视觉。\n当你在此职业上达到3级时，你将习得法术 *黑暗术darkness* ，其不计入你术士已知法术数量上限中。此外，你可以花费2点术法点或1枚法术位来施展这个法术。如果你用术法点施展这个法术，你将能够看穿该法术所制造出来的黑暗。"
+   ],
+   "subclassShortName": "幽影魔法"
+  },
+  {
+   "name": "终焉之力",
+   "className": "术士",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "1级起，你存在于生和死之间的灰色地带，使得你难以被击败。当你受到伤害，导致生命值被降至0点时，你可以通过一次魅力豁免（ DC为 5+该次所受伤害）。若豁免成功，作为代替你的生命值降至1点。\n若将你的生命值降为0的伤害是光耀伤害，或形成了重击时，你无法使用此特性。\n当你成功通过这一豁免后，直到完成一次长休前你都不能再次使用此特性。"
+   ],
+   "subclassShortName": "幽影魔法"
+  },
+  {
+   "name": "凶兆猎犬",
+   "className": "术士",
+   "level": 6,
+   "source": "XGE",
+   "entries": [
+    "当你达到6级时，你获得了一种能力，那是能驱使嚎叫的幽暗生物来折磨你敌人的能力。你可以以一个附赠动作，花费3点术法点，选择一个120尺内你可见的生物作为目标，魔法性的召唤出一只凶兆猎犬去猎杀它。凶兆猎犬使用恐狼的数据面板，但具有以下变化：\n· 猎犬被视为一只中型怪兽，而非大型野兽。\n· 当它出现时，它会获得等同于你术士等级一半的临时生命值。\n· 猎犬可以像穿越困难地形一样穿过其他生物或物件。但如果当猎犬的回合结束时处于某个物件内，它会受到5点的力场伤害。\n· 当猎犬的回合开始时，自动知晓猎物的所在。如果目标此时隐藏了起来——对于猎犬来说，它将不再视为隐藏。\n\n猎犬被召唤时出现在所选目标周围30尺范围内一处由你选择的未占据空间内。你需要为猎犬单独投掷先攻。当猎犬行动时，它只能以最短路径冲向它的目标猎物，以及只能将动作用于攻击猎物。猎犬可以使用借机攻击，但同样的，其借机攻击的对象只能是猎物。此外，当凶兆猎犬身处猎物周围5尺范围内时，猎物对抗你所施展的任何法术所进行的豁免都将具有劣势。\n凶兆猎犬会在5分钟后消失，如果它的生命值降至0点或猎物的生命值降至0点，它将提前消失。"
+   ],
+   "subclassShortName": "幽影魔法"
+  },
+  {
+   "name": "幽影漫步",
+   "className": "术士",
+   "level": 14,
+   "source": "XGE",
+   "entries": [
+    "在14级时，你得到了在无数阴影间隙之间穿梭的能力。若你处于微光或黑暗，你便可以用附赠动作，魔法性的将自己传送至120尺内另一处未被占据的可见空间中。以此传送的目标空间必须同样处于微光或黑暗中。"
+   ],
+   "subclassShortName": "幽影魔法"
+  },
+  {
+   "name": "幽暗之形",
+   "className": "术士",
+   "level": 18,
+   "source": "XGE",
+   "entries": [
+    "自18级起，你可以花费6点术法点，以一个附赠动作，魔法性的将自己转变为幽暗之形。在此形态下，你具有力场与光耀之外的所有伤害类型的抗性，且你可以像穿越困难地形一般穿过其他生物或物件。若回合结束时你处于某个物件内，你将会受到5点的力场伤害。\n这一形态将持续1分钟。若你陷入失能Incapacitated 、你死亡、或你用附赠动作来主动解除它，则这一形态将提前结束。"
+   ],
+   "subclassShortName": "幽影魔法"
+  },
+  {
+   "name": "风语者",
+   "className": "术士",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "你操纵的奥术魔法浸染着气元素之力。你可以说、读、写原初语。了解这种语言同时也允许你与以下这些方言的使用者互相理解：水族语、气族语、火族语、以及土族语。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "暴风魔法",
+   "className": "术士",
+   "level": 1,
+   "source": "XGE",
+   "entries": [
+    "自1级起，当你在你的回合中施展了1环或更高环阶的法术后，你可以立刻用附赠动作引导气元素的旋风涡流环绕着你。此时，你可以飞行至多10尺，此次移动不会引发借机攻击。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "风暴之心",
+   "className": "术士",
+   "level": 6,
+   "source": "XGE",
+   "entries": [
+    "第6级时，你获得闪电伤害与雷鸣伤害的抗性。每当你开始施展一个1环或以上，且能造成闪电或雷鸣伤害的法术时，猛烈的魔法将从你身体内爆发而出。这次爆发导致所有10尺内由你选择的所有可见生物受到等同于你术士等级一半的闪电伤害或雷鸣伤害（每次使用此能力时进行选择伤害类型）。\n（译注：是施法开始的时候，意味着法术反制无法阻止这一特性......）"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "风暴导向",
+   "className": "术士",
+   "level": 6,
+   "source": "XGE",
+   "entries": [
+    "从6级起，你获得对你周遭气象的微妙掌控。\n如果正在下雨，你可以用一个动作，使以你为中心的20尺半径球状区域内停止下雨。你可以以一个附赠动作提前终止这一效果。\n如果正在刮风，你可以每轮使用一个附赠动作，来掌控你身边100尺半径球状区域内的风向。风将改为吹向你指定的方向，直至你的下一个回合结束。此特性无法改变风速。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "暴风狂怒",
+   "className": "术士",
+   "level": 14,
+   "source": "XGE",
+   "entries": [
+    "从14级起，当你被一次近战攻击命中时，你可以用你的反应对攻击者造成等同于你术士等级点的闪电伤害，且攻击者必须通过一次对抗你术士法术豁免DC的力量豁免。一旦豁免失败，攻击者将被直线推开至多20尺距离。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "清风之灵",
+   "className": "术士",
+   "level": 18,
+   "source": "XGE",
+   "entries": [
+    "18级时，你得到了免疫闪电伤害与雷鸣伤害的能力。\n同样的，你还获得了60尺的魔法性的飞行速度。以一个动作，你可以将你的飞行速度降低至30尺，并可以指定在你周围30尺范围内的至多 3+你的魅力调整值个生物。你赋予被指定的生物30尺魔法性的飞行速度。飞行速度的降低与赋予的飞行速度均持续1小时。\n一旦你以此降低了速度（不论是否赋予给了其他人），直到你完成一次长休或短休为止你都不能再次使用这一动作。"
+   ],
+   "subclassShortName": "风暴术法"
+  },
+  {
+   "name": "本源符文",
+   "className": "术士",
+   "level": 1,
+   "source": "TR",
+   "entries": [
+    "1级起，你的身体开始以皮肤表面符文的形式释放出你天生的魔法。最初，你具有1个本源符文，而每当你在职业升级时你都将获得一个额外的符文。这些符文可以显现在你身体上任何地方，但最初的那枚通常会出现在你的前额。你的本源符文在失活后将暂时变为不可见。\n在你消耗了任意数量术法点的回合结束时，与其数量相同的本源符文会储藏的能量，闪烁起来，进入蓄能状态。你能够使用这些蓄能过的符文来为你的符文之子职业特性提供力量。此外，以一个附赠动作，你可以消耗一个术法点，来将两个符文变为蓄能状态。\n如果你没有术法点也没有蓄能符文，你可以以一个动作让一个符文蓄能。\n如果你具有5个或更多的蓄能符文，你会发出5尺半径的明亮光照以及那之外的5尺的微光光照。\n如果你消耗一个蓄能符文来使用你的符文之子特性，这个本源符文会变回失活状态。在你结束一次长休后，所有蓄能符文都会变回失活状态。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "符文魔法",
+   "className": "术士",
+   "level": 1,
+   "source": "TR",
+   "entries": [
+    "自1级起，当你达到相应的术士等级时，你习得符文魔法表中的额外法术。这些法术对你而言视为术士法术，且不受术士表上已知法术一栏的数量限制。\n每当你提升术士等级时，你可以选择一个环数相同的新法术来替换你因此特性习得的一个法术。该法术必须为术士、魔契师、或法师法术列表中的一个防护系或变化系法术。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "坚盾刻文",
+   "className": "术士",
+   "level": 1,
+   "source": "TR",
+   "entries": [
+    "1级起，你能释放储存在符文中的奥法力量来吸收或偏折危险的攻击。受到伤害时，你能以一个反应消耗任意数量的蓄能符文。投掷消耗符文数量枚的d6骰，从伤害中减去骰值之和点。\n当你达到6级后，你能以一个动作触碰一个生物并消耗至多3个蓄能符文来为其灌输你的防护能量。接下来的一小时内，该生物下一次受到伤害时，它投掷你消耗的蓄能符文数量的d6骰并减少等于骰值之和点的伤害。你无法将这一力量传递给已经在坚盾刻文Glyph of Aegis 保护下的生物。\n你坚盾刻文Glyph of Aegis 的骰子在14级时变为d8。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "符印强化",
+   "className": "术士",
+   "level": 6,
+   "source": "TR",
+   "entries": [
+    "6级起，你能引入符文的力量来临时强化你的肉体能力。当你进行一次力量、敏捷、或体质检定时，你能用反应消耗一枚蓄能符文来使本次检定具有优势。\n此外，当你被迫进行一次力量、敏捷、或体质豁免时，你同样能用反应来消耗一枚蓄能符文来使本次豁免具有优势。不过一旦你在豁免上使用了本特性，直到你完成一次长休前你都无法再次在豁免上这么做。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "显现刻印",
+   "className": "术士",
+   "level": 6,
+   "source": "TR",
+   "entries": [
+    "同样6级起，你能揭露周围隐藏的符号和魔法。以一个动作，你消耗一枚蓄能符文来揭露你周围60尺内隐藏或隐性的陷阱、伪装、符文、结界、探知器或刻文等。接下来的一分钟内，它们将散发出5尺半径的微弱光芒。\n你在辨认以这种方式发现的任何魔法的智力（奥秘）检定中具有优势。如果被你揭露出来的这些图像它们以你不知晓的语言记载了什么内容，在它们发光期间你可以理解这些图像记载了什么内容，如同你知晓那门语言一般。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "符文涌流",
+   "className": "术士",
+   "level": 14,
+   "source": "TR",
+   "entries": [
+    "达到14级后，你能传输符文的能量来击破敌人牢不可破的防御。当你施展一个法术时，你可以消耗两枚蓄能符文来令法术造成力场伤害，而非其原本的伤害类型。此外，所有被选为该法术目标的生物以及身处法术区域效应内的生物都必须成功通过DC等同于你法术豁免DC的力量豁免，否则将应击倒地Prone 或被推离法术源点最多15尺（由你选择）。\n一旦你使用了此特性，直到你完成一次短休或长休前你都无法再次使用它。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "奥法化身",
+   "className": "术士",
+   "level": 18,
+   "source": "TR",
+   "entries": [
+    "18级起，你能以一个附赠动作消耗一枚蓄能符文使自己化作由纯净魔法组成的存在。处于化身形态期间，你获得以下增益：\n\n- 你获得60尺飞行速度。\n\n- 生物为对抗你的术士法术所做的豁免检定具有劣势。\n\n- 你对法术造成的伤害具有抗性。\n\n- 当你施展一个1环或更高的法术时，你恢复等同于该法术环位点的生命值。\n\n你的化身形态持续至你的这一回合结束。不过，你也可以在回合结束时消耗一枚蓄能符文（无需动作）来将持续时间延长至你的下回合结束。当你的化身形态结束时，你陷入震慑，直到你的下个回合结束。\n一旦你使用了此特性，直到你完成一次长休前你都无法再次使用它。"
+   ],
+   "subclassShortName": "符文之子"
+  },
+  {
+   "name": "血源",
+   "className": "术士",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "你具有一份名为血源的生命能量储备，可以用来增强你的魔法，并驱动该子职的其他能力。当你对一个生物造成伤害或恢复其生命值时，你可以消耗你的血源，为其中一个目标的结果总值加上1d8。\n当你完成长休或当你一次性对一名生物造成10或更多的暗蚀伤害时，你重置已消耗的血源。"
+   ],
+   "subclassShortName": "猩红术法"
+  },
+  {
+   "name": "猩红法术",
+   "className": "术士",
+   "level": 3,
+   "source": "WYM",
+   "entries": [
+    "当你达到猩红法术表中所述的相应术士等级时，你视为总是准备了列出的对应法术。"
+   ],
+   "subclassShortName": "猩红术法"
+  },
+  {
+   "name": "身化血池",
+   "className": "术士",
+   "level": 6,
+   "source": "WYM",
+   "entries": [
+    "你可以使用附赠动作消耗你的血源，将你与你穿戴或携带的一切魔法性地溶解为一滩血池，持续1小时。若你生命值降至0或你选择结束（无需动作），则变形提前结束。\n在你身化血池期间，你使用你的游戏数据，但具有如下变化：\n\n- 你的速度变为10尺。\n\n- 你获得等于你速度的攀爬速度和游泳速度，并且你可以在难以攀爬的表面上攀爬，包括沿着天花板移动，且无需为此进行属性检定。\n\n- 你具有钝击、穿刺和挥砍伤害抗性。\n\n- 你免疫倒地状态。\n\n- 你在力量、敏捷和体质豁免中具有优势。\n\n- 你可以穿过小洞、窄缝、乃至裂隙。\n\n- 你可以进入并占据其他生物的空间。\n\n- 你不能放下、使用或以其他方式与你正在携带或持握的任何东西互动。\n\n- 你不能说话、操作物件、攻击或施展法术。"
+   ],
+   "subclassShortName": "猩红术法"
+  },
+  {
+   "name": "殷红生机",
+   "className": "术士",
+   "level": 6,
+   "source": "WYM",
+   "entries": [
+    "你对暗蚀伤害具有抗性。此外，当你完成一次短休时，你可以消耗你的血源，使你的力竭等级降低1级（如果有）。"
+   ],
+   "subclassShortName": "猩红术法"
+  },
+  {
+   "name": "汲命",
+   "className": "术士",
+   "level": 14,
+   "source": "WYM",
+   "entries": [
+    "你可以汲取自身的生命精粹来为你的魔法提供能量。你可以使用附赠动作消耗一枚生命骰，并选择以下增益之一。\n沸血Blood Boil。 你重置血源的使用权。\n猩红脉动Crimson Pulse。 你消耗你的血源，使你在本回合不消耗术法点地应用的下一次超魔法选项。"
+   ],
+   "subclassShortName": "猩红术法"
+  },
+  {
+   "name": "血宴",
+   "className": "术士",
+   "level": 18,
+   "source": "WYM",
+   "entries": [
+    "你对生命精华的渴求已无法满足。你可以使用魔法动作释放出鲜血触须，鞭打你周边30尺范围内你选择的任何生物。目标必须进行一次体质豁免，豁免失败则受到5d8暗蚀伤害，豁免成功则仅受一半伤害。当你使用该动作时，如果你的血源已被消耗，则目标在该豁免检定中具有劣势。如果至少一个生物受到血宴的伤害，则你恢复等同于伤害掷骰结果的生命值。\n一旦你使用了此特性，则直至你完成一次长休前，都无法再次使用。你也可以消耗5术法点来重置该特性的使用权。"
+   ],
+   "subclassShortName": "猩红术法"
+  },
+  {
+   "name": "天赋黑暗法术",
+   "className": "术士",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "当你到达天赋黑暗法术表中特定的术士等级时，你就始终准备了表中对应的法术："
+   ],
+   "subclassShortName": "饥欲之暗"
+  },
+  {
+   "name": "幽影之魂",
+   "className": "术士",
+   "level": 3,
+   "source": "THC",
+   "entries": [
+    "你内在的黑暗使你能够摒弃光明。你获得60尺黑暗视觉。若你已有黑暗视觉，则其范围额外增加60尺。此外，只要你没有陷入目盲或失能状态，你就可以看穿由你天赋黑暗特性所创造的魔法黑暗。"
+   ],
+   "subclassShortName": "饥欲之暗"
+  },
+  {
+   "name": "与暗为友",
+   "className": "术士",
+   "level": 6,
+   "source": "THC",
+   "entries": [
+    "当你施展任何来自你天赋黑暗特性的法术时，你可以选择至多等同于你魅力调整值的生物（至少一个）。这些被选中的生物在接下来1分钟内能够看穿你创造的任何魔法黑暗。"
+   ],
+   "subclassShortName": "饥欲之暗"
+  },
+  {
+   "name": "纯然黑暗",
+   "className": "术士",
+   "level": 14,
+   "source": "THC",
+   "entries": [
+    "当你施展任何来自你天赋黑暗特性的、能创造一片黑暗区域的法术时，黑暗视觉与盲视都无法在该法术区域内生效。"
+   ],
+   "subclassShortName": "饥欲之暗"
+  },
+  {
+   "name": "与暗同体",
+   "className": "术士",
+   "level": 18,
+   "source": "THC",
+   "entries": [
+    "你内在的黑暗因饥欲而翻涌，并使你蜕变。你转化为一种介于现实与阴影之间的存在。在你的回合中，你处于隐形状态，且无法被真实视觉或盲视所感知。只要你在该回合中尚未移动过，你便可以传送至多30尺，到达一处你可见的未占据空间；使用此能力后，你的速度降为0，直至当前回合结束。"
+   ],
+   "subclassShortName": "饥欲之暗"
+  },
+  {
+   "name": "踏沙者",
+   "className": "术士",
+   "level": 1,
+   "source": "GTS",
+   "entries": [
+    "在你第1级选择该起源开始，你可以无视由沙子造成的困难地形，且无需任何防护就能承受高达150华氏度的高温。"
+   ],
+   "subclassShortName": "荒漠之魂"
+  },
+  {
+   "name": "飞沙走石",
+   "className": "术士",
+   "level": 1,
+   "source": "GTS",
+   "entries": [
+    "从1级起，你可以将体内的魔法沙暴显化为附近的旋风。当你在自己回合施展1环或更高环级的法术时，你可以使用一个附赠动作在距你30尺内一个你能看见的位置创造一个5尺立方的风暴。范围内的大型或更小体型生物必须进行一次对抗你术士法术豁免DC的力量豁免。豁免失败的生物若为中型或更小体型则会被推动最远10尺（由你选择方向），若为大型体型则会被推动5尺。\n当你在本职业达到6级时，豁免失败的生物还会受到1d8钝击伤害或1d8火焰伤害（由你选择）。当你在本职业达到特定等级时，伤害会增加：14级时增加至2d8，18级时增加至3d8。"
+   ],
+   "subclassShortName": "荒漠之魂"
+  },
+  {
+   "name": "海市蜃楼",
+   "className": "术士",
+   "level": 6,
+   "source": "GTS",
+   "entries": [
+    "在6级时，你学会镜影术。如果你已经掌握此法术，你可以改为学习另一个你选择的术士法术。此法术不计入你已知术士法术的数量上限。你可以花费2点术法点或1枚法术位来施展这个法术。如果你使用术法点施展此法术，任何在你10尺范围内摧毁了法术幻象的生物都会受到等同于你术士等级一半的火焰伤害，因为这些幻象会爆裂成灼热的气浪和沙尘。"
+   ],
+   "subclassShortName": "荒漠之魂"
+  },
+  {
+   "name": "沙暴行者",
+   "className": "术士",
+   "level": 14,
+   "source": "GTS",
+   "entries": [
+    "从14级起，你获得了能够穿梭于你所创造旋风核心的能力。在一个生物被你的飞沙走石特性推动后，你可以立即消耗2点术法点传送到风暴所在空间。如果你在一个未占据空间创造风暴，你也可以用这种方式传送。当你以此方式传送时，你和你穿戴或携带的所有装备都将隐形，直到你的回合结束。"
+   ],
+   "subclassShortName": "荒漠之魂"
+  },
+  {
+   "name": "飞沙形态",
+   "className": "术士",
+   "level": 18,
+   "source": "GTS",
+   "entries": [
+    "自18级起，你能够化身为沙尘般虚无的形态。你可以使用一个附赠动作并消耗5点术法点，将自己魔法性地转化为沙状形态。在此形态下，你获得以下增益：\n\n- 你不会被擒抱。\n\n- 你和你穿戴或携带的所有装备可以通过窄至1英寸的空间而不受挤压。\n\n- 你可以穿过任何生物所占据的空间，无论其体型大小，且困难地形不会消耗你额外的移动力。\n\n- 此外，当一个你能看见的攻击者命中你时，你可以使用反应化为散沙。直到该回合结束，你对所有伤害都具有抗性，包括触发此效果的攻击造成的伤害。\n此形态持续1分钟。若你陷入失能状态、死亡，或以一个附赠动作主动解除，则效果提前结束。"
+   ],
+   "subclassShortName": "荒漠之魂"
+  },
+  {
+   "name": "英雄法术",
+   "className": "术士",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "当你到达英雄法术表中特定的术士等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "英雄术法"
+  },
+  {
+   "name": "尚武术法",
+   "className": "术士",
+   "level": 3,
+   "source": "VDS",
+   "entries": [
+    "你的英雄前世赋予你以下增益：\n英灵之魂Heroic Soul。 在每个你的回合开始时，你可以消耗1术法点，获得等于1d6+你术士等级的临时生命值（无需动作）。\n天生剑技Innate Bladework。 在你的先天术法特性激活期间，当你使用你具有熟练的武器进行攻击时，你可以使用你的魅力调整值替代力量或敏捷来进行攻击检定与伤害掷骰。\n武术训练Martial Training。 你获得军用武器熟练，以及轻甲、中甲和盾牌受训。"
+   ],
+   "subclassShortName": "英雄术法"
+  },
+  {
+   "name": "额外攻击",
+   "className": "术士",
+   "level": 6,
+   "source": "VDS",
+   "entries": [
+    "你在你的回合内执行攻击动作时，可以进行两次攻击而非一次。\n此外，你可以将额外攻击中的一次，替换为施展你的一道施法时间为动作的术士戏法。"
+   ],
+   "subclassShortName": "英雄术法"
+  },
+  {
+   "name": "秘术战技",
+   "className": "术士",
+   "level": 14,
+   "source": "VDS",
+   "entries": [
+    "你可以使用以下战技：\n盲目攻击Blinding Attack。 当你使用武器或徒手打击命中一个生物时，你可以使用附赠动作消耗2术法点，试图致盲该目标。使本次攻击的伤害掷骰增加2d8。目标必须进行一次对抗你法术豁免DC的体质豁免，豁免失败则陷入目盲状态，持续1分钟。目标可以在其每个回合结束时重复该豁免，豁免成功则终止自身该状态。\n破甲打击Ruinous Blow。 当你使用武器或徒手打击命中一个生物时，你可以使用附赠动作消耗2术法点，以粉碎其防御。使本次攻击的伤害掷骰增加2d8。直至你的下一回合结束，目标的AC具有-3减值。\n创伤打击Wounding Strike。 当你使用武器或徒手打击命中一个生物时，你可以使用附赠动作消耗2术法点，对目标造成一道流血创伤。使本次攻击的伤害掷骰增加2d8。具有流血创伤的生物无法恢复生命值，并且在其每个回合开始时，其身上每有一处创伤便受到1d8暗蚀伤害。该伤害无视抗性与免疫。一个生物可以执行一个动作来止住其身上所有的流血创伤。"
+   ],
+   "subclassShortName": "英雄术法"
+  },
+  {
+   "name": "英勇加速",
+   "className": "术士",
+   "level": 18,
+   "source": "VDS",
+   "entries": [
+    "每当你开始施展以自己为目标的*加速术Haste*时，你可以对其进行调整，使其不再需要专注。若你如此做，当法术结束时，你不会因此陷入失能状态，速度也不会变为0。"
+   ],
+   "subclassShortName": "英雄术法"
+  },
+  {
+   "name": "食人掌控",
+   "className": "术士",
+   "level": 6,
+   "source": "LOO",
+   "entries": [
+    "从6级开始，你可以显现你的某项鬼之力，不论你消耗了多少术法点。以一个附赠动作，你可以提前获得某项通常需要消耗术法点才能获得的鬼之力。该特征持续1分钟，若在此期间，你未通过正常方式获得该特性，则你失去该特性。\n此特性一经使用，直到你完成一次长休为止不能再次使用。"
+   ],
+   "subclassShortName": "鬼之血脉"
+  },
+  {
+   "name": "沸腾之力",
+   "className": "术士",
+   "level": 14,
+   "source": "LOO",
+   "entries": [
+    "在14级时，你的鬼之力愈发强大，产生以下变化：\n双眼Eyes。除原有效果之外，你习得了法术*诚实之域Zone of Truth*，你可以在不消耗法术位的情况下施展该法术。当你施展该法术时，它仅影响60尺范围内由你选择的一名生物。只要其仍能看见你的双眼，该生物就必须在其每回合开始时进行一次豁免检定；若目标无法再看到你的双眼，法术立即结束。\n双角Horns。你双角造成的额外伤害增长至1d12。\n皮肤Skin。每当你施展一道一环或更高环阶的法术时，你现在恢复等同于该法术环阶的两倍+你的体质调整值的生命值。\n舌头Tongue。当你在施展一道五环或更高环阶的法术时激活了舌头特性，你可以使目标在恐惧中颤抖且变得对你极度迷恋，以代替该特性的正常效果。目标的被动感知（察觉）点数减少至5，且在面对所有并非来自于你的攻击时，其AC获得-5的减值。这一效应持续至你的下一回合开始。"
+   ],
+   "subclassShortName": "鬼之血脉"
+  },
+  {
+   "name": "变身",
+   "className": "术士",
+   "level": 18,
+   "source": "LOO",
+   "entries": [
+    "从18级开始，你可以完全展现你那传说中的恶魔先祖的形态，而无需消耗你的术法之力。以一个动作，你可以立即激活你所有的鬼之力，无论你消耗了多少术法点。在你以此法显现你的鬼之力期间，你获得对非魔法攻击的钝击、穿刺、挥砍伤害抗性，并且你无法被魅惑或恐慌。该效应持续1分钟，在此之后，你失去任何你未通过正常方式获得的鬼之力。\n此特性一经使用，直至完成长休你都无法再次使用。你也可以消耗5点术法点来再次使用。"
+   ],
+   "subclassShortName": "鬼之血脉"
+  },
+  {
+   "name": "光之诡计",
+   "className": "术士",
+   "level": 1,
+   "source": "ACT",
+   "entries": [
+    "1级起，你可以在黑暗中正常视物，无论黑暗是魔法的还是非魔法的，距离为60尺。"
+   ],
+   "subclassShortName": "织光者"
+  },
+  {
+   "name": "闪耀灵光",
+   "className": "术士",
+   "level": 1,
+   "source": "ACT",
+   "entries": [
+    "1级起，你可以选择你的魔法属于光移或暗移。你可以在长休结束时改变你的选择。\n光移期间，你能够以动作在以自身为中心半径15尺的球状区域内释放明亮光照的灵光。灵光持续期间，你能够以附赠动作将明亮光照扩大或缩小5尺，至大30尺，至小10尺。\n暗移期间你获得相同的能力，但你释放的是非魔法黑暗。"
+   ],
+   "subclassShortName": "织光者"
+  },
+  {
+   "name": "折曜之盾",
+   "className": "术士",
+   "level": 6,
+   "source": "ACT",
+   "entries": [
+    "6级起，你可以操控身周的光线保护自己。以一个附赠动作，你可以消耗3术法点魔法性的创造光之护盾。光盾生效期间，每当位于你5尺内的生物以近战攻击命中你时，光盾闪烁灼热的能量，若你属于光移，攻击者受到2d8光耀伤害，若你属于暗移，攻击者受到2d8暗蚀伤害。光盾持续10分钟，或在你昏迷时提前消失。"
+   ],
+   "subclassShortName": "织光者"
+  },
+  {
+   "name": "灵光增效",
+   "className": "术士",
+   "level": 14,
+   "source": "ACT",
+   "entries": [
+    "14级起，你对光线的操纵变得炉火纯青。光移期间，你的闪耀灵光产生阳光，暗移期间，你的闪耀灵光产生魔法黑暗。\n若灵光区域与任何使用不高于你能够使用的最高环阶的法术位的法术创造的光照或黑暗区域重叠，则这些法术将被解除。"
+   ],
+   "subclassShortName": "织光者"
+  },
+  {
+   "name": "法术致盲",
+   "className": "术士",
+   "level": 18,
+   "source": "ACT",
+   "entries": [
+    "18级起，你的法术能量将压制目标的感知。以一个动作，你能够消耗5术法点增强你的闪耀灵光。持续1分钟或在你失去专注（如同你正在施展专注法术）时提前结束，每名在你60尺内开始其回合的敌对生物必须成功进行一次体质豁免，否则陷入目盲直至灵光结束。"
+   ],
+   "subclassShortName": "织光者"
+  },
+  {
+   "name": "幽影法术",
+   "className": "术士",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "当你到达幽影法术表中特定的术士等级时，你就始终准备着表中对应的法术。"
+   ],
+   "subclassShortName": "幽影术法"
+  },
+  {
+   "name": "幽影之威",
+   "className": "术士",
+   "level": 3,
+   "source": "VRGR-V",
+   "entries": [
+    "你获得下述增益。\n幽暗之瞳Eyes of the Dark。 你具有120尺黑暗视觉与10尺盲视。此外，若你施展的一道法术创造了一片黑暗区域，则你能够正常看透那道法术的黑暗。\n坟冢之力Strength of the Grave。 若你的生命值将要降至0且不会立即死亡，则你可以进行一次魅力豁免（DC 5加上该次所受伤害）。若豁免成功，则你的生命值转而变为等同于你的魅力调整值加上你的术士等级的数值。你成功于该豁免之后，你无法再次使用此增益直至完成一次长休。"
+   ],
+   "subclassShortName": "幽影术法"
+  },
+  {
+   "name": "凶兆之兽",
+   "className": "术士",
+   "level": 6,
+   "source": "VRGR-V",
+   "entries": [
+    "你能够驱使一头嗥叫着的幽影生物追猎你的敌人。你可以消耗3点术法点，在无需准备该法术、无需材料成分、且不消耗法术位的情况下以一个附赠动作施展*野兽召唤术Summon Beast* 。被召唤出的生物呈现为由阴影构成的野兽。此外，任何位于该召唤生物5尺内的敌人在对抗你施展的法术时进行的豁免检定均具有劣势。\n每当你施展该法术时，你都可以修改此法术使其无需专注。若你如此做，则此法术的持续时间将变为1分钟，且若你再次施展此法术，则法术将提前终止。"
+   ],
+   "subclassShortName": "幽影术法"
+  },
+  {
+   "name": "幽影漫步",
+   "className": "术士",
+   "level": 14,
+   "source": "VRGR-V",
+   "entries": [
+    "当你处于微光光照或黑暗环境期间，你可以用一个附赠动作传送至多120尺至另一处你可见的未占据空间。以此法传送至的目标空间必须同样处于微光光照或黑暗中。"
+   ],
+   "subclassShortName": "幽影术法"
+  },
+  {
+   "name": "幽冥形态",
+   "className": "术士",
+   "level": 18,
+   "source": "VRGR-V",
+   "entries": [
+    "你使用先天术法时，可以同时化作幽影之躯，以此在先天术法持续期间，或直到你主动结束此形态（无需动作）为止，获得下述增益。此特性一经使用，直到你完成一次长休或使用6点术法点重置此特性的使用权为止不能再次使用。\n虚体移动Incorporeal Movement。 你可以如同穿越困难地形一般移动穿过其他生物或物件，但若你于自己回合结束时处于某个生物或物件内，则你受到1d10力场伤害。\n幽影坚韧Shadow Resilience。 你具有对除力场、光耀外所有类型伤害的抗性。"
+   ],
+   "subclassShortName": "幽影术法"
+  },
+  {
+   "name": "你月之化身的月相能够影响你的超魔法特性。每个月之化身月相都与特定的魔法学派相关联，如下所示",
+   "className": "术士",
+   "level": 6,
+   "source": "DSotDQ",
+   "entries": [
+    "满月Full Moon。防护与预言法术\n朔月New Moon。惑控与死灵法术\n新月Crescent Moon。幻术与变化法术\n\n当你对你所处月相相关联的魔法学派的法术使用超魔法时，你可以将消耗的术法点降低1点（最低为0）。你可以用此方法降低超魔法术法点的次数等同于你的熟练加值，且会在完成一次长休后恢复所有已消耗的使用次数。"
+   ],
+   "subclassShortName": "月之术法"
+  },
+  {
+   "name": "你可以更好地控制你月之魔法的月相。以一个附赠动作，你可以消耗1术法点来将你的月相转换为另一种不同的月相。",
+   "className": "术士",
+   "level": 6,
+   "source": "DSotDQ",
+   "entries": [
+    "你现在可以不消耗法术位地施放月之法术表格中每个对应月相的一个一环法术一次，前提是你所处的月相与该法术的月相相同。一旦你以此法施放了一个月相法术，你无法在完成一次长休前再以此施展那个月相法术。"
+   ],
+   "subclassShortName": "月之术法"
+  },
+  {
+   "name": "以一个附赠动作，你可以激发你当前所处月之化身月相的特殊能力。或者，以你阴晴圆缺特性转换月相的附赠动作的一部分，你可以立刻使用你正进入的月相的能力",
+   "className": "术士",
+   "level": 18,
+   "source": "DSotDQ",
+   "entries": [
+    "满月Full Moon.你短暂地辐射出月光。每个你选择的距你30尺内的生物必须通过一次对抗你法术豁免DC的体质豁免，否则陷入目盲直到其下一回合结束。此外，该区域内一个你选择的生物恢复3d8生命值。\n朔月New Moon.你瞬间散发出幽暗。每个你选择的距你30尺内的生物必须通过一次DC对抗你法术豁免DC的敏捷豁免，否则受到3d10暗蚀伤害，并且速度降为0至其下一回合结束。此外，你变为隐形，直至你下一回合结束。你进行攻击或施放法术后，隐形也会立刻结束。\n新月Crescent Moon.你魔法性地传送至你60尺内可见的未被占据位置。你可以携带一个距你5尺内的可见自愿生物。该生物传送至你传送目的地内5尺你选择的可见未被占据位置。此外，直至你下一回合开始，你和该生物获得所有伤害的抗性。\n一旦你使用了上述附赠动作，在你完成一次长休之前再次使用需要消耗5点术法点。"
+   ],
+   "subclassShortName": "月之术法"
+  }
+ ]
+}

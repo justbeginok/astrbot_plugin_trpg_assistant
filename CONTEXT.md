@@ -162,6 +162,7 @@ token = 下一物品名（数量默认 1），纯数字 token = 前一物品的�
 插件内置的 DND 5e 中文资料库（只读 SQLite，随包打包）。数据源自 5etools 中文站的结构化 JSON，覆盖法术、怪物、物品、专长、背景、职业/子职六类。查询经 `KnowledgeBaseManager`，不走 KV。
 _注（v0.43.0）_: 法术条目的中文详述/元数据改以 5e_chm Markdown（人工校对）为主源，5etools JSON 仅承担其余类别与 spell_classes 职业法术表（ADR-0018）。
 _注（v0.45.0）_: 怪物筛选新增六维（伤害细分/状态免疫/速度类型/感官/阵营/特性名，ADR-0020）；第三方书怪物经 LLM 提取管道入库（试点：《火炬光下的克苏鲁》第七章 23 条，source=火炬光下的克苏鲁、edition=2024）。
+_注（v0.49.0）_: 职业/子职特性数据改以 5e_chm 人工校对中文为主源（ADR-0024）：职业 30 条（含血族/铳士/拳斗士/血猎手/邪狱使等第三方职业）、子职 285 个、本职特性 828 行/子职特性 2586 行；规则引擎侧表（生命骰/豁免/施法进度/起始装备/富化概要）沿用 5etools-cn 结构化 JSON。提取管道 `scripts/class_extract/`（inventory → parser → emit → finalize → llm_fallback）。
 
 **5e_chm Markdown（chm 数据源）**:
 本地人工校对中文资料 `5e_chm/md/`（htm→md 转换产物，7040 个 .md）。法术数据源的两类文件：**速查表**（`速查/法术速查/5E万法大全.md` 官方 936 条 + 合作方万法大全.md 第三方 284 条，HTML 表格 23 列结构化元数据）与**详述页**（按环阶打包或散落单文件，`#### 中文名｜English` + 元数据块 + 人工校对正文）。解析器 `scripts/chm_parser.py`，对账 `scripts/audit_chm.py`。

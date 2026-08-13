@@ -222,6 +222,10 @@ class ClassFeatureResult:
     # v0.33.0 职业/子职富化：AI 一句话概要 + 职业定位（classes 侧表带出）。
     class_summary: str = ""
     class_role: str = ""
+    # v0.48.1 子职版本回退：默认版本过滤后子职为空 → 回退展示其他版本，
+    # 值=回退到的版本（"2014"/"2024"），空=未回退。解决「候选可见但查不到」
+    # （如魔射手仅 XGE 2014，2024 群默认版本下查询为空）。
+    subclass_edition_fallback: str = ""
 
 
 @dataclass
@@ -1383,14 +1387,27 @@ class KnowledgeBaseManager:
                 " WHERE class_name = ? AND (subclass_name = ? OR subclass_short = ?)",
                 [cn, sub, sub],
             )
+            # v0.48.1：默认版本过滤后子职为空 → 回退其他版本展示并标注
+            # （如魔射手仅 XGE 2014，2024 群默认版本下直接查会「未找到」）。
+            fallback = ""
             if edition in ("2014", "2024"):
                 sub_rows = [r for r in sub_rows if r.edition == edition]
+                if not sub_rows:
+                    alt_rows = _fetch_rows(
+                        " WHERE class_name = ? AND (subclass_name = ? OR subclass_short = ?)",
+                        [cn, sub, sub],
+                    )
+                    if alt_rows:
+                        alt_ed = alt_rows[0].edition
+                        sub_rows = [r for r in alt_rows if r.edition == alt_ed]
+                        fallback = alt_ed
             return ClassFeatureResult(
                 class_name=cn,
                 eng_name=eng_name,
                 editions=editions,
                 base_rows=base_rows,
                 subclass_rows=sub_rows,
+                subclass_edition_fallback=fallback,
                 class_summary=class_summary,
                 class_role=class_role,
             )
@@ -2176,6 +2193,12 @@ class KnowledgeBaseManager:
             lines: list[str] = []
             if sub_name:
                 lines.append(f"【{result.class_name}·子职 {sub_name}】")
+            # v0.48.1：版本回退标注（默认版本无该子职 → 已回退其他版本展示）
+            if result.subclass_edition_fallback:
+                lines.append(
+                    f"（该子职仅在 {result.subclass_edition_fallback} 版，"
+                    f"已按 {result.subclass_edition_fallback} 版展示）"
+                )
             for row in sub_rows:
                 body = KnowledgeBaseManager._clean_row_text(
                     row.body or row.summary or ""

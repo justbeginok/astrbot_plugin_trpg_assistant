@@ -1,0 +1,1461 @@
+{
+ "class": [
+  {
+   "ENG_name": "Mystic",
+   "name": "秘术师",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "edition": "classic",
+   "hd": {
+    "number": 1,
+    "faces": 8
+   },
+   "proficiency": [
+    "int",
+    "wis"
+   ],
+   "startingProficiencies": {
+    "armor": [
+     "light"
+    ],
+    "weapons": [
+     "简易"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "arcana",
+        "history",
+        "insight",
+        "medicine",
+        "nature",
+        "perception",
+        "religion"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "startingEquipment": {
+    "additionalFromBackground": true,
+    "default": [
+     "(a) 一把{@item 矛|phb}或 (b) 一把{@item 硬头锤|phb}",
+     "(a) {@item 皮甲|phb} 或 (b) {@item 镶钉皮甲|phb}",
+     "(a) 一把{@item 轻弩|phb}和{@item 弩矢(20)|phb|20支弩箭}或 (b) 任何{@filter 简易武器|items|source=phb|category=基础|type=简易武器}",
+     "(a) 一个{@item 学者套组|phb}或(b)一个{@item 探索套组|phb}"
+    ],
+    "goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金币}",
+    "defaultData": [
+     {
+      "a": [
+       "矛|phb"
+      ],
+      "b": [
+       "硬头锤|phb"
+      ]
+     },
+     {
+      "a": [
+       "皮甲|phb"
+      ],
+      "b": [
+       "镶钉皮甲|phb"
+      ]
+     },
+     {
+      "a": [
+       "轻弩|phb",
+       "弩矢(20)|phb"
+      ],
+      "b": [
+       {
+        "equipmentType": "weaponSimple"
+       }
+      ]
+     },
+     {
+      "a": [
+       "学者套组|phb"
+      ],
+      "b": [
+       "探索套组|phb"
+      ]
+     }
+    ]
+   },
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "{@filter 已知天赋|灵能|type=T}",
+      "{@filter 已知灵术|灵能|type=D}",
+      "灵力点",
+      "灵力限制"
+     ],
+     "rows": [
+      [
+       1,
+       1,
+       4,
+       2
+      ],
+      [
+       1,
+       1,
+       6,
+       2
+      ],
+      [
+       2,
+       2,
+       14,
+       3
+      ],
+      [
+       2,
+       2,
+       17,
+       3
+      ],
+      [
+       2,
+       3,
+       27,
+       5
+      ],
+      [
+       2,
+       3,
+       32,
+       5
+      ],
+      [
+       2,
+       4,
+       38,
+       6
+      ],
+      [
+       2,
+       4,
+       44,
+       6
+      ],
+      [
+       2,
+       5,
+       57,
+       7
+      ],
+      [
+       3,
+       5,
+       64,
+       7
+      ],
+      [
+       3,
+       5,
+       64,
+       7
+      ],
+      [
+       3,
+       6,
+       64,
+       7
+      ],
+      [
+       3,
+       6,
+       64,
+       7
+      ],
+      [
+       3,
+       6,
+       64,
+       7
+      ],
+      [
+       3,
+       7,
+       64,
+       7
+      ],
+      [
+       3,
+       7,
+       64,
+       7
+      ],
+      [
+       4,
+       7,
+       64,
+       7
+      ],
+      [
+       4,
+       8,
+       71,
+       7
+      ],
+      [
+       4,
+       8,
+       71,
+       7
+      ],
+      [
+       4,
+       8,
+       71,
+       7
+      ]
+     ]
+    }
+   ],
+   "classFeatures": [
+    "灵能|秘术师|UATheMysticClass|1",
+    "灵能灵术与天赋|秘术师|UATheMysticClass|1",
+    "使用灵术|秘术师|UATheMysticClass|1",
+    {
+     "classFeature": "秘术师修会|秘术师|UATheMysticClass|1",
+     "gainSubclassFeature": true
+    },
+    "秘术恢复|秘术师|UATheMysticClass|2",
+    "心灵感应|秘术师|UATheMysticClass|2",
+    {
+     "classFeature": "秘术师修会特性|秘术师|UATheMysticClass|3",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|秘术师|UATheMysticClass|4",
+    "心智之力|秘术师|UATheMysticClass|4",
+    {
+     "classFeature": "秘术师修会特性|秘术师|UATheMysticClass|6",
+     "gainSubclassFeature": true
+    },
+    "属性值提升|秘术师|UATheMysticClass|8",
+    "烈性灵能 (1d8)|秘术师|UATheMysticClass|8",
+    "燃烧心火|秘术师|UATheMysticClass|10",
+    "灵能精通（1/日）|秘术师|UATheMysticClass|11",
+    "属性值提升|秘术师|UATheMysticClass|12",
+    "灵能精通（1/日）|秘术师|UATheMysticClass|13",
+    {
+     "classFeature": "秘术师修会特性|秘术师|UATheMysticClass|14",
+     "gainSubclassFeature": true
+    },
+    "烈性灵能 (2d8)|秘术师|UATheMysticClass|14",
+    "灵能精通（3/日）|秘术师|UATheMysticClass|15",
+    "属性值提升|秘术师|UATheMysticClass|16",
+    "灵能精通（4/日）|秘术师|UATheMysticClass|17",
+    "属性值提升|秘术师|UATheMysticClass|19",
+    "灵能之躯|秘术师|UATheMysticClass|20"
+   ],
+   "subclassTitle": "秘术师修会",
+   "hasFluff": true
+  }
+ ],
+ "subclass": [
+  {
+   "ENG_name": "Order of the Avatar",
+   "name": "具现者修会",
+   "shortName": "化身",
+   "source": "UATheMysticClass",
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "page": 5,
+   "edition": "classic",
+   "subclassFeatures": [
+    "具现者修会|秘术师|UATheMysticClass|化身|UATheMysticClass|1",
+    "战争化身|秘术师|UATheMysticClass|化身|UATheMysticClass|3",
+    "医疗具现|秘术师|UATheMysticClass|化身|UATheMysticClass|6",
+    "急速具现|秘术师|UATheMysticClass|化身|UATheMysticClass|14"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Awakened",
+   "name": "觉醒者修会",
+   "shortName": "觉醒",
+   "source": "UATheMysticClass",
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "page": 6,
+   "edition": "classic",
+   "subclassFeatures": [
+    "觉醒者修会|秘术师|UATheMysticClass|觉醒|UATheMysticClass|1",
+    "灵能侦察|秘术师|UATheMysticClass|觉醒|UATheMysticClass|3",
+    "灵能涌动|秘术师|UATheMysticClass|觉醒|UATheMysticClass|6",
+    "幽灵形态|秘术师|UATheMysticClass|觉醒|UATheMysticClass|14"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Immortal",
+   "name": "不朽者修会",
+   "shortName": "不朽",
+   "source": "UATheMysticClass",
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "page": 6,
+   "edition": "classic",
+   "subclassFeatures": [
+    "不朽者修会|秘术师|UATheMysticClass|不朽|UATheMysticClass|1",
+    "灵能再生|秘术师|UATheMysticClass|不朽|UATheMysticClass|3",
+    "生机涌动|秘术师|UATheMysticClass|不朽|UATheMysticClass|6",
+    "不朽意志|秘术师|UATheMysticClass|不朽|UATheMysticClass|14"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Nomad",
+   "name": "漫游者修会",
+   "shortName": "漫游",
+   "source": "UATheMysticClass",
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "page": 7,
+   "edition": "classic",
+   "subclassFeatures": [
+    "漫游者修会|秘术师|UATheMysticClass|漫游|UATheMysticClass|1",
+    "千步之忆|秘术师|UATheMysticClass|漫游|UATheMysticClass|3",
+    "优异传送|秘术师|UATheMysticClass|漫游|UATheMysticClass|6",
+    "随性旅行|秘术师|UATheMysticClass|漫游|UATheMysticClass|14"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Soul Knife",
+   "name": "魂刃修会",
+   "shortName": "魂刃",
+   "source": "UATheMysticClass",
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "page": 7,
+   "edition": "classic",
+   "subclassFeatures": [
+    "魂刃修会|秘术师|UATheMysticClass|魂刃|UATheMysticClass|1",
+    "打磨刃锋|秘术师|UATheMysticClass|魂刃|UATheMysticClass|3",
+    "吸能之刃|秘术师|UATheMysticClass|魂刃|UATheMysticClass|6",
+    "幻影之刃|秘术师|UATheMysticClass|魂刃|UATheMysticClass|14"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Wu Jen",
+   "name": "巫觋修会",
+   "shortName": "巫觋",
+   "source": "UATheMysticClass",
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "page": 8,
+   "edition": "classic",
+   "subclassFeatures": [
+    "巫觋修会|秘术师|UATheMysticClass|巫觋|UATheMysticClass|1",
+    "元素同调|秘术师|UATheMysticClass|巫觋|UATheMysticClass|3",
+    "奥秘初试|秘术师|UATheMysticClass|巫觋|UATheMysticClass|6",
+    "元素精通|秘术师|UATheMysticClass|巫觋|UATheMysticClass|14"
+   ]
+  }
+ ],
+ "classFeature": [
+  {
+   "ENG_name": "Mystic Order",
+   "name": "秘术师修会",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "在1级时，你从可用秩序列表中选择一个秘术师修会。每个修会专精于特定的灵能使用方式。",
+    "你的修会在1级时给予你特性，并在3级、6级和14级时给予额外特性。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Disciplines and Talents",
+   "name": "灵能灵术与天赋",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "{@filter 灵能天赋|灵能|type=T}和{@filter 灵术|灵能|type=D}是秘术师制造技艺的核心。这些精神训练与灵能公式能将意志锻造成切实的魔法效应。",
+    "灵术由不同的秩序所发现，往往反映了其创造者的专长。然而，秘术师可以学习任何灵术，无论其所属的秩序为何。"
+   ]
+  },
+  {
+   "ENG_name": "Psionics",
+   "name": "灵能",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "作为灵能的学生，你可以掌握并使用灵能天赋和灵术，相关规则见本文档末尾。灵能是一种特殊的魔法使用形态，与施法不同。",
+    {
+     "ENG_name": "Psionic Talents",
+     "name": "灵能天赋",
+     "type": "entries",
+     "entries": [
+      "一个{@filter 灵能天赋|灵能|type=T}是你所精通的次要灵能效果。在1级时，你知晓一个自选的灵能天赋。你会在更高等级时习得更多自选天赋。秘术师表格中的已知天赋栏显示你在每个等级所知晓的天赋总数；当该数值提升时，选择一个新天赋。"
+     ]
+    },
+    {
+     "ENG_name": "Psionic Disciplines",
+     "name": "灵术",
+     "type": "entries",
+     "entries": [
+      "一个{@filter 灵能才赋|灵能|type=D}是一套严格的精神训练，允许秘术师显现灵能力量。秘术师一次只能掌握少数灵术。",
+      "在1级时，你知晓一个自选的灵能才赋。秘术师表格中的「已知灵术」栏显示你在每个等级知晓的灵术总数；当该数值提升时，选择一个新的灵术。",
+      "此外，每当你提升该职业等级时，你可以将已知的一项纪律替换为你选择的另一项。"
+     ]
+    },
+    {
+     "ENG_name": "Psi Points",
+     "name": "灵力点",
+     "type": "entries",
+     "entries": [
+      "你拥有一个内部能量储备，可以用于你所知的灵术。这种能量以灵力点表示。每个灵术描述了你可以通过消耗一定数值的灵力点来创造的效应。灵能天赋不需要消耗灵力点。",
+      "你拥有的灵力点数量基于你的秘术师等级，如秘术师表格的灵力点栏所示。对应你等级的数值就是你的灵力点上限。当你完成一次长休后，你的灵力点总数会恢复至上限值。你拥有的灵力点数量不能低于0或超过上限。"
+     ]
+    },
+    {
+     "ENG_name": "Psi Limit",
+     "name": "灵力限制",
+     "type": "entries",
+     "entries": [
+      "虽然你拥有强大的灵能能量，但需要训练和实践来引导这些能量。你在激活灵能才赋时可以消耗的灵力点数量是有限制的。这个限制基于你的秘术师等级，如秘术师表格中的灵力限制栏所示。例如，作为一个3级秘术师，每次使用灵能才赋时最多只能消耗3个灵力点，无论你拥有多少灵力点。"
+     ]
+    },
+    {
+     "ENG_name": "Psychic Focus",
+     "name": "心灵集中",
+     "type": "entries",
+     "entries": [
+      "你可以将灵能能量聚焦于你的一项灵术上，从而从中获得持续增益。以一个附赠动作，你可以选择你的一项灵术并获得其心灵集中增益，具体效果详见该灵术的描述。该增益持续到你处于{@condition 失能}状态或使用另一个附赠动作选择不同的聚焦增益为止。",
+      "你同一时间只能拥有一个心灵集中增益，使用一个灵术的心灵集中不会限制你使用其他灵术的能力。"
+     ]
+    },
+    {
+     "ENG_name": "Psionic Ability",
+     "name": "心灵能力",
+     "type": "entries",
+     "entries": [
+      "智力是你灵术的心灵能力。当你为灵能才赋设定豁免检定DC或用其发动攻击掷骰时，使用你的智力调整值。",
+      {
+       "ENG_name": "Discipline",
+       "name": "纪律",
+       "type": "abilityDc",
+       "attributes": [
+        "int"
+       ]
+      },
+      {
+       "ENG_name": "Discipline",
+       "name": "纪律",
+       "type": "abilityAttackMod",
+       "attributes": [
+        "int"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Using a Discipline",
+   "name": "使用灵术",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "每个灵能才赋都有多种使用方式，全部包含在其描述中。该才赋会指定所需的动作类型和灵力点数值。它还详细说明你是否需要集中注意力在其效应上、影响多少目标、需要何种豁免检定等等。",
+    "以下部分将更详细地介绍如何使用灵术。灵术是魔法性的，其功能与法术类似。",
+    {
+     "ENG_name": "Psychic Focus",
+     "name": "心灵集中",
+     "type": "entries",
+     "entries": [
+      "灵术的心灵集中部分描述了当你选择该灵术作为心灵集中时所获得的增益。"
+     ]
+    },
+    {
+     "ENG_name": "Effect Options and Psi Points",
+     "name": "效果选项和灵力点",
+     "type": "entries",
+     "entries": [
+      "一项灵术为你提供了使用灵力点的不同方式选项。每个效果选项都有一个名称，该选项的灵力点消耗值会显示在名称后的括号中。你必须花费该数值的灵力点才能使用该选项，同时遵守你的灵力限制。如果你剩余的灵力点不足，或者消耗值超出你的灵力限制，则无法使用该选项。",
+      "部分选项显示的是一个灵力点范围而非具体花费。要使用该选项，你必须在该点数范围内花费一定数值的点数，同时仍需遵守你的灵力限制。部分选项允许你花费额外的灵力点来提升灵术的潜能。同样，你必须遵守灵力限制，并且必须在首次使用该灵术时就花费所有点数；你不能在看到灵术生效后才决定是否花费额外点数。",
+      "每个选项备注了其效果的具体信息，包括使用它所需的任何动作及其射程。"
+     ]
+    },
+    {
+     "ENG_name": "Components",
+     "name": "成分",
+     "type": "entries",
+     "entries": [
+      "灵术不需要许多法术所需的成分。使用灵术无需言语、手势或材料。灵能的力量源自心灵。"
+     ]
+    },
+    {
+     "ENG_name": "Duration",
+     "name": "持续时间",
+     "type": "entries",
+     "entries": [
+      "灵术中的效果选项指定了其效果的持续时间。",
+      {
+       "ENG_name": "Instantaneous",
+       "name": "立即",
+       "type": "entries",
+       "entries": [
+        "若未指定持续时间，该选项的效果立即生效。"
+       ]
+      },
+      {
+       "ENG_name": "Concentration",
+       "name": "专注",
+       "type": "entries",
+       "entries": [
+        "部分选项需要{@status 专注}来维持其效果。这一要求在选项的灵能点消耗值后会标注\"专注\"。\"专注\"标注后跟随{@status 专注}的最大持续时间。例如，若一个选项写着\"专注，1分钟\"，你可以对其效果保持专注最多1分钟。",
+        "专注于一项灵术遵循与{@status 专注||专注于}法术相同的规则。这意味着你无法同时专注于一个法术和一项灵术，也无法同时专注于两项灵术。关于{@status 专注}如何运作，请参阅《玩家手册》{@book 第十章|PHB|10}\"施法\"章节。"
+       ]
+      }
+     ]
+    },
+    {
+     "ENG_name": "Targets and Areas of Effect",
+     "name": "目标和效应区域",
+     "type": "entries",
+     "entries": [
+      "灵术使用与法术相同的规则来确定目标和效应范围，如{@book 第十章|PHB|10}\"施法\"中所述，详见《玩家手册》。"
+     ]
+    },
+    {
+     "ENG_name": "Saving Throws and Attack Rolls",
+     "name": "豁免检定与攻击检定",
+     "type": "entries",
+     "entries": [
+      "如果一个灵术需要豁免检定，它会指定豁免类型以及成功或失败的结果。豁免DC由你的心灵能力决定。",
+      "某些灵术需要你进行一次攻击检定以确定该灵术的效果是否命中目标。该攻击检定使用你的心灵能力。"
+     ]
+    },
+    {
+     "ENG_name": "Combining Psionic Effects",
+     "name": "组合灵能效果",
+     "type": "entries",
+     "entries": [
+      "当灵术的持续时间重叠时，不同灵术的效果会叠加。同样，如果灵术中的不同选项同时处于激活状态，它们也会组合生效。然而，如果同一灵术选项被多次使用，其效果不会与自身叠加。相反，在效果持续时间重叠时，将应用最强大的效果——通常取决于用于创造该效果的灵力点数量。",
+      "灵能与法术是独立的效应，因此它们的增益和缺点会相互叠加。能重现法术的灵能效应是此规则的例外。"
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Mystical Recovery",
+   "name": "秘术恢复",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 2,
+   "entries": [
+    "从2级开始，你可以从用于激活灵术的灵能能量中汲取活力。",
+    "在你消耗灵力点使用灵能才赋后，你可以立即使用一个附赠动作来恢复等同于所消耗灵力点数值的生命值。"
+   ]
+  },
+  {
+   "ENG_name": "Telepathy",
+   "name": "心灵感应",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 2,
+   "entries": [
+    "在2级时，你的意识觉醒了通过心灵感应进行交流的能力。你可以用这种方式与你120尺内能看见的任何生物进行心灵感应交流。你不需要与该生物共享语言它就能理解你的心灵感应信息，但该生物必须能理解至少一种语言或自身具有心灵感应能力。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Order feature",
+   "name": "秘术师修会特性",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 3,
+   "entries": [
+    "在3级时，你从秘术师修会获得另一个特性。"
+   ]
+  },
+  {
+   "ENG_name": "Ability Score Improvement",
+   "name": "属性值提升",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 4,
+   "entries": [
+    "当你达到4级、8级、12级、16级和19级时，你可以选择一项属性值提升2点，或选择两项属性各提升1点。不过你不能通过此特性让属性超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Strength of Mind",
+   "name": "心智之力",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 4,
+   "entries": [
+    "即使是最简单的灵能技巧也需要对灵能能量如何增强心智和身体有深刻理解。这种理解使你能够调整防御以更好地应对威胁。",
+    "从4级开始，你可以在完成一次短休或长休后替换感知豁免的熟练项。为此，选择力量、敏捷、体质或魅力。你将获得使用该属性的豁免熟练项，而非感知。此变化持续到你完成下一次短休或长休为止。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Order feature",
+   "name": "秘术师修会特性",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 6,
+   "entries": [
+    "在6级时，你获得来自秘术师修会的另一个特性。"
+   ]
+  },
+  {
+   "ENG_name": "Ability Score Improvement",
+   "name": "属性值提升",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 8,
+   "entries": [
+    "当你达到4级、8级、12级、16级和19级时，你可以选择一项属性值提升2点，或选择两项属性各提升1点。不过你不能通过此特性让属性超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Potent Psionics (1d8)",
+   "name": "烈性灵能 (1d8)",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 8,
+   "entries": [
+    "在8级时，你获得将心灵能量注入武器攻击的能力。在你的每个回合中，当你用武器命中一个生物时，你可以对该目标造成额外{@damage 1d8}点心灵伤害。当你达到14级时，此额外伤害提升至{@damage 2d8}。",
+    "此外，你为任何{@filter 灵能天赋|灵能|type=T}进行的伤害掷骰添加你的智力调整值。"
+   ]
+  },
+  {
+   "ENG_name": "Consumptive Power",
+   "name": "燃烧心火",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 10,
+   "entries": [
+    "在10级时，你获得牺牲自身物理耐久性来换取灵能力量的能力。激活灵能才赋时，你可以用生命值支付其灵力点消耗，而非使用任何灵力点。你当前生命值和生命值上限都会因你支付的生命值数值而缩小。此缩小效果无法以任何方式减轻，且生命值上限的缩小效果将持续至你完成一次长休。",
+    "必须完成一次长休才能再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Mastery (1/Day)",
+   "name": "灵能精通（1/日）",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 11,
+   "entries": [
+    "从11级开始，你对灵能能量的精通使你能将心智推至正常极限之外。以一个动作，你获得9个特殊灵力点，这些灵力点只能用于需要动作或附赠动作来使用的灵术。你可以将所有9点用于一个灵术，或将其分散到多个灵术中。你不能同时用普通灵力点在这些灵术上；你只能使用从该特性获得的特殊灵力点。完成一次长休后，你将失去所有未使用的特殊灵力点。",
+    "如果你用这些灵能点激活的多个灵术都需要{@status 专注}，你可以同时专注于所有它们。激活其中一个灵术会结束你之前正在{@status 专注||专注于}的任何效应，并且如果你开始{@status 专注||专注于}一个不使用这些特殊灵能点的效应，那么你正在{@status 专注||专注于}的灵术就会结束。",
+    "在15级时，你从该特性获得的灵力点池增加到11点。",
+    "你拥有一次此特性的使用次数，并在长休后恢复所有已消耗的使用次数。你在13级、15级和17级时各获得一次此特性的额外使用次数。"
+   ]
+  },
+  {
+   "ENG_name": "Ability Score Improvement",
+   "name": "属性值提升",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 12,
+   "entries": [
+    "当你达到4级、8级、12级、16级和19级时，你可以选择一项属性值提升2点，或选择两项属性各提升1点。不过你不能通过此特性让属性超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Mastery (2/Day)",
+   "name": "灵能精通（1/日）",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 13,
+   "entries": [
+    "在13级时，你能每日使用两次灵能精通。"
+   ]
+  },
+  {
+   "ENG_name": "Mystic Order feature",
+   "name": "秘术师修会特性",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 14,
+   "entries": [
+    "在14级时，你从你的秘术师修会获得另一个特性。"
+   ]
+  },
+  {
+   "ENG_name": "Potent Psionics (2d8)",
+   "name": "烈性灵能 (2d8)",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 14,
+   "entries": [
+    "在14级时，你的烈性灵能伤害提升至{@damage 2d8}。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Mastery (3/Day)",
+   "name": "灵能精通（3/日）",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 15,
+   "entries": [
+    "在15级时，你能每日使用三次灵能精通。"
+   ]
+  },
+  {
+   "ENG_name": "Ability Score Improvement",
+   "name": "属性值提升",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 16,
+   "entries": [
+    "当你达到4级、8级、12级、16级和19级时，你可以选择一项属性值提升2点，或选择两项属性各提升1点。不过你不能通过此特性让属性超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Mastery (4/Day)",
+   "name": "灵能精通（4/日）",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 17,
+   "entries": [
+    "在17级时，你能每日使用灵能精通四次。"
+   ]
+  },
+  {
+   "ENG_name": "Ability Score Improvement",
+   "name": "属性值提升",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 19,
+   "entries": [
+    "当你达到4级、8级、12级、16级和19级时，你可以选择一项属性值提升2点，或选择两项属性各提升1点。不过你不能通过此特性让属性超过20。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Body",
+   "name": "灵能之躯",
+   "source": "UATheMysticClass",
+   "page": 1,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "level": 20,
+   "entries": [
+    "在20级时，你对灵能力量的精通使你的心智超越了肉体。你的物理形态注入了灵能能量。你获得以下益处：",
+    {
+     "type": "list",
+     "items": [
+      "你获得对钝击、穿刺和挥砍伤害的抗性。",
+      "你不再衰老。",
+      "你对疾病、毒素伤害和{@condition 中毒}状态免疫。",
+      "如果你死亡，投掷一个{@dice d20}。若结果为10或更高，你会以0生命值解离而非死亡，并陷入{@condition 昏迷}状态。你和你的装备会消失。{@dice 1d3}天后，在你死亡的位面上你选择的地点重新出现，并获得一次长休的收益。"
+     ]
+    }
+   ]
+  }
+ ],
+ "subclassFeature": [
+  {
+   "ENG_name": "Order of the Avatar",
+   "name": "具现者修会",
+   "source": "UATheMysticClass",
+   "page": 5,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "化身",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "具现者修会的秘术师们深入情感世界，掌握内心生命到如此程度，以至于他们能像艺术家塑造粘土一样轻松地操纵和放大他人情感。这些被称为化身的秘术师各不相同，从暴君到受追随者爱戴的鼓舞人心的领袖皆有。",
+    "具现者能激发周围人群的极端情绪。对于盟友，他们能赋予希望、凶猛与勇气，将战斗团体转化为致命而统一的力场。对于敌人，他们则带来恐惧、厌恶与惊惶，即使是最坚毅的老兵也会表现得像个战战兢兢的新兵。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "额外灵术|秘术师|UATheMysticClass|化身|UATheMysticClass|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "护甲受训|秘术师|UATheMysticClass|化身|UATheMysticClass|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Armor Training",
+   "name": "护甲受训",
+   "source": "UATheMysticClass",
+   "page": 5,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "化身",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你获得中甲和盾牌的熟练项。"
+   ]
+  },
+  {
+   "ENG_name": "Bonus Disciplines",
+   "name": "额外灵术",
+   "source": "UATheMysticClass",
+   "page": 5,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "化身",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你学习两个自选的额外灵术。它们必须从{@filter 具现者灵术|灵能|type=D|order=化身}中选择。"
+   ]
+  },
+  {
+   "ENG_name": "Avatar of Battle",
+   "name": "战争化身",
+   "source": "UATheMysticClass",
+   "page": 5,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "化身",
+   "subclassSource": "UATheMysticClass",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "从3级开始，你会散发出一股鼓舞人心的灵光。当你未处于{@condition 失能}状态时，每个位于你30尺内且能看见你的盟友在先攻检定上获得+2加值。"
+   ]
+  },
+  {
+   "ENG_name": "Avatar of Healing",
+   "name": "医疗具现",
+   "source": "UATheMysticClass",
+   "page": 5,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "化身",
+   "subclassSource": "UATheMysticClass",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级开始，你投射出一个韧性光环。当你未处于{@condition 失能}状态时，30尺内能看见你的盟友每当从灵能才赋恢复生命值时，会额外恢复等同于你智力调整值的生命值（最低为0）。"
+   ]
+  },
+  {
+   "ENG_name": "Avatar of Speed",
+   "name": "急速具现",
+   "source": "UATheMysticClass",
+   "page": 5,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "化身",
+   "subclassSource": "UATheMysticClass",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "从14级开始，你释放出一个速度光环。当你未处于{@condition 失能}状态时，任何30尺内能看见你的盟友可以将{@action 疾走}动作作为附赠动作使用。"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Awakened",
+   "name": "觉醒者修会",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "觉醒",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "致力于觉醒者修会的秘术师们寻求释放心智的全部潜能。通过超越肉体，觉醒者们希望达到一种专注于纯粹才智和精神能量的存在状态。",
+    "觉醒者擅长操控心智并释放毁灭性的灵能攻击，他们能通过灵能读取世界的秘密。选择冒险的觉醒者秘术师精于解开谜题、破解谜团，并通过将怪物转化为不情愿的傀儡来击败它们。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "额外灵术|秘术师|UATheMysticClass|觉醒|UATheMysticClass|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "唤醒天赋|秘术师|UATheMysticClass|觉醒|UATheMysticClass|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Awakened Talent",
+   "name": "唤醒天赋",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "觉醒",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你从以下技能中选择两个获得熟练项：{@skill 驯兽}、{@skill 欺瞒}、{@skill 洞悉}、{@skill 威吓}、{@skill 调查}、{@skill 察觉}和{@skill 游说}。"
+   ]
+  },
+  {
+   "ENG_name": "Bonus Disciplines",
+   "name": "额外灵术",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "觉醒",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你学习两个自选的额外灵术。它们必须从{@filter 觉醒者灵术|灵能|type=D|order=觉醒}中选择。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Investigation",
+   "name": "灵能侦察",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "觉醒",
+   "subclassSource": "UATheMysticClass",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "从3级开始，你可以集中精神读取物件上遗留的灵能印记。如果你持有一个物件并对其专注10分钟（如同{@status 专注||专注于}一项灵能才赋），你将了解到关于它的一些基础信息。你会获得一个从该物件视角出发的心理图像，显示过去24小时内最后一个持有该物件的生物。",
+    "你还会知晓该物件20尺范围内过去1小时内发生的任何事件。你感知到的事件会从该物件的视角展开。你如同亲临现场般看见和听见这些事件，但无法使用其他感官。",
+    "此外，你可以在该物件中嵌入一个无形的灵能传感器。接下来的24小时内，你可以用一个动作来了解该物件相对于你的位置（其距离和方向），并从该物件的视角观察其周围环境，如同你亲临其境。该察觉效果持续到你下个回合开始。",
+    "你必须完成一次长休或短休后才能再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Surge",
+   "name": "灵能涌动",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "觉醒",
+   "subclassSource": "UATheMysticClass",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级开始，你可以过载你的心灵集中来击破对手的防御。你可以使目标对抗你使用的纪律或天赋的豁免检定处于劣势，但代价是消耗你的心灵集中。若心灵集中处于激活状态则立即结束，且你在完成一次短休或长休前无法再次使用。",
+    "若你无法使用心灵集中，则不能使用此特性。"
+   ]
+  },
+  {
+   "ENG_name": "Spectral Form",
+   "name": "幽灵形态",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "觉醒",
+   "subclassSource": "UATheMysticClass",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "在14级时，你获得化身为灵能幽灵形态的能力。以一个动作，你可以变形成一个透明的幽灵形态。在此形态下，你拥有对所有伤害的抗性，以半速移动，并且可以在移动时穿过物件和生物，但不能主动在它们占据的空间结束移动。该形态持续10分钟或直到你用一个动作结束它。",
+    "必须完成一次长休才能再次使用该特性。"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Immortal",
+   "name": "不朽者修会",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "不朽",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "不朽者修会使用灵能能量来增强和改造物理形态。该修会的追随者被称为不朽者。他们使用灵能能量改造自己的身体，使其强化以抵御攻击，并将自己转变为活体武器。",
+    "他们对物理形态的精通赋予了他们不朽者之名，因为众所周知不朽者极难被杀死。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "额外灵术|秘术师|UATheMysticClass|不朽|UATheMysticClass|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "不朽耐久|秘术师|UATheMysticClass|不朽|UATheMysticClass|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Bonus Disciplines",
+   "name": "额外灵术",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "不朽",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你学习两个自选的额外灵术。它们必须从{@filter 不朽者修会|灵能|type=D|order=不朽}中选择。"
+   ]
+  },
+  {
+   "ENG_name": "Immortal Durability",
+   "name": "不朽耐久",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "不朽",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "从1级开始，你的生命值上限每秘术师等级增加1点。",
+    "此外，当你未穿戴护甲或持用盾牌时，你的基础护甲等级等于10 + 你的敏捷调整值 + 你的体质调整值。"
+   ]
+  },
+  {
+   "ENG_name": "Psionic Resilience",
+   "name": "灵能再生",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "不朽",
+   "subclassSource": "UATheMysticClass",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "从3级开始，你的灵能能量赋予你非凡的坚韧。在你的每个回合开始时，若你至少有1点生命值，你将获得等同于智力调整值（最低为0）的临时生命值。"
+   ]
+  },
+  {
+   "ENG_name": "Surge of Health",
+   "name": "生机涌动",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "不朽",
+   "subclassSource": "UATheMysticClass",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级开始，你可以利用心灵集中来逃脱死亡的攫取。当你受到伤害时，你可以用一个反应将该伤害减半。若心灵集中处于激活状态则立即结束，且你在完成一次短休或长休前无法再次使用。",
+    "若你无法使用心灵集中，则不能使用此特性。"
+   ]
+  },
+  {
+   "ENG_name": "Immortal Will",
+   "name": "不朽意志",
+   "source": "UATheMysticClass",
+   "page": 6,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "不朽",
+   "subclassSource": "UATheMysticClass",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "从14级开始，你可以汲取灵能力量的储备来超越死亡存活。当你在生命值为0时回合结束时，可以消耗5点灵力点立即恢复等同于秘术师等级+体质调整值的生命值。"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Nomad",
+   "name": "漫游者修会",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "漫游",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "漫游者修会的秘术师们将他们的心智保持在一种奇特而精炼的状态。他们寻求积累尽可能多的知识，因为他们致力于解开多元宇宙的奥秘并寻找万物的基础体系。同时，他们感知到一个被称为知识圈的奇异活体知识网络。",
+    "漫游者，正如其名称所示，热衷于旅行、探索和发现。他们渴望积累尽可能多的知识，而对秘密和隐秘逸闻的追求可能成为他们的执念。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "额外灵术|秘术师|UATheMysticClass|漫游|UATheMysticClass|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "广博学识|秘术师|UATheMysticClass|漫游|UATheMysticClass|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Bonus Disciplines",
+   "name": "额外灵术",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "漫游",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你学习两个自选的额外灵术。它们必须从{@filter 漫游者灵术|灵能|type=D|order=漫游}中选择。"
+   ]
+  },
+  {
+   "ENG_name": "Breadth of Knowledge",
+   "name": "广博学识",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "漫游",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你获得扩展知识的能力。当你完成一次长休后，你可以选择获得两项熟练项：两种工具、两项技能或各选其一。你可以将其中一项或两项替换为语言。该增益持续到你完成下一次长休为止。"
+   ]
+  },
+  {
+   "ENG_name": "Memory of One Thousand Steps",
+   "name": "千步之忆",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "漫游",
+   "subclassSource": "UATheMysticClass",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "在3级时，你获得使用灵能来回忆自己步伐的能力。当你被一次攻击命中时，你可以用反应传送至自上回合开始后你曾占据过的一个未占据空间，使该次攻击失手。一旦你使用了此特性，直到你完成一次短休或长休前都不能再次使用。"
+   ]
+  },
+  {
+   "ENG_name": "Superior Teleportation",
+   "name": "优异传送",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "漫游",
+   "subclassSource": "UATheMysticClass",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "在6级时，你获得优异的传送天赋。当你使用灵能才赋进行任何距离的传送时，可将该距离增加最多10尺。"
+   ]
+  },
+  {
+   "ENG_name": "Effortless Journey",
+   "name": "随性旅行",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "漫游",
+   "subclassSource": "UATheMysticClass",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "从14级开始，你的心灵能以神秘方式移动你的身体。在你的每个回合中，你可以放弃至多30尺的移动距离，传送等同于你放弃的距离。你必须传送至一个你能看见的未占据空间。"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Soul Knife",
+   "name": "魂刃修会",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "魂刃",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "魂刃修会牺牲了其他秘术师所获得的广博学识，专注于一种特定的灵能技巧。这些秘术师学会显化一种纯粹心灵能量的致命武器，可以用它来横扫敌人。",
+    "魂刃修会在追求这条路径的方式上差异很大。有些人追随它是出于对军用完美的渴望，而另一些人则是无情的刺客，寻求成为完美的杀手。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "战争训练|秘术师|UATheMysticClass|魂刃|UATheMysticClass|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "魂刃|秘术师|UATheMysticClass|魂刃|UATheMysticClass|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Martial Training",
+   "name": "战争训练",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "魂刃",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你获得中甲和军用武器的熟练项。"
+   ]
+  },
+  {
+   "ENG_name": "Soul Knife",
+   "name": "魂刃",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "魂刃",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "从1级开始，你获得显现心灵能量之刃的能力。以一个附赠动作，你可以创造出从双拳投射出的闪烁能量刀刃。在显现这些刀刃时，你的手中不能持有任何物品。你可以用一个附赠动作解散它们。",
+    "对你而言，魂刃是一种具有轻型和灵巧属性的军用近战武器。命中时造成{@damage 1d8}心灵伤害。",
+    "你可以用一个附赠动作准备用刀刃进行格挡；直到你的下个回合开始或你陷入{@condition 失能}状态前，你的AC获得+2加值。"
+   ]
+  },
+  {
+   "ENG_name": "Hone the Blade",
+   "name": "打磨刃锋",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "魂刃",
+   "subclassSource": "UATheMysticClass",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "从3级开始，你可以消耗灵力点来增强你的魂刃的攻击检定与伤害。根据消耗的灵力点数值，你的魂刃在攻击检定和伤害掷骰上获得加值，如下表所示。此加值持续10分钟。",
+    {
+     "type": "table",
+     "colLabels": [
+      "灵力点",
+      "攻击和伤害加值"
+     ],
+     "colStyles": [
+      "col-6 text-center",
+      "col-6 text-center"
+     ],
+     "rows": [
+      [
+       "2",
+       "+1"
+      ],
+      [
+       "5",
+       "+2"
+      ],
+      [
+       "7",
+       "+4"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ENG_name": "Consumptive Knife",
+   "name": "吸能之刃",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "魂刃",
+   "subclassSource": "UATheMysticClass",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "从6级开始，每当你用魂刃攻击击杀一个仇敌生物时，你立即恢复2点灵力点。"
+   ]
+  },
+  {
+   "ENG_name": "Phantom Knife",
+   "name": "幻影之刃",
+   "source": "UATheMysticClass",
+   "page": 7,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "魂刃",
+   "subclassSource": "UATheMysticClass",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "从14级开始，你可以发动一次能穿透大多数防御的攻击。以一个动作，你可以用你的魂刃发动一次攻击。无论目标的实际护甲等级如何，此次攻击将目标的护甲等级视为10。"
+   ]
+  },
+  {
+   "ENG_name": "Order of the Wu Jen",
+   "name": "巫觋修会",
+   "source": "UATheMysticClass",
+   "page": 8,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "巫觋",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "entries": [
+    "巫觋修会聚集了一些最虔诚的神秘主义者。这些神秘主义者试图将自己与世界隔绝，否认物质世界的限制，并用他们为自己创造的现实取而代之。这些被称为巫觋的神秘主义者将他们的思想投射到世界中，掌控其基本原则并重塑它。",
+    "实际上，巫觋修会成员擅长控制自然世界的力量。他们能用意念猛投物件、操控四象，并改变现实以满足自身欲望。",
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "额外灵术|秘术师|UATheMysticClass|巫觋|UATheMysticClass|1"
+    },
+    {
+     "type": "refSubclassFeature",
+     "subclassFeature": "隐士研究|秘术师|UATheMysticClass|巫觋|UATheMysticClass|1"
+    }
+   ]
+  },
+  {
+   "ENG_name": "Bonus Disciplines",
+   "name": "额外灵术",
+   "source": "UATheMysticClass",
+   "page": 8,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "巫觋",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你学习两个自选的额外灵术。它们必须从{@filter 巫觋灵术|灵能|type=D|order=巫觋}中选择。"
+   ]
+  },
+  {
+   "ENG_name": "Hermit's Study",
+   "name": "隐士研究",
+   "source": "UATheMysticClass",
+   "page": 8,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "巫觋",
+   "subclassSource": "UATheMysticClass",
+   "level": 1,
+   "header": 1,
+   "entries": [
+    "在1级时，你从以下技能中选择两个获得熟练项：{@skill 驯兽}、{@skill 奥秘}、{@skill 历史}、{@skill 洞悉}、{@skill 医药}、{@skill 自然}、{@skill 察觉}、{@skill 宗教}或{@skill 求生}。"
+   ]
+  },
+  {
+   "ENG_name": "Elemental Attunement",
+   "name": "元素同调",
+   "source": "UATheMysticClass",
+   "page": 8,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "巫觋",
+   "subclassSource": "UATheMysticClass",
+   "level": 3,
+   "header": 2,
+   "entries": [
+    "从3级开始，当一个生物的抗性减少了你灵能才赋造成的伤害时，你可以花费1点灵力点使该次才赋使用忽略该生物的抗性。如果这样做会使才赋的花费超过你的灵力限制，则不能花费此点。"
+   ]
+  },
+  {
+   "ENG_name": "Arcane Dabbler",
+   "name": "奥秘初试",
+   "source": "UATheMysticClass",
+   "page": 8,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "巫觋",
+   "subclassSource": "UATheMysticClass",
+   "level": 6,
+   "header": 2,
+   "entries": [
+    "在6级时，你学习三个自选的法师法术并始终准备着它们。这些法术必须是{@filter 1至3环|spells|level=1;2;3|class=法师}。",
+    "你可以用一个附赠动作消耗灵力点来创建施法能力，用于施放这些法术以及你能施放的其他法术。每个施法能力的灵力点消耗值如下表所示。",
+    {
+     "type": "table",
+     "colLabels": [
+      "法术位环阶",
+      "灵能消耗"
+     ],
+     "colStyles": [
+      "col-6 text-center",
+      "col-6 text-center"
+     ],
+     "rows": [
+      [
+       "1st",
+       "2"
+      ],
+      [
+       "2nd",
+       "3"
+      ],
+      [
+       "3rd",
+       "5"
+      ],
+      [
+       "4th",
+       "6"
+      ],
+      [
+       "5th",
+       "7"
+      ]
+     ]
+    },
+    "该法术位将保留至你使用它或完成一次长休。当你消耗灵力点来创造一个法术位时，必须遵守你的灵力限制。",
+    "每当你在此职业中提升等级时，你可以将一个已选定的法师法术替换为一个不同的{@filter 1至3环法师法术|spells|level=1;2;3|class=法师}。"
+   ]
+  },
+  {
+   "ENG_name": "Elemental Mastery",
+   "name": "元素精通",
+   "source": "UATheMysticClass",
+   "page": 8,
+   "className": "秘术师",
+   "classSource": "UATheMysticClass",
+   "subclassShortName": "巫觋",
+   "subclassSource": "UATheMysticClass",
+   "level": 14,
+   "header": 2,
+   "entries": [
+    "从14级开始，若你对某种伤害类型具有抗性，你可以在受到该类型伤害时花费2点灵力点作为反应来忽略该伤害；你获得对该伤害类型的免疫直到你的下个回合结束。"
+   ]
+  }
+ ]
+}

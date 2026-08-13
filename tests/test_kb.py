@@ -391,11 +391,13 @@ def test_class_features_edition_filter(manager: KnowledgeBaseManager) -> None:
     assert [r.name for r in result.base_rows] == ["战斗风格", "动作如潮"]
     result = manager.class_features("战士", edition="2024")
     assert result.base_rows == []
-    # 子职行同样过滤
+    # 子职行同样过滤；目标版本无该子职 → v0.48.1 起回退其他版本（fallback 标注）
     result = manager.class_features("战士", subclass="冠军武士", edition="2014")
     assert len(result.subclass_rows) == 2
+    assert result.subclass_edition_fallback == ""
     result = manager.class_features("战士", subclass="冠军武士", edition="2024")
-    assert result.subclass_rows == []
+    assert len(result.subclass_rows) == 2  # 回退 2014
+    assert result.subclass_edition_fallback == "2014"
     # 非法值不生效
     result = manager.class_features("战士", edition="other")
     assert len(result.base_rows) == 2
@@ -405,6 +407,28 @@ def test_class_features_edition_not_applied_to_feature(manager: KnowledgeBaseMan
     """v0.48.0：feature 细化模式不过滤版本（保持 v0.29.0 跨版本语义）。"""
     result = manager.class_features("战士", feature="动作如潮", edition="2024")
     assert [r.name for r in result.base_rows] == ["动作如潮"]
+
+
+def test_class_features_subclass_edition_fallback(manager: KnowledgeBaseManager) -> None:
+    """v0.48.1：默认版本无该子职（如魔射手仅 XGE 2014）→ 回退其他版本并标注。
+
+    fixture 战士子职「冠军武士」仅 PHB 2014：edition=2024 查询应回退 2014，
+    而不是返回空导致命令层报「未找到」。
+    """
+    result = manager.class_features("战士", subclass="冠军武士", edition="2024")
+    assert result.subclass_edition_fallback == "2014"
+    assert [r.name for r in result.subclass_rows] == ["精通重击", "非凡运动家"]
+    # 展示层带版本回退标注
+    text = KnowledgeBaseManager.format_class_features(result)
+    assert "该子职仅在 2014 版" in text
+    # 显式指定 2014 版本时不回退（无标注）
+    result = manager.class_features("战士", subclass="冠军武士", edition="2014")
+    assert result.subclass_edition_fallback == ""
+    assert "该子职仅在" not in KnowledgeBaseManager.format_class_features(result)
+    # 完全不存在的子职仍为空
+    result = manager.class_features("战士", subclass="不存在的子职", edition="2024")
+    assert result.subclass_rows == []
+    assert result.subclass_edition_fallback == ""
 
 
 def test_class_feature_row_edition_property() -> None:

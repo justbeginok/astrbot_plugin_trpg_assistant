@@ -1423,3 +1423,70 @@ def test_filter_monster_new_dimensions(tmp_path: Path) -> None:
     # 结果提示行含新维度引导
     text = collect(p.kb_filter_monster_cmd(ev("/筛怪 闪电免疫")))[0]
     assert "火焰免疫" in text and "真实视觉" in text
+
+
+# ---------------------------------------------------------------------------
+# /查祈唤 /查战技 /查修法 /查风格 /筛选项（v0.50.0 可定制职业选项）
+# ---------------------------------------------------------------------------
+
+
+def test_invocation_command_dual_version(tmp_path: Path) -> None:
+    """v0.50.0：/查祈唤 返回该选项全部版本（2014/2024）。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 苦痛魔爆")))
+    text = "\n".join(msgs)
+    assert "苦痛魔爆｜Agonizing Blast" in text
+    assert "类型：魔能祈唤" in text
+    assert "先决：习得戏法 魔能爆" in text
+    assert "版本：PHB·2014" in text and "版本：XPHB·2024" in text
+
+
+def test_maneuver_command(tmp_path: Path) -> None:
+    """v0.50.0：/查战技 伏击 → 战技类型展示。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_maneuver_cmd(ev("/查战技 伏击")))
+    text = msgs[0]
+    assert "伏击｜Ambush" in text
+    assert "类型：战技" in text
+    assert "卓越骰" in text
+
+
+def test_metamagic_command_shows_cost(tmp_path: Path) -> None:
+    """v0.50.0：/查修法 消耗行直接展示（非「先决」前缀）。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_metamagic_cmd(ev("/查修法 谨慎法术")))
+    text = msgs[0]
+    assert "类型：超魔法" in text
+    assert "消耗：1术法点" in text
+
+
+def test_fighting_style_command(tmp_path: Path) -> None:
+    """v0.50.0：/查风格 战斗风格专长。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_fighting_style_cmd(ev("/查风格 箭术")))
+    text = msgs[0]
+    assert "类型：战斗风格" in text
+    assert "先决：战斗风格特性" in text
+
+
+def test_opt_filter_by_type(tmp_path: Path) -> None:
+    """v0.50.0：/筛选项 类型 祈唤 / 裸词 战技。"""
+    p = make_plugin(tmp_path)
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 类型 祈唤")))[0]
+    assert "魔能祈唤" in text and "苦痛魔爆" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 战技")))[0]
+    assert "战技" in text and "伏击" in text
+
+
+def test_opt_filter_by_prereq(tmp_path: Path) -> None:
+    """v0.50.0：/筛选项 先决 关键词 → 子串匹配。"""
+    p = make_plugin(tmp_path)
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 先决 魔能爆")))[0]
+    assert "苦痛魔爆" in text
+
+
+def test_opt_lookup_miss(tmp_path: Path) -> None:
+    """v0.50.0：查不存在的祈唤 → 未找到。"""
+    p = make_plugin(tmp_path)
+    msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 不存在的祈唤")))
+    assert "未找到" in msgs[0]

@@ -921,6 +921,22 @@ def _feat_body(f: dict) -> str:
     return "\n\n".join(parts)
 
 
+def _optionalfeature_body(f: dict) -> str:
+    """可定制职业选项（魔能祈唤/战技/超魔法/战斗风格，v0.50.0）：先决行 + 正文。
+
+    prerequisite 为「消耗：N术法点」（超魔法资源消耗）时直接显示，
+    其余按「先决：」展示。
+    """
+    parts = []
+    prereq = (f.get("prerequisite") or "").strip()
+    if prereq:
+        parts.append(prereq if prereq.startswith("消耗") else f"先决：{prereq}")
+    body = _flatten_entries(f.get("entries"))
+    if body:
+        parts.append(body)
+    return "\n\n".join(parts)
+
+
 def _background_body(bg: dict) -> str:
     return _flatten_entries(bg.get("entries"))
 
@@ -1096,6 +1112,7 @@ def _kind_body(kind: str, entry: dict, classes: list[str] | None = None) -> str:
         "background": _background_body,
         "condition": _condition_body,
         "race": _race_body,
+        "optionalfeature": _optionalfeature_body,
     }[kind]
     if kind == "spell":
         return _spell_body(entry, classes)

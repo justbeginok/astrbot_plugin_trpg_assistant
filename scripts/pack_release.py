@@ -37,6 +37,7 @@ EXCLUDE_PATHS = {
     "scripts/monster_extract/pilot",
     "scripts/_thc_pilot",
     "scripts/class_extract/out",
+    "scripts/optional_extract/out",
 }
 EXCLUDE_GLOBS = ("kb_data/*.bak*",)
 

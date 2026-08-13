@@ -1,0 +1,59 @@
+{
+  "optionalfeature": [
+    {
+      "name": "苦痛魔爆",
+      "ENG_name": "Agonizing Blast",
+      "featureType": "EI",
+      "source": "PHB",
+      "edition": "2014",
+      "prerequisite": "习得戏法 魔能爆",
+      "entries": ["施展魔能爆时，你可以将魅力调整值加到其每次命中所造成的伤害中。"],
+      "class": ["魔契师"],
+      "legacy": false
+    },
+    {
+      "name": "苦痛魔爆",
+      "ENG_name": "Agonizing Blast",
+      "featureType": "EI",
+      "source": "XPHB",
+      "edition": "2024",
+      "prerequisite": "魔契师等级2+，知晓一道能造成伤害的魔契师戏法",
+      "entries": ["选择一道你已知的造成伤害的魔契师戏法，将魅力调整值加到其每次伤害掷骰中。"],
+      "class": ["魔契师"],
+      "legacy": false
+    },
+    {
+      "name": "伏击",
+      "ENG_name": "Ambush",
+      "featureType": "MV",
+      "source": "TCE",
+      "edition": "2014",
+      "prerequisite": "",
+      "entries": ["当你进行敏捷（隐匿）检定或先攻检定时，可以消耗一枚卓越骰并加入检定结果。"],
+      "class": ["战士"],
+      "legacy": false
+    },
+    {
+      "name": "谨慎法术",
+      "ENG_name": "Careful Spell",
+      "featureType": "MM",
+      "source": "XPHB",
+      "edition": "2024",
+      "prerequisite": "消耗：1术法点",
+      "entries": ["施展强迫豁免的法术时，选择若干生物自动通过豁免。"],
+      "class": ["术士"],
+      "legacy": false
+    },
+    {
+      "name": "箭术",
+      "ENG_name": "Archery",
+      "featureType": "FS",
+      "source": "XPHB",
+      "edition": "2024",
+      "prerequisite": "战斗风格特性",
+      "entries": ["你使用远程武器进行的攻击检定获得+2加值。"],
+      "class": ["战士"],
+      "legacy": false
+    }
+  ]
+}

@@ -269,6 +269,7 @@ KIND_CN: dict[str, str] = {
     "状态": "condition",
     "种族": "race",
     "子职": "subclass",
+    "选项": "optionalfeature",  # v0.50.0：魔能祈唤/战技/超魔法/战斗风格
 }
 
 # --- 2024 版（5.5e/5R）来源：其余归 2014，UA 归 other ---
@@ -1630,3 +1631,9 @@ def resolve_background_keyword(cn: str) -> str | None:
     if not key:
         return None
     return _BACKGROUND_KEYWORD_ALIASES.get(key)
+
+
+# v0.50.0：可定制职业选项 featureType 码 → 中文（与 build_kb 同步）。
+OPTIONAL_FEATURE_TYPE_CN: dict[str, str] = {
+    "EI": "魔能祈唤", "MV": "战技", "MM": "超魔法", "FS": "战斗风格",
+}

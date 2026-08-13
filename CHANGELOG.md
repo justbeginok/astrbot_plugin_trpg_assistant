@@ -5,6 +5,22 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.50.0] - 2026-08-14
+
+### 可定制职业选项入库（魔能祈唤/战技/超魔法/战斗风格，ADR-0025）
+- 新增知识库第七类「选项」（optionalfeature）：魔能祈唤/战技/超魔法/
+  战斗风格 153 条，全部来自 5e_chm 人工校对中文，5etools 官方 featureType 枚举。
+- 新命令：`/查祈唤 <名>` `/查战技 <名>` `/查修法 <名>` `/查风格 <名>`
+  （卡片式：类型 + 先决/消耗行 + 正文 + 版本行，同名多版本并列）；
+  `/筛选项 类型 祈唤` `/筛选项 先决 第5级`（类型/先决反查）。
+- 2014 战斗大师战技从子职正文剥离入库（16 条全集）；2024 战斗风格专长
+  补齐（5etools-cn 原缺该文件）。
+- LLM 工具 query_dnd_knowledge 支持 kind=选项 + opt_type/opt_prereq 条件
+  （40→42 参数）。
+- 提取管道 `scripts/optional_extract/`：规则解析三格式标题 + 先决/消耗行，
+  零 LLM 成本可复现。
+- 测试 1265 通过；metadata/README/ARCHITECTURE/CONTEXT 同步。
+
 ## [0.49.0] - 2026-08-13
 
 ### 职业数据库从 5e_chm 全量重建（ADR-0024）

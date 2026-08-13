@@ -64,7 +64,7 @@ MACHINE_FLAG = _MACHINE_FLAG
 # 跨库广搜结果的类别展示顺序与中文标签。
 _KIND_ORDER = [
     "spell", "monster", "item", "feat", "background",
-    "class", "subclass", "condition", "race",
+    "class", "subclass", "condition", "race", "optionalfeature",
 ]
 _KIND_LABEL = {
     "spell": "法术",
@@ -76,6 +76,7 @@ _KIND_LABEL = {
     "subclass": "子职",
     "condition": "状态",
     "race": "种族",
+    "optionalfeature": "选项",
 }
 
 # 种族速度类型（英文键）→ races 表数值列（filter 用）。
@@ -135,6 +136,8 @@ class KbEntry:
     background_summary: str | None = None
     # 条目 id（v0.35.0，仅 filter() 带出；供构筑咨询前置标注按 id 取 facet）
     entry_id: int | None = None
+    # 可定制职业选项类型标签（v0.50.0，entry_tags feature_type 汇总；detail 带出）
+    opt_type_label: str | None = None
     # 是否为运行期私设（v0.36.0；覆盖官方或新增，展示加「房规」标注）
     is_homebrew: bool = False
 
@@ -644,6 +647,9 @@ class KnowledgeBaseManager:
                 e.race_summary = r["race_summary"]
             if "background_summary" in r.keys() and r["background_summary"]:
                 e.background_summary = r["background_summary"]
+            # v0.50.0：可定制职业选项类型标签（entry_tags feature_type 汇总）
+            if "opt_type_label" in r.keys() and r["opt_type_label"]:
+                e.opt_type_label = r["opt_type_label"]
             out.append(e)
         return out
 
@@ -810,7 +816,11 @@ class KnowledgeBaseManager:
                 " (SELECT group_concat(t.value, '、') FROM"
                 "  (SELECT value FROM entry_tags"
                 "   WHERE entry_id = e.id AND facet = 'spell_keyword'"
-                "   ORDER BY value) t) AS spell_keywords"
+                "   ORDER BY value) t) AS spell_keywords,"
+                " (SELECT group_concat(t.value, '、') FROM"
+                "  (SELECT value FROM entry_tags"
+                "   WHERE entry_id = e.id AND facet = 'feature_type'"
+                "   ORDER BY value) t) AS opt_type_label"
                 " FROM entries e LEFT JOIN feats f ON f.entry_id = e.id"
                 " LEFT JOIN spells sp ON sp.entry_id = e.id"
                 " LEFT JOIN classes cl ON cl.entry_id = e.id"
@@ -837,7 +847,11 @@ class KnowledgeBaseManager:
                 " (SELECT group_concat(t.value, '、') FROM"
                 "  (SELECT value FROM entry_tags"
                 "   WHERE entry_id = e.id AND facet = 'spell_keyword'"
-                "   ORDER BY value) t) AS spell_keywords"
+                "   ORDER BY value) t) AS spell_keywords,"
+                " (SELECT group_concat(t.value, '、') FROM"
+                "  (SELECT value FROM entry_tags"
+                "   WHERE entry_id = e.id AND facet = 'feature_type'"
+                "   ORDER BY value) t) AS opt_type_label"
                 " FROM entries e LEFT JOIN feats f ON f.entry_id = e.id"
                 " LEFT JOIN spells sp ON sp.entry_id = e.id"
                 " LEFT JOIN classes cl ON cl.entry_id = e.id"
@@ -896,13 +910,23 @@ class KnowledgeBaseManager:
         - 返回 FilterResult（命中条目 + 未限量总数）。
         """
         if kind not in ("spell", "monster", "item", "race", "feat", "class",
-                        "subclass", "background"):
+                        "subclass", "background", "optionalfeature"):
             return FilterResult()
         conn = self._connect()
         where: list[str] = ["e.kind = ?"]
         params: list[Any] = [kind]
 
-        if kind in ("class", "subclass"):
+        if kind == "optionalfeature":
+            # v0.50.0：可定制职业选项，无侧表；feature_type/prerequisite
+            # 标签反查（tags 参数）。select_extra 带类型标签供列表展示。
+            join = ""
+            select_extra = (
+                " (SELECT group_concat(t.value, '、') FROM"
+                "  (SELECT value FROM entry_tags"
+                "   WHERE entry_id = e.id AND facet = 'feature_type'"
+                "   ORDER BY value) t) AS opt_type_label"
+            )
+        elif kind in ("class", "subclass"):
             # v0.33.0 职业/子职：classes 侧表（概要/定位）+ class_keyword /
             # subclass_keyword / class_role 标签（tags 参数反查）。
             join = " LEFT JOIN classes cl ON cl.entry_id = e.id"
@@ -999,13 +1023,20 @@ class KnowledgeBaseManager:
                 params.append(darkvision_min)
 
         # 特性标签：每个 (facet, value) 一条 EXISTS，取交集
+        # v0.50.0：value 含 % 时走 LIKE（先决条件反查如「第5级」→ "%第5级%"）
         for facet, value in tags or []:
             if not facet or not value:
                 continue
-            where.append(
-                "EXISTS (SELECT 1 FROM entry_tags t"
-                " WHERE t.entry_id = e.id AND t.facet = ? AND t.value = ?)"
-            )
+            if "%" in value:
+                where.append(
+                    "EXISTS (SELECT 1 FROM entry_tags t"
+                    " WHERE t.entry_id = e.id AND t.facet = ? AND t.value LIKE ?)"
+                )
+            else:
+                where.append(
+                    "EXISTS (SELECT 1 FROM entry_tags t"
+                    " WHERE t.entry_id = e.id AND t.facet = ? AND t.value = ?)"
+                )
             params.extend((facet, value))
 
         where_clause = (" WHERE " + " AND ".join(where)) if where else ""
@@ -1046,7 +1077,8 @@ class KnowledgeBaseManager:
             return " ORDER BY m.cr, e.name, e.edition DESC, e.source"
         if kind == "spell":
             return " ORDER BY s.level, e.name, e.edition DESC, e.source"
-        if kind in ("race", "feat", "class", "subclass", "background"):
+        if kind in ("race", "feat", "class", "subclass", "background",
+                    "optionalfeature"):
             return " ORDER BY e.name, e.edition DESC, e.source"
         return (
             " ORDER BY CASE i.rarity"
@@ -1098,6 +1130,8 @@ class KnowledgeBaseManager:
             elif kind in ("class", "subclass"):
                 e.class_summary = r["class_summary"] or None
                 e.class_role = r["class_role"] or None
+            elif kind == "optionalfeature":
+                e.opt_type_label = r["opt_type_label"] or None
             # 其他：KbEntry 保持默认
             out.append(e)
         return out
@@ -1906,6 +1940,9 @@ class KnowledgeBaseManager:
         # v0.44.0：法术走 PHB 卡片式（标题纯净/概要/标签/版本行），其他种类不变
         if entry.kind == "spell":
             return KnowledgeBaseManager._format_spell_entry(entry, max_len)
+        # v0.50.0：可定制职业选项（魔能祈唤/战技/超魔法/战斗风格）卡片式
+        if entry.kind == "optionalfeature":
+            return KnowledgeBaseManager._format_opt_entry(entry, max_len)
         head = f"【{entry.name} {entry.eng_name}】[{entry.edition_label}]"
         if entry.homebrew_label:
             head += f" {entry.homebrew_label}"
@@ -1939,6 +1976,25 @@ class KnowledgeBaseManager:
                 meta_parts.append(f"属性提升：{entry.feat_ability}")
             head += "\n" + "；".join(meta_parts)
         return f"{head}\n{body}"
+
+    @staticmethod
+    def _format_opt_entry(entry: KbEntry, max_len: int = MAX_ENTRY_LEN) -> str:
+        """可定制职业选项卡片式（v0.50.0）：标题纯净 + 类型 + 正文 + 版本行。
+
+        先决/消耗行已由构建期 _optionalfeature_body 渲染进 body 首段。
+        """
+        title = f"{entry.name}｜{entry.eng_name}" if entry.eng_name else entry.name
+        head_lines = [title]
+        if entry.opt_type_label:
+            head_lines.append(f"类型：{entry.opt_type_label}")
+        body = entry.body
+        if len(body) > max_len:
+            body = body[:max_len] + "\n…（内容过长已截断，可用更精确的条件查询）"
+        flags = " ".join(
+            f for f in (entry.machine_label, entry.homebrew_label) if f
+        )
+        footer = f"版本：{entry.edition_label}" + (f" {flags}" if flags else "")
+        return "\n\n".join(["\n".join(head_lines), body, footer])
 
     @staticmethod
     def _format_spell_entry(entry: KbEntry, max_len: int = MAX_ENTRY_LEN) -> str:

@@ -41,12 +41,16 @@ def test_schema_and_counts(built_db: Path) -> None:
         "background_ability", "race_ability", "item_combat",
     } <= tables
     # 6 法术 + 3 怪物 + 18 物品（11 fixture + 3 遗物链 + 4 魔法变体本体）
-    # + 9 专长 + 2 背景 + 4 状态 + 6 种族 + 2 职业 + 2 子职（奥法骑士重复行合并）= 52
-    assert conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0] == 52
+    # + 9 专长 + 2 背景 + 4 状态 + 6 种族 + 2 职业 + 2 子职（奥法骑士重复行合并）
+    # + 5 选项（v0.50.0 optionalfeatures fixture）= 57
+    assert conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0] == 57
     assert conn.execute("SELECT COUNT(*) FROM aliases").fetchone()[0] >= 9 * 2
     assert conn.execute("SELECT COUNT(*) FROM spells").fetchone()[0] == 6
     assert conn.execute("SELECT COUNT(*) FROM monsters").fetchone()[0] == 3
     assert conn.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 18
+    assert conn.execute(
+        "SELECT COUNT(*) FROM entries WHERE kind='optionalfeature'"
+    ).fetchone()[0] == 5
     assert conn.execute(
         "SELECT COUNT(*) FROM entries WHERE kind='feat'"
     ).fetchone()[0] == 9

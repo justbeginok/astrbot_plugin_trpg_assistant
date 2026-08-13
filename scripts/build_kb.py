@@ -133,8 +133,16 @@ KIND_SOURCES: dict[str, tuple[str, str]] = {
     "background": ("backgrounds.json", "background"),
     "condition": ("conditionsdiseases.json", "condition"),
     "race": ("races.json", "race"),
+    # v0.50.0：可定制职业选项（魔能祈唤/战技/超魔法/战斗风格），
+    # 由 scripts/optional_extract/extract.py 从 5e_chm/md 提取。
+    "optionalfeature": ("optionalfeatures.json", "optionalfeature"),
 }
 CLASS_FILES = "class/class-*.json"
+
+# v0.50.0：可定制职业选项 featureType 码 → 中文（与 kb_enums 同步）。
+OPTIONAL_FEATURE_TYPE_CN: dict[str, str] = {
+    "EI": "魔能祈唤", "MV": "战技", "MM": "超魔法", "FS": "战斗风格",
+}
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS entries(
@@ -2257,6 +2265,19 @@ def build(
                         "INSERT INTO feats (entry_id, summary) VALUES (?,?)",
                         (entry_id, rec["summary"]),
                     )
+            elif kind == "optionalfeature":
+                # v0.50.0：可定制职业选项（魔能祈唤/战技/超魔法/战斗风格）。
+                # feature_type facet = 类型中文；先决条件 facet（超魔法消耗不计，
+                # 那是资源消耗不是学习门槛）。
+                tags = []
+                ftype = OPTIONAL_FEATURE_TYPE_CN.get(
+                    e.get("featureType") or "", (e.get("featureType") or "").strip()
+                )
+                if ftype:
+                    tags.append(("feature_type", ftype))
+                prereq = (e.get("prerequisite") or "").strip()
+                if prereq and not prereq.startswith("消耗"):
+                    tags.append(("prerequisite", prereq))
             else:
                 tags = []
             for facet, value in tags:

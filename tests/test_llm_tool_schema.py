@@ -94,10 +94,10 @@ def test_manage_inventory_schema_params() -> None:
 
 
 def test_query_dnd_knowledge_schema_has_expected_params() -> None:
-    """query_dnd_knowledge 的 40 个参数必须全部进入 schema（本次 bug 的直接回归）。"""
+    """query_dnd_knowledge 的 42 个参数必须全部进入 schema（本次 bug 的直接回归）。"""
     fn = getattr(TrpgAssistantPlugin, "query_dnd_knowledge_tool")
     parsed = docstring_parser.parse(inspect.getdoc(fn) or "")
-    assert len(parsed.params) == 40
+    assert len(parsed.params) == 42
     names = [p.arg_name for p in parsed.params]
     assert names == [
         "action", "kind", "name", "level", "school",
@@ -112,6 +112,7 @@ def test_query_dnd_knowledge_schema_has_expected_params() -> None:
         "class_role", "class_keywords", "subclass_keywords",
         "race_keywords", "background_keywords",
         "spell_class", "class_level",
+        "opt_type", "opt_prereq",
     ]
 
 

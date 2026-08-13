@@ -5,6 +5,24 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.46.0] - 2026-08-13
+
+### 新增
+
+- **怪物知识库全量重建（ADR-0021）**：以 5e_chm（= 不全书人工校对中文）
+  全书为源、LLM 子代理批量提取怪物统计块转 5etools 兼容 JSON，全量覆盖
+  官方核心书 + 36 模组 + MTG + 21 第三方书，怪物总数 5015 条，其中人工翻译
+  4219 条（此前仅 1308），机翻条目从 3243 降至 796（仅剩 5e_chm 未覆盖的
+  Plane Shift/UA/模组重印怪等）。
+  - 提取契约 `scripts/llm_monster_schema.md` 覆盖三大格式族：2024/2025
+    表格、2014 文本、MTG 变体；
+  - 可复现管道 `scripts/monster_extract/`（inventory → make_plan → LLM
+    子代理提取 → validate_monster_json 规则校验 → align 数值对齐 → finalize
+    按名合并进 5etools-cn）；
+  - 数值自动对齐 5etools-cn（修正 5e_chm 源 OCR 笔误，正文保留人工翻译）；
+  - 新增第三方书怪物（万兽图志、塔尔多雷、鬼魅幽谷、德拉肯海姆、歪曲之月、
+    狮鹫的鞍中珍宝Ⅱ 等 21 本，中文书名 source）。
+
 ## [0.45.0] - 2026-08-12
 
 ### 新增

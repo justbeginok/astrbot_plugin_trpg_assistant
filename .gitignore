@@ -167,3 +167,6 @@ cython_debug/
 scripts/_md_cache/
 # 知识库构建备份
 kb_data/*.bak*
+# 怪物 LLM 提取中间产物（不入库，可重跑子代理再生成）
+scripts/monster_extract/out/
+scripts/monster_extract/pilot/

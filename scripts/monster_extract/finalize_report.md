@@ -1,0 +1,94 @@
+# 怪物全量重建 finalize 报告
+
+- AAG（AAG）: 5e_chm 0 条 + 5etools-cn 独有 0 条 = 0 条；对齐修正 0 处
+- AI（AI）: 5e_chm 20 条 + 5etools-cn 独有 3 条 = 23 条；对齐修正 0 处
+- BAM（BAM）: 5e_chm 72 条 + 5etools-cn 独有 16 条 = 88 条；对齐修正 9 处
+- BGDIA（BGDIA）: 5e_chm 14 条 + 5etools-cn 独有 45 条 = 59 条；对齐修正 1 处
+- BGG（BGG）: 5e_chm 75 条 + 5etools-cn 独有 1 条 = 76 条；对齐修正 1 处
+- BMT（BMT）: 5e_chm 35 条 + 5etools-cn 独有 10 条 = 45 条；对齐修正 16 处
+- CM（CM）: 5e_chm 0 条 + 5etools-cn 独有 42 条 = 42 条；对齐修正 0 处
+- CRCotN（CRCotN）: 5e_chm 31 条 + 5etools-cn 独有 37 条 = 68 条；对齐修正 6 处
+- CoS（CoS）: 5e_chm 18 条 + 5etools-cn 独有 81 条 = 99 条；对齐修正 3 处
+- DIP（DIP）: 5e_chm 4 条 + 5etools-cn 独有 2 条 = 6 条；对齐修正 0 处
+- DMG（DMG）: 5e_chm 3 条 + 5etools-cn 独有 0 条 = 3 条；对齐修正 0 处
+- DSotDQ（DSotDQ）: 5e_chm 28 条 + 5etools-cn 独有 32 条 = 60 条；对齐修正 3 处
+- DoSI（DoSI）: 5e_chm 7 条 + 5etools-cn 独有 4 条 = 11 条；对齐修正 0 处
+- EGW（EGW）: 5e_chm 24 条 + 5etools-cn 独有 28 条 = 52 条；对齐修正 2 处
+- ERLW（ERLW）: 5e_chm 63 条 + 5etools-cn 独有 26 条 = 89 条；对齐修正 10 处
+- FRAiF（FRAiF）: 5e_chm 59 条 + 5etools-cn 独有 27 条 = 86 条；对齐修正 13 处
+- FTD（FTD）: 5e_chm 70 条 + 5etools-cn 独有 21 条 = 91 条；对齐修正 12 处
+- GGR（GGR）: 5e_chm 74 条 + 5etools-cn 独有 12 条 = 86 条；对齐修正 28 处
+- GoS（GoS）: 5e_chm 50 条 + 5etools-cn 独有 17 条 = 67 条；对齐修正 1 处
+- HAT-TG（HAT-TG）: 5e_chm 7 条 + 5etools-cn 独有 0 条 = 7 条；对齐修正 5 处
+- HotDQ（HotDQ）: 5e_chm 22 条 + 5etools-cn 独有 9 条 = 31 条；对齐修正 1 处
+- IDRotF（IDRotF）: 5e_chm 50 条 + 5etools-cn 独有 41 条 = 91 条；对齐修正 10 处
+- IMR（IMR）: 5e_chm 0 条 + 5etools-cn 独有 26 条 = 26 条；对齐修正 0 处
+- JttRC（JttRC）: 5e_chm 11 条 + 5etools-cn 独有 60 条 = 71 条；对齐修正 3 处
+- KftGV（KftGV）: 5e_chm 8 条 + 5etools-cn 独有 50 条 = 58 条；对齐修正 2 处
+- LMoP（LMoP）: 5e_chm 2 条 + 5etools-cn 独有 8 条 = 10 条；对齐修正 0 处
+- LRDT（LRDT）: 5e_chm 2 条 + 5etools-cn 独有 0 条 = 2 条；对齐修正 2 处
+- LoX（LoX）: 5e_chm 1 条 + 5etools-cn 独有 15 条 = 16 条；对齐修正 0 处
+- MCV1SC（MCV1SC）: 5e_chm 10 条 + 5etools-cn 独有 2 条 = 12 条；对齐修正 2 处
+- MCV2DC（MCV2DC）: 5e_chm 11 条 + 5etools-cn 独有 0 条 = 11 条；对齐修正 2 处
+- MCV3MC（MCV3MC）: 5e_chm 5 条 + 5etools-cn 独有 1 条 = 6 条；对齐修正 2 处
+- MCV4EC（MCV4EC）: 5e_chm 25 条 + 5etools-cn 独有 0 条 = 25 条；对齐修正 3 处
+- MFF（MFF）: 5e_chm 18 条 + 5etools-cn 独有 2 条 = 20 条；对齐修正 2 处
+- MM（MM）: 5e_chm 426 条 + 5etools-cn 独有 61 条 = 487 条；对齐修正 54 处
+- MOT（MOT）: 5e_chm 49 条 + 5etools-cn 独有 5 条 = 54 条；对齐修正 5 处
+- MPMM（MPMM）: 5e_chm 261 条 + 5etools-cn 独有 31 条 = 292 条；对齐修正 34 处
+- MPP（MPP）: 5e_chm 54 条 + 5etools-cn 独有 1 条 = 55 条；对齐修正 9 处
+- MTF（MTF）: 5e_chm 137 条 + 5etools-cn 独有 23 条 = 160 条；对齐修正 27 处
+- MisMV1（MisMV1）: 5e_chm 6 条 + 5etools-cn 独有 1 条 = 7 条；对齐修正 0 处
+- OotA（OotA）: 5e_chm 14 条 + 5etools-cn 独有 91 条 = 105 条；对齐修正 2 处
+- PHB（PHB）: 5e_chm 0 条 + 5etools-cn 独有 5 条 = 5 条；对齐修正 0 处
+- PaBTSO（PaBTSO）: 5e_chm 17 条 + 5etools-cn 独有 39 条 = 56 条；对齐修正 0 处
+- PotA（PotA）: 5e_chm 38 条 + 5etools-cn 独有 34 条 = 72 条；对齐修正 8 处
+- QftIS（QftIS）: 5e_chm 1 条 + 5etools-cn 独有 48 条 = 49 条；对齐修正 0 处
+- RHW（RHW）: 5e_chm 51 条 + 5etools-cn 独有 39 条 = 90 条；对齐修正 25 处
+- RoT（RoT）: 5e_chm 11 条 + 5etools-cn 独有 19 条 = 30 条；对齐修正 7 处
+- SCAG（SCAG）: 5e_chm 0 条 + 5etools-cn 独有 0 条 = 0 条；对齐修正 0 处
+- SCC（SCC）: 5e_chm 41 条 + 5etools-cn 独有 6 条 = 47 条；对齐修正 11 处
+- SKT（SKT）: 5e_chm 26 条 + 5etools-cn 独有 79 条 = 105 条；对齐修正 5 处
+- TCE（TCE）: 5e_chm 2 条 + 5etools-cn 独有 18 条 = 20 条；对齐修正 0 处
+- TTP（TTP）: 5e_chm 5 条 + 5etools-cn 独有 2 条 = 7 条；对齐修正 0 处
+- TftYP（TftYP）: 5e_chm 26 条 + 5etools-cn 独有 110 条 = 136 条；对齐修正 6 处
+- ToA（ToA）: 5e_chm 35 条 + 5etools-cn 独有 58 条 = 93 条；对齐修正 16 处
+- ToFW（ToFW）: 5e_chm 1 条 + 5etools-cn 独有 18 条 = 19 条；对齐修正 0 处
+- VGM（VGM）: 5e_chm 123 条 + 5etools-cn 独有 38 条 = 161 条；对齐修正 24 处
+- VRGR（VRGR）: 5e_chm 32 条 + 5etools-cn 独有 7 条 = 39 条；对齐修正 1 处
+- WBtW（WBtW）: 5e_chm 45 条 + 5etools-cn 独有 18 条 = 63 条；对齐修正 6 处
+- WDH（WDH）: 5e_chm 26 条 + 5etools-cn 独有 71 条 = 97 条；对齐修正 2 处
+- WDMM（WDMM）: 5e_chm 7 条 + 5etools-cn 独有 104 条 = 111 条；对齐修正 0 处
+- WGtE（WGtE）: 5e_chm 1 条 + 5etools-cn 独有 0 条 = 1 条；对齐修正 0 处
+- XDMG（XDMG）: 5e_chm 2 条 + 5etools-cn 独有 0 条 = 2 条；对齐修正 0 处
+- XGE（XGE）: 5e_chm 3 条 + 5etools-cn 独有 1 条 = 4 条；对齐修正 0 处
+- XMM（XMM）: 5e_chm 502 条 + 5etools-cn 独有 36 条 = 538 条；对齐修正 200 处
+- XPHB（XPHB）: 5e_chm 12 条 + 5etools-cn 独有 4 条 = 16 条；对齐修正 0 处
+- tp01（地图-葬仪社）: 5e_chm 2 条（第三方新增）；对齐修正 0 处
+- tp02（beyond drops）: 5e_chm 8 条（第三方新增）；对齐修正 0 处
+- tp03（异界传送Plane Shift）: 5e_chm 7 条（第三方新增）；对齐修正 0 处
+- tp04（新UA）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp05（穆克）: 5e_chm 16 条（第三方新增）；对齐修正 0 处
+- tp06（万兽图志）: 5e_chm 26 条（第三方新增）；对齐修正 0 处
+- tp07（人人死）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp08（吸血鬼：避世潜藏）: 5e_chm 6 条（第三方新增）；对齐修正 0 处
+- tp09（塔尔多雷）: 5e_chm 44 条（第三方新增）；对齐修正 0 处
+- tp10（德城怪物）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp11（德拉肯海姆）: 5e_chm 28 条（第三方新增）；对齐修正 0 处
+- tp12（惊奇单次冒险）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp13（拳斗士）: 5e_chm 5 条（第三方新增）；对齐修正 0 处
+- tp14（探秘艾伯伦）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp15（斯坦哈德的诡怖猎杀指南）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp16（歪曲之月）: 5e_chm 14 条（第三方新增）；对齐修正 0 处
+- tp17（火炬光下的克苏鲁）: 试点已入库，跳过
+- tp18（狮鹫的鞍中珍宝Ⅱ）: 5e_chm 4 条（第三方新增）；对齐修正 1 处
+- tp19（瓦尔达的秘密尖塔）: 5e_chm 6 条（第三方新增）；对齐修正 0 处
+- tp20（胧忆岛）: 5e_chm 1 条（第三方新增）；对齐修正 0 处
+- tp21（血猎手）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp22（谦卑林）: 5e_chm 9 条（第三方新增）；对齐修正 0 处
+- tp23（谦卑林故事集）: 5e_chm 0 条（第三方新增）；对齐修正 0 处
+- tp24（邪狱使）: 5e_chm 5 条（第三方新增）；对齐修正 0 处
+- tp25（鬼魅幽谷）: 5e_chm 28 条（第三方新增）；对齐修正 0 处
+- tp26（黯潮之书）: 5e_chm 3 条（第三方新增）；对齐修正 0 处
+
+- 合并后总怪物数：4570

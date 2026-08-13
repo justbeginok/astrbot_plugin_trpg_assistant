@@ -87,16 +87,18 @@ def _check_block(name: str, blocks: object, issues: _Issues, where: str) -> None
             issues.errors.append(f"{where}: {name}[{i}] entries 应为数组")
 
 
-def validate_monster(m: dict, issues: _Issues, where: str) -> None:
+def validate_monster(m: dict, issues: _Issues, where: str, *,
+                     exp_source: str | None = None,
+                     exp_edition: str | None = None) -> None:
     # --- 必填字符串 ---
     for f in ("name", "ENG_name", "source", "edition"):
         v = m.get(f)
         if not isinstance(v, str) or not v.strip():
             issues.errors.append(f"{where}: 缺必填字符串 {f}")
-    if m.get("source") != "火炬光下的克苏鲁":
-        issues.warns.append(f"{where}: source 非「火炬光下的克苏鲁」: {m.get('source')!r}")
-    if m.get("edition") not in ("2024",):
-        issues.warns.append(f"{where}: edition 非 2024: {m.get('edition')!r}")
+    if exp_source and m.get("source") != exp_source:
+        issues.warns.append(f"{where}: source 非「{exp_source}」: {m.get('source')!r}")
+    if exp_edition and m.get("edition") != exp_edition:
+        issues.warns.append(f"{where}: edition 非 {exp_edition}: {m.get('edition')!r}")
 
     # --- 属性 ---
     for k in ("str", "dex", "con", "int", "wis", "cha"):
@@ -171,6 +173,21 @@ def validate_monster(m: dict, issues: _Issues, where: str) -> None:
     for facet, key in (("immune", "immune"), ("resist", "resist"),
                        ("vulnerable", "vulnerable")):
         for v in _list_of(m.get(key)):
+            if isinstance(v, dict):
+                # 条件抗性/免疫：{"resist": [...], "note": ...} / {"immune": [...], ...}
+                inner = []
+                for kk in ("immune", "resist", "vulnerable"):
+                    x = v.get(kk)
+                    if isinstance(x, list):
+                        inner.extend(x)
+                    elif isinstance(x, str):
+                        inner.append(x)
+                for w in inner:
+                    if w in _COND_CN:
+                        issues.warns.append(f"{where}: {facet} 条件块含状态词 {w!r}")
+                    elif w not in _DMG_CN:
+                        issues.errors.append(f"{where}: {facet} 条件块词不在伤害词表: {w!r}")
+                continue
             if v in _COND_CN and facet == "immune":
                 issues.warns.append(f"{where}: immune 含状态词 {v!r}（应入 conditionImmune？）")
             elif v not in _DMG_CN:
@@ -222,6 +239,12 @@ def validate_monster(m: dict, issues: _Issues, where: str) -> None:
                 dly = s.get("daily")
                 if dly is not None and not isinstance(dly, dict):
                     issues.errors.append(f"{where}: spellcasting[{i}] daily 应为 dict")
+                spells = s.get("spells")
+                if spells is not None and not isinstance(spells, dict):
+                    issues.errors.append(f"{where}: spellcasting[{i}] spells 应为 dict")
+                he = s.get("headerEntries")
+                if he is not None and not isinstance(he, list):
+                    issues.errors.append(f"{where}: spellcasting[{i}] headerEntries 应为数组")
 
     # --- 语言（自由文本，仅类型检查） ---
     for v in _list_of(m.get("languages")):
@@ -243,6 +266,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="LLM 怪物 JSON 规则校验器")
     ap.add_argument("json_path", help="bestiary-xxx.json 路径")
     ap.add_argument("--report", help="可选：写报告 markdown 路径")
+    ap.add_argument("--source", help="期望 source（用于一致性 WARN）")
+    ap.add_argument("--edition", help="期望 edition（用于一致性 WARN）")
     args = ap.parse_args()
 
     data = json.loads(Path(args.json_path).read_text(encoding="utf-8"))
@@ -255,7 +280,7 @@ def main() -> int:
     for m in monsters:
         where = f"[{m.get('name') or '?'}]"
         issues = _Issues()
-        validate_monster(m, issues, where)
+        validate_monster(m, issues, where, exp_source=args.source, exp_edition=args.edition)
         all_issues.append((where, issues))
 
     n_err = sum(len(i.errors) for _, i in all_issues)

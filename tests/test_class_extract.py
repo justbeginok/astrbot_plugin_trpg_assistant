@@ -73,3 +73,42 @@ def test_finalize_merges_chm_only_class_entries(tmp_path: Path) -> None:
     # fighter：chm 同名 class 条目不应重复追加
     merged, _rep = merge_one(chm_dir / "class-fighter.json", cn_dir / "class-fighter.json")
     assert len(merged["class"]) == 1
+
+
+def test_inventory_third_party_class_books(tmp_path: Path) -> None:
+    """v0.50.2：第三方职业书根目录（拳斗士/血猎手/邪狱使）子职判定。
+
+    主体.md=class、附属跳过、其余=subclass；斗殴者/家臣子目录跳过。
+    """
+    from scripts.class_extract.inventory import scan
+
+    md = tmp_path / "md" / "第三方"
+    (md / "拳斗士").mkdir(parents=True)
+    (md / "血猎手").mkdir()
+    (md / "邪狱使").mkdir()
+    (md / "拳斗士" / "斗殴者").mkdir()
+    (md / "邪狱使" / "家臣").mkdir()
+    for rel in (
+        "拳斗士/拳斗士.md", "拳斗士/怒雷恶氓.md", "拳斗士/封面.md",
+        "拳斗士/斗殴者/好战莽夫.md", "拳斗士/斗殴者/斗殴者.md",
+        "血猎手/血猎手.md", "血猎手/化狼结社.md", "血猎手/血咒.md",
+        "邪狱使/邪狱使.md", "邪狱使/影宗.md", "邪狱使/家臣/家臣.md",
+    ):
+        p = md / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("---\ntitle: x\n---\n", encoding="utf-8")
+
+    got: dict[str, tuple[str, str, str]] = {}
+    for item in scan(tmp_path / "md"):
+        rel = str(item.path.relative_to(tmp_path / "md")).replace("\\", "/")
+        got[rel] = (item.kind, item.class_name, item.subclass_name)
+
+    assert got["第三方/拳斗士/拳斗士.md"][:2] == ("class", "拳斗士")
+    assert got["第三方/拳斗士/怒雷恶氓.md"] == ("subclass", "拳斗士", "怒雷恶氓")
+    assert "第三方/拳斗士/封面.md" not in got          # 附属跳过
+    assert "第三方/拳斗士/斗殴者/好战莽夫.md" not in got  # 怪物子目录跳过
+    assert got["第三方/血猎手/血猎手.md"][:2] == ("class", "血猎手")
+    assert got["第三方/血猎手/化狼结社.md"] == ("subclass", "血猎手", "化狼结社")
+    assert "第三方/血猎手/血咒.md" not in got            # 选项列表跳过
+    assert got["第三方/邪狱使/影宗.md"] == ("subclass", "邪狱使", "影宗")
+    assert "第三方/邪狱使/家臣/家臣.md" not in got       # 助战者规则跳过

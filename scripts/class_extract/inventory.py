@@ -155,6 +155,32 @@ def scan(md_root: Path) -> list[PlanItem]:
                 plan.append(PlanItem(path, book, src, "subclass", "血族", stem))
             continue
 
+        # 拳斗士书内的「斗殴者」子目录 = 怪物书（栖息地/统计块），非职业 → 跳过
+        if parts[0] == "第三方" and len(parts) >= 2 and parts[-2] == "斗殴者":
+            continue
+        # 邪狱使书内的「家臣」子目录 = 助战者规则（NPC 数据），非子职 → 跳过
+        if parts[0] == "第三方" and len(parts) >= 2 and parts[-2] == "家臣":
+            continue
+
+        # ---- 目录判定：第三方职业书根目录（v0.50.2）----
+        # 拳斗士/血猎手/邪狱使：<职业>.md=class、附属文件跳过、其余=subclass。
+        # 例：第三方/拳斗士/怒雷恶氓.md → 拳斗士子职；第三方/拳斗士/斗殴者/*.md
+        #     （怪物书，非职业）→ 跳过。
+        THIRD_CLASS_BOOK_EXTRA = {  # 书目录名 → 附属文件（非子职）跳过名单
+            "拳斗士": {"封面", "新武器", "魔法物品"},
+            "血猎手": {"血咒"},
+            "邪狱使": {"封面", "禁令恩惠选项", "邪狱使法术", "邪狱使魔法道具", "家臣"},
+        }
+        if parts[0] == "第三方" and parts[-2] in THIRD_CLASS_BOOK_EXTRA:
+            cls = parts[-2]
+            if stem == cls:
+                plan.append(PlanItem(path, book, src, "class", cls, ""))
+            elif stem in THIRD_CLASS_BOOK_EXTRA[cls]:
+                pass  # 附属文件（武器/法术/封面等）跳过
+            else:
+                plan.append(PlanItem(path, book, src, "subclass", cls, stem))
+            continue
+
         # ---- 目录判定：职业目录下的 职业名/子职.md（官方 PHB/XGE/SCAG；角色职业 走下方 2024 分支）----
         if len(parts) >= 3 and parts[-3] in ("职业", "角色选项", "玩家选项"):
             cls = parts[-2]

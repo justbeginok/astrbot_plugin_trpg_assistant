@@ -2294,6 +2294,561 @@
     "战士"
    ],
    "legacy": false
+  },
+  {
+   "name": "咬紧牙关",
+   "ENG_name": "Bite the bullet",
+   "featureType": "MV",
+   "source": "VDS",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "以一个附赠动作，你可以消耗一枚风险骰获得数值等于风险骰骰值加你的铳士等级的临时生命值。"
+   ],
+   "class": [
+    "铳士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "盲射",
+   "ENG_name": "Blindfire",
+   "featureType": "MV",
+   "source": "VDS",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "你能够以附赠动作消耗一枚风险骰来获得30尺盲视，持续至当前回合结束。"
+   ],
+   "class": [
+    "铳士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "翻滚闪避",
+   "ENG_name": "Dodge Roll",
+   "featureType": "MV",
+   "source": "VDS",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "作为一个附赠动作，你可以消耗一枚风险骰移动至多15尺并为你正持握的远程武器换弹。此次移动不会引发借机攻击且不受困难地形影响。"
+   ],
+   "class": [
+    "铳士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "擦掠弹",
+   "ENG_name": "Grazing Shot",
+   "featureType": "MV",
+   "source": "VDS",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "当你使用武器进行的远程攻击检定失手时，你可以消耗一枚风险骰（无需动作）对该生物造成等于风险骰骰值加你的敏捷调整值（至少为1）的伤害，伤害类型为武器伤害类型，此伤害仅可通过提升属性调整值提高。每回合你仅可使用一次该战技。"
+   ],
+   "class": [
+    "铳士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "牛仔精神",
+   "ENG_name": "Maverick Spirit",
+   "featureType": "MV",
+   "source": "VDS",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "当你在智力、感知或魅力属性检定或豁免检定中失败时，你可以消耗一枚风险骰并将其加入检定结果中，这可能使检定改为成功。每回合你仅可使用一次该战技。"
+   ],
+   "class": [
+    "铳士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "千钧一发",
+   "ENG_name": "Skin of Your Teeth",
+   "featureType": "MV",
+   "source": "VDS",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "当你可见的生物以攻击检定命中你时，你能够以反应消耗一枚风险骰来躲避危害。掷骰并将结果加入对抗那次攻击的AC，这可能令那次攻击改为失手。"
+   ],
+   "class": [
+    "铳士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "缓弱缄印",
+   "ENG_name": "Abating Seal",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级2级+",
+   "entries": [
+    "当一名你可见的生物对你或位于你30尺内的盟友造成伤害时，你能够以反应消耗一枚缄印，来减少目标受到的伤害，减少量等于1d10+你的邪狱使等级的一半（向下取整）。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "凌虐",
+   "ENG_name": "Bedevil",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级2级+",
+   "entries": [
+    "当你焚灭受禁生物身上的缄印时，你可以激活此恩惠（无需动作）。目标在其下回合结束前进行的下一次豁免检定承受等于你熟练加值的减值。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "噬魂夺魄",
+   "ENG_name": "Soul Eater",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级2级+",
+   "entries": [
+    "当你焚灭受禁生物身上的缄印时，你可以激活此恩惠（无需动作）以获得等于你邪狱使等级的临时生命值。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "冥河寂寒",
+   "ENG_name": "Styx's Apathy",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级2级+",
+   "entries": [
+    "当你焚灭受禁生物身上的缄印时，你能够以反应令目标被超常的寒意充满。目标无法执行反应，直至其下回合结束。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "极速惩戒（被动）",
+   "ENG_name": "Swift Retribution",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级2级+",
+   "entries": [
+    "当一名受禁生物引发你的借机攻击时，你能够不消耗反应的发动借机攻击，但你不能在无法执行反应时发动该攻击。该恩惠一经使用，直至你的下一回合开始你才能再如此做。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "修罗之链",
+   "ENG_name": "Acheron's Chain",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级7级+",
+   "entries": [
+    "当你使用附赠动作施加或转移缄印给一名体型不超过大型的生物时，你可以激活此恩惠（无需动作）。你咒唤炼狱的锁链抓住目标，你迫使目标进行一次力量豁免，豁免失败则你可以将其拉近10尺或令其陷入受擒直至你的下个回合结束（逃脱DC等于你的禁令豁免DC）。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "焱燃通道",
+   "ENG_name": "Conflagrant Channel",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级7级+",
+   "entries": [
+    "你能够以附赠动作消耗一枚缄印，传送至多60尺的距离，到一处你可见的未占据空间中。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "门之瞳",
+   "ENG_name": "Eyes of the Gate",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级7级+",
+   "entries": [
+    "以一个附赠动作，你可以消耗一枚或更多缄印，尝试将意识绑定到位于你60尺内的你可见的生物身上。目标必须进行一次感知豁免，其可以自愿失败于此豁免。豁免失败则你的意识与其绑定一段时间，持续时间等于你消耗的缄印数个小时，或在你对另一名生物使用此恩惠时提前结束。持续时间内，在目标位于你300尺内期间，你可以使用动作来通过目标的感官看或听，并获得目标所拥有的任何特殊感官的增益，你可以持续如此做直至你使用动作恢复你正常的感官。通过目标的感官感知期间，对你自己的感官而言，你既盲又聋。\n此外，在持续时间内，你可以施加、焚灭缄印并使用禁令恩惠，如同你处在该生物所在的空间，但这会让该生物意识到你们的联系。意识到联系的生物可以使用其动作重新进行该豁免，成功则该恩惠的效应提前结束。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "陌影之笼",
+   "ENG_name": "Shadow Shroud",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级7级+",
+   "entries": [
+    "你能够以附赠动作消耗一枚缄印，在你或你触碰的生物身周编织一层半固态的阴影。目标AC获得+2加值，持续1分钟。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "狱势待发",
+   "ENG_name": "Unleash Hell",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级7级+",
+   "entries": [
+    "当你焚灭受禁生物身上的一枚或更多缄印时，你能够以反应在它身周释放地狱能量引发爆炸。每个位于目标5尺内你选择的生物必须进行一次敏捷豁免。豁免失败则受到与受禁生物等额且类型相同的伤害。豁免成功则只受一半伤害。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "怨仇射击",
+   "ENG_name": "Vengeful Shot",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级7级+",
+   "entries": [
+    "当一名生物对你或位于你30尺内你可见的盟友发动远程攻击时，你能够以反应消耗一枚缄印，对攻击者发动一次远程武器攻击。攻击命中则额外造成等于你邪狱使等级一半的伤害（向下取整）。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "迪斯的猛攻（被动）",
+   "ENG_name": "Dis's Onslaught",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "每当你使用附赠动作施加或转移缄印时，作为该附赠动作的一部分，你可以发动一次武器攻击。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "磺色闪光",
+   "ENG_name": "Flash of Brimstone",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "当你施加或转移缄印时，你可以激活此恩惠（无需动作）以传送至位于目标5尺内你可见的未占据空间中。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "炼狱狂怒",
+   "ENG_name": "Hellish Frenzy",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "当你在受禁生物30尺内开始你的回合时，你可以消耗一枚缄印，在炼狱之力的作用下陷入狂怒，持续至你的下一回合开始。狂怒期间，你的移动速度翻倍，你的AC获得+2加值，你执行攻击动作时，可以额外发动一次武器攻击。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "狱视力",
+   "ENG_name": "Hellsight",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "以一个动作，你可以消耗一枚缄印获得60尺真实视觉，持续1小时。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "流星一条",
+   "ENG_name": "Impaling Shot",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "当你以远程武器攻击命中一名受禁生物时，你能够以附赠动作消耗一枚缄印在其防御上创造弱点。该生物的AC受到等于你熟练加值的减值，直至你的下一回合结束。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "铁狱",
+   "ENG_name": "Iron Gaol",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "以一个动作，你可以消耗四枚缄印并触碰一名生物，尝试将其送入九狱。目标必须成功通过一次魅力豁免，否则将被拉入空间裂隙，关入你的大魔鬼宗主统治的城市的监狱。\n若目标是九狱原住民，或者其等级或挑战等级不高于4级，目标将留在狱中，且需要自己找到出路。其余情况下，目标将在狱中停留1分钟，然后目标将重新出现在其原本所在的空间或最近的未占据空间。目标在其每个回合结束时重复豁免，成功则终止其身上的该效应。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "终言",
+   "ENG_name": "Last Word",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "当你的生命值降至0且仍具有未被施加的缄印时，你体内的狱火将抗拒死亡。你可以消耗至多三枚缄印在你的身周释放爆炸（无需动作）。每消耗一枚缄印，掷一次3d6。每个位于你30尺内的你选择的生物必须进行一次敏捷豁免，豁免失败则受到等于掷骰总值的火焰伤害。豁免成功则受到一半伤害。如果此次爆炸至少对一名生物造成伤害，你恢复等于掷骰总值的生命值。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "魄劫",
+   "ENG_name": "Soul's Doom",
+   "featureType": "IB",
+   "source": "DF",
+   "edition": "2014",
+   "prerequisite": "邪狱使等级13级+",
+   "entries": [
+    "当你使用附赠动作施加或转移缄印时，你能够将缄印烙入其灵魂。此后每当该受禁生物受到伤害时，其额外受到等于你熟练加值的伤害，持续1分钟。"
+   ],
+   "class": [
+    "邪狱使"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "焦虑血咒",
+   "ENG_name": "Blood Curse of the Anxious",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "以一个附赠动作，你破坏距离你 30 尺以内一生物的身体或思想，使他们更容易受到影响。 在你的下一轮结束之前，对被诅咒生物进行的魅力（恐吓）检定具有优势。\n增幅。在此诅咒结束前，目标下次进行的感知豁免具有劣势。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "捆缚血咒",
+   "ENG_name": "Blood Curse of Binding",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "以一个附赠动作，你试图束缚 30 尺内一个你能看见的、体型至多比你大一级的生物。\n目标必须通过一次力量豁免，失败则速度降低为 0，且其无法使用反应，直至你下回合结束。\n增幅。此诅咒持续一分钟，且可以影响任何体型的生物。其在自己的每回合结束时可以进行力量豁免。豁免成功时此诅咒结束。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "胀痛血咒",
+   "ENG_name": "Blood Curse of Bloated Agony",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "以一个附赠动作，你诅咒 30 尺内一个你能看见的生物，令其痛苦地膨胀直至你的下回合结束。在此诅咒生效期间，该生物在力量及敏捷检定中具有劣势，并且，如果其在回合内近战多于一次，受到 1d8 点暗蚀伤害。\n增幅。此诅咒持续一分钟。被诅咒的生物在自己的每回合结束时可以进行体质豁免。豁免成功时此诅咒结束。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "暴露诅咒",
+   "ENG_name": "Blood Curse of Exposure",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "当距你 30 尺内一你能看到的生物受到攻击或法术的伤害时，你可以使用你的反应来暂时削弱其抵抗力。直到目标下一回合结束，其失去对该攻击或法术造成的所有伤害类型的抵抗力（包括该攻击或法术）。\n增幅。目标失去对该攻击或法术的所有的伤害类型的免疫力，但在其下一回合结束前，对这些伤害类型具有抵抗力。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "盲目血咒",
+   "ENG_name": "Blood Curse of the Eyeless",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "当距你 30 尺内一个你能看见的生物进行一次攻击时，你可以使用你的反应来掷一个鲜血秘法骰，并在目标的掷骰结果中减去你的掷骰结果。你可以在目标掷出骰子后，DM 宣布结果之前决定是否使用此特性。若目标免疫目盲状态，则目标同样也会免疫该特性。\n增幅。你对该生物的所有攻击检定使用此诅咒，直至回合结束。你为每次受影响的攻击各掷一次鲜血秘法骰。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "傀儡血咒",
+   "ENG_name": "Blood Curse of the Fallen Puppet",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "当距你 30 尺内一个你能看见的生物生命值降为 0 点时，你可以使用你的反应来迫使该生物立即对其攻击范围内一个你选择的目标发动一次武器攻击。\n增幅。你可以先移动该生物至多其速度一半的距离，并且该生物的攻击骰得到等同于你鲜血秘法调整值的加值（至少为 1）。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "印记血咒",
+   "ENG_name": "Blood Curse of the Marked",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "以一个附赠动作，你可以标记距你 30 尺内一个生物。直至你下回合结束，当你对目标造成血仪伤害时，你额外造成一个鲜血秘法骰的血仪伤害。\n增幅。你在下回合结束前，对目标进行的下次攻击骰具有优势。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "乱心血咒",
+   "ENG_name": "Blood Curse of the Muddled Mind",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "以一个附赠动作，你诅咒距你 30 尺内一个你能看见、且正专注于一个法术的生物。该生物在你下回合结束前为维持专注而进行的下次体质豁免具有劣势。\n增幅。诅咒生物在你下回合结束前为维持专注而进行的所有体质豁免检定具有劣势。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "腐蚀血咒",
+   "ENG_name": "Blood Curse of Corrosion",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "15 级，突变圣约",
+   "entries": [
+    "以一个附赠动作，你 30 尺内的一个生物必须通过一次体质豁免，否则陷入中毒状态。\n其在自己的每回合结束时可以进行体质豁免。豁免成功时此诅咒结束。\n增幅。目标被诅咒时受到 4d6 点暗蚀伤害，并且每回合结束时，如果豁免失败，再次受到此伤害。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "驱魔血咒",
+   "ENG_name": "Blood Curse of the Exorcist",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "15 级，弑灵圣约",
+   "entries": [
+    "以一个附赠动作，你可以选择 30 尺内一个你可见的，被魅惑、恐惧或附身的生物。该生物不再被魅惑、恐惧或附身。\n增幅。魅惑、恐惧或附身诅咒目标的生物受到 3d6 点心灵伤害，并且必须通过一次感知豁免，否则被震慑到你下回合结束。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "怒号血咒",
+   "ENG_name": "Blood Curse of the Howl",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "18 级，化狼圣约",
+   "entries": [
+    "以一个动作，你发出一阵毛骨悚然的嚎叫。每个 30 尺内能听到你的生物必须通过一次感知豁免，否则陷入恐惧，直至你下回合结束。若豁免失败，且骰值比 DC 相差 5 或更多，其在恐惧的同时被震慑。通过豁免的生物在 24 小时内免疫此血咒。\n你可以选择任意数量你能看见的生物不受此嚎叫影响。\n增幅。此诅咒的范围增加至 60 尺。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "噬魂血咒",
+   "ENG_name": "Blood Curse of the Souleater",
+   "featureType": "BC",
+   "source": "BH",
+   "edition": "2014",
+   "prerequisite": "18 级，渎魂圣约",
+   "entries": [
+    "当距你 30 尺内一个非构装非亡灵的生物生命值降为 0 点时，你可以使用你的反应来将他的灵魂献祭给你的宗主以交换力量。直到你下回合结束，你的武器攻击具有优势。并且你对所有伤害具有抗性。\n增幅。此外，你恢复一个已消耗的魔契师法术位。增幅此血咒后，你必须完成一次长休\n才能再次增幅。"
+   ],
+   "class": [
+    "血猎手"
+   ],
+   "legacy": false
   }
  ]
 }

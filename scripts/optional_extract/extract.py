@@ -60,6 +60,10 @@ SOURCES: list[tuple[str, str, str, str, str]] = [
     ("玩家手册2024/角色职业/术士/超魔法选项.md", "XPHB", "MM", "术士", "2024"),
     # 战斗风格
     ("玩家手册2024/专长/战斗风格专长.md", "XPHB", "FS", "战士", "2024"),
+    # v0.50.3：第三方职业选项（铳士战技项=战技；邪狱使禁令恩惠 IB；血猎手血咒 BC）
+    ("第三方/瓦尔达的秘密尖塔/铳士/战技项.md", "VDS", "MV", "铳士", "2014"),
+    ("第三方/邪狱使/禁令恩惠选项.md", "DF", "IB", "邪狱使", "2014"),
+    ("第三方/血猎手/血咒.md", "BH", "BC", "血猎手", "2014"),
 ]
 
 
@@ -88,7 +92,8 @@ def _split_eng(title: str) -> tuple[str, str]:
 def _is_skip_title(name: str) -> bool:
     """标题黑名单：选项文件里非选项条目。"""
     skip = {"魔能祈唤", "魔能祈唤选项", "战技选项", "超魔法选项", "战斗风格专长",
-            "魔能祈唤Eldritch", "战技Maneuvers", "超魔法Metamagic"}
+            "魔能祈唤Eldritch", "战技Maneuvers", "超魔法Metamagic",
+            "血咒", "禁令恩惠", "禁令恩惠选项"}
     return name.strip() in skip or len(name) < 2
 
 
@@ -258,6 +263,53 @@ def extract_metamagic_phb2014(text: str) -> list[dict]:
     return out
 
 
+def extract_interdict_boons(text: str) -> list[dict]:
+    """邪狱使禁令恩惠（v0.50.3）：`### N级禁令恩惠`（H3 等级段）→ 段内裸标题选项。
+
+    段等级（2/7/13 级）写入 prerequisite「邪狱使等级N级+」（可反查等级）。
+    """
+    lines = text.splitlines()
+    i, n = 0, len(lines)
+    out: list[dict] = []
+    level = 0
+    while i < n:
+        s = lines[i].strip()
+        m = re.match(r"^###\s*(\d+)级禁令恩惠", s)
+        if m:
+            level = int(m.group(1))
+            i += 1
+            continue
+        if _NAKED_TITLE_RE.match(s) and len(s) < 60:
+            name, eng = _split_eng(s)
+            if _is_skip_title(name):
+                i += 1
+                continue
+            body: list[str] = []
+            i += 1
+            while i < n:
+                l = lines[i].strip()
+                if _NAKED_TITLE_RE.match(l) and len(l) < 60 \
+                        or re.match(r"^###\s*\d+级禁令恩惠", l):
+                    break
+                body.append(l)
+                i += 1
+            prereq = ""
+            for l in body:
+                m2 = _PREREQ_RE.match(l.strip())
+                if m2:
+                    prereq = m2.group(1).strip()
+                    break
+            out.append({
+                "name": name, "eng": eng,
+                "prerequisite": f"邪狱使等级{level}级+" if level else prereq,
+                "body": _clean_body("\n".join(body)),
+                "legacy": False,
+            })
+            continue
+        i += 1
+    return out
+
+
 def extract_all(md_root: Path) -> list[dict]:
     """全量提取。返回 5etools 兼容 optionalfeature 列表。"""
     rows: list[dict] = []
@@ -274,6 +326,8 @@ def extract_all(md_root: Path) -> list[dict]:
             blocks = extract_maneuvers_xphb2024(text)
         elif rel == "玩家手册/职业/术士.md":
             blocks = extract_metamagic_phb2014(text)
+        elif rel.endswith("禁令恩惠选项.md"):
+            blocks = extract_interdict_boons(text)
         else:
             blocks = parse_blocks(text)
         for b in blocks:

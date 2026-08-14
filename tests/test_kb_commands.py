@@ -1490,3 +1490,21 @@ def test_opt_lookup_miss(tmp_path: Path) -> None:
     p = make_plugin(tmp_path)
     msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 不存在的祈唤")))
     assert "未找到" in msgs[0]
+
+
+def test_opt_third_party_types(tmp_path: Path) -> None:
+    """v0.50.3：禁令恩惠/血咒（IB/BC 类型）可查可筛。"""
+    p = make_plugin(tmp_path)
+    # 类型反查
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 类型 禁令恩惠")))[0]
+    assert "缓弱缄印" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 血咒")))[0]
+    assert "焦虑血咒" in text
+    # 先决反查（等级）
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 先决 邪狱使")))[0]
+    assert "缓弱缄印" in text
+    # /查祈唤 命中 IB 类型时回退展示并标注类型
+    msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 缓弱缄印")))
+    text = "\n".join(msgs)
+    assert "缓弱缄印｜Abating Seal" in text
+    assert "类型：禁令恩惠" in text

@@ -4881,18 +4881,22 @@ class TrpgAssistantPlugin(Star):
             )
             return
         entries = self.kb_manager.detail(arg, kind="optionalfeature")
-        entries = [
-            e for e in entries if (e.opt_type_label or "").startswith(ft_cn)
-        ]
+        typed = [e for e in entries if (e.opt_type_label or "").startswith(ft_cn)]
+        # v0.50.3：ftype 过滤为空时回退全部类型（禁令恩惠/血咒等新类型
+        # 没有独立命令，/查祈唤 等也能查到并标注类型）。
+        if typed:
+            entries = typed
         if entries:
             yield event.plain_result(self._kb_detail_text("optionalfeature", entries))
             return
         hits = self.kb_manager.search(arg, kind="optionalfeature")
         if len(hits) == 1:
             entries = self.kb_manager.detail(hits[0].name, kind="optionalfeature")
-            entries = [
+            typed = [
                 e for e in entries if (e.opt_type_label or "").startswith(ft_cn)
             ]
+            if typed:
+                entries = typed
             if entries:
                 yield event.plain_result(
                     self._kb_detail_text("optionalfeature", entries)
@@ -7282,9 +7286,10 @@ class TrpgAssistantPlugin(Star):
             class_level(number): 特性等级（仅 class_features），只返回该等级获得
                 的职业特性全文（如想知道「野蛮人 7 级获得什么」→ action=class_features
                 + name=野蛮人 + class_level=7）；不筛则 -1。
-            opt_type(string): 选项类型（仅 filter+选项，v0.50.0），中文取值：
-                魔能祈唤/战技/超魔法/战斗风格；如「战士有哪些战技可选」→
-                action=filter + kind=选项 + opt_type=战技。
+            opt_type(string): 选项类型（仅 filter+选项），中文取值：
+                魔能祈唤/战技/超魔法/战斗风格/禁令恩惠/血咒（v0.50.3 新增
+                后两者：邪狱使禁令恩惠、血猎手血咒）；如「战士有哪些战技可选」
+                → action=filter + kind=选项 + opt_type=战技。
             opt_prereq(string): 选项先决条件关键词（仅 filter+选项，v0.50.0），
                 子串匹配，如「先决 5 级的祈唤」→ opt_prereq=5级。
         """

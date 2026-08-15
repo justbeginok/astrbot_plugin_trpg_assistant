@@ -7143,9 +7143,14 @@ class TrpgAssistantPlugin(Star):
         - 名称记不全 → action=search，name 传部分名称即可（支持中英文）。
         - 按条件筛选（如「挑战等级为 3 的龙类」「造成暗蚀伤害的武器」）→
           action=filter，kind 必填，条件参数按需填写（可组合，全部 AND）。
-        - 询问某职业/子职的能力 → action=class_features，kind=职业。
+        - 询问某职业的能力 → action=class_features，kind=职业，name=职业名。
           默认返回「分层概要总表」：按层级（第1~4层）分段，每行
           「N级 特性名：一句话概要」——足以回答「这个职业有什么能力、各是什么」。
+        - 询问某子职（子职业）的能力 → action=class_features，kind=职业，
+          name=所属职业名，subclass=子职名。例：查法师子职「司书」→
+          action=class_features + name=法师 + subclass=司书。注意：
+          kind=子职 的 detail/search 只能确认子职存在（条目本身无正文），
+          完整能力必须走 class_features+subclass。
         - 需要某职业本职特性的完整说明（而非概要）→ action=class_features，
           feature="*"（全部全文）或 feature=具体特性名（单个，跨版本全文）；
           只看某等级获得什么 → class_level=N（如「野蛮人 7 级获得什么」）。
@@ -7162,8 +7167,11 @@ class TrpgAssistantPlugin(Star):
                 filter=结构化筛选（需配合 kind 与筛选条件使用）；
                 class_features=查询职业能力（kind=职业，name=职业名，subclass 可选）；
                 version=查看知识库版本信息。
-            kind(string): 条目类型，中文取值：法术/怪物/物品/专长/背景/职业/状态/种族/选项。
-                选项 = 魔能祈唤/战技/超魔法/战斗风格等职业可定制选项（v0.50.0）。
+            kind(string): 条目类型，中文取值：法术/怪物/物品/专长/背景/职业/子职/
+                状态/种族/选项。子职=某职业下的子职业（如 法师·司书），查询子职
+                能力用 class_features+subclass 参数（见 action 说明），不要用
+                kind=职业 查子职名（会查不到）。选项=魔能祈唤/战技/超魔法/战斗
+                风格等职业可定制选项（v0.50.0）。
             name(string): 条目名称（中文或英文均可）。detail/search/class_features
                 必须提供。
             level(number): 法术环级（0=戏法），仅 filter+法术 时使用，不筛则 -1。
@@ -7314,6 +7322,18 @@ class TrpgAssistantPlugin(Star):
             if action in ("search", "搜索", "模糊"):
                 hits = self.kb_manager.search(q, kind=internal_kind)
                 if not hits:
+                    # v0.51.0：kind 限定无果时全库兜底一次，提示实际类别
+                    # （常见：子职被 LLM 误填 kind=职业，如「司书」）。
+                    if internal_kind:
+                        all_hits = self.kb_manager.search(q)
+                        if all_hits:
+                            return (
+                                f"kind=「{kind}」下未找到，但知识库中存在其他类别的"
+                                f"同名条目（可能是子职等），请据此改用正确的 kind "
+                                "或 action=class_features：\n"
+                                + KnowledgeBaseManager.format_hits(all_hits)
+                                + "\n" + NO_HALLUCINATION_NOTE
+                            )
                     return f"未找到与「{q}」相关的条目。"
                 return (
                     KnowledgeBaseManager.format_hits(hits)
@@ -7329,6 +7349,18 @@ class TrpgAssistantPlugin(Star):
                         KnowledgeBaseManager.format_hits(hits)
                         + "\n" + NO_HALLUCINATION_NOTE
                     )
+                elif internal_kind:
+                    # v0.51.0：同上，kind 限定无果时全库兜底提示实际类别。
+                    all_hits = self.kb_manager.search(q)
+                    if all_hits:
+                        return (
+                            f"kind=「{kind}」下未找到，但知识库中存在其他类别的"
+                            f"同名条目（可能是子职等），请据此改用正确的 kind "
+                            "或 action=class_features：\n"
+                            + KnowledgeBaseManager.format_hits(all_hits)
+                            + "\n" + NO_HALLUCINATION_NOTE
+                        )
+                    return f"未找到「{q}」相关条目。"
                 else:
                     return f"未找到「{q}」相关条目。"
             return (
@@ -7339,12 +7371,13 @@ class TrpgAssistantPlugin(Star):
         # --- filter ---
         if action in ("filter", "筛选", "过滤"):
             if internal_kind is None:
-                return "筛选查询需要提供 kind 参数（法术/怪物/物品/专长/背景/职业/状态/种族）。"
+                return "筛选查询需要提供 kind 参数（法术/怪物/物品/专长/背景/职业/子职/状态/种族/选项）。"
             if internal_kind not in ("spell", "monster", "item", "race", "feat",
-                                     "class", "subclass", "background"):
+                                     "class", "subclass", "background",
+                                     "optionalfeature"):
                 return (
                     f"「{kind}」暂不支持筛选，可用：法术/怪物/物品/种族/专长/"
-                    "职业/子职/背景。"
+                    "职业/子职/背景/选项。"
                 )
             # 特性标签：伤害/状态/环境/武器属性/形状/目标/成分/物品大类（解析为 canonical）。
             # kind=种族 时 damage_type 语义为「天生抗性」（dmg_resist，非造成伤害），

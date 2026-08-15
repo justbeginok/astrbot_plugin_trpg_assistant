@@ -1975,6 +1975,13 @@ class KnowledgeBaseManager:
             if entry.feat_ability:
                 meta_parts.append(f"属性提升：{entry.feat_ability}")
             head += "\n" + "；".join(meta_parts)
+        # v0.51.0：子职条目本身无正文（正文在 class_features 表），
+        # 空 body 时给出查询引导，避免 LLM/玩家误以为知识库无该子职内容。
+        if entry.kind == "subclass" and not (body or "").strip():
+            body = (
+                "（子职条目本身无正文。查询该子职的完整能力请用"
+                " action=class_features，name=所属职业名，subclass=该子职名。）"
+            )
         return f"{head}\n{body}"
 
     @staticmethod

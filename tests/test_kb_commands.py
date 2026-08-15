@@ -1000,6 +1000,50 @@ def test_tool_invalid_kind_filter(tmp_path: Path) -> None:
     assert "暂不支持筛选" in text
 
 
+def test_tool_filter_optionalfeature(tmp_path: Path) -> None:
+    """v0.51.0：filter+选项 不再被白名单拦截（docstring 与实现一致）。"""
+    p = make_plugin(tmp_path)
+    text = run(p.query_dnd_knowledge_tool(
+        ev(""), action="filter", kind="选项", opt_type="战技"
+    ))
+    assert "符合条件的条目" in text
+    assert "伏击" in text  # fixture 战技 MV
+    assert "类型：战技" in text
+
+
+def test_tool_search_subclass_with_wrong_kind(tmp_path: Path) -> None:
+    """v0.51.0：kind 限定无果时全库兜底，提示子职等实际类别。
+
+    回归「司书」事故：LLM 查子职时误填 kind=职业，此前返回
+    「未找到」，现在提示存在其他类别同名条目，LLM 可据此纠正。
+    """
+    p = make_plugin(tmp_path)
+    text = run(p.query_dnd_knowledge_tool(
+        ev(""), action="search", kind="职业", name="冠军武士"
+    ))
+    assert "kind=「职业」下未找到" in text
+    assert "其他类别的同名条目" in text
+    assert "subclass" in text  # 兜底命中子职
+    text = run(p.query_dnd_knowledge_tool(
+        ev(""), action="detail", kind="职业", name="冠军武士"
+    ))
+    assert "kind=「职业」下未找到" in text
+    assert "subclass" in text
+
+
+def test_tool_detail_subclass_empty_body_guides_class_features(
+    tmp_path: Path,
+) -> None:
+    """v0.51.0：子职条目本身无正文，detail 空 body 时给出 class_features 引导。"""
+    p = make_plugin(tmp_path)
+    text = run(p.query_dnd_knowledge_tool(
+        ev(""), action="detail", kind="子职", name="冠军武士"
+    ))
+    assert "冠军武士" in text
+    assert "子职条目本身无正文" in text
+    assert "class_features" in text
+
+
 def test_tool_unknown_action(tmp_path: Path) -> None:
     p = make_plugin(tmp_path)
     text = run(p.query_dnd_knowledge_tool(ev(""), action="whatever"))

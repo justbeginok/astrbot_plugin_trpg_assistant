@@ -493,6 +493,15 @@ kind=种族/背景的支持：能力标签逗号分隔 AND、别名归一，返�
 v0.48.0（ADR-0023）起 class_features 默认返回**分层概要层**（第1~4层分段，
 每行「N级 名称：一句话概要」），要全文用 `feature="*"`/特性名/`class_level`，
 docstring 已同步指引。
+v0.51.0（ADR-0026）参数引导修复：
+- docstring `kind` 枚举补「子职」（此前 LLM 看不到该合法取值，查子职误填
+  kind=职业 → 0 命中）；查子职能力统一走 `action=class_features + name=所属
+  职业名 + subclass=子职名`（子职 entries.body 恒为空，正文只在
+  class_features 表；format_entry 对空 body 子职输出 class_features 引导）。
+- LLM 工具 filter 白名单补 `optionalfeature`（与命令侧 `/筛选项` 对齐，
+  filter+选项 + opt_type/opt_prereq 可用）。
+- search/detail 显式传 kind 且 0 命中时全库兜底一次，命中其他类别同名条目
+  （如子职）则返回候选并提示，引导 LLM 纠正 kind。
 `guide_chargen` 参数（v0.35.0）：action=start 新增 `race`/`class_name`/
 `background` 可选预填（值必须来自 advise_build 档案；chargen.py start 逐项
 复用知识库校验，合法跳步、非法回退正常询问并在 check 注明；2014 全预填→

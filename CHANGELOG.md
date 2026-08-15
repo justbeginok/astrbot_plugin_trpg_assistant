@@ -5,7 +5,32 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [0.50.3] - 2026-08-14
+## [0.51.0] - 2026-08-15
+
+### 修复：LLM 工具参数引导缺陷（ADR-0026）
+
+修复 `query_dnd_knowledge` 查子职失败（如第三方法师子职「司书」THC）与
+filter+选项 被拒：
+
+- **docstring `kind` 枚举补「子职」**：此前 LLM 从工具 schema 看不到
+  kind=子职 是合法取值，查子职只能猜「职业」（class）→ 0 命中；
+  现在明确列出并注明「查子职能力用 class_features+subclass」。
+- **用法提示新增「查子职」姿势**：`action=class_features + name=所属职业名
+  + subclass=子职名`（例：name=法师 + subclass=司书），并说明 kind=子职
+  的 detail/search 只能确认存在、完整能力走 class_features。
+- **search/detail 全库兜底**：显式传 kind 但 0 命中时，自动不带 kind 全库
+  再搜一次；命中其他类别（如子职）时返回候选并提示「可能存在其他类别
+  同名条目」，引导 LLM 纠正。
+- **子职空 body 引导**：`format_entry` 对 body 为空的子职条目，显示
+  「子职条目本身无正文，请用 class_features+subclass 查询」，避免
+  LLM 误判知识库无内容。
+- **LLM 工具 filter 白名单补 `optionalfeature`**：此前 docstring 推荐
+  「filter+选项」，实现却拒绝；现在 `/筛选项` 同款能力对 LLM 开放
+  （filter+选项 + opt_type/opt_prereq 可查祈唤/战技/修法/风格等）。
+- 新增回归测试 3 例（filter+选项 / 错误 kind 兜底 / 子职空 body 引导），
+  全量 1273 通过。
+
+
 
 ### 新增：第三方职业选项入库（铳士战技项/邪狱使禁令恩惠/血猎手血咒）
 - 铳士**子职 7 个**（v0.50.2 已有：密间客/技枪客/死眼客/白帽客/豪赌客/魔弹客/

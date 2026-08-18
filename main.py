@@ -126,7 +126,12 @@ from .dice_parser import DiceParseError, parse
 from .dice_roller import DiceRollError, roll
 from .formatter import format_result
 from .history import ROLL_ERROR_PREFIXES, RollHistoryManager
-from .session_log import SessionLogManager
+from .session_log import (
+    SessionLogManager,
+    _looks_like_roll_command,
+    _looks_like_roll_result,
+    parse_transcript,
+)
 from .homebrew import KIND_LABEL
 from .homebrew_writer import (
     atomic_write_text,
@@ -408,27 +413,9 @@ def _resolve_event(event):
 
 
 # ---------------------------------------------------------------------------
-# 跑团记录辅助（v0.54.0）：结算预标 + 结果文本提取
+# 跑团记录辅助（v0.54.0）：结算启发式在 session_log.py（本文件从 .session_log
+# 引入 _looks_like_roll_command/_looks_like_roll_result/parse_transcript）
 # ---------------------------------------------------------------------------
-
-# 玩家消息「结算」预标：骰指令形态（/r、.r、/roll、/dnd，前缀符号任意）。
-# 前缀符号取 0~2 个非单词非空白字符，然后必须是 r/roll/dnd 整词后接空白或结尾
-# （避免误伤 /ri、/rh、/记录 等）。
-_ROLL_CMD_RE = re.compile(r"^[^\w\s]{0,2}(?:r|roll|dnd)(?=\s|$)", re.IGNORECASE)
-# 机器人消息「结算」形态：含骰式（1d20/d20/3d6）或「掷出」字样。
-_ROLL_TEXT_RE = re.compile(r"\b\d*d\d+\b")
-
-
-def _looks_like_roll_command(text: str) -> bool:
-    """玩家消息是否像掷骰指令（用于日志结算预标）。"""
-    if not text:
-        return False
-    return bool(_ROLL_CMD_RE.match(text))
-
-
-def _looks_like_roll_result(text: str) -> bool:
-    """机器人消息是否像掷骰结果文本（用于日志结算预标）。"""
-    return bool(_ROLL_TEXT_RE.search(text)) or "掷出" in text
 
 
 def _extract_result_text(event) -> str:
@@ -451,6 +438,34 @@ def _extract_result_text(event) -> str:
         return "".join(parts).strip()
     except Exception:  # noqa: BLE001 - 记录失败静默，不影响消息发送
         return ""
+
+
+def _read_text_file(path: str) -> str:
+    """读取导入文本文件（utf-8 优先，回退 utf-8-sig / gbk）。"""
+    for enc in ("utf-8", "utf-8-sig", "gbk"):
+        try:
+            with open(path, "r", encoding=enc) as f:
+                return f.read()
+        except (UnicodeDecodeError, OSError):
+            continue
+    raise OSError(f"无法解码文件（尝试 utf-8/gbk 均失败）: {path}")
+
+
+async def _extract_uploaded_file(event) -> str | None:
+    """从事件消息段提取上传的文件本地路径（File 段；无则 None）。
+
+    用鸭子类型（存在可调用 get_file 即视为文件段），兼容真实 AstrBot
+    File 组件与测试替身。
+    """
+    try:
+        for seg in event.get_messages():
+            if callable(getattr(seg, "get_file", None)):
+                path = await seg.get_file()
+                if path:
+                    return path
+    except Exception:  # noqa: BLE001 - 提取失败按无文件处理
+        return None
+    return None
 
 
 def _tokenize(arg: str) -> list[str] | None:
@@ -1627,6 +1642,7 @@ _HELP_SECTIONS = {
             "/继续记录 [团名]       恢复已暂停的场次（需权限）",
             "/结束记录 [团名]       结束当前场次，数据保留（需权限）",
             "/删除记录 <团名>       删除整个团的日志与摘要，不可恢复（需权限）",
+            "/导入记录 <团名> [文本]  导入既有纯文本记录为团的新场次（粘贴或上传 .txt/.log 文件；需权限）",
             "/记录                  查看当前记录状态与团列表（全员可看）",
             "/记录 看 <团名> [场次]  查看日志原文（最近 20 条）",
             "/记录 摘要 [团名]      查看已生成的场次摘要",
@@ -5745,8 +5761,55 @@ class TrpgAssistantPlugin(Star):
         ok, msg = await self._summarize_core(event, arg)
         yield event.plain_result(msg)
 
+    @filter.command("导入记录", alias={"导入日志", "importlog"})
+    async def import_log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """导入既有纯文本跑团记录：/导入记录 <团名> [记录文本…] 或上传文件。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._import_log_core(event, arg)
+        yield event.plain_result(msg)
+
     async def _session_log_disabled_msg(self) -> str:
         return "跑团记录未启用或当前环境不支持（data_dir 不可用）。"
+
+    async def _import_log_core(self, event, arg: str) -> tuple[bool, str]:
+        """导入既有记录（写操作，权限在核心内校验，命令与自定义前缀共用）。
+
+        输入二选一：命令后粘贴文本；或上传 .txt/.log 文件（文件优先）。
+        规则切分（parse_transcript）→ 落为团的一个新场次。
+        """
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        if not await self._check_destructive_permission(event):
+            return False, "你没有权限执行此操作（需要白名单或管理员）。"
+        arg = arg.strip()
+        parts = arg.split(None, 1)
+        campaign = parts[0] if parts else ""
+        pasted = parts[1].strip() if len(parts) > 1 else ""
+        if not campaign:
+            return False, "用法：/导入记录 <团名> [记录文本…]；或 /导入记录 <团名> 并上传 .txt/.log 文件。"
+        text = pasted
+        file_path = await _extract_uploaded_file(event)
+        if file_path is not None:
+            try:
+                text = await asyncio.to_thread(_read_text_file, file_path)
+            except OSError as e:
+                return False, f"读取文件失败：{e}"
+        if not text.strip():
+            return False, "没有识别到要导入的内容：请在命令后粘贴记录文本，或上传 .txt/.log 文件。"
+        entries = parse_transcript(text)
+        if not entries:
+            return False, "没有识别到有效的记录行（内容为空或全为空白行）。"
+        seq, count = await mgr.import_session(
+            event.unified_msg_origin, campaign, entries
+        )
+        return (
+            True,
+            f"已导入 {count} 条到团「{campaign}」第 {seq} 场，"
+            f"用 /总结 {campaign} 生成摘要。",
+        )
 
     async def _start_log_core(self, event, arg: str) -> tuple[bool, str]:
         """开始/继续记录（写操作，权限在核心内校验，命令与工具共用）。"""
@@ -6283,6 +6346,8 @@ class TrpgAssistantPlugin(Star):
             (f"{p}继续记录", "resume"), (f"{p}resumelog", "resume"),
             (f"{p}结束记录", "stop"), (f"{p}stoplog", "stop"),
             (f"{p}删除记录", "delete"), (f"{p}dellog", "delete"),
+            (f"{p}导入记录", "import"), (f"{p}导入日志", "import"),
+            (f"{p}importlog", "import"),
             (f"{p}记录", "view"), (f"{p}日志", "view"), (f"{p}slog", "view"),
             (f"{p}总结", "summary"), (f"{p}战报", "summary"),
         )
@@ -6303,6 +6368,8 @@ class TrpgAssistantPlugin(Star):
                     ok, msg = await self._stop_log_core(event, arg)
                 elif log_action == "delete":
                     ok, msg = await self._delete_log_core(event, arg)
+                elif log_action == "import":
+                    ok, msg = await self._import_log_core(event, arg)
                 elif log_action == "summary":
                     ok, msg = await self._summarize_core(event, arg)
                 else:

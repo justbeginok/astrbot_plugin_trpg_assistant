@@ -69,6 +69,78 @@ def _sanitize(text: str, max_chars: int = _MAX_ENTRY_CHARS) -> str:
 
 
 # ---------------------------------------------------------------------------
+# 结算启发式（写入时预标，捕获钩子与导入共用；在 main.py 中经
+# `from .session_log import _looks_like_roll_command` 复用，避免循环导入）
+# ---------------------------------------------------------------------------
+
+# 玩家消息「结算」形态：骰指令（/r、.r、/roll、/dnd，前缀符号任意）。
+# 前缀符号取 0~2 个非单词非空白字符，然后必须是 r/roll/dnd 整词后接空白或结尾
+# （避免误伤 /ri、/rh、/记录 等）。
+_ROLL_CMD_RE = re.compile(r"^[^\w\s]{0,2}(?:r|roll|dnd)(?=\s|$)", re.IGNORECASE)
+# 机器人消息「结算」形态：含骰式（1d20/d20/3d6）或「掷出」字样。
+_ROLL_TEXT_RE = re.compile(r"\b\d*d\d+\b")
+
+# 导入切分：可选 [时间] 前缀 + 短昵称 + 冒号
+_IMPORT_SENDER_RE = re.compile(r"^(?:\[[^\]]*\]\s*)?([^：:\n]{1,16})[：:]\s*(.+)$")
+# 导入最大行数（防超大粘贴/刷库）
+_MAX_IMPORT_LINES = 2000
+
+
+def _looks_like_roll_command(text: str) -> bool:
+    """文本是否像掷骰指令（用于结算预标）。"""
+    if not text:
+        return False
+    return bool(_ROLL_CMD_RE.match(text))
+
+
+def _looks_like_roll_result(text: str) -> bool:
+    """文本是否像掷骰结果（用于结算预标）。"""
+    return bool(_ROLL_TEXT_RE.search(text)) or "掷出" in text
+
+
+def parse_transcript(text: str, max_lines: int = _MAX_IMPORT_LINES) -> list[dict]:
+    """把既有纯文本聊天记录按行切分为日志条目（导入用，规则切分）。
+
+    每行一条：
+    - 命中「[时间] 昵称: 内容」/「昵称: 内容」→ 提取发送者；
+    - 否则整行作为内容（发送者为空）；
+    - 骰式/「掷出」行标 is_roll=True；无发送者的骰式行视为机器人结算（role=bot）；
+    - 超 max_lines 截断（防超大粘贴/刷库）。
+
+    Returns:
+        [{"role", "sender_id", "sender_name", "text", "is_roll"}, ...]
+    """
+    entries: list[dict] = []
+    for line in text.splitlines():
+        line = _sanitize(line)
+        if not line:
+            continue
+        if len(entries) >= max_lines:
+            break
+        m = _IMPORT_SENDER_RE.match(line)
+        if m:
+            sender = _sanitize(m.group(1), 16)
+            content = _sanitize(m.group(2))
+        else:
+            sender = ""
+            content = line
+        if not content:
+            continue
+        is_roll = _looks_like_roll_command(content) or _looks_like_roll_result(content)
+        role = "bot" if (is_roll and not sender) else "player"
+        entries.append(
+            {
+                "role": role,
+                "sender_id": "",
+                "sender_name": sender,
+                "text": content,
+                "is_roll": is_roll,
+            }
+        )
+    return entries
+
+
+# ---------------------------------------------------------------------------
 # 数据模型
 # ---------------------------------------------------------------------------
 
@@ -416,6 +488,88 @@ class SessionLogManager:
             )
             conn.commit()
             return True
+
+    async def import_session(
+        self,
+        origin: str,
+        campaign: str,
+        entries: list[dict],
+    ) -> tuple[int, int]:
+        """把既有记录批量导入为团的一个新场次（不依赖记录状态）。
+
+        规则：campaign 不存在则创建（status='off'）；新场次号 =
+        max(log_entries.session_seq) + 1（无则 1）；仅当团处于 off（无进行中
+        场次）时才同步 campaigns.session_seq 指针——**recording/paused 的团
+        不动指针**，避免破坏正在记录的场次（add_entry 靠该字段定位）。
+
+        Args:
+            entries: parse_transcript 产物
+                [{"role","sender_id","sender_name","text","is_roll"}, ...]。
+
+        Returns:
+            (new_session_seq, 导入条数)。
+        """
+        campaign = _sanitize(campaign, max_chars=40)
+        if not campaign or not entries:
+            return 0, 0
+        async with self._lock:
+            conn = self._connect()
+            try:
+                conn.execute("BEGIN")
+                row = conn.execute(
+                    "SELECT session_seq, status FROM campaigns "
+                    "WHERE origin=? AND campaign=?",
+                    (origin, campaign),
+                ).fetchone()
+                max_row = conn.execute(
+                    "SELECT COALESCE(MAX(session_seq), 0) AS m FROM log_entries "
+                    "WHERE origin=? AND campaign=?",
+                    (origin, campaign),
+                ).fetchone()
+                new_seq = int(max_row["m"]) + 1 if max_row else 1
+                now = _now()
+                if row is None:
+                    conn.execute(
+                        "INSERT INTO campaigns(origin, campaign, session_seq, status, "
+                        "started_at, updated_at) VALUES(?,?,?,?,?,?)",
+                        (origin, campaign, new_seq, _STATUS_OFF, now, now),
+                    )
+                elif row["status"] == _STATUS_OFF:
+                    conn.execute(
+                        "UPDATE campaigns SET session_seq=?, updated_at=? "
+                        "WHERE origin=? AND campaign=?",
+                        (new_seq, now, origin, campaign),
+                    )
+                seq = 0
+                count = 0
+                for e in entries:
+                    text = _sanitize(e.get("text", ""))
+                    if not text:
+                        continue
+                    seq += 1
+                    conn.execute(
+                        "INSERT INTO log_entries(origin, campaign, session_seq, seq, ts, "
+                        "role, sender_id, sender_name, text, is_roll) "
+                        "VALUES(?,?,?,?,?,?,?,?,?,?)",
+                        (
+                            origin,
+                            campaign,
+                            new_seq,
+                            seq,
+                            now,
+                            e.get("role", "player"),
+                            _sanitize(e.get("sender_id", ""), 64),
+                            _sanitize(e.get("sender_name", ""), 64),
+                            text,
+                            1 if e.get("is_roll") else 0,
+                        ),
+                    )
+                    count += 1
+                conn.commit()
+            except Exception:
+                conn.rollback()
+                raise
+            return new_seq, count
 
     # ------------------------------------------------------------------
     # 查询

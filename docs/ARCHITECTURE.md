@@ -51,7 +51,7 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 | `dice_parser.py` / `dice_roller.py` | Roll20 规范骰池解析与掷骰（上游核心，只读扩展） | `DieRoll` / `DiceGroupResult` / `RollResult` | `/r` `roll_dice` |
 | `formatter.py` | 骰池结果格式化 | — | — |
 | `history.py` | 会话投掷历史（上限 `max_history_count`，失败投掷不记录） | `HistoryEntry` | `/rh` `/rhistory` |
-| `session_log.py` | 跑团记录：团/场次日志 + LLM 战报摘要（v0.54.0，ADR-0029；独立 SQLite，可变数据第二存储） | `CampaignInfo` / `LogEntry` / `SummaryRow` | `/开始记录` `/暂停记录` `/继续记录` `/结束记录` `/删除记录` `/记录` `/总结` `summarize_session` |
+| `session_log.py` | 跑团记录：团/场次日志 + LLM 战报摘要 + 旧记录导入（v0.54.0，ADR-0029；独立 SQLite，可变数据第二存储） | `CampaignInfo` / `LogEntry` / `SummaryRow` | `/开始记录` `/暂停记录` `/继续记录` `/结束记录` `/删除记录` `/导入记录` `/记录` `/总结` `summarize_session` |
 | `initiative.py` | 会话先攻列表与回合推进 | `InitiativeEntry` / `InitiativeState` | `/ri` `/init` `manage_initiative` |
 | `inventory.py` | 个人背包 + 队伍背包，物品流转（put/take/give）原子化 | `ItemEntry` / `Inventory` | `/bag` `/inventory` `/背包` `manage_inventory` |
 | `shop.py` + `money.py` | 会话商店（单店）买卖结算；折铜/找零纯函数 | `ShopEntry` / `Shop`；`COIN_VALUE` 等 | `/商店` `/shop` `/店铺` `manage_shop` |
@@ -466,7 +466,7 @@ v0.47.0（ADR-0022）新增：
 | `dnd` | 属性生成 | v0.38.0：按 5e 规则掷 `4d6kh3`×6 为一组（组数默认 1、上限 20，模块级常量 `_DND_MAX_GROUPS` 不新增配置），复用 `_roll_chargen`，成功写历史 `dnd N`；独立生成指令，不与车卡联动（走 `/车卡` 的掷骰开卡才落草稿） |
 | `dset`（dice_set）/ `rprefix` | 会话骰面/触发前缀 | 白名单管控 |
 | `rh`（rhistory）| 历史 | |
-| `开始记录`（startlog）/ `暂停记录`（pauselog）/ `继续记录`（resumelog）/ `结束记录`（stoplog）/ `删除记录`（dellog）/ `记录`（日志,slog）/ `总结`（战报,summary）| 跑团记录 | v0.54.0（ADR-0029）：写操作（开始/暂停/继续/结束/删除）走 `_check_destructive_permission`（群聊白名单/管理员、私聊放行），查看与摘要全员可用；`/记录 [状态|看 <团名> [场次]|摘要 [团名]]`，`/总结 [团名] [场次] [重算]` 生成叙事式战报摘要（规则预标结算 + `context.llm_generate`，落库可回看） |
+| `开始记录`（startlog）/ `暂停记录`（pauselog）/ `继续记录`（resumelog）/ `结束记录`（stoplog）/ `删除记录`（dellog）/ `导入记录`（导入日志,importlog）/ `记录`（日志,slog）/ `总结`（战报,summary）| 跑团记录 | v0.54.0（ADR-0029）：写操作（开始/暂停/继续/结束/删除/导入）走 `_check_destructive_permission`（群聊白名单/管理员、私聊放行），查看与摘要全员可用；`/记录 [状态|看 <团名> [场次]|摘要 [团名]]`，`/总结 [团名] [场次] [重算]` 生成叙事式战报摘要（规则预标结算 + `context.llm_generate`，落库可回看）；`/导入记录` 用 `parse_transcript` 规则切分既有纯文本/上传文件，落为团的新场次（`import_session`，不打断 recording） |
 | `ri` / `init`（initiative）| 先攻 | v0.30.0：`/ri` 无参数且有活跃角色卡时自动用卡上先攻（d20+先攻并标注角色）；显式调整值优先 |
 | `bag`（inventory, 背包）| 背包 | v0.42.0：`add/rm/put/take` 全量批量（单件回落原解析器零回归）；`grant`（发放）/`revoke`（收回）短命令直接操作队伍背包（发放全员放行、收回走破坏性鉴权、私聊拒绝），发放支持 `重=/价=/备注=` 逐项属性 |
 | `shop`（商店, 店铺）| 商店 | v0.39.0：批量买/卖（数量可省略）、批量上架（逐项属性）、批量下架、`清空`（整店清空，管理员） |

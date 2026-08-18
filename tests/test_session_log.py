@@ -15,7 +15,11 @@ import functools
 import pytest
 
 from astrbot_plugin_trpg_assistant.main import TrpgAssistantPlugin, _looks_like_roll_command
-from astrbot_plugin_trpg_assistant.session_log import LogEntry, SessionLogManager
+from astrbot_plugin_trpg_assistant.session_log import (
+    LogEntry,
+    SessionLogManager,
+    parse_transcript,
+)
 
 
 def sync_test(fn):
@@ -51,7 +55,7 @@ class _Result:
 
 
 class _Ev:
-    """假消息事件：含 get_result（on_decorating_result 钩子需要）。"""
+    """假消息事件：含 get_result/get_messages（捕获与导入钩子需要）。"""
 
     def __init__(
         self,
@@ -69,6 +73,7 @@ class _Ev:
         self._private = private
         self._admin = admin
         self._result: _Result | None = None
+        self._messages: list = []
         self.stopped = False
 
     def get_sender_id(self) -> str:
@@ -96,6 +101,22 @@ class _Ev:
         from astrbot.api.message_components import Plain
 
         self._result = _Result([Plain(text=text)])
+
+    def get_messages(self) -> list:
+        return self._messages
+
+    def set_messages(self, segs: list) -> None:
+        self._messages = list(segs)
+
+
+class _FakeFileSeg:
+    """假 File 消息段：async get_file 返回本地路径。"""
+
+    def __init__(self, path: str) -> None:
+        self._path = path
+
+    async def get_file(self) -> str:
+        return self._path
 
 
 class FakeLLMResponse:
@@ -447,3 +468,126 @@ async def test_disabled_when_config_off(tmp_path) -> None:
     assert p.session_log_manager is None
     ok, msg = await p._start_log_core(ev("/开始记录 X", admin=True), "X")
     assert not ok and "未启用" in msg
+
+
+# ---------------------------------------------------------------------------
+# 导入（Import）：旧记录倒灌
+# ---------------------------------------------------------------------------
+
+
+def test_parse_transcript_basic() -> None:
+    text = (
+        "[2026-08-01 20:00] 阿伟: 我推开酒馆大门\n"
+        "阿花: 我跟在后面\n"
+        "掷出了 d20 = 15\n"
+        "\n"
+        "阿伟: /r 1d20+5 攻击\n"
+        "大家安静点\n"
+    )
+    entries = parse_transcript(text)
+    assert len(entries) == 5  # 空行被剔除
+    # [时间] 昵称: 内容 → 提取发送者
+    assert entries[0]["sender_name"] == "阿伟"
+    assert entries[0]["text"] == "我推开酒馆大门"
+    assert entries[0]["is_roll"] is False and entries[0]["role"] == "player"
+    # 昵称: 内容
+    assert entries[1]["sender_name"] == "阿花"
+    # 无发送者的骰式行 → 机器人结算
+    assert entries[2]["sender_name"] == ""
+    assert entries[2]["is_roll"] is True and entries[2]["role"] == "bot"
+    # 有发送者的骰指令 → 玩家且标结算
+    assert entries[3]["sender_name"] == "阿伟"
+    assert entries[3]["is_roll"] is True and entries[3]["role"] == "player"
+    # 无发送者普通行 → 玩家
+    assert entries[4]["sender_name"] == ""
+    assert entries[4]["is_roll"] is False and entries[4]["role"] == "player"
+
+
+def test_parse_transcript_max_lines() -> None:
+    entries = parse_transcript("\n".join(f"第{i}行内容" for i in range(10)), max_lines=3)
+    assert len(entries) == 3
+
+
+@sync_test
+async def test_import_session_creates_campaign_and_appends(tmp_path) -> None:
+    mgr = SessionLogManager(tmp_path / "log.db")
+    entries = parse_transcript("阿伟: 我推开酒馆大门\n掷出了 d20 = 15\n")
+    seq, count = await mgr.import_session("group:1", "旧团", entries)
+    assert seq == 1 and count == 2
+    campaigns = await mgr.list_campaigns("group:1")
+    assert len(campaigns) == 1
+    assert campaigns[0].status == "off" and campaigns[0].total_sessions == 1
+    # 再导入 → 新场次 2
+    seq2, count2 = await mgr.import_session("group:1", "旧团", entries)
+    assert seq2 == 2 and count2 == 2
+    assert len(await mgr.get_entries("group:1", "旧团", session_seq=2)) == 2
+    assert (await mgr.list_campaigns("group:1"))[0].total_sessions == 2
+    # 摘要可针对导入场次
+    await mgr.save_summary("group:1", "旧团", 2, "旧场摘要")
+    assert (await mgr.get_summary("group:1", "旧团", 2)).summary_text == "旧场摘要"
+
+
+@sync_test
+async def test_import_session_does_not_disturb_recording(tmp_path) -> None:
+    mgr = SessionLogManager(tmp_path / "log.db")
+    await mgr.start("group:1", "进行中")
+    await mgr.add_entry("group:1", "player", "正在记录")
+    # 导入同团 → 新场次 2，但 recording 指针/状态不动
+    seq, count = await mgr.import_session("group:1", "进行中", parse_transcript("旧内容\n"))
+    assert seq == 2 and count == 1
+    active = await mgr.get_active("group:1")
+    assert active is not None and active.status == "recording"
+    assert active.session_seq == 1  # 指针仍是第 1 场
+    # 继续记录仍写第 1 场
+    await mgr.add_entry("group:1", "player", "继续")
+    assert len(await mgr.get_entries("group:1", "进行中", session_seq=1)) == 2
+    assert len(await mgr.get_entries("group:1", "进行中", session_seq=2)) == 1
+
+
+@sync_test
+async def test_import_command_paste(plugin) -> None:
+    e = ev("/导入记录 旧团 阿伟: 我推开酒馆大门\n掷出了 d20 = 15", admin=True)
+    out = []
+    async for m in plugin.import_log_cmd(e):
+        out.append(m)
+    assert any("已导入 2 条到团「旧团」第 1 场" in m for m in out)
+    entries = await plugin._session_log_manager.get_entries("group:1", "旧团")
+    assert len(entries) == 2
+    assert entries[1].role == "bot" and entries[1].is_roll is True
+
+
+@sync_test
+async def test_import_command_requires_permission(plugin) -> None:
+    e = ev("/导入记录 旧团 阿伟: 内容", admin=False)
+    ok, msg = await plugin._import_log_core(e, "旧团 阿伟: 内容")
+    assert not ok and "权限" in msg
+
+
+@sync_test
+async def test_import_command_file(tmp_path, plugin) -> None:
+    f = tmp_path / "history.txt"
+    f.write_text("阿伟: 我推开酒馆大门\n掷出了 d20 = 15\n", encoding="utf-8")
+    e = ev("/导入记录 旧团", admin=True)
+    e.set_messages([_FakeFileSeg(str(f))])
+    ok, msg = await plugin._import_log_core(e, "旧团")
+    assert ok and "已导入 2 条" in msg
+    entries = await plugin._session_log_manager.get_entries("group:1", "旧团")
+    assert len(entries) == 2
+
+
+@sync_test
+async def test_import_then_summarize(plugin) -> None:
+    fake = FakeContext(text="旧团导入场次摘要：冒险者进村……")
+    plugin.context = fake
+    e = ev("/导入记录 旧团 阿伟: 我推开酒馆大门\n阿花: 我拔剑\n掷出了 d20 = 15", admin=True)
+    async for _ in plugin.import_log_cmd(e):
+        pass
+    ok, msg = await plugin._summarize_core(ev("/总结 旧团"), "旧团")
+    assert ok and "旧团导入场次摘要" in msg
+
+
+@sync_test
+async def test_import_no_content(plugin) -> None:
+    e = ev("/导入记录 旧团", admin=True)
+    ok, msg = await plugin._import_log_core(e, "旧团")
+    assert not ok and "没有识别到要导入的内容" in msg

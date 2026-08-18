@@ -35,7 +35,7 @@ def test_at_least_four_llm_tools() -> None:
     assert {
         "roll_dice", "manage_initiative", "manage_inventory", "manage_shop",
         "query_dnd_knowledge", "manage_character", "guide_chargen",
-        "advise_build", "manage_homebrew",
+        "advise_build", "manage_homebrew", "summarize_session",
     } <= names
 
 
@@ -143,3 +143,17 @@ def test_manage_homebrew_schema_params() -> None:
     assert names == ["action", "json_text", "filename", "overwrite", "merge"]
     doc = inspect.getdoc(fn) or ""
     assert "禁止仅凭记忆点评" in doc and "白名单" in doc
+
+
+def test_summarize_session_schema_params() -> None:
+    """summarize_session 的 4 个参数进入 schema（v0.54.0），且带权限/缓存约定。"""
+    fn = getattr(TrpgAssistantPlugin, "summarize_session_tool")
+    parsed = docstring_parser.parse(inspect.getdoc(fn) or "")
+    names = [p.arg_name for p in parsed.params]
+    assert names == ["action", "campaign", "session_seq", "force"]
+    assert parsed.params[0].type_name == "string"
+    assert parsed.params[2].type_name == "number"
+    assert parsed.params[3].type_name == "boolean"
+    doc = inspect.getdoc(fn) or ""
+    assert "玩家明确要求" in doc  # 写操作守则
+    assert "缓存" in doc  # 摘要缓存约定

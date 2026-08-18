@@ -135,5 +135,11 @@
         "hint": "开启后 manage_homebrew 工具的 write 动作可将校验通过的私设 JSON 写入数据目录 trpg_homebrew/（仍需白名单或管理员权限）；关闭时仅可转换与点评",
         "type": "bool",
         "default": false
+    },
+    "enable_session_log": {
+        "description": "启用跑团记录",
+        "hint": "开启后可使用 /开始记录 <团名> 记录完整对话流（玩家消息+机器人回复）到独立 SQLite（data_dir/trpg_log.db），并用 /总结 生成叙事式战报摘要；开始/暂停/结束/删除需白名单或管理员",
+        "type": "bool",
+        "default": true
     }
 }

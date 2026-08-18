@@ -1,6 +1,6 @@
 # astrbot_plugin_trpg_assistant
 
-**当前版本：v0.53.0**（各功能版本演进详见 [CHANGELOG.md](CHANGELOG.md)）
+**当前版本：v0.54.0**（各功能版本演进详见 [CHANGELOG.md](CHANGELOG.md)）
 
 适用于 [AstrBot](https://github.com/AstrBotDevs/AstrBot) 的 TRPG 跑团助手插件：完整 Roll20 规范的 D&D 骰池投掷、技能检定、投掷历史、战斗先攻追踪、个人/队伍背包、会话商店、角色卡与 LLM 引导车卡、内置 DND 5e 中文知识库，并提供 LLM 函数工具供 AI 主持人在叙事中自动调用。
 
@@ -119,6 +119,39 @@
 - 先攻值降序排列，同值时先入列者先行动。
 - 列表按会话（群聊/私聊）隔离，KV 持久化、不自动过期，跨周续团不丢状态。
 - `/init del` 与 `/init clr` 为破坏性指令，群聊需白名单/管理员权限；其余指令全员开放。
+
+## 跑团记录
+
+记录一场跑团活动的**完整对话流**（玩家消息 + 机器人回复，含 LLM 扮演 DM
+的旁白），并把记录提取为**叙事式战报摘要**。数据存独立 SQLite
+（`data_dir/trpg_log.db`，升级插件不丢）。
+
+### 团 / 场次
+
+- **团** = 一个命名的记录容器，按会话隔离：`/开始记录 <团名>` 存在则续写、
+  不存在则新建（同一会话同一时间只能记录一个团）；
+- **场次** = 团内一次「开始 → 结束」的区间，团内第 N 次开团即第 N 场；
+  摘要默认最近一场，可指定场次。
+
+```
+/开始记录 红龙之影    # 新建团「红龙之影」并开始记录第 1 场
+/暂停记录             # 暂停：之后消息不入日志，场次保留（中场休息用）
+/继续记录             # 恢复已暂停的场次
+/结束记录             # 结束当前场次，数据保留
+/记录                 # 查看当前记录状态与团列表
+/记录 看 红龙之影     # 查看日志原文（最近 20 条，[结算] 标记骰指令）
+/记录 摘要 红龙之影   # 查看已生成的场次摘要
+/总结 红龙之影        # 生成叙事式战报摘要（剧情回顾 + 结算统计）
+/总结 红龙之影 2 重算  # 指定第 2 场并强制重新生成（忽略缓存）
+/删除记录 红龙之影    # 删除整个团（不可恢复）
+```
+
+- **摘要**：规则预标「结算」（玩家骰指令写入时确定性打标）+ LLM 分类
+  （行动 vs 吐槽）并写成叙事回顾；结算折成结果（如「攻击命中，造成 12
+  伤害」）、吐槽剔除、末尾附结算统计；结果落库可回看，不重复烧 token。
+- **权限**：开始/暂停/继续/结束/删除为写操作，群聊需白名单/管理员
+  （私聊放行）；查看与摘要全员可用。
+- 记录过长时摘要取最近窗口并注明；`/帮助 记录` 查看命令语法。
 
 ## 背包与商店
 
@@ -368,14 +401,15 @@ DM/管理员设置群级开卡规则（写入需群聊白名单权限）：
 | `allow_view_history`             | 布尔  | true  | 是否允许 `/rh` 查看历史                                         |
 | `max_history_count`              | 整数  | 50    | 每会话最多保留历史条数（5–500）                                      |
 | `homebrew_write_enabled`         | 布尔  | false | 允许 LLM 写入私设文件（manage_homebrew write 落盘 `trpg_homebrew/`；仍需白名单或管理员，私聊同样受限） |
+| `enable_session_log`            | 布尔  | true  | 启用跑团记录（`/开始记录` 等命令 + `/总结` 摘要；写操作需白名单/管理员）        |
 
 ## LLM 函数工具
 
-插件注册九个工具，启用 Agent 模式后，LLM 可在 TRPG 叙事中主动调用。
+插件注册十个工具，启用 Agent 模式后，LLM 可在 TRPG 叙事中主动调用。
 
 > **⚠️ AI 主持人配置建议**：**不要**给 AI 主持人的 LLM 环境挂载代码执行/文件访问类能力（MCP 代码执行器、文件系统工具等）。本插件的所有数据（知识库/商店/背包）都有专用工具作为权威接口；让 LLM 直接读插件目录里的 `dnd_kb.db` 等文件会拿到无格式保证的内部数据。若无法移除这些能力，请在 AI 系统提示词中明确：「查询 D&D 数据必须调用 query_dnd_knowledge 工具，禁止读取本地文件」。
 > 
-> **工具触发引导**：插件通过 `@filter.on_llm_request` 钩子向每个 LLM 请求的 system prompt 注入压缩版「跑团助手·工具守则」——全部 9 个工具按场景一句一条（掷骰→`roll_dice`、规则数据→`query_dnd_knowledge`、战斗→`manage_initiative`、战利品→`manage_inventory`、角色卡→`manage_character`、车卡→`guide_chargen`、买卖→`manage_shop`、构筑→`advise_build`、私设→`manage_homebrew`），并明确**破坏性操作不主动执行**、等玩家明确要求。这是防 LLM「扮演/编造而不调工具」的双保险，无需 WebUI 额外配置。
+> **工具触发引导**：插件通过 `@filter.on_llm_request` 钩子向每个 LLM 请求的 system prompt 注入压缩版「跑团助手·工具守则」——全部 10 个工具按场景一句一条（掷骰→`roll_dice`、规则数据→`query_dnd_knowledge`、战斗→`manage_initiative`、战利品→`manage_inventory`、角色卡→`manage_character`、车卡→`guide_chargen`、买卖→`manage_shop`、构筑→`advise_build`、私设→`manage_homebrew`、记录/战报→`summarize_session`），并明确**破坏性操作不主动执行**、等玩家明确要求。这是防 LLM「扮演/编造而不调工具」的双保险，无需 WebUI 额外配置。
 > 
 > **部署提示**：AstrBot v4.5+ 需在 WebUI 工具管理面板**启用**插件工具（默认不注入 LLM 请求），否则 AI 主持人看不到工具。
 
@@ -390,6 +424,7 @@ DM/管理员设置群级开卡规则（写入需群聊白名单权限）：
 | `advise_build`        | 构筑咨询/升级建议                  | `new_build`/`level_up` + `goal`/`keywords`/`level`；推荐条目全部来自知识库反查、禁止凭记忆编造                                                                                                    |
 | `query_dnd_knowledge` | 查法术/怪物/物品效果、职业能力、条件筛选      | `detail`/`search`/`filter`/`class_features`/`version` + 40 个筛选参数（`kind`/`name`/`level`/`school`/`cr_min`/`rarity`/`damage_type`/`condition`/`spell_class`/`feat_keywords`…） |
 | `manage_homebrew`     | 私设转录/写入/点评                  | `convert`/`write`/`review` + `json_text`/`filename`/`overwrite`/`merge`；write 需配置 `homebrew_write_enabled` + 白名单/管理员（私聊不放行），点评前必须先查库对照 |
+| `summarize_session`   | 跑团记录/战报摘要/团状态              | `summarize`/`status`/`view`/`start`/`pause`/`stop`/`delete` + `campaign`/`session_seq`/`force`；摘要缓存可回看、`force` 重算；写操作需玩家明确要求且插件内校验权限 |
 
 工具返回固定附带「仅可依据其作答、未提及不要编造」约束；查无结果时明确返回「未找到」而非空串。
 

@@ -126,6 +126,7 @@ from .dice_parser import DiceParseError, parse
 from .dice_roller import DiceRollError, roll
 from .formatter import format_result
 from .history import ROLL_ERROR_PREFIXES, RollHistoryManager
+from .session_log import SessionLogManager
 from .homebrew import KIND_LABEL
 from .homebrew_writer import (
     atomic_write_text,
@@ -404,6 +405,52 @@ def _resolve_event(event):
         if ev is not None and hasattr(ev, "unified_msg_origin"):
             return ev
     return None
+
+
+# ---------------------------------------------------------------------------
+# 跑团记录辅助（v0.54.0）：结算预标 + 结果文本提取
+# ---------------------------------------------------------------------------
+
+# 玩家消息「结算」预标：骰指令形态（/r、.r、/roll、/dnd，前缀符号任意）。
+# 前缀符号取 0~2 个非单词非空白字符，然后必须是 r/roll/dnd 整词后接空白或结尾
+# （避免误伤 /ri、/rh、/记录 等）。
+_ROLL_CMD_RE = re.compile(r"^[^\w\s]{0,2}(?:r|roll|dnd)(?=\s|$)", re.IGNORECASE)
+# 机器人消息「结算」形态：含骰式（1d20/d20/3d6）或「掷出」字样。
+_ROLL_TEXT_RE = re.compile(r"\b\d*d\d+\b")
+
+
+def _looks_like_roll_command(text: str) -> bool:
+    """玩家消息是否像掷骰指令（用于日志结算预标）。"""
+    if not text:
+        return False
+    return bool(_ROLL_CMD_RE.match(text))
+
+
+def _looks_like_roll_result(text: str) -> bool:
+    """机器人消息是否像掷骰结果文本（用于日志结算预标）。"""
+    return bool(_ROLL_TEXT_RE.search(text)) or "掷出" in text
+
+
+def _extract_result_text(event) -> str:
+    """从事件结果链提取纯文本（on_decorating_result 用，防御式）。
+
+    取 event.get_result().chain 中全部 Plain 段的文本拼接；
+    任何异常（含测试替身缺 Plain 组件）返回空串。
+    """
+    try:
+        result = event.get_result()
+        chain = getattr(result, "chain", None)
+        if chain is None:
+            return ""
+        from astrbot.api.message_components import Plain
+
+        parts = []
+        for seg in chain:
+            if isinstance(seg, Plain):
+                parts.append(getattr(seg, "text", "") or "")
+        return "".join(parts).strip()
+    except Exception:  # noqa: BLE001 - 记录失败静默，不影响消息发送
+        return ""
 
 
 def _tokenize(arg: str) -> list[str] | None:
@@ -1572,12 +1619,28 @@ _HELP_SECTIONS = {
             "/rh clear              清空历史（群聊需白名单权限）",
         ],
     },
+    "记录": {
+        "cmds": "/开始记录 /结束记录 /记录 /总结",
+        "lines": [
+            "/开始记录 <团名>       开始（或继续）记录一个团，如「红龙之影」（需权限）",
+            "/暂停记录 [团名]       暂停记录：之后消息不入日志，场次保留（需权限）",
+            "/继续记录 [团名]       恢复已暂停的场次（需权限）",
+            "/结束记录 [团名]       结束当前场次，数据保留（需权限）",
+            "/删除记录 <团名>       删除整个团的日志与摘要，不可恢复（需权限）",
+            "/记录                  查看当前记录状态与团列表（全员可看）",
+            "/记录 看 <团名> [场次]  查看日志原文（最近 20 条）",
+            "/记录 摘要 [团名]      查看已生成的场次摘要",
+            "/总结 [团名] [场次] [重算]  生成叙事式战报摘要（剧情回顾+结算统计；全员可用）",
+            "记录保存完整对话流（玩家消息+机器人回复），存 data_dir/trpg_log.db；",
+            "同一会话同一时间只能记录一个团；重算=忽略缓存重新生成。",
+        ],
+    },
     "帮助": {
         "cmds": "/帮助",
         "lines": [
             "/帮助                  查看指令大全（本帮助）",
             "/帮助 <组名>            查看某组指令的详细语法",
-            "可用组：知识库 / 先攻 / 背包 / 角色卡 / 骰子 / 历史",
+            "可用组：知识库 / 先攻 / 背包 / 角色卡 / 骰子 / 历史 / 记录",
         ],
     },
 }
@@ -1592,6 +1655,8 @@ _HELP_TOPIC_ALIAS = {
     "车卡": "角色卡", "chargen": "角色卡", "开卡": "角色卡", "卡": "角色卡",
     "骰子": "骰子", "dice": "骰子", "roll": "骰子", "r": "骰子",
     "历史": "历史", "history": "历史", "rh": "历史",
+    "记录": "记录", "日志": "记录", "log": "记录", "slog": "记录",
+    "团": "记录", "战报": "记录", "summary": "记录", "总结": "记录",
     "帮助": "帮助", "help": "帮助", "菜单": "帮助",
 }
 
@@ -1603,6 +1668,7 @@ _HELP_EMOJI = {
     "角色卡": "🧙",
     "骰子": "🎲",
     "历史": "📜",
+    "记录": "📝",
     "帮助": "ℹ️",
 }
 
@@ -1611,10 +1677,10 @@ def _format_help_overview(display_prefix: str = "/") -> str:
     """全部指令分组概览。"""
     lines = [f"{display_prefix}帮助 - 跑团助手指令大全"]
     lines.append("回复「/帮助 <组名>」查看详细语法，例如：/帮助 知识库")
-    for topic in ("知识库", "先攻", "背包", "商店", "角色卡", "骰子", "历史", "帮助"):
+    for topic in ("知识库", "先攻", "背包", "商店", "角色卡", "骰子", "历史", "记录", "帮助"):
         section = _HELP_SECTIONS[topic]
         lines.append(f"{_HELP_EMOJI[topic]} {topic}：{section['cmds']}")
-    lines.append("ℹ️ 可用组：知识库 / 先攻 / 背包 / 商店 / 角色卡 / 骰子 / 历史")
+    lines.append("ℹ️ 可用组：知识库 / 先攻 / 背包 / 商店 / 角色卡 / 骰子 / 历史 / 记录")
     return "\n".join(lines)
 
 
@@ -1733,6 +1799,13 @@ class TrpgAssistantPlugin(Star):
         )
         # 私设写盘串行锁（检查冲突→写盘→reload 临界区）
         self._homebrew_write_lock = asyncio.Lock()
+
+        # 跑团记录（v0.54.0，ADR-0029）：团/场次日志 + LLM 摘要
+        self.enable_session_log: bool = _safe_bool(
+            cfg.get("enable_session_log"), True
+        )
+        # 跑团记录管理器（独立 SQLite 懒加载；数据目录不可用或功能关闭时为 None）
+        self._session_log_manager: SessionLogManager | None = None
 
         # 投掷历史管理器
         self._history = RollHistoryManager(
@@ -1853,6 +1926,27 @@ class TrpgAssistantPlugin(Star):
                 homebrew_dir=homebrew_dir,
             )
         return self._kb_manager
+
+    @property
+    def session_log_manager(self) -> SessionLogManager | None:
+        """懒加载跑团记录管理器（data_dir/trpg_log.db，ADR-0029）。
+
+        data_dir 不可用（测试替身环境无 StarTools）或功能被配置关闭时返回
+        None，命令层给出友好提示。路径解析与 kb_manager 同构。
+        """
+        if self._session_log_manager is None:
+            if not self.enable_session_log:
+                return None
+            try:
+                from astrbot.core.star.star_tools import StarTools
+
+                data_dir = Path(StarTools.get_data_dir())
+            except Exception:  # noqa: BLE001 — 测试替身环境无 StarTools
+                return None
+            self._session_log_manager = SessionLogManager(
+                data_dir / "trpg_log.db"
+            )
+        return self._session_log_manager
 
     async def initialize(self) -> None:
         logger.info(
@@ -5584,6 +5678,270 @@ class TrpgAssistantPlugin(Star):
         async for msg in self._handle_help(event, arg, "/"):
             yield msg
 
+    # ------------------------------------------------------------------
+    # 跑团记录命令（v0.54.0，ADR-0029）：团/场次日志 + LLM 摘要
+    # ------------------------------------------------------------------
+
+    @filter.command("开始记录", alias={"startlog"})
+    async def start_log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """开始（或继续）记录一个团：/开始记录 <团名>（写操作需权限）。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._start_log_core(event, arg)
+        yield event.plain_result(msg)
+
+    @filter.command("暂停记录", alias={"pauselog"})
+    async def pause_log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """暂停记录：/暂停记录 [团名]（消息不再入日志，场次保留）。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._pause_log_core(event, arg)
+        yield event.plain_result(msg)
+
+    @filter.command("继续记录", alias={"resumelog"})
+    async def resume_log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """继续记录：/继续记录 [团名]（恢复已暂停的场次）。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._resume_log_core(event, arg)
+        yield event.plain_result(msg)
+
+    @filter.command("结束记录", alias={"stoplog"})
+    async def stop_log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """结束记录：/结束记录 [团名]（关闭当前场次，数据保留）。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._stop_log_core(event, arg)
+        yield event.plain_result(msg)
+
+    @filter.command("删除记录", alias={"dellog"})
+    async def delete_log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """删除一个团的全部数据：/删除记录 <团名>（不可恢复，需权限）。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._delete_log_core(event, arg)
+        yield event.plain_result(msg)
+
+    @filter.command("记录", alias={"日志", "slog"})
+    async def log_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """查看跑团记录：/记录 [状态|看 <团名> [场次]|摘要 [团名]]。全员可看。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._log_view_core(event, arg)
+        yield event.plain_result(msg)
+
+    @filter.command("总结", alias={"战报", "summary"})
+    async def summarize_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
+        """生成场次摘要：/总结 [团名] [场次] [重算]。全员可用。"""
+        raw_msg: str = event.message_str.strip()
+        parts = raw_msg.split(None, 1)
+        arg = parts[1].strip() if len(parts) > 1 else ""
+        ok, msg = await self._summarize_core(event, arg)
+        yield event.plain_result(msg)
+
+    async def _session_log_disabled_msg(self) -> str:
+        return "跑团记录未启用或当前环境不支持（data_dir 不可用）。"
+
+    async def _start_log_core(self, event, arg: str) -> tuple[bool, str]:
+        """开始/继续记录（写操作，权限在核心内校验，命令与工具共用）。"""
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        if not await self._check_destructive_permission(event):
+            return False, "你没有权限执行此操作（需要白名单或管理员）。"
+        campaign = arg.strip()
+        if not campaign:
+            return False, "用法：/开始记录 <团名>（如「红龙之影」）。"
+        return await mgr.start(event.unified_msg_origin, campaign)
+
+    async def _pause_log_core(self, event, arg: str) -> tuple[bool, str]:
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        if not await self._check_destructive_permission(event):
+            return False, "你没有权限执行此操作（需要白名单或管理员）。"
+        return await mgr.pause(event.unified_msg_origin, arg.strip() or None)
+
+    async def _resume_log_core(self, event, arg: str) -> tuple[bool, str]:
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        if not await self._check_destructive_permission(event):
+            return False, "你没有权限执行此操作（需要白名单或管理员）。"
+        campaign = arg.strip()
+        if not campaign:
+            active = await mgr.get_active(event.unified_msg_origin)
+            if active is None or active.status != "paused":
+                return False, "当前没有已暂停的记录，用法：/继续记录 <团名>。"
+            campaign = active.campaign
+        return await mgr.start(event.unified_msg_origin, campaign)
+
+    async def _stop_log_core(self, event, arg: str) -> tuple[bool, str]:
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        if not await self._check_destructive_permission(event):
+            return False, "你没有权限执行此操作（需要白名单或管理员）。"
+        return await mgr.stop(event.unified_msg_origin, arg.strip() or None)
+
+    async def _delete_log_core(self, event, arg: str) -> tuple[bool, str]:
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        if not await self._check_destructive_permission(event):
+            return False, "你没有权限执行此操作（需要白名单或管理员）。"
+        campaign = arg.strip()
+        if not campaign:
+            return False, "用法：/删除记录 <团名>（删除该团全部日志与摘要，不可恢复）。"
+        count = await mgr.delete_campaign(event.unified_msg_origin, campaign)
+        return True, f"已删除团「{campaign}」（{count} 条日志及其摘要）。"
+
+    async def _log_view_core(self, event, arg: str) -> tuple[bool, str]:
+        """/记录 [状态|看 <团名> [场次]|摘要 [团名]]（全员可看）。"""
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        origin = event.unified_msg_origin
+        tokens = _tokenize(arg) if arg else []
+        if not tokens or tokens[0] in ("状态", "status"):
+            active = await mgr.get_active(origin)
+            campaigns = await mgr.list_campaigns(origin)
+            return True, SessionLogManager.format_status(active, campaigns)
+        sub = tokens[0]
+        if sub in ("看", "view", "日志", "log"):
+            campaign = tokens[1] if len(tokens) > 1 else ""
+            session_seq = (
+                int(tokens[2]) if len(tokens) > 2 and tokens[2].isdigit() else None
+            )
+            if not campaign:
+                active = await mgr.get_active(origin)
+                if active is None:
+                    return False, "未指定团名且当前没有进行中的团，用法：/记录 看 <团名> [场次]。"
+                campaign = active.campaign
+            entries = await mgr.get_entries(origin, campaign, session_seq=session_seq)
+            title = f"团「{campaign}」" + (
+                f"第 {session_seq} 场" if session_seq is not None else "最近一场"
+            )
+            return True, SessionLogManager.format_entries(entries, title)
+        if sub in ("摘要", "summary"):
+            campaign = tokens[1] if len(tokens) > 1 else ""
+            if not campaign:
+                active = await mgr.get_active(origin)
+                campaign = active.campaign if active else ""
+            if not campaign:
+                return False, "用法：/记录 摘要 <团名>。"
+            rows = await mgr.list_summaries(origin, campaign)
+            return True, SessionLogManager.format_summary_list(rows, campaign)
+        return False, "用法：/记录 [状态|看 <团名> [场次]|摘要 [团名]]"
+
+    async def _summarize_core(self, event, arg: str) -> tuple[bool, str]:
+        """生成/读取场次摘要（全员可用）：/总结 [团名] [场次] [重算]。"""
+        mgr = self.session_log_manager
+        if mgr is None:
+            return False, await self._session_log_disabled_msg()
+        origin = event.unified_msg_origin
+        tokens = _tokenize(arg) if arg else []
+        campaign = ""
+        session_seq: int | None = None
+        force = False
+        for tok in tokens:
+            if tok in ("重算", "force", "刷新"):
+                force = True
+            elif tok.isdigit():
+                session_seq = int(tok)
+            else:
+                campaign = tok
+        if not campaign:
+            active = await mgr.get_active(origin)
+            if active is None:
+                return False, "未指定团名且当前没有进行中的团，用法：/总结 <团名> [场次] [重算]。"
+            campaign = active.campaign
+        campaigns = await mgr.list_campaigns(origin)
+        if not any(c.campaign == campaign for c in campaigns):
+            return False, f"没有找到团「{campaign}」，先 /开始记录 <团名> 开团。"
+        if session_seq is None:
+            latest = await mgr.get_latest_session_seq(origin, campaign)
+            if latest is None:
+                return False, f"团「{campaign}」还没有任何记录。"
+            session_seq = latest
+        if not force:
+            existing = await mgr.get_summary(origin, campaign, session_seq)
+            if existing is not None:
+                return True, (
+                    f"团「{campaign}」第 {session_seq} 场摘要（{existing.created_at}）：\n"
+                    f"{existing.summary_text}\n（如需重新生成，加「重算」。）"
+                )
+        entries = await mgr.get_entries(origin, campaign, session_seq=session_seq)
+        if not entries:
+            return False, f"团「{campaign}」第 {session_seq} 场还没有记录。"
+        prompt, truncated = mgr.build_summary_input(campaign, session_seq, entries)
+        text = await self._generate_session_summary(event, prompt)
+        if not text:
+            return False, "生成摘要失败：当前环境无法调用 LLM（请检查 AstrBot 的模型配置）。"
+        await mgr.save_summary(origin, campaign, session_seq, text)
+        note = "\n（记录较长，仅使用了最近一部分。）" if truncated else ""
+        return True, f"团「{campaign}」第 {session_seq} 场摘要：\n{text}{note}"
+
+    async def _generate_session_summary(self, event, prompt: str) -> str | None:
+        """调用 AstrBot LLM 生成摘要；不可用/异常返回 None。"""
+        ctx = self.context
+        if ctx is None:
+            return None
+        try:
+            provider_id = await ctx.get_current_chat_provider_id(
+                umo=event.unified_msg_origin
+            )
+            resp = await ctx.llm_generate(
+                chat_provider_id=provider_id,
+                prompt=prompt,
+                system_prompt=SessionLogManager.summary_system_prompt(),
+            )
+            text = getattr(resp, "completion_text", None) or ""
+            return text.strip() or None
+        except Exception as e:  # noqa: BLE001 - 摘要失败仅提示，不崩命令
+            logger.warning(f"[trpg_assistant] 生成跑团摘要失败: {e}")
+            return None
+
+    @filter.event_message_type(filter.EventMessageType.ALL)
+    async def session_log_route(self, event: AstrMessageEvent) -> None:
+        """全量消息钩子：正在记录时把玩家消息写入跑团日志（结算预标）。"""
+        mgr = self.session_log_manager
+        if mgr is None:
+            return
+        text = event.message_str.strip()
+        if not text:
+            return
+        await mgr.add_entry(
+            event.unified_msg_origin,
+            role="player",
+            text=text,
+            sender_id=str(event.get_sender_id()),
+            sender_name=str(event.get_sender_name()),
+            is_roll=_looks_like_roll_command(text),
+        )
+
+    @filter.on_decorating_result()
+    async def session_log_bot_hook(self, event: AstrMessageEvent) -> None:
+        """机器人发送前：正在记录时把机器人回复写入跑团日志。"""
+        mgr = self.session_log_manager
+        if mgr is None:
+            return
+        text = _extract_result_text(event)
+        if not text:
+            return
+        await mgr.add_entry(
+            event.unified_msg_origin,
+            role="bot",
+            text=text,
+            is_roll=_looks_like_roll_result(text),
+        )
+
     @filter.event_message_type(filter.EventMessageType.ALL)
     async def custom_prefix_route(self, event: AstrMessageEvent) -> AsyncGenerator:
         """
@@ -5915,6 +6273,41 @@ class TrpgAssistantPlugin(Star):
                 arg = text[len(cmd_key) :].strip()
                 async for msg in self._handle_kb(event, arg, display_prefix=prefix):
                     yield msg
+                event.stop_event()
+                return
+        # --- 跑团记录指令匹配（v0.54.0） ---
+        # 长 token 优先：开始记录 > 暂停记录 > 继续记录 > 结束记录 > 删除记录 > 记录 > 总结
+        log_cmds = (
+            (f"{p}开始记录", "start"), (f"{p}startlog", "start"),
+            (f"{p}暂停记录", "pause"), (f"{p}pauselog", "pause"),
+            (f"{p}继续记录", "resume"), (f"{p}resumelog", "resume"),
+            (f"{p}结束记录", "stop"), (f"{p}stoplog", "stop"),
+            (f"{p}删除记录", "delete"), (f"{p}dellog", "delete"),
+            (f"{p}记录", "view"), (f"{p}日志", "view"), (f"{p}slog", "view"),
+            (f"{p}总结", "summary"), (f"{p}战报", "summary"),
+        )
+        for cmd_key, log_action in log_cmds:
+            if (
+                text_lower == cmd_key
+                or text_lower.startswith(cmd_key + " ")
+                or text_lower.startswith(cmd_key + "\n")
+            ):
+                arg = text[len(cmd_key) :].strip()
+                if log_action == "start":
+                    ok, msg = await self._start_log_core(event, arg)
+                elif log_action == "pause":
+                    ok, msg = await self._pause_log_core(event, arg)
+                elif log_action == "resume":
+                    ok, msg = await self._resume_log_core(event, arg)
+                elif log_action == "stop":
+                    ok, msg = await self._stop_log_core(event, arg)
+                elif log_action == "delete":
+                    ok, msg = await self._delete_log_core(event, arg)
+                elif log_action == "summary":
+                    ok, msg = await self._summarize_core(event, arg)
+                else:
+                    ok, msg = await self._log_view_core(event, arg)
+                yield event.plain_result(msg)
                 event.stop_event()
                 return
         # --- 帮助指令匹配 ---
@@ -7079,11 +7472,11 @@ class TrpgAssistantPlugin(Star):
 
     @staticmethod
     def _llm_request_guard() -> str:
-        """LLM 系统提示词守则：9 个工具按场景主动调用，禁止编造/扮演代替。
+        """LLM 系统提示词守则：10 个工具按场景主动调用，禁止编造/扮演代替。
 
         追加到每个 LLM 请求的 system_prompt 末尾；内容带可检索标记，
         供钩子做防重复追加判断。压缩版：每工具一句，覆盖 T1 必调
-        （骰点/规则数据）与 T2 应调（先攻/背包/角色卡/车卡/商店），
+        （骰点/规则数据）与 T2 应调（先攻/背包/角色卡/车卡/商店/记录），
         并明确破坏性操作（clear/delete/remove/cancel）等玩家要求。
         只约束相关意图，不影响其他对话场景。
         """
@@ -7097,7 +7490,9 @@ class TrpgAssistantPlugin(Star):
             "manage_shop；构筑/升级建议→advise_build（推荐条目必须来自工具"
             "返回，禁止凭记忆补充条目名）；私设转录/写入/点评→"
             "manage_homebrew（write 需配置开启且白名单/管理员；点评前必须"
-            "用 query_dnd_knowledge 查同类型条目对照，禁止仅凭记忆点评）。"
+            "用 query_dnd_knowledge 查同类型条目对照，禁止仅凭记忆点评）；"
+            "跑团记录状态/日志/战报摘要→summarize_session（开始/暂停/结束/"
+            "删除记录须玩家明确要求）。"
             "清空/删除/移除/取消等破坏性操作不要主动执行，等玩家明确要求。"
         )
 
@@ -7803,6 +8198,79 @@ class TrpgAssistantPlugin(Star):
         if act in ("review", "点评"):
             return self._homebrew_review(json_text)
         return "未知的 action。可用值：convert（转录校验）/ write（写入私设目录）/ review（对照点评）。"
+
+    @filter.llm_tool(name="summarize_session")
+    async def summarize_session_tool(
+        self,
+        event: AstrMessageEvent,
+        action: str = "summarize",
+        campaign: str = "",
+        session_seq: float = -1,
+        force: bool = False,
+    ) -> str:
+        """
+        管理跑团记录（团/场次日志）与生成叙事式战报摘要。
+
+        当玩家提及「跑团记录/战报/总结/这场团发生了什么/上次跑到哪」时调用；
+        也可用于开始/暂停/结束对一场跑团活动的记录。
+
+        【摘要约定】summarize 生成的是叙事式剧情回顾：只保留角色真正做的事
+        （玩家扮演与 DM 旁白），把掷骰结算折成一句话结果，完全剔除玩家场外
+        吐槽，末尾附一小段结算统计。生成后缓存，再次 summarize 同场次直接
+        返回缓存，强制重算用 force=true。
+
+        【写操作权限】start/pause/stop/delete 属写操作：只有玩家明确要求时才
+        执行（禁止主动开始/停止记录），且插件内部会校验权限（群聊白名单/管理
+        员），无权限时返回拒绝提示。
+
+        Args:
+            action(string): 操作。summarize=生成（或读取缓存的）指定团最近
+                一场的叙事摘要（默认）；status=查看当前记录状态与团列表；
+                view=查看指定团的日志原文（最近若干条）；start=开始/继续记录
+                一个团（写操作，需玩家明确要求）；pause=暂停记录（消息暂不
+                入日志，场次保留）；stop=结束记录（数据保留）；delete=删除
+                整个团（破坏性，需玩家明确要求）。
+            campaign(string): 团名（如「红龙之影」）。缺省时 summarize/status/
+                view 取当前进行中的团；写操作（start/pause/stop/delete）必须
+                显式给出团名。
+            session_seq(number): 场次号（从 1 起）。仅 summarize/view 使用，
+                缺省取最近一场；其他 action 忽略。
+            force(boolean): summarize 时强制重新生成（忽略已缓存摘要）。
+        """
+        event = _resolve_event(event)
+        if event is None:
+            return "工具上下文解析失败：当前 AstrBot 版本注入的事件对象不兼容，请升级插件。"
+        act = (action or "summarize").strip().lower()
+        if act in ("start", "开始", "继续"):
+            ok, msg = await self._start_log_core(event, campaign or "")
+            return msg
+        if act in ("pause", "暂停"):
+            ok, msg = await self._pause_log_core(event, campaign or "")
+            return msg
+        if act in ("stop", "结束"):
+            ok, msg = await self._stop_log_core(event, campaign or "")
+            return msg
+        if act in ("delete", "删除"):
+            ok, msg = await self._delete_log_core(event, campaign or "")
+            return msg
+        if act in ("status", "状态"):
+            ok, msg = await self._log_view_core(event, "")
+            return msg
+        if act in ("view", "看"):
+            sub = campaign or ""
+            if session_seq and session_seq > 0:
+                sub = f"{campaign or ''} {int(session_seq)}".strip()
+            ok, msg = await self._log_view_core(event, ("看 " + sub).strip())
+            return msg
+        if act in ("summarize", "摘要", "战报"):
+            sub = campaign or ""
+            if session_seq and session_seq > 0:
+                sub = f"{campaign or ''} {int(session_seq)}".strip()
+            if force:
+                sub = (sub + " 重算").strip()
+            ok, msg = await self._summarize_core(event, sub)
+            return msg
+        return "未知的 action。可用值：summarize（摘要）/status（状态）/view（看日志）/start（开始记录）/pause（暂停）/stop（结束）/delete（删除）。"
 
     @staticmethod
     def _homebrew_usage() -> str:

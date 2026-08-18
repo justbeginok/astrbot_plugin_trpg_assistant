@@ -56,5 +56,13 @@ class _Filter:
 
         return decorator
 
+    @staticmethod
+    def on_decorating_result(*args, **kwargs):
+        def decorator(fn):
+            fn._on_decorating_result = True
+            return fn
+
+        return decorator
+
 
 filter = _Filter()

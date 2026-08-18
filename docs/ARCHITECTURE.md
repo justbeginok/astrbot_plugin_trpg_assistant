@@ -51,6 +51,7 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 | `dice_parser.py` / `dice_roller.py` | Roll20 规范骰池解析与掷骰（上游核心，只读扩展） | `DieRoll` / `DiceGroupResult` / `RollResult` | `/r` `roll_dice` |
 | `formatter.py` | 骰池结果格式化 | — | — |
 | `history.py` | 会话投掷历史（上限 `max_history_count`，失败投掷不记录） | `HistoryEntry` | `/rh` `/rhistory` |
+| `session_log.py` | 跑团记录：团/场次日志 + LLM 战报摘要（v0.54.0，ADR-0029；独立 SQLite，可变数据第二存储） | `CampaignInfo` / `LogEntry` / `SummaryRow` | `/开始记录` `/暂停记录` `/继续记录` `/结束记录` `/删除记录` `/记录` `/总结` `summarize_session` |
 | `initiative.py` | 会话先攻列表与回合推进 | `InitiativeEntry` / `InitiativeState` | `/ri` `/init` `manage_initiative` |
 | `inventory.py` | 个人背包 + 队伍背包，物品流转（put/take/give）原子化 | `ItemEntry` / `Inventory` | `/bag` `/inventory` `/背包` `manage_inventory` |
 | `shop.py` + `money.py` | 会话商店（单店）买卖结算；折铜/找零纯函数 | `ShopEntry` / `Shop`；`COIN_VALUE` 等 | `/商店` `/shop` `/店铺` `manage_shop` |
@@ -93,6 +94,12 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 **跨域锁序（ADR-0010）**：商店买卖跨 shop + inventory 两把锁，固定
 **先 Shop 锁、后 Inventory 锁**；背包侧由 `settle_purchase` / `settle_sale`
 单次调用同锁内完成（源头不产生半写入）。
+
+**例外（v0.54.0，ADR-0029）**：跑团日志（`session_log.py`）是追加式、按
+团/场次查询、可能长期增长的记录数据，不适用 KV 的整块读改写语义，存独立
+SQLite **`data_dir/trpg_log.db`**（`StarTools.get_data_dir()` 下，与
+`trpg_homebrew/` 并排；升级插件不丢，备份流程须一并备份）。其余一切可变
+数据仍走 KV。详见 `docs/adr/0029-session-log-sqlite.md`。
 
 ---
 
@@ -459,6 +466,7 @@ v0.47.0（ADR-0022）新增：
 | `dnd` | 属性生成 | v0.38.0：按 5e 规则掷 `4d6kh3`×6 为一组（组数默认 1、上限 20，模块级常量 `_DND_MAX_GROUPS` 不新增配置），复用 `_roll_chargen`，成功写历史 `dnd N`；独立生成指令，不与车卡联动（走 `/车卡` 的掷骰开卡才落草稿） |
 | `dset`（dice_set）/ `rprefix` | 会话骰面/触发前缀 | 白名单管控 |
 | `rh`（rhistory）| 历史 | |
+| `开始记录`（startlog）/ `暂停记录`（pauselog）/ `继续记录`（resumelog）/ `结束记录`（stoplog）/ `删除记录`（dellog）/ `记录`（日志,slog）/ `总结`（战报,summary）| 跑团记录 | v0.54.0（ADR-0029）：写操作（开始/暂停/继续/结束/删除）走 `_check_destructive_permission`（群聊白名单/管理员、私聊放行），查看与摘要全员可用；`/记录 [状态|看 <团名> [场次]|摘要 [团名]]`，`/总结 [团名] [场次] [重算]` 生成叙事式战报摘要（规则预标结算 + `context.llm_generate`，落库可回看） |
 | `ri` / `init`（initiative）| 先攻 | v0.30.0：`/ri` 无参数且有活跃角色卡时自动用卡上先攻（d20+先攻并标注角色）；显式调整值优先 |
 | `bag`（inventory, 背包）| 背包 | v0.42.0：`add/rm/put/take` 全量批量（单件回落原解析器零回归）；`grant`（发放）/`revoke`（收回）短命令直接操作队伍背包（发放全员放行、收回走破坏性鉴权、私聊拒绝），发放支持 `重=/价=/备注=` 逐项属性 |
 | `shop`（商店, 店铺）| 商店 | v0.39.0：批量买/卖（数量可省略）、批量上架（逐项属性）、批量下架、`清空`（整店清空，管理员） |
@@ -468,7 +476,7 @@ v0.47.0（ADR-0022）新增：
 | `查法术`(spell) `查怪`(monster,怪物) `查物品`(item,物品) `查专长`(feat,专长) `查背景`(background,背景) `查状态`(condition,状态) `查种族`(race,种族) `查职业`(class,职业) `kb` `查询`(search,搜,q) `筛怪`(mfilter,筛怪物) `筛法术`(sfilter,筛魔法) `筛物品`(ifilter,筛道具) `筛种族`(rfilter,筛血统) `筛专长`(ffilter,专长筛) `筛职业`(cfilter,职业筛) `筛子职`(sublass_filter,子职筛) `筛背景`(bfilter,背景筛) | 知识库 | 筛专长 v0.26.0 起支持能力标签反查；筛法术 v0.27.0 起支持语义大类标签反查（裸词自动消歧，如「控场/治疗/伤害/召唤」；前缀词「标签」显式指定；别名归一），v0.35.0 起支持职业法术表反查（前缀词「职业 法师」，中英文职业名均可）。筛职业/筛子职 v0.33.0 起支持定位+能力标签反查（职业：`/筛职业 武者` 定位、`/筛职业 近战 爆发` 标签、`/筛职业 奥术施法 智力`；子职：`/筛子职 治疗 神圣`、`/筛子职 塑能`；前缀词「定位/标签」；裸词自动消歧）。筛种族 v0.34.0 起支持能力标签反查（裸词自动消歧，如「变形/水陆两栖/魅力」→ race_keyword，伤害词「火焰/光耀」仍优先走天生抗性 dmg_resist；前缀词「标签」）。筛背景 v0.34.0 新建（裸词技能/身份/工具/起始专长反查，如 `/筛背景 隐匿 盗贼工具`、`/筛背景 贵族`；前缀词「标签」）。筛怪 v0.45.0 起支持六维（ADR-0020）：伤害细分后缀词（火焰伤害/抗性/免疫/易伤→dmg_dealt/dmg_resist/dmg_immune/dmg_vuln；「X免疫」伤害词表优先、未命中落状态）、状态免疫（震慑免疫→condition_immune）、速度类型（掘穴速度→speed_type，值归一中文）、感官（真实视觉→sense_type，颤动感知归一震颤感知）、阵营（守序善良→alignment）、特性名（再生→monster_trait，裸词自动消歧 resolve_monster_free_term 兜底）；裸词「火焰」保持=火焰伤害向后兼容，结果底部提示细分词。查职业 v0.29.0 起第二参数支持「特性」关键词细化本职特性：`/查职业 <职业> 特性`（全部本职特性全文）、`/查职业 <职业> 特性 <特性名>`（单个特性跨版本全文）；v0.33.0 起 /查职业 头部展示职业定位与 AI 概要；v0.34.0 起 /查种族 /查背景 头部展示 AI 概要；v0.48.0（ADR-0023）起 /查职业 分层钻取：默认返回层级概要总表（第1~4层=1-4/5-10/11-16/17-20级，每行「N级 名称：一句话概要」），第二参数按优先级解析 子职名精确匹配→版本(2014/2024)→层级(第N层)→等级段(N级/N-M级)→特性关键词；「特性」全量按层级段分条 yield 多条消息（AstrBot pipeline 对 async generator 每个 yield 发一条独立消息）；默认版本=群级开卡规则（chargen_rule 的 edition，chargen.py `get_rule_edition`）→私聊/无规则取最新版，目标版本无数据自动回退并提示；`/kb reload`（v0.36.0 重载私设目录）/`kb 私设`（查看私设概况） |
 | `帮助`（menu,菜单,commands,cmds）| 帮助 | |
 
-**LLM 工具（9 个）**：`roll_dice` / `manage_initiative` / `manage_inventory`
+**LLM 工具（10 个）**：`roll_dice` / `manage_initiative` / `manage_inventory`
 （v0.42.0：新增 `items(array)` 批量参数，action=add/remove/put/take 全量支持
 批量；`remove`+`to_party=true` 工具内 `_check_destructive_permission` 鉴权，
 与命令侧 revoke 同口径） / `manage_shop`（v0.39.0：新增 `items(array)` 批量参数；动作扩为

@@ -55,6 +55,7 @@ from astrbot_plugin_trpg_assistant.kb_enums import (  # noqa: E402
     format_alignment,
     format_rarity,
     normalize_environment,
+    spell_kw_canonical,
 )
 from astrbot_plugin_trpg_assistant.kb_tags import clean_5etools_tags  # noqa: E402
 from astrbot_plugin_trpg_assistant.kb_build_lib import (  # noqa: E402
@@ -171,7 +172,11 @@ CREATE TABLE IF NOT EXISTS spells(
   components TEXT DEFAULT '',
   range_feet INTEGER,
   range_type TEXT DEFAULT '',
-  summary TEXT DEFAULT ''
+  summary TEXT DEFAULT '',
+  -- v0.52.0 白捡元数据（5e_chm md 记录原生带，此前未入库）：
+  cast_time TEXT DEFAULT '',       -- 施法时间（动作/附赠/反应/其他）
+  duration_text TEXT DEFAULT '',   -- 持续时间原文（如「专注，至多1分钟」）
+  classes TEXT DEFAULT ''          -- 可施职业 JSON 数组（chm 中文职业名）
 );
 -- v0.35.0「职业法术表」：法术→主职业（英文 5e.tools 源 classes.fromClassList，
 -- 按 ENG_name+source 匹配回中文条目），class_name 为归一后的中文职业名
@@ -313,7 +318,7 @@ CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY, value TEXT);
 """
 
 # 数据库 schema 版本：结构变更（新表/新列）时 +1。
-SCHEMA_VERSION = "11"
+SCHEMA_VERSION = "12"
 
 
 # ---------------------------------------------------------------------------
@@ -324,21 +329,34 @@ SCHEMA_VERSION = "11"
 def _parse_md_range(text: str) -> tuple[int | None, str | None]:
     """解析 md 详述距离文本 → (amount_feet, type)。
 
-    150 尺/60尺 → (150, feet)；触碰 → (None, touch)；自身 → (None, self)；
-    视线 → (None, sight)；特殊文本 → (None, 原文)。
+    150 尺/60尺 → (150, feet)；1里 → (5280, feet)；触碰/接触 → (None, touch)；
+    自身（半径N尺）/自身（N尺锥形）等 → (None, self)（形状交 _spell_shape）；
+    视线 → (None, sight)；无限 → (None, unlimited)；特殊 → (None, special)；
+    未识别文本 → (None, 原文)（v0.52.0：范围类型规范化，避免中文原文滞留
+    range_type 导致射程筛选 miss）。
     """
     if not text:
         return None, None
-    m = re.match(r"^\s*(\d+)\s*尺\s*$", text)
+    t = text.strip().replace(" ", "").replace("　", "")
+    m = re.match(r"^(\d+)尺$", t)
     if m:
         return int(m.group(1)), "feet"
-    t = text.strip()
-    if t == "触碰":
+    m = re.match(r"^(\d+)里$", t)
+    if m:
+        return int(m.group(1)) * 5280, "feet"
+    m = re.match(r"^(\d+)英里$", t)
+    if m:
+        return int(m.group(1)) * 5280, "feet"
+    if t in ("触碰", "接触"):
         return None, "touch"
-    if t == "自身":
+    if t == "自身" or t.startswith(("自身（", "自身(", "自身；")):
         return None, "self"
-    if "视线" in t:
+    if "视线" in t or "视野" in t:
         return None, "sight"
+    if t in ("无限", "不限", "任意距离"):
+        return None, "unlimited"
+    if "特殊" in t:
+        return None, "special"
     return None, t
 
 
@@ -380,6 +398,10 @@ def _chm_spells_to_entries(spells_md: list[dict]) -> list[dict]:
             "_edition_override": r.get("edition") or "other",
             "_is_machine_override": 0,
             "_expand_aliases": r.get("aliases") or [],
+            # v0.52.0 白捡元数据（chm 记录原生带，此前未入库）：
+            "cast_time": r.get("time") or "",
+            "duration_text": r.get("detail_duration") or "",
+            "classes_list": r.get("classes") or [],
         })
     return out
 
@@ -610,9 +632,11 @@ def _spell_tags(s: dict, enrich: dict | None = None) -> list[tuple[str, str]]:
             for kw in words
         }
         for kw in enrich.get("keywords") or []:
-            tags.append(("spell_keyword", kw))
-            if kw not in vocab:
-                _spell_kw_outside[kw] = _spell_kw_outside.get(kw, 0) + 1
+            # v0.52.0：词表内细词（召唤主题词等）归一到所属大类；词表外原样
+            canonical = spell_kw_canonical(kw)
+            tags.append(("spell_keyword", canonical))
+            if canonical not in vocab:
+                _spell_kw_outside[canonical] = _spell_kw_outside.get(canonical, 0) + 1
     return tags
 
 
@@ -2148,8 +2172,9 @@ def build(
                 conn.execute(
                     "INSERT INTO spells"
                     " (entry_id, level, school, ritual, concentration,"
-                    "  components, range_feet, range_type, summary)"
-                    " VALUES (?,?,?,?,?,?,?,?,?)",
+                    "  components, range_feet, range_type, summary,"
+                    "  cast_time, duration_text, classes)"
+                    " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                     (
                         entry_id,
                         e.get("level"),
@@ -2162,10 +2187,20 @@ def build(
                         range_feet,
                         range_type,
                         (srec or {}).get("summary", ""),
+                        e.get("cast_time") or "",
+                        e.get("duration_text") or "",
+                        json.dumps(
+                            e.get("classes_list") or [], ensure_ascii=False
+                        ),
                     ),
                 )
-                # v0.35.0：职业法术表（英文源查找表按 eng名+source 匹配）。
-                if en_spell_classes:
+                # v0.35.0：职业法术表。v0.52.0：chm 中文职业优先（全覆盖），
+                # 英文源查找表仅兜底（chm classes 缺失的 16 条）。
+                chm_cls = e.get("classes_list") or []
+                if chm_cls:
+                    for cname in chm_cls:
+                        pending_spell_classes.append((entry_id, cname))
+                elif en_spell_classes:
                     en_cls = en_spell_classes.get((eng.lower(), source.lower()))
                     if en_cls:
                         for cname in en_cls:
@@ -2363,16 +2398,19 @@ def build(
 
     # --- v0.35.0 职业法术表落库（职业条目已入 entries，解析英文职业名→中文） ---
     # 英文职业名 → 中文名（entries.kind='class' 的 name，同名多版本取第一个）。
+    # v0.52.0：chm 中文职业名直接可用，双向映射（中文名→自身），不落英文查找。
     en_to_cn_class: dict[str, str] = {}
     for cls in class_data["class"]:
         eng_c = str(cls.get("ENG_name") or "").strip()
         cn_c = (cls.get("name") or "").strip()
         if eng_c and cn_c and eng_c.lower() not in en_to_cn_class:
             en_to_cn_class[eng_c.lower()] = cn_c
+        if cn_c and cn_c not in en_to_cn_class:
+            en_to_cn_class[cn_c] = cn_c
     unresolved_classes: set[str] = set()
     n_spell_class = 0
     for entry_id, en_c in pending_spell_classes:
-        cn_c = en_to_cn_class.get(en_c.lower())
+        cn_c = en_to_cn_class.get(en_c.lower()) or en_to_cn_class.get(en_c)
         if not cn_c:
             unresolved_classes.add(en_c)
             continue

@@ -178,7 +178,7 @@ _注（v0.50.0）_: 新增第七类「选项」（optionalfeature，ADR-0025）�
 条目的出版来源标识。官方用 5etools 码（XPHB=2024 PHB、PHB=2014 PHB、XGE/TCE/FTD…扩展书）；chm 表格来源码（PHB24/PHB14/夸力许/冰风谷…）构建期映射为 5etools 码；第三方（合作方万法大全 284 条）用自定义码（黯潮→ACT、胧忆岛→LOO、歪月→WYM…）。同英文名双版本法术中文名归一（2024 优先，旧名入别名）。
 
 **富化字段（Enrichment）**:
-spells.summary（一句话概要）与 entry_tags.spell_keyword（语义大类标签）合称富化。官方/第三方全 1220 条覆盖：既有 554 条 AI 生成 + 缺口 701 条由 `scripts/gen_enrich.py` 规则生成（含学派兜底词），覆盖率 100%。
+spells.summary（一句话概要）与 entry_tags.spell_keyword（语义大类标签）合称富化。官方/第三方全 1220 条覆盖（v0.52.0，ADR-0027：全量重跑为 13 个效果域大类 + ≤30 字概要，`kb_patches/spell_enrich.json`）。
 
 **条目（Entry）**:
 知识库中的一条数据 = 名称 + 英文名 + 来源 + 版本 + 清洗后正文 + 机翻标记。同名不同版各为一行（`UNIQUE(kind, name, source)`）。

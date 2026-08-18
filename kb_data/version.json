@@ -1,8 +1,8 @@
 {
-  "data_version": "unknown-20260814",
+  "data_version": "unknown-20260818",
   "source_commit": "unknown",
-  "build_time": "2026-08-14T04:31:30Z",
-  "schema_version": "11",
+  "build_time": "2026-08-18T12:04:15Z",
+  "schema_version": "12",
   "counts": {
     "spell": 1220,
     "monster": 5015,
@@ -12,7 +12,7 @@
     "condition": 35,
     "race": 160,
     "optionalfeature": 190,
-    "spellClass": 2491,
+    "spellClass": 3388,
     "class": 35,
     "subclass": 586,
     "classFeature": 828,

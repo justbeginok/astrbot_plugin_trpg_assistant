@@ -146,6 +146,35 @@ RE_CONDITION_TAG = re.compile(r"\{@condition ([^}|]+)")
 
 _DEFENSE_HINTS = ("免疫", "抗性", "易伤", "免受", "抵抗", "减半", "一半")
 
+# v0.52.0：5e_chm 纯中文正文无 {@condition} 标签，condition_inflict 对法术恒空。
+# 补中文状态词启发式：命中状态词即视为「施加该状态」。防御/解除语义的分句
+# （免疫/抗性/移除/解除/免受/终止/治愈/抵抗/无效/不受/摆脱/挣脱/脱离…）整句跳过，
+# 避免把「免疫目盲」「移除中毒」误判为「造成目盲/中毒」。
+_CONDITION_DEFENSE_HINTS = (
+    "免疫", "抗性", "易伤", "免受", "抵抗", "减半", "一半",
+    "移除", "解除", "终止", "结束", "治愈", "无效", "不受",
+    "摆脱", "挣脱", "脱离", "恢复", "复原", "中和", "驱逐",
+)
+_CONDITION_INFLICT_PATTERNS: dict[str, re.Pattern] = {
+    "目盲": re.compile(r"目盲|失明|致盲|炫目"),
+    "魅惑": re.compile(r"魅惑|迷魂|催眠|惑控"),
+    "耳聋": re.compile(r"耳聋|失聪"),
+    "力竭": re.compile(r"力竭"),
+    "恐慌": re.compile(r"恐慌|恐惧|惊吓"),
+    "受擒": re.compile(r"受擒|擒抱"),
+    "失能": re.compile(r"失能"),
+    "隐形": re.compile(r"陷入隐形|变得隐形|变为隐形|获得隐形|呈现隐形"),
+    "麻痹": re.compile(r"麻痹|瘫痪"),
+    "石化": re.compile(r"石化|化为石头|变成石头"),
+    "中毒": re.compile(r"中毒|染毒"),
+    "倒地": re.compile(r"倒地|击倒|扑倒|绊倒|推倒"),
+    "束缚": re.compile(r"束缚|缠缚|捆缚|缠绕"),
+    "震慑": re.compile(r"震慑"),
+    "昏迷": re.compile(r"昏迷|昏睡|沉睡"),
+    "疾病": re.compile(r"疾病|患病|染病"),
+}
+
+
 
 _unmatched_damage_words: dict[str, int] = {}
 
@@ -174,7 +203,11 @@ def _extract_damage(texts: list[str]) -> list[str]:
 
 
 def _extract_conditions(texts: list[str]) -> list[str]:
-    """从文本集合提取 {@condition} 标签状态（canonical 中文，去重保序）。"""
+    """从文本集合提取施加的状态（canonical 中文，去重保序）。
+
+    5etools 源走 {@condition 目盲} 内联标签；5e_chm 纯中文正文（v0.52.0 起
+    法术主源）走中文状态词启发式。防御/解除语义的分句跳过，避免误报。
+    """
     out: list[str] = []
     for t in texts:
         for m in RE_CONDITION_TAG.finditer(t):
@@ -182,6 +215,13 @@ def _extract_conditions(texts: list[str]) -> list[str]:
             canonical = CONDITION_CN.get(name)
             if canonical and canonical not in out:
                 out.append(canonical)
+        # v0.52.0 中文正文启发式（chm 无 {@condition} 标签）
+        for clause in re.split(r"[。，；！？\n]", t):
+            if any(h in clause for h in _CONDITION_DEFENSE_HINTS):
+                continue
+            for canonical, pattern in _CONDITION_INFLICT_PATTERNS.items():
+                if pattern.search(clause) and canonical not in out:
+                    out.append(canonical)
     return out
 
 

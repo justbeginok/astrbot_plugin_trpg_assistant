@@ -96,9 +96,9 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 
 ---
 
-## 4. 知识库 SQLite schema（v11，`kb_data/dnd_kb.db`）
+## 4. 知识库 SQLite schema（v12，`kb_data/dnd_kb.db`）
 
-只读；schema 版本 `SCHEMA_VERSION = "11"`（构建，`scripts/build_kb.py`），运行期回退阈值
+只读；schema 版本 `SCHEMA_VERSION = "12"`（构建，`scripts/build_kb.py`），运行期回退阈值
 `KB_SCHEMA_VERSION = 7`（`kb.py`），结构变更 +1 并重建；
 运行期 `resolve_db_path` 发现库版本过低自动回退内置库。`meta` 表存版本/构建信息。
 **数据获取（v0.40.0 起）**：`scripts/fetch_cn_data.py` 直连下载 5etools-cn 数据
@@ -111,11 +111,18 @@ QQ 群聊/私聊会话（`unified_msg_origin` 隔离）。
 （1220 条，无详述 0；同英文名中文名归一 2024 优先）；`scripts/audit_chm.py` 对账
 （join 覆盖率/未映射来源/富化缺口）；`build_kb.py --spell-md` 消费（正文预构建
 `_prebuilt_body`、edition/is_machine override、自动标签改从 md 文本提取）。
-5etools-cn JSON 不再贡献法术条目；`spell_classes` 仍由 `--en-spell-lookup`
-英文查找表提供（v0.43.0 修复此前空表缺陷：构建须带该参数）。富化补覆盖：
-`scripts/gen_enrich.py` 规则生成缺口 summary+keywords（+学派兜底词），
-`kb_patches/spell_enrich.json` 554→1255 条，spells.summary 与
+5etools-cn JSON 不再贡献法术条目；`spell_classes` 由 chm 中文职业优先
+（v0.52.0，1220 全覆盖 96%）、`--en-spell-lookup` 英文查找表兜底。
+（v0.43.0 修复此前空表缺陷：构建须带该参数）。富化补覆盖：
+`kb_patches/spell_enrich.json`（v0.52.0 全量重跑 1220 条：13 类标签 +
+≤30 字概要「效果+目标+代价」，零词表外）spells.summary 与
 entry_tags.spell_keyword 覆盖率 100%。
+**法术白捡元数据（v0.52.0）**：spells 表新增 cast_time（施法时间：动作 922/
+其他 154/附赠 117/反应 27）、duration_text（持续时间原文）、classes（可施职业
+JSON，chm 原生字段，此前未入库）；condition_inflict 对法术启用（chm 纯中文
+正文状态词启发式，kb_build_lib._extract_conditions，防御/解除语义分句跳过）；
+_parse_md_range 规范化中文范围文本（自身（半径N尺）→self、N里/N英里→feet、
+视野→sight 等）。
 **职业数据源（v0.49.0，ADR-0024）**：职业/子职**特性数据**（class_features 表）
 改以 5e_chm Markdown 人工校对中文为主源（对齐法术 ADR-0018 / 怪物 ADR-0021）：
 提取管道 `scripts/class_extract/` —— `inventory.py`（归属推断：职业主体/子职/
@@ -204,10 +211,13 @@ entry_tags(entry_id, facet, value, PK(entry_id,facet,value))  + idx_tags_fv(face
 -- v0.26.0 专长能力标签：feat_keyword（AI 生成语义关键字，词表见
 --   kb_enums.FEAT_KEYWORD_TAGS：攻击方式/战斗输出/动作/防御/机动/控场/施法/技能/探索/特殊，
 --   允许少量词表外自由词）
--- v0.27.0 法术能力标签：spell_keyword（AI 生成语义大类，词表见
---   kb_enums.SPELL_KEYWORD_TAGS：控场/伤害/治疗/增益/减益/召唤/位移/防护/侦查/潜行/
---   社交/探索/幻术/即死/造物/战斗辅助/施法辅助，与 dmg_dealt/condition_inflict 互补，
---   允许少量词表外自由词）
+-- v0.27.0 法术能力标签：spell_keyword（AI 生成语义大类；v0.52.0 收敛为 13 类，
+--   kb_enums.SPELL_KEYWORD_TAGS：伤害/治疗/增益/控场/位移/防护/召唤/侦查/潜行/
+--   社交/探索/幻术/即死，「减益」并入控场、「造物」并入召唤、「战斗辅助」+
+--   「施法辅助」并入增益，召唤类保留亡灵/变身/野兽/元素主题词；库里只存类名，
+--   细词/旧值经 _SPELL_KEYWORD_ALIASES 归一（构建期 spell_kw_canonical 与查询期
+--   resolve_spell_keyword 同口径）。与 dmg_dealt/condition_inflict/spell_shape
+--   facet 互补：伤害类型/状态/形状不重复打标）
 -- v0.33.0 职业/子职富化：class_keyword（职业能力标签，词表见
 --   kb_enums.CLASS_KEYWORD_TAGS：战斗方式/施法/辅助/技能倾向/属性依赖/特殊机制）、
 --   class_role（职业定位：武者/奥法/神职/专家）、subclass_keyword（子职能力标签，

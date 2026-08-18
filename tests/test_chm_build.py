@@ -115,7 +115,8 @@ def test_build_spell_md_with_enrich(tmp_path: Path) -> None:
         "SELECT value FROM entry_tags t JOIN entries e ON e.id=t.entry_id"
         " WHERE e.name='火球术' AND facet='spell_keyword' ORDER BY value"
     ).fetchall()
-    assert [r[0] for r in kw] == ["伤害", "火焰"]
+    # v0.52.0：细词「火焰」归一为伤害大类（词表只存 13 类）
+    assert [r[0] for r in kw] == ["伤害"]
     conn.close()
 
 

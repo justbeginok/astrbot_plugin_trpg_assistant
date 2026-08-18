@@ -58,7 +58,7 @@ def test_schema_and_counts(built_db: Path) -> None:
     # schema v4：meta 版本 + entry_tags 有数据 + races 侧表 + 规则引擎侧表
     assert conn.execute(
         "SELECT value FROM meta WHERE key='schema_version'"
-    ).fetchone()[0] == "11"
+    ).fetchone()[0] == "12"
     # schema v10（v0.35.0 构筑咨询）：spell_classes 侧表存在（职业法术表）
     assert "spell_classes" in tables
     sc_cols = {r[1] for r in conn.execute("PRAGMA table_info(spell_classes)")}
@@ -70,6 +70,8 @@ def test_schema_and_counts(built_db: Path) -> None:
     # schema v7（v0.27.0 法术标签反查）：spells 表含 summary 列
     spell_cols = {r[1] for r in conn.execute("PRAGMA table_info(spells)")}
     assert "summary" in spell_cols
+    # schema v12（v0.52.0 白捡元数据）：施法时间/持续时间/可施职业三列
+    assert {"cast_time", "duration_text", "classes"} <= spell_cols
     # schema v8（v0.33.0 职业/子职富化）：classes 侧表存在（概要+定位）
     assert "classes" in tables
     class_cols = {r[1] for r in conn.execute("PRAGMA table_info(classes)")}
@@ -563,7 +565,7 @@ def test_meta_and_version_json(built_db: Path, tmp_path: Path) -> None:
     vp = built_db.with_name("version.json")
     version = json.loads(vp.read_text(encoding="utf-8"))
     assert version["source_commit"] == "fixture-abc123"
-    assert version["schema_version"] == "11"
+    assert version["schema_version"] == "12"
 
 
 def test_spell_classes_from_en_lookup(tmp_path: Path) -> None:

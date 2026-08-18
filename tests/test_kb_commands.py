@@ -626,7 +626,8 @@ def test_filter_spell_keyword(tmp_path: Path) -> None:
     # 裸词标签「控场」→ 人类定身术（人类定身术 2环惑控）
     msgs = collect(p.kb_filter_spell_cmd(ev("/筛法术 控场")))
     assert "人类定身术" in msgs[0]
-    assert "枯萎术" not in msgs[0]
+    # v0.52.0：减益并入控场，枯萎术（伤害+减益）归一时带控场标签，故也命中
+    assert "枯萎术" in msgs[0]
     # 裸词标签别名归一（「控制」→ canonical「控场」）
     msgs = collect(p.kb_filter_spell_cmd(ev("/筛法术 控制")))
     assert "人类定身术" in msgs[0]

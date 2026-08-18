@@ -140,19 +140,27 @@ chm 覆盖同 (className, subclass, source, level, name) 行 + 保留 cn 独有 
 （v0.50.1：emit class 分支补 `class` 数组条目——chm 独有职业如血族/拳斗士
 entries 无 kind='class' 会导致 editions/英文名/版本回退/广搜全失效；英文名
 从 md 标题/frontmatter 提取，finalize 按名合并补入 cn 缺失的 class 条目。）
-**选项数据源（v0.50.0，ADR-0025）**：可定制职业选项（魔能祈唤 EI/战技 MV/
-超魔法 MM/战斗风格 FS，5etools 官方 featureType 枚举）新增第七类
-`optionalfeature`（中文「选项」）：`scripts/optional_extract/extract.py` 从
-5e_chm/md 10 个文件规则解析（裸标题[中文+空格+英文 / 中文English 无空格，
-中文名排除 `*` 防正文斜体误判] + `####` 标题；先决/消耗行 `*先决：…*`/
-`*消耗：N术法点*`/`*战斗风格专长（先决：…）*`[2024 无尾星号] → prerequisite；
+**选项数据源（v0.53.0，ADR-0025/0028）**：可定制职业选项 11 类 241 条
+（EI 魔能祈唤/MV 战技/MM 超魔法/FS 战斗风格/IB 禁令恩惠/BC 血咒/AI 注法/
+AS 奥术射击/ED 元素戒律/RN 符文/PB 契约恩赐，5etools 官方 featureType 枚举）
+新增第七类 `optionalfeature`（中文「选项」）：`scripts/optional_extract/
+extract.py` 从 5e_chm/md 19 个文件规则解析（裸标题[中文+空格+英文 /
+中文English 无空格，中文名排除 `*` 防正文斜体误判] + `####` 标题；
+先决/消耗行 `*先决：…*`/`*消耗：N术法点*`/`*战斗风格专长（先决：…）*`
+[2024 无尾星号、TCE 有 `先决条件；` 分号] → prerequisite；
 2014 战斗大师从 `#### 战技Maneuvers` 正文剥离 `*中文English。正文` 斜体战技；
-TCE 祈唤 `*Legacy*` 尾注 → legacy）→ optionalfeatures.json 放 5etools-cn
-data/ 被 build_kb 捕获。entry_tags 双 facet：`feature_type`（类型中文）+
+四象宗斜体行带 `（需N级）` → 「武僧等级N级+」；符文/注法/奥术射击裸标题
+（符文 `*（第N级或更高）*` → 「战士等级N级+」）；2014 契约恩赐 `####` 段
+（`边栏` 排除）+ TCE 符之魔契；TCE 祈唤 `*Legacy*` 尾注 → legacy；
+同名+类型+来源去重取长）→ optionalfeatures.json 放 5etools-cn data/ 被
+build_kb 捕获。entry_tags 双 facet：`feature_type`（类型中文）+
 `prerequisite`（先决原文，消耗型不记；filter tags 值含 `%` 时自动 LIKE）。
 `_kind_body` 渲染器 `_optionalfeature_body`（消耗开头直接显示、其余「先决：」）。
-查询：`/查祈唤|战技|修法|风格 <名>`（卡片式，同名多版本并列）+ `/筛选项
-类型|先决 <词>`；LLM 工具 kind=选项 + opt_type/opt_prereq。
+查询统一入口：`/筛选项 <类型> <名称>`（类型词含简称别名：祈唤/修法/风格/
+注法/射击/戒律/法门/符文/契约/恩泽/恩惠/血咒）/`/筛选项 <名称>`（全选项
+详情，ftype=None 跨类型同名全版本并列）/`/筛选项 <类型>` 或 `类型 <词>`/
+`先决 <词>` 反查；原 `/查祈唤|战技|修法|风格` 4 命令归并删除（v0.53.0）；
+LLM 工具 kind=选项 + opt_type/opt_prereq（opt_type 11 类中文取值）。
 **法术显示（v0.44.0，ADR-0019）**：详情改 PHB 卡片式——`entries.body`（构建期
 预渲染，`chm_parser._build_body` 与 `kb_build_lib._spell_body` 同构）= 环位行
 + 4 属性行 + 正文 + 升环段；标题/概要/标签/版本行由 `kb.format_entry` 法术分支

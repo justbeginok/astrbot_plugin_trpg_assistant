@@ -104,6 +104,96 @@
     "血猎手"
    ],
    "legacy": false
+  },
+  {
+   "name": "增强武器",
+   "ENG_name": "Enhanced Weapon",
+   "featureType": "AI",
+   "source": "TCE",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "用此魔法武器发动的攻击检定和伤害掷骰获得+1加值。奇械师10级后为+2。"
+   ],
+   "class": [
+    "奇械师"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "放逐矢",
+   "ENG_name": "Banishing Arrow",
+   "featureType": "AS",
+   "source": "XGE",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "被此箭矢命中的生物被放逐至无害半位面，回合结束时返回。"
+   ],
+   "class": [
+    "魔射手"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "清流鞭",
+   "ENG_name": "Water Whip",
+   "featureType": "ED",
+   "source": "PHB",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "消耗2点气创造水鞭，目标敏捷豁免失败受3d10钝击伤害。"
+   ],
+   "class": [
+    "武僧"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "山丘符文",
+   "ENG_name": "Hill Rune",
+   "featureType": "RN",
+   "source": "TCE",
+   "edition": "2014",
+   "prerequisite": "战士等级7级+",
+   "entries": [
+    "获得毒素伤害抗性，附赠动作激活后获得钝击/挥砍/穿刺抗性。"
+   ],
+   "class": [
+    "战士"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "刃之魔契",
+   "ENG_name": "Pact of the Blade",
+   "featureType": "PB",
+   "source": "PHB",
+   "edition": "2014",
+   "prerequisite": "",
+   "entries": [
+    "用一个动作创造契约武器，熟练并视为魔法武器。"
+   ],
+   "class": [
+    "魔契师"
+   ],
+   "legacy": false
+  },
+  {
+   "name": "刃之魔契",
+   "ENG_name": "Pact of the Blade",
+   "featureType": "EI",
+   "source": "XPHB",
+   "edition": "2024",
+   "prerequisite": "魔契师等级1级",
+   "entries": [
+    "以附赠动作咒唤契约武器或与魔法武器建立连结。"
+   ],
+   "class": [
+    "魔契师"
+   ],
+   "legacy": false
   }
  ]
 }

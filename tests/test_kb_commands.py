@@ -1471,14 +1471,14 @@ def test_filter_monster_new_dimensions(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# /查祈唤 /查战技 /查修法 /查风格 /筛选项（v0.50.0 可定制职业选项）
+# /筛选项（v0.50.0 可定制职业选项；v0.53.0 统一入口，/查祈唤 等 4 命令归并）
 # ---------------------------------------------------------------------------
 
 
-def test_invocation_command_dual_version(tmp_path: Path) -> None:
-    """v0.50.0：/查祈唤 返回该选项全部版本（2014/2024）。"""
+def test_opt_lookup_typed_detail(tmp_path: Path) -> None:
+    """v0.53.0：/筛选项 <类型> <名称> → 类型内详情（跨版本）。"""
     p = make_plugin(tmp_path)
-    msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 苦痛魔爆")))
+    msgs = collect(p.kb_filter_opt_cmd(ev("/筛选项 祈唤 苦痛魔爆")))
     text = "\n".join(msgs)
     assert "苦痛魔爆｜Agonizing Blast" in text
     assert "类型：魔能祈唤" in text
@@ -1486,41 +1486,66 @@ def test_invocation_command_dual_version(tmp_path: Path) -> None:
     assert "版本：PHB·2014" in text and "版本：XPHB·2024" in text
 
 
-def test_maneuver_command(tmp_path: Path) -> None:
-    """v0.50.0：/查战技 伏击 → 战技类型展示。"""
+def test_opt_lookup_maneuver(tmp_path: Path) -> None:
+    """v0.53.0：/筛选项 战技 伏击 → 战技类型展示。"""
     p = make_plugin(tmp_path)
-    msgs = collect(p.kb_maneuver_cmd(ev("/查战技 伏击")))
-    text = msgs[0]
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 战技 伏击")))[0]
     assert "伏击｜Ambush" in text
     assert "类型：战技" in text
     assert "卓越骰" in text
 
 
-def test_metamagic_command_shows_cost(tmp_path: Path) -> None:
-    """v0.50.0：/查修法 消耗行直接展示（非「先决」前缀）。"""
+def test_opt_lookup_metamagic_cost(tmp_path: Path) -> None:
+    """v0.53.0：/筛选项 修法（简称归一）消耗行直接展示。"""
     p = make_plugin(tmp_path)
-    msgs = collect(p.kb_metamagic_cmd(ev("/查修法 谨慎法术")))
-    text = msgs[0]
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 修法 谨慎法术")))[0]
     assert "类型：超魔法" in text
     assert "消耗：1术法点" in text
 
 
-def test_fighting_style_command(tmp_path: Path) -> None:
-    """v0.50.0：/查风格 战斗风格专长。"""
+def test_opt_lookup_fighting_style(tmp_path: Path) -> None:
+    """v0.53.0：/筛选项 风格（简称归一）战斗风格专长。"""
     p = make_plugin(tmp_path)
-    msgs = collect(p.kb_fighting_style_cmd(ev("/查风格 箭术")))
-    text = msgs[0]
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 风格 箭术")))[0]
     assert "类型：战斗风格" in text
     assert "先决：战斗风格特性" in text
 
 
+def test_opt_lookup_new_types(tmp_path: Path) -> None:
+    """v0.53.0：新增五类（注法/奥术射击/元素戒律/符文/契约恩赐）可查。"""
+    p = make_plugin(tmp_path)
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 注法 增强武器")))[0]
+    assert "增强武器｜Enhanced Weapon" in text and "类型：注法" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 射击 放逐矢")))[0]
+    assert "放逐矢｜Banishing Arrow" in text and "类型：奥术射击" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 戒律 清流鞭")))[0]
+    assert "清流鞭｜Water Whip" in text and "类型：元素戒律" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 符文 山丘符文")))[0]
+    assert "山丘符文｜Hill Rune" in text and "类型：符文" in text
+    assert "先决：战士等级7级+" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 契约 刃之魔契")))[0]
+    assert "刃之魔契｜Pact of the Blade" in text and "类型：契约恩赐" in text
+
+
+def test_opt_lookup_bare_name(tmp_path: Path) -> None:
+    """v0.53.0：/筛选项 <名称> 裸词 → 全选项查详情。"""
+    p = make_plugin(tmp_path)
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 增强武器")))[0]
+    assert "增强武器｜Enhanced Weapon" in text and "类型：注法" in text
+    # 跨类型同名（刃之魔契：PB 2014 + EI XPHB）→ 全部版本
+    text = "\n".join(collect(p.kb_filter_opt_cmd(ev("/筛选项 刃之魔契"))))
+    assert "契约恩赐" in text and "魔能祈唤" in text
+
+
 def test_opt_filter_by_type(tmp_path: Path) -> None:
-    """v0.50.0：/筛选项 类型 祈唤 / 裸词 战技。"""
+    """v0.50.0：/筛选项 类型 祈唤 / 裸类型词 战技 → 列表。"""
     p = make_plugin(tmp_path)
     text = collect(p.kb_filter_opt_cmd(ev("/筛选项 类型 祈唤")))[0]
     assert "魔能祈唤" in text and "苦痛魔爆" in text
     text = collect(p.kb_filter_opt_cmd(ev("/筛选项 战技")))[0]
     assert "战技" in text and "伏击" in text
+    text = collect(p.kb_filter_opt_cmd(ev("/筛选项 注法")))[0]
+    assert "注法" in text and "增强武器" in text
 
 
 def test_opt_filter_by_prereq(tmp_path: Path) -> None:
@@ -1531,9 +1556,9 @@ def test_opt_filter_by_prereq(tmp_path: Path) -> None:
 
 
 def test_opt_lookup_miss(tmp_path: Path) -> None:
-    """v0.50.0：查不存在的祈唤 → 未找到。"""
+    """v0.53.0：查不存在的选项 → 未找到。"""
     p = make_plugin(tmp_path)
-    msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 不存在的祈唤")))
+    msgs = collect(p.kb_filter_opt_cmd(ev("/筛选项 不存在的选项")))
     assert "未找到" in msgs[0]
 
 
@@ -1548,8 +1573,8 @@ def test_opt_third_party_types(tmp_path: Path) -> None:
     # 先决反查（等级）
     text = collect(p.kb_filter_opt_cmd(ev("/筛选项 先决 邪狱使")))[0]
     assert "缓弱缄印" in text
-    # /查祈唤 命中 IB 类型时回退展示并标注类型
-    msgs = collect(p.kb_invocation_cmd(ev("/查祈唤 缓弱缄印")))
+    # 裸词命中 IB 类型 → 详情标注类型
+    msgs = collect(p.kb_filter_opt_cmd(ev("/筛选项 缓弱缄印")))
     text = "\n".join(msgs)
     assert "缓弱缄印｜Abating Seal" in text
     assert "类型：禁令恩惠" in text

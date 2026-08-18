@@ -4860,43 +4860,52 @@ class TrpgAssistantPlugin(Star):
         self,
         event: AstrMessageEvent,
         arg: str,
-        ftype: str,
+        ftype: str | None = None,
         display_prefix: str = "/",
     ) -> AsyncGenerator:
-        """可定制职业选项查询核心逻辑（/查祈唤 /查战技 /查修法 /查风格 共用，v0.50.0）。
+        """职业选项查询核心（/筛选项 统一入口，v0.53.0）。
 
-        ftype：EI（魔能祈唤）/ MV（战技）/ MM（超魔法）/ FS（战斗风格）。
-        精确名 → 返回该类型全版本；无命中 → 模糊搜索候选。
+        ftype：EI（魔能祈唤）/ MV（战技）/ MM（超魔法）/ FS（战斗风格）/
+        IB（禁令恩惠）/ BC（血咒）/ AI（注法）/ AS（奥术射击）/ ED（元素戒律）/
+        RN（符文）/ PB（契约恩赐）；None = 不限定类型（全选项搜索）。
+        精确名 → 返回全部版本；无命中 → 模糊搜索候选。
         """
         if not self.kb_manager.available:
             yield event.plain_result("知识库不可用（数据文件缺失，请重装插件）。")
             return
         arg = arg.strip()
-        ft_cn = OPTIONAL_FEATURE_TYPE_CN.get(ftype, ftype)
+        ft_cn = OPTIONAL_FEATURE_TYPE_CN.get(ftype, ftype) if ftype else ""
         if not arg:
-            yield event.plain_result(
-                f"用法：{display_prefix}查{ft_cn} <名称>\n"
-                f"示例：{display_prefix}查{ft_cn} 苦痛魔爆\n"
-                f"      {display_prefix}筛选项 类型 {ft_cn}"
-            )
+            if ftype:
+                yield event.plain_result(
+                    f"用法：{display_prefix}筛选项 {ft_cn} <名称>\n"
+                    f"示例：{display_prefix}筛选项 {ft_cn} 苦痛魔爆\n"
+                    f"      {display_prefix}筛选项 类型 {ft_cn}"
+                )
+            else:
+                yield event.plain_result(
+                    f"用法：{display_prefix}筛选项 <名称>\n"
+                    f"示例：{display_prefix}筛选项 增强武器"
+                )
             return
         entries = self.kb_manager.detail(arg, kind="optionalfeature")
-        typed = [e for e in entries if (e.opt_type_label or "").startswith(ft_cn)]
-        # v0.50.3：ftype 过滤为空时回退全部类型（禁令恩惠/血咒等新类型
-        # 没有独立命令，/查祈唤 等也能查到并标注类型）。
-        if typed:
-            entries = typed
+        if ftype:
+            typed = [e for e in entries if (e.opt_type_label or "").startswith(ft_cn)]
+            # v0.50.3：ftype 过滤为空时回退全部类型（无独立命令的类型也能查到）
+            if typed:
+                entries = typed
         if entries:
             yield event.plain_result(self._kb_detail_text("optionalfeature", entries))
             return
         hits = self.kb_manager.search(arg, kind="optionalfeature")
         if len(hits) == 1:
             entries = self.kb_manager.detail(hits[0].name, kind="optionalfeature")
-            typed = [
-                e for e in entries if (e.opt_type_label or "").startswith(ft_cn)
-            ]
-            if typed:
-                entries = typed
+            if ftype:
+                typed = [
+                    e for e in entries if (e.opt_type_label or "").startswith(ft_cn)
+                ]
+                if typed:
+                    entries = typed
             if entries:
                 yield event.plain_result(
                     self._kb_detail_text("optionalfeature", entries)
@@ -4905,7 +4914,39 @@ class TrpgAssistantPlugin(Star):
         if hits:
             yield event.plain_result(KnowledgeBaseManager.format_hits(hits))
             return
-        yield event.plain_result(f"未找到{ft_cn}「{arg}」。")
+        if ftype:
+            yield event.plain_result(f"未找到{ft_cn}「{arg}」。")
+        else:
+            yield event.plain_result(f"未找到职业选项「{arg}」。")
+
+    # v0.53.0：选项类型中文别名表（含简称：祈唤→魔能祈唤、修法→超魔法、
+    # 注法/射击/戒律/法门/符文/契约/恩泽 等），键与值均可作为类型词。
+    _OPT_TYPE_ALIASES: dict[str, str] = {
+        "魔能祈唤": "魔能祈唤", "祈唤": "魔能祈唤",
+        "战技": "战技",
+        "超魔法": "超魔法", "修法": "超魔法",
+        "战斗风格": "战斗风格", "风格": "战斗风格",
+        "注法": "注法", "奇械师注法": "注法",
+        "奥术射击": "奥术射击", "射击": "奥术射击",
+        "元素戒律": "元素戒律", "戒律": "元素戒律", "法门": "元素戒律",
+        "符文": "符文",
+        "契约恩赐": "契约恩赐", "契约": "契约恩赐",
+        "魔契恩泽": "契约恩赐", "恩泽": "契约恩赐",
+        "禁令恩惠": "禁令恩惠", "恩惠": "禁令恩惠",
+        "血咒": "血咒",
+    }
+
+    def _resolve_opt_type(self, s: str) -> str:
+        """选项类型中文解析：别名（祈唤→魔能祈唤）/ 中文名 / 前缀 → canonical。"""
+        s = (s or "").strip()
+        if not s:
+            return ""
+        if s in self._OPT_TYPE_ALIASES:
+            return self._OPT_TYPE_ALIASES[s]
+        for cn in OPTIONAL_FEATURE_TYPE_CN.values():
+            if s in cn or cn.startswith(s):
+                return cn
+        return s
 
     async def _handle_kb_opt_filter(
         self,
@@ -4913,10 +4954,15 @@ class TrpgAssistantPlugin(Star):
         arg: str,
         display_prefix: str = "/",
     ) -> AsyncGenerator:
-        """职业选项反查（/筛选项，v0.50.0）。
+        """职业选项统一查询入口（/筛选项，v0.53.0 全能化）。
 
-        语法：/筛选项 <类型|先决> <词>；无修饰词时整词先按类型匹配再按先决。
-        例：/筛选项 祈唤、/筛选项 类型 战技、/筛选项 先决 第5级。
+        语法：
+        - /筛选项 <类型> <名称>   类型内查详情（如 /筛选项 注法 增强武器）
+        - /筛选项 <名称>          全选项查详情（如 /筛选项 增强武器）
+        - /筛选项 <类型>          该类型全部列表（如 /筛选项 注法）
+        - /筛选项 类型 <词>       类型反查列表（如 /筛选项 类型 祈唤）
+        - /筛选项 先决 <词>       先决反查列表（如 /筛选项 先决 第6级）
+        类型词支持简称：祈唤/战技/修法/风格/注法/射击/戒律/法门/符文/契约/恩泽。
         """
         if not self.kb_manager.available:
             yield event.plain_result("知识库不可用（数据文件缺失，请重装插件）。")
@@ -4924,39 +4970,51 @@ class TrpgAssistantPlugin(Star):
         arg = arg.strip()
         if not arg:
             yield event.plain_result(
-                f"用法：{display_prefix}筛选项 <类型|先决> <词>\n"
-                f"示例：{display_prefix}筛选项 类型 祈唤\n"
-                f"      {display_prefix}筛选项 先决 第5级\n"
-                f"      {display_prefix}筛选项 战技"
+                f"用法：{display_prefix}筛选项 <类型> <名称> | <名称> | 类型 <词> | 先决 <词>\n"
+                f"示例：{display_prefix}筛选项 注法 增强武器\n"
+                f"      {display_prefix}筛选项 增强武器\n"
+                f"      {display_prefix}筛选项 注法\n"
+                f"      {display_prefix}筛选项 先决 第6级"
             )
             return
         parts = arg.split(None, 1)
         head = parts[0].strip()
         rest = parts[1].strip() if len(parts) > 1 else ""
-        tags: list[tuple[str, str]] = []
         ft_cn_to_code = {v: k for k, v in OPTIONAL_FEATURE_TYPE_CN.items()}
 
-        def _resolve_opt_type(s: str) -> str:
-            """选项类型中文解析：完整中文名 / 简称（祈唤→魔能祈唤）→ canonical。"""
-            s = (s or "").strip()
-            if s in ft_cn_to_code:
-                return s
-            for cn in OPTIONAL_FEATURE_TYPE_CN.values():
-                if s and (s in cn or cn.startswith(s)):
-                    return cn
-            return s
-
         if head in ("先决", "prereq", "先决条件", "前置"):
-            tags.append(("prerequisite", f"%{rest}%"))
-        elif head in ("类型", "type"):
-            tags.append(("feature_type", _resolve_opt_type(rest)))
-        else:
-            # 无修饰词：先按类型（祈唤/战技…）匹配，再按先决模糊
-            resolved = _resolve_opt_type(head)
-            if resolved in ft_cn_to_code:
-                tags.append(("feature_type", resolved))
-            else:
-                tags.append(("prerequisite", f"%{head}%"))
+            async for msg in self._opt_filter_list(event, [("prerequisite", f"%{rest}%")]):
+                yield msg
+            return
+        if head in ("类型", "type"):
+            async for msg in self._opt_filter_list(
+                event, [("feature_type", self._resolve_opt_type(rest))]
+            ):
+                yield msg
+            return
+        resolved = self._resolve_opt_type(head)
+        if resolved in ft_cn_to_code:
+            if not rest:
+                # /筛选项 <类型> → 类型列表
+                async for msg in self._opt_filter_list(
+                    event, [("feature_type", resolved)]
+                ):
+                    yield msg
+                return
+            # /筛选项 <类型> <名称> → 类型内查详情
+            async for msg in self._handle_kb_opt_lookup(
+                event, rest, ft_cn_to_code[resolved], display_prefix
+            ):
+                yield msg
+            return
+        # 裸词 → 全选项查详情/搜索
+        async for msg in self._handle_kb_opt_lookup(event, head, None, display_prefix):
+            yield msg
+
+    async def _opt_filter_list(
+        self, event: AstrMessageEvent, tags: list[tuple[str, str]]
+    ) -> AsyncGenerator:
+        """职业选项反查列表（类型/先决）。"""
         result = self.kb_manager.filter("optionalfeature", tags=tags, limit=20)
         lines = [
             f"🔎 职业选项反查「{' '.join(f'{f}:{v}' for f, v in tags)}」："
@@ -4965,7 +5023,7 @@ class TrpgAssistantPlugin(Star):
         for i, e in enumerate(result.entries, 1):
             meta = KnowledgeBaseManager._entry_meta(e)
             lines.append(f"{i}. 【{e.opt_type_label or '选项'}】{e.name}{meta}")
-        lines.append("回复 /查祈唤|战技|修法|风格 <名称> 查看详情。")
+        lines.append("回复 /筛选项 <类型> <名称> 查看详情。")
         yield event.plain_result("\n".join(lines))
 
     async def _handle_kb_class(
@@ -5400,46 +5458,14 @@ class TrpgAssistantPlugin(Star):
         async for msg in self._handle_kb_class(event, arg, "/"):
             yield msg
 
-    # ---- v0.50.0：可定制职业选项（魔能祈唤/战技/超魔法/战斗风格）----
-    @filter.command("查祈唤", alias={"invocation", "祈唤"})
-    async def kb_invocation_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
-        """查询魔能祈唤：/查祈唤 <名称>（2014/2024 多版本）。"""
-        raw_msg: str = event.message_str.strip()
-        parts = raw_msg.split(None, 1)
-        arg = parts[1].strip() if len(parts) > 1 else ""
-        async for msg in self._handle_kb_opt_lookup(event, arg, "EI", "/"):
-            yield msg
-
-    @filter.command("查战技", alias={"maneuver", "战技"})
-    async def kb_maneuver_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
-        """查询战技：/查战技 <名称>（战斗大师/战技专家可选）。"""
-        raw_msg: str = event.message_str.strip()
-        parts = raw_msg.split(None, 1)
-        arg = parts[1].strip() if len(parts) > 1 else ""
-        async for msg in self._handle_kb_opt_lookup(event, arg, "MV", "/"):
-            yield msg
-
-    @filter.command("查修法", alias={"metamagic", "超魔法", "修法"})
-    async def kb_metamagic_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
-        """查询超魔法：/查修法 <名称>（术士法术修法选项）。"""
-        raw_msg: str = event.message_str.strip()
-        parts = raw_msg.split(None, 1)
-        arg = parts[1].strip() if len(parts) > 1 else ""
-        async for msg in self._handle_kb_opt_lookup(event, arg, "MM", "/"):
-            yield msg
-
-    @filter.command("查风格", alias={"style", "战斗风格", "风格"})
-    async def kb_fighting_style_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
-        """查询战斗风格：/查风格 <名称>（2024 战斗风格专长）。"""
-        raw_msg: str = event.message_str.strip()
-        parts = raw_msg.split(None, 1)
-        arg = parts[1].strip() if len(parts) > 1 else ""
-        async for msg in self._handle_kb_opt_lookup(event, arg, "FS", "/"):
-            yield msg
-
+    # ---- v0.50.0：可定制职业选项；v0.53.0 统一入口 /筛选项（/查祈唤 等 4 命令归并）----
     @filter.command("筛选项", alias={"ofilter", "选项"})
     async def kb_filter_opt_cmd(self, event: AstrMessageEvent) -> AsyncGenerator:
-        """反查职业选项：/筛选项 类型 祈唤（类型/先决/来源）。"""
+        """职业选项统一查询：/筛选项 <类型> <名称> 或 /筛选项 <名称>（v0.53.0）。
+
+        类型：祈唤/战技/修法/风格/注法/射击/戒律/符文/契约/恩惠/血咒 等；
+        也支持 /筛选项 类型 <词>（类型列表）与 /筛选项 先决 <词>（先决反查）。
+        """
         raw_msg: str = event.message_str.strip()
         parts = raw_msg.split(None, 1)
         arg = parts[1].strip() if len(parts) > 1 else ""
@@ -7154,7 +7180,8 @@ class TrpgAssistantPlugin(Star):
         - 需要某职业本职特性的完整说明（而非概要）→ action=class_features，
           feature="*"（全部全文）或 feature=具体特性名（单个，跨版本全文）；
           只看某等级获得什么 → class_level=N（如「野蛮人 7 级获得什么」）。
-        - 询问魔能祈唤/战技/超魔法/战斗风格等职业可定制选项 → action=detail
+        - 询问魔能祈唤/战技/超魔法/战斗风格/注法/奥术射击/元素戒律/符文/
+          契约恩赐等职业可定制选项 → action=detail
           （或 search/filter），kind=选项，name=选项名（如「苦痛魔爆」）；按
           类型反查 → action=filter，kind=选项，再加先决/类型条件参数
           （详见对应参数说明，如「先决条件 5 级的祈唤」）。
@@ -7296,9 +7323,11 @@ class TrpgAssistantPlugin(Star):
                 的职业特性全文（如想知道「野蛮人 7 级获得什么」→ action=class_features
                 + name=野蛮人 + class_level=7）；不筛则 -1。
             opt_type(string): 选项类型（仅 filter+选项），中文取值：
-                魔能祈唤/战技/超魔法/战斗风格/禁令恩惠/血咒（v0.50.3 新增
-                后两者：邪狱使禁令恩惠、血猎手血咒）；如「战士有哪些战技可选」
-                → action=filter + kind=选项 + opt_type=战技。
+                魔能祈唤/战技/超魔法/战斗风格/禁令恩惠/血咒/注法/奥术射击/
+                元素戒律/符文/契约恩赐（v0.53.0 新增后五类：奇械师注法、
+                魔射手奥术射击、四象宗元素戒律、符文骑士符文、契约恩赐）；
+                如「战士有哪些战技可选」→ action=filter + kind=选项 +
+                opt_type=战技。
             opt_prereq(string): 选项先决条件关键词（仅 filter+选项，v0.50.0），
                 子串匹配，如「先决 5 级的祈唤」→ opt_prereq=5级。
         """

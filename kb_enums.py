@@ -1641,7 +1641,10 @@ def resolve_background_keyword(cn: str) -> str | None:
 
 
 # v0.50.0：可定制职业选项 featureType 码 → 中文（与 build_kb 同步）。
+# v0.53.0：新增 AI 注法 / AS 奥术射击 / ED 元素戒律 / RN 符文 / PB 契约恩赐。
 OPTIONAL_FEATURE_TYPE_CN: dict[str, str] = {
     "EI": "魔能祈唤", "MV": "战技", "MM": "超魔法", "FS": "战斗风格",
     "IB": "禁令恩惠", "BC": "血咒",
+    "AI": "注法", "AS": "奥术射击", "ED": "元素戒律", "RN": "符文",
+    "PB": "契约恩赐",
 }

@@ -5,6 +5,18 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.54.1] - 2026-08-19
+
+### summarize_session 工具：历史摘要查询引导
+
+- docstring 新增【历史摘要查询】引导：玩家咨询「之前/以前/上次/回顾/历史
+  摘要」且未指明团或场次时，先 `action=status` 取团列表（含已结束的团），
+  再 `action=summarize` + `campaign=团名`（必要时加 `session_seq`）读取；
+- 明确提示：`campaign` 缺省只命中「当前进行中」的团，已结束的团必须显式
+  传团名；
+- `Args.campaign` 描述同步补充该约定；测试断言覆盖引导文本（防回归）。
+  纯工具引导改动，不影响存储与命令行为。
+
 ## [0.54.0] - 2026-08-18
 
 ### 跑团记录（ADR-0029）：完整对话流记录 + 叙事式战报摘要

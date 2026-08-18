@@ -8286,6 +8286,14 @@ class TrpgAssistantPlugin(Star):
         吐槽，末尾附一小段结算统计。生成后缓存，再次 summarize 同场次直接
         返回缓存，强制重算用 force=true。
 
+        【历史摘要查询】当玩家咨询「之前/以前/上次/回顾/历史摘要/以前发生
+        过什么/上次跑到哪」等，且未指明具体团或场次时：先调用 action=status
+        获取该会话的团列表（含已结束的团及场次概览），再从列表中选出目标团，
+        用 action=summarize + campaign=团名（需指定场次时加 session_seq=场次号）
+        读取对应摘要。注意：campaign 缺省时 summarize 只会命中「当前进行中」
+        的团，已结束的团必须显式传 campaign 才能查到。查询多个团的摘要时按
+        上述流程逐个查询，不要只依赖缺省行为。
+
         【写操作权限】start/pause/stop/delete 属写操作：只有玩家明确要求时才
         执行（禁止主动开始/停止记录），且插件内部会校验权限（群聊白名单/管理
         员），无权限时返回拒绝提示。
@@ -8298,8 +8306,8 @@ class TrpgAssistantPlugin(Star):
                 入日志，场次保留）；stop=结束记录（数据保留）；delete=删除
                 整个团（破坏性，需玩家明确要求）。
             campaign(string): 团名（如「红龙之影」）。缺省时 summarize/status/
-                view 取当前进行中的团；写操作（start/pause/stop/delete）必须
-                显式给出团名。
+                view 取当前进行中的团；查询已结束团或历史摘要必须显式传团名；
+                写操作（start/pause/stop/delete）必须显式给出团名。
             session_seq(number): 场次号（从 1 起）。仅 summarize/view 使用，
                 缺省取最近一场；其他 action 忽略。
             force(boolean): summarize 时强制重新生成（忽略已缓存摘要）。

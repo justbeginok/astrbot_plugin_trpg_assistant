@@ -157,3 +157,7 @@ def test_summarize_session_schema_params() -> None:
     doc = inspect.getdoc(fn) or ""
     assert "玩家明确要求" in doc  # 写操作守则
     assert "缓存" in doc  # 摘要缓存约定
+    # v0.54.1：历史摘要查询引导（先 status 取团列表，再带 campaign 查）
+    assert "历史摘要查询" in doc
+    assert "action=status" in doc
+    assert "已结束的团必须显式传 campaign" in doc

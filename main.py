@@ -4687,6 +4687,8 @@ class TrpgAssistantPlugin(Star):
           /车卡                开始引导；已有草稿则查看进度
           /车卡 状态           查看当前进度与要回答的问题
           /车卡 答 <答案>      提交当前步骤的答案
+          /车卡 改 <字段> <值> 修改已填字段（种族/职业/背景/属性/属性加值/阵营）
+          /车卡 回退 [字段]    回退一步，或清空指定字段重填
           /车卡 导入 <卡文本>  把已有的文本角色卡直接解析落库（战斗字段自动重算）
           /车卡 取消           中止引导并丢弃草稿
         """
@@ -4724,6 +4726,28 @@ class TrpgAssistantPlugin(Star):
         # --- 取消 ---
         if sub in ("cancel", "取消", "abort"):
             reply = await cg.cancel(event)
+            yield event.plain_result(reply.format())
+            return
+
+        # --- 修改字段（v0.55.0：改已填内容，级联失效下游） ---
+        if sub in ("edit", "改", "修改", "设置"):
+            if len(rest) < 2:
+                yield event.plain_result(
+                    f"用法：{display_prefix}车卡 改 <字段> <新值>\n"
+                    "字段：种族 / 职业 / 背景 / 属性 / 属性加值 / 阵营。"
+                )
+                return
+            field = rest[0]
+            value = " ".join(rest[1:])
+            reply = await cg.edit(event, field, value)
+            await self._log_chargen_rolls(event, reply)
+            yield event.plain_result(reply.format())
+            return
+
+        # --- 回退（v0.55.0：清空字段重填） ---
+        if sub in ("undo", "回退", "上一步", "撤销"):
+            field = rest[0] if rest else ""
+            reply = await cg.undo(event, field)
             yield event.plain_result(reply.format())
             return
 
@@ -7422,6 +7446,7 @@ class TrpgAssistantPlugin(Star):
         race: str = "",
         class_name: str = "",
         background: str = "",
+        field: str = "",
     ) -> str:
         """
         逐步引导新手玩家创建 DnD 角色卡（车卡）。这是车卡的引导入口：插件维护
@@ -7430,6 +7455,11 @@ class TrpgAssistantPlugin(Star):
         硬拒绝原因）、【下一问】你接下来要问玩家的唯一一个问题。禁止替玩家作答、
         禁止跳步。属性生成（购点/标准数组/掷骰代骰）与规则校验全部由插件完成，
         你不要自行计算购点花费。
+
+        【改字段】玩家想改前面已填的内容（如改种族/职业）时，用 action=edit +
+        field 指定字段 + answer 传新值。改上游字段会级联失效下游字段（例如改
+        种族会清空属性加值），插件会回到受影响字段让玩家重新确认，你照常向玩家
+        转述即可，无需整体重来。
 
         【守则】禁止在对话中输出/展示完整角色卡文本——角色卡只能通过调用本
         工具逐步完成并落库，玩家要求「直接生成一张卡」时也必须继续调用本工具
@@ -7444,11 +7474,14 @@ class TrpgAssistantPlugin(Star):
         Args:
             action(string): 要执行的操作。取值：start=开始车卡（返回群规则摘要
                 与第一问）；answer=提交玩家对当前问题的回答（answer 参数）；
-                status=查看当前进度与待问问题（默认动作）；cancel=取消并丢弃草稿。
-            answer(string): action=answer 时玩家对当前问题的回答原文。属性分配步
-                接受「15 14 13 12 10 8」（按 力/敏/体/智/感/魅 顺序）或
-                「力15 敏14 体13 智12 感10 魅8」两种格式；加值选择步（种族/背景
-                自选加值）接受「力+2 敏+1」格式。
+                status=查看当前进度与待问问题（默认动作）；cancel=取消并丢弃草稿；
+                edit=修改玩家已填的某个字段（field 指定字段、answer 传新值，改后
+                自动级联失效受影响字段并回到该字段让玩家重新确认）；
+                undo=回退（可选 field 指定清空哪个字段，缺省回退最近一个已填字段）。
+            answer(string): action=answer 时玩家对当前问题的回答原文；action=edit
+                时作为字段新值。属性分配步接受「15 14 13 12 10 8」（按
+                力/敏/体/智/感/魅 顺序）或「力15 敏14 体13 智12 感10 魅8」；
+                加值选择步（种族/背景自选加值）接受「力+2 敏+1」格式。
             assign(string): 属性分配步的显式映射（可选），格式同 answer 的
                 「力15 敏14…」；提供时优先于 answer 用于属性分配。
             race(string): 预填种族名（可选，仅 action=start 时生效；2024 路径
@@ -7457,6 +7490,10 @@ class TrpgAssistantPlugin(Star):
                 值必须来自 advise_build 档案。
             background(string): 预填背景名（可选，仅 action=start 时生效）。
                 值必须来自 advise_build 档案。
+            field(string): action=edit/undo 时的目标字段。可选值：race（种族）、
+                class（职业）、background（背景）、ability_assign（属性分配）、
+                ability_bonus（属性加值）、alignment（阵营）；undo 缺省为回退
+                最近一个已填字段。
         """
         event = _resolve_event(event)
         if event is None:
@@ -7478,6 +7515,15 @@ class TrpgAssistantPlugin(Star):
         if action in ("cancel", "取消", "abort"):
             reply = await cg.cancel(event)
             return reply.format()
+
+        if action in ("edit", "改", "修改"):
+            reply = await cg.edit(event, field, answer)
+            await self._log_chargen_rolls(event, reply)
+            return reply.format() + "\n" + self._chargen_guard_note()
+
+        if action in ("undo", "回退", "撤销", "上一步"):
+            reply = await cg.undo(event, field)
+            return reply.format() + "\n" + self._chargen_guard_note()
 
         if action in ("answer", "提交", "下一步"):
             reply = await cg.advance(event, answer, assign=assign)

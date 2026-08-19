@@ -1,6 +1,6 @@
 # astrbot_plugin_trpg_assistant
 
-**当前版本：v0.54.1**（各功能版本演进详见 [CHANGELOG.md](CHANGELOG.md)）
+**当前版本：v0.55.0**（各功能版本演进详见 [CHANGELOG.md](CHANGELOG.md)）
 
 适用于 [AstrBot](https://github.com/AstrBotDevs/AstrBot) 的 TRPG 跑团助手插件：完整 Roll20 规范的 D&D 骰池投掷、技能检定、投掷历史、战斗先攻追踪、个人/队伍背包、会话商店、角色卡与 LLM 引导车卡、内置 DND 5e 中文知识库，并提供 LLM 函数工具供 AI 主持人在叙事中自动调用。
 

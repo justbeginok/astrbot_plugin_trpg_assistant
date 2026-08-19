@@ -414,8 +414,17 @@ v0.47.0（ADR-0022）新增：
 - `ChargenDraft`：`state`(状态机步骤) / `edition` / `data`(race/class_name/subclass/background/
   species/alignment/name) / `ability_pool`(代骰结果) / `ability_detail`(代骰明细) /
   `ability_assign`(加值前六维分配) / `ability_bonus`(choose 加值选择 dict) /
-  `backstory_parts`(origin/decision/event) / `starting_level`。
+  `backstory_parts`(origin/decision/event) / `starting_level` /
+  `invalidated`(v0.55.0，被级联失效的逻辑字段名列表)。
 - `StepReply`：`progress` / `check` / `next_question` / `done`（工具返回驱动三段式）。
+- **字段槽位化（v0.55.0，ADR-0030）**：引导从线性状态机升级为「字段槽位 + 编辑环」。
+  逻辑字段元信息集中在模块级 `_FIELD_DEPENDENTS`(依赖图) / `_FIELD_CN`(中文名) /
+  `_FIELD_ALIASES`(别名) / `_STATE_TO_FIELD`(state↔字段映射) 单一真源。推进逻辑拆为
+  `_apply_state`(校验+写，advance/edit 复用) + `_first_needed_field`(动态定位下一待填字段，
+  替代写死 next_state)。新增 `ChargenManager.edit(field, value)`(改字段) 与
+  `undo(field=None)`(回退)，改上游字段按 `_FIELD_DEPENDENTS` 级联失效下游（清值 + 标记
+  `invalidated`），无需整体回退。工具 `guide_chargen` 增 `action=edit/undo` + `field` 参数，
+  命令 `/车卡 改 <字段> <值>`、`/车卡 回退 [字段]` 双入口。
 
 ### 5.8 知识库（kb.py）
 - `KbEntry`：`kind` / `name` / `eng_name` / `source` / `edition` / `body` / `is_machine` +
@@ -532,6 +541,10 @@ v0.51.0（ADR-0026）参数引导修复：
 `background` 可选预填（值必须来自 advise_build 档案；chargen.py start 逐项
 复用知识库校验，合法跳步、非法回退正常询问并在 check 注明；2014 全预填→
 属性步，2024 物种写入 species）。
+`guide_chargen` 参数（v0.55.0）：新增 `field` + `action=edit/undo`——edit 用
+`field` 指定字段（race/class/background/ability_assign/ability_bonus/alignment）、
+`answer` 传新值，改上游字段按 `_FIELD_DEPENDENTS` 级联失效下游；undo 可选
+`field` 指定清空字段、缺省回退最近已填字段。
 `_llm_request_guard` 守则（v0.35.0 更新）：追加「构筑/升级建议→advise_build
 （推荐条目必须来自工具返回，禁止凭记忆补充条目名）」。
 

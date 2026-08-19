@@ -5,6 +5,26 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.55.0] - 2026-08-19
+
+### 引导车卡字段槽位化（ADR-0030）：可改字段、可回退、级联失效
+
+引导车卡从「线性状态机」升级为「字段槽位 + 编辑环」，解决流程死板、
+无法改前面已填内容的痛点：
+
+- 新增 `guide_chargen` 工具 `edit` / `undo` 动作与 `field` 参数：玩家想改
+  已填字段（种族/职业/背景/属性分配/属性加值/阵营）时，LLM 识别意图后用
+  `action=edit + field + answer` 直接改，无需整体回退；
+- 新增 `/车卡 改 <字段> <值>`、`/车卡 回退 [字段]` 命令（口语化 + 命令式
+  双入口，走同一 ChargenManager）；
+- 级联失效：改种族/背景 → 属性加值自动清空；重代骰 → 属性分配作废；改
+  职业 → 子职随职业重设。依赖关系集中在 `_FIELD_DEPENDENTS` 单一真源；
+- `_advance_locked` 的巨型 if-elif 链收敛为 `_apply_state`（校验+写，与 edit
+  复用）+ `_first_needed_field`（动态定位下一待填字段），推进不再写死
+  next_state；
+- `ChargenDraft` 新增 `invalidated` 字段标记被级联失效的字段，KV 兼容旧格式
+  草稿（缺字段自动容错）。
+
 ## [0.54.1] - 2026-08-19
 
 ### summarize_session 工具：历史摘要查询引导

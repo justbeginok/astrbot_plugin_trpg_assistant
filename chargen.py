@@ -111,6 +111,44 @@ S_DONE = "DONE"
 # 取消指令别名（advance 输入命中即中止引导）。
 _CANCEL_ALIASES = {"取消", "cancel", "abort", "停止"}
 
+# ---------------------------------------------------------------------------
+# v0.55.0：字段槽位模型（轻量实现）——逻辑字段名 + 依赖图 + 别名，单一真源。
+# 引导从「线性步骤」升级为「字段集合」：任意字段可随时改/回退，改上游字段
+# 时按依赖图级联失效下游字段（清空值 + 标记 invalidated），而非整体回退。
+# ---------------------------------------------------------------------------
+
+# 逻辑字段 → 被它级联失效的下游逻辑字段（改本字段时，下游清值并标记 invalidated）。
+# 注：class → subclass 不在表中——改职业时子职由 _apply_state 的 S_CLASS 分支
+# 随职业一并重设（不会残留旧子职），无需额外级联。
+_FIELD_DEPENDENTS: dict[str, tuple[str, ...]] = {
+    "race": ("ability_bonus",),        # 改种族 → 加值方案失效
+    "background": ("ability_bonus",),  # 改背景 → 加值方案失效（2024 背景决定加值）
+    "ability_method": ("ability_assign",),  # 重代骰 → 旧分配作废
+}
+
+# 逻辑字段 → 用户可见中文名（edit/undo 文案与状态摘要用）。
+_FIELD_CN: dict[str, str] = {
+    "race": "种族", "class": "职业", "subclass": "子职",
+    "background": "背景", "ability_method": "属性代骰",
+    "ability_assign": "属性分配", "ability_bonus": "属性加值",
+    "alignment": "阵营", "backstory": "生平", "name": "卡名",
+}
+
+# edit 字段别名（中文/英文 → 逻辑字段名）。覆盖口语化与命令式两种输入。
+_FIELD_ALIASES: dict[str, str] = {
+    "race": "race", "种族": "race", "species": "race", "物种": "race",
+    "class": "class", "职业": "class", "class_name": "class", "classname": "class",
+    "subclass": "subclass", "子职": "subclass",
+    "background": "background", "背景": "background", "bg": "background",
+    "ability_method": "ability_method", "代骰": "ability_method", "掷骰": "ability_method",
+    "ability_assign": "ability_assign", "属性": "ability_assign", "属性分配": "ability_assign",
+    "分配": "ability_assign", "ability": "ability_assign", "abilities": "ability_assign",
+    "ability_bonus": "ability_bonus", "加值": "ability_bonus", "属性加值": "ability_bonus",
+    "alignment": "alignment", "阵营": "alignment",
+    "backstory": "backstory", "生平": "backstory", "背景故事": "backstory",
+    "name": "name", "名字": "name", "卡名": "name", "姓名": "name",
+}
+
 # v0.35.0 预填提示用语：KB kind → 用户可见中文名。
 _KIND_CN: dict[str, str] = {
     "race": "种族", "class": "职业", "background": "背景",
@@ -635,7 +673,14 @@ def _describe_choose(spec: ChooseSpec) -> str:
 
 @dataclass
 class ChargenDraft:
-    """车卡草稿：状态机的 KV 中间态，落库后删除。"""
+    """车卡草稿：状态机的 KV 中间态，落库后删除。
+
+    v0.55.0 起引入字段级状态（字段槽位模型的轻量实现）：
+      - invalidated：被级联失效的逻辑字段名列表（改上游字段后，依赖它的
+        字段被标记为「需重新确认」，值已清空）。
+    字段值仍存于 data/ability_pool/ability_assign/ability_bonus/backstory_parts，
+    依赖关系见 _FIELD_DEPENDENTS（单一真源）。
+    """
 
     state: str = S_IDLE
     edition: str = "2014"
@@ -646,6 +691,7 @@ class ChargenDraft:
     ability_bonus: dict = field(default_factory=dict)  # v0.18：choose 加值选择 {"str": 2, ...}
     backstory_parts: dict = field(default_factory=dict)  # origin/decision/event
     starting_level: int = 1
+    invalidated: list[str] = field(default_factory=list)  # v0.55.0 失效字段名
 
     def __post_init__(self) -> None:
         if self.edition not in ("2014", "2024"):
@@ -653,6 +699,8 @@ class ChargenDraft:
         if not isinstance(self.data, dict):
             self.data = {}
         self.starting_level = max(1, min(20, int(self.starting_level)))
+        if not isinstance(self.invalidated, list):
+            self.invalidated = []
 
     def to_dict(self) -> dict:
         return {
@@ -665,6 +713,7 @@ class ChargenDraft:
             "ability_bonus": dict(self.ability_bonus),
             "backstory_parts": dict(self.backstory_parts),
             "starting_level": self.starting_level,
+            "invalidated": list(self.invalidated),
         }
 
     @classmethod
@@ -697,6 +746,11 @@ class ChargenDraft:
                 else {}
             ),
             starting_level=int(data.get("starting_level", 1) or 1),
+            invalidated=(
+                [str(x) for x in data.get("invalidated", [])]
+                if isinstance(data.get("invalidated"), list)
+                else []
+            ),
         )
 
 
@@ -873,6 +927,114 @@ class ChargenManager:
             return kb.race_ability(draft.data.get("race", ""), rule.edition)
         except Exception:  # noqa: BLE001 — 查询失败视为无加值，不阻塞引导
             return None
+
+    # ------------------------------------------------------------------
+    # v0.55.0：字段槽位辅助（逻辑字段 ↔ state/存储位置映射 + 级联失效）
+    # ------------------------------------------------------------------
+
+    _STATE_TO_FIELD: dict[str, str] = {
+        S_RACE: "race", S_ORIGIN_SPECIES: "race",
+        S_CLASS: "class",
+        S_BACKGROUND: "background", S_ORIGIN_BG: "background",
+        S_ABILITY_METHOD: "ability_method",
+        S_ABILITY_ASSIGN: "ability_assign",
+        S_ABILITY_BONUS: "ability_bonus",
+        S_ALIGNMENT: "alignment",
+        S_BACKSTORY_ORIGIN: "backstory", S_BACKSTORY_DECISION: "backstory",
+        S_BACKSTORY_EVENT: "backstory",
+        S_NAME: "name",
+    }
+
+    @classmethod
+    def _field_to_state(cls, field: str, edition: str) -> str | None:
+        """逻辑字段名（或中文别名）→ 当前版本的步骤 state 常量；不可识别返回 None。"""
+        f = _FIELD_ALIASES.get((field or "").strip().lower(), "")
+        if f == "race":
+            return S_ORIGIN_SPECIES if edition == "2024" else S_RACE
+        if f == "background":
+            return S_ORIGIN_BG if edition == "2024" else S_BACKGROUND
+        return {
+            "class": S_CLASS,
+            "ability_method": S_ABILITY_METHOD,
+            "ability_assign": S_ABILITY_ASSIGN,
+            "ability_bonus": S_ABILITY_BONUS,
+            "alignment": S_ALIGNMENT,
+            "backstory": S_BACKSTORY_ORIGIN,
+            "name": S_NAME,
+        }.get(f)
+
+    @staticmethod
+    def _get_field_value(draft: ChargenDraft, field: str):
+        """读逻辑字段当前值（None 表示未填）。"""
+        data = draft.data
+        if field == "race":
+            return data.get("race") or data.get("species")
+        if field == "class":
+            return data.get("class_name")
+        if field == "subclass":
+            return data.get("subclass")
+        if field == "background":
+            return data.get("background")
+        if field == "alignment":
+            return data.get("alignment")
+        if field == "name":
+            return data.get("name")
+        if field == "ability_method":
+            return draft.ability_pool or None
+        if field == "ability_assign":
+            return draft.ability_assign or None
+        if field == "ability_bonus":
+            return draft.ability_bonus or None
+        if field == "backstory":
+            return draft.backstory_parts or None
+        return None
+
+    @staticmethod
+    def _clear_field(draft: ChargenDraft, field: str) -> None:
+        """清空逻辑字段的值（含版本差异的 race/species 双键）。"""
+        data = draft.data
+        if field == "race":
+            data.pop("race", None)
+            data.pop("species", None)
+        elif field == "class":
+            data.pop("class_name", None)
+            data.pop("subclass", None)
+        elif field == "subclass":
+            data.pop("subclass", None)
+        elif field == "background":
+            data.pop("background", None)
+        elif field == "alignment":
+            data.pop("alignment", None)
+        elif field == "name":
+            data.pop("name", None)
+        elif field == "ability_method":
+            draft.ability_pool = []
+            draft.ability_detail = ""
+        elif field == "ability_assign":
+            draft.ability_assign = []
+        elif field == "ability_bonus":
+            draft.ability_bonus = {}
+        elif field == "backstory":
+            draft.backstory_parts = {}
+
+    def _invalidate_dependents(self, draft: ChargenDraft, field: str) -> list[str]:
+        """改 field 后级联失效其下游字段（仅原本已填的才清值 + 标记），返回失效字段名列表。"""
+        invalidated: list[str] = []
+        for dep in _FIELD_DEPENDENTS.get(field, ()):
+            if self._get_field_value(draft, dep) in (None, "", [], {}):
+                continue  # 本来就没填，无需标记失效
+            self._clear_field(draft, dep)
+            if dep not in draft.invalidated:
+                draft.invalidated.append(dep)
+                invalidated.append(dep)
+        return invalidated
+
+    @staticmethod
+    def _is_field_filled(draft: ChargenDraft, field: str) -> bool:
+        """字段是否已有有效值（失效字段视为未填）。"""
+        if field in draft.invalidated:
+            return False
+        return ChargenManager._get_field_value(draft, field) not in (None, "", [], {})
 
     # ------------------------------------------------------------------
     # 引导流程
@@ -1060,175 +1222,104 @@ class ChargenManager:
             result = await self._advance_locked(event, draft, rule, answer, assign)
         return result
 
-    async def _advance_locked(
+    def _apply_state(
         self,
-        event: AstrMessageEvent,
         draft: ChargenDraft,
         rule: ChargenRule,
+        state: str,
         answer: str,
         assign: str,
-    ) -> StepReply:
-        """锁内状态迁移。当前步校验失败 → 返回拒绝文案，state 不变。"""
-        state = draft.state
-        progress = self._progress_text(draft, rule)
+    ) -> tuple[bool, str]:
+        """同步校验并写入指定步骤（不含 S_NAME 落库）。返回 (成功?, check 或错误文本)。
 
+        与推进解耦：advance（推进）与 edit（改字段）复用同一套校验+写逻辑，
+        保证两处行为一致。
+        """
         # ---- CONFIRM ----
         if state == S_CONFIRM:
-            draft.state = S_RACE if rule.edition == "2014" else S_CLASS
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check="已确认开卡规则。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, "已确认开卡规则。"
 
-        # ---- RACE（2014）----
-        if state == S_RACE:
+        # ---- RACE（2014）/ ORIGIN_SPECIES（2024）----
+        if state in (S_RACE, S_ORIGIN_SPECIES):
             if not answer:
-                return _reject(progress, "请输入种族名称。")
+                return False, "请输入种族名称。"
             if not self._kb_has("race", answer):
-                return _reject(
-                    progress,
+                return False, (
                     f"知识库中找不到种族「{answer}」，请让玩家换一个，"
-                    "或用 /查种族 搜索后再选。",
+                    "或用 /查种族 搜索后再选。"
                 )
+            if state == S_ORIGIN_SPECIES:
+                draft.data["species"] = answer
+                return True, f"已接受物种「{answer}」。"
             draft.data["race"] = answer
-            draft.state = S_CLASS
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=f"已接受种族「{answer}」。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, f"已接受种族「{answer}」。"
 
-        # ---- CLASS（两版共有）----
+        # ---- CLASS ----
         if state == S_CLASS:
             if not answer:
-                return _reject(progress, "请输入职业名称。")
+                return False, "请输入职业名称。"
             parts = answer.split()
             class_name = parts[0]
             if not self._kb_has("class", class_name):
-                return _reject(
-                    progress,
+                return False, (
                     f"知识库中找不到职业「{class_name}」，请让玩家换一个，"
-                    "或用 /查职业 搜索后再选。",
+                    "或用 /查职业 搜索后再选。"
                 )
             draft.data["class_name"] = class_name
-            subclass = ""
-            if len(parts) > 1:
-                subclass = _sanitize_text(parts[1], 40)
+            subclass = _sanitize_text(parts[1], 40) if len(parts) > 1 else ""
             if rule.subclass_at_creation == "on" and subclass:
                 draft.data["subclass"] = subclass
             elif rule.subclass_at_creation == "off":
                 draft.data["subclass"] = ""
             else:
                 draft.data["subclass"] = subclass  # auto：玩家主动给了就记
-            draft.state = S_BACKGROUND if rule.edition == "2014" else S_ORIGIN_BG
-            await self._save_draft(event, draft, str(event.get_sender_id()))
             check = f"已接受职业「{class_name}」。"
             if draft.data.get("subclass"):
-                check += f" 子职「{subclass}」。"
+                check += f" 子职「{draft.data['subclass']}」。"
             elif rule.subclass_at_creation == "auto":
                 check += " 子职按规则等级再定。"
-            return StepReply(
-                progress=progress,
-                check=check,
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, check
 
-        # ---- BACKGROUND（2014）----
-        if state == S_BACKGROUND:
+        # ---- BACKGROUND（2014）/ ORIGIN_BG（2024）----
+        if state in (S_BACKGROUND, S_ORIGIN_BG):
             if not answer:
-                return _reject(progress, "请输入背景名称。")
+                return False, "请输入背景名称。"
             if not self._kb_has("background", answer):
-                return _reject(
-                    progress,
+                return False, (
                     f"知识库中找不到背景「{answer}」，请让玩家换一个，"
-                    "或用 /查背景 搜索后再选。",
+                    "或用 /查背景 搜索后再选。"
                 )
             draft.data["background"] = answer
-            draft.state = (
-                S_ABILITY_METHOD if rule.ability.kind == "roll" else S_ABILITY_ASSIGN
-            )
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=f"已接受背景「{answer}」。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
-
-        # ---- ORIGIN_BG（2024：起源=背景）----
-        if state == S_ORIGIN_BG:
-            if not answer:
-                return _reject(progress, "请输入背景名称。")
-            if not self._kb_has("background", answer):
-                return _reject(
-                    progress,
-                    f"知识库中找不到背景「{answer}」，请让玩家换一个，"
-                    "或用 /查背景 搜索后再选。",
-                )
-            draft.data["background"] = answer
-            draft.state = S_ORIGIN_SPECIES
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=f"已接受背景「{answer}」（2024 背景决定属性加值方案）。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
-
-        # ---- ORIGIN_SPECIES（2024：起源=物种）----
-        if state == S_ORIGIN_SPECIES:
-            if not answer:
-                return _reject(progress, "请输入物种（种族）名称。")
-            if not self._kb_has("race", answer):
-                return _reject(
-                    progress,
-                    f"知识库中找不到物种「{answer}」，请让玩家换一个，"
-                    "或用 /查种族 搜索后再选。",
-                )
-            draft.data["species"] = answer
-            draft.state = (
-                S_ABILITY_METHOD if rule.ability.kind == "roll" else S_ABILITY_ASSIGN
-            )
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=f"已接受物种「{answer}」。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            if state == S_ORIGIN_BG:
+                return True, f"已接受背景「{answer}」（2024 背景决定属性加值方案）。"
+            return True, f"已接受背景「{answer}」。"
 
         # ---- ABILITY_METHOD（掷骰法代骰，插件执行）----
         if state == S_ABILITY_METHOD:
             if self._roll_fn is None:
-                return _reject(progress, "掷骰功能未就绪，请稍后再试。")
+                return False, "掷骰功能未就绪，请稍后再试。"
             method = rule.ability
             pool: list[int] = []
             lines: list[str] = []
             for i in range(method.count):
                 total, detail = self._roll_fn(method.expr)
                 if total is None:
-                    return _reject(progress, f"代骰第 {i+1} 组失败：{detail}")
+                    return False, f"代骰第 {i+1} 组失败：{detail}"
                 pool.append(total)
                 lines.append(f"第{i+1}组 {detail} → {total}")
             draft.ability_pool = pool
             draft.ability_detail = "\n".join(lines)
-            draft.state = S_ABILITY_ASSIGN
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=(
-                    f"已代骰 {method.count} 组 {method.expr}：\n"
-                    + "\n".join(lines)
-                    + "\n请让玩家把这六个数值分配到六维（各用一次）。"
-                ),
-                next_question=_question_for(draft, rule, self._characters),
+            return True, (
+                f"已代骰 {method.count} 组 {method.expr}：\n"
+                + "\n".join(lines)
+                + "\n请让玩家把这六个数值分配到六维（各用一次）。"
             )
 
         # ---- ABILITY_ASSIGN ----
         if state == S_ABILITY_ASSIGN:
             scores, err = parse_ability_input(answer, assign)
             if err:
-                return _reject(progress, err)
+                return False, err
             if rule.ability.kind == "point_buy":
                 err = validate_point_buy(scores, rule.ability)
             elif rule.ability.kind == "standard_array":
@@ -1236,14 +1327,12 @@ class ChargenManager:
             else:
                 err = validate_rolled_assign(scores, draft.ability_pool)
             if err:
-                return _reject(progress, err)
+                return False, err
             draft.ability_assign = scores
             offer = self._bonus_offer(draft, rule)
             need_bonus_step = bool(offer and offer.chooses)
-            draft.state = S_ABILITY_BONUS if need_bonus_step else S_ALIGNMENT
             if need_bonus_step:
                 draft.data["bonus_options"] = _offer_options_text(offer)
-            await self._save_draft(event, draft, str(event.get_sender_id()))
             shown = "　".join(
                 f"{ABILITY_CN[ab]} {v}" for ab, v in zip(ABILITY_NAMES, scores)
             )
@@ -1257,30 +1346,18 @@ class ChargenManager:
                         f"{ABILITY_CN[k]}+{v}" for k, v in sorted(flat.items())
                     )
                     check += f" 将自动应用固定加值：{flat_str}（确认步展示最终值）。"
-            return StepReply(
-                progress=progress,
-                check=check,
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, check
 
         # ---- ABILITY_BONUS（v0.18：种族/背景 choose 加值选择）----
         if state == S_ABILITY_BONUS:
             offer = self._bonus_offer(draft, rule)
             if not offer or not offer.chooses:
-                # 防御：无可选方案（数据缺失/异常）→ 自动跳过
-                draft.state = S_ALIGNMENT
-                await self._save_draft(event, draft, str(event.get_sender_id()))
-                return StepReply(
-                    progress=progress,
-                    check="当前没有自选加值方案，自动进入下一步。",
-                    next_question=_question_for(draft, rule, self._characters),
-                )
+                # 防御：无可选方案（数据缺失/异常）→ 视为已通过，由 _first_needed_field 跳过
+                return True, "当前没有自选加值方案，自动进入下一步。"
             picks, err = parse_bonus_choice(answer, offer.chooses)
             if err:
-                return _reject(progress, err)
+                return False, err
             draft.ability_bonus = picks
-            draft.state = S_ALIGNMENT
-            await self._save_draft(event, draft, str(event.get_sender_id()))
             chosen = "、".join(
                 f"{ABILITY_CN[k]}+{v}" for k, v in sorted(picks.items())
             )
@@ -1290,49 +1367,76 @@ class ChargenManager:
                     f"{ABILITY_CN[k]}+{v}" for k, v in sorted(offer.flat.items())
                 )
                 check += f" 另有固定加值 {flat_str}，确认步一并叠加。"
-            return StepReply(
-                progress=progress,
-                check=check,
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, check
 
         # ---- ALIGNMENT ----
         if state == S_ALIGNMENT:
             if not answer:
-                return _reject(progress, "请输入阵营（如 守序善良、混乱中立）。")
+                return False, "请输入阵营（如 守序善良、混乱中立）。"
             draft.data["alignment"] = _sanitize_text(answer, 20)
-            draft.state = S_BACKSTORY_ORIGIN
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=f"已接受阵营「{draft.data['alignment']}」。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, f"已接受阵营「{draft.data['alignment']}」。"
 
         # ---- BACKSTORY_ORIGIN / DECISION / EVENT ----
         if state in (S_BACKSTORY_ORIGIN, S_BACKSTORY_DECISION, S_BACKSTORY_EVENT):
             if not answer:
-                return _reject(progress, "生平环节请给一点内容（哪怕一句话）。")
+                return False, "生平环节请给一点内容（哪怕一句话）。"
             key = {
                 S_BACKSTORY_ORIGIN: "origin",
                 S_BACKSTORY_DECISION: "decision",
                 S_BACKSTORY_EVENT: "event",
             }[state]
             draft.backstory_parts[key] = _sanitize_text(answer)
-            next_state = {
-                S_BACKSTORY_ORIGIN: S_BACKSTORY_DECISION,
-                S_BACKSTORY_DECISION: S_BACKSTORY_EVENT,
-                S_BACKSTORY_EVENT: S_NAME,
-            }[state]
-            draft.state = next_state
-            await self._save_draft(event, draft, str(event.get_sender_id()))
-            return StepReply(
-                progress=progress,
-                check=f"已记录生平（{key}）。",
-                next_question=_question_for(draft, rule, self._characters),
-            )
+            return True, f"已记录生平（{key}）。"
 
-        # ---- NAME ----
+        return False, f"未知状态 {state}，草稿可能已损坏，请取消后重新开始。"
+
+    def _step_needed(self, draft: ChargenDraft, rule: ChargenRule, step: str) -> bool:
+        """判断某步骤当前是否需要填（用于动态定位下一待填字段，替代写死 next_state）。"""
+        if step == S_CONFIRM:
+            return False
+        if step == S_ABILITY_BONUS:
+            offer = self._bonus_offer(draft, rule)
+            return bool(offer and offer.chooses)
+        if step == S_BACKSTORY_ORIGIN:
+            return "origin" not in draft.backstory_parts
+        if step == S_BACKSTORY_DECISION:
+            return "decision" not in draft.backstory_parts
+        if step == S_BACKSTORY_EVENT:
+            return "event" not in draft.backstory_parts
+        field = self._STATE_TO_FIELD.get(step)
+        if field is None:
+            return False
+        return not self._is_field_filled(draft, field)
+
+    def _first_needed_field(
+        self, draft: ChargenDraft, rule: ChargenRule, after: str | None = None
+    ) -> str | None:
+        """返回第一个需要填的步骤（after 指定则从其之后开始找）；全填完返回 None。"""
+        steps = self._step_order(rule)
+        start = 0
+        if after is not None:
+            try:
+                start = steps.index(after) + 1
+            except ValueError:
+                start = 0
+        for step in steps[start:]:
+            if self._step_needed(draft, rule, step):
+                return step
+        return None
+
+    async def _advance_locked(
+        self,
+        event: AstrMessageEvent,
+        draft: ChargenDraft,
+        rule: ChargenRule,
+        answer: str,
+        assign: str,
+    ) -> StepReply:
+        """锁内状态迁移：校验当前步 → 写字段 → 级联失效 → 定位下一待填字段。"""
+        state = draft.state
+        progress = self._progress_text(draft, rule)
+
+        # S_NAME 特殊：查重 + 落库（不走 _apply_state）
         if state == S_NAME:
             name = _sanitize_card_name(answer)
             if not name:
@@ -1344,14 +1448,161 @@ class ChargenManager:
                     f"你已有一张名为「{name}」的卡，请换一个名字。",
                 )
             draft.data["name"] = name
-            reply = await self._finalize(event, draft, rule)
-            return reply
+            return await self._finalize(event, draft, rule)
+
+        # 校验 + 写字段（与 edit 复用同一套 _apply_state）
+        ok, msg = self._apply_state(draft, rule, state, answer, assign)
+        if not ok:
+            return _reject(progress, msg)
+
+        # 填写成功：若该字段此前被标记失效，现在重新填写，移除失效标记
+        field = self._STATE_TO_FIELD.get(state)
+        if field and field in draft.invalidated:
+            draft.invalidated.remove(field)
+
+        # 级联失效下游字段
+        invalidated = self._invalidate_dependents(draft, field) if field else []
+
+        # 定位下一待填字段（动态跳过已填/无需字段）
+        next_state = self._first_needed_field(draft, rule, after=state)
+        draft.state = next_state if next_state is not None else S_NAME
+
+        await self._save_draft(event, draft, str(event.get_sender_id()))
+
+        check = msg
+        if invalidated:
+            names = "、".join(_FIELD_CN.get(f, f) for f in invalidated)
+            check += f" 注意：{names}已失效，需重新确认。"
 
         return StepReply(
             progress=progress,
-            check=f"未知状态 {state}，草稿可能已损坏，请取消后重新开始。",
-            next_question="如玩家想重新开始，请再问一次是否开始车卡。",
+            check=check,
+            next_question=_question_for(draft, rule, self._characters),
         )
+
+    async def edit(
+        self,
+        event: AstrMessageEvent,
+        field: str,
+        value: str,
+        sender_id: str | None = None,
+    ) -> StepReply:
+        """编辑（改）某个字段：校验 → 写 → 级联失效下游 → 定位第一个待填字段。
+
+        改完把焦点定位到建议顺序里第一个需要填的字段（可能是被级联失效的字段），
+        实现「改前面内容」而无需整体回退。支持口语化（LLM 识别意图后调用）与
+        命令式（/车卡 改 <字段> <值>）双入口。
+        """
+        sid = sender_id if sender_id is not None else str(event.get_sender_id())
+        rule = await self.get_rule(event)
+        async with self._lock:
+            draft = await self.get_draft(event, sid)
+            if draft is None:
+                return StepReply(
+                    progress="未开始",
+                    check="当前没有进行中的车卡引导，无法修改字段。",
+                    next_question="请先调用 start 开始车卡。",
+                )
+            state = self._field_to_state(field, rule.edition)
+            if state is None:
+                return StepReply(
+                    progress=self._progress_text(draft, rule),
+                    check=(
+                        f"无法识别的字段「{field}」。可改字段："
+                        "种族 / 职业 / 背景 / 属性分配 / 属性加值 / 阵营。"
+                    ),
+                    next_question="请重新指定要修改的字段。",
+                )
+            progress = self._progress_text(draft, rule)
+            ok, msg = self._apply_state(draft, rule, state, value, "")
+            if not ok:
+                return _reject(progress, msg)
+            field_key = self._STATE_TO_FIELD.get(state)
+            if field_key and field_key in draft.invalidated:
+                draft.invalidated.remove(field_key)
+            invalidated = self._invalidate_dependents(draft, field_key) if field_key else []
+            next_state = self._first_needed_field(draft, rule, after=None)
+            draft.state = next_state if next_state is not None else S_NAME
+            await self._save_draft(event, draft, sid)
+            check = f"已修改{_FIELD_CN.get(field_key, '字段')}。"
+            if invalidated:
+                names = "、".join(_FIELD_CN.get(f, f) for f in invalidated)
+                check += f" 注意：{names}已失效，需重新确认。"
+            return StepReply(
+                progress=self._progress_text(draft, rule),
+                check=check,
+                next_question=_question_for(draft, rule, self._characters),
+            )
+
+    async def undo(
+        self,
+        event: AstrMessageEvent,
+        field: str = "",
+        sender_id: str | None = None,
+    ) -> StepReply:
+        """回退：field 指定则清空该字段并回到该步；否则回退到最近一个已填字段。
+
+        清空字段时级联失效其下游（如回退种族会连带清加值）。
+        """
+        sid = sender_id if sender_id is not None else str(event.get_sender_id())
+        rule = await self.get_rule(event)
+        async with self._lock:
+            draft = await self.get_draft(event, sid)
+            if draft is None:
+                return StepReply(
+                    progress="未开始",
+                    check="当前没有进行中的车卡引导，无法回退。",
+                    next_question="请先调用 start 开始车卡。",
+                )
+            progress = self._progress_text(draft, rule)
+            steps = self._step_order(rule)
+            target: str | None = None
+            if field:
+                target = self._field_to_state(field, rule.edition)
+                if target is None:
+                    return StepReply(
+                        progress=progress,
+                        check=f"无法识别的字段「{field}」。",
+                        next_question="请重新指定要回退的字段。",
+                    )
+            else:
+                try:
+                    idx = steps.index(draft.state)
+                except ValueError:
+                    idx = len(steps)
+                for step in reversed(steps[:idx]):
+                    fk = self._STATE_TO_FIELD.get(step)
+                    if fk and self._get_field_value(draft, fk) not in (None, "", [], {}):
+                        target = step
+                        break
+                if target is None:
+                    return StepReply(
+                        progress=progress,
+                        check="没有可回退的已填字段。",
+                        next_question=_question_for(draft, rule, self._characters),
+                    )
+            field_key = self._STATE_TO_FIELD.get(target)
+            if field_key is None:
+                return StepReply(
+                    progress=progress,
+                    check="该步骤无需回退。",
+                    next_question=_question_for(draft, rule, self._characters),
+                )
+            self._clear_field(draft, field_key)
+            if field_key in draft.invalidated:
+                draft.invalidated.remove(field_key)
+            invalidated = self._invalidate_dependents(draft, field_key)
+            draft.state = target
+            await self._save_draft(event, draft, sid)
+            check = f"已回退，清空{_FIELD_CN.get(field_key, '字段')}，请重新填写。"
+            if invalidated:
+                names = "、".join(_FIELD_CN.get(f, f) for f in invalidated)
+                check += f" 注意：{names}已失效，需重新确认。"
+            return StepReply(
+                progress=self._progress_text(draft, rule),
+                check=check,
+                next_question=_question_for(draft, rule, self._characters),
+            )
 
     # ------------------------------------------------------------------
     # 落库

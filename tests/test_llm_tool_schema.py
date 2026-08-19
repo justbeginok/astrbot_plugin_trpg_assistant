@@ -128,11 +128,11 @@ def test_advise_build_schema_params() -> None:
 
 
 def test_guide_chargen_schema_has_prefill_params() -> None:
-    """guide_chargen 新增 race/class_name/background 预填参数（v0.35.0）。"""
+    """guide_chargen 新增 race/class_name/background 预填（v0.35.0）与 field 改字段参数（v0.55.0）。"""
     fn = getattr(TrpgAssistantPlugin, "guide_chargen_tool")
     parsed = docstring_parser.parse(inspect.getdoc(fn) or "")
     names = [p.arg_name for p in parsed.params]
-    assert names == ["action", "answer", "assign", "race", "class_name", "background"]
+    assert names == ["action", "answer", "assign", "race", "class_name", "background", "field"]
 
 
 def test_manage_homebrew_schema_params() -> None:

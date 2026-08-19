@@ -860,3 +860,150 @@ class TestChargenFlowBonus:
         assert card.ac.base == 10 + AbilityScores.modifier(14)  # 无甲 10+敏
         assert card.spell_slots["1"].base == 2  # full 1 级
         assert card.attack_bonuses["法师法术攻击"].base > 0
+
+
+class TestChargenEditUndo:
+    """v0.55.0：字段槽位编辑环——改字段 / 回退 / 级联失效。"""
+
+    def _manager(self, edition: str = "2014") -> ChargenManager:
+        star = _KVStar()
+        cm = CharacterManager(star=star)
+        cg = ChargenManager(
+            star=star,
+            character_manager=cm,
+            kb_manager=_kb_with_abilities(),
+            roll_fn=_roll_fake(),
+        )
+        run(cg.set_rule(_Event(), ChargenRule(edition=edition)))
+        return cg
+
+    def test_edit_race_invalidates_ability_bonus(self) -> None:
+        """改种族 → 属性加值级联失效，焦点跳过无 choose 的加值步。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "半精灵", "法师", "士兵", "15 14 13 12 10 8", "力+1 敏+1"):
+            run(cg.advance(ev, a))
+        assert run(cg.get_draft(ev)).ability_bonus == {"str": 1, "dex": 1}
+        reply = run(cg.edit(ev, "race", "矮人"))
+        assert "已修改种族" in reply.check
+        assert "属性加值" in reply.check and "失效" in reply.check
+        draft = run(cg.get_draft(ev))
+        assert draft.data["race"] == "矮人"
+        assert draft.ability_bonus == {}  # 加值已清空
+        assert draft.state == "ALIGNMENT"  # 矮人无 choose → 加值步跳过
+
+    def test_edit_race_invalid_value_keeps_old(self) -> None:
+        """改种族为非法值 → 硬拒绝，原值保留。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        run(cg.advance(ev, "确认"))
+        run(cg.advance(ev, "人类"))
+        reply = run(cg.edit(ev, "race", "不存在的种族"))
+        assert "未接受" in reply.check
+        assert run(cg.get_draft(ev)).data["race"] == "人类"
+
+    def test_edit_class_resets_subclass(self) -> None:
+        """改职业 → 子职随职业重设（on 模式未给新子职则清空）。"""
+        star = _KVStar()
+        cm = CharacterManager(star=star)
+        cg = ChargenManager(
+            star=star, character_manager=cm,
+            kb_manager=_kb_with_abilities(), roll_fn=_roll_fake(),
+        )
+        run(cg.set_rule(_Event(), ChargenRule(edition="2014", subclass_at_creation="on")))
+        ev = _Event()
+        run(cg.start(ev))
+        run(cg.advance(ev, "确认"))
+        run(cg.advance(ev, "人类"))
+        run(cg.advance(ev, "法师 剑咏"))
+        assert run(cg.get_draft(ev)).data["subclass"] == "剑咏"
+        run(cg.edit(ev, "class", "战士"))
+        draft = run(cg.get_draft(ev))
+        assert draft.data["class_name"] == "战士"
+        assert draft.data["subclass"] == ""  # on 模式未给子职 → 清空
+
+    def test_edit_background_2024_invalidates_bonus(self) -> None:
+        """2024 改背景 → 属性加值级联失效。"""
+        cg, ev = self._manager("2024"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "法师", "侍僧", "人类", "15 14 13 12 10 8", "智+2 感+1"):
+            run(cg.advance(ev, a))
+        assert run(cg.get_draft(ev)).ability_bonus == {"int": 2, "wis": 1}
+        reply = run(cg.edit(ev, "background", "士兵"))
+        assert "属性加值" in reply.check and "失效" in reply.check
+        draft = run(cg.get_draft(ev))
+        assert draft.data["background"] == "士兵"
+        assert draft.ability_bonus == {}
+
+    def test_edit_ability_assign(self) -> None:
+        """改属性分配（合规值）直接覆盖。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "人类", "法师", "士兵", "15 14 13 12 10 8"):
+            run(cg.advance(ev, a))
+        reply = run(cg.edit(ev, "ability_assign", "8 10 12 13 14 15"))
+        assert "已修改属性分配" in reply.check
+        assert run(cg.get_draft(ev)).ability_assign == [8, 10, 12, 13, 14, 15]
+
+    def test_edit_alignment(self) -> None:
+        """改阵营直接覆盖。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "人类", "法师", "士兵", "15 14 13 12 10 8", "守序善良"):
+            run(cg.advance(ev, a))
+        run(cg.edit(ev, "alignment", "混乱中立"))
+        assert run(cg.get_draft(ev)).data["alignment"] == "混乱中立"
+
+    def test_undo_last_filled_field(self) -> None:
+        """回退到最近一个已填字段并清空它。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "人类", "法师", "士兵"):
+            run(cg.advance(ev, a))
+        reply = run(cg.undo(ev))
+        assert "已回退" in reply.check
+        draft = run(cg.get_draft(ev))
+        assert draft.data.get("background") is None  # 背景已清空
+        assert draft.state == "BACKGROUND"
+
+    def test_undo_specific_field(self) -> None:
+        """回退指定字段（种族）并级联清空加值。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "半精灵", "法师", "士兵", "15 14 13 12 10 8", "力+1 敏+1"):
+            run(cg.advance(ev, a))
+        reply = run(cg.undo(ev, "race"))
+        assert "已回退" in reply.check
+        draft = run(cg.get_draft(ev))
+        assert draft.data.get("race") is None
+        assert draft.ability_bonus == {}
+        assert draft.state == "RACE"
+
+    def test_edit_invalid_field(self) -> None:
+        """无法识别的字段返回提示。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        reply = run(cg.edit(ev, "不存在的字段", "xxx"))
+        assert "无法识别的字段" in reply.check
+
+    def test_edit_without_draft(self) -> None:
+        """无草稿时编辑提示未开始。"""
+        cg, ev = self._manager("2014"), _Event()
+        reply = run(cg.edit(ev, "race", "人类"))
+        assert "未开始" in reply.progress
+
+    def test_edit_then_complete_flow(self) -> None:
+        """改字段后仍可完整走完并正确落库（加值按新种族叠加）。"""
+        cg, ev = self._manager("2014"), _Event()
+        run(cg.start(ev))
+        for a in ("确认", "半精灵", "法师", "士兵", "15 14 13 12 10 8", "力+1 敏+1",
+                  "守序善良", "出身", "决定", "经历"):
+            run(cg.advance(ev, a))
+        # 改成矮人（flat 体+2），然后继续
+        run(cg.edit(ev, "race", "矮人"))
+        last = run(cg.advance(ev, "阿尔文"))
+        assert last.done is True
+        card = run(cg._characters.get_card(ev))
+        assert card.race == "矮人"
+        assert card.ability_scores.get("con") == 15  # 13 + 矮人 flat +2
+        assert card.ability_scores.get("str") == 15  # 半精灵的力+1 已失效，不加
